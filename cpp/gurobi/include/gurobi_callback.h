@@ -9,8 +9,8 @@
 
 #include "gurobi_c.h"
 
-class GurobiModel;
 
+class GurobiModel;
 
 
 
@@ -79,9 +79,7 @@ public:
     }
 
   }
-#ifdef SWIG
   myobj get(int what);
-#endif
 };
 
 

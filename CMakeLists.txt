@@ -61,9 +61,12 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 
 add_subdirectory(cpp/generic)
 
-
-function(AddSolverStub solver includes)
-set(TARGETNAME ${solver}-drv)
+if(WIN32)
+add_subdirectory(thirdparty/dlfcn-win32)
+ set(CMAKE_DL_LIBS dl)
+endif()
+function(AddSolverStub solver includes libs)
+  set(TARGETNAME ${solver}-drv)
   set(DIR_CPP ${CMAKE_SOURCE_DIR}/cpp/${solver})
   set(DIR_CPP_SRC ${CMAKE_SOURCE_DIR}/cpp/${solver}/src)
   set(DIR_CPP_INCLUDE ${CMAKE_SOURCE_DIR}/cpp/${solver}/include)
@@ -72,15 +75,33 @@ set(TARGETNAME ${solver}-drv)
   set(DIR_CSHARP ${CMAKE_SOURCE_DIR}/csharp/${solver})
 
   add_prefix(DRV_SOURCES ${DIR_CPP}/
+    include/ampl_imports.h
     include/${solver}_interface.h src/${solver}_interface.cpp
     include/${solver}_callback.h src/${solver}_callback.cpp)
 
-  add_library(${TARGETNAME} SHARED ${DRV_SOURCES})
+  add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
+  target_link_libraries(${TARGETNAME} simpleapi ${libs}
+  ${CMAKE_DL_LIBS})
   target_include_directories(${TARGETNAME} 
       PUBLIC ${includes} ${DIR_CPP_INCLUDE}
       ${SIMPLEAPI_INCLUDE})
-      add_to_folder(${solver} ${TARGETNAME})
-    #add_subdirectory(${DIR_CPP})
+  add_to_folder(${solver} ${TARGETNAME})
+  
+  # Tests
+  add_prefix(TEST_SOURCES ${DIR_CPP}/test/
+    ${solver}-test.cpp)
+  add_executable(${TARGETNAME}-test ${TEST_SOURCES})
+  target_link_libraries(${TARGETNAME}-test ${libs} ${TARGETNAME} )
+  target_include_directories(${TARGETNAME}-test PRIVATE
+    ${GENERATED_INCLUDE_DIR} # for test-config
+     ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE}
+     ${includes}
+     )
+  add_to_folder(${solver} ${TARGETNAME}-test)
+target_link_libraries(${TARGETNAME}-test)
+target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
+
+
     if(SWIG_FOUND)
       # Create custom target for common swig files,
       # couldn't find a way to add them as headers
@@ -94,11 +115,10 @@ set(TARGETNAME ${solver}-drv)
 endfunction()
 
 find_package(GUROBI)
-foreach(s ${SOLVERS})
-if(ENABLE_${s})
-  AddSolverStub(${s} ${GUROBI_INCLUDE_DIR})
+
+if(ENABLE_gurobi)
+  AddSolverStub(gurobi ${GUROBI_INCLUDE_DIR} ${GUROBI_LIBRARIES})
 endif()
-endforeach()
 
 #if(ENABLE_CPLEX)
 #  find_package(CPLEX)

@@ -1,5 +1,8 @@
+#include "ampl_imports.h"
+
 #include "gurobi_interface.h"
 #include "gurobi_callback.h"
+
 
 int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
 {
@@ -17,14 +20,16 @@ GurobiDrv::~GurobiDrv() {
 
 void GurobiDrv::freeGurobiEnv()
 {
-  grb::impl::freeEnvironment();
+  grb::impl::freeEnvironmentPtr();
 }
 
 GurobiModel GurobiDrv::loadModel(const char* modelName) {
+  grb::impl::initFunctions();
   char** args = generateArguments(modelName);
   GurobiModel m;
   try {
-    m.GRBModel_ = grb::impl::AMPLloadmodelNoLic(3, args, &m.asl_);
+ 
+    m.GRBModel_ = grb::impl::AMPLloadmodelNoLicPtr(3, args, &m.asl_);
     m.lastErrorCode_ = -1;
     m.fileName_ = modelName;
   }
@@ -38,7 +43,7 @@ GurobiModel GurobiDrv::loadModel(const char* modelName) {
 }
 
 void GurobiModel::writeSol() {
-  grb::impl::AMPLwritesol(GRBModel_, asl_, lastErrorCode_);
+  grb::impl::AMPLwritesolPtr(GRBModel_, asl_, lastErrorCode_);
 }
 int GurobiModel::setCallbackDerived(BaseCallback* callback) {
   return GRBsetcallbackfunc(GRBModel_, callback_wrapper, callback);
@@ -89,5 +94,5 @@ GurobiModel::~GurobiModel() {
   if (GRBModel_)
     GRBfreemodel(GRBModel_);
   if (asl_)
-    grb::impl::freeASL(&asl_);
+    grb::impl::freeASLPtr(&asl_);
 }

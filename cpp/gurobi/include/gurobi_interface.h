@@ -4,36 +4,20 @@
 #include <string>
 #include <map>
 
-#include "simpleapi/amplInterface.h"
+#include "simpleapi/simpleApi.h"
+
+
 
 #include "gurobi_callback.h"
 
 #include "gurobi_c.h"
 
-#ifdef _WIN32
-#define ENTRYPOINT __declspec(dllimport)
-#else
-#define ENTRYPOINT
-#endif
+
 
 // avoid including "asl.h"
 struct ASL;
 
-namespace grb
-{
-namespace impl
-{
-    extern "C" {
-      // Imported from the GUROBI driver
-      ENTRYPOINT GRBmodel *AMPLloadmodel(int argc, char **argv);
-      ENTRYPOINT GRBmodel *AMPLloadmodelNoLic(int argc, char **argv, ASL **asl);
-      ENTRYPOINT int AMPLcallmain(int argc, char **argv);
-      ENTRYPOINT void AMPLwritesol(GRBmodel *m, ASL *asl, int lastoptimizerun);
-      ENTRYPOINT void freeEnvironment();
-      ENTRYPOINT void freeASL(ASL **aslp);
-    }
-}
-}
+
 // Forward declarations
 int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
 class GurobiModel;
@@ -50,6 +34,7 @@ class GurobiDrv  {
   public:
   GurobiModel loadModel(const char* modelName);
   ~GurobiDrv();
+  
 };
 
 /**

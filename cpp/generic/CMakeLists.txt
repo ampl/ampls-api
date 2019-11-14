@@ -17,15 +17,14 @@ if(NOT WIN32)
 endif()
 
 
-# C++ driver testing routines
+# C++ generic routines
 add_prefix(TEST_SOURCES ${SIMPLEAPI_DIR}/test/
   api-test.cpp)
 add_executable(simpleapi-test ${TEST_SOURCES})
 target_include_directories(simpleapi-test PRIVATE
    ${GENERATED_INCLUDE_DIR} # for test-config
-   ${SIMPLEAPI_INCLUDE} # for simpleapi
  )
-#target_link_libraries(simpleapi-test gurobidrv-lib cplexdrv-lib)
+
 target_compile_definitions(simpleapi-test PRIVATE SWIG)
 
 

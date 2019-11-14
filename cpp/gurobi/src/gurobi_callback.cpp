@@ -21,7 +21,6 @@ const char* GRBCallback::getWhere(int where)
       return "Where code not found";
   }
 }
-#ifdef SWIG
 myobj GRBCallback::get(int what)
 {
   myobj r = myobj();
@@ -98,7 +97,6 @@ myobj GRBCallback::get(int what)
 //  case GRB_CB_MIPNODE_BRVAR   5007
 // case GRB_CB_MIPNODE_OBJBNDC 5008
 }
-#endif
 
 void GRBCallback::terminate() {
   GRBterminate(gurobiModel()->getGRBmodel());
