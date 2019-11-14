@@ -8,7 +8,7 @@
 
 #ifdef _WIN32
 #define ENTRYPOINT __declspec(dllimport)
-#define DLLNAME "gurobidrv-lib.dll"
+#define DLLNAME "gurobi-lib.dll"
 #else
 #define ENTRYPOINT
 #define DLLNAME "gurobidrv-lib.so"

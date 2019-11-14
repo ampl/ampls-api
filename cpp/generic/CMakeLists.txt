@@ -24,7 +24,7 @@ add_executable(simpleapi-test ${TEST_SOURCES})
 target_include_directories(simpleapi-test PRIVATE
    ${GENERATED_INCLUDE_DIR} # for test-config
  )
-
+target_link_libraries(simpleapi-test simpleapi)
 target_compile_definitions(simpleapi-test PRIVATE SWIG)
 
 

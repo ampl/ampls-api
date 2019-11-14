@@ -113,10 +113,10 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
 
-  GurobiDrv gurobi;
+  /*GurobiDrv gurobi;
   CPLEXDrv cplex;
   GurobiModel m = gurobi.loadModel(buffer);
   CPLEXModel c = cplex.loadModel(buffer);
   doStuff(m, "gurobi");
-  doStuff(c, "cplex");
+  doStuff(c, "cplex");*/
 }

@@ -37,7 +37,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 # Set paths
-set(BASESRCDIR ${CMAKE_SOURCE_DIR}/src/solvers) # Base dir for all solvers
+set(BASESRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/src/solvers) # Base dir for all solvers
 
 set(SOLVERS gurobi cplex)
 
@@ -67,24 +67,21 @@ add_subdirectory(thirdparty/dlfcn-win32)
 endif()
 function(AddSolverStub solver includes libs)
   set(TARGETNAME ${solver}-drv)
-  set(DIR_CPP ${CMAKE_SOURCE_DIR}/cpp/${solver})
-  set(DIR_CPP_SRC ${CMAKE_SOURCE_DIR}/cpp/${solver}/src)
-  set(DIR_CPP_INCLUDE ${CMAKE_SOURCE_DIR}/cpp/${solver}/include)
-  set(DIR_SWIG ${CMAKE_SOURCE_DIR}/cpp/${solver}/swig)
-  set(DIR_PYTHON ${CMAKE_SOURCE_DIR}/python/amplpy_${solver})
-  set(DIR_CSHARP ${CMAKE_SOURCE_DIR}/csharp/${solver})
+  set(DIR_CPP ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver})
+  set(DIR_CPP_SRC ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver}/src)
+  set(DIR_CPP_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver}/include)
+  set(DIR_SWIG ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver}/swig)
+  set(DIR_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/python/${solver})
+  set(DIR_CSHARP ${CMAKE_CURRENT_SOURCE_DIR}/csharp/${solver})
 
   add_prefix(DRV_SOURCES ${DIR_CPP}/
     include/ampl_imports.h
     include/${solver}_interface.h src/${solver}_interface.cpp
     include/${solver}_callback.h src/${solver}_callback.cpp)
-
   add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
-  target_link_libraries(${TARGETNAME} simpleapi ${libs}
-  ${CMAKE_DL_LIBS})
+  target_link_libraries(${TARGETNAME} simpleapi ${libs} ${CMAKE_DL_LIBS})
   target_include_directories(${TARGETNAME} 
-      PUBLIC ${includes} ${DIR_CPP_INCLUDE}
-      ${SIMPLEAPI_INCLUDE})
+      PUBLIC ${includes} ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE})
   add_to_folder(${solver} ${TARGETNAME})
   
   # Tests
@@ -95,21 +92,30 @@ function(AddSolverStub solver includes libs)
   target_include_directories(${TARGETNAME}-test PRIVATE
     ${GENERATED_INCLUDE_DIR} # for test-config
      ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE}
-     ${includes}
-     )
+     ${includes})
   add_to_folder(${solver} ${TARGETNAME}-test)
-target_link_libraries(${TARGETNAME}-test)
-target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
+  target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
 
 
     if(SWIG_FOUND)
+      include(UseSWIG)
+        # Get rid of warning in newer versions of cmake
+      macro(ADD_SWIG_LIBRARY name language)
+        if(CMAKE_VERSION VERSION_LESS 3.8)
+          swig_add_module(${name} ${language} ${ARGN})
+        else()
+          swig_add_library(${name} 
+            LANGUAGE ${language} TYPE MODULE
+            SOURCES ${ARGN})
+        endif()
+      endmacro()
+
       # Create custom target for common swig files,
       # couldn't find a way to add them as headers
       add_custom_target(${solver}-common 
         SOURCES ${SWIGCOMMONSRC} ${DIR_SWIG}/common.i)
       add_to_folder(${solver}/swig ${solver}-common)
-
-      #add_subdirectory(${DIR_PYTHON})
+      add_subdirectory(${DIR_PYTHON})
       #add_subdirectory(${DIR_CSHARP})
     endif()
 endfunction()

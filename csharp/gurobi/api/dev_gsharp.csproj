@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2138A0C3-4C0F-436A-B5B0-DA18EA56AFE3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>gsharp</RootNamespace>
+    <AssemblyName>gsharp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\AMPLModel.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\BaseCallback.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\GRBCallback.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\GRBsvec.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\GenericCallback.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\GurobiDrv.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\GurobiModel.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_ASL.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_FILE.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p__GRBenv.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p__GRBmodel.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_double.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_f_p_char__int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_f_p_void_p_void__void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_f_p_void_size_t_p_void__p_void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_f_size_t_p_void__p_void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_f_size_t_size_t_p_void__p_void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_p_ASL.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_p_FILE.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_p__GRBenv.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_p__GRBmodel.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_p_char.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_size_t.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\SWIGTYPE_p_void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\Value.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\gsharp_c.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\gsharp_cPINVOKE.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\map_string_int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\myobj.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers\gurobi\csharp\swig\vector_string.cs" /> <Compile Include="D:\Development\ampl\solvers-private\solvers\gurobi\csharp\api\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
