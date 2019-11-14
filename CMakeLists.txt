@@ -116,7 +116,7 @@ function(AddSolverStub solver includes libs)
         SOURCES ${SWIGCOMMONSRC} ${DIR_SWIG}/common.i)
       add_to_folder(${solver}/swig ${solver}-common)
       add_subdirectory(${DIR_PYTHON})
-      #add_subdirectory(${DIR_CSHARP})
+      add_subdirectory(${DIR_CSHARP})
     endif()
 endfunction()
 

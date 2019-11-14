@@ -24,14 +24,11 @@ add_swig_library(${PYTHON_SWIG_API} python ${SWIG_PYTHON_MODULE_NAME}.i)
 swig_link_libraries(${PYTHON_SWIG_API} gurobi-drv ${PYTHON_LIBRARIES})
 
 add_to_folder(gurobi/swig/py ${PYTHON_SWIG_API})
-# For whatever reason, UseSWIG SILENTLY prepends an underscore
-# to the target name, so I'm getting the resulting name from
-# it. https://cmake.org/cmake/help/v3.0/module/UseSWIG.html
 # From this moment on, PYTHON_SWIG_API has the correct (prefixed) name
 # Can be omitted if cmake supports policies CMP0078 and CMP0086 
 set(PYTHON_SWIG_API ${SWIG_MODULE_${PYTHON_SWIG_API}_REAL_NAME} PARENT_SCOPE)
 set(PYTHON_SWIG_API ${SWIG_MODULE_${PYTHON_SWIG_API}_REAL_NAME})
-target_compile_definitions(${PYTHON_SWIG_API} PRIVATE SWIG)
+
 # For multi-config builds (e.g. msvc)
 foreach(OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
     string(TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG)
