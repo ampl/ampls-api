@@ -11,4 +11,4 @@ CSHARP_ARRAYS(int, int)
 
 
 
-%include "../common/common.i"
+%include "../../../cpp/gurobi/swig/common.i"

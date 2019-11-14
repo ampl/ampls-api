@@ -10,20 +10,20 @@ include(${CSHARP_USE_FILE})
 ############# Create SWIG wrapper #############
 include_directories(
   ${GUROBI_INCLUDE_DIR} # for gurobi header
-  ${GUROBI_API_DIR} # for gurobi api includes
+  ${DIR_CPP_INCLUDE} # for gurobi api includes
  ${SIMPLEAPI_INCLUDE}
  ) 
 
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/swig)
 set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/gsharp_c)
-set(SWIG_CSHARP_MODULE_NAME "gsharp_c")
+set(SWIG_CSHARP_MODULE_NAME "swig/gsharp_c")
 set_source_files_properties(${SWIG_CSHARP_MODULE_NAME}.i PROPERTIES CPLUSPLUS ON)
-SET(SWIG_DEPENDS ../common/common.i)
+
 list(APPEND CMAKE_SWIG_FLAGS "-namespace;gsharp")
 add_swig_library(${CSHARP_SWIG_API} csharp ${SWIG_CSHARP_MODULE_NAME}.i)
 target_compile_definitions(${CSHARP_SWIG_API} PRIVATE SWIG)
-target_link_libraries(${CSHARP_SWIG_API} gurobidrv-lib)
+target_link_libraries(${CSHARP_SWIG_API} gurobi-drv)
 add_to_folder(gurobi/swig/csharp ${CSHARP_SWIG_API})
 
 # For multi-config builds (e.g. msvc)
@@ -72,23 +72,23 @@ if(MSVC)
       ${CSHARP_SWIG_API}
     COMMENT "Configuring ${GSHARP_PROJECT_SOURCE}"
     VERBATIM)
-  add_custom_target(dev_configure_grb_sharp_project ALL
+  add_custom_target(dev_configure_gsharp_project ALL
     DEPENDS ${GSHARP_PROJECT_DESTINATION}
     ${SWIG_MODULE_csharpapi_TARGET_NAME})
 
   include_external_msproject(dev-grb-sharp-api
                       ${GSHARP_PROJECT_DESTINATION}
-                      dev_configure_grb_sharp_project)
-  add_dependencies(dev-grb-sharp-api dev_configure_grb_sharp_project)
-    add_to_folder(gurobi/swig/csharp dev_configure_grb_sharp_project dev-grb-sharp-api)
+                      dev_configure_gsharp_project)
+  add_dependencies(dev-grb-sharp-api dev_configure_gsharp_project)
+    add_to_folder(gurobi/swig/csharp dev_configure_gsharp_project dev-grb-sharp-api)
 endif()
 
 
 if(MSVC)
-  include_external_msproject(gsharp-test
-                 ${CMAKE_CURRENT_SOURCE_DIR}/gsharp-test/gsharp-test.csproj
-                gsharp-test)
-                add_to_folder(gurobi/swig/csharp gsharp-test)
+  include_external_msproject(gsharp-examples
+                 ${CMAKE_CURRENT_SOURCE_DIR}/examples/gsharp-examples.csproj
+                gsharp-examples)
+                add_to_folder(gurobi/swig/csharp gsharp-examples)
 
 endif()
 
