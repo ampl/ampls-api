@@ -61,9 +61,9 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 
 add_subdirectory(cpp/generic)
 
+set(LIBSDIR ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 if(WIN32)
-add_subdirectory(thirdparty/dlfcn-win32)
- set(CMAKE_DL_LIBS dl)
+  set(LIBSDIR ${LIBSDIR}/win64)
 endif()
 function(AddSolverStub solver includes libs)
   set(TARGETNAME ${solver}-drv)
@@ -74,12 +74,26 @@ function(AddSolverStub solver includes libs)
   set(DIR_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/python/${solver})
   set(DIR_CSHARP ${CMAKE_CURRENT_SOURCE_DIR}/csharp/${solver})
 
+  # Temporarily, on windows I find both import lib and dll file
+  # on other systems i'll need just one
+  set(IMPORTLIB ${solver}-lib-import)
+  set(LIBFILENAME ${solver}-lib)
+  find_library(LIBFILE ${LIBFILENAME} 
+    PATHS ${LIBSDIR})
+  find_file (DLLFILE ${LIBFILENAME}.dll 
+    PATHS ${LIBSDIR})
+  message("LIBFILE ${LIBFILE}")
+  message("DLLFILE ${DLLFILE}")
+  add_library(${IMPORTLIB} STATIC IMPORTED)
+  set_property(TARGET ${IMPORTLIB}
+    PROPERTY IMPORTED_LOCATION ${LIBFILE})
+
+
   add_prefix(DRV_SOURCES ${DIR_CPP}/
-    include/ampl_imports.h
     include/${solver}_interface.h src/${solver}_interface.cpp
     include/${solver}_callback.h src/${solver}_callback.cpp)
   add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
-  target_link_libraries(${TARGETNAME} simpleapi ${libs} ${CMAKE_DL_LIBS})
+  target_link_libraries(${TARGETNAME} simpleapi ${libs})
   target_include_directories(${TARGETNAME} 
       PUBLIC ${includes} ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE})
   add_to_folder(${solver} ${TARGETNAME})
@@ -90,7 +104,7 @@ function(AddSolverStub solver includes libs)
   add_prefix(TEST_SOURCES ${DIR_CPP}/test/
     ${solver}-test.cpp)
   add_executable(${TARGETNAME}-test ${TEST_SOURCES})
-  target_link_libraries(${TARGETNAME}-test ${libs} ${TARGETNAME} )
+  target_link_libraries(${TARGETNAME}-test ${libs} ${TARGETNAME} ${IMPORTLIB})
   target_include_directories(${TARGETNAME}-test PRIVATE
     ${GENERATED_INCLUDE_DIR} # for test-config
      ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE}
