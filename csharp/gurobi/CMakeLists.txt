@@ -2,17 +2,15 @@
 # Names and paths
 set(CSHARP_SWIG_API gsharp_c) # name of swig generated wrapper
 
-
-find_package(CSharp)
 # Use Csharp
+find_package(CSharp)
 include(${CSHARP_USE_FILE})
 
 ############# Create SWIG wrapper #############
 include_directories(
   ${GUROBI_INCLUDE_DIR} # for gurobi header
   ${DIR_CPP_INCLUDE} # for gurobi api includes
- ${SIMPLEAPI_INCLUDE}
- ) 
+ ${SIMPLEAPI_INCLUDE}) 
 
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/swig)
@@ -89,7 +87,6 @@ if(MSVC)
                  ${CMAKE_CURRENT_SOURCE_DIR}/examples/gsharp-examples.csproj
                 gsharp-examples)
                 add_to_folder(gurobi/swig/csharp gsharp-examples)
-
 endif()
 
 

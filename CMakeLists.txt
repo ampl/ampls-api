@@ -83,7 +83,9 @@ function(AddSolverStub solver includes libs)
   target_include_directories(${TARGETNAME} 
       PUBLIC ${includes} ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE})
   add_to_folder(${solver} ${TARGETNAME})
-  
+  if(NOT WIN32)
+   target_compile_options(${TARGETNAME} PRIVATE -fPIC)
+  endif()
   # Tests
   add_prefix(TEST_SOURCES ${DIR_CPP}/test/
     ${solver}-test.cpp)
@@ -116,7 +118,9 @@ function(AddSolverStub solver includes libs)
         SOURCES ${SWIGCOMMONSRC} ${DIR_SWIG}/common.i)
       add_to_folder(${solver}/swig ${solver}-common)
       add_subdirectory(${DIR_PYTHON})
-      add_subdirectory(${DIR_CSHARP})
+      if(WIN32)
+        add_subdirectory(${DIR_CSHARP})
+      endif()
     endif()
 endfunction()
 

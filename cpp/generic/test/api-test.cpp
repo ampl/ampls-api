@@ -14,6 +14,7 @@
 #include "simpleapi/simpleApi.h"
 #include "test-config.h" // for MODELS_DIR
 #include <cstring>
+#include <cstdio>
 
 const char* MODELNAME = "tsp.nl";
 /*

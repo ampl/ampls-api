@@ -2,6 +2,7 @@
 
 
 # - Try to find GUROBI
+# Use GUROBI_ROOT as path hint
 # Once done this will define
 #  GUROBI_FOUND - System has Gurobi
 #  GUROBI_INCLUDE_DIRS - The Gurobi include directories
@@ -13,7 +14,6 @@ if (GUROBI_INCLUDE_DIR)
   set(GUROBI_LIBRARIES "${GUROBI_LIBRARY}" )
 else (GUROBI_INCLUDE_DIR)
 
-message("$ENV{GUROBI_HOME}/include")
 find_path(GUROBI_INCLUDE_DIR 
           NAMES gurobi_c.h
           PATHS  "$ENV{GUROBI_INCLUDE_DIR}"
@@ -21,18 +21,24 @@ find_path(GUROBI_INCLUDE_DIR
                  "/Library/gurobi810/mac64/include"
                  "C:\\libs\\gurobi810\\include"
                  "C:\\solvers\\gurobi811\\win64\\include"
+                 "${GUROBI_ROOT}/include"
           )
+set(GRBLIBRARYNAMES
+gurobi gurobi80 gurobi81)
 
 find_library( GUROBI_LIBRARY 
-              NAMES gurobi
-              gurobi80
-              gurobi81
+              NAMES ${GRBLIBRARYNAMES} NAMES_PER_DIR
               PATHS "$ENV{GUROBI_LIBRARY}"
                     "$ENV{GUROBI_HOME}/lib"
                     "/Library/gurobi810/mac64/lib"
                     "C:\\libs\\gurobi810\\lib"
                     "C:\\solvers\\gurobi811\\win64\\lib"
+                    "${GUROBI_ROOT}/lib"
               )
+
+if(NOT GUROBI_LIBRARY)
+  message(FATAL_ERROR "GUROBI_LIBRARY is set to '$ENV{GUROBI_HOME}', but did not find any file matching $ENV{GUROBI_HOME}/lib/${CMAKE_FIND_LIBRARY_PREFIXES}{${GRBLIBRARYNAMES}}${CMAKE_FIND_LIBRARY_SUFFIXES}")
+endif()
 
 
 set(CPPLIBNAME gurobi_c++)
