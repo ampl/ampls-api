@@ -64,7 +64,12 @@ add_subdirectory(cpp/generic)
 set(LIBSDIR ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 if(WIN32)
   set(LIBSDIR ${LIBSDIR}/win64)
+elseif(APPLE)
+  set(LIBSDIR ${LIBSDIR}/osx64)
+else()
+  set(LIBSDIR ${LIBSDIR}/linux64)
 endif()
+
 function(AddSolverStub solver includes libs)
   set(TARGETNAME ${solver}-drv)
   set(DIR_CPP ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver})
@@ -78,6 +83,7 @@ function(AddSolverStub solver includes libs)
   # on other systems i'll need just one
   set(IMPORTLIB ${solver}-lib-import)
   set(LIBFILENAME ${solver}-lib)
+  message("TRYING TO FIND LIBRARIES IN ${LIBSDIR}")
   find_library(LIBFILE ${LIBFILENAME} 
     PATHS ${LIBSDIR})
   find_file (DLLFILE ${LIBFILENAME}.dll 
