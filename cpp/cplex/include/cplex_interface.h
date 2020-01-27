@@ -98,7 +98,7 @@ class CPLEXModel : public AMPLModel {
   ASL* asl_;
   int lastErrorCode_;
   CPLEXModel() : model_(NULL), asl_(NULL),
-    lastErrorCode_(0), copied_(false) {}
+    lastErrorCode_(0), copied_(false), status_(0) {}
 
 public:
   CPLEXModel(CPLEXModel&& other) noexcept :
@@ -107,7 +107,8 @@ public:
     asl_(other.asl_),
     model_(other.model_),
     lastErrorCode_(other.lastErrorCode_),
-    copied_(false)
+    copied_(false),
+    status_(other.status_)
     {
       other.copied_ = true;
     }
@@ -115,7 +116,8 @@ public:
   CPLEXModel(const CPLEXModel& other) :
       AMPLModel(other)
     {
-    state_= other.state_,
+    state_ = other.state_;
+    status_ = other.status_;
     copied_ = false;
     asl_ = other.asl_;
     model_ = other.model_;
