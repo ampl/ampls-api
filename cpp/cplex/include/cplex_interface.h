@@ -5,15 +5,36 @@
 #include <map>
 
 #if CPX_APIMODEL == CPX_APIMODEL_LARGE
-#include "cplexx.h"
+#include "ilcplex/cplexx.h"
 #endif
-#include "cplex.h"
+#include "ilcplex/cplex.h"
 
-#include "asl.h"
-#include "simpleapi/amplInterface.h"
-#include "cplexlib.h"
+#include "simpleapi/simpleApi.h"
+#include "cplex_callback.h"
 
 
+
+
+struct ASL;
+struct CPLEXDriverState;
+namespace cpx
+{
+  namespace impl
+  {
+    extern "C" {
+
+      CPLEXDriverState* CPLEXloadmodel(int argc, char** argv,
+        CPXLPptr* modelPtr, ASL** aslPtr);
+
+      void CPLEXwritesol(CPLEXDriverState* state,
+        CPXLPptr* modelPtr, int status);
+
+      CPXENVptr* getInternalEnv();
+
+      void freeASL(ASL** aslPtr);
+    }
+  }
+}
 
 #ifdef _WIN32
 #define CPXPUBLIC      __stdcall
@@ -39,7 +60,6 @@ int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env,
 CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
   int wherefrom, void* userhandle);
 
-#include "cplex_callback.h"
 
 class CPLEXModel;
 class Callback;
@@ -55,7 +75,7 @@ class CPLEXDrv {
   public:
     CPLEXModel loadModel(const char* modelName);
     CPXENVptr* getEnv() {
-      return getInternalEnv();
+      return cpx::impl::getInternalEnv();
     }
   ~CPLEXDrv();
 };
@@ -72,7 +92,8 @@ class CPLEXModel : public AMPLModel {
   friend CPLEXModel CPLEXDrv::loadModel(const char* modelName);
 
   mutable bool copied_;
-  CPLEXDriverState state_;
+  CPLEXDriverState* state_;
+  int status_;
   CPXLPptr model_;
   ASL* asl_;
   int lastErrorCode_;
@@ -135,7 +156,7 @@ public:
     return model_;
   }
   CPXENVptr getCPLEXenv() {
-      return *getInternalEnv();
+      return *cpx::impl::getInternalEnv();
   }
   
   ~CPLEXModel() {
@@ -144,7 +165,7 @@ public:
     if (model_)
       CPXfreeprob(getCPLEXenv(), &model_);
     if (asl_)
-      ASL_free(&asl_);
+      cpx::impl::freeASL(&asl_);
   }
 };
 

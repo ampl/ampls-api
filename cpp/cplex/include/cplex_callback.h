@@ -5,7 +5,9 @@
 #include <vector>
 #include <map>
 
-#include "cplex.h"
+#include "simpleapi/simpleApi.h"
+
+#include "ilcplex/cplex.h"
 
 class CPLEXModel;
 
@@ -57,12 +59,13 @@ public:
   double getObjective();
   const char* getWhere(int wherefrom);
   const char* getMessage();
-  AMPLCBWhere getAMPLType() {
+
+  AMPLCBWhere::Value getAMPLType() {
 
     switch(wherefrom_)
     {
     case -1:
-      return AMPLCBWhere::msg;
+      return  AMPLCBWhere::msg;
     case CPX_CALLBACK_PRESOLVE:
       return AMPLCBWhere::presolve;
     case CPX_CALLBACK_PRIMAL:

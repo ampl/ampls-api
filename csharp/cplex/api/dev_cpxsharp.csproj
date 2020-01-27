@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="D:\Development\ampl\solvers-private\solvers\cplex\csharp\api\Utils.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\solvers-public\csharp\cplex\api\Utils.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

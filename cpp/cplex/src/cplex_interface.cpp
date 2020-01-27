@@ -106,10 +106,14 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
       printf("NO FILE: %s\n", modelName);
     else
       fclose(f);
-    m.state_= CPLEXloadmodel(3, args);
-    m.model_ = m.state_.modelPtr;
-    disableCallbacksFromDave(*getInternalEnv());
-    m.asl_ = m.state_.asl;
+    CPXLPptr modelptr;
+    ASL* aslptr;
+    m.state_= cpx::impl::CPLEXloadmodel(3, args, &modelptr,
+      &aslptr);
+
+    m.model_ = modelptr;
+    disableCallbacksFromDave(*cpx::impl::getInternalEnv());
+    m.asl_ = aslptr;
     m.lastErrorCode_ = -1;
     m.fileName_ = modelName;
   }
@@ -123,7 +127,7 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
 }
 
 void CPLEXModel::writeSol() {
-  CPLEXwritesol(state_, asl_);
+  cpx::impl::CPLEXwritesol(state_, &model_, status_);
 }
 int setMsgCallback(BaseCallback* callback, CPXENVptr env) {
   /* Now get the standard channels.  If an error, just call our
@@ -230,7 +234,7 @@ int CPLEXModel::optimize() {
   }
   resetVarMapInternal();
   // This gets communicated to writeSol
-  state_.status = res;
+  status_ = res;
   // Print error message in case of error
   if (res)
   {

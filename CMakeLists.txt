@@ -15,7 +15,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/support/c
 #include(createSolverSupportProject)
 
 # Initial values for solvers builds. If set to 0, the targets are ignored
-set(ENABLE_cplex 0)
+set(ENABLE_cplex 1)
 set(ENABLE_gurobi 1)
 set(ENABLE_knitro 0)
 set(ENABLE_xpress 0)
@@ -54,7 +54,6 @@ if(SWIG_FOUND)
   include(UseSWIG)
 endif()
 
-
 set(GENERATED_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include) # For generated files
 file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
      "const char MODELS_DIR[] = \"${PROJECT_SOURCE_DIR}/test/models/\";\n")
@@ -71,6 +70,7 @@ else()
 endif()
 
 function(AddSolverStub solver includes libs)
+message("Adding ${solver} with include: ${includes} and lib ${libs}")
   set(TARGETNAME ${solver}-drv)
   set(DIR_CPP ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver})
   set(DIR_CPP_SRC ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver}/src)
@@ -150,31 +150,17 @@ if(ENABLE_gurobi)
   AddSolverStub(gurobi ${GUROBI_INCLUDE_DIR} ${GUROBI_LIBRARIES})
 endif()
 
-#if(ENABLE_CPLEX)
-#  find_package(CPLEX)
-#  if (CPLEX_FOUND)#
-#	  add_subdirectory(solvers/cplex)
-	 # add_subdirectory(solvers/ilogcp)
-#  endif()
-#endif()
+if(ENABLE_cplex)
+  find_package(CPLEX)
+  AddSolverStub(cplex ${CPLEX_INCLUDE_DIR} ${CPLEX_LIBRARY})
+endif()
 
-#if(ENABLE_GUROBI)
- # find_package(GUROBI)
- # if(GUROBI_FOUND)
-#	  add_subdirectory(solvers/gurobi)
-#  endif()
-#endif()
-#if(ENABLE_KNITRO)
-#  Require(KNITRO KNITRO_LIB KNITRO_INCLUDE)
-#  if(KNITRO_FOUND)#
-	#  add_subdirectory(solvers/knitro)
- #endif()
-#endif()
+if(ENABLE_KNITRO)
+	  AddSolverStub(knitro)
+endif()
+
 if(ENABLE_XPRESS)
-  Require(XPRESS XPRESS_INCLUDE XPRESS_LIB)
-  if(XPRESS_FOUND)
-    add_subdirectory(solvers/xpressmp)
-  endif()
+  AddSolverStub(xpressmp)
 endif()
 
 # Install python package structure
