@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using cpxsharp;
 
-namespace gsharp_test
+namespace cpxsharp_test
 {
   class Program
   {
@@ -55,14 +55,14 @@ namespace gsharp_test
         var f = getAMPLType();
         switch(f)
         {
-          case AMPLCBWhere.msg:
+          case Value.msg:
            // Console.WriteLine(getMessage());
             break;
-          case AMPLCBWhere.presolve:
+          case Value.presolve:
             Console.WriteLine("Presolve!");
             break;
-          case AMPLCBWhere.mipnode:
-          case AMPLCBWhere.mipsol:
+          case Value.mipnode:
+          case Value.mipsol:
             Console.WriteLine("MIPSOL: {0}", getObjective());
             break;
         }

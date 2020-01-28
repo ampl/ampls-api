@@ -9,10 +9,10 @@ namespace std {
 }
 
 %{
-#include "gurobi_c.h"
-#include "simpleapi/simpleApi.h"
-#include "gurobi_callback.h"
-#include "gurobi_interface.h"
+  #include "gurobi_c.h"
+  #include "simpleapi/simpleApi.h"
+  #include "gurobi_callback.h"
+  #include "gurobi_interface.h"
 %}
 
 %feature("director") GRBCallback;

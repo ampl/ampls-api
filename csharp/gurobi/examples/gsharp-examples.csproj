@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\api\dev_gsharp.csproj">
-      <Project>{2138a0c3-4c0f-436a-b5b0-da18ea56afe3}</Project>
+      <Project>{49dce1cb-2fbc-4f78-bbc2-d9d30bf4544d}</Project>
       <Name>dev_gsharp</Name>
     </ProjectReference>
   </ItemGroup>

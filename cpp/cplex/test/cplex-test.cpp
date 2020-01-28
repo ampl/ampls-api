@@ -27,7 +27,7 @@ public:
     int    phase = -1;
     double suminf_or_objective;
     int    itcnt = -1;
-    printf("Called with where: %s\n", getWhere(wherefrom).data());
+    printf("Called with where: %s\n", getWhere(wherefrom));
     if (wherefrom == CPX_CALLBACK_MIP_CUT_FEAS)
     {
       std::vector<std::string> vars;

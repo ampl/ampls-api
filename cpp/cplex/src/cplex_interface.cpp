@@ -108,11 +108,11 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
       fclose(f);
     CPXLPptr modelptr;
     ASL* aslptr;
-    m.state_= cpx::impl::CPLEXloadmodel(3, args, &modelptr,
+    m.state_= cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
       &aslptr);
 
     m.model_ = modelptr;
-    disableCallbacksFromDave(*cpx::impl::getInternalEnv());
+    disableCallbacksFromDave(*cpx::impl::AMPLCPLEXgetInternalEnv());
     m.asl_ = aslptr;
     m.lastErrorCode_ = -1;
     m.fileName_ = modelName;
@@ -127,7 +127,7 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
 }
 
 void CPLEXModel::writeSol() {
-  cpx::impl::CPLEXwritesol(state_, &model_, status_);
+  cpx::impl::AMPLCPLEXwritesol(state_, &model_, status_);
 }
 int setMsgCallback(BaseCallback* callback, CPXENVptr env) {
   /* Now get the standard channels.  If an error, just call our

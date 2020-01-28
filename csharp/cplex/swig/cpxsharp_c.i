@@ -9,4 +9,4 @@ CSHARP_ARRAYS(int, int)
 %apply double INPUT[]{ const double* coeffs }
 %apply int INPUT[]{ const int* vars }
 
-%include "../common/common.i"
+%include "../../../cpp/cplex/swig/common.i"

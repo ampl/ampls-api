@@ -1,6 +1,13 @@
 #ifndef CPLEX_INTERFACE_H_INCLUDE_
 #define CPLEX_INTERFACE_H_INCLUDE_
 
+#ifdef _WIN32
+#define ENTRYPOINT __declspec(dllimport)
+#else
+#define ENTRYPOINT
+#endif
+
+
 #include <string>
 #include <map>
 
@@ -12,26 +19,24 @@
 #include "simpleapi/simpleApi.h"
 #include "cplex_callback.h"
 
-
-
-
 struct ASL;
 struct CPLEXDriverState;
+
 namespace cpx
 {
   namespace impl
   {
     extern "C" {
 
-      CPLEXDriverState* CPLEXloadmodel(int argc, char** argv,
+      ENTRYPOINT CPLEXDriverState* AMPLCPLEXloadmodel(int argc, char** argv,
         CPXLPptr* modelPtr, ASL** aslPtr);
 
-      void CPLEXwritesol(CPLEXDriverState* state,
+      ENTRYPOINT void AMPLCPLEXwritesol(CPLEXDriverState* state,
         CPXLPptr* modelPtr, int status);
 
-      CPXENVptr* getInternalEnv();
+      ENTRYPOINT CPXENVptr* AMPLCPLEXgetInternalEnv();
 
-      void freeASL(ASL** aslPtr);
+      ENTRYPOINT void AMPLCPLEXfreeASL(ASL** aslPtr);
     }
   }
 }
@@ -75,7 +80,7 @@ class CPLEXDrv {
   public:
     CPLEXModel loadModel(const char* modelName);
     CPXENVptr* getEnv() {
-      return cpx::impl::getInternalEnv();
+      return cpx::impl::AMPLCPLEXgetInternalEnv();
     }
   ~CPLEXDrv();
 };
@@ -158,7 +163,7 @@ public:
     return model_;
   }
   CPXENVptr getCPLEXenv() {
-      return *cpx::impl::getInternalEnv();
+      return *cpx::impl::AMPLCPLEXgetInternalEnv();
   }
   
   ~CPLEXModel() {
@@ -167,7 +172,7 @@ public:
     if (model_)
       CPXfreeprob(getCPLEXenv(), &model_);
     if (asl_)
-      cpx::impl::freeASL(&asl_);
+      cpx::impl::AMPLCPLEXfreeASL(&asl_);
   }
 };
 

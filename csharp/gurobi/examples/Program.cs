@@ -9,10 +9,10 @@ namespace gsharp_test
 {
   class Program
   {
-    private class CB : Callback
+    private class CB : gsharp.GRBCallback
     {
       int count = 0;
-      public override int run(SWIGTYPE_p__GRBmodel model, SWIGTYPE_p_void cbdata, int where, SWIGTYPE_p_void usrdata)
+      public override int run(int whereFrom)
       {
         var map = getVarMap();
        // foreach (var m in map)
@@ -23,18 +23,18 @@ namespace gsharp_test
         double[] coeffs = new double[] { 4.5, 5 };
         vector_string v = new vector_string(names);
         
-        if (where == gsharp_c.GRB_CB_MESSAGE)
+        if (whereFrom == gsharp_c.GRB_CB_MESSAGE)
         {
           string msg = getMessage();
           Console.WriteLine(msg);
         }
-        if ((where == gsharp_c.GRB_CB_MIPSOL_SOL)
-          || (where == gsharp_c.GRB_CB_MIPNODE))
+        if ((whereFrom == gsharp_c.GRB_CB_MIPSOL_SOL)
+          || (whereFrom == gsharp_c.GRB_CB_MIPNODE))
         {
           double[] sol = new double[10];
           getSolution(10, sol);
         }
-        if (where == gsharp_c.GRB_CB_MIP)
+        if (whereFrom == gsharp_c.GRB_CB_MIP)
         {
           addLazy(v, coeffs, '0', 5);
           count++;

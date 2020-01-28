@@ -9,11 +9,11 @@ namespace std {
 }
 
 %{
-#include "cplex.h"
-#include "cplexx.h"
-#include "simpleapi/amplInterface.h"
-#include "cplex_callback.h"
-#include "cplex_interface.h"
+  #include "ilcplex/cplex.h"
+  #include "ilcplex/cplexx.h"
+  #include "simpleapi/simpleApi.h"
+  #include "cplex_callback.h"
+  #include "cplex_interface.h"
 %}
 
 %feature("director") CPLEXCallback;
@@ -34,6 +34,6 @@ namespace std {
 %ignore GenericCallback::getSolution;
 
 //%include "cplex.h"
-%include "simpleapi/amplInterface.h"
+%include "simpleapi/simpleApi.h"
 %include "cplex_interface.h"
 %include "cplex_callback.h"

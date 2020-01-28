@@ -140,5 +140,5 @@
   }
 }
 
-%include "../common/common.i"
+%include "../../../cpp/cplex/swig/common.i"
 

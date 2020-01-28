@@ -3848,62 +3848,64 @@ namespace Swig {
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_AMPLModel swig_types[0]
-#define SWIGTYPE_p_BaseCallback swig_types[1]
-#define SWIGTYPE_p_FILE swig_types[2]
-#define SWIGTYPE_p_GRBCallback swig_types[3]
-#define SWIGTYPE_p_GenericCallback swig_types[4]
-#define SWIGTYPE_p_GurobiDrv swig_types[5]
-#define SWIGTYPE_p_GurobiModel swig_types[6]
-#define SWIGTYPE_p_SwigPyObject swig_types[7]
-#define SWIGTYPE_p__GRBenv swig_types[8]
-#define SWIGTYPE_p__GRBmodel swig_types[9]
-#define SWIGTYPE_p__GRBsvec swig_types[10]
-#define SWIGTYPE_p_allocator_type swig_types[11]
-#define SWIGTYPE_p_char swig_types[12]
-#define SWIGTYPE_p_dblArray swig_types[13]
-#define SWIGTYPE_p_difference_type swig_types[14]
-#define SWIGTYPE_p_double swig_types[15]
-#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[16]
-#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[17]
-#define SWIGTYPE_p_f_p_char__int swig_types[18]
-#define SWIGTYPE_p_f_p_char__intArray swig_types[19]
-#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int swig_types[20]
-#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray swig_types[21]
-#define SWIGTYPE_p_f_p_void_p_void__void swig_types[22]
-#define SWIGTYPE_p_f_p_void_size_t_p_void__p_void swig_types[23]
-#define SWIGTYPE_p_f_size_t_p_void__p_void swig_types[24]
-#define SWIGTYPE_p_f_size_t_size_t_p_void__p_void swig_types[25]
-#define SWIGTYPE_p_int swig_types[26]
-#define SWIGTYPE_p_intArray swig_types[27]
-#define SWIGTYPE_p_key_type swig_types[28]
-#define SWIGTYPE_p_long_long swig_types[29]
-#define SWIGTYPE_p_mapped_type swig_types[30]
-#define SWIGTYPE_p_myobj swig_types[31]
-#define SWIGTYPE_p_p_FILE swig_types[32]
-#define SWIGTYPE_p_p_PyObject swig_types[33]
-#define SWIGTYPE_p_p__GRBenv swig_types[34]
-#define SWIGTYPE_p_p__GRBmodel swig_types[35]
-#define SWIGTYPE_p_p_char swig_types[36]
-#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[37]
-#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[38]
-#define SWIGTYPE_p_short swig_types[39]
-#define SWIGTYPE_p_signed_char swig_types[40]
-#define SWIGTYPE_p_size_t swig_types[41]
-#define SWIGTYPE_p_size_type swig_types[42]
-#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_int_t_t swig_types[43]
-#define SWIGTYPE_p_std__allocatorT_std__string_t swig_types[44]
-#define SWIGTYPE_p_std__invalid_argument swig_types[45]
-#define SWIGTYPE_p_std__lessT_std__string_t swig_types[46]
-#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[47]
-#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[48]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[49]
-#define SWIGTYPE_p_unsigned_char swig_types[50]
-#define SWIGTYPE_p_unsigned_int swig_types[51]
-#define SWIGTYPE_p_unsigned_long_long swig_types[52]
-#define SWIGTYPE_p_unsigned_short swig_types[53]
-#define SWIGTYPE_p_value_type swig_types[54]
-static swig_type_info *swig_types[56];
-static swig_module_info swig_module = {swig_types, 55, 0, 0, 0, 0};
+#define SWIGTYPE_p_ASL swig_types[1]
+#define SWIGTYPE_p_BaseCallback swig_types[2]
+#define SWIGTYPE_p_FILE swig_types[3]
+#define SWIGTYPE_p_GRBCallback swig_types[4]
+#define SWIGTYPE_p_GenericCallback swig_types[5]
+#define SWIGTYPE_p_GurobiDrv swig_types[6]
+#define SWIGTYPE_p_GurobiModel swig_types[7]
+#define SWIGTYPE_p_SwigPyObject swig_types[8]
+#define SWIGTYPE_p__GRBenv swig_types[9]
+#define SWIGTYPE_p__GRBmodel swig_types[10]
+#define SWIGTYPE_p__GRBsvec swig_types[11]
+#define SWIGTYPE_p_allocator_type swig_types[12]
+#define SWIGTYPE_p_char swig_types[13]
+#define SWIGTYPE_p_dblArray swig_types[14]
+#define SWIGTYPE_p_difference_type swig_types[15]
+#define SWIGTYPE_p_double swig_types[16]
+#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[17]
+#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[18]
+#define SWIGTYPE_p_f_p_char__int swig_types[19]
+#define SWIGTYPE_p_f_p_char__intArray swig_types[20]
+#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int swig_types[21]
+#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray swig_types[22]
+#define SWIGTYPE_p_f_p_void_p_void__void swig_types[23]
+#define SWIGTYPE_p_f_p_void_size_t_p_void__p_void swig_types[24]
+#define SWIGTYPE_p_f_size_t_p_void__p_void swig_types[25]
+#define SWIGTYPE_p_f_size_t_size_t_p_void__p_void swig_types[26]
+#define SWIGTYPE_p_int swig_types[27]
+#define SWIGTYPE_p_intArray swig_types[28]
+#define SWIGTYPE_p_key_type swig_types[29]
+#define SWIGTYPE_p_long_long swig_types[30]
+#define SWIGTYPE_p_mapped_type swig_types[31]
+#define SWIGTYPE_p_myobj swig_types[32]
+#define SWIGTYPE_p_p_ASL swig_types[33]
+#define SWIGTYPE_p_p_FILE swig_types[34]
+#define SWIGTYPE_p_p_PyObject swig_types[35]
+#define SWIGTYPE_p_p__GRBenv swig_types[36]
+#define SWIGTYPE_p_p__GRBmodel swig_types[37]
+#define SWIGTYPE_p_p_char swig_types[38]
+#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[39]
+#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[40]
+#define SWIGTYPE_p_short swig_types[41]
+#define SWIGTYPE_p_signed_char swig_types[42]
+#define SWIGTYPE_p_size_t swig_types[43]
+#define SWIGTYPE_p_size_type swig_types[44]
+#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_int_t_t swig_types[45]
+#define SWIGTYPE_p_std__allocatorT_std__string_t swig_types[46]
+#define SWIGTYPE_p_std__invalid_argument swig_types[47]
+#define SWIGTYPE_p_std__lessT_std__string_t swig_types[48]
+#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[49]
+#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[50]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[51]
+#define SWIGTYPE_p_unsigned_char swig_types[52]
+#define SWIGTYPE_p_unsigned_int swig_types[53]
+#define SWIGTYPE_p_unsigned_long_long swig_types[54]
+#define SWIGTYPE_p_unsigned_short swig_types[55]
+#define SWIGTYPE_p_value_type swig_types[56]
+static swig_type_info *swig_types[58];
+static swig_module_info swig_module = {swig_types, 57, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -22819,6 +22821,145 @@ fail:
 
 SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_GRBCallback) /* defines _wrap_delete_GRBCallback_destructor_closure */
 
+SWIGINTERN PyObject *_wrap_AMPLloadmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  char **arg2 = (char **) 0 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  GRBmodel *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AMPLloadmodel", 2, 2, swig_obj)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "AMPLloadmodel" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLloadmodel" "', argument " "2"" of type '" "char **""'"); 
+  }
+  arg2 = reinterpret_cast< char ** >(argp2);
+  result = (GRBmodel *)grb::impl::AMPLloadmodel(arg1,arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBmodel, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AMPLloadmodelNoLic(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  char **arg2 = (char **) 0 ;
+  ASL **arg3 = (ASL **) 0 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  GRBmodel *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AMPLloadmodelNoLic", 3, 3, swig_obj)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "AMPLloadmodelNoLic" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLloadmodelNoLic" "', argument " "2"" of type '" "char **""'"); 
+  }
+  arg2 = reinterpret_cast< char ** >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_ASL, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "AMPLloadmodelNoLic" "', argument " "3"" of type '" "ASL **""'"); 
+  }
+  arg3 = reinterpret_cast< ASL ** >(argp3);
+  result = (GRBmodel *)grb::impl::AMPLloadmodelNoLic(arg1,arg2,arg3);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBmodel, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AMPLwritesol(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  ASL *arg2 = (ASL *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AMPLwritesol", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLwritesol" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_ASL, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLwritesol" "', argument " "2"" of type '" "ASL *""'"); 
+  }
+  arg2 = reinterpret_cast< ASL * >(argp2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AMPLwritesol" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  grb::impl::AMPLwritesol(arg1,arg2,arg3);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_freeEnvironment(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  
+  if (!SWIG_Python_UnpackTuple(args, "freeEnvironment", 0, 0, 0)) SWIG_fail;
+  grb::impl::freeEnvironment();
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_freeASL(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ASL **arg1 = (ASL **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p_ASL, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "freeASL" "', argument " "1"" of type '" "ASL **""'"); 
+  }
+  arg1 = reinterpret_cast< ASL ** >(argp1);
+  grb::impl::freeASL(arg1);
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_GurobiDrv_loadModel(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   GurobiDrv *arg1 = (GurobiDrv *) 0 ;
@@ -23810,6 +23951,11 @@ static PyMethodDef SwigMethods[] = {
 	 { "disown_GenericCallback", _wrap_disown_GenericCallback, METH_O, NULL},
 	 { "callback_wrapper", _wrap_callback_wrapper, METH_VARARGS, NULL},
 	 { "disown_GRBCallback", _wrap_disown_GRBCallback, METH_O, NULL},
+	 { "AMPLloadmodel", _wrap_AMPLloadmodel, METH_VARARGS, NULL},
+	 { "AMPLloadmodelNoLic", _wrap_AMPLloadmodelNoLic, METH_VARARGS, NULL},
+	 { "AMPLwritesol", _wrap_AMPLwritesol, METH_VARARGS, NULL},
+	 { "freeEnvironment", _wrap_freeEnvironment, METH_NOARGS, NULL},
+	 { "freeASL", _wrap_freeASL, METH_O, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 
@@ -26691,6 +26837,7 @@ static void *_p_GRBCallbackTo_p_BaseCallback(void *x, int *SWIGUNUSEDPARM(newmem
     return (void *)((BaseCallback *)  ((GRBCallback *) x));
 }
 static swig_type_info _swigt__p_AMPLModel = {"_p_AMPLModel", "AMPLModel *", 0, 0, (void*)&SwigPyBuiltin__AMPLModel_clientdata, 0};
+static swig_type_info _swigt__p_ASL = {"_p_ASL", "ASL *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_BaseCallback = {"_p_BaseCallback", "BaseCallback *", 0, 0, (void*)&SwigPyBuiltin__BaseCallback_clientdata, 0};
 static swig_type_info _swigt__p_FILE = {"_p_FILE", "FILE *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_GRBCallback = {"_p_GRBCallback", "GRBCallback *", 0, 0, (void*)&SwigPyBuiltin__GRBCallback_clientdata, 0};
@@ -26722,6 +26869,7 @@ static swig_type_info _swigt__p_key_type = {"_p_key_type", "key_type *", 0, 0, (
 static swig_type_info _swigt__p_long_long = {"_p_long_long", "int_least64_t *|int_fast64_t *|int64_t *|long long *|intmax_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_mapped_type = {"_p_mapped_type", "mapped_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_myobj = {"_p_myobj", "myobj *", 0, 0, (void*)&SwigPyBuiltin__myobj_clientdata, 0};
+static swig_type_info _swigt__p_p_ASL = {"_p_p_ASL", "ASL **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_FILE = {"_p_p_FILE", "FILE **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_PyObject = {"_p_p_PyObject", "PyObject **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p__GRBenv = {"_p_p__GRBenv", "_GRBenv **|GRBenv **", 0, 0, (void*)0, 0};
@@ -26748,6 +26896,7 @@ static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_AMPLModel,
+  &_swigt__p_ASL,
   &_swigt__p_BaseCallback,
   &_swigt__p_FILE,
   &_swigt__p_GRBCallback,
@@ -26779,6 +26928,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_long_long,
   &_swigt__p_mapped_type,
   &_swigt__p_myobj,
+  &_swigt__p_p_ASL,
   &_swigt__p_p_FILE,
   &_swigt__p_p_PyObject,
   &_swigt__p_p__GRBenv,
@@ -26805,6 +26955,7 @@ static swig_type_info *swig_type_initial[] = {
 };
 
 static swig_cast_info _swigc__p_AMPLModel[] = {  {&_swigt__p_AMPLModel, 0, 0, 0},  {&_swigt__p_GurobiModel, _p_GurobiModelTo_p_AMPLModel, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_ASL[] = {  {&_swigt__p_ASL, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_BaseCallback[] = {  {&_swigt__p_BaseCallback, 0, 0, 0},  {&_swigt__p_GenericCallback, _p_GenericCallbackTo_p_BaseCallback, 0, 0},  {&_swigt__p_GRBCallback, _p_GRBCallbackTo_p_BaseCallback, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_FILE[] = {  {&_swigt__p_FILE, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_GRBCallback[] = {  {&_swigt__p_GRBCallback, 0, 0, 0},{0, 0, 0, 0}};
@@ -26836,6 +26987,7 @@ static swig_cast_info _swigc__p_key_type[] = {  {&_swigt__p_key_type, 0, 0, 0},{
 static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_mapped_type[] = {  {&_swigt__p_mapped_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_myobj[] = {  {&_swigt__p_myobj, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_ASL[] = {  {&_swigt__p_p_ASL, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_FILE[] = {  {&_swigt__p_p_FILE, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_PyObject[] = {  {&_swigt__p_p_PyObject, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p__GRBenv[] = {  {&_swigt__p_p__GRBenv, 0, 0, 0},{0, 0, 0, 0}};
@@ -26862,6 +27014,7 @@ static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_AMPLModel,
+  _swigc__p_ASL,
   _swigc__p_BaseCallback,
   _swigc__p_FILE,
   _swigc__p_GRBCallback,
@@ -26893,6 +27046,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_long_long,
   _swigc__p_mapped_type,
   _swigc__p_myobj,
+  _swigc__p_p_ASL,
   _swigc__p_p_FILE,
   _swigc__p_p_PyObject,
   _swigc__p_p__GRBenv,
