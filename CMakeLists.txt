@@ -147,9 +147,10 @@ function(AddSolverStub solver includes libs)
   endif()
 endfunction()
 
-find_package(GUROBI)
+
 
 if(ENABLE_gurobi)
+  find_package(GUROBI)
   addsolverstub(gurobi ${GUROBI_INCLUDE_DIR} ${GUROBI_LIBRARIES})
 endif()
 
