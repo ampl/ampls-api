@@ -62,6 +62,24 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 
 add_subdirectory(cpp/generic)
 
+# Solver vendors libraries and headers locations
+set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
+set(GUROBI_BASE_DIR ${SOLVERLIBS}/gurobi/902)
+set(CPLEX_BASE_DIR ${SOLVERLIBS}/cplex/1210)
+set(GUROBI_INCLUDE_DIR ${GUROBI_BASE_DIR}/include)
+set(CPLEX_INCLUDE_DIR ${CPLEX_BASE_DIR}/include)
+if(WIN32)
+    set(GUROBI_LIBRARY ${GUROBI_BASE_DIR}/lib/win64/gurobi90.lib)
+    set(CPLEX_LIBRARY ${CPLEX_BASE_DIR}/lib/win64/cplex12100.lib)
+elseif(APPLE)
+    set(GUROBI_LIBRARY ${GUROBI_BASE_DIR}/lib/osx64/libgurobi90.dylib)
+    set(CPLEX_LIBRARY ${CPLEX_BASE_DIR}/lib/osx64/libcplex.a)
+else()
+    set(GUROBI_LIBRARY ${GUROBI_BASE_DIR}/lib/linux64/libgurobi90.so)
+    set(CPLEX_LIBRARY ${CPLEX_BASE_DIR}/lib/linux64/libcplex.a)
+endif()
+
+# AMPL base driver library locations
 set(LIBSDIR ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 if(WIN32)
   set(LIBSDIR ${LIBSDIR}/win64)
@@ -70,6 +88,22 @@ elseif(APPLE)
 else()
   set(LIBSDIR ${LIBSDIR}/linux64)
 endif()
+
+ # Get rid of warning in newer versions of cmake
+macro(ADD_SWIG_LIBRARY name language)
+    if(CMAKE_VERSION VERSION_LESS 3.8)
+    swig_add_module(${name} ${language} ${ARGN})
+    else()
+    swig_add_library(
+        ${name}
+        LANGUAGE
+        ${language}
+        TYPE
+        MODULE
+        SOURCES
+        ${ARGN})
+    endif()
+endmacro()
 
 function(AddSolverStub solver includes libs)
   message(STATUS "Adding ${solver} with include: ${includes} and lib ${libs}")
@@ -97,9 +131,9 @@ function(AddSolverStub solver includes libs)
     DRV_SOURCES ${DIR_CPP}/ include/${solver}_interface.h
     src/${solver}_interface.cpp include/${solver}_callback.h
     src/${solver}_callback.cpp)
-  add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
-  target_link_libraries(${TARGETNAME} simpleapi ${libs})
-  message("LINKING DRIVER ${TARGETNAME} WITH ${libs}")
+  add_library(${TARGETNAME} SHARED ${DRV_SOURCES})
+  target_link_libraries(${TARGETNAME} simpleapi ${libs} ${IMPORTLIB} )
+  message("LINKING DRIVER ${TARGETNAME} WITH ${libs} ")
   target_include_directories(
     ${TARGETNAME} PUBLIC ${includes} ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE})
   add_to_folder(${solver} ${TARGETNAME})
@@ -119,22 +153,6 @@ function(AddSolverStub solver includes libs)
 
   if(SWIG_FOUND)
     include(UseSWIG)
-    # Get rid of warning in newer versions of cmake
-    macro(ADD_SWIG_LIBRARY name language)
-      if(CMAKE_VERSION VERSION_LESS 3.8)
-        swig_add_module(${name} ${language} ${ARGN})
-      else()
-        swig_add_library(
-          ${name}
-          LANGUAGE
-          ${language}
-          TYPE
-          MODULE
-          SOURCES
-          ${ARGN})
-      endif()
-    endmacro()
-
     # Create custom target for common swig files, couldn't find a way to add
     # them as headers
     add_custom_target(${solver}-common SOURCES ${SWIGCOMMONSRC}
@@ -150,12 +168,10 @@ endfunction()
 
 
 if(ENABLE_gurobi)
-  find_package(GUROBI)
-  addsolverstub(gurobi ${GUROBI_INCLUDE_DIR} ${GUROBI_LIBRARIES})
+  addsolverstub(gurobi ${GUROBI_INCLUDE_DIR} ${GUROBI_LIBRARY})
 endif()
 
 if(ENABLE_cplex)
-  find_package(CPLEX)
   addsolverstub(cplex ${CPLEX_INCLUDE_DIR} ${CPLEX_LIBRARY})
 endif()
 

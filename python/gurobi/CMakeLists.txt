@@ -27,7 +27,7 @@ set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES SWIG_FLAGS
                                                                     "-builtin")
 
 add_swig_library(${PYTHON_SWIG_API} python ${SWIG_PYTHON_MODULE_NAME}.i)
-swig_link_libraries(${PYTHON_SWIG_API} gurobi-drv gurobi-lib
+swig_link_libraries(${PYTHON_SWIG_API} gurobi-drv                    
                     ${PYTHON_LIBRARIES})
 
 # From this moment on, PYTHON_SWIG_API has the correct (prefixed) name Can be

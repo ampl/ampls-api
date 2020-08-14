@@ -21,7 +21,7 @@ set_source_files_properties(${SWIG_CSHARP_MODULE_NAME}.i PROPERTIES CPLUSPLUS
 list(APPEND CMAKE_SWIG_FLAGS "-namespace;gsharp")
 add_swig_library(${CSHARP_SWIG_API} csharp ${SWIG_CSHARP_MODULE_NAME}.i)
 target_compile_definitions(${CSHARP_SWIG_API} PRIVATE SWIG)
-target_link_libraries(${CSHARP_SWIG_API} gurobi-drv gurobi-lib)
+target_link_libraries(${CSHARP_SWIG_API} gurobi-drv)
 add_to_folder(gurobi/swig/csharp ${CSHARP_SWIG_API})
 
 # For multi-config builds (e.g. msvc)
