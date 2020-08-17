@@ -8,10 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       ${CMAKE_CURRENT_SOURCE_DIR}/support/cmake)
 
-# Initialize the architecture Must be done first thing, as it initalizes the
-# variable ARCH below include(initArchitecture)
-# include(createMainSupportProject) include(createSolverSupportProject)
-
 # Initial values for solvers builds. If set to 0, the targets are ignored
 set(ENABLE_cplex 1)
 set(ENABLE_gurobi 1)
@@ -27,7 +23,7 @@ if(MSVC)
   if(NOT MYDEFS MATCHES "_CRT_SECURE_NO_WARNINGS")
     # Disable useless MSVC warnings suggesting nonportable "secure"
     # alternatives.
-    add_compile_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
     # Disable warning about osx file format
     add_compile_options(/wd4335)
   endif()
