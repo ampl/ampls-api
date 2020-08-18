@@ -3,15 +3,17 @@
 
 #ifdef _WIN32
   #define ENTRYPOINT __declspec(dllimport)
+  #define API __declspec(dllexport)
 #else
   #define ENTRYPOINT
+#define API 
 #endif
 
 
 #include <string>
 #include <map>
 
-#include "simpleapi/simpleApi.h"
+//#include "simpleapi/simpleApi.h"
 #include "gurobi_callback.h"
 
 #include "gurobi_c.h"
@@ -46,8 +48,8 @@ this way, it is deleted in the destructor.
 class GurobiDrv  {
   void freeGurobiEnv();
   public:
-  GurobiModel loadModel(const char* modelName);
-  ~GurobiDrv();
+    GurobiModel loadModel(const char* modelName);
+    ~GurobiDrv();
   
 };
 

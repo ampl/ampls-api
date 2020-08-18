@@ -17,6 +17,19 @@ if(NOT WIN32)
 endif()
 
 
+# C++ simpleapi examples
+add_prefix(EXAMPLES_SOURCES ${SIMPLEAPI_DIR}/examples/
+  getInformation.cpp)
+add_executable(simpleapi-examples ${EXAMPLES_SOURCES})
+target_include_directories(simpleapi-examples PRIVATE
+   ${GENERATED_INCLUDE_DIR} # for test-config
+ )
+target_link_libraries(simpleapi-examples gurobi-drv cplex-drv)
+target_compile_definitions(simpleapi-examples PRIVATE SWIG)
+
+
+
+
 # C++ generic routines
 add_prefix(TEST_SOURCES ${SIMPLEAPI_DIR}/test/
   api-test.cpp)
@@ -24,8 +37,10 @@ add_executable(simpleapi-test ${TEST_SOURCES})
 target_include_directories(simpleapi-test PRIVATE
    ${GENERATED_INCLUDE_DIR} # for test-config
  )
-target_link_libraries(simpleapi-test simpleapi)
+target_link_libraries(simpleapi-test gurobi-drv )
 target_compile_definitions(simpleapi-test PRIVATE SWIG)
+
+
 
 
 

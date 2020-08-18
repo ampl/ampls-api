@@ -110,26 +110,34 @@ function(AddSolverStub solver includes libs)
   set(DIR_SWIG ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver}/swig)
   set(DIR_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/python/${solver})
   set(DIR_CSHARP ${CMAKE_CURRENT_SOURCE_DIR}/csharp/${solver})
-  # Temporarily, on windows I find both import lib and dll file on other systems
+  # On windows I find both import lib and dll file on other systems
   # i'll need just one
-  set(IMPORTLIB ${solver}-lib-import)
-  set(LIBFILENAME ${solver}-lib)
-  message("TRYING TO FIND LIBRARIES WITH NAME ${LIBFILENAME} IN ${LIBSDIR}")
-  find_library(${solver}LIBFILE ${LIBFILENAME} PATHS ${LIBSDIR})
-  find_file(${solver}DLLFILE ${LIBFILENAME}.dll PATHS ${LIBSDIR})
-  message("${solver}LIBFILE ${${solver}LIBFILE}")
-  message("${solver}DLLFILE ${${solver}DLLFILE}")
-  add_library(${IMPORTLIB} STATIC IMPORTED)
-  set_property(TARGET ${IMPORTLIB} PROPERTY IMPORTED_LOCATION
-                                            ${${solver}LIBFILE})
-
+  set(IMPORTLIB ${solver}-lib)
+  if(NOT TARGET ${IMPORTLIB})
+      set(LIBFILENAME ${solver}-lib)
+      message("TRYING TO FIND LIBRARIES WITH NAME ${LIBFILENAME} IN ${LIBSDIR}")
+      find_library(${solver}LIBFILE ${LIBFILENAME} PATHS ${LIBSDIR})
+      if(WIN32)
+        find_file(${solver}DLLFILE ${LIBFILENAME}.dll PATHS ${LIBSDIR})
+      endif()
+      message("${solver}LIBFILE ${${solver}LIBFILE}")
+      message("${solver}DLLFILE ${${solver}DLLFILE}")
+      add_library(${IMPORTLIB} SHARED IMPORTED)
+    
+      if(WIN32)
+        set_property(TARGET  ${IMPORTLIB} PROPERTY IMPORTED_LOCATION ${${solver}DLLFILE})
+        set_property(TARGET  ${IMPORTLIB} PROPERTY IMPORTED_IMPLIB ${${solver}LIBFILE})
+      else()
+        set_property(TARGET ${IMPORTLIB} PROPERTY IMPORTED_LOCATION ${${solver}LIBFILE})
+      endif()
+  endif()
   add_prefix(
     DRV_SOURCES ${DIR_CPP}/ include/${solver}_interface.h
     src/${solver}_interface.cpp include/${solver}_callback.h
     src/${solver}_callback.cpp)
-  add_library(${TARGETNAME} SHARED ${DRV_SOURCES})
-  target_link_libraries(${TARGETNAME} simpleapi ${libs} ${IMPORTLIB} )
-  message("LINKING DRIVER ${TARGETNAME} WITH ${libs} ")
+  add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
+  target_link_libraries(${TARGETNAME} simpleapi ${libs} ${IMPORTLIB})
+  message("LINKING DRIVER ${TARGETNAME} WITH ${libs} AND ${IMPORTLIB}")
   target_include_directories(
     ${TARGETNAME} PUBLIC ${includes} ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE})
   add_to_folder(${solver} ${TARGETNAME})
@@ -147,7 +155,8 @@ function(AddSolverStub solver includes libs)
   add_to_folder(${solver} ${TARGETNAME}-test)
   target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
 
-  if(SWIG_FOUND)
+  #if(SWIG_FOUND)
+  if(FALSE)
     include(UseSWIG)
     # Create custom target for common swig files, couldn't find a way to add
     # them as headers

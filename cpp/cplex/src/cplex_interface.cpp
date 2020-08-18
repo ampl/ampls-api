@@ -1,9 +1,10 @@
 #include "cplex_interface.h"
+#include "simpleapi/simpleApi.h"
 #include <cstring>
 
 std::string getErrorMsg(CPXCENVptr env, int res) {
   char buffer[CPXMESSAGEBUFSIZE];
-  auto errstr = CPXgeterrorstring(env, res, buffer);
+  CPXCCHARptr errstr = CPXgeterrorstring(env, res, buffer);
   if (errstr != NULL) {
     return buffer;
   }
@@ -89,7 +90,8 @@ CPLEXDrv::~CPLEXDrv() {
 
 void CPLEXDrv::freeCPLEXEnv()
 {
-  CPXcloseCPLEX(getEnv());
+  CPXENVptr env = getEnv();
+  CPXcloseCPLEX(&env);
 }
 
 void disableCallbacksFromDave(CPXENVptr env) {
@@ -110,9 +112,8 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
     ASL* aslptr;
     m.state_= cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
       &aslptr);
-
     m.model_ = modelptr;
-    disableCallbacksFromDave(*cpx::impl::AMPLCPLEXgetInternalEnv());
+    disableCallbacksFromDave(cpx::impl::AMPLCPLEXgetInternalEnv());
     m.asl_ = aslptr;
     m.lastErrorCode_ = -1;
     m.fileName_ = modelName;
@@ -206,7 +207,7 @@ BaseCallback* CPLEXModel::createCallbackImplDerived(GenericCallback* callback) {
   return new MyCPLEXCallbackBridge(callback);
 }
 int CPLEXModel::optimize() {
-  auto env = getCPLEXenv();
+  CPXENVptr env = getCPLEXenv();
   int probtype = CPXgetprobtype(env, model_);
   int res=0;
   switch (probtype)
@@ -239,7 +240,7 @@ int CPLEXModel::optimize() {
   if (res)
   {
     char buffer[CPXMESSAGEBUFSIZE];
-    auto errstr = CPXgeterrorstring(env, res, buffer);
+    CPXCCHARptr errstr = CPXgeterrorstring(env, res, buffer);
     if (errstr != NULL) {
       printf("%s \n", buffer);
     }

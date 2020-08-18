@@ -1,11 +1,11 @@
 // Must be included before ASL, which
 // is included by cplex_interface and gurobi_interface
 #include "gurobi_c.h"
-//#include "cplex.h"
+#include "ilcplex/cplex.h"
 
 
-//#include "cplex_interface.h"
-//#include "cplex_callback.h"
+#include "cplex_interface.h"
+#include "cplex_callback.h"
 
 
 #include "gurobi_interface.h"
@@ -83,11 +83,11 @@ class CCB : public GenericCallback
 {
   virtual int run(int whereFrom)
   {
-    // printf("Called from %s\n", getWhere(whereFrom));
+    printf("Called from %s\n", getWhere(whereFrom));
     switch (getAMPLType())
     {
     case AMPLCBWhere::msg:
-  //    printf("**%s**\n", getMessage());
+      printf("**%s**\n", getMessage());
       return 0;
     case AMPLCBWhere::mipsol:
     case AMPLCBWhere::mipnode:
@@ -103,7 +103,7 @@ double doStuff(AMPLModel& m, const char *name)
   CCB b;
   m.setGenericCallback(&b);
   m.optimize();
-  m.getVarMap();
+
   double obj = m.getObj();
   printf("Solution with optimizer %s=%f\n", name, obj);
   return obj;
@@ -114,10 +114,10 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
   
-  GurobiDrv gurobi;
-  //CPLEXDrv cplex;
-  GurobiModel m = gurobi.loadModel(buffer);
-  //CPLEXModel c = cplex.loadModel(buffer);
-  doStuff(m, "gurobi");
-  //doStuff(c, "cplex");*/
+  //GurobiDrv gurobi;
+  CPLEXDrv cplex;
+  //GurobiModel m = gurobi.loadModel(buffer);
+  CPLEXModel c = cplex.loadModel(buffer);
+  //doStuff(m, "gurobi");
+ doStuff(c, "cplex");
 }
