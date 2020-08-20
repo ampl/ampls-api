@@ -29,69 +29,27 @@ data;
 
 set A := 1 2 3 aa bb cc 'a' 'b' 'c' "d" "e" "f" "4" '5' 6 'a a' "a b" 'ab[c]' "de[f]" 'ab"c' "ab'c";
 */
-/*
-class MyCB : public GRBCallback
-{
-public:
-  int run(GurobiModel* model, void* cbdata, int where)
-  {
-    //    printf("Called callback with where=%i\n", where);
-    std::vector<std::string> vars;
-    vars.push_back("x[1]");
-    vars.push_back("x[2]");
-    double coefs[] = { 5.6, 7.8 };
-    int len;
-    if (where == GRB_CB_MESSAGE)
-    {
-      std::string s = get(GRB_CB_MSG_STRING).str;
-      // printf("%s\n", s.data());
-
-    }
-    else if (where == GRB_CB_PRESOLVE)
-    {
-      int cdels = get(GRB_CB_PRE_COLDEL).integer;
-      int rdels = get(GRB_CB_PRE_ROWDEL).integer;
-      printf("%d columns and %d rows are removed\n", cdels, rdels);
-    }
-    else if (where == GRB_CB_MIP)
-    {
-      printf("GRB_CB_MIP_SOLCNT %d\n", get(GRB_CB_MIP_SOLCNT).integer);
-      printf("GRB_CB_MIP_OBJBST %f\n", get(GRB_CB_MIP_OBJBST).dbl);
-      return 0;
-    }
-    else if ((where == GRB_CB_MIPNODE) ||
-      (where == GRB_CB_MIPSOL))
-    {
-
-      int len;
-      double* sol = getSolutionVector(&len);
-      delete[] sol;
-      return 0;
-      return addCut(vars, coefs, '>', 7);
-    }
-    else
-    {
-      printf("Called callback with where=%i\n", where);
-    }
-    return 0;
-  }
-};
-
-*/
-
-class CCB : public GenericCallback
+class MyGenericCallback : public GenericCallback
 {
   virtual int run(int whereFrom)
   {
-    printf("Called from %s\n", getWhere(whereFrom));
+    //printf("Called from \n", getWhere(whereFrom));
     switch (getAMPLType())
     {
     case AMPLCBWhere::msg:
-      printf("**%s**\n", getMessage());
+    //  printf("**%s**\n", getMessage());
       return 0;
+    case AMPLCBWhere::presolve:
+      printf("Presolve OBJ = %f\n", getObjective());
+      return 0;
+    case AMPLCBWhere::mip:
     case AMPLCBWhere::mipsol:
     case AMPLCBWhere::mipnode:
-      printf("MIPSOL OBJ = %f\n", getObjective());
+      printf("MIP OBJ = %f\n", getObjective());
+      return 0;
+    case AMPLCBWhere::notmapped:
+      printf("Not mapped! Where: %s\n", getWhere(whereFrom));
+
     }
     return 0;
   }
@@ -100,12 +58,12 @@ class CCB : public GenericCallback
 
 double doStuff(AMPLModel& m, const char *name) 
 {
-  CCB b;
-  m.setGenericCallback(&b);
+  MyGenericCallback cb;
+  m.setGenericCallback(&cb);
   m.optimize();
 
   double obj = m.getObj();
-  printf("Solution with optimizer %s=%f\n", name, obj);
+  printf("\nSolution with %s=%f\n", name, obj);
   return obj;
 }
 int main(int argc, char** argv) {
@@ -113,11 +71,16 @@ int main(int argc, char** argv) {
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
-  
-  //GurobiDrv gurobi;
+
+  // Gurobi generic
+  GurobiDrv gurobi;
+  GurobiModel mg = gurobi.loadModel(buffer);
+  doStuff(mg, "gurobi");
+
+  // CPLEX generic
   CPLEXDrv cplex;
-  //GurobiModel m = gurobi.loadModel(buffer);
   CPLEXModel c = cplex.loadModel(buffer);
-  //doStuff(m, "gurobi");
- doStuff(c, "cplex");
+  doStuff(c, "cplex");
+
+ 
 }

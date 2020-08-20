@@ -6,14 +6,7 @@
 #include <vector>
 #include <map>
 
-namespace CSVState {
-enum Value {
-  NameField,
-  UnquotedField,
-  QuotedField,
-  QuotedQuote
-};
-}
+
 /**
 To read the tuple; not used right now, keeping it here
 just in case we decide to change map type

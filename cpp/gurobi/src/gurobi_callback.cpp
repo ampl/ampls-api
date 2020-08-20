@@ -21,6 +21,7 @@ const char* GRBCallback::getWhere(int where)
       return "Where code not found";
   }
 }
+
 myobj GRBCallback::get(int what)
 {
   myobj r = myobj();

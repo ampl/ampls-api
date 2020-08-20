@@ -22,14 +22,24 @@ void deleteParams(char **params);
 
 namespace AMPLCBWhere
 {
-enum Value
+enum Where
 {
   msg = 0,
   presolve = 1,
   lpsolve = 2,
   mipnode = 3,
   mipsol = 4,
+  mip =5,
   notmapped = 10
+};
+}
+namespace AMPLCBValue
+{
+enum Value {
+  obj = 0,
+  delcols = 1,
+  delrows = 2,
+  iterations = 3
 };
 }
 class BaseCallback
@@ -101,7 +111,8 @@ Direction: GRB_LESS_EQUAL, GRB_EQUAL, or GRB_GREATER_EQUAL
   // Can decide to implement proper mapping for most important
   // features later
   // Obviously it only makes sense for the generic callback
-  virtual AMPLCBWhere::Value getAMPLType() = 0;
+  virtual AMPLCBWhere::Where getAMPLType() = 0;
+  virtual myobj getValue(AMPLCBValue::Value v) = 0;
 };
 
 class GenericCallback : public BaseCallback
@@ -138,9 +149,13 @@ public:
     return impl_->getMessage();
   }
   // Return mapped "whereFrom"
-  AMPLCBWhere::Value getAMPLType()
+  AMPLCBWhere::Where getAMPLType()
   {
     return impl_->getAMPLType();
+  }
+  myobj getValue(AMPLCBValue::Value v)
+  {
+    return impl_->getValue(v);
   }
 };
 
@@ -167,7 +182,7 @@ protected:
   void resetVarMapInternal()
   {
     // Clear the internal cached map
-    // If we don't wrap all the functions that can modify the model,
+    // If we don't wrap any of the functions that can modify the model,
     // we are only sure that the map stays the same for a whole call
     // to optimize
     varMap_.clear();
@@ -188,7 +203,7 @@ public:
   Return the variable map, filtered by the variable name
   */
   std::map<std::string, int> getVarMapFiltered(const char *beginWith);
-
+  
   int setGenericCallback(GenericCallback *callback)
   {
     callback->model_ = this;

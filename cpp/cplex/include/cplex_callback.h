@@ -60,19 +60,19 @@ public:
   const char* getWhere(int wherefrom);
   const char* getMessage();
 
-  AMPLCBWhere::Value getAMPLType() {
+  AMPLCBWhere::Where getAMPLType() {
 
     switch(wherefrom_)
     {
     case -1:
       return  AMPLCBWhere::msg;
     case CPX_CALLBACK_PRESOLVE:
+    case CPX_CALLBACK_MIP_PROBE:
       return AMPLCBWhere::presolve;
     case CPX_CALLBACK_PRIMAL:
     case CPX_CALLBACK_DUAL:
     case CPX_CALLBACK_BARRIER:
       return AMPLCBWhere::lpsolve;
-
     case CPX_CALLBACK_MIP_NODE:
       return AMPLCBWhere::mipnode;
     case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
@@ -82,6 +82,45 @@ public:
       return AMPLCBWhere::mipsol;
     default:
       return AMPLCBWhere::notmapped;
+    }
+  }
+  myobj get(int what);
+  int getInt(int what)
+  {
+    int res;
+    int status;
+    if (what < CPX_CALLBACK_INFO_NODE_SIINF)
+    {
+      status = CPXgetcallbackinfo(env(), NULL, wherefrom_,
+        what, &res);
+      return res;
+    }
+    throw std::exception("Not supported yet");
+  }
+  double getDouble(int what)
+  {
+    double res;
+    int status = CPXgetcallbackinfo(env(), NULL, wherefrom_,
+      what, &res);
+    return res;
+  }
+  virtual myobj getValue(AMPLCBValue::Value v) {
+    switch (v)
+    {
+    case AMPLCBValue::iterations:
+      if (wherefrom_ < CPX_CALLBACK_MIP)
+        return get(CPX_CALLBACK_INFO_ITCOUNT);
+      else
+        return get(CPX_CALLBACK_INFO_MIP_ITERATIONS);
+    case AMPLCBValue::obj:
+      myobj o;
+      o.type = 2;
+      o.dbl = getObjective();
+      return o;
+    case AMPLCBValue::delcols:
+      return get(CPX_CALLBACK_INFO_PRESOLVE_COLSGONE);
+    case AMPLCBValue::delrows:
+      return get(CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE);
     }
   }
 };

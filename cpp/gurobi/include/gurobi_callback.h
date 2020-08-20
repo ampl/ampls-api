@@ -61,7 +61,7 @@ public:
     return res;
   }
 
-  virtual AMPLCBWhere::Value getAMPLType() {
+  virtual AMPLCBWhere::Where getAMPLType() {
     switch (cbwhere_)
     {
     case GRB_CB_MESSAGE:
@@ -74,12 +74,40 @@ public:
       return AMPLCBWhere::mipnode;
     case GRB_CB_MIPSOL:
       return AMPLCBWhere::mipsol;
+    case GRB_CB_MIP:
+      return AMPLCBWhere::mip;
     default:
       return AMPLCBWhere::notmapped;
     }
 
   }
   myobj get(int what);
+  virtual myobj getValue(AMPLCBValue::Value v) {
+    int grbv;
+    myobj result;
+    switch (v)
+    {
+    case AMPLCBValue::obj:
+      result.type = 2;
+      result.dbl = getObjective();
+      return result;
+    case AMPLCBValue::delcols:
+      grbv = GRB_CB_PRE_COLDEL;
+      break;
+    case AMPLCBValue::delrows:
+      grbv = GRB_CB_PRE_ROWDEL;
+      break;
+    case AMPLCBValue::iterations:
+      if (cbwhere_ == GRB_CB_SIMPLEX)
+        grbv = GRB_CB_SPX_ITRCNT;
+      if ((cbwhere_ >= GRB_CB_MIP) &&
+        (cbwhere_ >= GRB_CB_MIPNODE))
+        grbv = GRB_CB_MIP_ITRCNT;
+      if (cbwhere_ == GRB_CB_BARRIER)
+        grbv = GRB_CB_BARRIER_ITRCNT;
+    }
+    return get((int)grbv);
+  }
 };
 
 

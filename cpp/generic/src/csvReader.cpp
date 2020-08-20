@@ -1,5 +1,14 @@
 #include "csvReader.h"
 
+namespace CSVState {
+  enum Value {
+    NameField,
+    UnquotedField,
+    QuotedField,
+    QuotedQuote
+  };
+}
+
 std::vector<std::string> readAMPLNameRow(const std::string& row) {
   CSVState::Value state = CSVState::NameField;
 
