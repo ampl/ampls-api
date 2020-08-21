@@ -1,6 +1,9 @@
 #include "cplex_interface.h"
 #include "cplex_callback.h"
 
+namespace ampl
+{
+
 const char* CPLEXCallback::getMessage() {
   return msg_;
 }
@@ -12,43 +15,43 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
   if (lazy)
   { // CPLEX does this by registering two different callbacks. 
     // I can catch it from "where" (see bendersatsp.c example in CPLEX lib)
-    if((wherefrom_ == CPX_CALLBACK_MIP_CUT_FEAS) ||  
+    if ((wherefrom_ == CPX_CALLBACK_MIP_CUT_FEAS) ||
       (wherefrom_ == CPX_CALLBACK_MIP_CUT_UNBD))
       return CPXcutcallbackadd(env(), NULL, wherefrom_, nvars, rhs, sense, vars,
         coeffs, true);
   }
   else
   {
-   if ((wherefrom_ == CPX_CALLBACK_MIP_CUT_LOOP) ||
-        (wherefrom_ == CPX_CALLBACK_MIP_CUT_LAST))
-    return CPXcutcallbackadd(env(), NULL, wherefrom_, nvars, rhs, sense, vars,
-      coeffs, true);
+    if ((wherefrom_ == CPX_CALLBACK_MIP_CUT_LOOP) ||
+      (wherefrom_ == CPX_CALLBACK_MIP_CUT_LAST))
+      return CPXcutcallbackadd(env(), NULL, wherefrom_, nvars, rhs, sense, vars,
+        coeffs, true);
   }
 }
 
 int CPLEXCallback::getSolution(int len, double* sol) {
 
-  if((wherefrom_>=CPX_CALLBACK_MIP) && (wherefrom_<= CPX_CALLBACK_MIP_INCUMBENT_MIPSTART))
+  if ((wherefrom_ >= CPX_CALLBACK_MIP) && (wherefrom_ <= CPX_CALLBACK_MIP_INCUMBENT_MIPSTART))
     return CPXgetcallbackincumbent(env(), this, wherefrom_, sol, 0, len);
 }
 double CPLEXCallback::getObjective() {
   int phase = -1;
- switch (wherefrom_)
- {
- case CPX_CALLBACK_PRIMAL:
- case CPX_CALLBACK_DUAL:
-   phase = getInt(CPX_CALLBACK_INFO_PRIMAL_FEAS);
-   if (phase != 0)
-     return getDouble(CPX_CALLBACK_INFO_PRIMAL_OBJ);
-   break;
- case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
- case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
- case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
- case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART:
-   return objval_;
- default:
-   return -1;
- }
+  switch (wherefrom_)
+  {
+  case CPX_CALLBACK_PRIMAL:
+  case CPX_CALLBACK_DUAL:
+    phase = getInt(CPX_CALLBACK_INFO_PRIMAL_FEAS);
+    if (phase != 0)
+      return getDouble(CPX_CALLBACK_INFO_PRIMAL_OBJ);
+    break;
+  case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
+  case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
+  case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
+  case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART:
+    return objval_;
+  default:
+    return -1;
+  }
 }
 
 const char* CPLEXCallback::getWhere(int wherefrom)
@@ -65,7 +68,7 @@ const char* CPLEXCallback::getWhere(int wherefrom)
   case CPX_CALLBACK_QPBARRIER: return "CPX_CALLBACK_QPBARRIER";
   case CPX_CALLBACK_QPSIMPLEX: return "CPX_CALLBACK_QPSIMPLEX";
   case CPX_CALLBACK_TUNING: return "CPX_CALLBACK_TUNING";
-  
+
     // MIP:
   case CPX_CALLBACK_MIP: return "CPX_CALLBACK_MIP";
   case CPX_CALLBACK_MIP_BRANCH: return "CPX_CALLBACK_MIP_BRANCH";
@@ -87,7 +90,7 @@ const char* CPLEXCallback::getWhere(int wherefrom)
   case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN: return "CPX_CALLBACK_MIP_INCUMBENT_USERSOLN";
   case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART: return "CPX_CALLBACK_MIP_INCUMBENT_MIPSTART";
   }
-  
+
   sprintf(CODE, "Unknown where from code: %d", wherefrom);
   return CODE;
 }
@@ -97,12 +100,18 @@ myobj CPLEXCallback::get(int what)
   myobj r = myobj();
   switch (what)
   {
-  case CPX_CALLBACK_INFO_PRIMAL_OBJ:
-  case CPX_CALLBACK_INFO_DUAL_OBJ:             
-  case CPX_CALLBACK_INFO_PRIMAL_INFMEAS:
-  case CPX_CALLBACK_INFO_DUAL_INFMEAS:
-  case CPX_CALLBACK_INFO_ENDTIME:
-  case CPX_CALLBACK_INFO_TUNING_PROGRESS:
+  case CPX_CALLBACK_INFO_PRIMAL_FEAS:
+  case CPX_CALLBACK_INFO_DUAL_FEAS:
+  case CPX_CALLBACK_INFO_ITCOUNT:
+  case CPX_CALLBACK_INFO_CROSSOVER_PPUSH:
+  case CPX_CALLBACK_INFO_CROSSOVER_PEXCH:
+  case CPX_CALLBACK_INFO_CROSSOVER_DPUSH:
+  case CPX_CALLBACK_INFO_CROSSOVER_DEXCH:
+  case CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE:
+  case CPX_CALLBACK_INFO_PRESOLVE_COLSGONE:
+  case CPX_CALLBACK_INFO_PRESOLVE_COEFFS:
+  case CPX_CALLBACK_INFO_PRESOLVE_AGGSUBST:
+  case CPX_CALLBACK_INFO_CROSSOVER_SBCNT:
     // MIP
   case CPX_CALLBACK_INFO_NODE_COUNT:
   case CPX_CALLBACK_INFO_NODES_LEFT:
@@ -150,7 +159,7 @@ myobj CPLEXCallback::get(int what)
   case CPX_CALLBACK_INFO_SOS_IS_FEASIBLE:
   case CPX_CALLBACK_INFO_SOS_MEMBER_INDEX:
 
-  /* Values for getcallbackindicatorinfo function */
+    /* Values for getcallbackindicatorinfo function */
   case CPX_CALLBACK_INFO_IC_NUM:
   case CPX_CALLBACK_INFO_IC_IMPLYING_VAR:
   case CPX_CALLBACK_INFO_IC_IMPLIED_VAR:
@@ -162,18 +171,14 @@ myobj CPLEXCallback::get(int what)
     r.integer = getInt(what);
     return r;
 
-  case CPX_CALLBACK_INFO_PRIMAL_FEAS:
-  case CPX_CALLBACK_INFO_DUAL_FEAS:
-  case CPX_CALLBACK_INFO_ITCOUNT:
-  case CPX_CALLBACK_INFO_CROSSOVER_PPUSH:
-  case CPX_CALLBACK_INFO_CROSSOVER_PEXCH       :
-  case CPX_CALLBACK_INFO_CROSSOVER_DPUSH      :
-  case CPX_CALLBACK_INFO_CROSSOVER_DEXCH      :
-  case CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE:
-  case CPX_CALLBACK_INFO_PRESOLVE_COLSGONE  :
-  case CPX_CALLBACK_INFO_PRESOLVE_COEFFS:
-  case CPX_CALLBACK_INFO_CROSSOVER_SBCNT :
-  case CPX_CALLBACK_INFO_PRESOLVE_AGGSUBST:
+  case CPX_CALLBACK_INFO_PRIMAL_OBJ:
+  case CPX_CALLBACK_INFO_DUAL_OBJ:
+  case CPX_CALLBACK_INFO_PRIMAL_INFMEAS:
+  case CPX_CALLBACK_INFO_DUAL_INFMEAS:
+  case CPX_CALLBACK_INFO_ENDTIME:
+  case CPX_CALLBACK_INFO_TUNING_PROGRESS:
+
+
 
     // MIP
   case CPX_CALLBACK_INFO_BEST_INTEGER:
@@ -207,3 +212,5 @@ myobj CPLEXCallback::get(int what)
   }
   return r;
 }
+
+} // namespace

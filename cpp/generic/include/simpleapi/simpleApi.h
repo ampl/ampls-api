@@ -4,10 +4,24 @@
 #include <string>
 #include <map>
 #include <vector>
-
+#include <stdexcept>
 #include <memory> // for std::auto_ptr
-typedef struct
-    myobj
+
+namespace ampl 
+{
+
+class AMPLSolverException : public std::runtime_error
+{
+public:
+  AMPLSolverException(const char* msg) : std::runtime_error(msg)
+  {
+  }
+  AMPLSolverException(std::string &msg) : std::runtime_error(msg)
+  {
+  }
+};
+
+typedef struct myobj
 {
   const char *str; // type 0
   int integer;     // type 1
@@ -37,9 +51,10 @@ namespace AMPLCBValue
 {
 enum Value {
   obj = 0,
-  delcols = 1,
-  delrows = 2,
-  iterations = 3
+  pre_delcols = 1,
+  pre_delrows = 2,
+  pre_coeffchanged = 3,
+  iterations = 4
 };
 }
 class BaseCallback
@@ -234,6 +249,9 @@ public:
   virtual int getSolution(int first, int length, double *sol) = 0;
 
   virtual double getObj() = 0;
+
+  virtual std::string error(int code) = 0;
 };
 
+} // namespace
 #endif // SIMPLEAPI_H_INCLUDE_

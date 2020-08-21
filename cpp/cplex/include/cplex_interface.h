@@ -19,10 +19,13 @@
 #include "simpleapi/simpleApi.h"
 #include "cplex_callback.h"
 
+
 struct ASL;
+
+
+namespace ampl
+{
 struct CPLEXDriverState;
-
-
 namespace cpx
 {
   namespace impl
@@ -72,23 +75,23 @@ class Callback;
 
 /**
 Encapsulates the main environment of the gurobi driver;
-without modifications, a static CPLEXENV is created in the 
+without modifications, a static CPLEXENV is created in the
 AMPL driver, and it would be fairly easy to lose track of it;
 this way, it is deleted in the destructor.
 */
 class CPLEXDrv {
   void freeCPLEXEnv();
-  public:
-    CPLEXModel loadModel(const char* modelName);
-    CPXENVptr getEnv() {
-      return cpx::impl::AMPLCPLEXgetInternalEnv();
-    }
+public:
+  CPLEXModel loadModel(const char* modelName);
+  CPXENVptr getEnv() {
+    return cpx::impl::AMPLCPLEXgetInternalEnv();
+  }
   ~CPLEXDrv();
 };
 
 /**
 Encapsulates all the instance level information for a CPLEX model,
-namely the CPLEX object, the relative ASL and all the locals of the 
+namely the CPLEX object, the relative ASL and all the locals of the
 driver up to the moment in which optimize would be called.
 It can not be created any other way than by reading an nl file,
 and any assignment moves actual ownership.
@@ -121,8 +124,8 @@ public:
     }
   */
   CPLEXModel(const CPLEXModel& other) :
-      AMPLModel(other)
-    {
+    AMPLModel(other)
+  {
     state_ = other.state_;
     status_ = other.status_;
     copied_ = false;
@@ -148,11 +151,12 @@ public:
   }
 
   int getSolution(int first, int length, double* sol) {
-    return CPXgetx(getCPLEXenv(), model_, sol, first, length-1);
+    return CPXgetx(getCPLEXenv(), model_, sol, first, length - 1);
   }
-  
+
   int setCallbackDerived(BaseCallback* callback);
   BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+  std::string error(int code);
   /*
   Get the map from variable name to index in the solver interface
   */
@@ -165,9 +169,9 @@ public:
     return model_;
   }
   CPXENVptr getCPLEXenv() {
-      return cpx::impl::AMPLCPLEXgetInternalEnv();
+    return cpx::impl::AMPLCPLEXgetInternalEnv();
   }
-  
+
   ~CPLEXModel() {
     if (copied_)
       return;
@@ -177,4 +181,6 @@ public:
       cpx::impl::AMPLCPLEXfreeASL(&asl_);
   }
 };
+
+} // namespace
 #endif // CPLEX_INTERFACE_H_INCLUDE_

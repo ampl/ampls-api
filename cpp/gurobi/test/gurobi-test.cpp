@@ -18,7 +18,7 @@ data;
 set A := 1 2 3 aa bb cc 'a' 'b' 'c' "d" "e" "f" "4" '5' 6 'a a' "a b" 'ab[c]' "de[f]" 'ab"c' "ab'c";
 */
 
-class MyCB : public GRBCallback
+class MyCB : public ampl::GRBCallback
 {
 public:
   //int run(GurobiModel* model, void* cbdata, int where)
@@ -70,8 +70,8 @@ int main(int argc, char** argv) {
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
-  GurobiDrv d;
-  GurobiModel m = d.loadModel(buffer);
+  ampl::GurobiDrv d;
+  ampl::GurobiModel m = d.loadModel(buffer);
   MyCB cb;
   int res = 0;
   res = m.setCallback(&cb);
@@ -87,7 +87,7 @@ int main(int argc, char** argv) {
   m.writeSol();
   
 
-  GurobiModel m2 = d.loadModel(buffer);
+  ampl::GurobiModel m2 = d.loadModel(buffer);
   m2.optimize();
   double obj2 = m2.getObj();
   m2.writeSol();

@@ -1,7 +1,8 @@
 #include "gurobi_interface.h"
 #include "gurobi_callback.h"
 
-
+namespace ampl
+{
 int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
 {
   GRBCallback* cb = (GRBCallback*)usrdata;
@@ -25,12 +26,12 @@ GurobiModel GurobiDrv::loadModel(const char* modelName) {
   char** args = generateArguments(modelName);
   GurobiModel m;
   try {
- 
+
     m.GRBModel_ = grb::impl::AMPLloadmodelNoLic(3, args, &m.asl_);
     m.lastErrorCode_ = -1;
     m.fileName_ = modelName;
   }
-  catch (std::exception &e)
+  catch (std::exception& e)
   {
     deleteParams(args);
     throw e;
@@ -93,3 +94,9 @@ GurobiModel::~GurobiModel() {
   if (asl_)
     grb::impl::freeASL(&asl_);
 }
+std::string GurobiModel::error(int code)
+{
+  return std::string(GRBgeterrormsg(getGRBenv()));
+}
+
+} // namespace

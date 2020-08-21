@@ -3,22 +3,23 @@
 
 
 #include <stdexcept> // for runtime_error
-
+namespace ampl
+{
 const char* GRBCallback::getWhere(int where)
 {
   switch (where)
   {
-   case GRB_CB_POLLING: return "GRB_CB_POLLING";
-    case GRB_CB_PRESOLVE: return "GRB_CB_PRESOLVE";
-    case GRB_CB_SIMPLEX: return "GRB_CB_SIMPLEX";
-    case GRB_CB_MIP: return "GRB_CB_MIP";
-    case GRB_CB_MIPSOL: return "GRB_CB_MIPSOL";
-    case GRB_CB_MIPNODE: return "GRB_CB_MIPNODE";
-    case GRB_CB_MESSAGE: return "GRB_CB_MESSAGE";
-    case GRB_CB_BARRIER: return "GRB_CB_BARRIER";
-    case GRB_CB_MULTIOBJ: return "GRB_CB_MULTIOBJ";
-    default:
-      return "Where code not found";
+  case GRB_CB_POLLING: return "GRB_CB_POLLING";
+  case GRB_CB_PRESOLVE: return "GRB_CB_PRESOLVE";
+  case GRB_CB_SIMPLEX: return "GRB_CB_SIMPLEX";
+  case GRB_CB_MIP: return "GRB_CB_MIP";
+  case GRB_CB_MIPSOL: return "GRB_CB_MIPSOL";
+  case GRB_CB_MIPNODE: return "GRB_CB_MIPNODE";
+  case GRB_CB_MESSAGE: return "GRB_CB_MESSAGE";
+  case GRB_CB_BARRIER: return "GRB_CB_BARRIER";
+  case GRB_CB_MULTIOBJ: return "GRB_CB_MULTIOBJ";
+  default:
+    return "Where code not found";
   }
 }
 
@@ -51,21 +52,21 @@ myobj GRBCallback::get(int what)
     r.type = 1;
     r.integer = getInt(what);
     break;
-  // Generic double  
+    // Generic double  
   case GRB_CB_RUNTIME:
-  // Simplex double
+    // Simplex double
   case GRB_CB_SPX_ITRCNT:
   case GRB_CB_SPX_OBJVAL:
   case GRB_CB_SPX_PRIMINF:
   case GRB_CB_SPX_DUALINF:
-  // MIP double
+    // MIP double
   case GRB_CB_MIP_OBJBST:
   case GRB_CB_MIP_OBJBND:
   case GRB_CB_MIP_NODCNT:
   case GRB_CB_MIP_NODLFT:
   case GRB_CB_MIP_ITRCNT:
   case GRB_CB_MIP_OBJBNDC:
-  // MIPSol double
+    // MIPSol double
   case GRB_CB_MIPSOL_OBJ:
   case GRB_CB_MIPSOL_OBJBST:
   case GRB_CB_MIPSOL_OBJBND:
@@ -89,14 +90,14 @@ myobj GRBCallback::get(int what)
     r.str = getMessage();
   }
   return r;
-// arrays
-//case GRB_CB_MIPSOL_SOL     4001
-//case GRB_CB_MIPNODE_REL     5002
-// case GRB_CB_MULTIOBJ_SOL     8003
+  // arrays
+  //case GRB_CB_MIPSOL_SOL     4001
+  //case GRB_CB_MIPNODE_REL     5002
+  // case GRB_CB_MULTIOBJ_SOL     8003
 
-// Not documented
-//  case GRB_CB_MIPNODE_BRVAR   5007
-// case GRB_CB_MIPNODE_OBJBNDC 5008
+  // Not documented
+  //  case GRB_CB_MIPNODE_BRVAR   5007
+  // case GRB_CB_MIPNODE_OBJBNDC 5008
 }
 
 void GRBCallback::terminate() {
@@ -156,4 +157,4 @@ double GRBCallback::getObjective()
   GRBcbget(cbdata_, cbwhere_, flag, &obj);
   return obj;
 }
-
+} // namespace

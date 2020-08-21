@@ -16,22 +16,22 @@ namespace std {
   #include "cplex_interface.h"
 %}
 
-%feature("director") CPLEXCallback;
-%feature("director") GenericCallback;
+%feature("director") ampl::CPLEXCallback;
+%feature("director") ampl::GenericCallback;
 
-%ignore msg_callback_wrapper;
-%ignore lp_callback_wrapper;
-%ignore setDefaultCB;
-%ignore cut_callback_wrapper;
-%ignore incumbent_callback_wrapper;
+%ignore ampl::msg_callback_wrapper;
+%ignore ampl::lp_callback_wrapper;
+%ignore ampl::setDefaultCB;
+%ignore ampl::cut_callback_wrapper;
+%ignore ampl::incumbent_callback_wrapper;
 
 
-%ignore BaseCallback::doAddCut;
+%ignore ampl::BaseCallback::doAddCut;
 // The following is to avoid problem with director
 // that cannot properly map an out double[].
 // Not yet.
-%ignore CPLEXCallback::getSolution;
-%ignore GenericCallback::getSolution;
+%ignore ampl::CPLEXCallback::getSolution;
+%ignore ampl::GenericCallback::getSolution;
 
 //%include "cplex.h"
 %include "simpleapi/simpleApi.h"

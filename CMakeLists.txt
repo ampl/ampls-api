@@ -155,15 +155,14 @@ function(AddSolverStub solver includes libs)
   add_to_folder(${solver} ${TARGETNAME}-test)
   target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
 
-  #if(SWIG_FOUND)
-  if(FALSE)
+  if(SWIG_FOUND)
     include(UseSWIG)
     # Create custom target for common swig files, couldn't find a way to add
     # them as headers
     add_custom_target(${solver}-common SOURCES ${SWIGCOMMONSRC}
                                                ${DIR_SWIG}/common.i)
     add_to_folder(${solver}/swig ${solver}-common)
-    add_subdirectory(${DIR_PYTHON})
+  #  add_subdirectory(${DIR_PYTHON})
     if(WIN32)
       add_subdirectory(${DIR_CSHARP})
     endif()

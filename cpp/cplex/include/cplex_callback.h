@@ -9,6 +9,8 @@
 
 #include "ilcplex/cplex.h"
 
+namespace ampl
+{
 class CPLEXModel;
 
 class CPLEXCallback : public BaseCallback {
@@ -49,10 +51,10 @@ protected:
   CPXCENVptr env() { return env_; }
   void* cbdata() { return cbdata_; }
 public:
-  
+
   virtual int run(int whereFrom) = 0;
   ~CPLEXCallback() {};
-  
+
   // Interface
   using BaseCallback::getSolutionVector;
   int getSolution(int len, double* sol);
@@ -62,12 +64,11 @@ public:
 
   AMPLCBWhere::Where getAMPLType() {
 
-    switch(wherefrom_)
+    switch (wherefrom_)
     {
     case -1:
       return  AMPLCBWhere::msg;
     case CPX_CALLBACK_PRESOLVE:
-    case CPX_CALLBACK_MIP_PROBE:
       return AMPLCBWhere::presolve;
     case CPX_CALLBACK_PRIMAL:
     case CPX_CALLBACK_DUAL:
@@ -91,8 +92,13 @@ public:
     int status;
     if (what < CPX_CALLBACK_INFO_NODE_SIINF)
     {
-      status = CPXgetcallbackinfo(env(), NULL, wherefrom_,
+      status = CPXgetcallbackinfo(env(), cbdata_, wherefrom_,
         what, &res);
+      if (status)
+      {
+        printf("While getting %d (where=%d)\n", what, wherefrom_);
+        printf("ERROR %s\n", model_->error(status).c_str());
+      }
       return res;
     }
     throw std::exception("Not supported yet");
@@ -100,7 +106,7 @@ public:
   double getDouble(int what)
   {
     double res;
-    int status = CPXgetcallbackinfo(env(), NULL, wherefrom_,
+    int status = CPXgetcallbackinfo(env(), cbdata_, wherefrom_,
       what, &res);
     return res;
   }
@@ -117,13 +123,15 @@ public:
       o.type = 2;
       o.dbl = getObjective();
       return o;
-    case AMPLCBValue::delcols:
+    case AMPLCBValue::pre_delcols:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COLSGONE);
-    case AMPLCBValue::delrows:
+    case AMPLCBValue::pre_delrows:
       return get(CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE);
+    case AMPLCBValue::pre_coeffchanged:
+      return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
     }
   }
 };
 
-
+} // namespace
 #endif // CPLEX_CALLBACK_H_INCLUDE_

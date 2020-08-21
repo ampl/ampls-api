@@ -1,7 +1,9 @@
 #include "cplex_interface.h"
 #include "simpleapi/simpleApi.h"
-#include <cstring>
+//#include <cstring>
 
+namespace ampl
+{
 std::string getErrorMsg(CPXCENVptr env, int res) {
   char buffer[CPXMESSAGEBUFSIZE];
   CPXCCHARptr errstr = CPXgeterrorstring(env, res, buffer);
@@ -24,13 +26,13 @@ CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
   return cb;
 }
 
-int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env, void* cbdata, 
+int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env, void* cbdata,
   int wherefrom, void* userhandle,
   double objval, double* x, int* isfeas_p,
   int* useraction_p) {
 
   CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
-  
+
   *isfeas_p = 1; // use new solutio by default
   cb->objval_ = objval;
   cb->x_ = x;
@@ -43,8 +45,8 @@ int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env, void* cbdata,
 
 
 int CPXPUBLIC
-lp_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom, 
-  void* userhandle)
+  lp_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
+    void* userhandle)
 {
   CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
   return cb->run(wherefrom);
@@ -63,7 +65,7 @@ int CPXPUBLIC cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
 
 
 void CPXPUBLIC
-msg_callback_wrapper(void* handle, const char* msg)
+  msg_callback_wrapper(void* handle, const char* msg)
 {
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(handle);
   cb->wherefrom_ = -1;
@@ -105,12 +107,12 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
   try {
     FILE* f = fopen(modelName, "rb");
     if (!f)
-      printf("NO FILE: %s\n", modelName);
+      throw ampl::AMPLSolverException("Could not find file: " + std::string(modelName));
     else
       fclose(f);
     CPXLPptr modelptr;
     ASL* aslptr;
-    m.state_= cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
+    m.state_ = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
       &aslptr);
     m.model_ = modelptr;
     disableCallbacksFromDave(cpx::impl::AMPLCPLEXgetInternalEnv());
@@ -118,7 +120,7 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
     m.lastErrorCode_ = -1;
     m.fileName_ = modelName;
   }
-  catch (std::exception &e)
+  catch (std::exception& e)
   {
     deleteParams(args);
     throw e;
@@ -132,7 +134,7 @@ void CPLEXModel::writeSol() {
 }
 int setMsgCallback(BaseCallback* callback, CPXENVptr env) {
   /* Now get the standard channels.  If an error, just call our
-     message function directly. */
+      message function directly. */
   CPXCHANNELptr cpxresults, cpxwarning, cpxerror, cpxlog;
   char errmsg[CPXMESSAGEBUFSIZE];
   int status = CPXgetchannels(env, &cpxresults, &cpxwarning, &cpxerror, &cpxlog);
@@ -153,8 +155,8 @@ int setMsgCallback(BaseCallback* callback, CPXENVptr env) {
   }
 
   /* Now that we have the error message handler set up, all CPLEX
-     generated errors will go through ourmsgfunc.  So we don't have
-     to use CPXgeterrorstring to determine the text of the message. */
+      generated errors will go through ourmsgfunc.  So we don't have
+      to use CPXgeterrorstring to determine the text of the message. */
 
   status = CPXaddfuncdest(env, cpxwarning, callback, msg_callback_wrapper);
   if (status) {
@@ -171,12 +173,12 @@ int setMsgCallback(BaseCallback* callback, CPXENVptr env) {
 }
 int CPLEXModel::setCallbackDerived(BaseCallback* callback) {
   CPXENVptr p = getCPLEXenv();
-  
+
   // Add the callback 
   int status = CPXsetlazyconstraintcallbackfunc(p, cut_callback_wrapper,
     callback);
   if (status)
-   return status;
+    return status;
   status = CPXsetusercutcallbackfunc(p, cut_callback_wrapper,
     callback);
   if (status)
@@ -184,7 +186,7 @@ int CPLEXModel::setCallbackDerived(BaseCallback* callback) {
   status = CPXsetmipcallbackfunc(p, lp_callback_wrapper, callback);
   if (status)
     return status;
-  status= CPXsetlpcallbackfunc(p, lp_callback_wrapper, callback);
+  status = CPXsetlpcallbackfunc(p, lp_callback_wrapper, callback);
   if (status)
     return status;
   status = CPXsetincumbentcallbackfunc(p, incumbent_callback_wrapper, callback);
@@ -195,7 +197,7 @@ int CPLEXModel::setCallbackDerived(BaseCallback* callback) {
 class MyCPLEXCallbackBridge : public CPLEXCallback {
   GenericCallback* cb_;
 public:
-  MyCPLEXCallbackBridge(GenericCallback *cb) {
+  MyCPLEXCallbackBridge(GenericCallback* cb) {
     cb_ = cb;
   }
   virtual int run(int where) {
@@ -209,7 +211,7 @@ BaseCallback* CPLEXModel::createCallbackImplDerived(GenericCallback* callback) {
 int CPLEXModel::optimize() {
   CPXENVptr env = getCPLEXenv();
   int probtype = CPXgetprobtype(env, model_);
-  int res=0;
+  int res = 0;
   switch (probtype)
   {
   case CPXPROB_LP:
@@ -253,3 +255,16 @@ int CPLEXModel::optimize() {
   return res;
 }
 
+std::string CPLEXModel::error(int code) {
+  char buffer[CPXMESSAGEBUFSIZE];
+  CPXCCHARptr errstr;
+  errstr = CPXgeterrorstring(this->getCPLEXenv(), code, buffer);
+
+  if (errstr != NULL) {
+    return std::string(buffer);
+  }
+  else {
+    return "Error code not found.";
+  }
+}
+} // namespace

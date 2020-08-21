@@ -7,7 +7,7 @@
     <ProjectGuid>{87C1F6DD-97D1-4B7B-BFCC-320CB8C86E49}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>gsharp_test</RootNamespace>
-    <AssemblyName>gsharp-test</AssemblyName>
+    <AssemblyName>cpxsharp-test</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -56,6 +56,20 @@
       <Project>{2138a0c3-4c0f-436a-b5b0-da18ea56afe3}</Project>
       <Name>dev_cpxsharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\..\solvers-private\build\vs64\bin\cpxsharp_c\cpxsharp_c.dll">
+      <Link>cpxsharp_c.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\solvers-private\build\vs64\bin\Debug\cplex-lib.dll">
+      <Link>cplex-lib.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\solvers-private\build\vs64\bin\Debug\cplex12100.dll">
+      <Link>cplex12100.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

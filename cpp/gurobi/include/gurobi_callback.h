@@ -9,10 +9,9 @@
 
 #include "gurobi_c.h"
 
+namespace ampl {
 
 class GurobiModel;
-
-
 
 class GRBCallback : public BaseCallback {
   friend int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
@@ -91,11 +90,14 @@ public:
       result.type = 2;
       result.dbl = getObjective();
       return result;
-    case AMPLCBValue::delcols:
+    case AMPLCBValue::pre_delcols:
       grbv = GRB_CB_PRE_COLDEL;
       break;
-    case AMPLCBValue::delrows:
+    case AMPLCBValue::pre_delrows:
       grbv = GRB_CB_PRE_ROWDEL;
+      break;
+    case AMPLCBValue::pre_coeffchanged:
+      grbv = GRB_CB_PRE_COECHG;
       break;
     case AMPLCBValue::iterations:
       if (cbwhere_ == GRB_CB_SIMPLEX)
@@ -110,5 +112,5 @@ public:
   }
 };
 
-
+} // namespace
 #endif // GUROBI_CALLBACK_H_INCLUDE_

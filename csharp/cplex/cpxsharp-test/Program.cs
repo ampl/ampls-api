@@ -55,14 +55,14 @@ namespace cpxsharp_test
         var f = getAMPLType();
         switch(f)
         {
-          case Value.msg:
-           // Console.WriteLine(getMessage());
+          case Where.msg:
+            Console.WriteLine(getMessage());
             break;
-          case Value.presolve:
+          case Where.presolve:
             Console.WriteLine("Presolve!");
             break;
-          case Value.mipnode:
-          case Value.mipsol:
+          case Where.mipnode:
+          case Where.mipsol:
             Console.WriteLine("MIPSOL: {0}", getObjective());
             break;
         }
@@ -74,7 +74,7 @@ namespace cpxsharp_test
     {
       CPLEXDrv g = new CPLEXDrv();
       
-      var m = g.loadModel(@"D:\Development\AMPL\escrow-simpleapi\solvers_dist\test\models\tsp.nl");
+      var m = g.loadModel(@"D:\Development\AMPL\solvers-public\test\models\tscp.nl");
       int nvars = m.getNumVars();
       //CB cb = new CB();
       //m.setCallback(cb);

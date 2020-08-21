@@ -40,7 +40,11 @@ class MyGenericCallback : public GenericCallback
     //  printf("**%s**\n", getMessage());
       return 0;
     case AMPLCBWhere::presolve:
-      printf("Presolve OBJ = %f\n", getObjective());
+      printf("Removed %i rows and %i columns. %i coefficients changed\n", 
+        this->getValue(AMPLCBValue::pre_delrows).integer,
+        this->getValue(AMPLCBValue::pre_delcols).integer,
+        this->getValue(AMPLCBValue::pre_coeffchanged).integer
+        );
       return 0;
     case AMPLCBWhere::mip:
     case AMPLCBWhere::mipsol:

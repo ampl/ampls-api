@@ -17,7 +17,7 @@ data;
 
 set A := 1 2 3 aa bb cc 'a' 'b' 'c' "d" "e" "f" "4" '5' 6 'a a' "a b" 'ab[c]' "de[f]" 'ab"c' "ab'c";
 */
-class IBMCB :public CPLEXCallback 
+class IBMCB :public ampl::CPLEXCallback 
 {
 public:
   virtual int 
@@ -80,7 +80,7 @@ public:
   }
 };
 
-class MyCB : public CPLEXCallback
+class MyCB : public ampl::CPLEXCallback
 {
 public:
   virtual int run(CPXCENVptr env, void* lp, int wf) {
@@ -119,26 +119,34 @@ int main(int argc, char** argv) {
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
-
-  CPLEXDrv d;
-  CPLEXModel m = d.loadModel(buffer);
-  
-  IBMCB cb;
   int res = 0;
-  res = m.setCallback(&cb);
-  if (res != 0)
-  {
-    printf("ERROR!!! %i\n", res);
-    return res;
-  }
+  ampl::CPLEXDrv d;
+  IBMCB cb;
+  double obj;
+  try {
+    ampl::CPLEXModel m = d.loadModel(buffer);
+   
+  
+    res = m.setCallback(&cb);
+    if (res != 0)
+    {
+      printf("ERROR!!! %i\n", res);
+      return res;
+    }
 
-  m.optimize();
-  double obj = m.getObj();
-  m.writeSol();
+    m.optimize();
+    obj = m.getObj();
+    m.writeSol();
+  }
+  catch (const std::exception& e)
+  {
+    printf(e.what());
+  }
+  
   
 
-  CPLEXModel m2 = d.loadModel(buffer);
-  res = m.setCallback(&cb);
+  ampl::CPLEXModel m2 = d.loadModel(buffer);
+  res = m2.setCallback(&cb);
   m2.optimize();
   double obj2 = m2.getObj();
   m2.writeSol();

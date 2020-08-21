@@ -19,6 +19,8 @@
 #include "gurobi_c.h"
 
 struct ASL;
+namespace ampl
+{
 namespace grb
 {
   namespace impl
@@ -45,12 +47,12 @@ without modifications, a static GRBenv is created in the
 AMPL driver, and it would be fairly easy to lose track of it;
 this way, it is deleted in the destructor.
 */
-class GurobiDrv  {
+class GurobiDrv {
   void freeGurobiEnv();
-  public:
-    GurobiModel loadModel(const char* modelName);
-    ~GurobiDrv();
-  
+public:
+  GurobiModel loadModel(const char* modelName);
+  ~GurobiDrv();
+
 };
 
 /**
@@ -82,7 +84,7 @@ class GurobiModel : public AMPLModel {
 public:
   GurobiModel(const GurobiModel& other) :
     AMPLModel(other)
-    {
+  {
     copied_ = false;
     asl_ = other.asl_;
     GRBModel_ = other.GRBModel_;
@@ -95,7 +97,6 @@ public:
   void writeSol();
 
   int optimize();
-
   int getNumVars() {
     return getIntAttr(GRB_INT_ATTR_NUMVARS);
   }
@@ -106,8 +107,9 @@ public:
     return getDoubleAttrArray(GRB_DBL_ATTR_X, first, (int)length, sol);
   }
   int setCallbackDerived(BaseCallback* callback);
-
   BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+  std::string error(int code);
+
   // Gurobi-specific
   int getIntAttr(const char* name);
   double getDoubleAttr(const char* name);
@@ -138,7 +140,7 @@ public:
     return GRBsetdblparam(GRBgetenv(GRBModel_), name, value);
   }
   double setStrParam(const char* name, const char* value) {
-  return GRBsetstrparam(GRBgetenv(GRBModel_), name, value);
+    return GRBsetstrparam(GRBgetenv(GRBModel_), name, value);
   }
 
   // Access to gurobi C structures
@@ -146,15 +148,13 @@ public:
     return GRBModel_;
   }
   GRBenv* getGRBenv() {
-    if(GRBModel_ != NULL)
+    if (GRBModel_ != NULL)
       return GRBgetenv(GRBModel_);
     return NULL;
   }
 
   ~GurobiModel();
+
 };
-
-
-
-
+} // namespace
 #endif // GUROBI_INTERFACE_H_INCLUDE_

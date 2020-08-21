@@ -7,7 +7,8 @@
 #include <stdexcept>    // std::runtime_error
 #include "csvReader.h"
 
-
+namespace ampl
+{
 char** generateArguments(const char* modelName)
 {
   // Add exe name, -AMPL and \0
@@ -55,7 +56,7 @@ std::map<std::string, int> AMPLModel::getVarMapFiltered(const char* beginWith) {
   }
   else
   {
-    throw std::runtime_error("Make sure you export the column file from AMPL.");
+    throw ampl::AMPLSolverException("Make sure you export the column file from AMPL.");
   }
 }
 
@@ -99,3 +100,5 @@ double* BaseCallback::getSolutionVector(int* len) {
   }
   return result;
 }
+
+} // namespace
