@@ -26,7 +26,12 @@ GurobiModel GurobiDrv::loadModel(const char* modelName) {
   char** args = generateArguments(modelName);
   GurobiModel m;
   try {
-
+  FILE* f = fopen(modelName, "rb");
+  if (!f)
+    throw ampl::AMPLSolverException("Could not find file: " + std::string(modelName));
+  else
+    fclose(f);
+  const std::lock_guard<std::mutex> lock(loadMutex);
     m.GRBModel_ = grb::impl::AMPLloadmodelNoLic(3, args, &m.asl_);
     m.lastErrorCode_ = -1;
     m.fileName_ = modelName;

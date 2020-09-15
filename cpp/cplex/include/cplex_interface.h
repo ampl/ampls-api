@@ -10,6 +10,7 @@
 
 #include <string>
 #include <map>
+#include <mutex>
 
 #if CPX_APIMODEL == CPX_APIMODEL_LARGE
 #include "ilcplex/cplexx.h"
@@ -80,6 +81,7 @@ AMPL driver, and it would be fairly easy to lose track of it;
 this way, it is deleted in the destructor.
 */
 class CPLEXDrv {
+  std::mutex loadMutex;
   void freeCPLEXEnv();
 public:
   CPLEXModel loadModel(const char* modelName);
@@ -106,12 +108,12 @@ class CPLEXModel : public AMPLModel {
   CPXLPptr model_;
   ASL* asl_;
   int lastErrorCode_;
-  CPLEXModel() : model_(NULL), asl_(NULL),
-    lastErrorCode_(0), copied_(false), status_(0) {}
-
-  /* Interface implementation */
+  CPLEXModel() :  copied_(false), state_(NULL), status_(0) , 
+    model_(NULL), asl_(NULL),lastErrorCode_(0) {}
+  
   int setCallbackDerived(BaseCallback* callback);
   BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+
 public:
   /*
   CPLEXModel(CPLEXModel&& other) noexcept :

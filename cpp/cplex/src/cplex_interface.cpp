@@ -105,6 +105,7 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
   char** args = generateArguments(modelName);
   CPLEXModel m;
   try {
+    const std::lock_guard<std::mutex> lock(loadMutex);
     FILE* f = fopen(modelName, "rb");
     if (!f)
       throw ampl::AMPLSolverException("Could not find file: " + std::string(modelName));

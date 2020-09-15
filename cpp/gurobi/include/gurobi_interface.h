@@ -12,6 +12,7 @@
 
 #include <string>
 #include <map>
+#include <mutex>
 
 #include "simpleapi/simpleApi.h"
 #include "gurobi_callback.h"
@@ -48,6 +49,7 @@ AMPL driver, and it would be fairly easy to lose track of it;
 this way, it is deleted in the destructor.
 */
 class GurobiDrv {
+  std::mutex loadMutex;
   void freeGurobiEnv();
 public:
   GurobiModel loadModel(const char* modelName);
