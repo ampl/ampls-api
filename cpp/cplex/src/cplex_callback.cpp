@@ -19,6 +19,8 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
       (wherefrom_ == CPX_CALLBACK_MIP_CUT_UNBD))
       return CPXcutcallbackadd(env(), NULL, wherefrom_, nvars, rhs, sense, vars,
         coeffs, true);
+    else
+      throw ampl::AMPLSolverException("Cannot add callback at this stage");
   }
   else
   {
@@ -26,6 +28,8 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
       (wherefrom_ == CPX_CALLBACK_MIP_CUT_LAST))
       return CPXcutcallbackadd(env(), NULL, wherefrom_, nvars, rhs, sense, vars,
         coeffs, true);
+    else
+      throw ampl::AMPLSolverException("Cannot add callback at this stage");
   }
 }
 
@@ -33,6 +37,7 @@ int CPLEXCallback::getSolution(int len, double* sol) {
 
   if ((wherefrom_ >= CPX_CALLBACK_MIP) && (wherefrom_ <= CPX_CALLBACK_MIP_INCUMBENT_MIPSTART))
     return CPXgetcallbackincumbent(env(), this, wherefrom_, sol, 0, len);
+  throw ampl::AMPLSolverException("Cannot get the solution vector in this stage.");
 }
 double CPLEXCallback::getObjective() {
   int phase = -1;
@@ -50,8 +55,9 @@ double CPLEXCallback::getObjective() {
   case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART:
     return objval_;
   default:
-    return -1;
+    throw ampl::AMPLSolverException("Cannot get the objective value in this stage.");
   }
+  throw ampl::AMPLSolverException("Cannot get the objective value in this stage.");
 }
 
 const char* CPLEXCallback::getWhere(int wherefrom)

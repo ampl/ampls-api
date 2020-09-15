@@ -27,7 +27,7 @@ public:
     int    phase = -1;
     double suminf_or_objective;
     int    itcnt = -1;
-    printf("Called with where: %s\n", getWhere(wherefrom));
+   // printf("Called with where: %s\n", getWhere(wherefrom));
     if (wherefrom == CPX_CALLBACK_MIP_CUT_FEAS)
     {
       std::vector<std::string> vars;
@@ -35,13 +35,14 @@ public:
       vars.push_back("x[2]");
       double coefs[] = { 5.6, 7.8 };
       addCut(vars, coefs, '>', 6);
+      printf("Added cut!\n");
     }
     if (wherefrom == CPX_CALLBACK_PRESOLVE) {
 
       status = CPXgetcallbackinfo(env(), cbdata(), wherefrom,
         CPX_CALLBACK_INFO_PRESOLVE_COLSGONE, &itcnt);
       if (status)  goto TERMINATE;
-      printf("Eliminated %d columns\n", itcnt);
+    //  printf("Eliminated %d columns\n", itcnt);
       return 0;
     }
     if (wherefrom == CPX_CALLBACK_PRIMAL) {

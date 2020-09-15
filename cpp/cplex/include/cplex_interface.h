@@ -36,7 +36,7 @@ namespace cpx
         CPXLPptr* modelPtr, ASL** aslPtr);
 
       ENTRYPOINT void AMPLCPLEXwritesol(CPLEXDriverState* state,
-        CPXLPptr* modelPtr, int status);
+        CPXLPptr modelPtr, int status);
 
       ENTRYPOINT CPXENVptr AMPLCPLEXgetInternalEnv();
 
@@ -109,6 +109,9 @@ class CPLEXModel : public AMPLModel {
   CPLEXModel() : model_(NULL), asl_(NULL),
     lastErrorCode_(0), copied_(false), status_(0) {}
 
+  /* Interface implementation */
+  int setCallbackDerived(BaseCallback* callback);
+  BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 public:
   /*
   CPLEXModel(CPLEXModel&& other) noexcept :
@@ -124,19 +127,18 @@ public:
     }
   */
   CPLEXModel(const CPLEXModel& other) :
-    AMPLModel(other)
+    AMPLModel(other),
+    state_(other.state_),
+    asl_(other.asl_),
+    model_(other.model_),
+    lastErrorCode_(other.lastErrorCode_),
+    copied_(false),
+    status_(other.status_)
   {
-    state_ = other.state_;
-    status_ = other.status_;
-    copied_ = false;
-    asl_ = other.asl_;
-    model_ = other.model_;
-    lastErrorCode_ = other.lastErrorCode_;
     fileName_ = other.fileName_;
     other.copied_ = true;
   }
 
-  /* Write ampl solution file */
   void writeSol();
 
   int optimize();
@@ -153,17 +155,10 @@ public:
   int getSolution(int first, int length, double* sol) {
     return CPXgetx(getCPLEXenv(), model_, sol, first, length - 1);
   }
-
-  int setCallbackDerived(BaseCallback* callback);
-  BaseCallback* createCallbackImplDerived(GenericCallback* callback);
   std::string error(int code);
-  /*
-  Get the map from variable name to index in the solver interface
-  */
-  std::map<std::string, int> getVarMap() {
-    return getVarMapFiltered(NULL);
-  }
 
+
+  // CPLEX-specific
   // Access to gurobi C structures
   CPXLPptr getCPXmodel() {
     return model_;

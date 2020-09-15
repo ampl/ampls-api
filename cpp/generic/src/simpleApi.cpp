@@ -44,7 +44,22 @@ std::string getColFileName(const char* nlFileName) {
   name += ".col";
   return name;
 }
-
+std::map<int, std::string> AMPLModel::getVarMapInverse() {
+  std::string name = getColFileName(fileName_.c_str());
+  std::filebuf fb;
+  if (fb.open(name.c_str(), std::ios::in))
+  {
+    std::istream is(&fb);
+    std::map<int, std::string> map = createMapInverse(is);
+    fb.close();
+    return map;
+  }
+  else
+  {
+    fb.close();
+    throw ampl::AMPLSolverException("Make sure you export the column file from AMPL.");
+  }
+}
 std::map<std::string, int> AMPLModel::getVarMapFiltered(const char* beginWith) {
   std::string name = getColFileName(fileName_.c_str());
   std::filebuf fb;
@@ -52,18 +67,29 @@ std::map<std::string, int> AMPLModel::getVarMapFiltered(const char* beginWith) {
   {
     std::istream is(&fb);
     std::map<std::string, int> map = createMap(is, beginWith);
+    fb.close();
     return map;
   }
   else
   {
+    fb.close();
     throw ampl::AMPLSolverException("Make sure you export the column file from AMPL.");
   }
 }
 
 
 std::map<std::string, int>& BaseCallback::getVarMap() {
-  return model_->getVarMapInternal();
+  
+  model_->getVarMapsInternal();
+  return model_->varMap_;
 }
+
+std::map<int, std::string>& BaseCallback::getVarMapInverse() {
+
+  model_->getVarMapsInternal();
+  return model_->varMapInverse_;
+}
+
 
 int BaseCallback::callAddCut(std::vector<std::string>& vars,
   const double* coeffs, char direction, double rhs, int lazy) {

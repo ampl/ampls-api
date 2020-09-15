@@ -15,5 +15,7 @@ namespace ampl
   std::vector<std::vector<std::string> > readCSV(std::istream& in);
 
   std::map<std::string, int> createMap(std::istream& in, const char* beginWith);
+
+  std::map<int, std::string> createMapInverse(std::istream& in);
 }
 #endif

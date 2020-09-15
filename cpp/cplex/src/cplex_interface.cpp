@@ -120,6 +120,11 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
     m.lastErrorCode_ = -1;
     m.fileName_ = modelName;
   }
+  catch (ampl::AMPLSolverException& a)
+  {
+    deleteParams(args);
+    throw a;
+  }
   catch (std::exception& e)
   {
     deleteParams(args);
@@ -130,7 +135,7 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
 }
 
 void CPLEXModel::writeSol() {
-  cpx::impl::AMPLCPLEXwritesol(state_, &model_, status_);
+  cpx::impl::AMPLCPLEXwritesol(state_, model_, status_);
 }
 int setMsgCallback(BaseCallback* callback, CPXENVptr env) {
   /* Now get the standard channels.  If an error, just call our
@@ -186,6 +191,7 @@ int CPLEXModel::setCallbackDerived(BaseCallback* callback) {
   status = CPXsetmipcallbackfunc(p, lp_callback_wrapper, callback);
   if (status)
     return status;
+
   status = CPXsetlpcallbackfunc(p, lp_callback_wrapper, callback);
   if (status)
     return status;

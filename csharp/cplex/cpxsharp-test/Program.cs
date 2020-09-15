@@ -59,12 +59,18 @@ namespace cpxsharp_test
             Console.WriteLine(getMessage());
             break;
           case Where.presolve:
-            Console.WriteLine("Presolve!");
+          //Console.WriteLine("Presolve!");
             break;
           case Where.mipnode:
           case Where.mipsol:
-            Console.WriteLine("MIPSOL: {0}", getObjective());
+            Console.WriteLine("MIP Objective = {0}", getObjective());
             break;
+          case Where.notmapped:
+            Console.WriteLine($"Not mapped! Where = {getWhere(wf)}");
+            break;
+
+          default:
+            return 0;
         }
         return 0;
       }
@@ -73,25 +79,32 @@ namespace cpxsharp_test
       static void Main(string[] args)
     {
       CPLEXDrv g = new CPLEXDrv();
-      
-      var m = g.loadModel(@"D:\Development\AMPL\solvers-public\test\models\tscp.nl");
-      int nvars = m.getNumVars();
-      //CB cb = new CB();
-      //m.setCallback(cb);
+            try
+            {
+                var m = g.loadModel(@"D:\Development\AMPL\solvers-public\test\models\tsp.nl");
 
-      GCB gcb = new GCB(); 
-      m.setGenericCallback(gcb);
-      double obj = m.optimize();
-      Console.WriteLine("Objective: {0}", m.getObj());
-      double[] sol = new double[nvars];
-      m.getSolution(0, nvars, sol);
-      m.writeSol();
-      var map = m.getVarMap();
-      foreach (var item in map)
-      {
-        if(sol[item.Value] != 0)
-        Console.WriteLine("{0}: {1}", item.Key, sol[item.Value]);
-      }
+                int nvars = m.getNumVars();
+                //CB cb = new CB();
+                //m.setCallback(cb);
+
+                GCB gcb = new GCB();
+                m.setGenericCallback(gcb);
+                double obj = m.optimize();
+                Console.WriteLine("Solution with CPLEX={0}", m.getObj());
+                double[] sol = new double[nvars];
+                m.getSolution(0, nvars, sol);
+                m.writeSol();
+               // var map = m.getVarMap();
+               // foreach (var item in map)
+               // {
+                //    if (sol[item.Value] != 0)
+                //        Console.WriteLine("{0}: {1}", item.Key, sol[item.Value]);
+               // }
+            }
+            catch (Exception  ex)
+            {
+                Console.WriteLine("exception caught!\r\n" + ex.Message);
+            }
     }
   }
 }

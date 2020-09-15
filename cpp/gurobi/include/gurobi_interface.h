@@ -13,7 +13,7 @@
 #include <string>
 #include <map>
 
-//#include "simpleapi/simpleApi.h"
+#include "simpleapi/simpleApi.h"
 #include "gurobi_callback.h"
 
 #include "gurobi_c.h"
@@ -73,29 +73,21 @@ class GurobiModel : public AMPLModel {
   ASL* asl_;
   int lastErrorCode_;
 
-
-
   GurobiModel() : AMPLModel(), GRBModel_(NULL), asl_(NULL),
     lastErrorCode_(0), copied_(false) {}
 
-
-
-
+  // Interface implementation
+  int setCallbackDerived(BaseCallback* callback);
+  BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 public:
   GurobiModel(const GurobiModel& other) :
-    AMPLModel(other)
+    AMPLModel(other), copied_(false), GRBModel_(other.GRBModel_), 
+    asl_(other.asl_), lastErrorCode_(other.lastErrorCode_)
   {
-    copied_ = false;
-    asl_ = other.asl_;
-    GRBModel_ = other.GRBModel_;
-    lastErrorCode_ = other.lastErrorCode_;
     other.copied_ = true;
   }
   using AMPLModel::getSolutionVector;
-
-  // Interface implementation
   void writeSol();
-
   int optimize();
   int getNumVars() {
     return getIntAttr(GRB_INT_ATTR_NUMVARS);
@@ -106,14 +98,12 @@ public:
   int getSolution(int first, int length, double* sol) {
     return getDoubleAttrArray(GRB_DBL_ATTR_X, first, (int)length, sol);
   }
-  int setCallbackDerived(BaseCallback* callback);
-  BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+
   std::string error(int code);
 
   // Gurobi-specific
   int getIntAttr(const char* name);
   double getDoubleAttr(const char* name);
-
   int getIntAttrArray(const char* name, int first, int length, int* arr);
   int getDoubleAttrArray(const char* name, int first, int length, double* arr);
 

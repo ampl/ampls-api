@@ -16,7 +16,6 @@
 #include <cstring>
 #include <cstdio>
 
-const char* MODELNAME = "tsp.nl";
 /*
 set A;
 var scalar >= 0, <= 4;
@@ -35,20 +34,20 @@ class MyGenericCallback : public ampl::GenericCallback
   {
     // Prints out the name of the solution phase where the solver is called from
     // (solver specific)
-    printf("\nCalled from %s\n", getWhere(whereFrom));
+    printf("Called from %s\n", getWhere(whereFrom));
 
     // Get the generic mapping
     ampl::AMPLCBWhere::Where where = getAMPLType();
     switch (where)
     {
     case ampl::AMPLCBWhere::msg:
-      printf(getMessage());
+    //  printf("**%s**\n", getMessage());
       return 0;
     case ampl::AMPLCBWhere::presolve:
       if((getValue(ampl::AMPLCBValue::pre_delrows).integer+
         getValue(ampl::AMPLCBValue::pre_delcols).integer+
         getValue(ampl::AMPLCBValue::pre_coeffchanged).integer) > 0)
-          printf("\nRemoved %i rows and %i columns. %i coefficients changed", 
+          printf("Removed %i rows and %i columns. %i coefficients changed\n", 
             getValue(ampl::AMPLCBValue::pre_delrows).integer,
             getValue(ampl::AMPLCBValue::pre_delcols).integer,
             getValue(ampl::AMPLCBValue::pre_coeffchanged).integer);
@@ -56,10 +55,10 @@ class MyGenericCallback : public ampl::GenericCallback
     case ampl::AMPLCBWhere::mip:
     case ampl::AMPLCBWhere::mipsol:
     case ampl::AMPLCBWhere::mipnode:
-      printf("\nMIP Objective = %f", getObjective());
+      printf("MIP Objective = %f\n", getObjective());
       return 0;
     case ampl::AMPLCBWhere::notmapped:
-      printf("\nNot mapped! Where: %s", getWhere(whereFrom));
+      printf("Not mapped! Where: %s\n", getWhere(whereFrom));
 
     }
     return 0;
@@ -67,7 +66,7 @@ class MyGenericCallback : public ampl::GenericCallback
 
 };
 
-double doStuff(ampl::AMPLModel& m, const char *name) 
+double doStuff2(ampl::AMPLModel& m, const char *name) 
 {
   // Set a (generic) callback
   MyGenericCallback cb;
@@ -90,24 +89,12 @@ double doStuff(ampl::AMPLModel& m, const char *name)
   m.writeSol();
   return obj;
 }
-int main(int argc, char** argv) {
+void main2(int argc, char** argv) {
 
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
-  strcat(buffer, MODELNAME);
+  strcat(buffer, "tsp.nl");
 
-  // TODO
-  // Mutex on loadModel functions
-
-  // Gurobi generic
-  ampl::GurobiDrv gurobi;
-  ampl::GurobiModel mg = gurobi.loadModel(buffer);
-  doStuff(mg, "gurobi");
-
-  // CPLEX generic
-  ampl::CPLEXDrv cplex;
-  ampl::CPLEXModel c = cplex.loadModel(buffer);
-  doStuff(c, "cplex");
 
  
 }

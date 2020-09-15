@@ -19,7 +19,9 @@ endif()
 
 # C++ simpleapi examples
 add_prefix(EXAMPLES_SOURCES ${SIMPLEAPI_DIR}/examples/
-  getInformation.cpp)
+  getInformation.cpp 
+  simpleCuts.cpp
+  )
 add_executable(simpleapi-examples ${EXAMPLES_SOURCES})
 target_include_directories(simpleapi-examples PRIVATE
    ${GENERATED_INCLUDE_DIR} # for test-config

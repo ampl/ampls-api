@@ -104,4 +104,18 @@ namespace ampl
     }
     return map;
   }
+
+  std::map<int, std::string> createMapInverse(std::istream& in) {
+    std::map<int, std::string> map;
+    int i = 0;
+    std::string row;
+    while (!in.eof()) {
+      std::getline(in, row);
+      if (in.bad() || in.fail()) {
+        break;
+      }
+      map[i++] = row;
+    }
+    return map;
+  }
 }

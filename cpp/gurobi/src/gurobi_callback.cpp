@@ -1,8 +1,6 @@
 #include "gurobi_callback.h"
 #include "gurobi_interface.h"
 
-
-#include <stdexcept> // for runtime_error
 namespace ampl
 {
 const char* GRBCallback::getWhere(int where)
@@ -124,7 +122,7 @@ int GRBCallback::getSolution(int len, double* sol)
 {
   if ((cbwhere_ != GRB_CB_MIPNODE) &&
     (cbwhere_ != GRB_CB_MIPSOL))
-    throw std::runtime_error("The solution vector can be obtained in a callback only from a MIP node or MIP solution callback");
+    throw ampl::AMPLSolverException("The solution vector can be obtained in a callback only from a MIP node or MIP solution callback");
   int flag = cbwhere_ == GRB_CB_MIPSOL ? GRB_CB_MIPSOL_SOL :
     GRB_CB_MIPNODE_REL;
   return GRBcbget(cbdata_, cbwhere_, flag, sol);
@@ -151,7 +149,7 @@ double GRBCallback::getObjective()
     flag = GRB_CB_BARRIER_PRIMOBJ;
     break;
   default:
-    throw std::runtime_error("Cannot get objective value from here!");
+    throw ampl::AMPLSolverException("Cannot get objective value from here!");
   }
   double obj;
   GRBcbget(cbdata_, cbwhere_, flag, &obj);

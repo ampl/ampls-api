@@ -3,4 +3,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <StartWorkingDirectory>D:\Development\AMPL\escrow-simpleapi\solvers_dist\build\vs64\bin\cpxsharp_c\</StartWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartAction>Program</StartAction>
+    <StartProgram>D:\Development\ampl\solvers-public\csharp\cplex\cpxsharp-test\bin\Debug\cpxsharp-test.exe</StartProgram>
+  </PropertyGroup>
 </Project>
