@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\AMPLModel.cs" />
+    <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\AMPLSolverException.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\BaseCallback.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\GRBCallback.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\GRBsvec.cs" />
@@ -74,9 +75,12 @@
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\SWIGTYPE_p_p_char.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\SWIGTYPE_p_size_t.cs" />
+    <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_t.cs" />
+    <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\SWIGTYPE_p_std__string.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\SWIGTYPE_p_unsigned_int.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\SWIGTYPE_p_void.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\Value.cs" />
+    <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\Where.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\gsharp_c.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\gsharp_cPINVOKE.cs" />
     <Compile Include="D:\Development\ampl\solvers-public\build\csharp\gurobi\swig\map_string_int.cs" />

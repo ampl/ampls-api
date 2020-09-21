@@ -1,0 +1,26 @@
+PROJECT_NAME     = "Solvers API"
+GENERATE_LATEX   = NO
+GENERATE_MAN     = NO
+GENERATE_RTF     = NO
+CASE_SENSE_NAMES = NO
+RECURSIVE              = YES
+INPUT            = @DOXYGEN_INPUT_DIR@
+OUTPUT_DIRECTORY = "@DOXYGEN_OUTPUT_DIR@"
+QUIET            = NO
+JAVADOC_AUTOBRIEF = YES
+AUTOLINK_SUPPORT = YES
+INLINE_INHERITED_MEMB = YES
+GENERATE_HTML = YES
+GENERATE_XML = YES
+XML_OUTPUT   = doxyxml
+ALIASES = "rst=\verbatim embed:rst"
+ALIASES += "endrst=\endverbatim"
+ALIASES += "rststar=\verbatim embed:rst:leading-asterisk"
+ALIASES += "endrststar=\endverbatim"
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+HIDE_FRIEND_COMPOUNDS  = YES
+PREDEFINED = __cplusplus \
+			 protected=private
+EXCLUDE_SYMBOLS = AMPLAPI_EXPORTS AMPL_EXPLICIT AMPLAPI_PUBLIC AMPLAPI ampl::internal::* fmt::*

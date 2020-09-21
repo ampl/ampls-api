@@ -9,7 +9,9 @@
 
 namespace ampl 
 {
-
+/**
+  Our almighty exception
+*/
 class AMPLSolverException : public std::runtime_error
 {
 public:
@@ -20,7 +22,9 @@ public:
   {
   }
 };
-
+/**
+* Struct to store arbitrary data
+*/
 typedef struct myobj
 {
   const char *str; // type 0
@@ -130,7 +134,9 @@ Direction: GRB_LESS_EQUAL, GRB_EQUAL, or GRB_GREATER_EQUAL
   virtual AMPLCBWhere::Where getAMPLType() = 0;
   virtual myobj getValue(AMPLCBValue::Value v) = 0;
 };
-
+/**
+* Callback base class
+*/
 class GenericCallback : public BaseCallback
 {
   friend class AMPLModel;
@@ -174,7 +180,9 @@ public:
     return impl_->getValue(v);
   }
 };
-
+/**
+* My AMPL Model
+*/
 class AMPLModel
 {
   friend std::map<std::string, int> &BaseCallback::getVarMap();

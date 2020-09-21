@@ -187,6 +187,8 @@ if(ENABLE_XPRESS)
   addsolverstub(xpressmp)
 endif()
 
+add_subdirectory("doc")
+
 # Install python package structure install(
 # DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/amplpy_gurobi/ DESTINATION
 # amplpy_gurobi/ COMPONENT ${PYTHON_SWIG_API}
