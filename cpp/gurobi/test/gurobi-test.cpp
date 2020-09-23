@@ -6,7 +6,7 @@
 
 const char* MODELNAME = "tsp.nl";
 
-class MyCB : public ampl::GRBCallback
+class MyCB : public ampl::GurobiCallback
 {
   int lastIter = 0;
 public:

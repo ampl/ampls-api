@@ -13,7 +13,7 @@ namespace ampl
 {
 class CPLEXModel;
 
-class CPLEXCallback : public BaseCallback {
+class CPLEXCallback : public impl::BaseCallback {
   char CODE[60];
 
   friend class CPLEXModel;

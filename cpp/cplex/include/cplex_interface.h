@@ -111,8 +111,8 @@ class CPLEXModel : public AMPLModel {
   CPLEXModel() :  copied_(false), state_(NULL), status_(0) , 
     model_(NULL), asl_(NULL),lastErrorCode_(0) {}
   
-  int setCallbackDerived(BaseCallback* callback);
-  BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+  int setCallbackDerived(impl::BaseCallback* callback);
+  impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 
 public:
   /*

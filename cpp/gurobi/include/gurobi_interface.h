@@ -79,8 +79,8 @@ class GurobiModel : public AMPLModel {
     lastErrorCode_(0), copied_(false) {}
 
   // Interface implementation
-  int setCallbackDerived(BaseCallback* callback);
-  BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+  int setCallbackDerived(impl::BaseCallback* callback);
+  impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 public:
   GurobiModel(const GurobiModel& other) :
     AMPLModel(other), copied_(false), GRBModel_(other.GRBModel_), 

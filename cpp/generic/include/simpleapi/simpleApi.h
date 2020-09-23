@@ -7,10 +7,10 @@
 #include <stdexcept>
 #include <memory> // for std::auto_ptr
 
-namespace ampl 
+namespace ampl
 {
 /**
-  Our almighty exception
+Wrapper for all ampl solver exceptions
 */
 class AMPLSolverException : public std::runtime_error
 {
@@ -18,28 +18,39 @@ public:
   AMPLSolverException(const char* msg) : std::runtime_error(msg)
   {
   }
-  AMPLSolverException(std::string &msg) : std::runtime_error(msg)
+  AMPLSolverException(std::string& msg) : std::runtime_error(msg)
   {
   }
 };
+
 /**
-* Struct to store arbitrary data
+* Temp struct to store arbitrary data. Has ownership, dangerous in case of strings,
+* useful for testing SWIG wrappers
+* TODO reimplement
 */
 typedef struct myobj
 {
-  const char *str; // type 0
+  const char* str; // type 0
   int integer;     // type 1
   double dbl;      // type 2
   int type;
 } myobj;
 
+// Forward declarations
 class AMPLModel;
-
-char **generateArguments(const char *modelName);
-void deleteParams(char **params);
+class GenericCallback;
+char** generateArguments(const char* modelName);
+void deleteParams(char** params);
 
 namespace AMPLCBWhere
 {
+/**
+* These (generic) values identify where in the solution
+* process a callback has been called.
+* Not all solvers "where" are mapped to these values; in case
+* the callback is called with a not-mapped "where" parameter,
+* refer to the solver-specific functionality.
+*/
 enum Where
 {
   msg = 0,
@@ -47,12 +58,18 @@ enum Where
   lpsolve = 2,
   mipnode = 3,
   mipsol = 4,
-  mip =5,
+  mip = 5,
   notmapped = 10
 };
 }
 namespace AMPLCBValue
 {
+/**
+* Which (generic) values to get in a callback; just a subset of all the
+* value types are mapped here.
+* In case a not mapped value is required, refer to the solver-specific
+* API.
+*/
 enum Value {
   obj = 0,
   pre_delcols = 1,
@@ -61,51 +78,58 @@ enum Value {
   iterations = 4
 };
 }
+
+namespace impl
+{
+/**
+* Infrastructure, should not be used directly.
+* Base class for all callback objects, solvers-specific and/or generic.
+*/
 class BaseCallback
 {
   friend class AMPLModel;
-  friend class GenericCallback;
+  friend class ampl::GenericCallback;
 
 protected:
-  AMPLModel *model_;
-  virtual int doAddCut(int nvars, const int *vars,
-                       const double *coeffs, char direction, double rhs,
-                       int type) = 0;
+  AMPLModel* model_;
+  virtual int doAddCut(int nvars, const int* vars,
+    const double* coeffs, char direction, double rhs,
+    int type) = 0;
 
-  int callAddCut(std::vector<std::string> &vars,
-                 const double *coeffs, char direction, double rhs,
-                 int type);
+  int callAddCut(std::vector<std::string>& vars,
+    const double* coeffs, char direction, double rhs,
+    int type);
 
 public:
   BaseCallback() : model_(NULL) {}
 
   virtual int run(int whereFrom) = 0;
 
-  std::map<std::string, int> &getVarMap();
+  std::map<std::string, int>& getVarMap();
   std::map<int, std::string>& getVarMapInverse();
-  
-  virtual ~BaseCallback(){};
+
+  virtual ~BaseCallback() {};
 
   /**
 Direction: GRB_LESS_EQUAL, GRB_EQUAL, or GRB_GREATER_EQUAL
 */
   int addCut(std::vector<std::string> vars,
-             const double *coeffs, char direction, double rhs)
+    const double* coeffs, char direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 0);
   }
-  int addCutsIndices(int nvars, const int *vars,
-                     const double *coeffs, char direction, double rhs)
+  int addCutsIndices(int nvars, const int* vars,
+    const double* coeffs, char direction, double rhs)
   {
     return doAddCut(nvars, vars, coeffs, direction, rhs, 0);
   }
   int addLazy(std::vector<std::string> vars,
-              const double *coeffs, char direction, double rhs)
+    const double* coeffs, char direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 1);
   }
-  int addLazyIndices(int nvars, const int *vars,
-                     const double *coeffs, char direction, double rhs)
+  int addLazyIndices(int nvars, const int* vars,
+    const double* coeffs, char direction, double rhs)
   {
     return doAddCut(nvars, vars, coeffs, direction, rhs, 1);
   }
@@ -114,17 +138,17 @@ Direction: GRB_LESS_EQUAL, GRB_EQUAL, or GRB_GREATER_EQUAL
   It is quite nice to have it, as the python swig wrapper takes care of it automatically,
   but we will definitely get rid of it if we want to expose the C++ interface, as we'll have to do PIMPL
   */
-  double *getSolutionVector(int *len);
+  double* getSolutionVector(int* len);
   /**
   Get the current solution
   */
-  virtual int getSolution(int len, double *sol) = 0;
+  virtual int getSolution(int len, double* sol) = 0;
 
   virtual double getObjective() = 0;
 
-  virtual const char *getWhere(int where) = 0;
+  virtual const char* getWhere(int where) = 0;
 
-  virtual const char *getMessage() = 0;
+  virtual const char* getMessage() = 0;
 
   // Return mapped "whereFrom"
   // So far only return 1 if from msg callback
@@ -134,15 +158,19 @@ Direction: GRB_LESS_EQUAL, GRB_EQUAL, or GRB_GREATER_EQUAL
   virtual AMPLCBWhere::Where getAMPLType() = 0;
   virtual myobj getValue(AMPLCBValue::Value v) = 0;
 };
+} // namespace impl
+
 /**
-* Callback base class
+* Base class for generic callbacks, inherit from this to declare a 
+* generic callback.
+* Provides all mapping between solver-specific and generic values.
 */
-class GenericCallback : public BaseCallback
+class GenericCallback : public impl::BaseCallback
 {
   friend class AMPLModel;
 
 private:
-  std::auto_ptr<BaseCallback> impl_;
+  std::auto_ptr<impl::BaseCallback> impl_;
 
 protected:
   virtual int doAddCut(int nvars, const int *vars,
@@ -181,12 +209,15 @@ public:
   }
 };
 /**
-* My AMPL Model
+* Store an in-memory representation of an AMPL model, which 
+* can be constructed by loading it from an NL file.
+* It also contains two-way mappings between solver column and row numbers and
+* AMPL entity names.
 */
 class AMPLModel
 {
-  friend std::map<std::string, int> &BaseCallback::getVarMap();
-  friend std::map<int, std::string>& BaseCallback::getVarMapInverse();
+  friend std::map<std::string, int>& impl::BaseCallback::getVarMap();
+  friend std::map<int, std::string>& impl::BaseCallback::getVarMapInverse();
   std::map<int, std::string> varMapInverse_;
   std::map<std::string, int> varMap_;
   /*
@@ -211,8 +242,8 @@ protected:
     varMap_.clear();
     varMapInverse_.clear();
   }
-  virtual int setCallbackDerived(BaseCallback *callback) = 0;
-  virtual BaseCallback *createCallbackImplDerived(GenericCallback *callback) = 0;
+  virtual int setCallbackDerived(impl::BaseCallback *callback) = 0;
+  virtual impl::BaseCallback *createCallbackImplDerived(GenericCallback *callback) = 0;
 
 public:
   AMPLModel(const AMPLModel &other) : fileName_(other.fileName_) {}
@@ -237,11 +268,11 @@ public:
   int setGenericCallback(GenericCallback *callback)
   {
     callback->model_ = this;
-    BaseCallback *realcb = createCallbackImplDerived(callback);
+    impl::BaseCallback *realcb = createCallbackImplDerived(callback);
     callback->impl_.reset(realcb);
     return setCallback(callback->impl_.get());
   }
-  int setCallback(BaseCallback *callback)
+  int setCallback(impl::BaseCallback *callback)
   {
     callback->model_ = this;
     return setCallbackDerived(callback);

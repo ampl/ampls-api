@@ -3,7 +3,7 @@
 
 namespace ampl
 {
-const char* GRBCallback::getWhere(int where)
+const char* GurobiCallback::getWhere(int where)
 {
   switch (where)
   {
@@ -21,7 +21,7 @@ const char* GRBCallback::getWhere(int where)
   }
 }
 
-myobj GRBCallback::get(int what)
+myobj GurobiCallback::get(int what)
 {
   myobj r = myobj();
   switch (what)
@@ -98,17 +98,17 @@ myobj GRBCallback::get(int what)
   // case GRB_CB_MIPNODE_OBJBNDC 5008
 }
 
-void GRBCallback::terminate() {
+void GurobiCallback::terminate() {
   GRBterminate(gurobiModel()->getGRBmodel());
 }
-const char* GRBCallback::getMessage()
+const char* GurobiCallback::getMessage()
 {
   char* msg;
   GRBcbget(cbdata_, cbwhere_, GRB_CB_MSG_STRING, &msg);
   return msg;
 }
 
-int GRBCallback::doAddCut(int nvars, const int* vars,
+int GurobiCallback::doAddCut(int nvars, const int* vars,
   const double* coeffs, char direction, double rhs, int lazy) {
   if (lazy)
     return GRBcblazy(cbdata_, nvars, vars,
@@ -118,7 +118,7 @@ int GRBCallback::doAddCut(int nvars, const int* vars,
       coeffs, direction, rhs);
 }
 
-int GRBCallback::getSolution(int len, double* sol)
+int GurobiCallback::getSolution(int len, double* sol)
 {
   if ((cbwhere_ != GRB_CB_MIPNODE) &&
     (cbwhere_ != GRB_CB_MIPSOL))
@@ -128,7 +128,7 @@ int GRBCallback::getSolution(int len, double* sol)
   return GRBcbget(cbdata_, cbwhere_, flag, sol);
 }
 
-double GRBCallback::getObjective()
+double GurobiCallback::getObjective()
 {
   int flag;
   switch (cbwhere_)

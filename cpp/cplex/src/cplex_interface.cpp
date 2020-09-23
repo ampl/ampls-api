@@ -138,7 +138,7 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
 void CPLEXModel::writeSol() {
   cpx::impl::AMPLCPLEXwritesol(state_, model_, status_);
 }
-int setMsgCallback(BaseCallback* callback, CPXENVptr env) {
+int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
   /* Now get the standard channels.  If an error, just call our
       message function directly. */
   CPXCHANNELptr cpxresults, cpxwarning, cpxerror, cpxlog;
@@ -177,7 +177,7 @@ int setMsgCallback(BaseCallback* callback, CPXENVptr env) {
   }
   return 0;
 }
-int CPLEXModel::setCallbackDerived(BaseCallback* callback) {
+int CPLEXModel::setCallbackDerived(impl::BaseCallback* callback) {
   CPXENVptr p = getCPLEXenv();
 
   // Add the callback 
@@ -212,7 +212,7 @@ public:
   }
 };
 
-BaseCallback* CPLEXModel::createCallbackImplDerived(GenericCallback* callback) {
+impl::BaseCallback* CPLEXModel::createCallbackImplDerived(GenericCallback* callback) {
   return new MyCPLEXCallbackBridge(callback);
 }
 int CPLEXModel::optimize() {

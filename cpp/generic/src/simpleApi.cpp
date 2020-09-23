@@ -50,7 +50,7 @@ std::map<int, std::string> AMPLModel::getVarMapInverse() {
   if (fb.open(name.c_str(), std::ios::in))
   {
     std::istream is(&fb);
-    std::map<int, std::string> map = createMapInverse(is);
+    std::map<int, std::string> map = impl::createMapInverse(is);
     fb.close();
     return map;
   }
@@ -66,7 +66,7 @@ std::map<std::string, int> AMPLModel::getVarMapFiltered(const char* beginWith) {
   if (fb.open(name.c_str(), std::ios::in))
   {
     std::istream is(&fb);
-    std::map<std::string, int> map = createMap(is, beginWith);
+    std::map<std::string, int> map = impl::createMap(is, beginWith);
     fb.close();
     return map;
   }
@@ -78,20 +78,20 @@ std::map<std::string, int> AMPLModel::getVarMapFiltered(const char* beginWith) {
 }
 
 
-std::map<std::string, int>& BaseCallback::getVarMap() {
+std::map<std::string, int>& impl::BaseCallback::getVarMap() {
   
   model_->getVarMapsInternal();
   return model_->varMap_;
 }
 
-std::map<int, std::string>& BaseCallback::getVarMapInverse() {
+std::map<int, std::string>& impl::BaseCallback::getVarMapInverse() {
 
   model_->getVarMapsInternal();
   return model_->varMapInverse_;
 }
 
 
-int BaseCallback::callAddCut(std::vector<std::string>& vars,
+int impl::BaseCallback::callAddCut(std::vector<std::string>& vars,
   const double* coeffs, char direction, double rhs, int lazy) {
   std::size_t length = vars.size();
   std::map<std::string, int> map = getVarMap();
@@ -111,7 +111,7 @@ double* AMPLModel::getSolutionVector(int* len) {
 
 
 
-double* BaseCallback::getSolutionVector(int* len) {
+double* impl::BaseCallback::getSolutionVector(int* len) {
 
   *len = model_->getNumVars();
   double* result = new double[*len];

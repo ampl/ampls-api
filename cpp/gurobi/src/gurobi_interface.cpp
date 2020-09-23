@@ -5,7 +5,7 @@ namespace ampl
 {
 int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
 {
-  GRBCallback* cb = (GRBCallback*)usrdata;
+  GurobiCallback* cb = (GurobiCallback*)usrdata;
   cb->cbdata_ = cbdata;
   cb->cbwhere_ = where;
   //int res = cb->run(cb->gurobiModel(), cbdata, where);
@@ -48,11 +48,11 @@ GurobiModel GurobiDrv::loadModel(const char* modelName) {
 void GurobiModel::writeSol() {
   grb::impl::AMPLwritesol(GRBModel_, asl_, lastErrorCode_);
 }
-int GurobiModel::setCallbackDerived(BaseCallback* callback) {
+int GurobiModel::setCallbackDerived(impl::BaseCallback* callback) {
   return GRBsetcallbackfunc(GRBModel_, callback_wrapper, callback);
 }
 
-class MyGurobiCallbackBridge : public GRBCallback {
+class MyGurobiCallbackBridge : public GurobiCallback {
   GenericCallback* cb_;
 public:
   MyGurobiCallbackBridge(GenericCallback* cb) {
@@ -64,7 +64,7 @@ public:
 };
 
 
-BaseCallback* GurobiModel::createCallbackImplDerived(GenericCallback* callback) {
+impl::BaseCallback* GurobiModel::createCallbackImplDerived(GenericCallback* callback) {
   return new MyGurobiCallbackBridge(callback);
 }
 int GurobiModel::optimize() {

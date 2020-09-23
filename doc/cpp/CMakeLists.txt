@@ -7,7 +7,6 @@ set(DOXYGEN_INPUT_DIR "${BASEDIR}/generic/include"
                       "${BASEDIR}/gurobi/include"
                       "${BASEDIR}/cplex/include")
 
-
 foreach(dir ${DOXYGEN_INPUT_DIR})
     file(GLOB_RECURSE headers ${dir}/*.h)
     list(APPEND DOCHEADERS ${headers})
@@ -35,6 +34,10 @@ set(SPHINX_INDEX_FILE ${SPHINX_BUILD}/index.html)
 
  file(GLOB_RECURSE DOC_SOURCES ${SPHINX_SOURCE}/*.rst)
  message("DOC_SOURCES ${DOC_SOURCES}")
+
+
+ set(COMMON_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../images/definitions.rst)
+ message("CMD ${COMMON_FILES}")
 add_custom_command(OUTPUT ${SPHINX_INDEX_FILE}
                   COMMAND
                   ${SPHINX_EXECUTABLE} -b html
@@ -46,12 +49,13 @@ add_custom_command(OUTPUT ${SPHINX_INDEX_FILE}
                    # Other docs files you want to track should go here (or in some variable)
                    ${DOC_SOURCES}
                    ${DOXYGEN_INDEX_FILE}
+                   ${COMMON_FILES}
                    MAIN_DEPENDENCY ${SPHINX_SOURCE}/conf.py
                   COMMENT "Generating documentation with Sphinx")
 
 # Nice named target so we can run the job easily
 add_custom_target(sphinx ALL DEPENDS ${SPHINX_INDEX_FILE}
-SOURCES ${DOC_SOURCES})
+SOURCES ${DOC_SOURCES} ${COMMON_FILES})
 add_to_folder(docs/cpp sphinx doxygen)
 # Add an install target to install the docs
 #include(GNUInstallDirs)

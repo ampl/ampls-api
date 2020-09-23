@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'AMPL Solvers API'
+project = 'SolversAPI'
 copyright = '2020, AMPL Inc'
 author = 'AMPL Inc'
 
@@ -55,9 +55,24 @@ exclude_patterns = []
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
 html_theme = 'alabaster'
+html_sidebars = {
+    '**': [
+        'about.html',
+        'navigation.html',
+        'relations.html',
+        'searchbox.html',
+        'donate.html',
+    ]
+}
+html_theme_options = {
+    'logo': 'logo.png',
+    "github_banner": "true",
+    "github_user" :"ampl",
+    "github_repo" : "solvers-public",
+    "logo_name" : "true"
 
+    }
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".

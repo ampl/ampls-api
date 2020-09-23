@@ -13,7 +13,7 @@ namespace ampl {
 
 class GurobiModel;
 
-class GRBCallback : public BaseCallback {
+class GurobiCallback : public impl::BaseCallback {
   friend int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
   friend class GurobiModel;
   int cbwhere_;
@@ -29,7 +29,7 @@ protected:
     int type);
 
 public:
-  GRBCallback() : cbwhere_(), cbdata_(NULL)
+  GurobiCallback() : cbwhere_(), cbdata_(NULL)
   {}
 
   virtual int run(int whereFrom) = 0;
