@@ -17,45 +17,54 @@ data;
 
 set A := 1 2 3 aa bb cc 'a' 'b' 'c' "d" "e" "f" "4" '5' 6 'a a' "a b" 'ab[c]' "de[f]" 'ab"c' "ab'c";
 */
-class IBMCB :public ampl::CPLEXCallback 
+class IBMCB :public ampls::CPLEXCallback 
 {
 public:
   virtual int 
-   // run(CPXCENVptr env, void* cbdata, int wherefrom)
-    run(int wherefrom)  {
+   // run(CPXCENVptr env, void* cbdata, int where_)
+    run()  {
     int    status = 0;
     int    phase = -1;
     double suminf_or_objective;
     int    itcnt = -1;
-   // printf("Called with where: %s\n", getWhere(wherefrom));
-    if (wherefrom == CPX_CALLBACK_MIP_CUT_FEAS)
+   // printf("Called with where: %s\n", getWhere(where_));
+    if (where_ == CPX_CALLBACK_MIP_CUT_FEAS)
     {
       std::vector<std::string> vars;
-      vars.push_back("x[1]");
-      vars.push_back("x[2]");
-      double coefs[] = { 5.6, 7.8 };
-      addCut(vars, coefs, '>', 6);
-      printf("Added cut!\n");
+      vars.push_back("x[1,34]");
+      vars.push_back("x[10,16]");
+      double coefs[] = {1, 1};
+    /*  std::vector<double> sol = getSolutionVector();
+      for (int i = 0; i < sol.size(); i++)
+        printf("x[%d] = %f\n", i, sol[i]);
+        */
+      status= addLazy(vars, coefs, ampls::CBDirection::ge, 2);
+      std::vector<int>indices;
+      indices.push_back(1);
+      indices.push_back(2);
+      //status = addLazyIndices(2, indices.data(), coefs, ampls::CBDirection::ge, 1);
+      if (status != 0)
+        return status;
     }
-    if (wherefrom == CPX_CALLBACK_PRESOLVE) {
+    if (where_ == CPX_CALLBACK_PRESOLVE) {
 
-      status = CPXgetcallbackinfo(env(), cbdata(), wherefrom,
+      status = CPXgetcallbackinfo(env(), cbdata(), where_,
         CPX_CALLBACK_INFO_PRESOLVE_COLSGONE, &itcnt);
       if (status)  goto TERMINATE;
     //  printf("Eliminated %d columns\n", itcnt);
       return 0;
     }
-    if (wherefrom == CPX_CALLBACK_PRIMAL) {
-      status = CPXgetcallbackinfo(env(), cbdata(), wherefrom,
+    if (where_ == CPX_CALLBACK_PRIMAL) {
+      status = CPXgetcallbackinfo(env(), cbdata(), where_,
         CPX_CALLBACK_INFO_ITCOUNT, &itcnt);
       if (status)  goto TERMINATE;
 
-      status = CPXgetcallbackinfo(env(), cbdata(), wherefrom,
+      status = CPXgetcallbackinfo(env(), cbdata(), where_,
         CPX_CALLBACK_INFO_PRIMAL_FEAS, &phase);
       if (status)  goto TERMINATE;
 
       if (phase == 0) {
-        status = CPXgetcallbackinfo(env(), cbdata(), wherefrom,
+        status = CPXgetcallbackinfo(env(), cbdata(), where_,
           CPX_CALLBACK_INFO_PRIMAL_INFMEAS,
           &suminf_or_objective);
         if (status)  goto TERMINATE;
@@ -64,7 +73,7 @@ public:
           itcnt, suminf_or_objective);
       }
       else {
-        status = CPXgetcallbackinfo(env(), cbdata(), wherefrom,
+        status = CPXgetcallbackinfo(env(), cbdata(), where_,
           CPX_CALLBACK_INFO_PRIMAL_OBJ,
           &suminf_or_objective);
         if (status)  goto TERMINATE;
@@ -81,7 +90,7 @@ public:
   }
 };
 
-class MyCB : public ampl::CPLEXCallback
+class MyCB : public ampls::CPLEXCallback
 {
 public:
   virtual int run(CPXCENVptr env, void* lp, int wf) {
@@ -121,11 +130,11 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
   int res = 0;
-  ampl::CPLEXDrv d;
+  ampls::CPLEXDrv d;
   IBMCB cb;
-  double obj;
+  double obj=0;
   try {
-    ampl::CPLEXModel m = d.loadModel(buffer);
+    ampls::CPLEXModel m = d.loadModel(buffer);
    
   
     res = m.setCallback(&cb);
@@ -138,6 +147,7 @@ int main(int argc, char** argv) {
     m.optimize();
     obj = m.getObj();
     m.writeSol();
+    m.printModelVars(true);
   }
   catch (const std::exception& e)
   {
@@ -146,11 +156,11 @@ int main(int argc, char** argv) {
   
   
 
-  ampl::CPLEXModel m2 = d.loadModel(buffer);
-  res = m2.setCallback(&cb);
+  ampls::CPLEXModel m2 = d.loadModel(buffer);
+ // res = m2.setCallback(&cb);
   m2.optimize();
   double obj2 = m2.getObj();
   m2.writeSol();
-  
+  m2.printModelVars(true);
   printf("Objectives: %f - %f\n", obj, obj2);
 }

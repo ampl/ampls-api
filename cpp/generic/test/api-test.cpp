@@ -79,18 +79,18 @@ public:
 
 */
 
-class CCB : public ampl::GenericCallback
+class CCB : public ampls::GenericCallback
 {
   virtual int run(int whereFrom)
   {
     // printf("Called from %s\n", getWhere(whereFrom));
     switch (getAMPLType())
     {
-    case ampl::AMPLCBWhere::msg:
+    case ampls::CBWhere::msg:
   //    printf("**%s**\n", getMessage());
       return 0;
-    case ampl::AMPLCBWhere::mipsol:
-    case ampl::AMPLCBWhere::mipnode:
+    case ampls::CBWhere::mipsol:
+    case ampls::CBWhere::mipnode:
       printf("MIPSOL OBJ = %f\n", getObjective());
     }
     return 0;
@@ -98,7 +98,7 @@ class CCB : public ampl::GenericCallback
 
 };
 
-double doStuff(ampl::AMPLModel& m, const char *name)
+double doStuff(ampls::AMPLModel& m, const char *name)
 {
   CCB b;
   m.setGenericCallback(&b);
@@ -114,10 +114,13 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
   
-  ampl::GurobiDrv gurobi;
+  ampls::GurobiDrv gurobi;
   //CPLEXDrv cplex;
-  ampl::GurobiModel m = gurobi.loadModel(buffer);
+ // ampls::GurobiModel m = gurobi.loadModel(buffer);
   //CPLEXModel c = cplex.loadModel(buffer);
-  doStuff(m, "gurobi");
+  //doStuff(m, "gurobi");
   //doStuff(c, "cplex");*/
+  ampls::GurobiModel m = gurobi.loadModel(buffer);
+  ampls::AMPLModel* a = &m;
+  doStuff(*a, "gurobi");
 }

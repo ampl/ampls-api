@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 
-namespace ampl
+namespace ampls
 {
 namespace impl
 {

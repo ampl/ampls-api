@@ -1,6 +1,6 @@
 #include "csvReader.h"
 
-namespace ampl {
+namespace ampls {
 namespace impl {
 
 namespace CSVState {
@@ -120,4 +120,4 @@ std::map<int, std::string> createMapInverse(std::istream& in) {
   return map;
 }
 } // namespace impl
-} // namespace ampl
+} // namespace ampls

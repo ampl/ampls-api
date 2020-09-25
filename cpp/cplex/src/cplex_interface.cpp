@@ -2,7 +2,7 @@
 #include "simpleapi/simpleApi.h"
 //#include <cstring>
 
-namespace ampl
+namespace ampls
 {
 std::string getErrorMsg(CPXCENVptr env, int res) {
   char buffer[CPXMESSAGEBUFSIZE];
@@ -20,7 +20,7 @@ CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
   int wherefrom, void* userhandle)
 {
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(userhandle);
-  cb->wherefrom_ = wherefrom;
+  cb->where_ = wherefrom;
   cb->env_ = env;
   cb->cbdata_ = cbdata;
   return cb;
@@ -33,10 +33,10 @@ int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env, void* cbdata,
 
   CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
 
-  *isfeas_p = 1; // use new solutio by default
+  *isfeas_p = 1; // use new solution by default
   cb->objval_ = objval;
   cb->x_ = x;
-  if (cb->run(wherefrom))
+  if (cb->run())
     *useraction_p = CPX_CALLBACK_FAIL;
   else
     *useraction_p = CPX_CALLBACK_DEFAULT;
@@ -49,17 +49,17 @@ int CPXPUBLIC
     void* userhandle)
 {
   CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
-  return cb->run(wherefrom);
+  return cb->run();
 }
 
 int CPXPUBLIC cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
   void* userhandle, int* useraction_p)
 {
   CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
-  if (cb->run(wherefrom))
+  if (cb->run())
     *useraction_p = CPX_CALLBACK_FAIL;
   else
-    *useraction_p = CPX_CALLBACK_DEFAULT;
+    *useraction_p = CPX_CALLBACK_SET;
   return 0;
 }
 
@@ -68,9 +68,9 @@ void CPXPUBLIC
   msg_callback_wrapper(void* handle, const char* msg)
 {
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(handle);
-  cb->wherefrom_ = -1;
+  cb->where_ = -1;
   cb->msg_ = msg;
-  cb->run(-1);
+  cb->run();
 }
 
 
@@ -100,15 +100,35 @@ void disableCallbacksFromDave(CPXENVptr env) {
   CPXsetmipcallbackfunc(env, 0, 0);
   CPXsetlpcallbackfunc(env, 0, 0);
 }
-
+void CPLEXDrv::loadModelImpl(char** args, CPLEXModel* m) {
+  
+  try {
+    CPXLPptr modelptr;
+    ASL* aslptr;
+    m->state_ = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
+      &aslptr);
+    m->model_ = modelptr;
+    disableCallbacksFromDave(cpx::impl::AMPLCPLEXgetInternalEnv());
+    m->asl_ = aslptr;
+    m->lastErrorCode_ = -1;
+    m->fileName_ = args[1];
+  }
+  catch (...)
+  {
+  }
+}
 CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
+  
   char** args = generateArguments(modelName);
   CPLEXModel m;
+  loadModelImpl(args, &m);
+  return m;
+  /*
   try {
     const std::lock_guard<std::mutex> lock(loadMutex);
     FILE* f = fopen(modelName, "rb");
     if (!f)
-      throw ampl::AMPLSolverException("Could not find file: " + std::string(modelName));
+      throw ampls::AMPLSolverException("Could not find file: " + std::string(modelName));
     else
       fclose(f);
     CPXLPptr modelptr;
@@ -121,7 +141,7 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
     m.lastErrorCode_ = -1;
     m.fileName_ = modelName;
   }
-  catch (ampl::AMPLSolverException& a)
+  catch (ampls::AMPLSolverException& a)
   {
     deleteParams(args);
     throw a;
@@ -132,7 +152,7 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
     throw e;
   }
   deleteParams(args);
-  return m;
+  return m;*/
 }
 
 void CPLEXModel::writeSol() {
@@ -207,8 +227,8 @@ public:
   MyCPLEXCallbackBridge(GenericCallback* cb) {
     cb_ = cb;
   }
-  virtual int run(int where) {
-    return cb_->run(where);
+  virtual int run() {
+    return cb_->run();
   }
 };
 

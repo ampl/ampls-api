@@ -29,37 +29,37 @@ data;
 
 set A := 1 2 3 aa bb cc 'a' 'b' 'c' "d" "e" "f" "4" '5' 6 'a a' "a b" 'ab[c]' "de[f]" 'ab"c' "ab'c";
 */
-class MyGenericCallback : public ampl::GenericCallback
+class MyGenericCallback : public ampls::GenericCallback
 {
-  virtual int run(int whereFrom)
+  virtual int run()
   {
     // Prints out the name of the solution phase where the solver is called from
     // (solver specific)
-    printf("\nCalled from %s\n", getWhere(whereFrom));
+    printf("\nCalled from %s\n", getWhere());
 
     // Get the generic mapping
-    ampl::AMPLCBWhere::Where where = getAMPLType();
+    ampls::CBWhere::Where where = getAMPLType();
     switch (where)
     {
-    case ampl::AMPLCBWhere::msg:
+    case ampls::CBWhere::msg:
       printf(getMessage());
       return 0;
-    case ampl::AMPLCBWhere::presolve:
-      if((getValue(ampl::AMPLCBValue::pre_delrows).integer+
-        getValue(ampl::AMPLCBValue::pre_delcols).integer+
-        getValue(ampl::AMPLCBValue::pre_coeffchanged).integer) > 0)
+    case ampls::CBWhere::presolve:
+      if((getValue(ampls::CBValue::pre_delrows).integer+
+        getValue(ampls::CBValue::pre_delcols).integer+
+        getValue(ampls::CBValue::pre_coeffchanged).integer) > 0)
           printf("\nRemoved %i rows and %i columns. %i coefficients changed", 
-            getValue(ampl::AMPLCBValue::pre_delrows).integer,
-            getValue(ampl::AMPLCBValue::pre_delcols).integer,
-            getValue(ampl::AMPLCBValue::pre_coeffchanged).integer);
+            getValue(ampls::CBValue::pre_delrows).integer,
+            getValue(ampls::CBValue::pre_delcols).integer,
+            getValue(ampls::CBValue::pre_coeffchanged).integer);
           return 0;
-    case ampl::AMPLCBWhere::mip:
-    case ampl::AMPLCBWhere::mipsol:
-    case ampl::AMPLCBWhere::mipnode:
+    case ampls::CBWhere::mip:
+    case ampls::CBWhere::mipsol:
+    case ampls::CBWhere::mipnode:
       printf("\nMIP Objective = %f", getObjective());
       return 0;
-    case ampl::AMPLCBWhere::notmapped:
-      printf("\nNot mapped! Where: %s", getWhere(whereFrom));
+    case ampls::CBWhere::notmapped:
+      printf("\nNot mapped! Where: %s", getWhere());
 
     }
     return 0;
@@ -67,7 +67,7 @@ class MyGenericCallback : public ampl::GenericCallback
 
 };
 
-double doStuff(ampl::AMPLModel& m, const char *name) 
+double doStuff(ampls::AMPLModel& m, const char *name) 
 {
   // Set a (generic) callback
   MyGenericCallback cb;
@@ -90,7 +90,7 @@ double doStuff(ampl::AMPLModel& m, const char *name)
   m.writeSol();
   return obj;
 }
-int main(int argc, char** argv) {
+int main2(int argc, char** argv) {
 
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
@@ -100,14 +100,14 @@ int main(int argc, char** argv) {
   // Mutex on loadModel functions
 
   // Gurobi generic
-  ampl::GurobiDrv gurobi;
-  ampl::GurobiModel mg = gurobi.loadModel(buffer);
-  doStuff(mg, "gurobi");
+  ampls::GurobiDrv gurobi;
+  ampls::GurobiModel mg = gurobi.loadModel(buffer);
+ // doStuff(mg, "gurobi");
 
   // CPLEX generic
-  ampl::CPLEXDrv cplex;
-  ampl::CPLEXModel c = cplex.loadModel(buffer);
-  doStuff(c, "cplex");
-
+  //ampls::CPLEXDrv cplex;
+  //ampls::CPLEXModel c = cplex.loadModel(buffer);
+ // doStuff(c, "cplex");
+  return 1;
  
 }

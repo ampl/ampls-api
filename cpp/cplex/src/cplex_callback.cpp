@@ -1,47 +1,79 @@
 #include "cplex_interface.h"
 #include "cplex_callback.h"
 
-namespace ampl
+namespace ampls
 {
-
+char errbuf[CPXMESSAGEBUFSIZE];
 const char* CPLEXCallback::getMessage() {
   return msg_;
 }
 
 int CPLEXCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, char direction, double rhs, int lazy) {
+  const double* coeffs, int direction, double rhs, int lazy) {
 
-  int sense = direction;
+  char sense;
+  switch (direction)
+  {
+    case CBDirection::eq:
+      sense = 'E';
+      break;
+    case CBDirection::ge:
+      sense = 'G';
+      break;
+    case CBDirection::le:
+      sense = 'L';
+      break;
+    default:
+      throw AMPLSolverException("Unexpected cut direction");
+  }
+
+  int res;
   if (lazy)
   { // CPLEX does this by registering two different callbacks. 
     // I can catch it from "where" (see bendersatsp.c example in CPLEX lib)
-    if ((wherefrom_ == CPX_CALLBACK_MIP_CUT_FEAS) ||
-      (wherefrom_ == CPX_CALLBACK_MIP_CUT_UNBD))
-      return CPXcutcallbackadd(env(), NULL, wherefrom_, nvars, rhs, sense, vars,
-        coeffs, true);
+    if ((where_ == CPX_CALLBACK_MIP_CUT_FEAS) ||
+      (where_ == CPX_CALLBACK_MIP_CUT_UNBD)
+      )
+    {
+      printCut(nvars, vars, coeffs, direction, rhs);
+      res = CPXcutcallbackadd(env(), cbdata_, where_, nvars, rhs, sense, vars,
+        coeffs, CPX_USECUT_FORCE);
+    }
     else
-      throw ampl::AMPLSolverException("Cannot add callback at this stage");
+      return 0;
   }
   else
   {
-    if ((wherefrom_ == CPX_CALLBACK_MIP_CUT_LOOP) ||
-      (wherefrom_ == CPX_CALLBACK_MIP_CUT_LAST))
-      return CPXcutcallbackadd(env(), NULL, wherefrom_, nvars, rhs, sense, vars,
-        coeffs, true);
+    printCut(nvars, vars, coeffs, direction, rhs);
+    if ((where_ == CPX_CALLBACK_MIP_CUT_LOOP) ||
+      (where_ == CPX_CALLBACK_MIP_CUT_LAST))
+      res = CPXcutcallbackadd(env(), cbdata_, where_, nvars, rhs, sense, vars,
+        coeffs, CPX_USECUT_FILTER);
     else
-      throw ampl::AMPLSolverException("Cannot add callback at this stage");
+      return 0;
   }
+  if (res != 0) 
+    fprintf(stderr, "Failed to add callback: %s\n",
+      CPXgeterrorstring(env(), res, errbuf));
+    return res;
 }
 
 int CPLEXCallback::getSolution(int len, double* sol) {
 
-  if ((wherefrom_ >= CPX_CALLBACK_MIP) && (wherefrom_ <= CPX_CALLBACK_MIP_INCUMBENT_MIPSTART))
-    return CPXgetcallbackincumbent(env(), this, wherefrom_, sol, 0, len);
-  throw ampl::AMPLSolverException("Cannot get the solution vector in this stage.");
+  if ((where_ >= CPX_CALLBACK_MIP) && (where_ <= CPX_CALLBACK_MIP_INCUMBENT_MIPSTART))
+  {
+    int error = CPXgetcallbackincumbent(env(), cbdata_, where_, sol, 0, len-1);
+    if (error!= 0)
+        fprintf(stderr, "Failed to add callback: %s\n",
+          CPXgeterrorstring(env(), error, errbuf));
+     //throw ampls::AMPLSolverException::format("CPLEX ERROR: %s", errbuf);
+    return 0;
+  }
+  throw ampls::AMPLSolverException("Cannot get the solution vector in this stage.");
 }
 double CPLEXCallback::getObjective() {
   int phase = -1;
-  switch (wherefrom_)
+  switch (where_)
   {
   case CPX_CALLBACK_PRIMAL:
   case CPX_CALLBACK_DUAL:
@@ -55,14 +87,14 @@ double CPLEXCallback::getObjective() {
   case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART:
     return objval_;
   default:
-    throw ampl::AMPLSolverException("Cannot get the objective value in this stage.");
+    throw ampls::AMPLSolverException("Cannot get the objective value in this stage.");
   }
-  throw ampl::AMPLSolverException("Cannot get the objective value in this stage.");
+  throw ampls::AMPLSolverException("Cannot get the objective value in this stage.");
 }
 
-const char* CPLEXCallback::getWhere(int wherefrom)
+const char* CPLEXCallback::getWhere()
 {
-  switch (wherefrom)
+  switch (where_)
   {
   case CPX_CALLBACK_PRIMAL: return "CPX_CALLBACK_PRIMAL";
   case CPX_CALLBACK_DUAL: return "CPX_CALLBACK_DUAL";
@@ -97,13 +129,13 @@ const char* CPLEXCallback::getWhere(int wherefrom)
   case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART: return "CPX_CALLBACK_MIP_INCUMBENT_MIPSTART";
   }
 
-  sprintf(CODE, "Unknown where from code: %d", wherefrom);
+  sprintf(CODE, "Unknown where from code: %d", where_);
   return CODE;
 }
 
-myobj CPLEXCallback::get(int what)
+Variant CPLEXCallback::get(int what)
 {
-  myobj r = myobj();
+  Variant r = Variant();
   switch (what)
   {
   case CPX_CALLBACK_INFO_PRIMAL_FEAS:

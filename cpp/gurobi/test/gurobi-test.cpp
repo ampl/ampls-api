@@ -3,10 +3,38 @@
 
 #include "test-config.h" // for MODELS_DIR
 #include <cstring>
+#include <vector>
 
 const char* MODELNAME = "tsp.nl";
 
-class MyCB : public ampl::GurobiCallback
+class MyGurobiCutCallback : public ampls::GurobiCallback
+{
+  int run()
+  {
+    int ret = 0;
+    if (where_ == GRB_CB_MESSAGE)
+    {
+      printf(getMessage());
+      return 0;
+    }
+    if (where_ == GRB_CB_MIPSOL)
+    {
+      std::vector<std::string> vars;
+      vars.push_back("x[1,2]");
+      vars.push_back("x[1,4]");
+      double coefs[] = { 1,1};
+      std::vector<double> sol = getSolutionVector();
+      for (int i = 0; i < sol.size(); i++)
+        if(sol[i]!=0)
+          printf("x[%d] = %f\n", i, sol[i]);
+      ret= addLazy(vars, coefs, ampls::CBDirection::ge, 2);
+      if (ret != 0)
+        printf("ERROR: %s\n", model_->error(ret).c_str());
+    }
+    return 0;
+  }
+};
+class MyGurobiCallback : public ampls::GurobiCallback
 {
   int lastIter = 0;
 public:
@@ -62,7 +90,7 @@ public:
       double objBnd = getDouble(GRB_CB_MIP_OBJBND);
       if (fabs(objBest - objBnd) < 0.1 * (1.0 + fabs(objBest))) {
         printf("Stop early - 10%% gap achieved\n");
-        GRBterminate(((ampl::GurobiModel*)this->model_)->getGRBmodel());
+        GRBterminate(((ampls::GurobiModel*)this->model_)->getGRBmodel());
       }
     }
     else
@@ -75,47 +103,66 @@ public:
 
 int main(int argc, char** argv) {
 
+  int res = 0;
+
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
-  ampl::GurobiDrv d;
-  ampl::GurobiModel m = d.loadModel(buffer);
-  MyCB cb;
-  int res = 0;
+
+  ampls::GurobiDrv d;
+ // ampls::GurobiModel m = d.loadModel(buffer);
+
+  ampls::GurobiModel m = d.loadModel("d:/queens18.nl");
+  m.enableLazyConstraints();
+  MyGurobiCutCallback cb;
   res = m.setCallback(&cb);
   if (res != 0)
   {
     printf("ERROR!!! %i\n", res);
     return res;
   }
-
+  
   m.optimize();
 
   // Access objective function through generic API
   double obj = m.getObj();
   printf("Objective: %f\n", obj);
 
-  // Shortcut to access gurobi attribute
+  // Access gurobi attribute with shortcut function getDoubleAttr
   obj = m.getDoubleAttr(GRB_DBL_ATTR_OBJVAL);
   printf("Objective from shortcut: %f\n", obj);
 
-  // Gurobi-c way to access attributes
+  // Use Gurobi C API to access attributes
   GRBmodel* grbm = m.getGRBmodel();
   GRBgetdblattr(grbm, GRB_DBL_ATTR_OBJ, &obj);
   printf("Objective from gurobi: %f\n", obj);
 
+  // Get solution vector via generic interface
+  std::vector<double> vars = m.getSolutionVector();
+  // Get map and display the variables ordered as AMPL stores them
   auto fg = m.getVarMap();
-  int nv;
-  double* vars = m.getSolutionVector(&nv);
+  double value;
+  printf("\nSolution vector ordered by AMPL definition\n");
   for (auto r : fg)
-    printf("Index: %i AMPL: %s=%f\n", r.second, r.first.data(), vars[r.second]);
+  {
+    value = vars[r.second];
+    if (value != 0)
+      printf("Index: %i AMPL: %s=%f\n", r.second, r.first.data(), value);
+  }
+  
+  // Get solution vector via Gurobi C API
+  int nc;
+  GRBgetintattr(grbm, GRB_INT_ATTR_NUMVARS, &nc);
+  double* varsFromGurobi = new double[nc];
+  GRBgetdblattrarray(grbm, GRB_DBL_ATTR_X, 0, nc, varsFromGurobi);
 
+  // Get inverse map and display the variables with solver ordering
   auto gf = m.getVarMapInverse();
-  double* varsFromGurobi = new double[nv];
-  GRBgetdblattrarray(grbm, GRB_DBL_ATTR_X, 0, nv, varsFromGurobi);
-  for(int i=0; i<nv;i++)
-    printf("Index: %i AMPL: %s=%f\n", i, gf[i].c_str(), vars[i]);
-    
-  delete[] vars;
+  printf("\nSolution vector ordered by solver\n");
+  for (int i = 0; i < nc; i++)
+  {
+    if (vars[i] != 0)
+      printf("Index: %i AMPL: %s=%f\n", i, gf[i].c_str(), vars[i]);
+  }
   delete[] varsFromGurobi;
 }

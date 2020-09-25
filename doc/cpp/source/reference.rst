@@ -8,23 +8,36 @@ of the C++ API.
 
 Generic
 -------
-.. doxygenclass:: ampl::AMPLModel
+.. doxygenclass:: ampls::AMPLModel
+   :members:
 
-.. doxygenclass:: ampl::GenericCallback
+|
+
+.. doxygenclass:: ampls::GenericCallback
+   :members:
+
+|
+
+.. doxygenenum:: ampls::CBWhere::Where
+
+|
+.. doxygenenum:: ampls::CBValue::Value
+
+|
 
 Gurobi
 ------
-.. doxygenclass:: ampl::GurobiModel
+.. doxygenclass:: ampls::GurobiModel
 
-.. doxygenclass:: ampl::GurobiCallback
+.. doxygenclass:: ampls::GurobiCallback
 
-.. doxygenclass:: ampl::GurobiDrv
+.. doxygenclass:: ampls::GurobiDrv
 
 
 CPLEX
 -----
-.. doxygenclass:: ampl::CPLEXModel
+.. doxygenclass:: ampls::CPLEXModel
 
-.. doxygenclass:: ampl::CPLEXCallback
+.. doxygenclass:: ampls::CPLEXCallback
 
-.. doxygenclass:: ampl::CPLEXDrv
+.. doxygenclass:: ampls::CPLEXDrv

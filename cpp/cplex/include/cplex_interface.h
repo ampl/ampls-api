@@ -24,7 +24,7 @@
 struct ASL;
 
 
-namespace ampl
+namespace ampls
 {
 struct CPLEXDriverState;
 namespace cpx
@@ -80,10 +80,11 @@ without modifications, a static CPLEXENV is created in the
 AMPL driver, and it would be fairly easy to lose track of it;
 this way, it is deleted in the destructor.
 */
-class CPLEXDrv {
+class CPLEXDrv : public SolverDriver<CPLEXModel> {
   std::mutex loadMutex;
   void freeCPLEXEnv();
 public:
+  void loadModelImpl(char** args, CPLEXModel* model);
   CPLEXModel loadModel(const char* modelName);
   CPXENVptr getEnv() {
     return cpx::impl::AMPLCPLEXgetInternalEnv();
@@ -100,6 +101,7 @@ and any assignment moves actual ownership.
 At the end of its life, it deletes the relative structures.
 */
 class CPLEXModel : public AMPLModel {
+  friend void CPLEXDrv::loadModelImpl(char** args, CPLEXModel* model);
   friend CPLEXModel CPLEXDrv::loadModel(const char* modelName);
 
   mutable bool copied_;

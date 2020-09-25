@@ -7,7 +7,7 @@
 #include <stdexcept>    // std::runtime_error
 #include "csvReader.h"
 
-namespace ampl
+namespace ampls
 {
 char** generateArguments(const char* modelName)
 {
@@ -35,46 +35,41 @@ void deleteParams(char** params)
 
 
 
-std::string getColFileName(const char* nlFileName) {
-  std::string name(nlFileName);
-  size_t lastindex = name.find_last_of(".");
+std::string getColFileName(const std::string& nlFileName) {
+  size_t lastindex = nlFileName.find_last_of(".");
   std::string basename;
   if (lastindex != std::string::npos)
-    name = name.substr(0, lastindex);
-  name += ".col";
-  return name;
+    basename = nlFileName.substr(0, lastindex);
+  else
+    basename = nlFileName;
+  basename += ".col";
+  return basename;
+}
+std::filebuf openColFile(const std::string &nlFileName) {
+  std::string name = getColFileName(nlFileName);
+  std::filebuf fb;
+  if (fb.open(name.c_str(), std::ios::in))
+    return fb;
+  else
+  {
+    fb.close();
+    throw ampls::AMPLSolverException("Make sure you export the column file from AMPL.");
+  }
+
 }
 std::map<int, std::string> AMPLModel::getVarMapInverse() {
-  std::string name = getColFileName(fileName_.c_str());
-  std::filebuf fb;
-  if (fb.open(name.c_str(), std::ios::in))
-  {
-    std::istream is(&fb);
-    std::map<int, std::string> map = impl::createMapInverse(is);
-    fb.close();
-    return map;
-  }
-  else
-  {
-    fb.close();
-    throw ampl::AMPLSolverException("Make sure you export the column file from AMPL.");
-  }
+  std::filebuf fb = openColFile(fileName_);
+  std::istream is(&fb);
+  std::map<int, std::string> map = impl::createMapInverse(is);
+  fb.close();
+  return map;
 }
 std::map<std::string, int> AMPLModel::getVarMapFiltered(const char* beginWith) {
-  std::string name = getColFileName(fileName_.c_str());
-  std::filebuf fb;
-  if (fb.open(name.c_str(), std::ios::in))
-  {
-    std::istream is(&fb);
-    std::map<std::string, int> map = impl::createMap(is, beginWith);
-    fb.close();
-    return map;
-  }
-  else
-  {
-    fb.close();
-    throw ampl::AMPLSolverException("Make sure you export the column file from AMPL.");
-  }
+  std::filebuf fb = openColFile(fileName_);
+  std::istream is(&fb);
+  std::map<std::string, int> map = impl::createMap(is, beginWith);
+  fb.close();
+  return map;
 }
 
 
@@ -92,39 +87,54 @@ std::map<int, std::string>& impl::BaseCallback::getVarMapInverse() {
 
 
 int impl::BaseCallback::callAddCut(std::vector<std::string>& vars,
-  const double* coeffs, char direction, double rhs, int lazy) {
+  const double* coeffs, int direction, double rhs, int lazy) {
   std::size_t length = vars.size();
   std::map<std::string, int> map = getVarMap();
   std::vector<int> indices;
   indices.reserve(length);
   for (size_t i = 0; i < vars.size(); i++)
-    indices.push_back(map[vars[i]]);
+  {
+    std::map<std::string, int>::iterator it = map.find(vars[i]);
+    if (it == map.end())
+      throw AMPLSolverException::format("Variable %s not found in variable map", vars[i].c_str());
+    else
+      indices.push_back(map[vars[i]]);
+  }
   return doAddCut((int)length, &indices[0], coeffs, direction, rhs, lazy);
 }
 
-double* AMPLModel::getSolutionVector(int* len) {
-  *len = getNumVars();
-  double* result = new double[*len];
-  getSolution(0, *len, result);
-  return result;
+std::vector<double> AMPLModel::getSolutionVector() {
+  int len = getNumVars();
+  std::vector<double> res;
+  res.resize(len);
+  getSolution(0, len, res.data());
+  return res;
 }
 
+void AMPLModel::printModelVars(bool onlyNonZero) {
+  std::vector<double> sol = getSolutionVector();
+  std::map<std::string, int> map = getVarMap();
+  for (auto a : map)
+    if ( (!onlyNonZero) || (sol[a.second] != 0))
+      printf("(%i) %s=%f\n", a.second, a.first.data(), sol[a.second]);
+}
 
+std::vector<double> impl::BaseCallback::getSolutionVector() {
 
-double* impl::BaseCallback::getSolutionVector(int* len) {
-
-  *len = model_->getNumVars();
-  double* result = new double[*len];
-  int res;
+  int len = model_->getNumVars();
+  std::vector<double> res;
+  res.resize(len);
+  int s;
   try {
-    res = getSolution(*len, result);
+    s = getSolution(len, res.data());
   }
   catch (...)
   {
-    delete[] result;
-    return NULL;
+    return res;
   }
-  return result;
+  return res;
 }
+
+
 
 } // namespace

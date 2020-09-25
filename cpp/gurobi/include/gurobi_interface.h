@@ -20,7 +20,7 @@
 #include "gurobi_c.h"
 
 struct ASL;
-namespace ampl
+namespace ampls
 {
 namespace grb
 {
@@ -81,7 +81,12 @@ class GurobiModel : public AMPLModel {
   // Interface implementation
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+  
 public:
+  void enableLazyConstraints()
+  {
+    setIntParam(GRB_INT_PAR_LAZYCONSTRAINTS, 1);
+  }
   GurobiModel(const GurobiModel& other) :
     AMPLModel(other), copied_(false), GRBModel_(other.GRBModel_), 
     asl_(other.asl_), lastErrorCode_(other.lastErrorCode_)

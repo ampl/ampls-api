@@ -9,7 +9,7 @@
 
 #include "ilcplex/cplex.h"
 
-namespace ampl
+namespace ampls
 {
 class CPLEXModel;
 
@@ -30,7 +30,6 @@ class CPLEXCallback : public impl::BaseCallback {
     int* useraction_p);
 
   // Callback data
-  int wherefrom_;
   CPXCENVptr env_;
   // Stores the pointer to the CPLEX model being used, as passed from the callback
   void* lp_;
@@ -46,57 +45,61 @@ class CPLEXCallback : public impl::BaseCallback {
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,
-    const double* coeffs, char direction, double rhs,
+    const double* coeffs, int direction, double rhs,
     int type);
   CPXCENVptr env() { return env_; }
   void* cbdata() { return cbdata_; }
 public:
 
-  virtual int run(int whereFrom) = 0;
+  virtual int run() = 0;
   ~CPLEXCallback() {};
 
   // Interface
   using BaseCallback::getSolutionVector;
   int getSolution(int len, double* sol);
   double getObjective();
-  const char* getWhere(int wherefrom);
+  const char* getWhere();
   const char* getMessage();
 
-  AMPLCBWhere::Where getAMPLType() {
+  CBWhere::Where getAMPLType() {
 
-    switch (wherefrom_)
+    switch (where_)
     {
     case -1:
-      return  AMPLCBWhere::msg;
+      return  CBWhere::msg;
     case CPX_CALLBACK_PRESOLVE:
-      return AMPLCBWhere::presolve;
+      return CBWhere::presolve;
     case CPX_CALLBACK_PRIMAL:
     case CPX_CALLBACK_DUAL:
     case CPX_CALLBACK_BARRIER:
-      return AMPLCBWhere::lpsolve;
+      return CBWhere::lpsolve;
     case CPX_CALLBACK_MIP_NODE:
-      return AMPLCBWhere::mipnode;
+    case CPX_CALLBACK_MIP_CUT_FEAS:
+    case CPX_CALLBACK_MIP_CUT_UNBD:
+    case CPX_CALLBACK_MIP_CUT_LOOP:
+    case CPX_CALLBACK_MIP_CUT_LAST:
+      return CBWhere::mipnode;
     case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
     case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
     case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
     case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART:
-      return AMPLCBWhere::mipsol;
+      return CBWhere::mipsol;
     default:
-      return AMPLCBWhere::notmapped;
+      return CBWhere::notmapped;
     }
   }
-  myobj get(int what);
+  Variant get(int what);
   int getInt(int what)
   {
     int res;
     int status;
     if (what < CPX_CALLBACK_INFO_NODE_SIINF)
     {
-      status = CPXgetcallbackinfo(env(), cbdata_, wherefrom_,
+      status = CPXgetcallbackinfo(env(), cbdata_, where_,
         what, &res);
       if (status)
       {
-        printf("While getting %d (where=%d)\n", what, wherefrom_);
+        printf("While getting %d (where=%d)\n", what, where_);
         printf("ERROR %s\n", model_->error(status).c_str());
       }
       return res;
@@ -106,28 +109,28 @@ public:
   double getDouble(int what)
   {
     double res;
-    int status = CPXgetcallbackinfo(env(), cbdata_, wherefrom_,
+    int status = CPXgetcallbackinfo(env(), cbdata_, where_,
       what, &res);
     return res;
   }
-  virtual myobj getValue(AMPLCBValue::Value v) {
+  virtual Variant getValue(CBValue::Value v) {
     switch (v)
     {
-    case AMPLCBValue::iterations:
-      if (wherefrom_ < CPX_CALLBACK_MIP)
+    case CBValue::iterations:
+      if (where_ < CPX_CALLBACK_MIP)
         return get(CPX_CALLBACK_INFO_ITCOUNT);
       else
         return get(CPX_CALLBACK_INFO_MIP_ITERATIONS);
-    case AMPLCBValue::obj:
-      myobj o;
+    case CBValue::obj:
+      Variant o;
       o.type = 2;
       o.dbl = getObjective();
       return o;
-    case AMPLCBValue::pre_delcols:
+    case CBValue::pre_delcols:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COLSGONE);
-    case AMPLCBValue::pre_delrows:
+    case CBValue::pre_delrows:
       return get(CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE);
-    case AMPLCBValue::pre_coeffchanged:
+    case CBValue::pre_coeffchanged:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
     }
   }

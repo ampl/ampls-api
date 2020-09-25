@@ -1,15 +1,14 @@
 #include "gurobi_interface.h"
 #include "gurobi_callback.h"
 
-namespace ampl
+namespace ampls
 {
 int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
 {
   GurobiCallback* cb = (GurobiCallback*)usrdata;
   cb->cbdata_ = cbdata;
-  cb->cbwhere_ = where;
-  //int res = cb->run(cb->gurobiModel(), cbdata, where);
-  int res = cb->run(where);
+  cb->where_ = where;
+  int res = cb->run();
   return res;
 }
 
@@ -28,7 +27,7 @@ GurobiModel GurobiDrv::loadModel(const char* modelName) {
   try {
   FILE* f = fopen(modelName, "rb");
   if (!f)
-    throw ampl::AMPLSolverException("Could not find file: " + std::string(modelName));
+    throw ampls::AMPLSolverException("Could not find file: " + std::string(modelName));
   else
     fclose(f);
   const std::lock_guard<std::mutex> lock(loadMutex);
@@ -58,15 +57,15 @@ public:
   MyGurobiCallbackBridge(GenericCallback* cb) {
     cb_ = cb;
   }
-  virtual int run(int where) {
-    return cb_->run(where);
+  virtual int run() {
+    return cb_->run();
   }
 };
-
 
 impl::BaseCallback* GurobiModel::createCallbackImplDerived(GenericCallback* callback) {
   return new MyGurobiCallbackBridge(callback);
 }
+
 int GurobiModel::optimize() {
   lastErrorCode_ = GRBoptimize(GRBModel_);
   resetVarMapInternal();

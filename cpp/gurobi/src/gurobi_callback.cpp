@@ -1,11 +1,11 @@
 #include "gurobi_callback.h"
 #include "gurobi_interface.h"
 
-namespace ampl
+namespace ampls
 {
-const char* GurobiCallback::getWhere(int where)
+const char* GurobiCallback::getWhere()
 {
-  switch (where)
+  switch (where_)
   {
   case GRB_CB_POLLING: return "GRB_CB_POLLING";
   case GRB_CB_PRESOLVE: return "GRB_CB_PRESOLVE";
@@ -21,9 +21,9 @@ const char* GurobiCallback::getWhere(int where)
   }
 }
 
-myobj GurobiCallback::get(int what)
+Variant GurobiCallback::get(int what)
 {
-  myobj r = myobj();
+  Variant r = Variant();
   switch (what)
   {
     // Presolve int
@@ -104,34 +104,56 @@ void GurobiCallback::terminate() {
 const char* GurobiCallback::getMessage()
 {
   char* msg;
-  GRBcbget(cbdata_, cbwhere_, GRB_CB_MSG_STRING, &msg);
+  GRBcbget(cbdata_, where_, GRB_CB_MSG_STRING, &msg);
   return msg;
 }
 
 int GurobiCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, char direction, double rhs, int lazy) {
+  const double* coeffs, int direction, double rhs, int lazy) {
+  char sense;
+  switch (direction)
+  {
+  case CBDirection::eq:
+    sense = GRB_EQUAL;
+    break;
+  case CBDirection::ge:
+    sense = GRB_GREATER_EQUAL;
+    break;
+  case CBDirection::le:
+    sense = GRB_LESS_EQUAL;
+    break;
+  default:
+    throw AMPLSolverException("Unexpected cut direction");
+  }
+
   if (lazy)
+  {
+    printCut(nvars, vars, coeffs, direction, rhs);
     return GRBcblazy(cbdata_, nvars, vars,
-      coeffs, direction, rhs);
+      coeffs, sense, rhs);
+  }
   else
+  {
+    printCut(nvars, vars, coeffs, direction, rhs);
     return GRBcbcut(cbdata_, nvars, vars,
-      coeffs, direction, rhs);
+      coeffs, sense, rhs);
+  }
 }
 
 int GurobiCallback::getSolution(int len, double* sol)
 {
-  if ((cbwhere_ != GRB_CB_MIPNODE) &&
-    (cbwhere_ != GRB_CB_MIPSOL))
-    throw ampl::AMPLSolverException("The solution vector can be obtained in a callback only from a MIP node or MIP solution callback");
-  int flag = cbwhere_ == GRB_CB_MIPSOL ? GRB_CB_MIPSOL_SOL :
+  if ((where_ != GRB_CB_MIPNODE) &&
+    (where_ != GRB_CB_MIPSOL))
+    throw ampls::AMPLSolverException("The solution vector can be obtained in a callback only from a MIP node or MIP solution callback");
+  int flag = where_ == GRB_CB_MIPSOL ? GRB_CB_MIPSOL_SOL :
     GRB_CB_MIPNODE_REL;
-  return GRBcbget(cbdata_, cbwhere_, flag, sol);
+  return GRBcbget(cbdata_, where_, flag, sol);
 }
 
 double GurobiCallback::getObjective()
 {
   int flag;
-  switch (cbwhere_)
+  switch (where_)
   {
   case GRB_CB_SIMPLEX:
     flag = GRB_CB_SPX_OBJVAL;
@@ -149,10 +171,10 @@ double GurobiCallback::getObjective()
     flag = GRB_CB_BARRIER_PRIMOBJ;
     break;
   default:
-    throw ampl::AMPLSolverException("Cannot get objective value from here!");
+    throw ampls::AMPLSolverException("Cannot get objective value from here!");
   }
   double obj;
-  GRBcbget(cbdata_, cbwhere_, flag, &obj);
+  GRBcbget(cbdata_, where_, flag, &obj);
   return obj;
 }
 } // namespace

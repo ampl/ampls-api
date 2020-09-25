@@ -8,18 +8,20 @@ that are common to all languages and platforms and an overview of the main class
 See :ref:`this section <cppreference>` for a comprehensive documentation of the available functionalities.
 
 
+Contents
+-------
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-
+  
    introduction
    quickstart
    examples
    reference
 
 
-Indices and tables
-==================
+Indices
+-------
 
 * :ref:`genindex`
 * :ref:`modindex`
