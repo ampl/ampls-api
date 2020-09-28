@@ -44,7 +44,7 @@ public:
     switch (where)
     {
     case ampls::CBWhere::msg:
-    //  printf("**%s**\n", getMessage());
+      printf("**%s**\n", getMessage());
       return 0;
     case ampls::CBWhere::presolve:
                return 0;
@@ -53,13 +53,11 @@ public:
     case ampls::CBWhere::mipsol:
     case ampls::CBWhere::mipnode:
     {
-      
       // TODO Check why in CPLEX this does not work
       auto sol = getSolutionVector();
       for (int i = 0; i < sol.size(); ++i)
-        nnz++;
-      //  if(sol[i]!=0)
-       printf("Non zeroes: %d\n", nnz);
+        if(sol[i]!=0) nnz++;
+      printf("Non zeroes: %d\n", nnz);
     }
     nrun++;
       stat=  addLazyIndices(2, ind, val, ampls::CBDirection::ge, 1);

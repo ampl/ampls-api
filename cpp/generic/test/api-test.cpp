@@ -81,7 +81,7 @@ public:
 
 class CCB : public ampls::GenericCallback
 {
-  virtual int run(int whereFrom)
+  virtual int run()
   {
     // printf("Called from %s\n", getWhere(whereFrom));
     switch (getAMPLType())

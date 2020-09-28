@@ -42,6 +42,7 @@ class CPLEXCallback : public impl::BaseCallback {
   double objval_;
   double* x_;
 
+
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,

@@ -7,7 +7,7 @@
 %exception {
   try {
     $action
-  } catch(const ampl::AMPLSolverException &e) {
+  } catch(const ampls::AMPLSolverException &e) {
     SWIG_exception(SWIG_RuntimeError, e.what());
   } 
   catch(...) {
@@ -28,22 +28,23 @@ namespace std {
   #include "cplex_interface.h"
 %}
 
-%feature("director") ampl::CPLEXCallback;
-%feature("director") ampl::GenericCallback;
+%feature("director") ampls::CPLEXCallback;
+%feature("director") ampls::GenericCallback;
 
-%ignore ampl::msg_callback_wrapper;
-%ignore ampl::lp_callback_wrapper;
-%ignore ampl::setDefaultCB;
-%ignore ampl::cut_callback_wrapper;
-%ignore ampl::incumbent_callback_wrapper;
+%ignore ampls::msg_callback_wrapper;
+%ignore ampls::lp_callback_wrapper;
+%ignore ampls::setDefaultCB;
+%ignore ampls::cut_callback_wrapper;
+%ignore ampls::incumbent_callback_wrapper;
 
-
-%ignore ampl::BaseCallback::doAddCut;
+%ignore ampls::BaseCallback::doAddCut;
+%ignore ampls::GenericCallback::doAddCut;
+%ignore ampls::CPLEXCallback::doAddCut;
 // The following is to avoid problem with director
 // that cannot properly map an out double[].
 // Not yet.
-%ignore ampl::CPLEXCallback::getSolution;
-%ignore ampl::GenericCallback::getSolution;
+%ignore ampls::CPLEXCallback::getSolution;
+%ignore ampls::GenericCallback::getSolution;
 
 //%include "cplex.h"
 %include "simpleapi/simpleApi.h"

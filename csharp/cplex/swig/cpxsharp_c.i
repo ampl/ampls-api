@@ -4,7 +4,8 @@
 CSHARP_ARRAYS(char*, string)
 CSHARP_ARRAYS(double, double)
 CSHARP_ARRAYS(int, int)
-
+CSHARP_ARRAYS(const double, double)
+CSHARP_ARRAYS(const int, int)
 
 %apply double OUTPUT[]{ double* sol }
 %apply double INPUT[]{ const double* coeffs }

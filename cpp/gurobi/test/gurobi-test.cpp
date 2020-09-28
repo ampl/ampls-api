@@ -38,32 +38,28 @@ class MyGurobiCallback : public ampls::GurobiCallback
 {
   int lastIter = 0;
 public:
-  int run(int where)
+  int run()
   {
-    std::vector<std::string> vars;
-    vars.push_back("x[1]");
-    vars.push_back("x[2]");
-    double coefs[] = { 5.6, 7.8 };
-    if (where == GRB_CB_MESSAGE)
+    if (where() == GRB_CB_MESSAGE)
     {
       std::string s = get(GRB_CB_MSG_STRING).str;
-      printf("%s\n", s.data());
-
+      printf("%s", s.data());
+      return 0;
     }
-    else if (where == GRB_CB_PRESOLVE)
+    printf("\n** Called callback with where=%s** \n", getWhere());
+    if (where() == GRB_CB_PRESOLVE)
     {
       int cdels = get(GRB_CB_PRE_COLDEL).integer;
       int rdels = get(GRB_CB_PRE_ROWDEL).integer;
       if (cdels || rdels)
         printf("%d columns and %d rows are removed\n", cdels, rdels);
     }
-    else if (where == GRB_CB_MIP)
+    else if (where() == GRB_CB_MIP)
     {
       printf("GRB_CB_MIP_SOLCNT %d\n", get(GRB_CB_MIP_SOLCNT).integer);
       printf("GRB_CB_MIP_OBJBST %f\n", get(GRB_CB_MIP_OBJBST).dbl);
-      return 0;
     }
-    else if (where == GRB_CB_SIMPLEX)
+    else if (where() == GRB_CB_SIMPLEX)
     {
       /* Simplex callback */
       double itcnt, obj, pinf, dinf;
@@ -83,9 +79,8 @@ public:
         printf("%7.0f %14.7e%c %13.6e %13.6e\n", itcnt, obj, ch, pinf, dinf);
       }
     }
-    else if (where == GRB_CB_MIP)
+    else if (where() == GRB_CB_MIP)
     {
-
       double objBest = getDouble(GRB_CB_MIP_OBJBST);
       double objBnd = getDouble(GRB_CB_MIP_OBJBND);
       if (fabs(objBest - objBnd) < 0.1 * (1.0 + fabs(objBest))) {
@@ -93,10 +88,7 @@ public:
         GRBterminate(((ampls::GurobiModel*)this->model_)->getGRBmodel());
       }
     }
-    else
-    {
-      printf("Called callback with where=%i\n", where);
-    }
+    printf("** End of callback handler **\n\n");
     return 0;
   }
 };
@@ -110,11 +102,9 @@ int main(int argc, char** argv) {
   strcat(buffer, MODELNAME);
 
   ampls::GurobiDrv d;
- // ampls::GurobiModel m = d.loadModel(buffer);
-
-  ampls::GurobiModel m = d.loadModel("d:/queens18.nl");
+  ampls::GurobiModel m = d.loadModel(buffer);
   m.enableLazyConstraints();
-  MyGurobiCutCallback cb;
+  MyGurobiCallback cb;
   res = m.setCallback(&cb);
   if (res != 0)
   {

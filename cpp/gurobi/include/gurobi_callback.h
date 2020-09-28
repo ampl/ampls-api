@@ -28,7 +28,12 @@ protected:
 
 public:
   GurobiCallback() : cbdata_(NULL) {}
-
+  /**
+  * Get where the callback is called from in Gurobi_C library metrics
+  */
+  int where() {
+    return where_;
+  }
   virtual int run() = 0;
   /**
   Get a string description of where the callback was called from
