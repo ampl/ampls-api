@@ -37,7 +37,7 @@ public:
   {
     int ind[] = { 1 + nrun,36+nrun};
     int stat = 0;
-    
+    int nnz = 0;
     double val[] = { 1,1 };
     // Get the generic mapping
     ampls::CBWhere::Where where = getAMPLType();
@@ -53,11 +53,13 @@ public:
     case ampls::CBWhere::mipsol:
     case ampls::CBWhere::mipnode:
     {
+      
       // TODO Check why in CPLEX this does not work
       auto sol = getSolutionVector();
-      for(int i = 0; i< sol.size(); ++i)
-        if(sol[i]!=0)
-           printf("%d=%f\n", i, sol[i]);
+      for (int i = 0; i < sol.size(); ++i)
+        nnz++;
+      //  if(sol[i]!=0)
+       printf("Non zeroes: %d\n", nnz);
     }
     nrun++;
       stat=  addLazyIndices(2, ind, val, ampls::CBDirection::ge, 1);
@@ -89,8 +91,8 @@ double doStuff2(ampls::AMPLModel& m, const char *name)
   std::vector<double> solution(nr);
   m.getSolution(0, nr, solution.data());
   int nnz = 0;
-  for (int i = 0; i < nr; i++)
-    if (solution[i] != 0) nnz++;
+  //for (int i = 0; i < nr; i++)
+    //if (solution[i] != 0) nnz++;
   //m.printModelVars(true);
 //  printf("\nNumber of non zeroes = %d\n", nnz);
 

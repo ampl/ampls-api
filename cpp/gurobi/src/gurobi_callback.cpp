@@ -125,16 +125,14 @@ int GurobiCallback::doAddCut(int nvars, const int* vars,
   default:
     throw AMPLSolverException("Unexpected cut direction");
   }
-
+  printCut(nvars, vars, coeffs, direction, rhs);
   if (lazy)
   {
-    printCut(nvars, vars, coeffs, direction, rhs);
     return GRBcblazy(cbdata_, nvars, vars,
       coeffs, sense, rhs);
   }
   else
   {
-    printCut(nvars, vars, coeffs, direction, rhs);
     return GRBcbcut(cbdata_, nvars, vars,
       coeffs, sense, rhs);
   }

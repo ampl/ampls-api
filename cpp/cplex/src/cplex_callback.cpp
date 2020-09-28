@@ -11,6 +11,7 @@ const char* CPLEXCallback::getMessage() {
 int CPLEXCallback::doAddCut(int nvars, const int* vars,
   const double* coeffs, int direction, double rhs, int lazy) {
 
+  printCut(nvars, vars, coeffs, direction, rhs);
   char sense;
   switch (direction)
   {
@@ -35,7 +36,6 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
       (where_ == CPX_CALLBACK_MIP_CUT_UNBD)
       )
     {
-      printCut(nvars, vars, coeffs, direction, rhs);
       res = CPXcutcallbackadd(env(), cbdata_, where_, nvars, rhs, sense, vars,
         coeffs, CPX_USECUT_FORCE);
     }
@@ -44,7 +44,6 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
   }
   else
   {
-    printCut(nvars, vars, coeffs, direction, rhs);
     if ((where_ == CPX_CALLBACK_MIP_CUT_LOOP) ||
       (where_ == CPX_CALLBACK_MIP_CUT_LAST))
       res = CPXcutcallbackadd(env(), cbdata_, where_, nvars, rhs, sense, vars,
@@ -64,7 +63,7 @@ int CPLEXCallback::getSolution(int len, double* sol) {
   {
     int error = CPXgetcallbackincumbent(env(), cbdata_, where_, sol, 0, len-1);
     if (error!= 0)
-        fprintf(stderr, "Failed to add callback: %s\n",
+        fprintf(stderr, "Failed to retrieve solution from callback: %s\n",
           CPXgeterrorstring(env(), error, errbuf));
      //throw ampls::AMPLSolverException::format("CPLEX ERROR: %s", errbuf);
     return 0;
