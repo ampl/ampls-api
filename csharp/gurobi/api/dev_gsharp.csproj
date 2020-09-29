@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2138A0C3-4C0F-436A-B5B0-DA18EA56AFE3}</ProjectGuid>
+    <ProjectGuid>{C866AF68-E6FB-4435-BD9F-94E02FF71558}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>gsharp</RootNamespace>
@@ -45,11 +45,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\AMPLModel.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\AMPLSolverException.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\BaseCallback.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Direction.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GRBsvec.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GenericCallback.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GurobiCallback.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GurobiDrv.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GurobiModel.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_ASL.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_FILE.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p__GRBbatch.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p__GRBenv.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p__GRBmodel.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_double.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p_char__int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p_void_p_void__void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p_void_size_t_p_void__p_void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_size_t_p_void__p_void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_size_t_size_t_p_void__p_void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p_ASL.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p_FILE.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p__GRBbatch.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p__GRBenv.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p__GRBmodel.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p_char.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_size_t.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_t.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_std__string.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_std__vectorT_double_t.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_unsigned_int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_void.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Value.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Variant.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Where.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\gsharp_c.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\gsharp_cPINVOKE.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\map_string_int.cs" /> <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\vector_string.cs" /> <Compile Include="D:\Development\ampl\solvers-public\csharp\gurobi\api\Utils.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\AMPLModel.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\AMPLSolverException.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\BaseCallback.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Direction.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GRBsvec.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GenericCallback.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GurobiCallback.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GurobiDrv.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GurobiModel.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_ASL.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_FILE.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p__GRBbatch.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p__GRBenv.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p__GRBmodel.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_double.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p_char__int.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p_void_p_void__void.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_p_void_size_t_p_void__p_void.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_size_t_p_void__p_void.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_f_size_t_size_t_p_void__p_void.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_int.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p_ASL.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p_FILE.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p__GRBbatch.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p__GRBenv.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p__GRBmodel.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p_char.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_size_t.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_t.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_std__string.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_std__vectorT_double_t.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_unsigned_int.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_void.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Value.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Variant.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Where.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\gsharp_c.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\gsharp_cPINVOKE.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\map_string_int.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\vector_string.cs" />
+    <Compile Include="D:\Development\ampl\solvers-public\csharp\gurobi\api\Utils.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

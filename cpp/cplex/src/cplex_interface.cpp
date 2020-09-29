@@ -100,59 +100,23 @@ void disableCallbacksFromDave(CPXENVptr env) {
   CPXsetmipcallbackfunc(env, 0, 0);
   CPXsetlpcallbackfunc(env, 0, 0);
 }
-void CPLEXDrv::loadModelImpl(char** args, CPLEXModel* m) {
-  
-  try {
-    CPXLPptr modelptr;
-    ASL* aslptr;
-    m->state_ = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
-      &aslptr);
-    m->model_ = modelptr;
-    disableCallbacksFromDave(cpx::impl::AMPLCPLEXgetInternalEnv());
-    m->asl_ = aslptr;
-    m->lastErrorCode_ = -1;
-    m->fileName_ = args[1];
-  }
-  catch (...)
-  {
-  }
+CPLEXModel* CPLEXDrv::loadModelImpl(char** args) {
+  CPLEXModel* m = new CPLEXModel();
+  CPXLPptr modelptr;
+  ASL* aslptr;
+  m->state_ = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
+    &aslptr);
+  m->model_ = modelptr;
+  disableCallbacksFromDave(cpx::impl::AMPLCPLEXgetInternalEnv());
+  m->asl_ = aslptr;
+  m->lastErrorCode_ = -1;
+  m->fileName_ = args[1];
+  return m;
 }
 CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
-  
-  char** args = generateArguments(modelName);
-  CPLEXModel m;
-  loadModelImpl(args, &m);
-  return m;
-  /*
-  try {
-    const std::lock_guard<std::mutex> lock(loadMutex);
-    FILE* f = fopen(modelName, "rb");
-    if (!f)
-      throw ampls::AMPLSolverException("Could not find file: " + std::string(modelName));
-    else
-      fclose(f);
-    CPXLPptr modelptr;
-    ASL* aslptr;
-    m.state_ = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
-      &aslptr);
-    m.model_ = modelptr;
-    disableCallbacksFromDave(cpx::impl::AMPLCPLEXgetInternalEnv());
-    m.asl_ = aslptr;
-    m.lastErrorCode_ = -1;
-    m.fileName_ = modelName;
-  }
-  catch (ampls::AMPLSolverException& a)
-  {
-    deleteParams(args);
-    throw a;
-  }
-  catch (std::exception& e)
-  {
-    deleteParams(args);
-    throw e;
-  }
-  deleteParams(args);
-  return m;*/
+  std::auto_ptr<CPLEXModel> mod = loadModelGeneric(modelName, "cplex");
+  CPLEXModel c(*mod);
+  return c;
 }
 
 void CPLEXModel::writeSol() {

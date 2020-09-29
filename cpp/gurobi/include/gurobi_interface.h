@@ -43,18 +43,14 @@ class GurobiModel;
 class Callback;
 
 /**
-Encapsulates the main environment of the gurobi driver;
-without modifications, a static GRBenv is created in the
-AMPL driver, and it would be fairly easy to lose track of it;
-this way, it is deleted in the destructor.
+Encapsulates the main environment of the gurobi driver
 */
-class GurobiDrv {
-  std::mutex loadMutex;
+class GurobiDrv : public SolverDriver<GurobiModel>  {
   void freeGurobiEnv();
+  GurobiModel* loadModelImpl(char** args);
 public:
   GurobiModel loadModel(const char* modelName);
   ~GurobiDrv();
-
 };
 
 /**
@@ -68,7 +64,7 @@ need the ASL reference after creating the Gurobi model object, so
 we could use directly the C pointer to GRBmodel.
 */
 class GurobiModel : public AMPLModel {
-  friend GurobiModel GurobiDrv::loadModel(const char* modelName);
+  friend GurobiDrv;
 
   mutable bool copied_;
   GRBmodel* GRBModel_;

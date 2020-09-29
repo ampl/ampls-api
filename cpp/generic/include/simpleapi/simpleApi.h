@@ -214,20 +214,29 @@ template<class T> class SolverDriver
 {
   std::mutex loadMutex;
 protected:
-  virtual void loadModelImpl(char** args, T* model) = 0;
-
+  virtual T* loadModelImpl(char** args) = 0;
 public:
   
   std::auto_ptr<T> loadModelGeneric(const char* modelName, const char* solver)
   {
-    const char** args = generateArguments(modelName);
-    const std::lock_guard<std::mutex> lock(loadMutex);
     FILE* f = fopen(modelName, "rb");
     if (!f)
       throw ampls::AMPLSolverException("Could not find file: " + std::string(modelName));
     else
       fclose(f);
-    return std::auto_ptr<T>(loadModelImpl(args));
+
+    char** args = NULL;
+    try {
+      const std::lock_guard<std::mutex> lock(loadMutex);
+      args = generateArguments(modelName);
+      T* mod = loadModelImpl(args);
+      deleteParams(args);
+      return std::auto_ptr<T>(mod);
+    }
+    catch (const std::exception& e) {
+      deleteParams(args);
+      throw e;
+    }
   }
 
   ~SolverDriver() {}

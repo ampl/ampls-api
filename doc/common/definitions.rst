@@ -1,0 +1,1 @@
+.. _solverLibs: http://www.ampl.com/

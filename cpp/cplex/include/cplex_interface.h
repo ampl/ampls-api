@@ -81,10 +81,9 @@ AMPL driver, and it would be fairly easy to lose track of it;
 this way, it is deleted in the destructor.
 */
 class CPLEXDrv : public SolverDriver<CPLEXModel> {
-  std::mutex loadMutex;
   void freeCPLEXEnv();
+  CPLEXModel* loadModelImpl(char** args);
 public:
-  void loadModelImpl(char** args, CPLEXModel* model);
   CPLEXModel loadModel(const char* modelName);
   CPXENVptr getEnv() {
     return cpx::impl::AMPLCPLEXgetInternalEnv();
@@ -101,8 +100,7 @@ and any assignment moves actual ownership.
 At the end of its life, it deletes the relative structures.
 */
 class CPLEXModel : public AMPLModel {
-  friend void CPLEXDrv::loadModelImpl(char** args, CPLEXModel* model);
-  friend CPLEXModel CPLEXDrv::loadModel(const char* modelName);
+  friend CPLEXDrv;
 
   mutable bool copied_;
   CPLEXDriverState* state_;

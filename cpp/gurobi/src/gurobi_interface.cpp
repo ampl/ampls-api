@@ -1,6 +1,6 @@
 #include "gurobi_interface.h"
 #include "gurobi_callback.h"
-
+#include "simpleapi/simpleApi.h"
 namespace ampls
 {
 int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
@@ -20,28 +20,17 @@ void GurobiDrv::freeGurobiEnv()
 {
   grb::impl::freeEnvironment();
 }
-
-GurobiModel GurobiDrv::loadModel(const char* modelName) {
-  char** args = generateArguments(modelName);
-  GurobiModel m;
-  try {
-  FILE* f = fopen(modelName, "rb");
-  if (!f)
-    throw ampls::AMPLSolverException("Could not find file: " + std::string(modelName));
-  else
-    fclose(f);
-  const std::lock_guard<std::mutex> lock(loadMutex);
-    m.GRBModel_ = grb::impl::AMPLloadmodelNoLic(3, args, &m.asl_);
-    m.lastErrorCode_ = -1;
-    m.fileName_ = modelName;
-  }
-  catch (std::exception& e)
-  {
-    deleteParams(args);
-    throw e;
-  }
-  deleteParams(args);
+GurobiModel* GurobiDrv::loadModelImpl(char** args) {
+  GurobiModel* m = new GurobiModel();
+  m->GRBModel_ = grb::impl::AMPLloadmodelNoLic(3, args, &m->asl_);
+  m->lastErrorCode_ = -1;
+  m->fileName_ = args[1];
   return m;
+}
+GurobiModel GurobiDrv::loadModel(const char* modelName) {
+  std::auto_ptr<GurobiModel> mod = loadModelGeneric(modelName, "gurobi");
+  GurobiModel c(*mod);
+  return c;
 }
 
 void GurobiModel::writeSol() {
