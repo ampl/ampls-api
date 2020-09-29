@@ -28,7 +28,7 @@ GurobiModel* GurobiDrv::loadModelImpl(char** args) {
   return m;
 }
 GurobiModel GurobiDrv::loadModel(const char* modelName) {
-  std::auto_ptr<GurobiModel> mod = loadModelGeneric(modelName, "gurobi");
+  std::auto_ptr<GurobiModel> mod = loadModelGeneric(modelName);
   GurobiModel c(*mod);
   return c;
 }

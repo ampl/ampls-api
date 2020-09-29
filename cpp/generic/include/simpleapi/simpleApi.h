@@ -217,7 +217,7 @@ protected:
   virtual T* loadModelImpl(char** args) = 0;
 public:
   
-  std::auto_ptr<T> loadModelGeneric(const char* modelName, const char* solver)
+  std::auto_ptr<T> loadModelGeneric(const char* modelName)
   {
     FILE* f = fopen(modelName, "rb");
     if (!f)

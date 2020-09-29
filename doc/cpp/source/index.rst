@@ -16,6 +16,7 @@ Contents
   
    introduction
    quickstart
+   architecture
    examples
    reference
 

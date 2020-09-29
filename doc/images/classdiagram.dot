@@ -3,16 +3,22 @@ size="5,5"
 node[shape=record,style=filled,fillcolor=gray95]
 edge[dir=back, arrowtail=empty]
 
-2[label = "{AbstractSuffixTree|+ text\n+ root|...}"]
-3[label = "{SimpleSuffixTree|...| + constructTree()\l...}"]
-4[label = "{CompactSuffixTree|...| + compactNodes()\l...}"]
-5[label = "{SuffixTreeNode|...|+ addSuffix(...)\l...}"]
-6[label = "{SuffixTreeEdge|...|+ compactLabel(...)\l...}"]
+SolverDriver[label = "{SolverDriver\<T\>|+ loadMutex|+ loadModelGeneric()}"]
+GurobiDrv[label = "{GurobiDrv|+ GRBModel* GRBModel_\n+ ASL* ASL_| + loadModel()}"]
+CPLEXDrv[label = "{CPLEXDrv|...| + compactNodes()\l...}"]
 
-2->3
-2->4
-5->5[constraint=false, arrowtail=odiamond]
-4->3[constraint=false, arrowtail=odiamond]
-2->5[constraint=false, arrowtail=odiamond]
-5->6[arrowtail=odiamond]
+AMPLModel[label = "{AMPLModel|...|+ optimize()\l...}"]
+GurobiModel[label = "{GurobiModel|...|\l...}"]
+CPLEXModel[label = "{CPLEXModel|...|\l...}"]
+
+
+SolverDriver->GurobiDrv
+SolverDriver->CPLEXDrv
+
+AMPLModel->GurobiModel
+AMPLModel->CPLEXModel
+
+# not compatible with VS
+# SolverDriver->AMPLModel[constraint=false, arrowtail=odiamond]
 }
+

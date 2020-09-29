@@ -114,7 +114,7 @@ CPLEXModel* CPLEXDrv::loadModelImpl(char** args) {
   return m;
 }
 CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
-  std::auto_ptr<CPLEXModel> mod = loadModelGeneric(modelName, "cplex");
+  std::auto_ptr<CPLEXModel> mod = loadModelGeneric(modelName);
   CPLEXModel c(*mod);
   return c;
 }

@@ -1,1 +1,1 @@
-.. _solverLibs: http://www.ampl.com/
+.. _wwwSolverLibs: http://www.ampl.com/
