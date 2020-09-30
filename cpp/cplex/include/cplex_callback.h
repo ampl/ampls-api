@@ -133,6 +133,9 @@ public:
       return get(CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE);
     case CBValue::pre_coeffchanged:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
+    case CBValue::mip_relativegap:
+      return get(CPX_CALLBACK_INFO_MIP_REL_GAP);
+    default: throw AMPLSolverException("Specified value unknown.");
     }
   }
 };

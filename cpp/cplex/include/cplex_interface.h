@@ -80,7 +80,7 @@ without modifications, a static CPLEXENV is created in the
 AMPL driver, and it would be fairly easy to lose track of it;
 this way, it is deleted in the destructor.
 */
-class CPLEXDrv : public SolverDriver<CPLEXModel> {
+class CPLEXDrv : public impl::SolverDriver<CPLEXModel> {
   void freeCPLEXEnv();
   CPLEXModel* loadModelImpl(char** args);
 public:
@@ -142,6 +142,51 @@ public:
   }
 
   void writeSol();
+
+
+  Status::Status getStatus() {
+    int cpxstatus = CPXgetstat(getCPLEXenv(), model_);
+    switch (cpxstatus) 
+    {
+      case CPX_STAT_OPTIMAL: // simplex and barrier optimal
+      case CPXMIP_OPTIMAL: // MIP optimal
+      case CPXMIP_OPTIMAL_TOL:
+        return Status::Optimal;
+      case CPX_STAT_INFEASIBLE: // Problem infeasible
+      case CPXMIP_INFEASIBLE:
+        return Status::Infeasible;
+      case CPX_STAT_UNBOUNDED: // Problem unbounded
+      case CPXMIP_UNBOUNDED:
+        return Status::Unbounded;
+      case CPX_STAT_ABORT_OBJ_LIM: // Objective limit exceeded
+      case CPX_STAT_ABORT_PRIM_OBJ_LIM: 
+      case CPX_STAT_ABORT_DUAL_OBJ_LIM:
+      case CPX_STAT_CONFLICT_ABORT_OBJ_LIM:
+      case CPXMIP_SOL_LIM:
+        return Status::LimitSolution;
+      case CPX_STAT_ABORT_IT_LIM:
+      case CPX_STAT_CONFLICT_ABORT_IT_LIM:
+      case CPXMIP_NODE_LIM_FEAS:
+      case CPXMIP_NODE_LIM_INFEAS:
+        return Status::LimitIteration;
+      case CPX_STAT_ABORT_DETTIME_LIM:
+      case CPX_STAT_ABORT_TIME_LIM:
+      case CPX_STAT_CONFLICT_ABORT_DETTIME_LIM:
+      case CPXMIP_DETTIME_LIM_FEAS:
+      case CPXMIP_DETTIME_LIM_INFEAS:
+      case CPXMIP_TIME_LIM_FEAS:
+      case CPXMIP_TIME_LIM_INFEAS:
+        return Status::LimitTime;
+      case CPX_STAT_ABORT_USER:
+      case CPXMIP_ABORT_FEAS:
+      case CPXMIP_ABORT_INFEAS:
+      case CPXMIP_ABORT_RELAXATION_UNBOUNDED:
+      case CPXMIP_ABORT_RELAXED:
+        return Status::Interrupted;
+      default:
+        return Status::Unknown;
+    }
+  }
 
   int optimize();
 

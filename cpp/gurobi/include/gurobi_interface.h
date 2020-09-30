@@ -45,7 +45,7 @@ class Callback;
 /**
 Encapsulates the main environment of the gurobi driver
 */
-class GurobiDrv : public SolverDriver<GurobiModel>  {
+class GurobiDrv : public impl::SolverDriver<GurobiModel>  {
   void freeGurobiEnv();
   GurobiModel* loadModelImpl(char** args);
 public:
@@ -92,6 +92,34 @@ public:
   using AMPLModel::getSolutionVector;
   void writeSol();
   int optimize();
+
+  Status::Status getStatus() {
+    int grbstatus = getIntAttr(GRB_INT_ATTR_STATUS);
+    switch (grbstatus)
+    {
+      case GRB_LOADED:
+        return Status::Unknown;
+      case GRB_OPTIMAL:
+        return Status::Optimal;
+      case GRB_INFEASIBLE:
+        return Status::Infeasible;
+      case GRB_INF_OR_UNBD:
+      case GRB_UNBOUNDED:
+        return Status::Unbounded;
+      case GRB_ITERATION_LIMIT:
+        return Status::LimitIteration;
+      case GRB_NODE_LIMIT:
+        return Status::LimitNode;
+      case GRB_TIME_LIMIT:
+        return Status::LimitTime;
+      case GRB_SOLUTION_LIMIT:
+        return Status::LimitSolution;
+      case GRB_INTERRUPTED:
+        return Status::Interrupted;
+      default:
+        return Status::NotMapped;
+    }
+  }
   int getNumVars() {
     return getIntAttr(GRB_INT_ATTR_NUMVARS);
   }

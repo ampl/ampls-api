@@ -84,33 +84,32 @@ public:
   }
   Variant get(int what);
   virtual Variant getValue(CBValue::Value v) {
-    int grbv;
-    Variant result;
     switch (v)
     {
     case CBValue::obj:
+      Variant result;
       result.type = 2;
       result.dbl = getObjective();
       return result;
+    case CBValue::mip_relativegap:
+      return get(GRB_CB_MIPNODE_REL);
     case CBValue::pre_delcols:
-      grbv = GRB_CB_PRE_COLDEL;
-      break;
+      return get(GRB_CB_PRE_COLDEL);
     case CBValue::pre_delrows:
-      grbv = GRB_CB_PRE_ROWDEL;
-      break;
+      return get(GRB_CB_PRE_ROWDEL);
     case CBValue::pre_coeffchanged:
-      grbv = GRB_CB_PRE_COECHG;
-      break;
+      return get(GRB_CB_PRE_COECHG);
     case CBValue::iterations:
       if (where_ == GRB_CB_SIMPLEX)
-        grbv = GRB_CB_SPX_ITRCNT;
+        return get(GRB_CB_SPX_ITRCNT);
       if ((where_ >= GRB_CB_MIP) &&
         (where_ >= GRB_CB_MIPNODE))
-        grbv = GRB_CB_MIP_ITRCNT;
+        return get(GRB_CB_MIP_ITRCNT);
       if (where_ == GRB_CB_BARRIER)
-        grbv = GRB_CB_BARRIER_ITRCNT;
+        return get(GRB_CB_BARRIER_ITRCNT);
+    default:
+      throw AMPLSolverException("Specified value unknown.");
     }
-    return get((int)grbv);
   }
 };
 

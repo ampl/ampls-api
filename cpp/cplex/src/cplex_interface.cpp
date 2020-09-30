@@ -122,6 +122,7 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
 void CPLEXModel::writeSol() {
   cpx::impl::AMPLCPLEXwritesol(state_, model_, status_);
 }
+
 int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
   /* Now get the standard channels.  If an error, just call our
       message function directly. */
@@ -161,9 +162,9 @@ int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
   }
   return 0;
 }
+
 int CPLEXModel::setCallbackDerived(impl::BaseCallback* callback) {
   CPXENVptr p = getCPLEXenv();
-
   // Add the callback 
   int status = CPXsetlazyconstraintcallbackfunc(p, cut_callback_wrapper,
     callback);
@@ -176,7 +177,6 @@ int CPLEXModel::setCallbackDerived(impl::BaseCallback* callback) {
   status = CPXsetmipcallbackfunc(p, lp_callback_wrapper, callback);
   if (status)
     return status;
-
   status = CPXsetlpcallbackfunc(p, lp_callback_wrapper, callback);
   if (status)
     return status;
@@ -185,6 +185,7 @@ int CPLEXModel::setCallbackDerived(impl::BaseCallback* callback) {
     return status;
   return setMsgCallback(callback, p);
 }
+
 class MyCPLEXCallbackBridge : public CPLEXCallback {
   GenericCallback* cb_;
 public:
@@ -199,6 +200,7 @@ public:
 impl::BaseCallback* CPLEXModel::createCallbackImplDerived(GenericCallback* callback) {
   return new MyCPLEXCallbackBridge(callback);
 }
+
 int CPLEXModel::optimize() {
   CPXENVptr env = getCPLEXenv();
   int probtype = CPXgetprobtype(env, model_);
@@ -206,7 +208,6 @@ int CPLEXModel::optimize() {
   switch (probtype)
   {
   case CPXPROB_LP:
-    printf("Calling lpopt\n");
     CPXsetintparam(env, CPX_PARAM_LPMETHOD, CPX_ALG_AUTOMATIC);
     res = CPXlpopt(env, model_);
     break;
@@ -214,16 +215,13 @@ int CPLEXModel::optimize() {
   case CPXPROB_FIXEDMILP:
   case CPXPROB_MIQP:
   case CPXPROB_FIXEDMIQP:
-    printf("Calling mipopt\n");
     res = CPXmipopt(env, model_);
     break;
   case CPXPROB_QP:
-    printf("Calling qpopt\n");
     res = CPXqpopt(env, model_);
     break;
   case CPXPROB_QCP:
   case CPXPROB_MIQCP:
-    printf("Calling hybbaropt\n");
     res = CPXhybbaropt(env, model_, CPX_ALG_NONE);
   }
   resetVarMapInternal();
@@ -231,18 +229,7 @@ int CPLEXModel::optimize() {
   status_ = res;
   // Print error message in case of error
   if (res)
-  {
-    char buffer[CPXMESSAGEBUFSIZE];
-    CPXCCHARptr errstr = CPXgeterrorstring(env, res, buffer);
-    if (errstr != NULL) {
-      printf("%s \n", buffer);
-    }
-    else {
-      printf("CPLEX Error %5d: Unknown error code. \n",
-        res);
-    }
-    return res;
-  }
+    printf("%s \n", error(res).c_str());
   return res;
 }
 

@@ -11,6 +11,12 @@ AMPLModel[label = "{AMPLModel|...|+ optimize()\l...}"]
 GurobiModel[label = "{GurobiModel|...|\l...}"]
 CPLEXModel[label = "{CPLEXModel|...|\l...}"]
 
+BaseCB[label = "{BaseCallback|...|+ getSolution()\l...}"]
+GenericCB[label = "{GenericCallback|...|\l...}"]
+CPLEXCB[label = "{CPLEXCallback|...|\l...}"]
+GurobiCB[label = "{GurobiCallback|...|\l...}"]
+
+
 
 SolverDriver->GurobiDrv
 SolverDriver->CPLEXDrv
@@ -18,7 +24,13 @@ SolverDriver->CPLEXDrv
 AMPLModel->GurobiModel
 AMPLModel->CPLEXModel
 
+
+BaseCB->GenericCB
+BaseCB->CPLEXCB
+BaseCB->GurobiCB
+
 # not compatible with VS
-# SolverDriver->AMPLModel[constraint=false, arrowtail=odiamond]
+#AMPLModel->SolverDriver[constraint=false, arrowtail=odiamond]
+GenericCB->AMPLModel[constraint=false, arrowtail=none]
 }
 

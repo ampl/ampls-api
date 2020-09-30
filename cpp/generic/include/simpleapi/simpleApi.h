@@ -91,7 +91,9 @@ enum Value {
   pre_delcols = 1,
   pre_delrows = 2,
   pre_coeffchanged = 3,
-  iterations = 4
+  iterations = 4,
+
+  mip_relativegap = 5
 };
 }
 
@@ -105,6 +107,21 @@ enum Direction {
   ge,
   /** <= Less or equal*/
   le
+};
+}
+
+namespace Status {
+enum Status {
+  Unknown,
+  Optimal,
+  Infeasible,
+  Unbounded,
+  LimitIteration,
+  LimitNode,
+  LimitTime,
+  LimitSolution,
+  Interrupted,
+  NotMapped
 };
 }
 namespace impl
@@ -207,9 +224,11 @@ public:
   virtual CBWhere::Where getAMPLType() = 0;
   virtual Variant getValue(CBValue::Value v) = 0;
 };
-} // namespace impl
 
-
+/**
+* Infrastructure, should not be used directly.
+* Base class for the solver drivers.
+*/
 template<class T> class SolverDriver
 {
   std::mutex loadMutex;
@@ -242,6 +261,8 @@ public:
   ~SolverDriver() {}
 
 };
+} // namespace impl
+
 /**
 * Base abstract class for generic callbacks, inherit from this to declare a 
 * generic callback.
@@ -361,48 +382,79 @@ public:
   */
   std::map<std::string, int> getVarMapFiltered(const char *beginWith);
   
-  int setGenericCallback(GenericCallback *callback)
+  /**
+  Set a generic callback to be called during optimization. This function is
+  automatically dispatched when (and only when) assigning an ampls::GenericCallback,
+  as it needs a special treatment to automatically create the solver-specific wrapper
+  */
+  int setCallback(GenericCallback *callback)
   {
     callback->model_ = this;
     impl::BaseCallback *realcb = createCallbackImplDerived(callback);
     callback->impl_.reset(realcb);
     return setCallback(callback->impl_.get());
   }
+  /**
+  Set callback to be called during optimization
+  */
   int setCallback(impl::BaseCallback *callback)
   {
     callback->model_ = this;
     return setCallbackDerived(callback);
   }
-
+  /**
+  Get all the variables of the current problem
+  */
   std::vector<double> getSolutionVector();
-
-  // Interface - to be implemented in each solver
+  /**
+  Get the number of variables
+  */
   virtual int getNumVars() {
     throw AMPLSolverException("Not implemented in base class!");
   };
-
+  virtual Status::Status getStatus() {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  /**
+  Start the optimization process
+  */
   virtual int optimize() {
     throw AMPLSolverException("Not implemented in base class!");
   };
 
+  /**
+  * Write the solution file
+  */
   virtual void writeSol() {
     throw AMPLSolverException("Not implemented in base class!");
   };
-
+  /**
+  Get "length" variables of the current problem in an array, starting at the specified
+  position 
+  */
   virtual int getSolution(int first, int length, double *sol) {
     throw AMPLSolverException("Not implemented in base class!");
   };
-
+  /**
+  Get the current objective value
+  */
   virtual double getObj() {
     throw AMPLSolverException("Not implemented in base class!");
   };
-
+  /**
+  Get the error message corresponding to the code
+  */
   virtual std::string error(int code) {
     throw AMPLSolverException("Not implemented in base class!");
   };
 
+  /**
+  Enable adding lazy constraints via callbacks
+  */
   virtual void enableLazyConstraints() { }
-
+  /**
+  Utility function: prints all variables to screen
+  */
   void printModelVars(bool onlyNonZero);
 };
 

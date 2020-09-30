@@ -71,12 +71,28 @@ double doStuff(ampls::AMPLModel& m, const char *name)
 {
   // Set a (generic) callback
   MyGenericCallback cb;
-  m.setGenericCallback(&cb);
+  m.setCallback(&cb);
   // Start the optimization process
   m.optimize();
   // Get the objective value
   double obj = m.getObj();
   printf("\nSolution with %s=%f\n", name, obj);
+
+  ampls::Status::Status s = m.getStatus();
+  switch (s)
+  {
+    case ampls::Status::Optimal:
+      printf("Optimal.\n");
+      break;
+    case ampls::Status::Infeasible:
+      printf("Infeasible.\n");
+      break;
+    case ampls::Status::Unbounded:
+      printf("Unbounded.\n");
+      break;
+    default:
+      printf("Status: %d\n", s);
+  }
   // Get the solution vector
   std::size_t nr = m.getNumVars();
   std::vector<double> solution(nr);
@@ -90,7 +106,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   m.writeSol();
   return obj;
 }
-int main2(int argc, char** argv) {
+int main(int argc, char** argv) {
 
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
@@ -102,7 +118,7 @@ int main2(int argc, char** argv) {
   // Gurobi generic
   ampls::GurobiDrv gurobi;
   ampls::GurobiModel mg = gurobi.loadModel(buffer);
- // doStuff(mg, "gurobi");
+  doStuff(mg, "gurobi");
 
   // CPLEX generic
   //ampls::CPLEXDrv cplex;

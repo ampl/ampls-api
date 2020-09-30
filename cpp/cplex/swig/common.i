@@ -40,11 +40,15 @@ namespace std {
 %ignore ampls::BaseCallback::doAddCut;
 %ignore ampls::GenericCallback::doAddCut;
 %ignore ampls::CPLEXCallback::doAddCut;
+
+%ignore ampls::CPLEXDrv::loadModelImpl;
 // The following is to avoid problem with director
 // that cannot properly map an out double[].
 // Not yet.
 %ignore ampls::CPLEXCallback::getSolution;
 %ignore ampls::GenericCallback::getSolution;
+
+
 
 //%include "cplex.h"
 %include "simpleapi/simpleApi.h"
