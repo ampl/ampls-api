@@ -1,78 +1,35 @@
-#include "cplex_interface.h"
+#include "xpress_interface.h"
 #include "simpleapi/simpleApi.h"
 //#include <cstring>
 
 namespace ampls
 {
-std::string getErrorMsg(CPXCENVptr env, int res) {
-  char buffer[CPXMESSAGEBUFSIZE];
-  CPXCCHARptr errstr = CPXgeterrorstring(env, res, buffer);
-  if (errstr != NULL) {
-    return buffer;
-  }
-  else {
-    char CODE[60];
-    sprintf(CODE, "CPLEX Error: %d. Unknown error code.", res);
-    return CODE;
-  }
-}
-CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
-  int wherefrom, void* userhandle)
+namespace xpress {
+namespace impl {
+XPRESSCallback* CBWrap::setDefaultCB(XPRSprob prob, void* data,
+  XPRESSWhere wherefrom)
 {
-  CPLEXCallback* cb = static_cast<CPLEXCallback*>(userhandle);
-  cb->where_ = wherefrom;
-  cb->env_ = env;
-  cb->cbdata_ = cbdata;
+  XPRESSCallback* cb = static_cast<XPRESSCallback*>(data);
+  cb->where_ = (int)wherefrom;
   return cb;
 }
 
-int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env, void* cbdata,
-  int wherefrom, void* userhandle,
-  double objval, double* x, int* isfeas_p,
-  int* useraction_p) {
-
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
-
-  *isfeas_p = 1; // use new solution by default
-  cb->objval_ = objval;
-  cb->x_ = x;
-  if (cb->run())
-    *useraction_p = CPX_CALLBACK_FAIL;
-  else
-    *useraction_p = CPX_CALLBACK_DEFAULT;
-  return 0;
-}
-
-
-int CPXPUBLIC
-  lp_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
-    void* userhandle)
+void  CBWrap::message_callback_wrapper(XPRSprob prob, void* object, const char* msg, int len, int msgtype)
 {
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
-  return cb->run();
-}
-
-int CPXPUBLIC cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
-  void* userhandle, int* useraction_p)
-{
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
-  if (cb->run())
-    *useraction_p = CPX_CALLBACK_FAIL;
-  else
-    *useraction_p = CPX_CALLBACK_SET;
-  return 0;
-}
-
-
-void CPXPUBLIC
-  msg_callback_wrapper(void* handle, const char* msg)
-{
-  CPLEXCallback* cb = static_cast<CPLEXCallback*>(handle);
-  cb->where_ = -1;
+  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::message);
   cb->msg_ = msg;
   cb->run();
 }
+void XPRS_CC CBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
+{
+  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::intsol);
+  cb->run();
+}
 
+
+
+} // impl
+} // xpress
 
 /* TODO: New-type callbacks don't work: they throw 1811 error when optimising,
 even after disabling Dave's callbacks.
@@ -86,110 +43,50 @@ int CPXPUBLIC callback_wrapper(CPXCALLBACKCONTEXTptr context,
   return 0;
 }
 */
-CPLEXDrv::~CPLEXDrv() {
-  freeCPLEXEnv();
+XPRESSDrv::~XPRESSDrv() {
+  xpress::impl::AMPLXPRESSfreeEnv();
 }
 
-void CPLEXDrv::freeCPLEXEnv()
-{
-  CPXENVptr env = getEnv();
-  CPXcloseCPLEX(&env);
-}
 
-void disableCallbacksFromDave(CPXENVptr env) {
-  CPXsetmipcallbackfunc(env, 0, 0);
-  CPXsetlpcallbackfunc(env, 0, 0);
-}
-CPLEXModel* CPLEXDrv::loadModelImpl(char** args) {
-  CPLEXModel* m = new CPLEXModel();
-  CPXLPptr modelptr;
-  ASL* aslptr;
-  m->state_ = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
-    &aslptr);
-  m->model_ = modelptr;
-  disableCallbacksFromDave(cpx::impl::AMPLCPLEXgetInternalEnv());
-  m->asl_ = aslptr;
-  m->lastErrorCode_ = -1;
+XPRESSModel* XPRESSDrv::loadModelImpl(char** args) {
+  XPRESSModel* m = new XPRESSModel();
+  XPRSprob prob;
+  xpress::impl::XPressDriverState *s = 
+    xpress::impl::AMPLXPRESSloadModel(3, args, &m->prob_);
   m->fileName_ = args[1];
   return m;
 }
-CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
-  std::auto_ptr<CPLEXModel> mod = loadModelGeneric(modelName);
-  CPLEXModel c(*mod);
+XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
+  std::auto_ptr<XPRESSModel> mod = loadModelGeneric(modelName);
+  XPRESSModel c(*mod);
   return c;
 }
 
-void CPLEXModel::writeSol() {
-  cpx::impl::AMPLCPLEXwritesol(state_, model_, status_);
+void XPRESSModel::writeSol() {
+  xpress::impl::AMPLXPRESSwriteSolution(state_, prob_);
 }
 
-int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
-  /* Now get the standard channels.  If an error, just call our
-      message function directly. */
-  CPXCHANNELptr cpxresults, cpxwarning, cpxerror, cpxlog;
-  char errmsg[CPXMESSAGEBUFSIZE];
-  int status = CPXgetchannels(env, &cpxresults, &cpxwarning, &cpxerror, &cpxlog);
-  if (status) {
-    fprintf(stderr, "Could not get standard channels.\n");
-    CPXgeterrorstring(env, status, errmsg);
-    fprintf(stderr, "%s\n", errmsg);
-    return -1;
-  }
-
-  /* Now set up the error channel first.  The label will be "cpxerror" */
-
-  status = CPXaddfuncdest(env, cpxerror, callback, msg_callback_wrapper);
-  if (status) {
-    fprintf(stderr, "Could not set up error message handler.\n");
-    CPXgeterrorstring(env, status, errmsg);
-    fprintf(stderr, "%s\n", errmsg);
-  }
-
-  /* Now that we have the error message handler set up, all CPLEX
-      generated errors will go through ourmsgfunc.  So we don't have
-      to use CPXgeterrorstring to determine the text of the message. */
-
-  status = CPXaddfuncdest(env, cpxwarning, callback, msg_callback_wrapper);
-  if (status) {
-    msg_callback_wrapper(callback, "Failed to set up handler for cpxwarning.\n");
-    return 1;
-  }
-
-  status = CPXaddfuncdest(env, cpxresults, callback, msg_callback_wrapper);
-  if (status) {
-    msg_callback_wrapper(callback, "Failed to set up handler for cpxresults.\n");
-    return 1;
-  }
-  return 0;
-}
-
-int CPLEXModel::setCallbackDerived(impl::BaseCallback* callback) {
-  CPXENVptr p = getCPLEXenv();
-  // Add the callback 
-  int status = CPXsetlazyconstraintcallbackfunc(p, cut_callback_wrapper,
+int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
+   
+  // Add the callbacks
+  int status = XPRSsetcbintsol(prob_, xpress::impl::CBWrap::intsol_callback_wrapper, 
     callback);
   if (status)
     return status;
-  status = CPXsetusercutcallbackfunc(p, cut_callback_wrapper,
+
+
+  status = XPRSsetcbmessage(prob_, xpress::impl::CBWrap::message_callback_wrapper,
     callback);
   if (status)
     return status;
-  status = CPXsetmipcallbackfunc(p, lp_callback_wrapper, callback);
-  if (status)
-    return status;
-  status = CPXsetlpcallbackfunc(p, lp_callback_wrapper, callback);
-  if (status)
-    return status;
-  status = CPXsetincumbentcallbackfunc(p, incumbent_callback_wrapper, callback);
-  if (status)
-    return status;
-  return setMsgCallback(callback, p);
+
+  // TODO Finish!
 }
 
-class MyCPLEXCallbackBridge : public CPLEXCallback {
+class MyXPRESSCallbackBridge : public XPRESSCallback {
   GenericCallback* cb_;
 public:
-  MyCPLEXCallbackBridge(GenericCallback* cb) {
+  MyXPRESSCallbackBridge(GenericCallback* cb) {
     cb_ = cb;
   }
   virtual int run() {
@@ -197,52 +94,15 @@ public:
   }
 };
 
-impl::BaseCallback* CPLEXModel::createCallbackImplDerived(GenericCallback* callback) {
-  return new MyCPLEXCallbackBridge(callback);
+impl::BaseCallback* XPRESSModel::createCallbackImplDerived(GenericCallback* callback) {
+  return new MyXPRESSCallbackBridge(callback);
 }
 
-int CPLEXModel::optimize() {
-  CPXENVptr env = getCPLEXenv();
-  int probtype = CPXgetprobtype(env, model_);
-  int res = 0;
-  switch (probtype)
-  {
-  case CPXPROB_LP:
-    CPXsetintparam(env, CPX_PARAM_LPMETHOD, CPX_ALG_AUTOMATIC);
-    res = CPXlpopt(env, model_);
-    break;
-  case CPXPROB_MILP:
-  case CPXPROB_FIXEDMILP:
-  case CPXPROB_MIQP:
-  case CPXPROB_FIXEDMIQP:
-    res = CPXmipopt(env, model_);
-    break;
-  case CPXPROB_QP:
-    res = CPXqpopt(env, model_);
-    break;
-  case CPXPROB_QCP:
-  case CPXPROB_MIQCP:
-    res = CPXhybbaropt(env, model_, CPX_ALG_NONE);
-  }
-  resetVarMapInternal();
-  // This gets communicated to writeSol
-  status_ = res;
-  // Print error message in case of error
-  if (res)
-    printf("%s \n", error(res).c_str());
-  return res;
-}
+int XPRESSModel::optimize() {
+  if (getInt(XPRS_ORIGINALMIPENTS) > 0)
+    return XPRSmipoptimize(prob_, NULL);
+  else
+    return XPRSlpoptimize(prob_, NULL);
 
-std::string CPLEXModel::error(int code) {
-  char buffer[CPXMESSAGEBUFSIZE];
-  CPXCCHARptr errstr;
-  errstr = CPXgeterrorstring(this->getCPLEXenv(), code, buffer);
-
-  if (errstr != NULL) {
-    return std::string(buffer);
-  }
-  else {
-    return "Error code not found.";
-  }
 }
 } // namespace

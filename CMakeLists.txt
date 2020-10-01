@@ -12,7 +12,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 set(ENABLE_cplex 1)
 set(ENABLE_gurobi 1)
 set(ENABLE_knitro 0)
-set(ENABLE_xpress 0)
+set(ENABLE_xpress 1)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 include(addPrefix) # for add_prefix and add_to_folder
@@ -38,7 +38,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(BASESRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/src/solvers) # Base dir for all
                                                         # solvers
 
-set(SOLVERS gurobi cplex)
+set(SOLVERS gurobi cplex xpress)
 
 # Swig
 find_package(SWIG 3.0)
@@ -62,17 +62,24 @@ add_subdirectory(cpp/generic)
 set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
 set(GUROBI_BASE_DIR ${SOLVERLIBS}/gurobi/902)
 set(CPLEX_BASE_DIR ${SOLVERLIBS}/cplex/1210)
+set(XPRESS_BASE_DIR ${SOLVERLIBS}/xpress/36.01.10)
 set(GUROBI_INCLUDE_DIR ${GUROBI_BASE_DIR}/include)
 set(CPLEX_INCLUDE_DIR ${CPLEX_BASE_DIR}/include)
+set(XPRESS_INCLUDE_DIR ${XPRESS_BASE_DIR}/include)
 if(WIN32)
     set(GUROBI_LIBRARY ${GUROBI_BASE_DIR}/lib/win64/gurobi90.lib)
     set(CPLEX_LIBRARY ${CPLEX_BASE_DIR}/lib/win64/cplex12100.lib)
+    set(XPRESS_LIBRARY ${XPRESS_BASE_DIR}/lib/win64/xprs.lib)
 elseif(APPLE)
     set(GUROBI_LIBRARY ${GUROBI_BASE_DIR}/lib/osx64/libgurobi90.dylib)
     set(CPLEX_LIBRARY ${CPLEX_BASE_DIR}/lib/osx64/libcplex.a)
+    set(XPRESS_LIBRARY ${XPRESS_BASE_DIR}/lib/osx64/libxprl.dylib
+                       ${XPRESS_BASE_DIR}/lib/osx64/libxprs.dylib)
 else()
     set(GUROBI_LIBRARY ${GUROBI_BASE_DIR}/lib/linux64/libgurobi90.so)
     set(CPLEX_LIBRARY ${CPLEX_BASE_DIR}/lib/linux64/libcplex.a)
+    set(XPRESS_LIBRARY ${XPRESS_BASE_DIR}/lib/linux64/libxprl.so.x8.10
+                       ${XPRESS_BASE_DIR}/lib/linux64/libxprs.so.36.01)
 endif()
 
 # AMPL base driver library locations
@@ -154,22 +161,22 @@ function(AddSolverStub solver includes libs)
             ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE} ${includes})
   add_to_folder(${solver} ${TARGETNAME}-test)
   target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
-
-  if(SWIG_FOUND)
-    include(UseSWIG)
-    # Create custom target for common swig files, couldn't find a way to add
-    # them as headers
-    add_custom_target(${solver}-common SOURCES ${SWIGCOMMONSRC}
-                                               ${DIR_SWIG}/common.i)
-    add_to_folder(${solver}/swig ${solver}-common)
-  #  add_subdirectory(${DIR_PYTHON})
-    if(WIN32)
-      add_subdirectory(${DIR_CSHARP})
+  
+  if (EXISTS ${DIR_SWIG})
+    if(SWIG_FOUND)
+        include(UseSWIG)
+        # Create custom target for common swig files, couldn't find a way to add
+        # them as headers
+        add_custom_target(${solver}-common SOURCES ${SWIGCOMMONSRC}
+                                                   ${DIR_SWIG}/common.i)
+        add_to_folder(${solver}/swig ${solver}-common)
+        add_subdirectory(${DIR_PYTHON})
+        if(WIN32)
+          add_subdirectory(${DIR_CSHARP})
+        endif()
     endif()
   endif()
 endfunction()
-
-
 
 if(ENABLE_gurobi)
   addsolverstub(gurobi ${GUROBI_INCLUDE_DIR} ${GUROBI_LIBRARY})
@@ -183,8 +190,8 @@ if(ENABLE_KNITRO)
   addsolverstub(knitro)
 endif()
 
-if(ENABLE_XPRESS)
-  addsolverstub(xpressmp)
+if(ENABLE_xpress)
+  addsolverstub(xpress ${XPRESS_INCLUDE_DIR} ${XPRESS_LIBRARY}) 
 endif()
 
 add_subdirectory("doc")
