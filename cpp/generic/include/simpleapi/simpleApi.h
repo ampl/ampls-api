@@ -9,6 +9,14 @@
 #include <mutex>
 #include <cstdarg>
 
+// This declaration is used in the solver-specific implementations
+// to import functions from the solver libraries
+#ifdef _WIN32
+#define ENTRYPOINT __declspec(dllimport)
+#else
+#define ENTRYPOINT
+#endif
+
 namespace ampls
 {
 /**
@@ -37,13 +45,18 @@ public:
 * Note that the strings are owned by the solver itself,
 * no need to destroy them
 */
-typedef struct Variant
+struct Variant
 {
   const char* str; // type 0
   int integer;     // type 1
   double dbl;      // type 2
   int type;
-} Variant;
+  Variant(): str(NULL), integer(0), dbl(0), type(-1) {}
+  Variant(const char* c) : str(c), integer(0), dbl(0), type(0) {}
+  explicit Variant(int v) : str(NULL), integer(v), dbl(0), type(1) {}
+  Variant(double v) : str(NULL), integer(0), dbl(v), type(2) {}
+
+};
 
 // Forward declarations
 class AMPLModel;
@@ -51,7 +64,6 @@ class GenericCallback;
 char** generateArguments(const char* modelName);
 void deleteParams(char** params);
 
-namespace CBWhere {
 /**
 * These (generic) values identify where in the solution
 * process a callback has been called; to get this generic value
@@ -60,7 +72,7 @@ namespace CBWhere {
 * the callback is called with a not-mapped "where" parameter,
 * refer to the solver-specific functionality.
 */
-enum Where
+enum class Where
 {
   /** When the solver wants to print a message, obtain it via GenericCallback::getMessage.*/
   msg = 0, 
@@ -77,16 +89,14 @@ enum Where
   /** Not mapped, refer to the specific user documentation*/
   notmapped = 10
 };
-}
 
-namespace CBValue {
 /**
 * Which (generic) values to get in a callback; just a subset of all the
 * value types are mapped here.
 * In case a not mapped value is required, refer to the solver-specific
 * API.
 */
-enum Value {
+enum class Value {
   obj = 0,
   pre_delcols = 1,
   pre_delrows = 2,
@@ -95,12 +105,9 @@ enum Value {
 
   mip_relativegap = 5
 };
-}
 
-namespace CBDirection
-{
 /** Direction of a cut to be added*/
-enum Direction {
+enum class CutDirection {
   /** = Equal*/
   eq,
   /** >= Greater or equal*/
@@ -108,10 +115,8 @@ enum Direction {
   /** <= Less or equal*/
   le
 };
-}
 
-namespace Status {
-enum Status {
+enum class Status {
   Unknown,
   Optimal,
   Infeasible,
@@ -123,7 +128,6 @@ enum Status {
   Interrupted,
   NotMapped
 };
-}
 namespace impl
 {
 /**
@@ -139,25 +143,25 @@ protected:
   AMPLModel* model_;
   int where_;
   virtual int doAddCut(int nvars, const int* vars,
-    const double* coeffs, int direction, double rhs,
+    const double* coeffs, CutDirection direction, double rhs,
     int type) = 0;
 
   int callAddCut(std::vector<std::string>& vars,
-    const double* coeffs, int direction, double rhs,
+    const double* coeffs, CutDirection direction, double rhs,
     int type);
   void printCut(int nvars, const int* vars, const double* coeffs, 
-    int direction, double rhs)
+    CutDirection direction, double rhs)
   {
     char* sense;
     switch (direction)
     {
-    case CBDirection::eq:
+    case CutDirection::eq:
       sense = "= \0";
       break;
-    case CBDirection::ge:
+    case CutDirection::ge:
       sense = ">=\0";
       break;
-    case CBDirection::le:
+    case CutDirection::le:
       sense = "<=\0";
       break;
     default:
@@ -187,23 +191,23 @@ public:
   *   @param direction Direction of the constraint ampls::CBDirection::Direction
   */
   int addCut(std::vector<std::string> vars,
-    const double* coeffs, int direction, double rhs)
+    const double* coeffs, CutDirection direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 0);
   }
   /** Add a cut (solver indices) */
   int addCutsIndices(int nvars, const int* vars,
-    const double* coeffs, int direction, double rhs)
+    const double* coeffs, CutDirection direction, double rhs)
   {
     return doAddCut(nvars, vars, coeffs, direction, rhs, 0);
   }
   int addLazy(std::vector<std::string> vars,
-    const double* coeffs, int direction, double rhs)
+    const double* coeffs, CutDirection direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 1);
   }
   int addLazyIndices(int nvars, const int* vars,
-    const double* coeffs, int direction, double rhs)
+    const double* coeffs, CutDirection direction, double rhs)
   {
     return doAddCut(nvars, vars, coeffs, direction, rhs, 1);
   }
@@ -221,8 +225,8 @@ public:
 
   // Return mapped "whereFrom"
   // Obviously it only makes sense for the generic callback
-  virtual CBWhere::Where getAMPLType() = 0;
-  virtual Variant getValue(CBValue::Value v) = 0;
+  virtual Where getAMPLType() = 0;
+  virtual Variant getValue(Value v) = 0;
 };
 
 /**
@@ -283,7 +287,7 @@ private:
 
 protected:
   virtual int doAddCut(int nvars, const int *vars,
-                       const double *coeffs, int direction, double rhs,
+                       const double *coeffs, CutDirection direction, double rhs,
                        int type)
   {
     return impl_->doAddCut(nvars, vars, coeffs, direction, rhs, type);
@@ -311,12 +315,12 @@ public:
     return impl_->getMessage();
   }
   /** Return mapped "whereFrom" */
-  CBWhere::Where getAMPLType()
+  Where getAMPLType()
   {
     return impl_->getAMPLType();
   }
   /** Get a value from the solver */
-  Variant getValue(CBValue::Value v)
+  Variant getValue(Value v)
   {
     return impl_->getValue(v);
   }
@@ -412,7 +416,7 @@ public:
   virtual int getNumVars() {
     throw AMPLSolverException("Not implemented in base class!");
   };
-  virtual Status::Status getStatus() {
+  virtual Status getStatus() {
     throw AMPLSolverException("Not implemented in base class!");
   }
   /**

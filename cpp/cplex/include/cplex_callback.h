@@ -11,24 +11,13 @@
 
 namespace ampls
 {
+namespace cpx { namespace impl { class CBWrap; } }
 class CPLEXModel;
 
 class CPLEXCallback : public impl::BaseCallback {
   char CODE[60];
-
   friend class CPLEXModel;
-  friend void msg_callback_wrapper(void* handle, const char* msg);
-  friend int lp_callback_wrapper(CPXCENVptr env,
-    void* lp, int wf, void* cbh);
-  friend CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
-    int wherefrom, void* userhandle);
-  friend int cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
-    void* cbhandle, int* useraction_p);
-  friend int incumbent_callback_wrapper(CPXCENVptr env,
-    void* cbdata, int wherefrom, void* cbhandle,
-    double objval, double* x, int* isfeas_p,
-    int* useraction_p);
-
+  friend class  cpx::impl::CBWrap;
   // Callback data
   CPXCENVptr env_;
   // Stores the pointer to the CPLEX model being used, as passed from the callback
@@ -46,7 +35,7 @@ class CPLEXCallback : public impl::BaseCallback {
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,
-    const double* coeffs, int direction, double rhs,
+    const double* coeffs, CutDirection direction, double rhs,
     int type);
   CPXCENVptr env() { return env_; }
   void* cbdata() { return cbdata_; }
@@ -62,31 +51,31 @@ public:
   const char* getWhere();
   const char* getMessage();
 
-  CBWhere::Where getAMPLType() {
+  Where getAMPLType() {
 
     switch (where_)
     {
     case -1:
-      return  CBWhere::msg;
+      return  Where::msg;
     case CPX_CALLBACK_PRESOLVE:
-      return CBWhere::presolve;
+      return Where::presolve;
     case CPX_CALLBACK_PRIMAL:
     case CPX_CALLBACK_DUAL:
     case CPX_CALLBACK_BARRIER:
-      return CBWhere::lpsolve;
+      return Where::lpsolve;
     case CPX_CALLBACK_MIP_NODE:
     case CPX_CALLBACK_MIP_CUT_FEAS:
     case CPX_CALLBACK_MIP_CUT_UNBD:
     case CPX_CALLBACK_MIP_CUT_LOOP:
     case CPX_CALLBACK_MIP_CUT_LAST:
-      return CBWhere::mipnode;
+      return Where::mipnode;
     case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
     case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
     case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
     case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART:
-      return CBWhere::mipsol;
+      return Where::mipsol;
     default:
-      return CBWhere::notmapped;
+      return Where::notmapped;
     }
   }
   Variant get(int what);
@@ -114,26 +103,23 @@ public:
       what, &res);
     return res;
   }
-  virtual Variant getValue(CBValue::Value v) {
+  virtual Variant getValue(Value v) {
     switch (v)
     {
-    case CBValue::iterations:
+    case Value::iterations:
       if (where_ < CPX_CALLBACK_MIP)
         return get(CPX_CALLBACK_INFO_ITCOUNT);
       else
         return get(CPX_CALLBACK_INFO_MIP_ITERATIONS);
-    case CBValue::obj:
-      Variant o;
-      o.type = 2;
-      o.dbl = getObjective();
-      return o;
-    case CBValue::pre_delcols:
+    case Value::obj:
+      return Variant(getObjective());
+    case Value::pre_delcols:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COLSGONE);
-    case CBValue::pre_delrows:
+    case Value::pre_delrows:
       return get(CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE);
-    case CBValue::pre_coeffchanged:
+    case Value::pre_coeffchanged:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
-    case CBValue::mip_relativegap:
+    case Value::mip_relativegap:
       return get(CPX_CALLBACK_INFO_MIP_REL_GAP);
     default: throw AMPLSolverException("Specified value unknown.");
     }

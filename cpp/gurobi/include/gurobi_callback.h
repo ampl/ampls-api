@@ -10,11 +10,13 @@
 #include "gurobi_c.h"
 
 namespace ampls {
-
+namespace grb{ namespace impl{
+int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata); 
+} }
 class GurobiModel;
 
 class GurobiCallback : public impl::BaseCallback {
-  friend int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
+  friend int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
   friend class GurobiModel;
   void* cbdata_;
   GurobiModel* gurobiModel() {
@@ -23,7 +25,7 @@ class GurobiCallback : public impl::BaseCallback {
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,
-    const double* coeffs, int direction, double rhs,
+    const double* coeffs, CutDirection direction, double rhs,
     int type);
 
 public:
@@ -62,44 +64,41 @@ public:
     return res;
   }
 
-  virtual CBWhere::Where getAMPLType() {
+  virtual Where getAMPLType() {
     switch (where_)
     {
     case GRB_CB_MESSAGE:
-      return CBWhere::msg;
+      return Where::msg;
     case GRB_CB_PRESOLVE:
-      return CBWhere::presolve;
+      return Where::presolve;
     case GRB_CB_SIMPLEX:
-      return CBWhere::lpsolve;
+      return Where::lpsolve;
     case GRB_CB_MIPNODE:
-      return CBWhere::mipnode;
+      return Where::mipnode;
     case GRB_CB_MIPSOL:
-      return CBWhere::mipsol;
+      return Where::mipsol;
     case GRB_CB_MIP:
-      return CBWhere::mip;
+      return Where::mip;
     default:
-      return CBWhere::notmapped;
+      return Where::notmapped;
     }
 
   }
   Variant get(int what);
-  virtual Variant getValue(CBValue::Value v) {
+  virtual Variant getValue(Value v) {
     switch (v)
     {
-    case CBValue::obj:
-      Variant result;
-      result.type = 2;
-      result.dbl = getObjective();
-      return result;
-    case CBValue::mip_relativegap:
+    case Value::obj:
+      return Variant(getObjective());
+    case Value::mip_relativegap:
       return get(GRB_CB_MIPNODE_REL);
-    case CBValue::pre_delcols:
+    case Value::pre_delcols:
       return get(GRB_CB_PRE_COLDEL);
-    case CBValue::pre_delrows:
+    case Value::pre_delrows:
       return get(GRB_CB_PRE_ROWDEL);
-    case CBValue::pre_coeffchanged:
+    case Value::pre_coeffchanged:
       return get(GRB_CB_PRE_COECHG);
-    case CBValue::iterations:
+    case Value::iterations:
       if (where_ == GRB_CB_SIMPLEX)
         return get(GRB_CB_SPX_ITRCNT);
       if ((where_ >= GRB_CB_MIP) &&

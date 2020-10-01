@@ -9,19 +9,19 @@ const char* CPLEXCallback::getMessage() {
 }
 
 int CPLEXCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, int direction, double rhs, int lazy) {
+  const double* coeffs, CutDirection direction, double rhs, int lazy) {
 
   printCut(nvars, vars, coeffs, direction, rhs);
   char sense;
   switch (direction)
   {
-    case CBDirection::eq:
+    case CutDirection::eq:
       sense = 'E';
       break;
-    case CBDirection::ge:
+    case CutDirection::ge:
       sense = 'G';
       break;
-    case CBDirection::le:
+    case CutDirection::le:
       sense = 'L';
       break;
     default:

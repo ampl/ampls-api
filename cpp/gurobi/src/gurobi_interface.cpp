@@ -3,7 +3,7 @@
 #include "simpleapi/simpleApi.h"
 namespace ampls
 {
-int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
+int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
 {
   GurobiCallback* cb = (GurobiCallback*)usrdata;
   cb->cbdata_ = cbdata;
@@ -37,7 +37,7 @@ void GurobiModel::writeSol() {
   grb::impl::AMPLwritesol(GRBModel_, asl_, lastErrorCode_);
 }
 int GurobiModel::setCallbackDerived(impl::BaseCallback* callback) {
-  return GRBsetcallbackfunc(GRBModel_, callback_wrapper, callback);
+  return GRBsetcallbackfunc(GRBModel_, grb::impl::callback_wrapper, callback);
 }
 
 class MyGurobiCallbackBridge : public GurobiCallback {

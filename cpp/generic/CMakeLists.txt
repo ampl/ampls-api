@@ -25,7 +25,7 @@ macro(addExample name category src)
     target_include_directories(${tar} PRIVATE
        ${GENERATED_INCLUDE_DIR} # for test-config
      )
-    target_link_libraries(${tar} gurobi-drv cplex-drv)
+    target_link_libraries(${tar} gurobi-drv cplex-drv xpress-drv)
     add_to_folder(${category}/examples ${tar})
 endmacro()
 

@@ -1,12 +1,5 @@
-#ifndef CPLEX_INTERFACE_H_INCLUDE_
-#define CPLEX_INTERFACE_H_INCLUDE_
-
-#ifdef _WIN32
-#define ENTRYPOINT __declspec(dllimport)
-#else
-#define ENTRYPOINT
-#endif
-
+#ifndef XPRESS_INTERFACE_H_INCLUDE_
+#define XPRESS_INTERFACE_H_INCLUDE_
 
 #include <string>
 #include <map>
@@ -40,17 +33,7 @@ namespace xpress
 
     }
     
-    enum class XPRESSWhere
-    {
-      message,
-      intsol,
-      chgnode,
-      infnode,
-      nodecutoff,
-      chgbranch,
-      prenode,
-      optnode
-    };
+  
     class CBWrap
     {
     public:
@@ -164,26 +147,78 @@ public:
   void writeSol();
 
 
-  Status::Status getStatus() {
-    throw AMPLSolverException("TBD");
+  Status getStatus() {
+    if (!isMIP())
+    {
+      int stat = getInt(XPRS_LPSTATUS);
+      switch (stat)
+      {
+      case XPRS_LP_UNSTARTED:
+        return Status::Unknown;
+      case XPRS_LP_OPTIMAL:
+        return Status::Optimal;
+      case XPRS_LP_INFEAS:
+        return Status::Infeasible;
+      case XPRS_LP_UNBOUNDED:
+        return Status::Unbounded;
+      case XPRS_LP_UNFINISHED:
+        return Status::Unknown;
+      default:
+        return Status::NotMapped;
+        // XPRS_LP_CUTOFF
+        // XPRS_LP_CUTOFF_IN_DUAL
+        // XPRS_LP_UNSOLVED
+        // XPRS_LP_NONCONVEX
+      }
+    }
+    else
+    {
+      int stat = getInt(XPRS_MIPSTATUS);
+      switch (stat)
+      {
+      case XPRS_MIP_NOT_LOADED:
+        return Status::Unknown;
+      case XPRS_MIP_OPTIMAL:
+        return Status::Optimal;
+      case XPRS_MIP_INFEAS:
+        return Status::Infeasible;
+      case XPRS_MIP_UNBOUNDED:
+        return Status::Unbounded;
+      case XPRS_MIP_SOLUTION:
+      case XPRS_MIP_LP_OPTIMAL:
+        return Status::Interrupted;
+      default:
+        return Status::NotMapped;
+        // XPRS_MIP_NO_SOL_FOUND
+        // XPRS_MIP_LP_NOT_OPTIMAL:
+      }
+    }
   }
 
   int optimize();
 
   int getNumVars() {
-    return getInt(XPRS_COLS);
+    return getInt(XPRS_ORIGINALCOLS);
   }
   double getObj() {
-    if (getInt(XPRS_ALGORITHM) == 1) // no lp set
+    if(isMIP())
       return getDouble(XPRS_MIPOBJVAL);
     else
       return getDouble(XPRS_LPOBJVAL);
   }
 
   int getSolution(int first, int length, double* sol) {
-    throw AMPLSolverException("TBD");
+    int nvars = getNumVars();
+    if (length < nvars)
+      throw AMPLSolverException::format("Must allocate an array of at least %d elements.", nvars);
+    return XPRSgetsol(prob_, sol, NULL, NULL, NULL);
   }
-  std::string error(int code);
+  std::string error(int code)
+  {
+    char errmsg[512];
+    XPRSgetlasterror(prob_, errmsg);
+    return errmsg;
+  }
 
 
   // XPRESS-specific
@@ -203,12 +238,15 @@ public:
     XPRSgetintattrib(prob_, what, &ret);
     return ret;
   }
-  int getDouble(int what) {
+  double getDouble(int what) {
     double ret;
     XPRSgetdblattrib(prob_, what, &ret);
     return ret;
   }
+  bool isMIP() {
+    return getInt(XPRS_ORIGINALMIPENTS) > 0;
+  }
 };
 
 } // namespace
-#endif // CPLEX_INTERFACE_H_INCLUDE_
+#endif // XPRESS_INTERFACE_H_INCLUDE_

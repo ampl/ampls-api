@@ -34,11 +34,12 @@ namespace grb
       ENTRYPOINT void freeEnvironment();
       ENTRYPOINT void freeASL(ASL** aslp);
     }
+    // Forward declarations
+    int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
   }
 }
 
-// Forward declarations
-int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
+
 class GurobiModel;
 class Callback;
 
@@ -93,7 +94,7 @@ public:
   void writeSol();
   int optimize();
 
-  Status::Status getStatus() {
+  Status getStatus() {
     int grbstatus = getIntAttr(GRB_INT_ATTR_STATUS);
     switch (grbstatus)
     {

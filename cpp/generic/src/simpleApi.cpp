@@ -87,7 +87,7 @@ std::map<int, std::string>& impl::BaseCallback::getVarMapInverse() {
 
 
 int impl::BaseCallback::callAddCut(std::vector<std::string>& vars,
-  const double* coeffs, int direction, double rhs, int lazy) {
+  const double* coeffs, CutDirection direction, double rhs, int lazy) {
   std::size_t length = vars.size();
   std::map<std::string, int> map = getVarMap();
   std::vector<int> indices;

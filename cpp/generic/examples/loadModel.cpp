@@ -4,10 +4,10 @@
 #include "ilcplex/cplex.h"
 
 #include "cplex_interface.h"
-#include "cplex_callback.h"
 
 #include "gurobi_interface.h"
-#include "gurobi_callback.h"
+
+#include "xpress_interface.h"
 
 #include "simpleapi/simpleApi.h"
 #include "test-config.h" // for MODELS_DIR
@@ -19,7 +19,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   m.optimize();
   printf("\n");
   // Get the generic status
-  ampls::Status::Status s = m.getStatus();
+  ampls::Status s = m.getStatus();
   switch (s)
   {
   case ampls::Status::Optimal:
@@ -44,11 +44,12 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   int nnz = 0;
   for (int i = 0; i < solution.size(); i++)
     if (solution[i] != 0) nnz++;
-  printf("\nNumber of non zeroes = %d\n", nnz);
+  printf("Number of non zeroes = %d\n", nnz);
   // Write the AMPL sol file
   m.writeSol();
   return obj;
 }
+
 int main(int argc, char** argv) {
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
@@ -56,15 +57,21 @@ int main(int argc, char** argv) {
 
   // Load a model using gurobi driver
   ampls::GurobiDrv gurobi;
-  ampls::GurobiModel mg = gurobi.loadModel(buffer);
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
-  doStuff(mg, "gurobi");
+  doStuff(g, "gurobi");
 
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
   ampls::CPLEXModel c = cplex.loadModel(buffer);
   // Use it as generic model
   doStuff(c, "cplex");
+
+  // Load a model using CPLEX driver
+  ampls::XPRESSDrv xpress;
+  ampls::XPRESSModel x = xpress.loadModel(buffer);
+  // Use it as generic model
+  doStuff(x, "xpress");
   return 1;
  
 }

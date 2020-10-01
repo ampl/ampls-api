@@ -109,17 +109,17 @@ const char* GurobiCallback::getMessage()
 }
 
 int GurobiCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, int direction, double rhs, int lazy) {
+  const double* coeffs, CutDirection direction, double rhs, int lazy) {
   char sense;
   switch (direction)
   {
-  case CBDirection::eq:
+  case CutDirection::eq:
     sense = GRB_EQUAL;
     break;
-  case CBDirection::ge:
+  case CutDirection::ge:
     sense = GRB_GREATER_EQUAL;
     break;
-  case CBDirection::le:
+  case CutDirection::le:
     sense = GRB_LESS_EQUAL;
     break;
   default:

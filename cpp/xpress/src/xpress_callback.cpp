@@ -8,19 +8,19 @@ const char* XPRESSCallback::getMessage() {
 }
 
 int XPRESSCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, int direction, double rhs, int lazy) {
+  const double* coeffs, CutDirection direction, double rhs, int lazy) {
 
   printCut(nvars, vars, coeffs, direction, rhs);
   char sense;
   switch (direction)
   {
-    case CBDirection::eq:
+    case CutDirection::eq:
       sense = 'E';
       break;
-    case CBDirection::ge:
+    case CutDirection::ge:
       sense = 'G';
       break;
-    case CBDirection::le:
+    case CutDirection::le:
       sense = 'L';
       break;
     default:
@@ -30,7 +30,7 @@ int XPRESSCallback::doAddCut(int nvars, const int* vars,
 }
 
 int XPRESSCallback::getSolution(int len, double* sol) {
-  int nvars = getInt(XPRS_ORIGINALCOLS);
+  int nvars = model_->getNumVars();
   if (len < nvars)
     throw AMPLSolverException::format("Must allocate an array of at least %d elements.", nvars);
   if (where_ == (int)xpress::impl::XPRESSWhere::prenode)

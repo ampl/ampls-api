@@ -1,6 +1,5 @@
 #include "xpress_interface.h"
 #include "simpleapi/simpleApi.h"
-//#include <cstring>
 
 namespace ampls
 {
@@ -11,6 +10,7 @@ XPRESSCallback* CBWrap::setDefaultCB(XPRSprob prob, void* data,
 {
   XPRESSCallback* cb = static_cast<XPRESSCallback*>(data);
   cb->where_ = (int)wherefrom;
+  cb->prob_ = prob;
   return cb;
 }
 
@@ -31,18 +31,7 @@ void XPRS_CC CBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
 } // impl
 } // xpress
 
-/* TODO: New-type callbacks don't work: they throw 1811 error when optimising,
-even after disabling Dave's callbacks.
-int CPXPUBLIC callback_wrapper(CPXCALLBACKCONTEXTptr context,
-  CPXLONG contextid, void* userhandle)
-{
-  //Callback* cb = static_cast<Callback*>(userhandle);
-  //userhandle->context_ = context;
-  //userhandle->contextid_ = contextid;
-  //return userhandle->run(context, contextid);
-  return 0;
-}
-*/
+
 XPRESSDrv::~XPRESSDrv() {
   xpress::impl::AMPLXPRESSfreeEnv();
 }

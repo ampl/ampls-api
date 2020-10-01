@@ -5,11 +5,8 @@
 
 
 #include "cplex_interface.h"
-#include "cplex_callback.h"
-
-
 #include "gurobi_interface.h"
-#include "gurobi_callback.h"
+#include "xpress_interface.h"
 
 #include "simpleapi/simpleApi.h"
 #include "test-config.h" // for MODELS_DIR
@@ -35,30 +32,34 @@ class MyGenericCallback : public ampls::GenericCallback
   {
     // Prints out the name of the solution phase where the solver is called from
     // (solver specific)
-    printf("\nCalled from %s\n", getWhere());
-
+    //printf("\nCalled from %s\n", getWhere());
+    double obj;
     // Get the generic mapping
-    ampls::CBWhere::Where where = getAMPLType();
+    ampls::Where where = getAMPLType();
     switch (where)
     {
-    case ampls::CBWhere::msg:
-      printf(getMessage());
+    case ampls::Where::msg:
+    //  printf(getMessage());
       return 0;
-    case ampls::CBWhere::presolve:
-      if((getValue(ampls::CBValue::pre_delrows).integer+
-        getValue(ampls::CBValue::pre_delcols).integer+
-        getValue(ampls::CBValue::pre_coeffchanged).integer) > 0)
+    case ampls::Where::presolve:
+      if((getValue(ampls::Value::pre_delrows).integer+
+        getValue(ampls::Value::pre_delcols).integer+
+        getValue(ampls::Value::pre_coeffchanged).integer) > 0)
           printf("\nRemoved %i rows and %i columns. %i coefficients changed", 
-            getValue(ampls::CBValue::pre_delrows).integer,
-            getValue(ampls::CBValue::pre_delcols).integer,
-            getValue(ampls::CBValue::pre_coeffchanged).integer);
+            getValue(ampls::Value::pre_delrows).integer,
+            getValue(ampls::Value::pre_delcols).integer,
+            getValue(ampls::Value::pre_coeffchanged).integer);
           return 0;
-    case ampls::CBWhere::mip:
-    case ampls::CBWhere::mipsol:
-    case ampls::CBWhere::mipnode:
-      printf("\nMIP Objective = %f", getObjective());
-      return 0;
-    case ampls::CBWhere::notmapped:
+    case ampls::Where::mip:
+    case ampls::Where::mipsol:
+    case ampls::Where::mipnode:
+      try {
+        obj = getObjective();
+        printf("\nMIP Objective = %f", getObjective());
+        return 0;
+      }
+      catch (...) {}
+    case ampls::Where::notmapped:
       printf("\nNot mapped! Where: %s", getWhere());
 
     }
@@ -78,7 +79,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   double obj = m.getObj();
   printf("\nSolution with %s=%f\n", name, obj);
 
-  ampls::Status::Status s = m.getStatus();
+  ampls::Status s = m.getStatus();
   switch (s)
   {
     case ampls::Status::Optimal:
@@ -111,19 +112,20 @@ int main(int argc, char** argv) {
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
-
-  // TODO
-  // Mutex on loadModel functions
-
-  // Gurobi generic
+  
   ampls::GurobiDrv gurobi;
-  ampls::GurobiModel mg = gurobi.loadModel(buffer);
-  doStuff(mg, "gurobi");
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
+  doStuff(g, "gurobi");
 
   // CPLEX generic
-  //ampls::CPLEXDrv cplex;
-  //ampls::CPLEXModel c = cplex.loadModel(buffer);
- // doStuff(c, "cplex");
+  ampls::CPLEXDrv cplex;
+  ampls::CPLEXModel c = cplex.loadModel(buffer);
+  doStuff(c, "cplex");
+
+  // XPRESS generic
+  ampls::XPRESSDrv xpress;
+  ampls::XPRESSModel x = xpress.loadModel(buffer);
+  doStuff(x, "xpress");
   return 1;
  
 }

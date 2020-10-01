@@ -15,6 +15,17 @@ class XPRESSModel;
 namespace xpress {
 namespace impl {
 class CBWrap;
+enum class XPRESSWhere
+{
+  message,
+  intsol,
+  chgnode,
+  infnode,
+  nodecutoff,
+  chgbranch,
+  prenode,
+  optnode
+};
 }
 }
 class XPRESSCallback : public impl::BaseCallback {
@@ -39,7 +50,7 @@ class XPRESSCallback : public impl::BaseCallback {
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,
-    const double* coeffs, int direction, double rhs,
+    const double* coeffs, CutDirection direction, double rhs,
     int type);
 public:
 
@@ -56,8 +67,19 @@ public:
   const char* getWhere();
   const char* getMessage();
 
-  CBWhere::Where getAMPLType() {
-    return static_cast<CBWhere::Where>(where_);
+  Where getAMPLType() {
+    switch (static_cast<xpress::impl::XPRESSWhere>(where_))
+    {
+    case xpress::impl::XPRESSWhere::message:
+      return Where::msg;
+    case xpress::impl::XPRESSWhere::intsol:
+      return Where::mipsol;
+    case xpress::impl::XPRESSWhere::chgnode:
+      return Where::mipnode;
+    default:
+      return Where::notmapped;
+    }
+    
   }
   Variant get(int what);
   int getInt(int what)
@@ -72,7 +94,16 @@ public:
     XPRSgetdblattrib(prob_, what, &val);
     return val;
   }
-  virtual Variant getValue(CBValue::Value v) {
+  virtual Variant getValue(Value v) {
+    switch (v)
+    {
+    case Value::pre_delcols:
+      return Variant(getInt(XPRS_ORIGINALCOLS) - getInt(XPRS_COLS));
+    case Value::pre_delrows:
+      return Variant(getInt(XPRS_ORIGINALROWS) - getInt(XPRS_ROWS));
+    case Value::pre_coeffchanged:
+      return Variant(0);
+    }
     throw std::exception("Not supported yet");
   }
 };

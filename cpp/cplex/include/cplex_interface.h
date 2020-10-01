@@ -1,13 +1,6 @@
 #ifndef CPLEX_INTERFACE_H_INCLUDE_
 #define CPLEX_INTERFACE_H_INCLUDE_
 
-#ifdef _WIN32
-#define ENTRYPOINT __declspec(dllimport)
-#else
-#define ENTRYPOINT
-#endif
-
-
 #include <string>
 #include <map>
 #include <mutex>
@@ -20,17 +13,30 @@
 #include "simpleapi/simpleApi.h"
 #include "cplex_callback.h"
 
+#ifdef _WIN32
+#define CPXPUBLIC      __stdcall
+#define CPXPUBVARARGS  __cdecl
+#define CPXCDECL       __cdecl
+#else
+#define CPXPUBLIC
+#define CPXPUBVARARGS
+#define CPXCDECL
+#endif
 
 struct ASL;
 
 
 namespace ampls
 {
-struct CPLEXDriverState;
+
+class CPLEXCallback;
+class CPLEXModel;
+
 namespace cpx
 {
   namespace impl
   {
+    struct CPLEXDriverState;
     extern "C" {
 
       ENTRYPOINT CPLEXDriverState* AMPLCPLEXloadmodel(int argc, char** argv,
@@ -43,36 +49,24 @@ namespace cpx
 
       ENTRYPOINT void AMPLCPLEXfreeASL(ASL** aslPtr);
     }
+    
+    class CBWrap {
+    public:
+      static int CPXPUBLIC lp_callback_wrapper(CPXCENVptr env, void* lp, int wf, void* cbh);
+      static int CPXPUBLIC cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
+        void* cbhandle, int* useraction_p);
+      static void CPXPUBLIC msg_callback_wrapper(void* handle, const char* msg);
+      static int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env,
+        void* cbdata, int wherefrom, void* cbhandle, double objval, double* x, int* isfeas_p,
+        int* useraction_p);
+      static CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
+        int wherefrom, void* userhandle);
+    };
+    std::string getErrorMsg(CPXCENVptr env, int res);
   }
 }
 
-#ifdef _WIN32
-#define CPXPUBLIC      __stdcall
-#define CPXPUBVARARGS  __cdecl
-#define CPXCDECL       __cdecl
-#else
-#define CPXPUBLIC
-#define CPXPUBVARARGS
-#define CPXCDECL
-#endif
 
-
-class CPLEXCallback;
-
-int CPXPUBLIC lp_callback_wrapper(CPXCENVptr env, void* lp, int wf, void* cbh);
-int CPXPUBLIC cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
-  void* cbhandle, int* useraction_p);
-void CPXPUBLIC msg_callback_wrapper(void* handle, const char* msg);
-int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env,
-  void* cbdata, int wherefrom, void* cbhandle,
-  double objval, double* x, int* isfeas_p,
-  int* useraction_p);
-CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
-  int wherefrom, void* userhandle);
-std::string getErrorMsg(CPXCENVptr env, int res);
-
-class CPLEXModel;
-class Callback;
 
 /**
 Encapsulates the main environment of the gurobi driver;
@@ -103,7 +97,7 @@ class CPLEXModel : public AMPLModel {
   friend CPLEXDrv;
 
   mutable bool copied_;
-  CPLEXDriverState* state_;
+  cpx::impl::CPLEXDriverState* state_;
   int status_;
   CPXLPptr model_;
   ASL* asl_;
@@ -115,19 +109,6 @@ class CPLEXModel : public AMPLModel {
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 
 public:
-  /*
-  CPLEXModel(CPLEXModel&& other) noexcept :
-    AMPLModel(other),
-    state_(other.state_),
-    asl_(other.asl_),
-    model_(other.model_),
-    lastErrorCode_(other.lastErrorCode_),
-    copied_(false),
-    status_(other.status_)
-    {
-      other.copied_ = true;
-    }
-  */
   CPLEXModel(const CPLEXModel& other) :
     AMPLModel(other),
     state_(other.state_),
@@ -143,8 +124,7 @@ public:
 
   void writeSol();
 
-
-  Status::Status getStatus() {
+  Status getStatus() {
     int cpxstatus = CPXgetstat(getCPLEXenv(), model_);
     switch (cpxstatus) 
     {
