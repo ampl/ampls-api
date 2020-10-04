@@ -40,9 +40,9 @@ XPRESSDrv::~XPRESSDrv() {
 XPRESSModel* XPRESSDrv::loadModelImpl(char** args) {
   XPRESSModel* m = new XPRESSModel();
   XPRSprob prob;
-  xpress::impl::XPressDriverState *s = 
-    xpress::impl::AMPLXPRESSloadModel(3, args, &m->prob_);
+  m->state_ = xpress::impl::AMPLXPRESSloadModel(3, args, &m->prob_);
   m->fileName_ = args[1];
+  
   return m;
 }
 XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
@@ -51,9 +51,11 @@ XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
   return c;
 }
 
-void XPRESSModel::writeSol() {
-  xpress::impl::AMPLXPRESSwriteSolution(state_, prob_);
+
+void XPRESSModel::writeSolImpl(const char* solFileName) {
+  xpress::impl::AMPLXPRESSwriteSolution(state_, prob_, solFileName);
 }
+
 
 int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
    

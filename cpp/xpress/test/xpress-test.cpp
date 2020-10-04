@@ -1,4 +1,4 @@
-#include "cplex_interface.h"
+#include "xpress_interface.h"
 
 #include "test-config.h" // for MODELS_DIR
 
@@ -17,7 +17,7 @@ data;
 
 set A := 1 2 3 aa bb cc 'a' 'b' 'c' "d" "e" "f" "4" '5' 6 'a a' "a b" 'ab[c]' "de[f]" 'ab"c' "ab'c";
 */
-class IBMCB :public ampls::CPLEXCallback 
+class IBMCB :public ampls::XPRESSCallback 
 {
 public:
   virtual int 
@@ -27,6 +27,7 @@ public:
     int    phase = -1;
     double suminf_or_objective;
     int    itcnt = -1;
+    /*
    // printf("Called with where: %s\n", getWhere(where_));
     if (where_ == CPX_CALLBACK_MIP_CUT_FEAS)
     {
@@ -38,6 +39,7 @@ public:
       for (int i = 0; i < sol.size(); i++)
         printf("x[%d] = %f\n", i, sol[i]);
         */
+    /*
       status= addLazy(vars, coefs, ampls::CBDirection::ge, 2);
       std::vector<int>indices;
       indices.push_back(1);
@@ -85,15 +87,15 @@ public:
     }
 
   TERMINATE:
-
+  */
     return (status);
   }
 };
 
-class MyCB : public ampls::CPLEXCallback
+class MyCB : public ampls::XPRESSCallback
 {
 public:
-  virtual int run(CPXCENVptr env, void* lp, int wf) {
+  virtual int run() {
     std::vector<std::string> vars;
     vars.push_back("x[1]");
     vars.push_back("x[2]");
@@ -130,11 +132,11 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
   int res = 0;
-  ampls::CPLEXDrv d;
+  ampls::XPRESSDrv d;
   IBMCB cb;
   double obj=0;
   try {
-    ampls::CPLEXModel m = d.loadModel(buffer);
+    ampls::XPRESSModel m = d.loadModel(buffer);
    
   
     res = m.setCallback(&cb);
@@ -156,7 +158,7 @@ int main(int argc, char** argv) {
   
   
 
-  ampls::CPLEXModel m2 = d.loadModel(buffer);
+  ampls::XPRESSModel m2 = d.loadModel(buffer);
  // res = m2.setCallback(&cb);
   m2.optimize();
   double obj2 = m2.getObj();

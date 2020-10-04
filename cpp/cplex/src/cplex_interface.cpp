@@ -4,6 +4,8 @@
 
 namespace ampls
 {
+namespace cpx {
+namespace impl {
 std::string getErrorMsg(CPXCENVptr env, int res) {
   char buffer[CPXMESSAGEBUFSIZE];
   CPXCCHARptr errstr = CPXgeterrorstring(env, res, buffer);
@@ -15,6 +17,8 @@ std::string getErrorMsg(CPXCENVptr env, int res) {
     sprintf(CODE, "CPLEX Error: %d. Unknown error code.", res);
     return CODE;
   }
+}
+}
 }
 CPLEXCallback* cpx::impl::CBWrap::setDefaultCB(CPXCENVptr env, void* cbdata,
   int wherefrom, void* userhandle)
@@ -101,8 +105,8 @@ CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
   return c;
 }
 
-void CPLEXModel::writeSol() {
-  cpx::impl::AMPLCPLEXwritesol(state_, model_, status_);
+void CPLEXModel::writeSolImpl(const char* solFileName) {
+  cpx::impl::AMPLCPLEXwritesol(state_, model_, status_, solFileName);
 }
 
 int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {

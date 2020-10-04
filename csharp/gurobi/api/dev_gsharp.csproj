@@ -48,7 +48,7 @@
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\AMPLModel.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\AMPLSolverException.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\BaseCallback.cs" />
-    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Direction.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\CutDirection.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GRBsvec.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GenericCallback.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\GurobiCallback.cs" />
@@ -81,6 +81,7 @@
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_std__vectorT_double_t.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_unsigned_int.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\SWIGTYPE_p_void.cs" />
+    <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Status.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Value.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Variant.cs" />
     <Compile Include="D:\Development\ampl\solvers-private\build\vs64\solvers-public\csharp\gurobi\swig\Where.cs" />

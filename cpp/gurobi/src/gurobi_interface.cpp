@@ -33,8 +33,8 @@ GurobiModel GurobiDrv::loadModel(const char* modelName) {
   return c;
 }
 
-void GurobiModel::writeSol() {
-  grb::impl::AMPLwritesol(GRBModel_, asl_, lastErrorCode_);
+void GurobiModel::writeSolImpl(const char* solFileName) {
+  grb::impl::AMPLwritesol(GRBModel_, asl_, lastErrorCode_, solFileName);
 }
 int GurobiModel::setCallbackDerived(impl::BaseCallback* callback) {
   return GRBsetcallbackfunc(GRBModel_, grb::impl::callback_wrapper, callback);

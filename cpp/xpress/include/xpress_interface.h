@@ -29,7 +29,7 @@ namespace xpress
         XPRSprob* modelPtr);
 
       ENTRYPOINT void AMPLXPRESSwriteSolution(XPressDriverState* state,
-        XPRSprob modelPtr);
+        XPRSprob modelPtr, const char* solFileName);
 
     }
     
@@ -144,8 +144,7 @@ public:
     other.copied_ = true;
   }
 
-  void writeSol();
-
+  void writeSolImpl(const char* solFileName);
 
   Status getStatus() {
     if (!isMIP())

@@ -43,7 +43,7 @@ namespace cpx
         CPXLPptr* modelPtr, ASL** aslPtr);
 
       ENTRYPOINT void AMPLCPLEXwritesol(CPLEXDriverState* state,
-        CPXLPptr modelPtr, int status);
+        CPXLPptr modelPtr, int status, const char* solFileName);
 
       ENTRYPOINT CPXENVptr AMPLCPLEXgetInternalEnv();
 
@@ -62,7 +62,7 @@ namespace cpx
       static CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
         int wherefrom, void* userhandle);
     };
-    std::string getErrorMsg(CPXCENVptr env, int res);
+    std::string getErrorMsg(CPXCENVptr env, int res); 
   }
 }
 
@@ -107,6 +107,7 @@ class CPLEXModel : public AMPLModel {
   
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+  void writeSolImpl(const char* solFileName);
 
 public:
   CPLEXModel(const CPLEXModel& other) :
@@ -122,8 +123,7 @@ public:
     other.copied_ = true;
   }
 
-  void writeSol();
-
+  
   Status getStatus() {
     int cpxstatus = CPXgetstat(getCPLEXenv(), model_);
     switch (cpxstatus) 

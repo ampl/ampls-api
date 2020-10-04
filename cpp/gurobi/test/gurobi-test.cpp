@@ -27,7 +27,7 @@ class MyGurobiCutCallback : public ampls::GurobiCallback
       for (int i = 0; i < sol.size(); i++)
         if(sol[i]!=0)
           printf("x[%d] = %f\n", i, sol[i]);
-      ret= addLazy(vars, coefs, ampls::CBDirection::ge, 2);
+      ret= addLazy(vars, coefs, ampls::CutDirection::ge, 2);
       if (ret != 0)
         printf("ERROR: %s\n", model_->error(ret).c_str());
     }

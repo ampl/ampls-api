@@ -30,7 +30,7 @@ namespace grb
       // Imported from the GUROBI driver
       ENTRYPOINT GRBmodel* AMPLloadmodel(int argc, char** argv);
       ENTRYPOINT GRBmodel* AMPLloadmodelNoLic(int argc, char** argv, ASL** asl);
-      ENTRYPOINT void AMPLwritesol(GRBmodel* m, ASL* asl, int lastoptimizerun);
+      ENTRYPOINT void AMPLwritesol(GRBmodel* m, ASL* asl, int lastoptimizerun, const char* solFileName);
       ENTRYPOINT void freeEnvironment();
       ENTRYPOINT void freeASL(ASL** aslp);
     }
@@ -78,7 +78,7 @@ class GurobiModel : public AMPLModel {
   // Interface implementation
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
-  
+  void writeSolImpl(const char* solFileName);
 public:
   void enableLazyConstraints()
   {
@@ -91,7 +91,7 @@ public:
     other.copied_ = true;
   }
   using AMPLModel::getSolutionVector;
-  void writeSol();
+
   int optimize();
 
   Status getStatus() {

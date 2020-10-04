@@ -32,12 +32,9 @@ set(SPHINX_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/source)
 set(SPHINX_BUILD ${CMAKE_CURRENT_BINARY_DIR}/docs/sphinx)
 set(SPHINX_INDEX_FILE ${SPHINX_BUILD}/index.html)
 
- file(GLOB_RECURSE DOC_SOURCES ${SPHINX_SOURCE}/*.rst)
- message("DOC_SOURCES ${DOC_SOURCES}")
+file(GLOB_RECURSE DOC_SOURCES ${SPHINX_SOURCE}/*.rst)
 
-
- set(COMMON_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../images/definitions.rst)
- message("CMD ${COMMON_FILES}")
+set(COMMON_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../images/definitions.rst)
 add_custom_command(OUTPUT ${SPHINX_INDEX_FILE}
                   COMMAND
                   ${SPHINX_EXECUTABLE} -b html

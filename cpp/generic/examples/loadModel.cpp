@@ -46,7 +46,10 @@ double doStuff(ampls::AMPLModel& m, const char *name)
     if (solution[i] != 0) nnz++;
   printf("Number of non zeroes = %d\n", nnz);
   // Write the AMPL sol file
-  m.writeSol();
+  char BUFFER[1024];
+  sprintf(BUFFER, "%s-%s.sol", m.getFileName().c_str(), name);
+  printf("Writing solution file to: %s\n", BUFFER);
+  m.writeSol(BUFFER);
   return obj;
 }
 

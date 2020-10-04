@@ -40,18 +40,18 @@ public:
     int nnz = 0;
     double val[] = { 1,1 };
     // Get the generic mapping
-    ampls::CBWhere::Where where = getAMPLType();
+    ampls::Where where = getAMPLType();
     switch (where)
     {
-    case ampls::CBWhere::msg:
+    case ampls::Where::msg:
       printf("**%s**\n", getMessage());
       return 0;
-    case ampls::CBWhere::presolve:
+    case ampls::Where::presolve:
                return 0;
-    case ampls::CBWhere::mip:
+    case ampls::Where::mip:
       break;
-    case ampls::CBWhere::mipsol:
-    case ampls::CBWhere::mipnode:
+    case ampls::Where::mipsol:
+    case ampls::Where::mipnode:
     {
       // TODO Check why in CPLEX this does not work
       auto sol = getSolutionVector();
@@ -60,7 +60,7 @@ public:
       printf("Non zeroes: %d\n", nnz);
     }
     nrun++;
-      stat=  addLazyIndices(2, ind, val, ampls::CBDirection::ge, 1);
+      stat=  addLazyIndices(2, ind, val, ampls::CutDirection::ge, 1);
       if (stat)
         printf("ERROR: %s\n", model_->error(stat).c_str());
       return 0;
@@ -77,7 +77,7 @@ double doStuff2(ampls::AMPLModel& m, const char *name)
 {
   // Set a (generic) callback
   MyGenericCallbackCut cb;
-  m.setGenericCallback(&cb);
+  m.setCallback(&cb);
   
   // Start the optimization process
   m.optimize();

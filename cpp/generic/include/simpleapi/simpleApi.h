@@ -365,8 +365,13 @@ protected:
   virtual impl::BaseCallback *createCallbackImplDerived(GenericCallback *callback)   {
     throw AMPLSolverException("Not implemented in base class!");
   };
-
+  virtual void writeSolImpl(const char* solFileName) {
+    throw AMPLSolverException("Not implemented in base class!");
+  };
 public:
+  std::string getFileName() {
+    return fileName_;
+  }
   AMPLModel(const AMPLModel &other) : fileName_(other.fileName_) {}
 
   /**
@@ -430,7 +435,13 @@ public:
   * Write the solution file
   */
   virtual void writeSol() {
-    throw AMPLSolverException("Not implemented in base class!");
+    writeSolImpl(NULL);
+  };
+  /**
+* Write the solution file
+*/
+  virtual void writeSol(const char* solFileName) {
+    writeSolImpl(solFileName);
   };
   /**
   Get "length" variables of the current problem in an array, starting at the specified
