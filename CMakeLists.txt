@@ -210,6 +210,11 @@ if(ENABLE_xpress)
   addsolverstub(xpress ${xpress_INCLUDE_DIR} ${xpress_LIBRARY}) 
 endif()
 
+if(WIN32)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/simpleapi)
+endif()
+
+
 add_subdirectory("doc")
 
 # Install python package structure install(

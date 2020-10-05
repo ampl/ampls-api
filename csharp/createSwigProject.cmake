@@ -21,8 +21,9 @@ set_source_files_properties(${SWIG_CSHARP_MODULE_NAME}.i PROPERTIES CPLUSPLUS
 set(SWIG_DEPENDS ../../cpp/${solvername}/swig/${solvername}-common.i)
 list(APPEND CMAKE_SWIG_FLAGS "-namespace;${solvername}sharp")
 add_swig_library(${CSHARP_SWIG_API} csharp ${SWIG_CSHARP_MODULE_NAME}.i)
-
+if(NOT ${solvername} STREQUAL "simpleapi")
 target_link_libraries(${CSHARP_SWIG_API} ${solvername}-drv ${solvername}-lib)
+endif()
 add_to_folder(${solvername}/swig/csharp ${CSHARP_SWIG_API})
 
 # For multi-config builds (e.g. msvc)
