@@ -1,0 +1,22 @@
+set(SRC_FILE "@CSHARP_PROJECT_SOURCE@")
+set(DEST_FILE "@CSHARP_PROJECT_DESTINATION@")
+
+set(SRC_FILES_LOCATION "@CSHARP_SWIGFILESLOCATION@")
+set(CSHARP_ADDITIONAL_FILES "@CSHARP_ADDITIONALFILES@")
+
+file(GLOB SWIGFILESLIST "${SRC_FILES_LOCATION}/*.cs")
+
+set(STRINGLIST "")
+foreach(FILE ${SWIGFILESLIST})
+  string( REPLACE "/" "\\" FILE ${FILE} )
+	set(STRINGLIST ${STRINGLIST} "<Compile Include=\"${FILE}\"" />)
+endforeach()
+foreach(FILE ${CSHARP_ADDITIONAL_FILES})
+  string( REPLACE "/" "\\" FILE ${FILE} )
+	set(STRINGLIST ${STRINGLIST} "<Compile Include=\"${FILE}\"" />)
+endforeach()
+
+string (REPLACE ";" " " STRINGLIST "${STRINGLIST}")
+#message("Configuring ${SRC_FILE} to ${DEST_FILE}")
+
+configure_file(${SRC_FILE} ${DEST_FILE} @ONLY)

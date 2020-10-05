@@ -61,7 +61,6 @@ if(MSVC)
       ${CSHARP_API_SOURCES_DIR}/dev_${solvername}sharp.csproj)
 
   set(CSHARP_SWIGFILESLOCATION ${CMAKE_SWIG_OUTDIR})
-  message("Setting CSHARP_SWIGFILESLOCATION to ${CSHARP_SWIGFILESLOCATION} ")
   configure_file(../ConfigureCSharpLib.cmake.in
                  ${CMAKE_CURRENT_BINARY_DIR}/ConfigureCSharpLib.cmake @ONLY)
   add_custom_command(
