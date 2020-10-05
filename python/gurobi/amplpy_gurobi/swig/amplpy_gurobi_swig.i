@@ -140,5 +140,6 @@
   }
 }
 
-%include "../../../../cpp/gurobi/swig/common.i"
+%include "../../../../cpp/generic/swig/generic-common.i"
+%include "../../../../cpp/gurobi/swig/gurobi-common.i"
 

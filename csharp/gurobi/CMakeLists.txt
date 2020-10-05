@@ -7,7 +7,7 @@ include(${CSHARP_USE_FILE})
 
 # ############ Create SWIG wrapper #############
 include_directories(
-  ${GUROBI_INCLUDE_DIR} # for gurobi header
+  ${gurobi_INCLUDE_DIR} # for gurobi header
   ${DIR_CPP_INCLUDE} # for gurobi api includes
   ${SIMPLEAPI_INCLUDE})
 

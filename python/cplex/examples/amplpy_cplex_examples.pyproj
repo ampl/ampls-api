@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{00edc474-0ae7-4f09-a49e-d27d4f5540c5}</ProjectGuid>
+    <ProjectGuid>{283cd7c7-5d9f-30aa-a236-67cb5c5a48ed}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>simple_callback.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>amplpy_gurobi_examples</Name>
-    <RootNamespace>amplpy_gurobi_examples</RootNamespace>
+    <Name>amplpy_cplex_examples</Name>
+    <RootNamespace>amplpy_cplex_examples</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

@@ -2,3 +2,4 @@
 *.col
 bin
 obj
+/csharp/cplex/api/dev_cpxsharp.csproj

@@ -1,20 +1,15 @@
-// Must be included before ASL, which
-// is included by cplex_interface and gurobi_interface
-#include "gurobi_c.h"
-//#include "cplex.h"
-
-
-//#include "cplex_interface.h"
-//#include "cplex_callback.h"
-
-
+#ifdef USE_cplex
+#include "cplex_interface.h"
+#endif
+#ifdef USE_gurobi
 #include "gurobi_interface.h"
-#include "gurobi_callback.h"
+#endif
+#ifdef USE_xpress
+#include "xpress_interface.h"
+#endif
 
 #include "simpleapi/simpleApi.h"
 #include "test-config.h" // for MODELS_DIR
-#include <cstring>
-#include <cstdio>
 
 const char* MODELNAME = "tsp.nl";
 /*
@@ -113,14 +108,26 @@ int main(int argc, char** argv) {
   char buffer[80];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
-  
+ 
+#ifdef USE_gurobi
+  // Load a model using gurobi driver
   ampls::GurobiDrv gurobi;
-  //CPLEXDrv cplex;
- // ampls::GurobiModel m = gurobi.loadModel(buffer);
-  //CPLEXModel c = cplex.loadModel(buffer);
-  //doStuff(m, "gurobi");
-  //doStuff(c, "cplex");*/
-  ampls::GurobiModel m = gurobi.loadModel(buffer);
-  ampls::AMPLModel* a = &m;
-  doStuff(*a, "gurobi");
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
+  // Use it as generic model
+  doStuff(g, "gurobi");
+#endif
+#ifdef USE_cplex
+  // Load a model using CPLEX driver
+  ampls::CPLEXDrv cplex;
+  ampls::CPLEXModel c = cplex.loadModel(buffer);
+  // Use it as generic model
+  doStuff(c, "cplex");
+#endif
+#ifdef USE_xpress
+  // Load a model using CPLEX driver
+  ampls::XPRESSDrv xpress;
+  ampls::XPRESSModel x = xpress.loadModel(buffer);
+  // Use it as generic model
+  doStuff(x, "xpress");
+#endif
 }

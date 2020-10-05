@@ -1,21 +1,15 @@
-// Must be included before ASL, which
-// is included by cplex_interface and gurobi_interface
-#include "gurobi_c.h"
-#include "ilcplex/cplex.h"
-
-
+#ifdef USE_cplex
 #include "cplex_interface.h"
-#include "cplex_callback.h"
-
-
+#endif
+#ifdef USE_gurobi
 #include "gurobi_interface.h"
-#include "gurobi_callback.h"
+#endif
+#ifdef USE_xpress
+#include "xpress_interface.h"
+#endif
 
 #include "simpleapi/simpleApi.h"
 #include "test-config.h" // for MODELS_DIR
-#include <cstring>
-#include <cstdio>
-
 /*
 set A;
 var scalar >= 0, <= 4;
@@ -73,7 +67,7 @@ public:
 
 };
 
-double doStuff2(ampls::AMPLModel& m, const char *name) 
+double doStuff(ampls::AMPLModel& m, const char *name) 
 {
   // Set a (generic) callback
   MyGenericCallbackCut cb;
@@ -104,15 +98,30 @@ void main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "queens18.nl");
 
-  ampls::CPLEXDrv cplex;
-  ampls::CPLEXModel cm = cplex.loadModel(buffer);
-  doStuff2(cm, "cplex");
-  
+#ifdef USE_gurobi
+  // Load a model using gurobi driver
   ampls::GurobiDrv gurobi;
-  ampls::GurobiModel mg = gurobi.loadModel(buffer);
-  mg.enableLazyConstraints();
-  doStuff2(mg, "gurobi");
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
+  g.enableLazyConstraints();
+  // Use it as generic model
+  doStuff(g, "gurobi");
+#endif
 
+#ifdef USE_cplex
+  // Load a model using CPLEX driver
+  ampls::CPLEXDrv cplex;
+  ampls::CPLEXModel c = cplex.loadModel(buffer);
+  // Use it as generic model
+  doStuff(c, "cplex");
+#endif
+
+#ifdef USE_xpress
+  // Load a model using CPLEX driver
+  ampls::XPRESSDrv xpress;
+  ampls::XPRESSModel x = xpress.loadModel(buffer);
+  // Use it as generic model
+  doStuff(x, "xpress");
+#endif
 
   /* TODO: Reassign gurobi model does not work
   //mg.optimize();

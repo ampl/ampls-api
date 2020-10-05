@@ -140,5 +140,6 @@
   }
 }
 
-%include "../../../cpp/cplex/swig/common.i"
+%include "../../../cpp/generic/swig/generic-common.i"
+%include "../../../cpp/cplex/swig/cplex-common.i"
 

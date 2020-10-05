@@ -12,7 +12,7 @@ namespace cpxsharp_test
     private class CB : CPLEXCallback
     {
       int count = 0;
-      public override int run(int wf)
+      public override int run()
       {
         var map = getVarMap();
        // foreach (var m in map)
@@ -50,7 +50,7 @@ namespace cpxsharp_test
     private class GCB : GenericCallback
     {
 
-      public override int run(int wf)
+      public override int run()
       {
         var f = getAMPLType();
         switch(f)
@@ -66,7 +66,7 @@ namespace cpxsharp_test
             Console.WriteLine("MIP Objective = {0}", getObjective());
             break;
           case Where.notmapped:
-            Console.WriteLine($"Not mapped! Where = {getWhere(wf)}");
+            Console.WriteLine($"Not mapped! Where = {getWhere()}");
             break;
 
           default:
@@ -88,7 +88,7 @@ namespace cpxsharp_test
                 //m.setCallback(cb);
 
                 GCB gcb = new GCB();
-                m.setGenericCallback(gcb);
+                m.setCallback(gcb);
                 double obj = m.optimize();
                 Console.WriteLine("Solution with CPLEX={0}", m.getObj());
                 double[] sol = new double[nvars];

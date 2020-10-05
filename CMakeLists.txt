@@ -8,11 +8,31 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
                       ${CMAKE_CURRENT_SOURCE_DIR}/support/cmake)
 
-# Initial values for solvers builds. If set to 0, the targets are ignored
-set(ENABLE_cplex 1)
-set(ENABLE_gurobi 1)
-set(ENABLE_knitro 0)
-set(ENABLE_xpress 1)
+
+# Set solvers to build.
+set(SOLVER_NAMES cplex gurobi xpress)
+set(BUILD "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
+if (BUILD)
+  if (BUILD STREQUAL all)
+    message(STATUS "Building all solvers")
+  else()
+    string(REGEX MATCHALL "[^,]+" SOLVERS_TOBUILD "${BUILD}")
+    # Disable all
+    foreach(s ${SOLVER_NAMES})
+      set(ENABLE_${s} OFF)
+    endforeach()
+    # Enable only the ones specified
+    foreach(s ${SOLVERS_TOBUILD})
+      if (NOT ${s} IN_LIST SOLVER_NAMES)
+        message(WARNING "${s} is not a valid solver library name.")
+      endif()
+      set(ENABLE_${s} ON)
+      message(STATUS "Building library for solver ${s}")
+    endforeach()
+  endif()
+else()
+  message(WARNING "Specify the solvers to build with -DBUILD=solvername1,..,solvernamen or -DBUILD=all")
+endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 include(addPrefix) # for add_prefix and add_to_folder
@@ -62,26 +82,26 @@ add_subdirectory(cpp/generic)
 
 # Solver vendors libraries and headers locations
 set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-set(GUROBI_BASE_DIR ${SOLVERLIBS}/gurobi/902)
-set(CPLEX_BASE_DIR ${SOLVERLIBS}/cplex/1210)
-set(XPRESS_BASE_DIR ${SOLVERLIBS}/xpress/36.01.10)
-set(GUROBI_INCLUDE_DIR ${GUROBI_BASE_DIR}/include)
-set(CPLEX_INCLUDE_DIR ${CPLEX_BASE_DIR}/include)
-set(XPRESS_INCLUDE_DIR ${XPRESS_BASE_DIR}/include)
+set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/902)
+set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/1210)
+set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/36.01.10)
+set(gurobi_INCLUDE_DIR ${gurobi_BASE_DIR}/include)
+set(cplex_INCLUDE_DIR ${cplex_BASE_DIR}/include)
+set(xpress_INCLUDE_DIR ${xpress_BASE_DIR}/include)
 if(WIN32)
-    set(GUROBI_LIBRARY ${GUROBI_BASE_DIR}/lib/win64/gurobi90.lib)
-    set(CPLEX_LIBRARY ${CPLEX_BASE_DIR}/lib/win64/cplex12100.lib)
-    set(XPRESS_LIBRARY ${XPRESS_BASE_DIR}/lib/win64/xprs.lib)
+    set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/win64/gurobi90.lib)
+    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/win64/cplex12100.lib)
+    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/win64/xprs.lib)
 elseif(APPLE)
-    set(GUROBI_LIBRARY ${GUROBI_BASE_DIR}/lib/osx64/libgurobi90.dylib)
-    set(CPLEX_LIBRARY ${CPLEX_BASE_DIR}/lib/osx64/libcplex.a)
-    set(XPRESS_LIBRARY ${XPRESS_BASE_DIR}/lib/osx64/libxprl.dylib
-                       ${XPRESS_BASE_DIR}/lib/osx64/libxprs.dylib)
+    set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/osx64/libgurobi90.dylib)
+    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/osx64/libcplex.a)
+    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/osx64/libxprl.dylib
+                       ${xpress_BASE_DIR}/lib/osx64/libxprs.dylib)
 else()
-    set(GUROBI_LIBRARY ${GUROBI_BASE_DIR}/lib/linux64/libgurobi90.so)
-    set(CPLEX_LIBRARY ${CPLEX_BASE_DIR}/lib/linux64/libcplex.a)
-    set(XPRESS_LIBRARY ${XPRESS_BASE_DIR}/lib/linux64/libxprl.so.x8.10
-                       ${XPRESS_BASE_DIR}/lib/linux64/libxprs.so.36.01)
+    set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/linux64/libgurobi90.so)
+    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/linux64/libcplex.a)
+    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/linux64/libxprl.so.x8.10
+                       ${xpress_BASE_DIR}/lib/linux64/libxprs.so.36.01)
 endif()
 
 # AMPL base driver library locations
@@ -163,8 +183,8 @@ function(AddSolverStub solver includes libs)
         include(UseSWIG)
         # Create custom target for common swig files, couldn't find a way to add
         # them as headers
-        add_custom_target(${solver}-common SOURCES ${SWIGCOMMONSRC}
-                                                   ${DIR_SWIG}/common.i)
+        add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/generic/swig/generic-common.i
+                                                   ${DIR_SWIG}/${solver}-common.i)
         add_to_folder(${solver}/swig ${solver}-common)
         add_subdirectory(${DIR_PYTHON})
         if(WIN32)
@@ -175,11 +195,11 @@ function(AddSolverStub solver includes libs)
 endfunction()
 
 if(ENABLE_gurobi)
-  addsolverstub(gurobi ${GUROBI_INCLUDE_DIR} ${GUROBI_LIBRARY})
+  addsolverstub(gurobi ${gurobi_INCLUDE_DIR} ${gurobi_LIBRARY})
 endif()
 
 if(ENABLE_cplex)
-  addsolverstub(cplex ${CPLEX_INCLUDE_DIR} ${CPLEX_LIBRARY})
+  addsolverstub(cplex ${cplex_INCLUDE_DIR} ${cplex_LIBRARY})
 endif()
 
 if(ENABLE_KNITRO)
@@ -187,7 +207,7 @@ if(ENABLE_KNITRO)
 endif()
 
 if(ENABLE_xpress)
-  addsolverstub(xpress ${XPRESS_INCLUDE_DIR} ${XPRESS_LIBRARY}) 
+  addsolverstub(xpress ${xpress_INCLUDE_DIR} ${xpress_LIBRARY}) 
 endif()
 
 add_subdirectory("doc")

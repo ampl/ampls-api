@@ -7,7 +7,7 @@ include(${CSHARP_USE_FILE})
 
 # ############ Create SWIG wrapper #############
 include_directories(
-  ${CPLEX_INCLUDE_DIR} # for cplex headers
+  ${cplex_INCLUDE_DIR} # for cplex headers
   ${DIR_CPP_INCLUDE} # for cplex api includes
   ${SIMPLEAPI_INCLUDE})
 

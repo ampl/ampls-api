@@ -17,32 +17,45 @@ if(NOT WIN32)
 endif()
 add_to_folder(simpleapi simpleapi)
 
+# Check which libraries are being built and add only the relevant
+# examples and link libs
+set(LINKLIBS "")
+set(PREPROCESSORDEFS "")
+foreach(s ${SOLVER_NAMES})
+ if(${ENABLE_${s}})
+    set(LINKLIBS ${LINKLIBS} ${s}-drv)
+    set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_${s}=1)
+ endif()
+ endforeach()
 
 # Examples
 macro(addExample name category src)
     set(tar ${category}-${name}) 
     add_executable(${tar} ${src})
+    target_compile_definitions(${tar} PRIVATE ${PREPROCESSORDEFS})
     target_include_directories(${tar} PRIVATE
        ${GENERATED_INCLUDE_DIR} # for test-config
      )
-    target_link_libraries(${tar} gurobi-drv cplex-drv xpress-drv)
+    target_link_libraries(${tar} ${LINKLIBS})
     add_to_folder(${category}/examples ${tar})
+
 endmacro()
 
-set(EXAMPLES loadModel getInformation simpleCuts)
-foreach(e ${EXAMPLES})
-    addExample(${e} simpleapi ${SIMPLEAPI_DIR}/examples/${e}.cpp)
-endforeach()
-
-add_prefix(TEST_SOURCES ${SIMPLEAPI_DIR}/test/
-  api-test.cpp)
-add_executable(simpleapi-test ${TEST_SOURCES})
-target_include_directories(simpleapi-test PRIVATE
-   ${GENERATED_INCLUDE_DIR} # for test-config
- )
-target_link_libraries(simpleapi-test gurobi-drv cplex-drv)
-add_to_folder(simpleapi simpleapi-test)
-
+if(LINKLIBS)
+    set(EXAMPLES loadModel getInformation simpleCuts)
+    foreach(e ${EXAMPLES})
+        addExample(${e} simpleapi ${SIMPLEAPI_DIR}/examples/${e}.cpp)
+    endforeach()
+    add_prefix(TEST_SOURCES ${SIMPLEAPI_DIR}/test/
+      api-test.cpp)
+    add_executable(simpleapi-test ${TEST_SOURCES})
+    target_compile_definitions(simpleapi-test PRIVATE ${PREPROCESSORDEFS})
+    target_include_directories(simpleapi-test PRIVATE
+       ${GENERATED_INCLUDE_DIR} # for test-config
+     )
+    target_link_libraries(simpleapi-test ${LINKLIBS})
+    add_to_folder(simpleapi simpleapi-test)
+endif()
 #install(
     #FILES ${SIMPLEAPI_SOURCES}
     #DESTINATION amplpy_gurobi/amplpy_gurobi/simpleapi/
