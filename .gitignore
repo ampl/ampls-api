@@ -3,3 +3,5 @@
 bin
 obj
 /csharp/cplex/api/dev_cpxsharp.csproj
+/csharp/cplex/api/dev_cplexsharp.csproj
+/csharp/gurobi/api/dev_gurobisharp.csproj
