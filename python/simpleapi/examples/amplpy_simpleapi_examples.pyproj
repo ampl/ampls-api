@@ -2,15 +2,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{00edc474-0ae7-4f09-a49e-d27d4f5540c5}</ProjectGuid>
+    <ProjectGuid>{a36c4fe6-24e9-423e-8a12-b812ca9c91d7}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>progress_callback.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <SearchPath>..\..\..\..\solvers-private\build\vs\bin\Debug</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>amplpy_gurobi_examples</Name>
-    <RootNamespace>amplpy_gurobi_examples</RootNamespace>
+    <Name>amplpy_simpleapi_examples</Name>
+    <RootNamespace>amplpy_simpleapi_examples</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

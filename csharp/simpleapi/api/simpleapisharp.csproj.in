@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{235291BA-3EFA-4EFD-A738-472E5DA8B48C}</ProjectGuid>
+    <ProjectGuid>{235291CC-3EFA-4EFD-A738-472E5DA8B48C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>simpleapisharp</RootNamespace>

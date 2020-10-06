@@ -12,7 +12,7 @@ include_directories(
 
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/bin)
-set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/grbpy_c)
+set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
 set(SWIG_PYTHON_MODULE_NAME "amplpy_${solvername}/swig/amplpy_${solvername}_swig")
 
@@ -26,8 +26,12 @@ set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES SWIG_FLAGS
                                                                     "-builtin")
 
 add_swig_library(${PYTHON_SWIG_API} python ${SWIG_PYTHON_MODULE_NAME}.i)
+if(NOT ${solvername} STREQUAL "simpleapi")
 swig_link_libraries(${PYTHON_SWIG_API} ${solvername}-drv                    
                     ${PYTHON_LIBRARIES})
+else()
+swig_link_libraries(${PYTHON_SWIG_API} ${PYTHON_LIBRARIES})
+endif()
 
 # From this moment on, PYTHON_SWIG_API has the correct (prefixed) name Can be
 # omitted if cmake supports policies CMP0078 and CMP0086

@@ -212,6 +212,7 @@ endif()
 
 if(WIN32)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/simpleapi)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/simpleapi)
 endif()
 
 

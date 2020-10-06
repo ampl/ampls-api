@@ -22,7 +22,9 @@
 
 namespace std {
   %template(map_string_int)map<string, int>;
+  %template(map_int_string)map<int, string>;
   %template(vector_string)vector<string>;
+  %template(vector_double)vector<double>;
 }
 
 %feature("director") ampls::GenericCallback;

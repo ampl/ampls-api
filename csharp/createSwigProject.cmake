@@ -14,7 +14,7 @@ include_directories(
 
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/swig)
-set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${solvername}sharp_c)
+set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set(SWIG_CSHARP_MODULE_NAME "swig/${solvername}sharp_c")
 set_source_files_properties(${SWIG_CSHARP_MODULE_NAME}.i PROPERTIES CPLUSPLUS
                                                                     ON)
