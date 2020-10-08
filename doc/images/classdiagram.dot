@@ -1,36 +1,34 @@
 digraph hierarchy {
-size="5,5"
+
 node[shape=record,style=filled,fillcolor=gray95]
 edge[dir=back, arrowtail=empty]
 
-SolverDriver[label = "{SolverDriver\<T\>|+ loadMutex|+ loadModelGeneric()}"]
-GurobiDrv[label = "{GurobiDrv|+ GRBModel* GRBModel_\n+ ASL* ASL_| + loadModel()}"]
-CPLEXDrv[label = "{CPLEXDrv|...| + compactNodes()\l...}"]
+#SolverDriver[label = "{SolverDriver\<T\>|+ loadMutex|+ loadModel()}"]
+#GurobiDrv[label = "{GurobiDrv|+ GRBModel* GRBModel_\n+ ASL* ASL_| + loadModel()}"]
+#CPLEXDrv[label = "{CPLEXDrv|...| + compactNodes()\l...}"]
 
-AMPLModel[label = "{AMPLModel|...|+ optimize()\l...}"]
-GurobiModel[label = "{GurobiModel|...|\l...}"]
-CPLEXModel[label = "{CPLEXModel|...|\l...}"]
+AMPLModel[label = "{AMPLModel|...|+ enableLazyConstraints()\l+ getFileName()\l+ getVarMap()\l+ getVarMapInverse()\l+ getVarMapFiltered()\l+ setCallback()\l+ getNumVars()\l+ getObj()\l+ getSolutionVector()\l+ getStatus()\l+ optimize()\l+ writeSol()\l}"]
+GurobiModel[label = "{GurobiModel|...|+ getIntAttr()\l+ getDoubleAttr()\l+ getIntAttrArray()\l+ getDoubleAttrArray()\l+ getIntParam()\l+ getIntAttr()\l+ getDoubleParam()\l+ getStrParam()\l+ setIntParam()\l+ setDoubleParam()\l+ setStrParam()\l|+ getGRBmodel()\l+ getGRBenv()\l}"]
+CPLEXModel[label = "{CPLEXModel|...|+ getCPXmodel()\l+ getCPLEXenv()\l}"]
 
-BaseCB[label = "{BaseCallback|...|+ getSolution()\l...}"]
+BaseCB[label = "{BaseCallback|...|+ run()\l+ getVarMap()\l+ getVarMapInverse()\l+ addCut()\l+ addLazy()\l+ getSolutionVector()\l+ getObjective()\l+ getWhere()\l+ getMessage()\l|+ getAMPLType()\l+ getValue()\l}"]
 GenericCB[label = "{GenericCallback|...|\l...}"]
 CPLEXCB[label = "{CPLEXCallback|...|\l...}"]
 GurobiCB[label = "{GurobiCallback|...|\l...}"]
 
-
-
-SolverDriver->GurobiDrv
-SolverDriver->CPLEXDrv
+#SolverDriver->GurobiDrv
+#SolverDriver->CPLEXDrv
 
 AMPLModel->GurobiModel
 AMPLModel->CPLEXModel
 
 
-BaseCB->GenericCB
-BaseCB->CPLEXCB
-BaseCB->GurobiCB
+#BaseCB->GenericCB
+#BaseCB->CPLEXCB
+#BaseCB->GurobiCB
 
 # not compatible with VS
 #AMPLModel->SolverDriver[constraint=false, arrowtail=odiamond]
-GenericCB->AMPLModel[constraint=false, arrowtail=none]
+#GenericCB->AMPLModel[constraint=false, arrowtail=none]
 }
 

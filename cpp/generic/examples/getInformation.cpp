@@ -12,18 +12,7 @@
 #include "test-config.h" // for MODELS_DIR
 
 const char* MODELNAME = "tsp.nl";
-/*
-set A;
-var scalar >= 0, <= 4;
-var x{a in A} >=0;
-var y{a in A, b in A}>=0;
-maximize z: scalar + sum{a in A} x[a] + sum{a in A, b in A} y[a,b]*0.1;
-c{a in A}: x[a] + sum{b in A} y[a,b] <= 42;
 
-data;
-
-set A := 1 2 3 aa bb cc 'a' 'b' 'c' "d" "e" "f" "4" '5' 6 'a a' "a b" 'ab[c]' "de[f]" 'ab"c' "ab'c";
-*/
 class MyGenericCallback : public ampls::GenericCallback
 {
   virtual int run()
@@ -93,11 +82,9 @@ double doStuff(ampls::AMPLModel& m, const char *name)
       printf("Status: %d\n", s);
   }
   // Get the solution vector
-  std::size_t nr = m.getNumVars();
-  std::vector<double> solution(nr);
-  m.getSolution(0, nr, solution.data());
+  std::vector<double> solution = m.getSolutionVector();
   int nnz = 0;
-  for (int i = 0; i < nr; i++)
+  for (int i = 0; i < solution.size(); i++)
     if (solution[i] != 0) nnz++;
   printf("\nNumber of non zeroes = %d\n", nnz);
 

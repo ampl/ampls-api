@@ -90,8 +90,8 @@ class MyCallback(gpy.GRBCallback):
 model = gpy.DRIVER.loadModel('modelint.nl')
 
 # Turn off display and heuristics
-model.setIntParam('OutputFlag', 0)
-model.setIntParam('Heuristics', 0)
+#model.setIntParam('OutputFlag', 0)
+#model.setIntParam('Heuristics', 0)
 
 # Open log file
 logfile = open('cb.log', 'w+')

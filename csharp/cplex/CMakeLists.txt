@@ -1,2 +1,2 @@
-include("../createSwigProject.cmake")
-createSwigProject(cplex)
+include("../createCsharpProject.cmake")
+createCsharpProject(cplex)

@@ -1,0 +1,18 @@
+digraph hierarchy {
+size="6,6"
+node[shape=record,style=filled,fillcolor=white]
+edge[dir=back, arrowtail=empty]
+
+
+BaseCallback[label = "{BaseCallback|...|+ run()\l+ getVarMap()\l+ getVarMapInverse()\l+ addCut()\l+ addLazy()\l+ getSolutionVector()\l+ getObjective()\l+ getWhere()\l+ getMessage()\l|+ getAMPLType()\l+ getValue()\l}"]
+GenericCallback[label = "{GenericCallback|...|\l...}"]
+CPLEXCallback[label = "{CPLEXCallback|...|\l...}"]
+GurobiCallback[label = "{GurobiCallback|...|\l...}"]
+XPRESSCallback[label = "{XPRESSCallback|...|\l...}"]
+
+BaseCallback->GenericCallback
+BaseCallback->CPLEXCallback
+BaseCallback->GurobiCallback
+BaseCallback->XPRESSCallback
+}
+

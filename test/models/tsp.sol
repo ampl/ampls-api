@@ -1,6 +1,8 @@
-Gurobi 9.0.3: optimal solution; objective 379.36228176040595
-82 simplex iterations
-No dual variables returned.
+XPRESS 8.10.0(36.01.10): Global search complete
+Best integer solution found 379.362281760406
+3 integer solutions have been found
+1 branch and bound node
+No basis.
 
 Options
 3
@@ -8,7 +10,7 @@ Options
 1
 0
 102
-0
+102
 2550
 2550
 0
@@ -43,6 +45,108 @@ Options
 0
 0
 0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
 1
 0
 0
@@ -2561,8 +2665,4 @@ Options
 0
 0
 0
-objno 0 0
-suffix 0 0 8 0 0
-sstatus
-suffix 1 0 8 0 0
-sstatus
+objno 0 2

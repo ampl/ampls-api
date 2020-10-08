@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace cpxsharp
+namespace cplexsharp
 {
   public static class Utils
   {

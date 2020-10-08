@@ -1,2 +1,2 @@
-include("../createSwigProject.cmake")
-createSwigProject(gurobi)
+include("../createCsharpProject.cmake")
+createCsharpProject(gurobi)

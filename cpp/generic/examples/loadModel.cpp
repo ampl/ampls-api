@@ -1,4 +1,4 @@
-#ifdef USE_cplex
+#ifdef USE_cplex 
 #include "cplex_interface.h"
 #endif
 #ifdef USE_gurobi
@@ -12,6 +12,7 @@
 #include "test-config.h" // for MODELS_DIR
 
 const char* MODELNAME = "tsp.nl";
+
 double doStuff(ampls::AMPLModel& m, const char *name) 
 {
   // Start the optimization process

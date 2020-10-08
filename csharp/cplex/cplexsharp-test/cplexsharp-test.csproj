@@ -50,21 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\api\dev_cpxsharp.csproj">
-      <Project>{2138a0c3-4c0f-436a-b5b0-da18ea56afe3}</Project>
-      <Name>dev_cpxsharp</Name>
+    <ProjectReference Include="..\api\dev_cplexsharp.csproj">
+      <Project>{5003e728-ea01-318d-a435-57763b66e123}</Project>
+      <Name>dev_cplexsharp</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="cplex-lib.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cplex12100.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="cpxsharp_c.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

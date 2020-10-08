@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using cpxsharp;
+using gurobisharp;
 
-namespace cpxsharp_test
+namespace gurobisharp_test
 {
   class Program
   {
-    private class CB : CPLEXCallback
+    private class CB : GurobiCallback
     {
       int count = 0;
       public override int run()
@@ -78,7 +78,7 @@ namespace cpxsharp_test
 
       static void Main(string[] args)
     {
-      CPLEXDrv g = new CPLEXDrv();
+      GurobiDrv g = new GurobiDrv();
             try
             {
                 var m = g.loadModel(@"D:\Development\AMPL\solvers-public\test\models\tsp.nl");

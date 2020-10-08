@@ -18,10 +18,10 @@ Generic
 
 |
 
-.. doxygenenum:: ampls::CBWhere::Where
+.. doxygenenum:: ampls::Where
 
 |
-.. doxygenenum:: ampls::CBValue::Value
+.. doxygenenum:: ampls::Value
 
 |
 

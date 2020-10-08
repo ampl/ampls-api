@@ -5,11 +5,12 @@
     <ProjectGuid>{a36c4fe6-24e9-423e-8a12-b812ca9c91d7}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>progress_callback.py</StartupFile>
-    <SearchPath>..\..\..\..\solvers-private\build\vs\bin\Debug</SearchPath>
-    <WorkingDirectory>.</WorkingDirectory>
+    <SearchPath>..\..\..\..\solvers-private\build\vs64\bin</SearchPath>
+    <WorkingDirectory>D:\Development\ampl\solvers-private\build\vs64\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>amplpy_simpleapi_examples</Name>
     <RootNamespace>amplpy_simpleapi_examples</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

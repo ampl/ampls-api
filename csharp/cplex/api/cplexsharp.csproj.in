@@ -7,8 +7,8 @@
     <ProjectGuid>{295191BA-3EFA-4EFD-A738-472E5DA8B48C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>cpxsharp</RootNamespace>
-    <AssemblyName>dev_cpxsharp</AssemblyName>
+    <RootNamespace>cplexsharp</RootNamespace>
+    <AssemblyName>dev_cplexsharp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -37,10 +37,10 @@
     <Reference Include="System.Data.DataSetExtensions"/>
     <Reference Include="Microsoft.CSharp"/>
     <Reference Include="System.Data"/>
-    <Reference Include="System.Net.Http"/>
     <Reference Include="System.Xml"/>
   </ItemGroup>
   <ItemGroup>
+  <Compile Include="Utils.cs" />
     @STRINGLIST@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

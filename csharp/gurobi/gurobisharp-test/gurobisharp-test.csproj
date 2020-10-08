@@ -52,7 +52,7 @@
   <ItemGroup>
     <ProjectReference Include="..\api\dev_gurobisharp.csproj">
       <Project>{2138a0c3-4c0f-436a-b5b0-da18ea56afe3}</Project>
-      <Name>dev_cpxsharp</Name>
+      <Name>dev_gurobisharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

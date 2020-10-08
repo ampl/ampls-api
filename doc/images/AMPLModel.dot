@@ -1,0 +1,17 @@
+digraph hierarchy {
+size="6,6"
+node[shape=record,style=filled,fillcolor=white]
+edge[dir=back, arrowtail=empty]
+
+AMPLModel[label = "{AMPLModel|...|+ enableLazyConstraints()\l+ getFileName()\l+ getVarMap()\l+ getVarMapInverse()\l+ getVarMapFiltered()\l+ setCallback()\l+ getNumVars()\l+ getObj()\l+ getSolutionVector()\l+ getStatus()\l+ optimize()\l+ writeSol()\l}"]
+GurobiModel[label = "{GurobiModel|...|+ getIntAttr()\l+ getDoubleAttr()\l+ getIntAttrArray()\l+ getDoubleAttrArray()\l+ getIntParam()\l+ getIntAttr()\l+ getDoubleParam()\l+ getStrParam()\l+ setIntParam()\l+ setDoubleParam()\l+ setStrParam()\l|+ getGRBmodel()\l+ getGRBenv()\l}"]
+CPLEXModel[label = "{CPLEXModel|...|+ getCPXmodel()\l+ getCPLEXenv()\l}"]
+XPRESSModel[label = "{XPRESSModel|...|+ getXPRESSprob()\l}"]
+XPRESSModel[label = "{XPRESSModel|...|+ getXPRESSprob() \l}"]
+
+
+AMPLModel->GurobiModel
+AMPLModel->CPLEXModel
+AMPLModel->XPRESSModel
+}
+

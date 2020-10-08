@@ -18,10 +18,12 @@ namespace simpleapiharp_test
                 switch (f)
                 {
                     case Where.msg:
-                        //Console.WriteLine(getMessage());
+                        Console.WriteLine(getMessage());
                         break;
                     case Where.presolve:
-                        //Console.WriteLine("Presolve!");
+                        Console.WriteLine("Presolve: {0} coefficient changed, {1} columns and {2} rows eliminated",
+                            getValue(Value.pre_coeffchanged).integer, getValue(Value.pre_delcols).integer,
+                            getValue(Value.pre_delrows).integer);
                         break;
                     case Where.mipnode:
                     case Where.mipsol:
@@ -46,16 +48,18 @@ namespace simpleapiharp_test
         }
         static void DoStuff(AMPLModel m)
         {
+            // Get the number of variables
             int nvars = m.getNumVars();
             GCB gcb = new GCB();
             m.setCallback(gcb);
             double obj = m.optimize();
             var sol = m.getSolutionVector().Where(a => a != 0).ToList();
+            Console.WriteLine($"Status: {m.getStatus().ToString()}");
             Console.WriteLine($"Solution of {m.GetType().Name}={m.getObj()}, nnz={sol.Count()}");
             var map = m.getVarMapInverse();
-            for (int i = 0; i < sol.Count; i++)
+            Console.WriteLine($"First 10 non zeroes:");
+            for (int i = 0; i < Math.Min(sol.Count, 10); i++)
                 Console.WriteLine($"{map[i]}: {sol[i]}");
-            m.writeSol();
         }
 
         static void Main(string[] args)

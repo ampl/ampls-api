@@ -8,6 +8,6 @@
     <StartProgram>D:\Development\ampl\solvers-public\csharp\cplex\cpxsharp-test\bin\Debug\cpxsharp-test.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <StartWorkingDirectory>D:\Development\ampl\solvers-private\build\vs\bin\</StartWorkingDirectory>
+    <StartWorkingDirectory>D:\Development\ampl\solvers-private\build\vs64\bin\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>
