@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using gurobisharp;
+using Where = gurobisharp.Where.CBWhere;
 
 namespace gurobisharp_test
 {
@@ -55,7 +56,7 @@ namespace gurobisharp_test
         var f = getAMPLType();
         switch(f)
         {
-          case Where.msg:
+          case Where.lpsolve:
             Console.WriteLine(getMessage());
             break;
           case Where.presolve:

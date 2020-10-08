@@ -25,7 +25,7 @@ class GurobiCallback : public impl::BaseCallback {
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,
-    const double* coeffs, CutDirection direction, double rhs,
+    const double* coeffs, CutDirection::Direction direction, double rhs,
     int type);
 
 public:
@@ -64,7 +64,7 @@ public:
     return res;
   }
 
-  virtual Where getAMPLType() {
+  virtual Where::CBWhere getAMPLType() {
     switch (where_)
     {
     case GRB_CB_MESSAGE:
@@ -85,7 +85,7 @@ public:
 
   }
   Variant get(int what);
-  virtual Variant getValue(Value v) {
+  virtual Variant getValue(Value::CBValue v) {
     switch (v)
     {
     case Value::obj:

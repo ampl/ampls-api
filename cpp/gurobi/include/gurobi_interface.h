@@ -94,7 +94,7 @@ public:
 
   int optimize();
 
-  Status getStatus() {
+  Status::SolStatus getStatus() {
     int grbstatus = getIntAttr(GRB_INT_ATTR_STATUS);
     switch (grbstatus)
     {

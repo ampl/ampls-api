@@ -50,7 +50,7 @@ class XPRESSCallback : public impl::BaseCallback {
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,
-    const double* coeffs, CutDirection direction, double rhs,
+    const double* coeffs, CutDirection::Direction direction, double rhs,
     int type);
 public:
 
@@ -67,7 +67,7 @@ public:
   const char* getWhere();
   const char* getMessage();
 
-  Where getAMPLType() {
+  Where::CBWhere getAMPLType() {
     switch (static_cast<xpress::impl::XPRESSWhere>(where_))
     {
     case xpress::impl::XPRESSWhere::message:
@@ -94,7 +94,7 @@ public:
     XPRSgetdblattrib(prob_, what, &val);
     return val;
   }
-  virtual Variant getValue(Value v) {
+  virtual Variant getValue(Value::CBValue v) {
     switch (v)
     {
     case Value::pre_delcols:

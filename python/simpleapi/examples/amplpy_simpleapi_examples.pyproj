@@ -6,11 +6,12 @@
     <ProjectHome>.</ProjectHome>
     <StartupFile>progress_callback.py</StartupFile>
     <SearchPath>..\..\..\..\solvers-private\build\vs64\bin</SearchPath>
-    <WorkingDirectory>D:\Development\ampl\solvers-private\build\vs64\bin</WorkingDirectory>
+    <WorkingDirectory>D:\Development\ampl\solvers-private\build\vs\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>amplpy_simpleapi_examples</Name>
     <RootNamespace>amplpy_simpleapi_examples</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
+    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,6 +28,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env1\">
+      <Id>env1</Id>
+      <Version>3.8</Version>
+      <Description>env1 (Python 3.8 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

@@ -124,7 +124,7 @@ public:
   }
 
   
-  Status getStatus() {
+  Status::SolStatus getStatus() {
     int cpxstatus = CPXgetstat(getCPLEXenv(), model_);
     switch (cpxstatus) 
     {

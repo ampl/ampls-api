@@ -8,7 +8,7 @@ const char* XPRESSCallback::getMessage() {
 }
 
 int XPRESSCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, CutDirection direction, double rhs, int lazy) {
+  const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
 
   printCut(nvars, vars, coeffs, direction, rhs);
   char sense;

@@ -11,7 +11,7 @@ include_directories(
   ${SIMPLEAPI_INCLUDE})
 
 # Setting output directories
-set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/bin)
+set(CMAKE_SWIG_OUTDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
 set(SWIG_PYTHON_MODULE_NAME "amplpy_${solvername}/swig/amplpy_${solvername}_swig")

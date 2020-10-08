@@ -146,7 +146,7 @@ public:
 
   void writeSolImpl(const char* solFileName);
 
-  Status getStatus() {
+  Status::SolStatus getStatus() {
     if (!isMIP())
     {
       int stat = getInt(XPRS_LPSTATUS);

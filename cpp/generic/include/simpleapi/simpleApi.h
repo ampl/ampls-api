@@ -72,22 +72,25 @@ void deleteParams(char** params);
 * the callback is called with a not-mapped "where" parameter,
 * refer to the solver-specific functionality.
 */
-enum class Where
+struct Where
 {
-  /** When the solver wants to print a message, obtain it via GenericCallback::getMessage.*/
-  msg = 0, 
-  /** Presolve phase */
-  presolve = 1,
-  /** Executing simplex */
-  lpsolve = 2,
-  /** Exploring a MIP node*/
-  mipnode = 3,
-  /** Found a new MIP solution*/
-  mipsol = 4,
-  /** Executing MIP algorithm*/
-  mip = 5,
-  /** Not mapped, refer to the specific user documentation*/
-  notmapped = 10
+  enum CBWhere
+  {
+    /** When the solver wants to print a message, obtain it via GenericCallback::getMessage.*/
+    msg = 0,
+    /** Presolve phase */
+    presolve = 1,
+    /** Executing simplex */
+    lpsolve = 2,
+    /** Exploring a MIP node*/
+    mipnode = 3,
+    /** Found a new MIP solution*/
+    mipsol = 4,
+    /** Executing MIP algorithm*/
+    mip = 5,
+    /** Not mapped, refer to the specific user documentation*/
+    notmapped = 10
+  };
 };
 
 /**
@@ -96,37 +99,43 @@ enum class Where
 * In case a not mapped value is required, refer to the solver-specific
 * API.
 */
-enum class Value {
-  obj = 0,
-  pre_delcols = 1,
-  pre_delrows = 2,
-  pre_coeffchanged = 3,
-  iterations = 4,
+struct Value
+{
+  enum  CBValue {
+    obj = 0,
+    pre_delcols = 1,
+    pre_delrows = 2,
+    pre_coeffchanged = 3,
+    iterations = 4,
 
-  mip_relativegap = 5
+    mip_relativegap = 5
+  };
 };
-
-/** Direction of a cut to be added*/
-enum class CutDirection {
-  /** = Equal*/
-  eq,
-  /** >= Greater or equal*/
-  ge,
-  /** <= Less or equal*/
-  le
+struct CutDirection {
+  /** Direction of a cut to be added*/
+  enum Direction {
+    /** = Equal*/
+    eq,
+    /** >= Greater or equal*/
+    ge,
+    /** <= Less or equal*/
+    le
+  };
 };
-
-enum class Status {
-  Unknown,
-  Optimal,
-  Infeasible,
-  Unbounded,
-  LimitIteration,
-  LimitNode,
-  LimitTime,
-  LimitSolution,
-  Interrupted,
-  NotMapped
+struct Status
+{
+  enum SolStatus {
+    Unknown,
+    Optimal,
+    Infeasible,
+    Unbounded,
+    LimitIteration,
+    LimitNode,
+    LimitTime,
+    LimitSolution,
+    Interrupted,
+    NotMapped
+  };
 };
 namespace impl
 {
@@ -143,14 +152,14 @@ protected:
   AMPLModel* model_;
   int where_;
   virtual int doAddCut(int nvars, const int* vars,
-    const double* coeffs, CutDirection direction, double rhs,
+    const double* coeffs, CutDirection::Direction direction, double rhs,
     int type) = 0;
 
   int callAddCut(std::vector<std::string>& vars,
-    const double* coeffs, CutDirection direction, double rhs,
+    const double* coeffs, CutDirection::Direction direction, double rhs,
     int type);
   void printCut(int nvars, const int* vars, const double* coeffs, 
-    CutDirection direction, double rhs)
+    CutDirection::Direction direction, double rhs)
   {
     char* sense;
     switch (direction)
@@ -191,23 +200,23 @@ public:
   *   @param direction Direction of the constraint ampls::CBDirection::Direction
   */
   int addCut(std::vector<std::string> vars,
-    const double* coeffs, CutDirection direction, double rhs)
+    const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 0);
   }
   /** Add a cut (solver indices) */
   int addCutsIndices(int nvars, const int* vars,
-    const double* coeffs, CutDirection direction, double rhs)
+    const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return doAddCut(nvars, vars, coeffs, direction, rhs, 0);
   }
   int addLazy(std::vector<std::string> vars,
-    const double* coeffs, CutDirection direction, double rhs)
+    const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 1);
   }
   int addLazyIndices(int nvars, const int* vars,
-    const double* coeffs, CutDirection direction, double rhs)
+    const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return doAddCut(nvars, vars, coeffs, direction, rhs, 1);
   }
@@ -225,8 +234,8 @@ public:
 
   // Return mapped "whereFrom"
   // Obviously it only makes sense for the generic callback
-  virtual Where getAMPLType() = 0;
-  virtual Variant getValue(Value v) = 0;
+  virtual Where::CBWhere getAMPLType() = 0;
+  virtual Variant getValue(Value::CBValue v) = 0;
 };
 
 /**
@@ -286,8 +295,8 @@ private:
   std::auto_ptr<impl::BaseCallback> impl_;
 
 protected:
-  virtual int doAddCut(int nvars, const int *vars,
-                       const double *coeffs, CutDirection direction, double rhs,
+  virtual int doAddCut(int nvars, const int* vars,
+    const double* coeffs, CutDirection::Direction direction, double rhs,
                        int type)
   {
     return impl_->doAddCut(nvars, vars, coeffs, direction, rhs, type);
@@ -315,12 +324,12 @@ public:
     return impl_->getMessage();
   }
   /** Return mapped "whereFrom" */
-  Where getAMPLType()
+  Where::CBWhere getAMPLType()
   {
     return impl_->getAMPLType();
   }
   /** Get a value from the solver */
-  Variant getValue(Value v)
+  Variant getValue(Value::CBValue v)
   {
     return impl_->getValue(v);
   }
@@ -421,7 +430,7 @@ public:
   virtual int getNumVars() {
     throw AMPLSolverException("Not implemented in base class!");
   };
-  virtual Status getStatus() {
+  virtual Status::SolStatus getStatus() {
     throw AMPLSolverException("Not implemented in base class!");
   }
   /**

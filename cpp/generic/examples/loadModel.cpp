@@ -19,7 +19,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   m.optimize();
   printf("\n");
   // Get the generic status
-  ampls::Status s = m.getStatus();
+  ampls::Status::SolStatus s = m.getStatus();
   switch (s)
   {
   case ampls::Status::Optimal:

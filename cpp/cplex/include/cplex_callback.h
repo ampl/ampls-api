@@ -35,7 +35,7 @@ class CPLEXCallback : public impl::BaseCallback {
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,
-    const double* coeffs, CutDirection direction, double rhs,
+    const double* coeffs, CutDirection::Direction direction, double rhs,
     int type);
   CPXCENVptr env() { return env_; }
   void* cbdata() { return cbdata_; }
@@ -51,7 +51,7 @@ public:
   const char* getWhere();
   const char* getMessage();
 
-  Where getAMPLType() {
+  Where::CBWhere getAMPLType() {
 
     switch (where_)
     {
@@ -103,7 +103,7 @@ public:
       what, &res);
     return res;
   }
-  virtual Variant getValue(Value v) {
+  virtual Variant getValue(Value::CBValue v) {
     switch (v)
     {
     case Value::iterations:

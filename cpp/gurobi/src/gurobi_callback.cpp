@@ -109,7 +109,7 @@ const char* GurobiCallback::getMessage()
 }
 
 int GurobiCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, CutDirection direction, double rhs, int lazy) {
+  const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
   char sense;
   switch (direction)
   {

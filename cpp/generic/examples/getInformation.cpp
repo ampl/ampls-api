@@ -22,11 +22,13 @@ class MyGenericCallback : public ampls::GenericCallback
     //printf("\nCalled from %s\n", getWhere());
     double obj;
     // Get the generic mapping
-    ampls::Where where = getAMPLType();
+    ampls::Where::CBWhere where = getAMPLType();
+    printf("Where: %i\n", where);
+    return 0;
     switch (where)
     {
     case ampls::Where::msg:
-    //  printf(getMessage());
+     // printf(getMessage());
       return 0;
     case ampls::Where::presolve:
       if((getValue(ampls::Value::pre_delrows).integer+
@@ -66,7 +68,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   double obj = m.getObj();
   printf("\nSolution with %s=%f\n", name, obj);
 
-  ampls::Status s = m.getStatus();
+  ampls::Status::SolStatus s = m.getStatus();
   switch (s)
   {
     case ampls::Status::Optimal:
@@ -103,7 +105,7 @@ int main(int argc, char** argv) {
   ampls::GurobiDrv gurobi;
   ampls::GurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
-  doStuff(g, "gurobi");
+  //doStuff(g, "gurobi");
 #endif
 
 #ifdef USE_cplex
@@ -119,7 +121,7 @@ int main(int argc, char** argv) {
   ampls::XPRESSDrv xpress;
   ampls::XPRESSModel x = xpress.loadModel(buffer);
   // Use it as generic model
-  doStuff(x, "xpress");
+ // doStuff(x, "xpress");
 #endif
   return 1;
  

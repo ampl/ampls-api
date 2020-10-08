@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cplexsharp;
+using Where = cplexsharp.Where.CBWhere;
 
 namespace cpxsharp_test
 {
@@ -53,20 +54,22 @@ namespace cpxsharp_test
       public override int run()
       {
         var f = getAMPLType();
-        switch(f)
+                Console.WriteLine((int)f);
+
+        switch (f)
         {
           case Where.msg:
-            Console.WriteLine(getMessage());
+           // Console.WriteLine(getMessage());
             break;
           case Where.presolve:
-          //Console.WriteLine("Presolve!");
+            //Console.WriteLine("Presolve!");
             break;
           case Where.mipnode:
           case Where.mipsol:
-            Console.WriteLine("MIP Objective = {0}", getObjective());
+          //  Console.WriteLine("MIP Objective = {0}", getObjective());
             break;
           case Where.notmapped:
-            Console.WriteLine($"Not mapped! Where = {getWhere()}");
+            //Console.WriteLine($"Not mapped! Where = {getWhere()}");
             break;
 
           default:
@@ -78,13 +81,15 @@ namespace cpxsharp_test
 
       static void Main(string[] args)
     {
-      CPLEXDrv g = new CPLEXDrv();
+           const string nodelFile = @"D:\Development\AMPL\solvers-public\test\models\tsp.nl";
+           // const string nodelFile = @"D:\\model.nl";
+            CPLEXDrv g = new CPLEXDrv();
             try
             {
-                var m = g.loadModel(@"D:\Development\AMPL\solvers-public\test\models\tsp.nl");
+                var m = g.loadModel(nodelFile);
 
                 int nvars = m.getNumVars();
-                //CB cb = new CB();
+               // CB cb = new CB();
                 //m.setCallback(cb);
 
                 GCB gcb = new GCB();
