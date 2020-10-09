@@ -37,7 +37,7 @@ protected:
   int doAddCut(int nvars, const int* vars,
     const double* coeffs, CutDirection::Direction direction, double rhs,
     int type);
-  CPXCENVptr env() { return env_; }
+  CPXCENVptr getCPXENV() { return env_; }
   void* cbdata() { return cbdata_; }
 public:
 
@@ -47,13 +47,14 @@ public:
   // Interface
   using BaseCallback::getSolutionVector;
   int getSolution(int len, double* sol);
-  double getObjective();
-  const char* getWhere();
+  double getObj();
+  using BaseCallback::getWhere;
+  const char* getWhereString();
   const char* getMessage();
 
-  Where::CBWhere getAMPLType() {
+  Where::CBWhere getAMPLWhere() {
 
-    switch (where_)
+    switch (getWhere())
     {
     case -1:
       return  Where::msg;
@@ -63,16 +64,17 @@ public:
     case CPX_CALLBACK_DUAL:
     case CPX_CALLBACK_BARRIER:
       return Where::lpsolve;
-    case CPX_CALLBACK_MIP_NODE:
-    case CPX_CALLBACK_MIP_CUT_FEAS:
-    case CPX_CALLBACK_MIP_CUT_UNBD:
+    //case CPX_CALLBACK_MIP_NODE:
+      // For user cuts
     case CPX_CALLBACK_MIP_CUT_LOOP:
     case CPX_CALLBACK_MIP_CUT_LAST:
       return Where::mipnode;
-    case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
-    case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
-    case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
-    case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART:
+    //case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
+    //case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
+    //case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
+    // For lazy constraints
+    case CPX_CALLBACK_MIP_CUT_FEAS:
+    case CPX_CALLBACK_MIP_CUT_UNBD:
       return Where::mipsol;
     default:
       return Where::notmapped;
@@ -85,7 +87,7 @@ public:
     int status;
     if (what < CPX_CALLBACK_INFO_NODE_SIINF)
     {
-      status = CPXgetcallbackinfo(env(), cbdata_, where_,
+      status = CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
         what, &res);
       if (status)
       {
@@ -99,7 +101,7 @@ public:
   double getDouble(int what)
   {
     double res;
-    int status = CPXgetcallbackinfo(env(), cbdata_, where_,
+    int status = CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
       what, &res);
     return res;
   }
@@ -112,7 +114,7 @@ public:
       else
         return get(CPX_CALLBACK_INFO_MIP_ITERATIONS);
     case Value::obj:
-      return Variant(getObjective());
+      return Variant(getObj());
     case Value::pre_delcols:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COLSGONE);
     case Value::pre_delrows:

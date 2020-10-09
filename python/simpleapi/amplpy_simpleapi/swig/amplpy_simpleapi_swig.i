@@ -4,4 +4,3 @@
 %include "../../../../cpp/generic/swig/generic-common.i"
 %include "../../../../cpp/gurobi/swig/gurobi-common.i"
 %include "../../../../cpp/cplex/swig/cplex-common.i"
-

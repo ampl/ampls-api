@@ -34,7 +34,7 @@ public:
     int nnz = 0;
     double val[] = { 1,1 };
     // Get the generic mapping
-    ampls::Where::CBWhere where = getAMPLType();
+    ampls::Where::CBWhere where = getAMPLWhere();
     switch (where)
     {
     case ampls::Where::msg:

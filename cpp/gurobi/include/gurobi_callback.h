@@ -40,7 +40,7 @@ public:
   /**
   Get a string description of where the callback was called from
   */
-  const char* getWhere();
+  const char* getWhereString();
   /**
   To get the gurobi log message
   */
@@ -49,8 +49,10 @@ public:
   // Interface
   using BaseCallback::getSolutionVector;
   int getSolution(int len, double* sol);
-  double getObjective();
+  double getObj();
+  /* Gurobi - specific */
 
+  void* getCBData() { return cbdata_; }
   void terminate();
 
   int getInt(int what) {
@@ -64,7 +66,7 @@ public:
     return res;
   }
 
-  virtual Where::CBWhere getAMPLType() {
+  virtual Where::CBWhere getAMPLWhere() {
     switch (where_)
     {
     case GRB_CB_MESSAGE:
@@ -89,7 +91,7 @@ public:
     switch (v)
     {
     case Value::obj:
-      return Variant(getObjective());
+      return Variant(getObj());
     case Value::mip_relativegap:
       return get(GRB_CB_MIPNODE_REL);
     case Value::pre_delcols:

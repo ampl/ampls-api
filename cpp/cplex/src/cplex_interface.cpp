@@ -77,7 +77,6 @@ cpx::impl::CBWrap::msg_callback_wrapper(void* handle, const char* msg)
 }
 
 CPLEXDrv::~CPLEXDrv() {
-  freeCPLEXEnv();
 }
 
 void CPLEXDrv::freeCPLEXEnv()
@@ -150,7 +149,7 @@ int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
 }
 
 int CPLEXModel::setCallbackDerived(impl::BaseCallback* callback) {
-  CPXENVptr p = getCPLEXenv();
+  CPXENVptr p = getCPXENV();
   // Add the callback 
   int status = CPXsetlazyconstraintcallbackfunc(p, cpx::impl::CBWrap::cut_callback_wrapper,
     callback);
@@ -188,7 +187,7 @@ impl::BaseCallback* CPLEXModel::createCallbackImplDerived(GenericCallback* callb
 }
 
 int CPLEXModel::optimize() {
-  CPXENVptr env = getCPLEXenv();
+  CPXENVptr env = getCPXENV();
   int probtype = CPXgetprobtype(env, model_);
   int res = 0;
   switch (probtype)
@@ -222,7 +221,7 @@ int CPLEXModel::optimize() {
 std::string CPLEXModel::error(int code) {
   char buffer[CPXMESSAGEBUFSIZE];
   CPXCCHARptr errstr;
-  errstr = CPXgeterrorstring(this->getCPLEXenv(), code, buffer);
+  errstr = CPXgeterrorstring(this->getCPXENV(), code, buffer);
 
   if (errstr != NULL) {
     return std::string(buffer);

@@ -10,40 +10,15 @@ namespace cpxsharp_test
 {
   class Program
   {
-    private class CB : CPLEXCallback
+    private class MyCPLEXCallback : CPLEXCallback
     {
-      int count = 0;
       public override int run()
       {
-        var map = getVarMap();
-       // foreach (var m in map)
-       //   System.Diagnostics.Debug.WriteLine("{0} : {1}", m.Key, m.Value);
-        string[] names = new string[2];
-        for (int i = 1; i < 3; i++)
-          names[i-1] = Utils.getAMPLVarName("x", i, 1);
-        double[] coeffs = new double[] { 4.5, 5 };
-        vector_string v = new vector_string(names);
-        /*
-        if (where == gsharp_c.GRB_CB_MESSAGE)
-        {
-          string msg = getMessage();
-          Console.WriteLine(msg);
-        }
-        if ((where == gsharp_c.GRB_CB_MIPSOL_SOL)
-          || (where == gsharp_c.GRB_CB_MIPNODE))
-        {
-          double[] sol = new double[10];
-          getSolution(10, sol);
-        }
-        if (where == gsharp_c.GRB_CB_MIP)
-        {
-          addLazy(v, coeffs, '0', 5);
-          count++;
-          Console.WriteLine("GRB_CB_MIP #{0}!", count);
-          
-          if (count == 10)
-            return 1;
-        }*/
+
+        var w = getWhere();
+        Console.WriteLine($"Where = {w}, which is {getWhereString()}");
+        if (w == cpxsharp_c.CPX_CALLBACK_PRESOLVE)
+            Console.WriteLine("MIP!");
         return 0;
       }
     }
@@ -53,9 +28,8 @@ namespace cpxsharp_test
 
       public override int run()
       {
-        var f = getAMPLType();
-                Console.WriteLine((int)f);
-
+        var f = getAMPLWhere();
+        Console.WriteLine((int)f);
         switch (f)
         {
           case Where.msg:
@@ -78,7 +52,7 @@ namespace cpxsharp_test
         return 0;
       }
     }
-
+        
       static void Main(string[] args)
     {
            const string nodelFile = @"D:\Development\AMPL\solvers-public\test\models\tsp.nl";
@@ -89,12 +63,16 @@ namespace cpxsharp_test
                 var m = g.loadModel(nodelFile);
 
                 int nvars = m.getNumVars();
-               // CB cb = new CB();
+                // CB cb = new CB();
                 //m.setCallback(cb);
 
-                GCB gcb = new GCB();
-                m.setCallback(gcb);
-                double obj = m.optimize();
+                MyCPLEXCallback cplexcallback = new MyCPLEXCallback();
+                m.setCallback(cplexcallback);
+                //double obj = m.optimize();
+                var env = m.getCPXENV();
+                var cpx = m.getCPXLP();
+                cpxsharp_c.CPXmipopt(env, cpx);
+                
                 Console.WriteLine("Solution with CPLEX={0}", m.getObj());
                 double[] sol = new double[nvars];
                 m.getSolution(0, nvars, sol);

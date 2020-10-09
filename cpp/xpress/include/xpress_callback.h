@@ -60,14 +60,14 @@ public:
   // Interface
   using BaseCallback::getSolutionVector;
   int getSolution(int len, double* sol);
-  double getObjective() {
+  double getObj() {
     // TODO if in MIP?
     return getDouble(XPRS_LPOBJVAL);
   }
-  const char* getWhere();
+  const char* getWhereString();
   const char* getMessage();
 
-  Where::CBWhere getAMPLType() {
+  Where::CBWhere getAMPLWhere() {
     switch (static_cast<xpress::impl::XPRESSWhere>(where_))
     {
     case xpress::impl::XPRESSWhere::message:
@@ -82,6 +82,9 @@ public:
     
   }
   Variant get(int what);
+  XPRSprob getXPRSprob() {
+    return prob_;
+  }
   int getInt(int what)
   {
     int val;

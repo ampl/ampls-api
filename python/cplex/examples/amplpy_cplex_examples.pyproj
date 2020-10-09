@@ -5,7 +5,7 @@
     <ProjectGuid>{283cd7c7-5d9f-30aa-a236-67cb5c5a48ed}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>progress_callback.py</StartupFile>
-    <SearchPath>..\..\..\..\solvers-private\build\vs\bin</SearchPath>
+    <SearchPath>..\..\..\..\solvers-private\build\vs64\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>amplpy_cplex_examples</Name>

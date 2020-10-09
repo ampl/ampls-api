@@ -53,7 +53,7 @@ namespace gurobisharp_test
 
       public override int run()
       {
-        var f = getAMPLType();
+        var f = getAMPLWhere();
         switch(f)
         {
           case Where.lpsolve:
@@ -64,10 +64,10 @@ namespace gurobisharp_test
             break;
           case Where.mipnode:
           case Where.mipsol:
-            Console.WriteLine("MIP Objective = {0}", getObjective());
+            Console.WriteLine("MIP Objective = {0}", getObj());
             break;
           case Where.notmapped:
-            Console.WriteLine($"Not mapped! Where = {getWhere()}");
+            Console.WriteLine($"Not mapped! Where = {getWhereString()}");
             break;
 
           default:

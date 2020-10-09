@@ -125,7 +125,7 @@ public:
 
   
   Status::SolStatus getStatus() {
-    int cpxstatus = CPXgetstat(getCPLEXenv(), model_);
+    int cpxstatus = CPXgetstat(getCPXENV(), model_);
     switch (cpxstatus) 
     {
       case CPX_STAT_OPTIMAL: // simplex and barrier optimal
@@ -171,34 +171,42 @@ public:
   int optimize();
 
   int getNumVars() {
-    return CPXXgetnumcols(getCPLEXenv(), model_);
+    return CPXXgetnumcols(getCPXENV(), model_);
   }
   double getObj() {
     double obj;
-    CPXgetobjval(getCPLEXenv(), model_, &obj);
+    CPXgetobjval(getCPXENV(), model_, &obj);
     return obj;
   }
 
   int getSolution(int first, int length, double* sol) {
-    return CPXgetx(getCPLEXenv(), model_, sol, first, length - 1);
+    return CPXgetx(getCPXENV(), model_, sol, first, length - 1);
   }
   std::string error(int code);
 
-
+  void enableLazyConstraints() {
+    CPXsetintparam(getCPXENV(), CPXPARAM_MIP_Strategy_CallbackReducedLP, CPX_OFF);
+    CPXsetintparam(getCPXENV(), CPXPARAM_Preprocessing_Linear, 0);
+  }
   // CPLEX-specific
   // Access to gurobi C structures
-  CPXLPptr getCPXmodel() {
+  CPXLPptr getCPXLP() {
     return model_;
   }
-  CPXENVptr getCPLEXenv() {
+  CPXENVptr getCPXENV() {
     return cpx::impl::AMPLCPLEXgetInternalEnv();
   }
 
   ~CPLEXModel() {
+    // TODO: This way the CPLEX environment is closed when the model is closed, wich makes sense
+    // because in this implemenatation a new environment is created when loading a new model.
+    // It would be then desirable to incorporate CPLEXDriver into CPLEXModel.
     if (copied_)
       return;
     if (model_)
-      CPXfreeprob(getCPLEXenv(), &model_);
+      CPXfreeprob(getCPXENV(), &model_);
+    CPXENVptr env = getCPXENV();
+    CPXcloseCPLEX(&env);
     if (asl_)
       cpx::impl::AMPLCPLEXfreeASL(&asl_);
   }

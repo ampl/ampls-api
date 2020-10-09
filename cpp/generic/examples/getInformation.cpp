@@ -15,6 +15,7 @@ const char* MODELNAME = "tsp.nl";
 
 class MyGenericCallback : public ampls::GenericCallback
 {
+  int nMIPnodes = 0;
   virtual int run()
   {
     // Prints out the name of the solution phase where the solver is called from
@@ -22,7 +23,7 @@ class MyGenericCallback : public ampls::GenericCallback
     //printf("\nCalled from %s\n", getWhere());
     double obj;
     // Get the generic mapping
-    ampls::Where::CBWhere where = getAMPLType();
+    ampls::Where::CBWhere where = getAMPLWhere();
     printf("Where: %i\n", where);
     return 0;
     switch (where)
@@ -39,18 +40,20 @@ class MyGenericCallback : public ampls::GenericCallback
             getValue(ampls::Value::pre_delcols).integer,
             getValue(ampls::Value::pre_coeffchanged).integer);
           return 0;
+    case ampls::Where::mipnode:
+      nMIPnodes++;
+      printf("\nNew MIP node. Count: %d", nMIPnodes);
+      return 0;
     case ampls::Where::mip:
     case ampls::Where::mipsol:
-    case ampls::Where::mipnode:
       try {
-        obj = getObjective();
-        printf("\nMIP Objective = %f", getObjective());
+        obj = getObj();
+        printf("\nMIP Objective = %f", getObj());
         return 0;
       }
       catch (...) {}
     case ampls::Where::notmapped:
-      printf("\nNot mapped! Where: %s", getWhere());
-
+      printf("\nNot mapped! Where: %s", getWhereString());
     }
     return 0;
   }

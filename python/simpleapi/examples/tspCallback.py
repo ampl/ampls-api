@@ -1,13 +1,34 @@
 from amplpy import AMPL
-import amplpy_gurobi as gpy
+import amplpy_simpleapi_swig as ampls
+
 from math import sqrt
 import random
 import os
 import time
 
-gpy.patch(AMPL)
+
+def exportModel(self, driver):
+    self.option['auxfiles'] = 'c'
+    self.eval('write gnlfileexport;')
+    if driver == "gurobi":
+      DRIVER = ampls.GurobiDrv()
+    elif driver =="cplex":
+      DRIVER = ampls.CPLEXDrv()
+    mod = DRIVER.loadModel('nlfileexport.nl')
+    return mod
 
 
+def importSolution(self, mod : ampls.AMPLModel):
+    mod.writeSol()
+    self.eval('solution nlfileexport.sol;')
+
+
+def patch(ampl_class):
+    ampl_class.exportModel = exportModel
+    ampl_class.importSolution = importSolution
+    
+
+patch(AMPL)
 VERBOSE = True
 ENABLE_CALLBACK = True
 ENABLE_MTZ = False
@@ -46,7 +67,7 @@ def read_tsp(fname):
             ys.append(lst.pop(0))
     return n, xs, ys
 
-
+DATAFILE = "D:\\Development\\ampl\\solvers-public\\python\\gurobi\\examples\\tsp_51_1.txt"
 ampl = AMPL()
 ampl.eval('''
 param n;
@@ -68,7 +89,7 @@ if ENABLE_MTZ:
     subject to MTZ{(i,j) in A: i != 1}: u[i]-u[j] + (n-1)*x[i,j] <= n-2;
     ''')
 
-n, xs, ys = read_tsp("tsp_51_1.txt")
+n, xs, ys = read_tsp(DATAFILE)
 dist = {
     (i+1, j+1): sqrt((xs[j] - xs[i])**2 + (ys[j] - ys[i])**2)
     for i in range(n) for j in range(n)
@@ -78,13 +99,11 @@ dist = {
 V = list(range(1, n + 1))
 ampl.param['n'] = n
 ampl.param['c'] = dist
-ampl.option['auxfiles'] = 'c'
-ampl.eval('write gmodel;')
-os.environ['gurobi_options'] = 'outlev=1 timelim=60'
-m = ampl.exportGurobiModel()
+m = ampl.exportModel("cplex")
+print("Model loaded, nvars=", m.getNumVars())
 
 if ENABLE_CB_MIPSOL:  # needs lazy constraints
-    gpy.GRBsetintparam(m.getGRBenv(), gpy.GRB_INT_PAR_LAZYCONSTRAINTS, 1)
+    m.enableLazyConstraints()
 
 varMap = getVarToIndexDict(m, "x")
 sortedvarMap = sorted(varMap.items(), key=lambda kv: kv[1])
@@ -222,15 +241,26 @@ def ford_fulkerson(capacities, s, t):
     return max_flow, partition
 
 
-class MyCallback(gpy.GRBCallback):
+class MyCallback(ampls.GenericCallback):
     CALL_COUNT_MIPSOL = 0
     CALL_COUNT_MIPNODE = 0
-
+    
     def mipsol(self):
         self.CALL_COUNT_MIPSOL += 1
-        if VERBOSE:
-            print("GRB_CB_MIPSOL #{}!".format(self.CALL_COUNT_MIPSOL))
         sol = self.getSolutionVector()
+        nv = sum(abs(x) > 1e-5 for x in sol)
+        index=0
+        for a in sol:
+          index+=1
+          if a != 0:
+            print("{} = {}".format(index, a))
+
+        if nv == 0:
+          return 0
+        if VERBOSE:
+            print("MIPSOL #{}, nnz={}".format(self.CALL_COUNT_MIPSOL, nv))
+        
+        
         values = {
             xvars[i]: sol[i]
             for i in xvars
@@ -249,7 +279,8 @@ class MyCallback(gpy.GRBCallback):
                 print('> sub-tour: ', grp)
                 cutvarnames = [toAMPLName('x', i,j) for i in grp for j in grp if i != j]
                 coeffs = [1 for i in range(len(cutvarnames))]
-                self.addLazy(cutvarnames, coeffs, gpy.GRB_LESS_EQUAL, len(grp)-1)
+                
+                self.addLazy(cutvarnames, coeffs, ampls.CutDirection.le, len(grp)-1)
         return 0
 
     def mipnode(self):
@@ -277,17 +308,17 @@ class MyCallback(gpy.GRBCallback):
                 )
                 cutvarnames = [toAMPLName('x', i,j) for i in p1 for j in p2]
                 coeffs = [1 for i in range(len(cutvarnames))]
-                self.addCut(cutvarnames, coeffs, gpy.GRB_GREATER_EQUAL, 1)
+                self.addCut(cutvarnames, coeffs, ampls.CutDirection.ge, 1)
                 print('> max-flow: {}, min-cut: {}, must be == 1'.format(
                         max_flow, min_cut))
                 return 0
         return 0
 
-    def run(self, where):
+    def run(self):
         try:
-              if ENABLE_CB_MIPSOL and where == gpy.GRB_CB_MIPSOL:
+              if ENABLE_CB_MIPSOL and self.getAMPLWhere() == ampls.Where.mipsol:
                 return self.mipsol()
-              elif ENABLE_CB_MIPNODE and where == gpy.GRB_CB_MIPNODE:
+              elif ENABLE_CB_MIPNODE and self.getAMPLWhere() == ampls.Where.mipnode:
                 return self.mipnode()
               else:
                 return 0
@@ -303,8 +334,7 @@ if ENABLE_CALLBACK:
 m.optimize()
 obj = m.getObj()
 nvars = m.getNumVars()
-m.writeSol()
-
-ampl.importGurobiSolution(m)
 print("Solved for {} variables, objective {}".format(nvars, obj))
-ampl.display('total')
+if m.getStatus() == ampls.Status.Optimal:
+  ampl.importSolution(m)
+  ampl.display('total')

@@ -4,14 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{a36c4fe6-24e9-423e-8a12-b812ca9c91d7}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>progress_callback.py</StartupFile>
+    <StartupFile>tspCallback.py</StartupFile>
     <SearchPath>..\..\..\..\solvers-private\build\vs64\bin</SearchPath>
-    <WorkingDirectory>D:\Development\ampl\solvers-private\build\vs\bin</WorkingDirectory>
+    <WorkingDirectory>D:\Development\ampl\solvers-private\build\vs64\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>amplpy_simpleapi_examples</Name>
     <RootNamespace>amplpy_simpleapi_examples</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
-    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,18 +22,18 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="progress_callback.py" />
-    <Compile Include="simple_callback.py" />
-    <Compile Include="tsp_callback.py" />
+    <Compile Include="progressCallback.py" />
+    <Compile Include="loadModel.py" />
+    <Compile Include="tspCallback.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="env1\">
-      <Id>env1</Id>
+    <Interpreter Include="env\">
+      <Id>env</Id>
       <Version>3.8</Version>
-      <Description>env1 (Python 3.8 (64-bit))</Description>
+      <Description>env (Python 3.8 (64-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>

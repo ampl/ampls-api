@@ -226,15 +226,17 @@ public:
   */
   virtual int getSolution(int len, double* sol) = 0;
 
-  virtual double getObjective() = 0;
+  virtual double getObj() = 0;
 
-  virtual const char* getWhere() = 0;
+  virtual const char* getWhereString() = 0;
+
+  virtual int getWhere() { return where_; }
 
   virtual const char* getMessage() = 0;
 
   // Return mapped "whereFrom"
   // Obviously it only makes sense for the generic callback
-  virtual Where::CBWhere getAMPLType() = 0;
+  virtual Where::CBWhere getAMPLWhere() = 0;
   virtual Variant getValue(Value::CBValue v) = 0;
 };
 
@@ -309,14 +311,18 @@ public:
     return impl_->getSolution(len, sol);
   }
   /** Get the current objective value */
-  double getObjective()
+  double getObj()
   {
-    return impl_->getObjective();
+    return impl_->getObj();
   }
-  /** Get a textual representation of the current solver status*/
-  const char *getWhere()
+  int getWhere()
   {
     return impl_->getWhere();
+  }
+  /** Get a textual representation of the current solver status*/
+  const char *getWhereString()
+  {
+    return impl_->getWhereString();
   }
   /** Get the message that was being printed (if where == msg) */
   const char *getMessage()
@@ -324,9 +330,9 @@ public:
     return impl_->getMessage();
   }
   /** Return mapped "whereFrom" */
-  Where::CBWhere getAMPLType()
+  Where::CBWhere getAMPLWhere()
   {
-    return impl_->getAMPLType();
+    return impl_->getAMPLWhere();
   }
   /** Get a value from the solver */
   Variant getValue(Value::CBValue v)

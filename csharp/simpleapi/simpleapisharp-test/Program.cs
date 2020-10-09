@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using simpleapisharp;
-
+using Where = simpleapisharp.Where.CBWhere;
+using Value = simpleapisharp.Value.CBValue;
 
 namespace simpleapiharp_test
 {
@@ -14,7 +15,7 @@ namespace simpleapiharp_test
         {
             public override int run()
             {
-                var f = getAMPLType();
+                var f = getAMPLWhere();
                 switch (f)
                 {
                     case Where.msg:
@@ -29,7 +30,7 @@ namespace simpleapiharp_test
                     case Where.mipsol:
                         try
                         {
-                            Console.WriteLine("MIP Objective = {0}", getObjective());
+                            Console.WriteLine("MIP Objective = {0}", getObj());
                         }
                         catch (Exception e)
                         {
@@ -37,7 +38,7 @@ namespace simpleapiharp_test
                         }
                         break;
                     case Where.notmapped:
-                        Console.WriteLine($"Not mapped! Where = {getWhere()}");
+                        Console.WriteLine($"Not mapped! Where = {getWhereString()}");
                         break;
 
                     default:

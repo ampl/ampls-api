@@ -22,8 +22,8 @@ set(SWIG_CPP_HEADER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.h")
 
 set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES CPLUSPLUS
                                                                     ON)
-set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES SWIG_FLAGS
-                                                                    "-builtin")
+#set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES SWIG_FLAGS
+#                                                                    "-builtin")
 
 add_swig_library(${PYTHON_SWIG_API} python ${SWIG_PYTHON_MODULE_NAME}.i)
 if(NOT ${solvername} STREQUAL "simpleapi")

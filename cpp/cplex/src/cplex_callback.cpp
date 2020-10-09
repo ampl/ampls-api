@@ -36,7 +36,7 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
       (where_ == CPX_CALLBACK_MIP_CUT_UNBD)
       )
     {
-      res = CPXcutcallbackadd(env(), cbdata_, where_, nvars, rhs, sense, vars,
+      res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, nvars, rhs, sense, vars,
         coeffs, CPX_USECUT_FORCE);
     }
     else
@@ -46,31 +46,38 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
   {
     if ((where_ == CPX_CALLBACK_MIP_CUT_LOOP) ||
       (where_ == CPX_CALLBACK_MIP_CUT_LAST))
-      res = CPXcutcallbackadd(env(), cbdata_, where_, nvars, rhs, sense, vars,
+      res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, nvars, rhs, sense, vars,
         coeffs, CPX_USECUT_FILTER);
     else
       return 0;
   }
   if (res != 0) 
     fprintf(stderr, "Failed to add callback: %s\n",
-      CPXgeterrorstring(env(), res, errbuf));
+      CPXgeterrorstring(getCPXENV(), res, errbuf));
     return res;
 }
 
 int CPLEXCallback::getSolution(int len, double* sol) {
-
+  if ((where_ == CPX_CALLBACK_MIP_CUT_FEAS) || (where_ == CPX_CALLBACK_MIP_CUT_UNBD) ||
+    (where_== CPX_CALLBACK_MIP_CUT_LOOP) || (where_ == CPX_CALLBACK_MIP_CUT_LAST))
+  {
+    int error = CPXgetcallbacknodex(getCPXENV(), cbdata_, where_, sol, 0, len - 1);
+    if (error != 0)
+    fprintf(stderr, "Failed to retrieve solution from callback: %s\n",
+      CPXgeterrorstring(getCPXENV(), error, errbuf));
+  }
   if ((where_ >= CPX_CALLBACK_MIP) && (where_ <= CPX_CALLBACK_MIP_INCUMBENT_MIPSTART))
   {
-    int error = CPXgetcallbackincumbent(env(), cbdata_, where_, sol, 0, len-1);
+    int error = CPXgetcallbackincumbent(getCPXENV(), cbdata_, where_, sol, 0, len-1);
     if (error!= 0)
         fprintf(stderr, "Failed to retrieve solution from callback: %s\n",
-          CPXgeterrorstring(env(), error, errbuf));
+          CPXgeterrorstring(getCPXENV(), error, errbuf));
      //throw ampls::AMPLSolverException::format("CPLEX ERROR: %s", errbuf);
     return 0;
   }
   throw ampls::AMPLSolverException("Cannot get the solution vector in this stage.");
 }
-double CPLEXCallback::getObjective() {
+double CPLEXCallback::getObj() {
   int phase = -1;
   switch (where_)
   {
@@ -90,8 +97,7 @@ double CPLEXCallback::getObjective() {
   }
   throw ampls::AMPLSolverException::format("Cannot get the objective value in this stage (%s)", getWhere());
 }
-
-const char* CPLEXCallback::getWhere()
+const char* CPLEXCallback::getWhereString()
 {
   switch (where_)
   {

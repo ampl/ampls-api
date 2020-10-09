@@ -43,7 +43,7 @@ int XPRESSCallback::getSolution(int len, double* sol) {
 
 using xpress::impl::XPRESSWhere;
 
-const char* XPRESSCallback::getWhere()
+const char* XPRESSCallback::getWhereString()
 {
   xpress::impl::XPRESSWhere proxy = (xpress::impl::XPRESSWhere)where_;
   switch (proxy)

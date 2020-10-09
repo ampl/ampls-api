@@ -3,7 +3,7 @@
 
 namespace ampls
 {
-const char* GurobiCallback::getWhere()
+const char* GurobiCallback::getWhereString()
 {
   switch (where_)
   {
@@ -125,7 +125,6 @@ int GurobiCallback::doAddCut(int nvars, const int* vars,
   default:
     throw AMPLSolverException("Unexpected cut direction");
   }
-  printCut(nvars, vars, coeffs, direction, rhs);
   if (lazy)
   {
     return GRBcblazy(cbdata_, nvars, vars,
@@ -148,7 +147,7 @@ int GurobiCallback::getSolution(int len, double* sol)
   return GRBcbget(cbdata_, where_, flag, sol);
 }
 
-double GurobiCallback::getObjective()
+double GurobiCallback::getObj()
 {
   int flag;
   switch (where_)
