@@ -10,8 +10,6 @@ const char* CPLEXCallback::getMessage() {
 
 int CPLEXCallback::doAddCut(int nvars, const int* vars,
   const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
-
-  printCut(nvars, vars, coeffs, direction, rhs);
   char sense;
   switch (direction)
   {
@@ -51,10 +49,11 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
     else
       return 0;
   }
-  if (res != 0) 
-    fprintf(stderr, "Failed to add callback: %s\n",
+  if (res != 0) {
+    fprintf(stderr, "Failed to add %s: %s\n", lazy ? "lazy constraint" : "user cut",
       CPXgeterrorstring(getCPXENV(), res, errbuf));
-    return res;
+  }
+  return res;
 }
 
 int CPLEXCallback::getSolution(int len, double* sol) {
@@ -63,8 +62,9 @@ int CPLEXCallback::getSolution(int len, double* sol) {
   {
     int error = CPXgetcallbacknodex(getCPXENV(), cbdata_, where_, sol, 0, len - 1);
     if (error != 0)
-    fprintf(stderr, "Failed to retrieve solution from callback: %s\n",
+    fprintf(stderr, "Failed to retrieve solution nodex from callback: %s\n",
       CPXgeterrorstring(getCPXENV(), error, errbuf));
+    return 0;
   }
   if ((where_ >= CPX_CALLBACK_MIP) && (where_ <= CPX_CALLBACK_MIP_INCUMBENT_MIPSTART))
   {
@@ -72,7 +72,6 @@ int CPLEXCallback::getSolution(int len, double* sol) {
     if (error!= 0)
         fprintf(stderr, "Failed to retrieve solution from callback: %s\n",
           CPXgeterrorstring(getCPXENV(), error, errbuf));
-     //throw ampls::AMPLSolverException::format("CPLEX ERROR: %s", errbuf);
     return 0;
   }
   throw ampls::AMPLSolverException("Cannot get the solution vector in this stage.");

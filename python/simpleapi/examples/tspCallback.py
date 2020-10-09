@@ -99,7 +99,7 @@ dist = {
 V = list(range(1, n + 1))
 ampl.param['n'] = n
 ampl.param['c'] = dist
-m = ampl.exportModel("cplex")
+m = ampl.exportModel("gurobi")
 print("Model loaded, nvars=", m.getNumVars())
 
 if ENABLE_CB_MIPSOL:  # needs lazy constraints
@@ -249,14 +249,6 @@ class MyCallback(ampls.GenericCallback):
         self.CALL_COUNT_MIPSOL += 1
         sol = self.getSolutionVector()
         nv = sum(abs(x) > 1e-5 for x in sol)
-        index=0
-        for a in sol:
-          index+=1
-          if a != 0:
-            print("{} = {}".format(index, a))
-
-        if nv == 0:
-          return 0
         if VERBOSE:
             print("MIPSOL #{}, nnz={}".format(self.CALL_COUNT_MIPSOL, nv))
         

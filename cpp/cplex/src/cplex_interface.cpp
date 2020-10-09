@@ -59,10 +59,11 @@ int CPXPUBLIC  cpx::impl::CBWrap::cut_callback_wrapper(CPXCENVptr env, void* cbd
   void* userhandle, int* useraction_p)
 {
   CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
-  if (cb->run())
+  int res = cb->run();
+  if (res)
     *useraction_p = CPX_CALLBACK_FAIL;
   else
-    *useraction_p = CPX_CALLBACK_SET;
+    *useraction_p = CPX_CALLBACK_DEFAULT;
   return 0;
 }
 

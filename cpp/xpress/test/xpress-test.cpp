@@ -101,7 +101,7 @@ public:
     vars.push_back("x[2]");
     double coefs[] = { 5.6, 7.8 };
     int len;
-    printf("OBJ = %f\n", getObjective());
+    printf("OBJ = %f\n", getObj());
     /*
     // TODO MAP where from 
     if (where == GRB_CB_MESSAGE)
