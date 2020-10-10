@@ -2,4 +2,6 @@ This directory should contain the solver libraries as distributed by AMPL, e.g.:
 ./cplex-lib.lib
 ./gurobi-lib.lib
 ./xpress-lib.lib
-
+./cplex-lib.dll
+./gurobi-lib.dll
+./xpress-lib.dll
