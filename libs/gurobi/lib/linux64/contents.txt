@@ -1,0 +1,2 @@
+This directory should contain gurobi's library, e.g.:
+libgurobi90.so

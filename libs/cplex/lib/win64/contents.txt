@@ -1,0 +1,3 @@
+This directory should contain the files related to CPLEX, for example:
+./cplex12100.lib
+./cplex12100.dll

@@ -7,6 +7,13 @@ function (add_prefix var prefix)
   set(${var} ${result} PARENT_SCOPE)
 endfunction ()
 
+function(append var value)
+  if(${var})
+    set(${var} ${${var}} ${value} PARENT_SCOPE)
+  else()
+    set(${var} ${value} PARENT_SCOPE)
+  endif()
+endfunction()
 
 # Add files specified as additional arguments to the specified folder.
 function (add_to_folder folder)

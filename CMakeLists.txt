@@ -56,10 +56,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 # Set paths
 set(BASESRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/src/solvers) # Base dir for all
-                                                        # solvers
-
-set(SOLVERS gurobi cplex xpress)
-
 # Swig
 find_package(SWIG 3.0)
 if(SWIG_FOUND)
@@ -78,56 +74,54 @@ set(GENERATED_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include) # For generated files
 file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
      "const char MODELS_DIR[] = \"${PROJECT_SOURCE_DIR}/test/models/\";\n")
 
-add_subdirectory(cpp/generic)
-
 # Solver vendors libraries and headers locations
-set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/903)
-set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/1210)
-set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/36.01.10)
-set(gurobi_INCLUDE_DIR ${gurobi_BASE_DIR}/include)
-set(cplex_INCLUDE_DIR ${cplex_BASE_DIR}/include)
-set(xpress_INCLUDE_DIR ${xpress_BASE_DIR}/include)
+get_directory_property(hasParent PARENT_DIRECTORY)
+if(hasParent)
+  set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/903)
+  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/1210)
+  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/36.01.10)
+else()
+  set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi)
+  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex)
+  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress)
+endif()
+
+foreach(s ${SOLVER_NAMES})
+  set(${s}_INCLUDE_DIR ${${s}_BASE_DIR}/include)
+endforeach()
+
 if(WIN32)
     set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/win64/gurobi90.lib)
     set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/win64/cplex12100.lib)
     set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/win64/xprs.lib)
+    set(AMPLLIBS_DIR ${SOLVERLIBS}/ampllibs/win64) # AMPL base driver library locations
 elseif(APPLE)
     set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/osx64/libgurobi90.dylib)
-    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/osx64/libcplex.a)
-    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/osx64/libxprl.dylib
-                       ${xpress_BASE_DIR}/lib/osx64/libxprs.dylib)
+    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/osx64/libcplex12100.dylib)
+    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/osx64/libxprs.dylib
+                      ${xpress_BASE_DIR}/lib/osx64/libxprl.dylib)
+    set(AMPLLIBS_DIR ${SOLVERLIBS}/ampllibs/osx64) # AMPL base driver library locations
 else()
     set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/linux64/libgurobi90.so)
-    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/linux64/libcplex.a)
-    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/linux64/libxprl.so.x8.10
-                       ${xpress_BASE_DIR}/lib/linux64/libxprs.so.36.01)
+    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/linux64/libcplex12100.so)
+    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/linux64/libxprs.so.36.01
+                        ${xpress_BASE_DIR}/lib/linux64/libxprl.so.x8.10 )
+    set(AMPLLIBS_DIR ${SOLVERLIBS}/ampllibs/linux64) # AMPL base driver library locations
 endif()
 
-# AMPL base driver library locations
-set(LIBSDIR ${CMAKE_CURRENT_SOURCE_DIR}/lib)
-if(WIN32)
-  set(LIBSDIR ${LIBSDIR}/win64)
-elseif(APPLE)
-  set(LIBSDIR ${LIBSDIR}/osx64)
-else()
-  set(LIBSDIR ${LIBSDIR}/linux64)
-endif()
+add_subdirectory(cpp/generic)
+
 
  # Get rid of warning in newer versions of cmake
 macro(ADD_SWIG_LIBRARY name language)
-    if(CMAKE_VERSION VERSION_LESS 3.8)
+  if(CMAKE_VERSION VERSION_LESS 3.8)
     swig_add_module(${name} ${language} ${ARGN})
-    else()
-    swig_add_library(
-        ${name}
-        LANGUAGE
-        ${language}
-        TYPE
-        MODULE
-        SOURCES
-        ${ARGN})
-    endif()
+  else()
+    swig_add_library(${name} LANGUAGE ${language}
+        TYPE MODULE SOURCES ${ARGN})
+  endif()
 endmacro()
 
 function(AddSolverStub solver includes libs)
@@ -140,22 +134,26 @@ function(AddSolverStub solver includes libs)
   set(DIR_CSHARP ${CMAKE_CURRENT_SOURCE_DIR}/csharp/${solver})
   # On windows I find both import lib and dll file on other systems
   # i'll need just one
+
   set(IMPORTLIB ${solver}-lib)
   if(NOT TARGET ${IMPORTLIB})
-      set(LIBFILENAME ${solver}-lib)
-      find_library(${solver}LIBFILE ${LIBFILENAME} PATHS ${LIBSDIR})
-      if(WIN32)
-        find_file(${solver}DLLFILE ${LIBFILENAME}.dll PATHS ${LIBSDIR})
-      endif()
-      add_library(${IMPORTLIB} SHARED IMPORTED)
-    
-      if(WIN32)
-        set_property(TARGET  ${IMPORTLIB} PROPERTY IMPORTED_LOCATION ${${solver}DLLFILE})
-        set_property(TARGET  ${IMPORTLIB} PROPERTY IMPORTED_IMPLIB ${${solver}LIBFILE})
-      else()
-        set_property(TARGET ${IMPORTLIB} PROPERTY IMPORTED_LOCATION ${${solver}LIBFILE})
-      endif()
+    set(LIBFILENAME ${solver}-lib)
+    find_library(${solver}LIBFILE ${LIBFILENAME} PATHS ${AMPLLIBS_DIR} REQUIRED) 
+    if(NOT ${solver}LIBFILE)
+      message(FATAL_ERROR "AMPL solver library ${solver}-lib not found in ${AMPLLIBS_DIR}")
+    endif()
+    if(WIN32)
+      find_file(${solver}DLLFILE ${LIBFILENAME}.dll PATHS ${LIBSDIR})
+    endif()
+    add_library(${IMPORTLIB} SHARED IMPORTED)
+    if(WIN32)
+      set_property(TARGET  ${IMPORTLIB} PROPERTY IMPORTED_LOCATION ${${solver}DLLFILE})
+      set_property(TARGET  ${IMPORTLIB} PROPERTY IMPORTED_IMPLIB ${${solver}LIBFILE})
+    else()
+      set_property(TARGET ${IMPORTLIB} PROPERTY IMPORTED_LOCATION ${${solver}LIBFILE})
+    endif()
   endif()
+
   add_prefix(
     DRV_SOURCES ${DIR_CPP}/ include/${solver}_interface.h
     src/${solver}_interface.cpp include/${solver}_callback.h
@@ -179,13 +177,16 @@ function(AddSolverStub solver includes libs)
             ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE} ${includes})
   add_to_folder(${solver} ${TARGETNAME}-test)
   target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
+
   if (EXISTS ${DIR_SWIG})
     if(SWIG_FOUND)
         include(UseSWIG)
-        # Create custom target for common swig files, couldn't find a way to add
-        # them as headers
+        # Add a custom target just to show  the following common sources in some IDEs
         add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/generic/swig/generic-common.i
-                                                   ${DIR_SWIG}/${solver}-common.i)
+                                                   ${DIR_SWIG}/${solver}-common.i
+                                                   ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
+                                                   ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
+                                                   )
         add_to_folder(${solver}/swig ${solver}-common)
         add_subdirectory(${DIR_PYTHON})
         if(WIN32)
@@ -211,14 +212,14 @@ if(ENABLE_xpress)
   addsolverstub(xpress ${xpress_INCLUDE_DIR} ${xpress_LIBRARY}) 
 endif()
 
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/simpleapi)
 if(WIN32)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/simpleapi)
 endif()
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/simpleapi)
-
-
 
 add_subdirectory("doc")
+
 
 # Install python package structure install(
 # DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/amplpy_gurobi/ DESTINATION

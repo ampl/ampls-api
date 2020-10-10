@@ -1,0 +1,2 @@
+This directory should contain the gurobi library, e.g.:
+./libgurobi90.dylib

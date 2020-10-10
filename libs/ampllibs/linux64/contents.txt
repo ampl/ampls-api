@@ -1,0 +1,5 @@
+This directory should contain the solver libraries as distributed by AMPL, e.g.:
+./libcplex-lib.so
+./libgurobi-lib.so
+./libxpress-lib.so
+

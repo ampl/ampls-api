@@ -1,0 +1,3 @@
+This directory should contain the files related to gurobi, e.g.:
+./gurobi90.lib
+./gurobi90.dll
