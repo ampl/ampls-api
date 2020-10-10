@@ -100,9 +100,11 @@ setup(
         '_amplpy_gurobi_swig',
         library_dirs=[
             os.path.join('amplpy_gurobi', 'gurobi903', 'lib', libdir()),
+            os.path.join('amplpy_gurobi'),  # Temporary
         ],
         extra_objects=[
-            os.path.join('amplpy_gurobi', 'libgurobi-drv.a')
+            os.path.join('amplpy_gurobi', 'libgurobi-drv.a'),
+            # os.path.join('amplpy_gurobi', 'libsimpleapi.a'),
         ],
         define_macros=[('SWIG', 1)],
         include_dirs=[
@@ -111,23 +113,24 @@ setup(
             os.path.join('amplpy_gurobi', 'gurobi', 'include'),
             os.path.join('amplpy_gurobi', 'generic', 'include'),
         ],
-        libraries=['gurobi90'],
+        libraries=['gurobi90', 'gurobi-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=[make_relative_rpath([
+            os.path.join('amplpy_gurobi'),  # Temporary
             os.path.join('amplpy_gurobi', 'gurobi903', 'lib', libdir()),
         ])],
         sources=[
             os.path.join('amplpy_gurobi', 'swig',
                          'amplpy_gurobi_swig_wrap.cxx')
-        ]+[
+        ] + [
             os.path.join('amplpy_gurobi', 'generic', 'src', fname)
             for fname in ls_dir(os.path.join('amplpy_gurobi', 'generic', 'src'))
             if fname.endswith(('.c', '.cpp'))
-        ]+[
-            os.path.join('amplpy_gurobi', 'gurobi', 'src', fname)
-            for fname in ls_dir(os.path.join('amplpy_gurobi', 'gurobi', 'src'))
-            if fname.endswith(('.c', '.cpp'))
-        ],
+        ]  # + [
+        #  os.path.join('amplpy_gurobi', 'gurobi', 'src', fname)
+        #  for fname in ls_dir(os.path.join('amplpy_gurobi', 'gurobi', 'src'))
+        #  if fname.endswith(('.c', '.cpp'))
+        # ],
     )],
     package_data={'': ls_dir('amplpy_gurobi/')},
 )
