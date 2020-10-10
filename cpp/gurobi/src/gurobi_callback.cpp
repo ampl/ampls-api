@@ -113,13 +113,13 @@ int GurobiCallback::doAddCut(int nvars, const int* vars,
   char sense;
   switch (direction)
   {
-  case CutDirection::eq:
+  case CutDirection::EQ:
     sense = GRB_EQUAL;
     break;
-  case CutDirection::ge:
+  case CutDirection::GE:
     sense = GRB_GREATER_EQUAL;
     break;
-  case CutDirection::le:
+  case CutDirection::LE:
     sense = GRB_LESS_EQUAL;
     break;
   default:

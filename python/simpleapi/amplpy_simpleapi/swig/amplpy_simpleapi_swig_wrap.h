@@ -19,18 +19,19 @@ class SwigDirector_GenericCallback : public ampls::GenericCallback, public Swig:
 
 public:
     SwigDirector_GenericCallback(PyObject *self);
-    virtual int doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection direction, double rhs, int type);
-    virtual int doAddCutSwigPublic(int nvars, int const *vars, double const *coeffs, ampls::CutDirection direction, double rhs, int type) {
+    virtual int doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type);
+    virtual int doAddCutSwigPublic(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type) {
       return ampls::GenericCallback::doAddCut(nvars,vars,coeffs,direction,rhs,type);
     }
     virtual int run();
     virtual ~SwigDirector_GenericCallback();
     virtual int getSolution(int len, double *sol);
-    virtual double getObjective();
-    virtual char const *getWhere();
+    virtual double getObj();
+    virtual char const *getWhereString();
+    virtual int getWhere();
     virtual char const *getMessage();
-    virtual ampls::Where getAMPLType();
-    virtual ampls::Variant getValue(ampls::Value v);
+    virtual ampls::Where::CBWhere getAMPLWhere();
+    virtual ampls::Variant getValue(ampls::Value::CBValue v);
 
 /* Internal director utilities */
 public:
@@ -61,7 +62,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[6];
+    mutable swig::SwigVar_PyObject vtable[7];
 #endif
 
 };
@@ -71,18 +72,19 @@ class SwigDirector_GurobiCallback : public ampls::GurobiCallback, public Swig::D
 
 public:
     SwigDirector_GurobiCallback(PyObject *self);
-    virtual int doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection direction, double rhs, int type);
-    virtual int doAddCutSwigPublic(int nvars, int const *vars, double const *coeffs, ampls::CutDirection direction, double rhs, int type) {
+    virtual int doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type);
+    virtual int doAddCutSwigPublic(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type) {
       return ampls::GurobiCallback::doAddCut(nvars,vars,coeffs,direction,rhs,type);
     }
     virtual int run();
     virtual ~SwigDirector_GurobiCallback();
     virtual int getSolution(int len, double *sol);
-    virtual double getObjective();
-    virtual char const *getWhere();
+    virtual double getObj();
+    virtual char const *getWhereString();
+    virtual int getWhere();
     virtual char const *getMessage();
-    virtual ampls::Where getAMPLType();
-    virtual ampls::Variant getValue(ampls::Value v);
+    virtual ampls::Where::CBWhere getAMPLWhere();
+    virtual ampls::Variant getValue(ampls::Value::CBValue v);
 
 /* Internal director utilities */
 public:
@@ -113,7 +115,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[6];
+    mutable swig::SwigVar_PyObject vtable[7];
 #endif
 
 };
@@ -123,18 +125,19 @@ class SwigDirector_CPLEXCallback : public ampls::CPLEXCallback, public Swig::Dir
 
 public:
     SwigDirector_CPLEXCallback(PyObject *self);
-    virtual int doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection direction, double rhs, int type);
-    virtual int doAddCutSwigPublic(int nvars, int const *vars, double const *coeffs, ampls::CutDirection direction, double rhs, int type) {
+    virtual int doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type);
+    virtual int doAddCutSwigPublic(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type) {
       return ampls::CPLEXCallback::doAddCut(nvars,vars,coeffs,direction,rhs,type);
     }
     virtual int run();
     virtual ~SwigDirector_CPLEXCallback();
     virtual int getSolution(int len, double *sol);
-    virtual double getObjective();
-    virtual char const *getWhere();
+    virtual double getObj();
+    virtual char const *getWhereString();
+    virtual int getWhere();
     virtual char const *getMessage();
-    virtual ampls::Where getAMPLType();
-    virtual ampls::Variant getValue(ampls::Value v);
+    virtual ampls::Where::CBWhere getAMPLWhere();
+    virtual ampls::Variant getValue(ampls::Value::CBValue v);
 
 /* Internal director utilities */
 public:
@@ -165,7 +168,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[6];
+    mutable swig::SwigVar_PyObject vtable[7];
 #endif
 
 };

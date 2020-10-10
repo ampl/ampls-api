@@ -70,19 +70,19 @@ public:
     switch (where_)
     {
     case GRB_CB_MESSAGE:
-      return Where::msg;
+      return Where::MSG;
     case GRB_CB_PRESOLVE:
-      return Where::presolve;
+      return Where::PRESOLVE;
     case GRB_CB_SIMPLEX:
-      return Where::lpsolve;
+      return Where::LPSOLVE;
     case GRB_CB_MIPNODE:
-      return Where::mipnode;
+      return Where::MIPNODE;
     case GRB_CB_MIPSOL:
-      return Where::mipsol;
+      return Where::MIPSOL;
     case GRB_CB_MIP:
-      return Where::mip;
+      return Where::MIP;
     default:
-      return Where::notmapped;
+      return Where::NOTMAPPED;
     }
 
   }
@@ -90,17 +90,17 @@ public:
   virtual Variant getValue(Value::CBValue v) {
     switch (v)
     {
-    case Value::obj:
+    case Value::OBJ:
       return Variant(getObj());
-    case Value::mip_relativegap:
+    case Value::MIP_RELATIVEGAP:
       return get(GRB_CB_MIPNODE_REL);
-    case Value::pre_delcols:
+    case Value::PRE_DELCOLS:
       return get(GRB_CB_PRE_COLDEL);
-    case Value::pre_delrows:
+    case Value::PRE_DELROWS:
       return get(GRB_CB_PRE_ROWDEL);
-    case Value::pre_coeffchanged:
+    case Value::PRE_COEFFCHANGED:
       return get(GRB_CB_PRE_COECHG);
-    case Value::iterations:
+    case Value::ITERATIONS:
       if (where_ == GRB_CB_SIMPLEX)
         return get(GRB_CB_SPX_ITRCNT);
       if ((where_ >= GRB_CB_MIP) &&

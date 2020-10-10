@@ -1,5 +1,5 @@
 from amplpy import AMPL
-import amplpy_gurobi as gpy
+import amplpy_cplex_swig as ampls
 from math import sqrt
 import random
 import os
@@ -249,7 +249,7 @@ class MyCallback(gpy.GRBCallback):
                 print('> sub-tour: ', grp)
                 cutvarnames = [toAMPLName('x', i,j) for i in grp for j in grp if i != j]
                 coeffs = [1 for i in range(len(cutvarnames))]
-                self.addLazy(cutvarnames, coeffs, gpy.GRB_LESS_EQUAL, len(grp)-1)
+                self.addLazy(cutvarnames, coeffs, ampls.CutDirection.LE, len(grp)-1)
         return 0
 
     def mipnode(self):
@@ -277,7 +277,7 @@ class MyCallback(gpy.GRBCallback):
                 )
                 cutvarnames = [toAMPLName('x', i,j) for i in p1 for j in p2]
                 coeffs = [1 for i in range(len(cutvarnames))]
-                self.addCut(cutvarnames, coeffs, gpy.GRB_GREATER_EQUAL, 1)
+                self.addCut(cutvarnames, coeffs, ampls.CutDirection.GE, 1)
                 print('> max-flow: {}, min-cut: {}, must be == 1'.format(
                         max_flow, min_cut))
                 return 0

@@ -13,13 +13,13 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
   char sense;
   switch (direction)
   {
-    case CutDirection::eq:
+    case CutDirection::EQ:
       sense = 'E';
       break;
-    case CutDirection::ge:
+    case CutDirection::GE:
       sense = 'G';
       break;
-    case CutDirection::le:
+    case CutDirection::LE:
       sense = 'L';
       break;
     default:

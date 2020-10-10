@@ -57,27 +57,27 @@ public:
     switch (getWhere())
     {
     case -1:
-      return  Where::msg;
+      return  Where::MSG;
     case CPX_CALLBACK_PRESOLVE:
-      return Where::presolve;
+      return Where::PRESOLVE;
     case CPX_CALLBACK_PRIMAL:
     case CPX_CALLBACK_DUAL:
     case CPX_CALLBACK_BARRIER:
-      return Where::lpsolve;
+      return Where::LPSOLVE;
     //case CPX_CALLBACK_MIP_NODE:
       // For user cuts
     case CPX_CALLBACK_MIP_CUT_LOOP:
     case CPX_CALLBACK_MIP_CUT_LAST:
-      return Where::mipnode;
+      return Where::MIPNODE;
     //case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
     //case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
     //case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
     // For lazy constraints
     case CPX_CALLBACK_MIP_CUT_FEAS:
     case CPX_CALLBACK_MIP_CUT_UNBD:
-      return Where::mipsol;
+      return Where::MIPSOL;
     default:
-      return Where::notmapped;
+      return Where::NOTMAPPED;
     }
   }
   Variant get(int what);
@@ -108,20 +108,20 @@ public:
   virtual Variant getValue(Value::CBValue v) {
     switch (v)
     {
-    case Value::iterations:
+    case Value::ITERATIONS:
       if (where_ < CPX_CALLBACK_MIP)
         return get(CPX_CALLBACK_INFO_ITCOUNT);
       else
         return get(CPX_CALLBACK_INFO_MIP_ITERATIONS);
-    case Value::obj:
+    case Value::OBJ:
       return Variant(getObj());
-    case Value::pre_delcols:
+    case Value::PRE_DELCOLS:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COLSGONE);
-    case Value::pre_delrows:
+    case Value::PRE_DELROWS:
       return get(CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE);
-    case Value::pre_coeffchanged:
+    case Value::PRE_COEFFCHANGED:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
-    case Value::mip_relativegap:
+    case Value::MIP_RELATIVEGAP:
       return get(CPX_CALLBACK_INFO_MIP_REL_GAP);
     default: throw AMPLSolverException("Specified value unknown.");
     }

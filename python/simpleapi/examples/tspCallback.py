@@ -272,7 +272,7 @@ class MyCallback(ampls.GenericCallback):
                 cutvarnames = [toAMPLName('x', i,j) for i in grp for j in grp if i != j]
                 coeffs = [1 for i in range(len(cutvarnames))]
                 
-                self.addLazy(cutvarnames, coeffs, ampls.CutDirection.le, len(grp)-1)
+                self.addLazy(cutvarnames, coeffs, ampls.CutDirection.LE, len(grp)-1)
         return 0
 
     def mipnode(self):
@@ -300,7 +300,7 @@ class MyCallback(ampls.GenericCallback):
                 )
                 cutvarnames = [toAMPLName('x', i,j) for i in p1 for j in p2]
                 coeffs = [1 for i in range(len(cutvarnames))]
-                self.addCut(cutvarnames, coeffs, ampls.CutDirection.ge, 1)
+                self.addCut(cutvarnames, coeffs, ampls.CutDirection.GE, 1)
                 print('> max-flow: {}, min-cut: {}, must be == 1'.format(
                         max_flow, min_cut))
                 return 0
@@ -327,6 +327,6 @@ m.optimize()
 obj = m.getObj()
 nvars = m.getNumVars()
 print("Solved for {} variables, objective {}".format(nvars, obj))
-if m.getStatus() == ampls.Status.Optimal:
+if m.getStatus() == ampls.Status.OPTIMAL:
   ampl.importSolution(m)
   ampl.display('total')

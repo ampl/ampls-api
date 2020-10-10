@@ -6,14 +6,14 @@ class MyCallback(ampls.GenericCallback):
     def run(self):
           t = self.getWhere()
           print(t)
-          if t ==ampls.Where.msg:
+          if t ==ampls.Where.MSG:
             #print(self.getMessage())
             print("msg")
-          if t ==ampls.Where.lpsolve:
+          if t ==ampls.Where.LPSOLVE:
             print("During LP solve")
-          if t==ampls.Where.presolve:
+          if t==ampls.Where.PRESOLVE:
             print("Presolve")
-          if t==ampls.Where.mipsol:
+          if t==ampls.Where.MIPSOL:
             print("MIP Solution = {}".format(self.getObj()))
           return 0
 

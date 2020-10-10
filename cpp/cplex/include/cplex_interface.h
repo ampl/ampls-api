@@ -131,24 +131,24 @@ public:
       case CPX_STAT_OPTIMAL: // simplex and barrier optimal
       case CPXMIP_OPTIMAL: // MIP optimal
       case CPXMIP_OPTIMAL_TOL:
-        return Status::Optimal;
+        return Status::OPTIMAL;
       case CPX_STAT_INFEASIBLE: // Problem infeasible
       case CPXMIP_INFEASIBLE:
-        return Status::Infeasible;
+        return Status::INFEASIBLE;
       case CPX_STAT_UNBOUNDED: // Problem unbounded
       case CPXMIP_UNBOUNDED:
-        return Status::Unbounded;
+        return Status::UNBOUNDED;
       case CPX_STAT_ABORT_OBJ_LIM: // Objective limit exceeded
       case CPX_STAT_ABORT_PRIM_OBJ_LIM: 
       case CPX_STAT_ABORT_DUAL_OBJ_LIM:
       case CPX_STAT_CONFLICT_ABORT_OBJ_LIM:
       case CPXMIP_SOL_LIM:
-        return Status::LimitSolution;
+        return Status::LIMIT_SOLUTION;
       case CPX_STAT_ABORT_IT_LIM:
       case CPX_STAT_CONFLICT_ABORT_IT_LIM:
       case CPXMIP_NODE_LIM_FEAS:
       case CPXMIP_NODE_LIM_INFEAS:
-        return Status::LimitIteration;
+        return Status::LIMIT_ITERATION;
       case CPX_STAT_ABORT_DETTIME_LIM:
       case CPX_STAT_ABORT_TIME_LIM:
       case CPX_STAT_CONFLICT_ABORT_DETTIME_LIM:
@@ -156,15 +156,15 @@ public:
       case CPXMIP_DETTIME_LIM_INFEAS:
       case CPXMIP_TIME_LIM_FEAS:
       case CPXMIP_TIME_LIM_INFEAS:
-        return Status::LimitTime;
+        return Status::LIMIT_TIME;
       case CPX_STAT_ABORT_USER:
       case CPXMIP_ABORT_FEAS:
       case CPXMIP_ABORT_INFEAS:
       case CPXMIP_ABORT_RELAXATION_UNBOUNDED:
       case CPXMIP_ABORT_RELAXED:
-        return Status::Interrupted;
+        return Status::INTERRUPTED;
       default:
-        return Status::Unknown;
+        return Status::UNKNOWN;
     }
   }
 

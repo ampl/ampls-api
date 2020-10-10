@@ -39,15 +39,15 @@ public:
     ampls::Where::CBWhere where = getAMPLWhere();
     switch (where)
     {
-    case ampls::Where::msg:
+    case ampls::Where::MSG:
       printf("**%s**\n", getMessage());
       return 0;
-    case ampls::Where::presolve:
+    case ampls::Where::PRESOLVE:
                return 0;
-    case ampls::Where::mip:
+    case ampls::Where::MIP:
       break;
-    case ampls::Where::mipsol:
-    case ampls::Where::mipnode:
+    case ampls::Where::MIPSOL:
+    case ampls::Where::MIPNODE:
     {
       // TODO Check why in CPLEX this does not work
       auto sol = getSolutionVector();
@@ -56,7 +56,7 @@ public:
       printf("Non zeroes: %d\n", nnz);
     }
     nrun++;
-      stat=  addLazyIndices(2, ind, val, ampls::CutDirection::ge, 1);
+      stat=  addLazyIndices(2, ind, val, ampls::CutDirection::GE, 1);
       if (stat)
         printf("ERROR: %s\n", model_->error(stat).c_str());
       return 0;

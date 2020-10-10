@@ -83,11 +83,11 @@ class CCB : public ampls::GenericCallback
     // printf("Called from %s\n", getWhere(whereFrom));
     switch (getAMPLWhere())
     {
-    case ampls::Where::msg:
+    case ampls::Where::MSG:
   //    printf("**%s**\n", getMessage());
       return 0;
-    case ampls::Where::mipsol:
-    case ampls::Where::mipnode:
+    case ampls::Where::MIPSOL:
+    case ampls::Where::MIPNODE:
       printf("MIPSOL OBJ = %f\n", getObj());
     }
     return 0;

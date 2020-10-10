@@ -5,16 +5,16 @@ import amplpy_simpleapi_swig as ampls
 MODEL = "D:/Development/ampl/solvers-private/build/vs64/bin/nlfileexport.nl"
 
 statuses= {
-    ampls.Status.Optimal :"optimal", 
-    ampls.Status.Infeasible :"infeasible", 
-    ampls.Status.Interrupted :"interrupted", 
-    ampls.Status.LimitIteration :"limititeration", 
-    ampls.Status.LimitNode :"limitnode", 
-    ampls.Status.LimitSolution:"limitsolution",
-    ampls.Status.LimitTime:"limittime",
-    ampls.Status.Unbounded:"unbounded",
-    ampls.Status.Unknown:"unknown",
-    ampls.Status.NotMapped:"not mapped"
+    ampls.Status.OPTIMAL:"optimal", 
+    ampls.Status.INFEASIBLE:"infeasible", 
+    ampls.Status.INTERRUPTED :"interrupted", 
+    ampls.Status.LIMIT_ITERATION :"limit iteration", 
+    ampls.Status.LIMIT_NODE :"limitnode", 
+    ampls.Status.LIMIT_SOLUTION:"limitsolution",
+    ampls.Status.LIMIT_TIME :"limittime",
+    ampls.Status.UNBOUNDED:"unbounded",
+    ampls.Status.UNKNOWN:"unknown",
+    ampls.Status.NOTMAPPED:"not mapped"
   }
 
 # Generic function doing the optimization and reading the results

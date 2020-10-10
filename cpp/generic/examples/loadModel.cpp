@@ -24,13 +24,13 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   ampls::Status::SolStatus s = m.getStatus();
   switch (s)
   {
-  case ampls::Status::Optimal:
+  case ampls::Status::OPTIMAL:
     printf("Optimal ");
     break;
-  case ampls::Status::Infeasible:
+  case ampls::Status::INFEASIBLE:
     printf("Infeasible ");
     break;
-  case ampls::Status::Unbounded:
+  case ampls::Status::UNBOUNDED:
     printf("Unbounded ");
     break;
   default:

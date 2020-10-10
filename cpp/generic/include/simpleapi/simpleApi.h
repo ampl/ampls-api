@@ -78,19 +78,19 @@ struct Where
   enum CBWhere
   {
     /** When the solver wants to print a message, obtain it via GenericCallback::getMessage.*/
-    msg = 0,
+    MSG = 0,
     /** Presolve phase */
-    presolve = 1,
+    PRESOLVE = 1,
     /** Executing simplex */
-    lpsolve = 2,
+    LPSOLVE = 2,
     /** Exploring a MIP node*/
-    mipnode = 3,
+    MIPNODE = 3,
     /** Found a new MIP solution*/
-    mipsol = 4,
+    MIPSOL = 4,
     /** Executing MIP algorithm*/
-    mip = 5,
+    MIP = 5,
     /** Not mapped, refer to the specific user documentation*/
-    notmapped = 10
+    NOTMAPPED = 10
   };
 };
 
@@ -103,39 +103,39 @@ struct Where
 struct Value
 {
   enum  CBValue {
-    obj = 0,
-    pre_delcols = 1,
-    pre_delrows = 2,
-    pre_coeffchanged = 3,
-    iterations = 4,
+    OBJ = 0,
+    PRE_DELCOLS= 1,
+    PRE_DELROWS = 2,
+    PRE_COEFFCHANGED = 3,
+    ITERATIONS= 4,
 
-    mip_relativegap = 5
+    MIP_RELATIVEGAP = 5
   };
 };
 struct CutDirection {
   /** Direction of a cut to be added*/
   enum Direction {
     /** = Equal*/
-    eq,
+    EQ,
     /** >= Greater or equal*/
-    ge,
+    GE,
     /** <= Less or equal*/
-    le
+    LE
   };
 };
 struct Status
 {
   enum SolStatus {
-    Unknown,
-    Optimal,
-    Infeasible,
-    Unbounded,
-    LimitIteration,
-    LimitNode,
-    LimitTime,
-    LimitSolution,
-    Interrupted,
-    NotMapped
+    UNKNOWN,
+    OPTIMAL,
+    INFEASIBLE,
+    UNBOUNDED,
+    LIMIT_ITERATION,
+    LIMIT_NODE,
+    LIMIT_TIME,
+    LIMIT_SOLUTION,
+    INTERRUPTED,
+    NOTMAPPED
   };
 };
 namespace impl
@@ -165,13 +165,13 @@ protected:
     std::string sense;
     switch (direction)
     {
-    case CutDirection::eq:
+    case CutDirection::EQ:
       sense = "= ";
       break;
-    case CutDirection::ge:
+    case CutDirection::GE:
       sense = ">=";
       break;
-    case CutDirection::le:
+    case CutDirection::LE:
       sense = "<=";
       break;
     default:

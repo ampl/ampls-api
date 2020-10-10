@@ -10,18 +10,18 @@ class MyCallback(ampls.GenericCallback):
     def run(self):
           t = self.getAMPLWhere()
           print("AMPL Phase: {}, from solver: {}".format(t, self.getWhereString()))
-          if t == ampls.Where.msg:
+          if t == ampls.Where.MSG:
            # print(self.getMessage())
             return 0
-          if t == ampls.Where.lpsolve:
-            print("LP solve, {} iterations".format(self.getValue(ampls.Value.iterations).integer))
+          if t == ampls.Where.LPSOLVE:
+            print("LP solve, {} iterations".format(self.getValue(ampls.Value.ITERATIONS).integer))
             return 0
-          if t == ampls.Where.presolve:
+          if t == ampls.Where.PRESOLVE:
             print("Presolve, eliminated {} rows and {} columns.".format(
-              self.getValue(ampls.Value.pre_delrows).integer, 
-              self.getValue(ampls.Value.pre_delcols).integer))
+              self.getValue(ampls.Value.PRE_DELROWS),
+              self.getValue(ampls.Value.PRE_DELCOLS)))
             return 0
-          if t == ampls.Where.mipnode:
+          if t == ampls.Where.MIPNODE:
             self.nMIPnodes += 1
             print("New MIP node, count {}".format(self.nMIPnodes))
           if t == ampls.Where.mipsol:

@@ -56,17 +56,17 @@ namespace gurobisharp_test
         var f = getAMPLWhere();
         switch(f)
         {
-          case Where.lpsolve:
+          case Where.LPSOLVE:
             Console.WriteLine(getMessage());
             break;
-          case Where.presolve:
+          case Where.PRESOLVE:
           //Console.WriteLine("Presolve!");
             break;
-          case Where.mipnode:
-          case Where.mipsol:
+          case Where.MIPNODE:
+          case Where.MIPSOL:
             Console.WriteLine("MIP Objective = {0}", getObj());
             break;
-          case Where.notmapped:
+          case Where.NOTMAPPED:
             Console.WriteLine($"Not mapped! Where = {getWhereString()}");
             break;
 

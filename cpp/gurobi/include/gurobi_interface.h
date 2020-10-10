@@ -99,26 +99,26 @@ public:
     switch (grbstatus)
     {
       case GRB_LOADED:
-        return Status::Unknown;
+        return Status::UNKNOWN;
       case GRB_OPTIMAL:
-        return Status::Optimal;
+        return Status::OPTIMAL;
       case GRB_INFEASIBLE:
-        return Status::Infeasible;
+        return Status::INFEASIBLE;
       case GRB_INF_OR_UNBD:
       case GRB_UNBOUNDED:
-        return Status::Unbounded;
+        return Status::UNBOUNDED;
       case GRB_ITERATION_LIMIT:
-        return Status::LimitIteration;
+        return Status::LIMIT_ITERATION;
       case GRB_NODE_LIMIT:
-        return Status::LimitNode;
+        return Status::LIMIT_NODE;
       case GRB_TIME_LIMIT:
-        return Status::LimitTime;
+        return Status::LIMIT_TIME;
       case GRB_SOLUTION_LIMIT:
-        return Status::LimitSolution;
+        return Status::LIMIT_SOLUTION;
       case GRB_INTERRUPTED:
-        return Status::Interrupted;
+        return Status::INTERRUPTED;
       default:
-        return Status::NotMapped;
+        return Status::NOTMAPPED;
     }
   }
   int getNumVars() {

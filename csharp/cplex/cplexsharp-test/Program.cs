@@ -32,17 +32,17 @@ namespace cpxsharp_test
         Console.WriteLine((int)f);
         switch (f)
         {
-          case Where.msg:
+          case Where.MSG:
            // Console.WriteLine(getMessage());
             break;
-          case Where.presolve:
+          case Where.PRESOLVE:
             //Console.WriteLine("Presolve!");
             break;
-          case Where.mipnode:
-          case Where.mipsol:
+          case Where.MIPNODE:
+          case Where.MIPSOL:
           //  Console.WriteLine("MIP Objective = {0}", getObjective());
             break;
-          case Where.notmapped:
+          case Where.NOTMAPPED:
             //Console.WriteLine($"Not mapped! Where = {getWhere()}");
             break;
 

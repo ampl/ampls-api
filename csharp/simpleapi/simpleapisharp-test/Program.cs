@@ -18,16 +18,16 @@ namespace simpleapiharp_test
                 var f = getAMPLWhere();
                 switch (f)
                 {
-                    case Where.msg:
+                    case Where.MSG:
                         Console.WriteLine(getMessage());
                         break;
-                    case Where.presolve:
+                    case Where.PRESOLVE:
                         Console.WriteLine("Presolve: {0} coefficient changed, {1} columns and {2} rows eliminated",
-                            getValue(Value.pre_coeffchanged).integer, getValue(Value.pre_delcols).integer,
-                            getValue(Value.pre_delrows).integer);
+                            getValue(Value.PRE_COEFFCHANGED).integer, getValue(Value.PRE_DELCOLS).integer,
+                            getValue(Value.PRE_DELROWS).integer);
                         break;
-                    case Where.mipnode:
-                    case Where.mipsol:
+                    case Where.MIPNODE:
+                    case Where.MIPSOL:
                         try
                         {
                             Console.WriteLine("MIP Objective = {0}", getObj());
@@ -37,7 +37,7 @@ namespace simpleapiharp_test
                             Console.WriteLine(e.Message);
                         }
                         break;
-                    case Where.notmapped:
+                    case Where.NOTMAPPED:
                         Console.WriteLine($"Not mapped! Where = {getWhereString()}");
                         break;
 

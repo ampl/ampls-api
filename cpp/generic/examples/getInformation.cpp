@@ -30,31 +30,31 @@ class MyGenericCallback : public ampls::GenericCallback
     return 0;
     switch (where)
     {
-    case ampls::Where::msg:
+    case ampls::Where::MSG:
      // printf(getMessage());
       return 0;
-    case ampls::Where::presolve:
-      if((getValue(ampls::Value::pre_delrows).integer+
-        getValue(ampls::Value::pre_delcols).integer+
-        getValue(ampls::Value::pre_coeffchanged).integer) > 0)
+    case ampls::Where::PRESOLVE:
+      if((getValue(ampls::Value::PRE_DELROWS).integer+
+        getValue(ampls::Value::PRE_DELCOLS).integer+
+        getValue(ampls::Value::PRE_COEFFCHANGED).integer) > 0)
           printf("\nRemoved %i rows and %i columns. %i coefficients changed", 
-            getValue(ampls::Value::pre_delrows).integer,
-            getValue(ampls::Value::pre_delcols).integer,
-            getValue(ampls::Value::pre_coeffchanged).integer);
+            getValue(ampls::Value::PRE_DELROWS).integer,
+            getValue(ampls::Value::PRE_DELCOLS).integer,
+            getValue(ampls::Value::PRE_COEFFCHANGED).integer);
           return 0;
-    case ampls::Where::mipnode:
+    case ampls::Where::MIPNODE:
       nMIPnodes++;
       printf("\nNew MIP node. Count: %d", nMIPnodes);
       return 0;
-    case ampls::Where::mip:
-    case ampls::Where::mipsol:
+    case ampls::Where::MIP:
+    case ampls::Where::MIPSOL:
       try {
         obj = getObj();
         printf("\nMIP Objective = %f", getObj());
         return 0;
       }
       catch (...) {}
-    case ampls::Where::notmapped:
+    case ampls::Where::NOTMAPPED:
       printf("\nNot mapped! Where: %s", getWhereString());
     }
     return 0;
@@ -76,13 +76,13 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   ampls::Status::SolStatus s = m.getStatus();
   switch (s)
   {
-    case ampls::Status::Optimal:
+    case ampls::Status::OPTIMAL:
       printf("Optimal.\n");
       break;
-    case ampls::Status::Infeasible:
+    case ampls::Status::INFEASIBLE:
       printf("Infeasible.\n");
       break;
-    case ampls::Status::Unbounded:
+    case ampls::Status::UNBOUNDED:
       printf("Unbounded.\n");
       break;
     default:
