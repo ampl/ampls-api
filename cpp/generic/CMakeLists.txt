@@ -9,17 +9,27 @@ add_prefix(SIMPLEAPI_SOURCES ${SIMPLEAPI_DIR}/
   src/csvReader.cpp
   src/simpleApi.cpp
   include/simpleapi/simpleApi.h)
+
+set(LINKLIBS "")
+if(CMAKE_DL_LIBS)
+  append(LINKLIBS ${CMAKE_DL_LIBS})
+endif()
+if(LINUX)
+  append(LINKLIBS rt)
+endif()
+
 add_library(simpleapi STATIC ${SIMPLEAPI_SOURCES})
 target_include_directories(simpleapi PRIVATE ${SIMPLEAPI_DIR}
       PUBLIC ${SIMPLEAPI_INCLUDE})
 if(NOT WIN32)
   target_compile_options(simpleapi PRIVATE -fPIC)
 endif()
+target_link_libraries(simpleapi ${LINKLIBS})
+target_compile_features(simpleapi PUBLIC cxx_std_11)
 add_to_folder(simpleapi simpleapi)
 
 # Check which libraries are being built and add only the relevant
 # examples and link libs
-set(LINKLIBS "")
 set(PREPROCESSORDEFS "")
 foreach(s ${SOLVER_NAMES})
  if(${ENABLE_${s}})
@@ -38,10 +48,9 @@ macro(addExample name category src)
      )
     target_link_libraries(${tar} ${LINKLIBS})
     add_to_folder(${category}/examples ${tar})
+  endmacro()
 
-endmacro()
-
-if(LINKLIBS)
+if(PREPROCESSORDEFS)
     set(EXAMPLES loadModel getInformation simpleCuts)
     foreach(e ${EXAMPLES})
         addExample(${e} simpleapi ${SIMPLEAPI_DIR}/examples/${e}.cpp)

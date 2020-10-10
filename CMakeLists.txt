@@ -82,7 +82,7 @@ add_subdirectory(cpp/generic)
 
 # Solver vendors libraries and headers locations
 set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/902)
+set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/903)
 set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/1210)
 set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/36.01.10)
 set(gurobi_INCLUDE_DIR ${gurobi_BASE_DIR}/include)
@@ -168,6 +168,7 @@ function(AddSolverStub solver includes libs)
   if(NOT WIN32)
     target_compile_options(${TARGETNAME} PRIVATE -fPIC)
   endif()
+  
   # Tests
   add_prefix(TEST_SOURCES ${DIR_CPP}/test/ ${solver}-test.cpp)
   add_executable(${TARGETNAME}-test ${TEST_SOURCES})
@@ -212,8 +213,9 @@ endif()
 
 if(WIN32)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/simpleapi)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/simpleapi)
 endif()
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/simpleapi)
+
 
 
 add_subdirectory("doc")

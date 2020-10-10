@@ -1,6 +1,7 @@
 #include "gurobi_interface.h"
-#include "gurobi_callback.h"
 #include "simpleapi/simpleApi.h"
+
+#include <memory> // for unique_ptr
 namespace ampls
 {
 int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
@@ -28,7 +29,7 @@ GurobiModel* GurobiDrv::loadModelImpl(char** args) {
   return m;
 }
 GurobiModel GurobiDrv::loadModel(const char* modelName) {
-  std::auto_ptr<GurobiModel> mod = loadModelGeneric(modelName);
+  std::unique_ptr<GurobiModel> mod(loadModelGeneric(modelName));
   GurobiModel c(*mod);
   return c;
 }

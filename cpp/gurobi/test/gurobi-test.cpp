@@ -5,6 +5,8 @@
 #include <cstring>
 #include <vector>
 
+#include <cmath>
+
 const char* MODELNAME = "tsp.nl";
 
 class MyGurobiCutCallback : public ampls::GurobiCallback
@@ -14,7 +16,7 @@ class MyGurobiCutCallback : public ampls::GurobiCallback
     int ret = 0;
     if (where_ == GRB_CB_MESSAGE)
     {
-      printf(getMessage());
+      printf("%s", getMessage());
       return 0;
     }
     if (where_ == GRB_CB_MIPSOL)
@@ -46,7 +48,7 @@ public:
       printf("%s", s.data());
       return 0;
     }
-    printf("\n** Called callback with where=%s** \n", getWhere());
+    printf("\n** Called callback with where=%s ** \n", getWhereString());
     if (where() == GRB_CB_PRESOLVE)
     {
       int cdels = get(GRB_CB_PRE_COLDEL).integer;

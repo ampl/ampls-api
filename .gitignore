@@ -1,4 +1,8 @@
 /build
+/build-*
+# Default VSCode and VS dirs
+/.vs
+/.vscode
 *.col
 bin
 obj

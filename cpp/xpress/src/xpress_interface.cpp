@@ -1,6 +1,8 @@
 #include "xpress_interface.h"
 #include "simpleapi/simpleApi.h"
 
+#include <memory> // for unique_ptr
+
 namespace ampls
 {
 namespace xpress {
@@ -46,7 +48,7 @@ XPRESSModel* XPRESSDrv::loadModelImpl(char** args) {
   return m;
 }
 XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
-  std::auto_ptr<XPRESSModel> mod = loadModelGeneric(modelName);
+  std::unique_ptr<XPRESSModel> mod(loadModelGeneric(modelName));
   XPRESSModel c(*mod);
   return c;
 }

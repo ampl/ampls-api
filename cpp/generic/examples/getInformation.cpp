@@ -11,6 +11,8 @@
 #include "simpleapi/simpleApi.h"
 #include "test-config.h" // for MODELS_DIR
 
+#include <cstring> // for strcat 
+
 const char* MODELNAME = "tsp.nl";
 
 class MyGenericCallback : public ampls::GenericCallback
@@ -99,7 +101,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
 }
 int main(int argc, char** argv) {
 
-  char buffer[80];
+  char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
   

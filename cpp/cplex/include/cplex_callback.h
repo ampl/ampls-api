@@ -96,7 +96,7 @@ public:
       }
       return res;
     }
-    throw std::exception("Not supported yet");
+    throw std::runtime_error("Not supported yet");
   }
   double getDouble(int what)
   {

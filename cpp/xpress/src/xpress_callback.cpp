@@ -24,9 +24,9 @@ int XPRESSCallback::doAddCut(int nvars, const int* vars,
       sense = 'L';
       break;
     default:
-      throw AMPLSolverException("Unexpected cut direction");
+      throw AMPLSolverException::format("Unexpected cut direction: %d", (int)direction);
   }
-  throw std::exception("Not implemented yet");
+  throw std::runtime_error("Not implemented yet");
 }
 
 int XPRESSCallback::getSolution(int len, double* sol) {

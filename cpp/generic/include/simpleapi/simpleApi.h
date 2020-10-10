@@ -1,6 +1,7 @@
 #ifndef SIMPLEAPI_H_INCLUDE_
 #define SIMPLEAPI_H_INCLUDE_
 
+#include <cstdio>
 #include <string>
 #include <map>
 #include <vector>
@@ -145,7 +146,7 @@ namespace impl
 */
 class BaseCallback
 {
-  friend class AMPLModel;
+  friend class ampls::AMPLModel;
   friend class ampls::GenericCallback;
 
 protected:
@@ -161,17 +162,17 @@ protected:
   void printCut(int nvars, const int* vars, const double* coeffs, 
     CutDirection::Direction direction, double rhs)
   {
-    char* sense;
+    std::string sense;
     switch (direction)
     {
     case CutDirection::eq:
-      sense = "= \0";
+      sense = "= ";
       break;
     case CutDirection::ge:
-      sense = ">=\0";
+      sense = ">=";
       break;
     case CutDirection::le:
-      sense = "<=\0";
+      sense = "<=";
       break;
     default:
       throw AMPLSolverException("Unexpected cut direction");
@@ -181,7 +182,7 @@ protected:
       if (i < nvars - 1)
         printf(" + ");
     }
-    printf(" %s %f\n", sense, rhs);
+    printf(" %s %f\n", sense.c_str(), rhs);
 
   }
 public:
@@ -251,11 +252,11 @@ protected:
   virtual T* loadModelImpl(char** args) = 0;
 public:
   
-  std::auto_ptr<T> loadModelGeneric(const char* modelName)
+  T* loadModelGeneric(const char* modelName)
   {
     FILE* f = fopen(modelName, "rb");
     if (!f)
-      throw ampls::AMPLSolverException("Could not find file: " + std::string(modelName));
+      throw ampls::AMPLSolverException::format("Could not find file: %s", modelName);
     else
       fclose(f);
 
@@ -265,7 +266,7 @@ public:
       args = generateArguments(modelName);
       T* mod = loadModelImpl(args);
       deleteParams(args);
-      return std::auto_ptr<T>(mod);
+      return mod;
     }
     catch (const std::exception& e) {
       deleteParams(args);
@@ -294,7 +295,7 @@ class GenericCallback : public impl::BaseCallback
   friend class AMPLModel;
 
 private:
-  std::auto_ptr<impl::BaseCallback> impl_;
+  std::unique_ptr<impl::BaseCallback> impl_;
 
 protected:
   virtual int doAddCut(int nvars, const int* vars,

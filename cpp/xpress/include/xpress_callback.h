@@ -107,7 +107,8 @@ public:
     case Value::pre_coeffchanged:
       return Variant(0);
     }
-    throw std::exception("Not supported yet");
+    throw std::runtime_error("Not supported yet");
+    return Variant(); // silence gcc warning
   }
 };
 

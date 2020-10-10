@@ -10,6 +10,8 @@
 
 #include "simpleapi/simpleApi.h"
 #include "test-config.h" // for MODELS_DIR
+
+#include <cstring> // for strcat 
 /*
 set A;
 var scalar >= 0, <= 4;
@@ -92,9 +94,9 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   m.writeSol();
   return obj;
 }
-void main(int argc, char** argv) {
+int main(int argc, char** argv) {
 
-  char buffer[80];
+  char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "queens18.nl");
 
