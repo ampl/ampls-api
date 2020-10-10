@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-AMPLPY-GUROBI
--------------
+AMPLPY-CPLEX
+------------
 
-GUROBI driver for AMPL.
+CPLEX driver for AMPL.
 
 """
 from setuptools import setup, Extension
@@ -62,9 +62,9 @@ def libdir():
 
 
 setup(
-    name='amplpy_gurobi',
+    name='amplpy_cplex',
     version='0.1.0b3',
-    description='GUROBI extension for amplpy',
+    description='CPLEX extension for amplpy',
     long_description=__doc__,
     license='BSD-3',
     platforms='any',
@@ -95,38 +95,38 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    packages=['amplpy_gurobi'],
+    packages=['amplpy_cplex'],
     ext_modules=[Extension(
-        '_amplpy_gurobi_swig',
+        '_amplpy_cplex_swig',
         library_dirs=[
-            os.path.join('amplpy_gurobi', 'libs', 'gurobi', 'lib', libdir()),
-            os.path.join('amplpy_gurobi', 'libs', 'ampls', libdir()),
+            os.path.join('amplpy_cplex', 'libs', 'cplex', 'lib', libdir()),
+            os.path.join('amplpy_cplex', 'libs', 'ampls', libdir()),
         ],
         define_macros=[('SWIG', 1)],
         include_dirs=[
-            os.path.join('amplpy_gurobi', 'libs', 'gurobi', 'include'),
-            os.path.join('amplpy_gurobi', 'swig'),
-            os.path.join('amplpy_gurobi', 'cpp', 'gurobi', 'include'),
-            os.path.join('amplpy_gurobi', 'cpp', 'generic', 'include'),
+            os.path.join('amplpy_cplex', 'libs', 'cplex', 'include'),
+            os.path.join('amplpy_cplex', 'swig'),
+            os.path.join('amplpy_cplex', 'cpp', 'cplex', 'include'),
+            os.path.join('amplpy_cplex', 'cpp', 'generic', 'include'),
         ],
-        libraries=['gurobi90', 'gurobi-lib'],
+        libraries=['cplex12100', 'cplex-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=[make_relative_rpath([
-            os.path.join('amplpy_gurobi', 'libs', 'ampls', libdir()),
-            os.path.join('amplpy_gurobi', 'libs', 'gurobi', 'lib', libdir()),
+            os.path.join('amplpy_cplex', 'libs', 'ampls', libdir()),
+            os.path.join('amplpy_cplex', 'libs', 'cplex', 'lib', libdir()),
         ])],
         sources=[
-            os.path.join('amplpy_gurobi', 'swig',
-                         'amplpy_gurobi_swig_wrap.cxx')
+            os.path.join('amplpy_cplex', 'swig',
+                         'amplpy_cplex_swig_wrap.cxx')
         ] + [
-            os.path.join('amplpy_gurobi', 'cpp', 'generic', 'src', fname)
-            for fname in ls_dir(os.path.join('amplpy_gurobi', 'cpp', 'generic', 'src'))
+            os.path.join('amplpy_cplex', 'cpp', 'generic', 'src', fname)
+            for fname in ls_dir(os.path.join('amplpy_cplex', 'cpp', 'generic', 'src'))
             if fname.endswith(('.c', '.cpp'))
         ] + [
-            os.path.join('amplpy_gurobi', 'cpp', 'gurobi', 'src', fname)
-            for fname in ls_dir(os.path.join('amplpy_gurobi', 'cpp', 'gurobi', 'src'))
+            os.path.join('amplpy_cplex', 'cpp', 'cplex', 'src', fname)
+            for fname in ls_dir(os.path.join('amplpy_cplex', 'cpp', 'cplex', 'src'))
             if fname.endswith(('.c', '.cpp'))
         ],
     )],
-    package_data={'': ls_dir('amplpy_gurobi/')},
+    package_data={'': ls_dir('amplpy_cplex/')},
 )

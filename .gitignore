@@ -4,6 +4,7 @@
 /.vs
 /.vscode
 *.col
+__pycache__
 bin
 obj
 /csharp/cplex/api/dev_cpxsharp.csproj

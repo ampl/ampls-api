@@ -2,7 +2,7 @@
 cd `dirname $0`
 cd amplpy_gurobi/swig
 swig -python -c++ -builtin \
-    -I../gurobi/include \
-    -I../gurobi903/include \
-    -I../generic/include \
+    -I../cpp/generic/include \
+    -I../cpp/gurobi/include \
+    -I../libs/gurobi/include \
     amplpy_gurobi_swig.i

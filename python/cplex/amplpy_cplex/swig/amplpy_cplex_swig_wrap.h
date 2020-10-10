@@ -8,8 +8,8 @@
  * interface file instead.
  * ----------------------------------------------------------------------------- */
 
-#ifndef SWIG_amplpy_gurobi_swig_WRAP_H_
-#define SWIG_amplpy_gurobi_swig_WRAP_H_
+#ifndef SWIG_amplpy_cplex_swig_WRAP_H_
+#define SWIG_amplpy_cplex_swig_WRAP_H_
 
 #include <map>
 #include <string>
@@ -68,16 +68,16 @@ private:
 };
 
 
-class SwigDirector_GurobiCallback : public ampls::GurobiCallback, public Swig::Director {
+class SwigDirector_CPLEXCallback : public ampls::CPLEXCallback, public Swig::Director {
 
 public:
-    SwigDirector_GurobiCallback(PyObject *self);
+    SwigDirector_CPLEXCallback(PyObject *self);
     virtual int doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type);
     virtual int doAddCutSwigPublic(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type) {
-      return ampls::GurobiCallback::doAddCut(nvars,vars,coeffs,direction,rhs,type);
+      return ampls::CPLEXCallback::doAddCut(nvars,vars,coeffs,direction,rhs,type);
     }
     virtual int run();
-    virtual ~SwigDirector_GurobiCallback();
+    virtual ~SwigDirector_CPLEXCallback();
     virtual int getSolution(int len, double *sol);
     virtual double getObj();
     virtual char const *getWhereString();
@@ -106,7 +106,7 @@ private:
         swig::SwigVar_PyObject name = SWIG_Python_str_FromChar(method_name);
         method = PyObject_GetAttr(swig_get_self(), name);
         if (!method) {
-          std::string msg = "Method in class GurobiCallback doesn't exist, undefined ";
+          std::string msg = "Method in class CPLEXCallback doesn't exist, undefined ";
           msg += method_name;
           Swig::DirectorMethodException::raise(msg.c_str());
         }
