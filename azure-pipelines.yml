@@ -22,7 +22,7 @@ jobs:
       displayName: Download libraries
     - bash: |
         mkdir -p tmp
-        TMP=`pwd`/tmp/
+        TMP=`pwd`/tmp
         cd python/$SOLVER
         bash prepare.sh
         bash swig.sh
@@ -62,7 +62,7 @@ jobs:
       displayName: Download libraries
     - bash: |
         mkdir -p tmp
-        TMP=`pwd`/tmp/
+        TMP=`pwd`/tmp
         cd python/$SOLVER
         bash prepare.sh
         bash swig.sh
@@ -108,7 +108,7 @@ jobs:
       displayName: Download libraries
     - bash: |
         mkdir -p tmp
-        TMP=`pwd`/tmp/
+        TMP=`pwd`/tmp
         cd python/$SOLVER
         bash prepare.sh
         bash swig.sh
