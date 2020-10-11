@@ -108,6 +108,10 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        cd libs/gurobi/include/
+        curl -o amplpy_gurobi/amplpy_gurobi/swig/stdint.h https://raw.githubusercontent.com/mattn/gntp-send/master/include/msinttypes/stdint.h
+      displayName: Download stdint.h
+    - bash: |
         set -ex
         mkdir -p tmp
         TMP=`pwd`/tmp
