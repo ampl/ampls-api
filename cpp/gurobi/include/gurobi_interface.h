@@ -28,8 +28,7 @@ namespace grb
   {
     extern "C" {
       // Imported from the GUROBI driver
-      ENTRYPOINT GRBmodel* AMPLloadmodel(int argc, char** argv);
-      ENTRYPOINT GRBmodel* AMPLloadmodelNoLic(int argc, char** argv, ASL** asl);
+      ENTRYPOINT GRBmodel* AMPLloadmodel(int argc, char** argv, ASL** asl);
       ENTRYPOINT void AMPLwritesol(GRBmodel* m, ASL* asl, int lastoptimizerun, const char* solFileName);
       ENTRYPOINT void freeEnvironment();
       ENTRYPOINT void freeASL(ASL** aslp);
