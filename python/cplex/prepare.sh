@@ -6,5 +6,5 @@ cp -r ../../cpp/generic amplpy_cplex/cpp/generic
 cp -r ../../cpp/cplex amplpy_cplex/cpp/cplex
 
 cp -r ../../libs/cplex amplpy_cplex/libs/cplex
-cp -r ../../libs/ampllibs amplpy_cplex/libs/ampls
+cp -r ../../libs/ampls amplpy_cplex/libs/ampls
  
