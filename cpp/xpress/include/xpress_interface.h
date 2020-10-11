@@ -153,17 +153,17 @@ public:
       switch (stat)
       {
       case XPRS_LP_UNSTARTED:
-        return Status::Unknown;
+        return Status::UNKNOWN;
       case XPRS_LP_OPTIMAL:
-        return Status::Optimal;
+        return Status::OPTIMAL;
       case XPRS_LP_INFEAS:
-        return Status::Infeasible;
+        return Status::INFEASIBLE;
       case XPRS_LP_UNBOUNDED:
-        return Status::Unbounded;
+        return Status::UNBOUNDED;
       case XPRS_LP_UNFINISHED:
-        return Status::Unknown;
+        return Status::UNKNOWN;
       default:
-        return Status::NotMapped;
+        return Status::NOTMAPPED;
         // XPRS_LP_CUTOFF
         // XPRS_LP_CUTOFF_IN_DUAL
         // XPRS_LP_UNSOLVED
@@ -176,18 +176,18 @@ public:
       switch (stat)
       {
       case XPRS_MIP_NOT_LOADED:
-        return Status::Unknown;
+        return Status::UNKNOWN;
       case XPRS_MIP_OPTIMAL:
-        return Status::Optimal;
+        return Status::OPTIMAL;
       case XPRS_MIP_INFEAS:
-        return Status::Infeasible;
+        return Status::INFEASIBLE;
       case XPRS_MIP_UNBOUNDED:
-        return Status::Unbounded;
+        return Status::UNBOUNDED;
       case XPRS_MIP_SOLUTION:
       case XPRS_MIP_LP_OPTIMAL:
-        return Status::Interrupted;
+        return Status::INTERRUPTED;
       default:
-        return Status::NotMapped;
+        return Status::NOTMAPPED;
         // XPRS_MIP_NO_SOL_FOUND
         // XPRS_MIP_LP_NOT_OPTIMAL:
       }

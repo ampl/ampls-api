@@ -48,7 +48,7 @@ macro(addExample name category src)
      )
     target_link_libraries(${tar} ${LINKLIBS})
     add_to_folder(${category}/examples ${tar})
-  endmacro()
+endmacro()
 
 if(PREPROCESSORDEFS)
     set(EXAMPLES loadModel getInformation simpleCuts)

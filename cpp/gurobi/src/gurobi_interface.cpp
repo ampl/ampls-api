@@ -23,7 +23,7 @@ void GurobiDrv::freeGurobiEnv()
 }
 GurobiModel* GurobiDrv::loadModelImpl(char** args) {
   GurobiModel* m = new GurobiModel();
-  m->GRBModel_ = grb::impl::AMPLloadmodelNoLic(3, args, &m->asl_);
+  m->GRBModel_ = grb::impl::AMPLloadmodel(3, args, &m->asl_);
   m->lastErrorCode_ = -1;
   m->fileName_ = args[1];
   return m;

@@ -168,6 +168,22 @@ function(AddSolverStub solver includes libs)
     target_compile_options(${TARGETNAME} PRIVATE -fPIC)
   endif()
   
+  
+
+  set(EXAMPLES loadModel getInformation simpleCuts)
+  foreach(exname ${EXAMPLES})
+      set(tar ${solver}-${exname}) 
+      set(src ${DIR_CPP}/examples/${exname}.cpp)
+      if(EXISTS ${src})
+        add_executable(${tar} ${src})
+        target_include_directories(${tar} PRIVATE
+          ${GENERATED_INCLUDE_DIR}) # for test-config
+        target_link_libraries(${tar} simpleapi ${TARGETNAME})
+        add_to_folder(${solver}/examples ${tar})
+      endif()
+  endforeach()
+
+
   # Tests
   add_prefix(TEST_SOURCES ${DIR_CPP}/test/ ${solver}-test.cpp)
   add_executable(${TARGETNAME}-test ${TEST_SOURCES})

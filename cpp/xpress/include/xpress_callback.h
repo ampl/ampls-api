@@ -71,13 +71,13 @@ public:
     switch (static_cast<xpress::impl::XPRESSWhere>(where_))
     {
     case xpress::impl::XPRESSWhere::message:
-      return Where::msg;
+      return Where::MSG;
     case xpress::impl::XPRESSWhere::intsol:
-      return Where::mipsol;
+      return Where::MIPSOL;
     case xpress::impl::XPRESSWhere::chgnode:
-      return Where::mipnode;
+      return Where::MIPNODE;
     default:
-      return Where::notmapped;
+      return Where::NOTMAPPED;
     }
     
   }
@@ -100,11 +100,11 @@ public:
   virtual Variant getValue(Value::CBValue v) {
     switch (v)
     {
-    case Value::pre_delcols:
+    case Value::PRE_DELCOLS:
       return Variant(getInt(XPRS_ORIGINALCOLS) - getInt(XPRS_COLS));
-    case Value::pre_delrows:
+    case Value::PRE_DELROWS:
       return Variant(getInt(XPRS_ORIGINALROWS) - getInt(XPRS_ROWS));
-    case Value::pre_coeffchanged:
+    case Value::PRE_COEFFCHANGED:
       return Variant(0);
     }
     throw std::runtime_error("Not supported yet");

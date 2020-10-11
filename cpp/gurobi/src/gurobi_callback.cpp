@@ -99,8 +99,11 @@ Variant GurobiCallback::get(int what)
 }
 
 void GurobiCallback::terminate() {
-  GRBterminate(gurobiModel()->getGRBmodel());
+  GRBterminate(getGRBModel());
 }
+   GRBmodel* GurobiCallback::getGRBModel() {
+    return ((GurobiModel*)model_)->getGRBmodel();
+  };
 const char* GurobiCallback::getMessage()
 {
   char* msg;

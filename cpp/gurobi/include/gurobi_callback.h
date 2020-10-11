@@ -19,9 +19,7 @@ class GurobiCallback : public impl::BaseCallback {
   friend int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
   friend class GurobiModel;
   void* cbdata_;
-  GurobiModel* gurobiModel() {
-    return (GurobiModel*)model_;
-  };
+ 
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,
@@ -29,6 +27,7 @@ protected:
     int type);
 
 public:
+
   GurobiCallback() : cbdata_(NULL) {}
   /**
   * Get where the callback is called from in Gurobi_C library metrics
@@ -52,7 +51,15 @@ public:
   double getObj();
   /* Gurobi - specific */
 
+  /**
+   * Get CBdata, useful for calling gurobi c library functions 
+   */
   void* getCBData() { return cbdata_; }
+    /**
+   * Get the underlying gurobi model pointer
+   */
+   GRBmodel* getGRBModel();
+
   void terminate();
 
   int getInt(int what) {
