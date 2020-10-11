@@ -11,3 +11,4 @@ obj
 /csharp/cplex/api/dev_cplexsharp.csproj
 /csharp/gurobi/api/dev_gurobisharp.csproj
 /test/models/*.sol
+/csharp/simpleapi/api/dev_simpleapisharp.csproj
