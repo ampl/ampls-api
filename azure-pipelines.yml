@@ -21,16 +21,21 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        mkdir -p tmp
+        TMP=`pwd`/tmp/
         cd python/$SOLVER
         bash prepare.sh
         bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
         pip install cibuildwheel==1.6.2
-        CIBW_SKIP='*-manylinux*_i686' cibuildwheel --output-dir $WHEELHOUSE .
+        CIBW_SKIP='*-manylinux*_i686' cibuildwheel --output-dir $TMP .
+        ls -l $TMP
+        test "$(ls -A $TMP)" || false
+        mv $TMP/* $WHEELHOUSE/
         # python setup.py sdist -d $WHEELHOUSE
-        pip install twine
-        twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
+        # pip install twine
+        # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
       displayName: Build wheels
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
@@ -56,15 +61,20 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        mkdir -p tmp
+        TMP=`pwd`/tmp/
         cd python/$SOLVER
         bash prepare.sh
         bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
         pip install cibuildwheel==1.6.2
-        cibuildwheel --output-dir $WHEELHOUSE .
-        pip install twine
-        twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
+        cibuildwheel --output-dir $TMP .
+        ls -l $TMP
+        test "$(ls -A $TMP)" || false
+        mv $TMP/* $WHEELHOUSE/
+        # pip install twine
+        # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
       displayName: Build wheels
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
@@ -97,17 +107,21 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        mkdir -p tmp
+        TMP=`pwd`/tmp/
         cd python/$SOLVER
         bash prepare.sh
         bash swig.sh
         python -m pip install --user --upgrade pip
         python -m pip install urllib3[secure] --upgrade
         python -m pip install cibuildwheel==1.6.2
-        CIBW_SKIP='*-win32' cibuildwheel --output-dir $WHEELHOUSE .
-        python -m pip install twine
-        python -m twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
-        echo $WHEELHOUSE
-        ls $WHEELHOUSE
+        CIBW_SKIP='*-win32' cibuildwheel --output-dir $TMP .
+        cibuildwheel --output-dir $TMP .
+        ls -l $TMP
+        test "$(ls -A $TMP)" || false
+        mv $TMP/* $WHEELHOUSE/
+        # python -m pip install twine
+        # python -m twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
       displayName: Build wheels
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
