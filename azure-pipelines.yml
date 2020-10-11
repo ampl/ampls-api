@@ -28,7 +28,8 @@ jobs:
       displayName: Download libraries
     - bash: |
         curl -o libs/gurobi/include/stdint.h https://raw.githubusercontent.com/mattn/gntp-send/master/include/msinttypes/stdint.h
-      displayName: Download stdint.h
+        cp libs/gurobi/include/stdint.h libs/cplex/include/stdint.h
+      displayName: Download stdint.h for gurobi
     - bash: |
         set -ex
         mkdir -p tmp
