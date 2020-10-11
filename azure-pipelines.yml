@@ -21,6 +21,7 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        set -ex
         mkdir -p tmp
         TMP=`pwd`/tmp
         cd python/$SOLVER
@@ -61,6 +62,7 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        set -ex
         mkdir -p tmp
         TMP=`pwd`/tmp
         cd python/$SOLVER
@@ -106,6 +108,11 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        curl -o libs/gurobi/include/stdint.h https://raw.githubusercontent.com/mattn/gntp-send/master/include/msinttypes/stdint.h
+        cp libs/gurobi/include/stdint.h libs/cplex/include/stdint.h
+      displayName: Download stdint.h
+    - bash: |
+        set -ex
         mkdir -p tmp
         TMP=`pwd`/tmp
         cd python/$SOLVER
