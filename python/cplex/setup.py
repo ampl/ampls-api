@@ -42,9 +42,9 @@ def compile_args():
     if OSTYPE == 'Windows':
         return ['/TP', '/EHsc']
     elif OSTYPE == 'Linux':
-        return []
+        return ['-std=c++11']
     elif OSTYPE == 'Darwin':
-        return []
+        return ['-stdlib=libc++']
     else:
         return []
 

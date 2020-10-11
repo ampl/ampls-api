@@ -67091,13 +67091,13 @@ SWIG_init(void) {
   /* type 'ampls::Where' */
   builtin_pytype = (PyTypeObject *)&SwigPyBuiltin__ampls__Where_type;
   builtin_pytype->tp_dict = d = PyDict_New();
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "msg",SWIG_From_int(static_cast< int >(ampls::Where::msg)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "presolve",SWIG_From_int(static_cast< int >(ampls::Where::presolve)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "lpsolve",SWIG_From_int(static_cast< int >(ampls::Where::lpsolve)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "mipnode",SWIG_From_int(static_cast< int >(ampls::Where::mipnode)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "mipsol",SWIG_From_int(static_cast< int >(ampls::Where::mipsol)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "mip",SWIG_From_int(static_cast< int >(ampls::Where::mip)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "notmapped",SWIG_From_int(static_cast< int >(ampls::Where::notmapped)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "MSG",SWIG_From_int(static_cast< int >(ampls::Where::MSG)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "PRESOLVE",SWIG_From_int(static_cast< int >(ampls::Where::PRESOLVE)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LPSOLVE",SWIG_From_int(static_cast< int >(ampls::Where::LPSOLVE)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "MIPNODE",SWIG_From_int(static_cast< int >(ampls::Where::MIPNODE)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "MIPSOL",SWIG_From_int(static_cast< int >(ampls::Where::MIPSOL)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "MIP",SWIG_From_int(static_cast< int >(ampls::Where::MIP)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "NOTMAPPED",SWIG_From_int(static_cast< int >(ampls::Where::NOTMAPPED)));
   SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
   builtin_pytype->tp_new = PyType_GenericNew;
   builtin_base_count = 0;
@@ -67121,12 +67121,12 @@ SWIG_init(void) {
   /* type 'ampls::Value' */
   builtin_pytype = (PyTypeObject *)&SwigPyBuiltin__ampls__Value_type;
   builtin_pytype->tp_dict = d = PyDict_New();
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "obj",SWIG_From_int(static_cast< int >(ampls::Value::obj)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "pre_delcols",SWIG_From_int(static_cast< int >(ampls::Value::pre_delcols)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "pre_delrows",SWIG_From_int(static_cast< int >(ampls::Value::pre_delrows)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "pre_coeffchanged",SWIG_From_int(static_cast< int >(ampls::Value::pre_coeffchanged)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "iterations",SWIG_From_int(static_cast< int >(ampls::Value::iterations)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "mip_relativegap",SWIG_From_int(static_cast< int >(ampls::Value::mip_relativegap)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "OBJ",SWIG_From_int(static_cast< int >(ampls::Value::OBJ)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "PRE_DELCOLS",SWIG_From_int(static_cast< int >(ampls::Value::PRE_DELCOLS)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "PRE_DELROWS",SWIG_From_int(static_cast< int >(ampls::Value::PRE_DELROWS)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "PRE_COEFFCHANGED",SWIG_From_int(static_cast< int >(ampls::Value::PRE_COEFFCHANGED)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "ITERATIONS",SWIG_From_int(static_cast< int >(ampls::Value::ITERATIONS)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "MIP_RELATIVEGAP",SWIG_From_int(static_cast< int >(ampls::Value::MIP_RELATIVEGAP)));
   SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
   builtin_pytype->tp_new = PyType_GenericNew;
   builtin_base_count = 0;
@@ -67150,9 +67150,9 @@ SWIG_init(void) {
   /* type 'ampls::CutDirection' */
   builtin_pytype = (PyTypeObject *)&SwigPyBuiltin__ampls__CutDirection_type;
   builtin_pytype->tp_dict = d = PyDict_New();
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "eq",SWIG_From_int(static_cast< int >(ampls::CutDirection::eq)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "ge",SWIG_From_int(static_cast< int >(ampls::CutDirection::ge)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "le",SWIG_From_int(static_cast< int >(ampls::CutDirection::le)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "EQ",SWIG_From_int(static_cast< int >(ampls::CutDirection::EQ)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GE",SWIG_From_int(static_cast< int >(ampls::CutDirection::GE)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LE",SWIG_From_int(static_cast< int >(ampls::CutDirection::LE)));
   SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
   builtin_pytype->tp_new = PyType_GenericNew;
   builtin_base_count = 0;
@@ -67176,16 +67176,16 @@ SWIG_init(void) {
   /* type 'ampls::Status' */
   builtin_pytype = (PyTypeObject *)&SwigPyBuiltin__ampls__Status_type;
   builtin_pytype->tp_dict = d = PyDict_New();
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "Unknown",SWIG_From_int(static_cast< int >(ampls::Status::Unknown)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "Optimal",SWIG_From_int(static_cast< int >(ampls::Status::Optimal)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "Infeasible",SWIG_From_int(static_cast< int >(ampls::Status::Infeasible)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "Unbounded",SWIG_From_int(static_cast< int >(ampls::Status::Unbounded)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LimitIteration",SWIG_From_int(static_cast< int >(ampls::Status::LimitIteration)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LimitNode",SWIG_From_int(static_cast< int >(ampls::Status::LimitNode)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LimitTime",SWIG_From_int(static_cast< int >(ampls::Status::LimitTime)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LimitSolution",SWIG_From_int(static_cast< int >(ampls::Status::LimitSolution)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "Interrupted",SWIG_From_int(static_cast< int >(ampls::Status::Interrupted)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "NotMapped",SWIG_From_int(static_cast< int >(ampls::Status::NotMapped)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "UNKNOWN",SWIG_From_int(static_cast< int >(ampls::Status::UNKNOWN)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "OPTIMAL",SWIG_From_int(static_cast< int >(ampls::Status::OPTIMAL)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "INFEASIBLE",SWIG_From_int(static_cast< int >(ampls::Status::INFEASIBLE)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "UNBOUNDED",SWIG_From_int(static_cast< int >(ampls::Status::UNBOUNDED)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LIMIT_ITERATION",SWIG_From_int(static_cast< int >(ampls::Status::LIMIT_ITERATION)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LIMIT_NODE",SWIG_From_int(static_cast< int >(ampls::Status::LIMIT_NODE)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LIMIT_TIME",SWIG_From_int(static_cast< int >(ampls::Status::LIMIT_TIME)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "LIMIT_SOLUTION",SWIG_From_int(static_cast< int >(ampls::Status::LIMIT_SOLUTION)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "INTERRUPTED",SWIG_From_int(static_cast< int >(ampls::Status::INTERRUPTED)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "NOTMAPPED",SWIG_From_int(static_cast< int >(ampls::Status::NOTMAPPED)));
   SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
   builtin_pytype->tp_new = PyType_GenericNew;
   builtin_base_count = 0;
