@@ -21,6 +21,7 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        set -ex
         mkdir -p tmp
         TMP=`pwd`/tmp
         cd python/$SOLVER
@@ -31,7 +32,7 @@ jobs:
         pip install cibuildwheel==1.6.2
         CIBW_SKIP='*-manylinux*_i686' cibuildwheel --output-dir $TMP .
         ls -l $TMP
-        test "$(ls -A $TMP)" || false
+        test "$(ls -A $TMP)" || exit 1
         mv $TMP/* $WHEELHOUSE/
         # python setup.py sdist -d $WHEELHOUSE
         # pip install twine
@@ -61,6 +62,7 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        set -ex
         mkdir -p tmp
         TMP=`pwd`/tmp
         cd python/$SOLVER
@@ -71,7 +73,7 @@ jobs:
         pip install cibuildwheel==1.6.2
         cibuildwheel --output-dir $TMP .
         ls -l $TMP
-        test "$(ls -A $TMP)" || false
+        test "$(ls -A $TMP)" || exit 1
         mv $TMP/* $WHEELHOUSE/
         # pip install twine
         # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
@@ -90,7 +92,6 @@ jobs:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:
     - {task: UsePythonVersion@0, inputs: {versionSpec: '2.7', architecture: x64}}
-    - {task: UsePythonVersion@0, inputs: {versionSpec: '3.4', architecture: x64}}
     - {task: UsePythonVersion@0, inputs: {versionSpec: '3.5', architecture: x64}}
     - {task: UsePythonVersion@0, inputs: {versionSpec: '3.6', architecture: x64}}
     - {task: UsePythonVersion@0, inputs: {versionSpec: '3.7', architecture: x64}}
@@ -107,6 +108,7 @@ jobs:
         cp -r solvers-public-libs/* .
       displayName: Download libraries
     - bash: |
+        set -ex
         mkdir -p tmp
         TMP=`pwd`/tmp
         cd python/$SOLVER
@@ -118,7 +120,7 @@ jobs:
         CIBW_SKIP='*-win32' cibuildwheel --output-dir $TMP .
         cibuildwheel --output-dir $TMP .
         ls -l $TMP
-        test "$(ls -A $TMP)" || false
+        test "$(ls -A $TMP)" || exit 1
         mv $TMP/* $WHEELHOUSE/
         # python -m pip install twine
         # python -m twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true

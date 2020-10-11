@@ -17,7 +17,7 @@ public:
     void*cbdata = getCBData();
     if (where == GRB_CB_MIP) {
       double nodecount;
-      int error = GRBcbget(cbdata, where, GRB_CB_MIP_NODECNT, (void *) &nodecount);
+      int error = GRBcbget(cbdata, where, GRB_CB_MIP_NODCNT, (void *) &nodecount);
       if (error) return 0;
       printf("MIP node count is %d\n", nodecount);
     }

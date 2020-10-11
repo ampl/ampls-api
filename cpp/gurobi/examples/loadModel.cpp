@@ -35,7 +35,7 @@ int main(int argc, char** argv) {
   double obj = model.getObj();
   printf("Objective via ampls generic interface: %f\n", obj);
   // 2 Access gurobi attribute with shortcut function getDoubleAttr
-  double obj = model.getDoubleAttr(GRB_DBL_ATTR_OBJVAL);
+  obj = model.getDoubleAttr(GRB_DBL_ATTR_OBJVAL);
   printf("Objective via shortcut: %f\n", obj);
   // 3 Use Gurobi C API directly
   GRBgetdblattr(grb, GRB_DBL_ATTR_OBJ, &obj);
