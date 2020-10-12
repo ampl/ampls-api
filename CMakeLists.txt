@@ -139,7 +139,7 @@ function(AddSolverStub solver includes libs)
 
   set(IMPORTLIB ${solver}-lib)
   if(NOT TARGET ${IMPORTLIB})
-    set(LIBFILENAME ${solver}-lib.lib)
+    set(LIBFILENAME ${solver}-lib)
     find_library(${solver}LIBFILE ${LIBFILENAME} PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
     if(NOT ${solver}LIBFILE)
       message(FATAL_ERROR "AMPL solver library ${solver}-lib not found in ${AMPLS_DIR}")
