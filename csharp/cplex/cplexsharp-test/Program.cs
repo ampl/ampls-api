@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,11 +56,12 @@ namespace cpxsharp_test
         
       static void Main(string[] args)
     {
-           const string nodelFile = @"D:\Development\AMPL\solvers-public\test\models\tsp.nl";
+      const string nodelFile = @"D:\Development\AMPL\solvers-public\test\models\tsp.nl";
            // const string nodelFile = @"D:\\model.nl";
             CPLEXDrv g = new CPLEXDrv();
             try
             {
+        
                 var m = g.loadModel(nodelFile);
 
                 int nvars = m.getNumVars();

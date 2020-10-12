@@ -19,7 +19,7 @@ class GurobiCallback : public impl::BaseCallback {
   friend int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
   friend class GurobiModel;
   void* cbdata_;
- 
+
 protected:
   // Interface
   int doAddCut(int nvars, const int* vars,
@@ -52,27 +52,47 @@ public:
   /* Gurobi - specific */
 
   /**
-   * Get CBdata, useful for calling gurobi c library functions 
+   * Get CBdata, useful for calling gurobi c library functions
    */
   void* getCBData() { return cbdata_; }
-    /**
-   * Get the underlying gurobi model pointer
-   */
-   GRBmodel* getGRBModel();
+  /**
+ * Get the underlying gurobi model pointer
+ */
+  GRBmodel* getGRBModel();
 
   void terminate();
 
   int getInt(int what) {
     int res;
     int status = GRBcbget(cbdata_, where_, what, &res);
+    if (status)
+      throw ampls::AMPLSolverException::format("Error while getting int attribute, code: %d", status);
     return res;
   }
   double getDouble(int what) {
     double res;
     int status = GRBcbget(cbdata_, where_, what, &res);
+    if (status)
+      throw ampls::AMPLSolverException::format("Error while getting double, code: %d", status);
     return res;
   }
-
+  std::vector<double> getDoubleArray(int what) {
+    int len = model_->getNumVars();
+    std::vector<double> res;
+    res.resize(len);
+    int status = GRBcbget(cbdata_, where_, what, res.data());
+    if (status)
+      throw ampls::AMPLSolverException::format("Error while getting double attribute, code: %d", status);
+    return res;
+  }
+  double setSolution(double* x)
+  {
+    double obj;
+    int status = GRBcbsolution(cbdata_, x, &obj);
+    if (status)
+      throw ampls::AMPLSolverException::format("Error while setting solution, code: %d", status);
+    return obj;
+  }
   virtual Where::CBWhere getAMPLWhere() {
     switch (where_)
     {

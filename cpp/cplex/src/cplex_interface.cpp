@@ -92,8 +92,11 @@ CPLEXModel* CPLEXDrv::loadModelImpl(char** args) {
   CPLEXModel* m = new CPLEXModel();
   CPXLPptr modelptr;
   ASL* aslptr;
-  m->state_ = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
+  cpx::impl::CPLEXDriverState* state = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
     &aslptr);
+  if (state == NULL)
+    throw AMPLSolverException::format("Trouble when loading model %s, most likely license-related.", args[1]);
+  m->state_ = state;
   m->model_ = modelptr;
   m->asl_ = aslptr;
   m->lastErrorCode_ = -1;

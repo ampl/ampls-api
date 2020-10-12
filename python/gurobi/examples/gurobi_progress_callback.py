@@ -1,34 +1,39 @@
 import sys
 import amplpy_gurobi as gpy
 
-# Define my callback function
-
-
+# Use mostly gurobi C interface to monitor the solution of a model
 class MyCallback(gpy.GurobiCallback):
+    def __init(self):
+        super.__init__(self)
 
     def log(self, item):
         # self._logfile.write(item)
         print(item)
 
-    def run(self, where):
+    def run(self):
+
+        # Get the data needed to use gurobi C functions related to callbacks
+        where = self.where()
+        cbdata = self.getCBData()
+
         if where == gpy.GRB_CB_POLLING:
             # Ignore polling callback
             pass
         elif where == gpy.GRB_CB_PRESOLVE:
             # Presolve callback
-            cdels = self.get(gpy.GRB_CB_PRE_COLDEL)
-            rdels = self.get(gpy.GRB_CB_PRE_ROWDEL)
+            cdels = self.getInt(gpy.GRB_CB_PRE_COLDEL)
+            rdels = self.getInt(gpy.GRB_CB_PRE_ROWDEL)
             if cdels or rdels:
                 print('%d columns and %d rows are removed' % (cdels, rdels))
         elif where == gpy.GRB_CB_SIMPLEX:
             # Simplex callback
-            itcnt = self.get(gpy.GRB_CB_SPX_ITRCNT)
+            itcnt = self.getInt(gpy.GRB_CB_SPX_ITRCNT)
             if itcnt - model._lastiter >= 100:
                 self._lastiter = itcnt
-                obj = self.get(gpy.GRB_CB_SPX_OBJVAL)
-                ispert = self.get(gpy.GRB_CB_SPX_ISPERT)
-                pinf = self.get(gpy.GRB_CB_SPX_SPX_PRIMINF)
-                dinf = self.get(gpy.GRB_CB_SPX_SPX_DUALINF)
+                obj = self.getDouble(gpy.GRB_CB_SPX_OBJVAL)
+                ispert = self.getInt(gpy.GRB_CB_SPX_ISPERT)
+                pinf = self.getDouble(gpy.GRB_CB_SPX_SPX_PRIMINF)
+                dinf = self.getDouble(gpy.GRB_CB_SPX_SPX_DUALINF)
                 if ispert == 0:
                     ch = ' '
                 elif ispert == 1:
@@ -38,15 +43,15 @@ class MyCallback(gpy.GurobiCallback):
                 print('%d %g%s %g %g' % (int(itcnt), obj, ch, pinf, dinf))
         elif where == gpy.GRB_CB_MIP:
             # General MIP callback
-            nodecnt = self.get(gpy.GRB_CB_MIP_NODCNT)
-            objbst = self.get(gpy.GRB_CB_MIP_OBJBST)
-            objbnd = self.get(gpy.GRB_CB_MIP_OBJBND)
-            solcnt = self.get(gpy.GRB_CB_MIP_SOLCNT)
+            nodecnt = self.getInt(gpy.GRB_CB_MIP_NODCNT)
+            objbst = self.getDouble(gpy.GRB_CB_MIP_OBJBST)
+            objbnd = self.getDouble(gpy.GRB_CB_MIP_OBJBND)
+            solcnt = self.getInt(gpy.GRB_CB_MIP_SOLCNT)
             if nodecnt - self._lastnode >= 100:
                 self._lastnode = nodecnt
-                actnodes = self.get(gpy.GRB_CB_MIP_NODLFT)
-                itcnt = self.get(gpy.GRB_CB_MIP_ITRCNT)
-                cutcnt = self.get(gpy.GRB_CB_MIP_CUTCNT)
+                actnodes = self.getInt(gpy.GRB_CB_MIP_NODLFT)
+                itcnt = self.getInt(gpy.GRB_CB_MIP_ITRCNT)
+                cutcnt = self.getInt(gpy.GRB_CB_MIP_CUTCNT)
                 print('%d %d %d %g %g %d %d' % (nodecnt, actnodes,
                                                 itcnt, objbst, objbnd, solcnt, cutcnt))
             if abs(objbst - objbnd) < 0.1 * (1.0 + abs(objbst)):
@@ -57,42 +62,44 @@ class MyCallback(gpy.GurobiCallback):
                 self.terminate()
         elif where == gpy.GRB_CB_MIPSOL:
             # MIP solution callback
-            nodecnt = self.get(gpy.GRB_CB_MIPSOL_NODCNT)
-            obj = self.get(gpy.GRB_CB_MIPSOL_OBJ)
-            solcnt = self.get(gpy.GRB_CB_MIPSOL_SOLCNT)
-            x = self.getSolutionVector()
+            nodecnt = self.getInt(gpy.GRB_CB_MIPSOL_NODCNT)
+            obj = self.getDouble(gpy.GRB_CB_MIPSOL_OBJ)
+            solcnt = self.getInt(gpy.GRB_CB_MIPSOL_SOLCNT)
+            x = self.getDoubleArray(gpy.GRB_CB_MIPSOL_SOL)
             print('**** New solution at node %d, obj %g, sol %d, '
                   'x[0] = %g ****' % (nodecnt, obj, solcnt, x[0]))
         elif where == gpy.GRB_CB_MIPNODE:
             # MIP node callback
             print('**** New node ****')
-            if self.get(gpy.GRB_CB_MIPNODE_STATUS) == GRB.Status.OPTIMAL:
-                x = self.getNodeRel(model._vars)
-                model.cbSetSolution(model.getVars(), x)
+            if self.getInt(gpy.GRB_CB_MIPNODE_STATUS) == GRB.Status.OPTIMAL:
+                d = self.getSolutionVector()
+                self.setSolution(d)
         elif where == gpy.GRB_CB_BARRIER:
             # Barrier callback
-            itcnt = self.get(gpy.GRB_CB_BARRIER_ITRCNT)
-            primobj = self.get(gpy.GRB_CB_BARRIER_PRIMOBJ)
-            dualobj = self.get(gpy.GRB_CB_BARRIER_DUALOBJ)
-            priminf = self.get(gpy.GRB_CB_BARRIER_PRIMINF)
-            dualinf = self.get(gpy.GRB_CB_BARRIER_DUALINF)
-            cmpl = self.get(gpy.GRB_CB_BARRIER_COMPL)
+            itcnt = self.getInt(gpy.GRB_CB_BARRIER_ITRCNT)
+            primobj = self.getInt(gpy.GRB_CB_BARRIER_PRIMOBJ)
+            dualobj = self.getInt(gpy.GRB_CB_BARRIER_DUALOBJ)
+            priminf = self.getInt(gpy.GRB_CB_BARRIER_PRIMINF)
+            dualinf = self.getInt(gpy.GRB_CB_BARRIER_DUALINF)
+            cmpl = self.getInt(gpy.GRB_CB_BARRIER_COMPL)
             print('%d %g %g %g %g %g' % (itcnt, primobj, dualobj,
                                          priminf, dualinf, cmpl))
         elif where == gpy.GRB_CB_MESSAGE:
             # Message callback
-            msg = self.get(gpy.GRB_CB_MSG_STRING)
+            msg = self.getMessage()
             self.log(msg)
         return 0
 
 
 # Read model from file
 DRV = gpy.GurobiDrv()
-model = DRV.loadModel('d:\\model.nl')
+model = DRV.loadModel('d:\\tsp.nl')
 
+# Get the raw C gurobi pointer
+grbmodel = model.getGRBmodel()
 # Turn off display and heuristics
-#model.setIntParam('OutputFlag', 0)
-#model.setIntParam('Heuristics', 0)
+gpy.GRBsetintattr(grbmodel, gpy.GRB_INT_PAR_OUTPUTFLAG, 0)
+gpy.GRBsetdblattr(grbmodel, gpy.GRB_DBL_PAR_HEURISTICS, 0)
 
 # Open log file
 logfile = open('cb.log', 'w+')

@@ -88,7 +88,13 @@ class CCB : public ampls::GenericCallback
       return 0;
     case ampls::Where::MIPSOL:
     case ampls::Where::MIPNODE:
-      printf("MIPSOL OBJ = %f\n", getObj());
+      try {
+        printf("MIPSOL OBJ = %f\n", getObj());
+      }
+      catch (const ampls::AMPLSolverException& s)
+      {
+        printf("%s", s.what());
+      }
     }
     return 0;
   }
@@ -109,14 +115,6 @@ int main(int argc, char** argv) {
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
- 
-#ifdef USE_gurobi
-  // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
-  ampls::GurobiModel g = gurobi.loadModel(buffer);
-  // Use it as generic model
-  doStuff(g, "gurobi");
-#endif
 #ifdef USE_cplex
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
@@ -124,6 +122,14 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(c, "cplex");
 #endif
+#ifdef USE_gurobi
+  // Load a model using gurobi driver
+  ampls::GurobiDrv gurobi;
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
+  // Use it as generic model
+  doStuff(g, "gurobi");
+#endif
+
 #ifdef USE_xpress
   // Load a model using CPLEX driver
   ampls::XPRESSDrv xpress;

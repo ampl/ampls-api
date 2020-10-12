@@ -110,7 +110,7 @@ int main(int argc, char** argv) {
   ampls::GurobiDrv gurobi;
   ampls::GurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
-  //doStuff(g, "gurobi");
+  doStuff(g, "gurobi");
 #endif
 
 #ifdef USE_cplex

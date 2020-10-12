@@ -94,7 +94,7 @@ double CPLEXCallback::getObj() {
   default:
     throw ampls::AMPLSolverException("Cannot get the objective value in this stage.");
   }
-  throw ampls::AMPLSolverException::format("Cannot get the objective value in this stage (%s)", getWhere());
+  throw ampls::AMPLSolverException::format("Cannot get the objective value in this stage (%s)", getWhereString());
 }
 const char* CPLEXCallback::getWhereString()
 {
