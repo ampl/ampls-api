@@ -96,19 +96,19 @@ if(WIN32)
     set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/win64/gurobi90.lib)
     set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/win64/cplex12100.lib)
     set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/win64/xprs.lib)
-    set(AMPLLIBS_DIR ${SOLVERLIBS}/ampllibs/win64) # AMPL base driver library locations
+    set(AMPLS_DIR ${SOLVERLIBS}/ampls/win64) # AMPL base driver library locations
 elseif(APPLE)
     set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/osx64/libgurobi90.dylib)
     set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/osx64/libcplex12100.dylib)
     set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/osx64/libxprs.dylib
                       ${xpress_BASE_DIR}/lib/osx64/libxprl.dylib)
-    set(AMPLLIBS_DIR ${SOLVERLIBS}/ampllibs/osx64) # AMPL base driver library locations
+    set(AMPLS_DIR ${SOLVERLIBS}/ampls/osx64) # AMPL base driver library locations
 else()
     set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/linux64/libgurobi90.so)
     set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/linux64/libcplex12100.so)
     set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/linux64/libxprs.so.36.01
                         ${xpress_BASE_DIR}/lib/linux64/libxprl.so.x8.10 )
-    set(AMPLLIBS_DIR ${SOLVERLIBS}/ampllibs/linux64) # AMPL base driver library locations
+    set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()
 
 add_subdirectory(cpp/generic)
@@ -138,10 +138,10 @@ function(AddSolverStub solver includes libs)
   set(IMPORTLIB ${solver}-lib)
   if(NOT TARGET ${IMPORTLIB})
     set(LIBFILENAME ${solver}-lib.lib)
-    message("Finding ${solver}LIBFILE ${LIBFILENAME} PATHS ${AMPLLIBS_DIR} REQUIRED")
-    find_library(${solver}LIBFILE ${LIBFILENAME} PATHS ${AMPLLIBS_DIR} REQUIRED NO_DEFAULT_PATH) 
+    message("Finding ${solver}LIBFILE ${LIBFILENAME} PATHS ${AMPLS_DIR} REQUIRED")
+    find_library(${solver}LIBFILE ${LIBFILENAME} PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
     if(NOT ${solver}LIBFILE)
-      message(FATAL_ERROR "AMPL solver library ${solver}-lib not found in ${AMPLLIBS_DIR}")
+      message(FATAL_ERROR "AMPL solver library ${solver}-lib not found in ${AMPLS_DIR}")
     endif()
     if(WIN32)
       find_file(${solver}DLLFILE ${LIBFILENAME}.dll PATHS ${LIBSDIR})
