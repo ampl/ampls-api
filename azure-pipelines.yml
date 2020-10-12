@@ -1,4 +1,79 @@
 jobs:
+- job: linux
+  pool: {vmImage: 'Ubuntu-16.04'}
+  strategy:
+    matrix:
+      gurobi:
+        solver: 'gurobi'
+      cplex:
+        solver: 'cplex'
+  variables:
+    wheelhouse: $(Build.ArtifactStagingDirectory)
+  steps:
+    - task: UsePythonVersion@0
+    - script: |
+        sudo apt-get install swig
+      displayName: Install SWIG
+    - bash: |
+        bash libs/download.sh
+      displayName: Download libraries
+    - bash: |
+        set -ex
+        mkdir -p tmp
+        TMP=`pwd`/tmp
+        cd python/$SOLVER
+        bash prepare.sh
+        # bash swig.sh
+        pip install --upgrade pip
+        pip install urllib3[secure] --upgrade
+        pip install cibuildwheel==1.6.2
+        CIBW_SKIP='*-manylinux*_i686' cibuildwheel --output-dir $TMP .
+        ls -l $TMP
+        test "$(ls -A $TMP)" || exit 1
+        mv $TMP/* $WHEELHOUSE/
+        # python setup.py sdist -d $WHEELHOUSE
+        # pip install twine
+        # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
+      displayName: Build wheels
+    - task: PublishBuildArtifacts@1
+      inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
+- job: macos
+  pool: {vmImage: 'macOS-10.15'}
+  strategy:
+    matrix:
+      gurobi:
+        solver: 'gurobi'
+      cplex:
+        solver: 'cplex'
+  variables:
+    wheelhouse: $(Build.ArtifactStagingDirectory)
+  steps: 
+    - task: UsePythonVersion@0
+    - script: |
+        brew install swig
+      displayName: Install SWIG
+    - bash: |
+        bash libs/download.sh
+      displayName: Download libraries
+    - bash: |
+        set -ex
+        mkdir -p tmp
+        TMP=`pwd`/tmp
+        cd python/$SOLVER
+        bash prepare.sh
+        # bash swig.sh
+        pip install --upgrade pip
+        pip install urllib3[secure] --upgrade
+        pip install cibuildwheel==1.6.2
+        cibuildwheel --output-dir $TMP .
+        ls -l $TMP
+        test "$(ls -A $TMP)" || exit 1
+        mv $TMP/* $WHEELHOUSE/
+        # pip install twine
+        # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
+      displayName: Build wheels
+    - task: PublishBuildArtifacts@1
+      inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
 - job: windows
   pool: {vmImage: 'vs2017-win2016'}
   strategy:
@@ -21,10 +96,7 @@ jobs:
         choco install -y --x86 swig
       displayName: Install SWIG
     - bash: |
-        cd libs
-        curl -O https://ampl.com/dl/fdabrandao/solvers-public-libs.zip
-        unzip solvers-public-libs.zip
-        cp -r solvers-public-libs/* .
+        bash libs/download.sh
       displayName: Download libraries
     - bash: |
         curl -o libs/gurobi/include/stdint.h https://raw.githubusercontent.com/mattn/gntp-send/master/include/msinttypes/stdint.h
@@ -36,7 +108,7 @@ jobs:
         TMP=`pwd`/tmp
         cd python/$SOLVER
         bash prepare.sh
-        bash swig.sh
+        # bash swig.sh
         python -m pip install --user --upgrade pip
         python -m pip install urllib3[secure] --upgrade
         python -m pip install cibuildwheel==1.6.2

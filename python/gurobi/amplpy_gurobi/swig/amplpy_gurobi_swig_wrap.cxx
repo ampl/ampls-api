@@ -33098,6 +33098,37 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_GurobiCallback_getGRBModel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  GRBmodel *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_getGRBModel", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getGRBModel" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  {
+    try {
+      result = (GRBmodel *)(arg1)->getGRBModel();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBmodel, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_GurobiCallback_terminate(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
@@ -33405,45 +33436,6 @@ SWIGINTERN PyObject *_wrap_AMPLloadmodel(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   int arg1 ;
   char **arg2 = (char **) 0 ;
-  int val1 ;
-  int ecode1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  GRBmodel *result = 0 ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "AMPLloadmodel", 2, 2, swig_obj)) SWIG_fail;
-  ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
-  if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "AMPLloadmodel" "', argument " "1"" of type '" "int""'");
-  } 
-  arg1 = static_cast< int >(val1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p_char, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLloadmodel" "', argument " "2"" of type '" "char **""'"); 
-  }
-  arg2 = reinterpret_cast< char ** >(argp2);
-  {
-    try {
-      result = (GRBmodel *)ampls::grb::impl::AMPLloadmodel(arg1,arg2);
-    } catch(const ampls::AMPLSolverException &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    } 
-    catch(...) {
-      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBmodel, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_AMPLloadmodelNoLic(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  int arg1 ;
-  char **arg2 = (char **) 0 ;
   ASL **arg3 = (ASL **) 0 ;
   int val1 ;
   int ecode1 = 0 ;
@@ -33454,25 +33446,25 @@ SWIGINTERN PyObject *_wrap_AMPLloadmodelNoLic(PyObject *self, PyObject *args) {
   PyObject *swig_obj[3] ;
   GRBmodel *result = 0 ;
   
-  if (!SWIG_Python_UnpackTuple(args, "AMPLloadmodelNoLic", 3, 3, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "AMPLloadmodel", 3, 3, swig_obj)) SWIG_fail;
   ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "AMPLloadmodelNoLic" "', argument " "1"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "AMPLloadmodel" "', argument " "1"" of type '" "int""'");
   } 
   arg1 = static_cast< int >(val1);
   res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p_char, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLloadmodelNoLic" "', argument " "2"" of type '" "char **""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLloadmodel" "', argument " "2"" of type '" "char **""'"); 
   }
   arg2 = reinterpret_cast< char ** >(argp2);
   res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_ASL, 0 |  0 );
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "AMPLloadmodelNoLic" "', argument " "3"" of type '" "ASL **""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "AMPLloadmodel" "', argument " "3"" of type '" "ASL **""'"); 
   }
   arg3 = reinterpret_cast< ASL ** >(argp3);
   {
     try {
-      result = (GRBmodel *)ampls::grb::impl::AMPLloadmodelNoLic(arg1,arg2,arg3);
+      result = (GRBmodel *)ampls::grb::impl::AMPLloadmodel(arg1,arg2,arg3);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -34838,7 +34830,6 @@ static PyMethodDef SwigMethods[] = {
 	 { "callback_wrapper", _wrap_callback_wrapper, METH_VARARGS, NULL},
 	 { "disown_GurobiCallback", _wrap_disown_GurobiCallback, METH_O, NULL},
 	 { "AMPLloadmodel", _wrap_AMPLloadmodel, METH_VARARGS, NULL},
-	 { "AMPLloadmodelNoLic", _wrap_AMPLloadmodelNoLic, METH_VARARGS, NULL},
 	 { "AMPLwritesol", _wrap_AMPLwritesol, METH_VARARGS, NULL},
 	 { "freeEnvironment", _wrap_freeEnvironment, METH_NOARGS, NULL},
 	 { "freeASL", _wrap_freeASL, METH_O, NULL},
@@ -38585,6 +38576,7 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__GurobiCallback_methods[] = {
   { "getMessage", _wrap_GurobiCallback_getMessage, METH_NOARGS, "" },
   { "getObj", _wrap_GurobiCallback_getObj, METH_NOARGS, "" },
   { "getCBData", _wrap_GurobiCallback_getCBData, METH_NOARGS, "" },
+  { "getGRBModel", _wrap_GurobiCallback_getGRBModel, METH_NOARGS, "" },
   { "terminate", _wrap_GurobiCallback_terminate, METH_NOARGS, "" },
   { "getInt", _wrap_GurobiCallback_getInt, METH_O, "" },
   { "getDouble", _wrap_GurobiCallback_getDouble, METH_O, "" },
