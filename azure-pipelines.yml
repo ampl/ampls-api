@@ -15,10 +15,7 @@ jobs:
         sudo apt-get install swig
       displayName: Install SWIG
     - bash: |
-        cd libs
-        curl -O https://ampl.com/dl/fdabrandao/solvers-public-libs.zip
-        unzip solvers-public-libs.zip
-        cp -r solvers-public-libs/* .
+        bash libs/download.sh
       displayName: Download libraries
     - bash: |
         set -ex
@@ -26,7 +23,7 @@ jobs:
         TMP=`pwd`/tmp
         cd python/$SOLVER
         bash prepare.sh
-        bash swig.sh
+        # bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
         pip install cibuildwheel==1.6.2
@@ -56,10 +53,7 @@ jobs:
         brew install swig
       displayName: Install SWIG
     - bash: |
-        cd libs
-        curl -O https://ampl.com/dl/fdabrandao/solvers-public-libs.zip
-        unzip solvers-public-libs.zip
-        cp -r solvers-public-libs/* .
+        bash libs/download.sh
       displayName: Download libraries
     - bash: |
         set -ex
@@ -67,7 +61,7 @@ jobs:
         TMP=`pwd`/tmp
         cd python/$SOLVER
         bash prepare.sh
-        bash swig.sh
+        # bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
         pip install cibuildwheel==1.6.2
@@ -102,10 +96,7 @@ jobs:
         choco install -y --x86 swig
       displayName: Install SWIG
     - bash: |
-        cd libs
-        curl -O https://ampl.com/dl/fdabrandao/solvers-public-libs.zip
-        unzip solvers-public-libs.zip
-        cp -r solvers-public-libs/* .
+        bash libs/download.sh
       displayName: Download libraries
     - bash: |
         curl -o libs/gurobi/include/stdint.h https://raw.githubusercontent.com/mattn/gntp-send/master/include/msinttypes/stdint.h
@@ -117,7 +108,7 @@ jobs:
         TMP=`pwd`/tmp
         cd python/$SOLVER
         bash prepare.sh
-        bash swig.sh
+        # bash swig.sh
         python -m pip install --user --upgrade pip
         python -m pip install urllib3[secure] --upgrade
         python -m pip install cibuildwheel==1.6.2

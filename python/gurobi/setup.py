@@ -40,7 +40,7 @@ def make_relative_rpath(paths):
 
 def compile_args():
     if OSTYPE == 'Windows':
-        return ['/TP', '/EHsc']
+        return ['/TP', '/EHsc', '/std:c11']
     elif OSTYPE == 'Linux':
         return ['-std=c++11']
     elif OSTYPE == 'Darwin':
