@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using simpleapisharp;
-using Where = simpleapisharp.Where.CBWhere;
-using Value = simpleapisharp.Value.CBValue;
+using ampls;
+using Where = ampls.Where.CBWhere;
+using Value = ampls.Value.CBValue;
 
 namespace simpleapiharp_test
 {

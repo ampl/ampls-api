@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using gurobisharp;
-using Where = gurobisharp.Where.CBWhere;
+using ampls;
+using Where = ampls.Where.CBWhere;
 
 namespace gurobisharp_test
 {

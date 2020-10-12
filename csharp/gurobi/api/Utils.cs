@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gurobisharp
+namespace ampls
 {
   public static class Utils
   {
