@@ -4,7 +4,7 @@ import amplpy_gurobi as gpy
 # Define my callback function
 
 
-class MyCallback(gpy.GRBCallback):
+class MyCallback(gpy.GurobiCallback):
 
     def log(self, item):
         # self._logfile.write(item)

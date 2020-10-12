@@ -70,6 +70,31 @@ if(MSVC)
     ${CMAKE_CURRENT_SOURCE_DIR}/examples/amplpy_${solvername}_examples.pyproj
     amplpy_${solvername}_examples)
   add_to_folder(${solvername}/swig/py amplpy_${solvername}_examples)
-endif()
+  add_custom_command(TARGET amplpy_${solvername}_updatewheel
+    DEPENDS amplpy_${solvername}_updatewheel
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/amplpy_${solvername}
+    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/amplpy_${solvername}
+    
+   # COMMAND ${CMAKE_COMMAND} -E copy ${${solvername}_DIST} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
 
+    COMMENT "Copying wheel (${wheel_dir}) to ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/amplpy_${solvername}")
+
+
+if(NOT ${solvername} STREQUAL "simpleapi")
+# Copy ampl solver libs, if defined
+add_custom_command(TARGET amplpy_${solvername}_updatewheel
+DEPENDS amplpy_${solvername}_updatewheel
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${solvername}-lib> ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+     COMMENT "Copying $<TARGET_FILE:${solvername}-lib> to ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+     foreach(lib ${${solvername}_LIBRARY})
+    add_custom_command(TARGET amplpy_${solvername}_updatewheel
+      DEPENDS amplpy_${solvername}_updatewheel
+      COMMAND ${CMAKE_COMMAND} -E copy ${lib} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+      COMMENT "Copying ${lib} to ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+
+     endforeach()
+
+
+endif()
+endif()
 endmacro()

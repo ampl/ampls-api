@@ -4,12 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{00edc474-0ae7-4f09-a49e-d27d4f5540c5}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>progress_callback.py</StartupFile>
-    <SearchPath>..\..\..\build\vs64\bin</SearchPath>
-    <WorkingDirectory>.</WorkingDirectory>
+    <StartupFile>gurobi_progress_callback.py</StartupFile>
+    <SearchPath>..\..\..\build\vs64\bin;..\..\..\build\vs64\bin</SearchPath>
+    <WorkingDirectory>D:\Development\ampl\solvers-public\build\vs64\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>amplpy_gurobi_examples</Name>
     <RootNamespace>amplpy_gurobi_examples</RootNamespace>
+    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,6 +29,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env1\">
+      <Id>env1</Id>
+      <Version>3.8</Version>
+      <Description>env1 (Python 3.8 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
