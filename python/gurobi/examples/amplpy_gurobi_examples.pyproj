@@ -5,8 +5,7 @@
     <ProjectGuid>{00edc474-0ae7-4f09-a49e-d27d4f5540c5}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <StartupFile>progress_callback.py</StartupFile>
-    <SearchPath>
-    </SearchPath>
+    <SearchPath>..\..\..\build\vs64\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>amplpy_gurobi_examples</Name>
@@ -21,6 +20,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="gurobi_progress_callback.py" />
     <Compile Include="progress_callback.py" />
     <Compile Include="simple_callback.py" />
     <Compile Include="tsp_callback.py" />
