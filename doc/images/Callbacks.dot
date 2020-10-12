@@ -1,14 +1,14 @@
 digraph hierarchy {
-size="6,6"
+size="10,6"
 node[shape=record,style=filled,fillcolor=white]
 edge[dir=back, arrowtail=empty]
 
 
-BaseCallback[label = "{BaseCallback|...|+ run()\l+ getVarMap()\l+ getVarMapInverse()\l+ addCut()\l+ addLazy()\l+ getSolutionVector()\l+ getObjective()\l+ getWhere()\l+ getMessage()\l|+ getAMPLType()\l+ getValue()\l}"]
+BaseCallback[label = "{BaseCallback|...|+ run()\l+ addCut()\l+ addLazy()\l+ getAMPLWhere()\l+ getVarMap()\l+ getVarMapInverse()\l+ getSolutionVector()\l+ getObjective()\l+ getMessage()\l|+ getValue(AMPLS_CONSTANT)\l}"]
 GenericCallback[label = "{GenericCallback|...|\l...}"]
-CPLEXCallback[label = "{CPLEXCallback|...|\l...}"]
-GurobiCallback[label = "{GurobiCallback|...|\l...}"]
-XPRESSCallback[label = "{XPRESSCallback|...|\l...}"]
+CPLEXCallback[label = "{CPLEXCallback|...|\l+ where()\l+ getCBData()\l+ getInt(CPX_CONSTANT)\l+ getDouble(CPX_CONSTANT)\l}"]
+GurobiCallback[label = "{GurobiCallback|...|\l+ where()\l+ getCPXENV()\l+ getCBData()\l+ getGRBModel()\l+ getInt(GRB_CONSTANT c)\l+ getDouble(GRB_CONSTANT c)\l+ getDoubleArray(GRB_CONSTANT c)\l+ setSolution(double*)\l}"]
+XPRESSCallback[label = "{XPRESSCallback|...|\l+ where()\l+ getXPRSprob()\l+ getInt(XPRS_CONSTAT)\l+ getDouble(XPRS_CONSTAT)\l}"]
 
 BaseCallback->GenericCallback
 BaseCallback->CPLEXCallback

@@ -47,23 +47,23 @@ public:
     }
     if (where_ == CPX_CALLBACK_PRESOLVE) {
 
-      status = CPXgetcallbackinfo(getCPXENV(), cbdata(), where_,
+      status = CPXgetcallbackinfo(getCPXENV(), getCBData(), where_,
         CPX_CALLBACK_INFO_PRESOLVE_COLSGONE, &itcnt);
       if (status)  goto TERMINATE;
     //  printf("Eliminated %d columns\n", itcnt);
       return 0;
     }
     if (where_ == CPX_CALLBACK_PRIMAL) {
-      status = CPXgetcallbackinfo(getCPXENV(), cbdata(), where_,
+      status = CPXgetcallbackinfo(getCPXENV(), getCBData(), where_,
         CPX_CALLBACK_INFO_ITCOUNT, &itcnt);
       if (status)  goto TERMINATE;
 
-      status = CPXgetcallbackinfo(getCPXENV(), cbdata(), where_,
+      status = CPXgetcallbackinfo(getCPXENV(), getCBData(), where_,
         CPX_CALLBACK_INFO_PRIMAL_FEAS, &phase);
       if (status)  goto TERMINATE;
 
       if (phase == 0) {
-        status = CPXgetcallbackinfo(getCPXENV(), cbdata(), where_,
+        status = CPXgetcallbackinfo(getCPXENV(), getCBData(), where_,
           CPX_CALLBACK_INFO_PRIMAL_INFMEAS,
           &suminf_or_objective);
         if (status)  goto TERMINATE;
@@ -72,7 +72,7 @@ public:
           itcnt, suminf_or_objective);
       }
       else {
-        status = CPXgetcallbackinfo(getCPXENV(), cbdata(), where_,
+        status = CPXgetcallbackinfo(getCPXENV(), getCBData(), where_,
           CPX_CALLBACK_INFO_PRIMAL_OBJ,
           &suminf_or_objective);
         if (status)  goto TERMINATE;

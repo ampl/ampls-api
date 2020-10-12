@@ -5,22 +5,6 @@
 
 namespace ampls
 {
-namespace cpx {
-namespace impl {
-std::string getErrorMsg(CPXCENVptr env, int res) {
-  char buffer[CPXMESSAGEBUFSIZE];
-  CPXCCHARptr errstr = CPXgeterrorstring(env, res, buffer);
-  if (errstr != NULL) {
-    return buffer;
-  }
-  else {
-    char CODE[60];
-    sprintf(CODE, "CPLEX Error: %d. Unknown error code.", res);
-    return CODE;
-  }
-}
-}
-}
 CPLEXCallback* cpx::impl::CBWrap::setDefaultCB(CPXCENVptr env, void* cbdata,
   int wherefrom, void* userhandle)
 {
@@ -194,33 +178,32 @@ impl::BaseCallback* CPLEXModel::createCallbackImplDerived(GenericCallback* callb
 int CPLEXModel::optimize() {
   CPXENVptr env = getCPXENV();
   int probtype = CPXgetprobtype(env, model_);
-  int res = 0;
+  int status = 0;
   switch (probtype)
   {
   case CPXPROB_LP:
-    CPXsetintparam(env, CPX_PARAM_LPMETHOD, CPX_ALG_AUTOMATIC);
-    res = CPXlpopt(env, model_);
+    setParam(CPX_PARAM_LPMETHOD, CPX_ALG_AUTOMATIC);
+    status = CPXlpopt(env, model_);
     break;
   case CPXPROB_MILP:
   case CPXPROB_FIXEDMILP:
   case CPXPROB_MIQP:
   case CPXPROB_FIXEDMIQP:
-    res = CPXmipopt(env, model_);
+    status = CPXmipopt(env, model_);
     break;
   case CPXPROB_QP:
-    res = CPXqpopt(env, model_);
+    status = CPXqpopt(env, model_);
     break;
   case CPXPROB_QCP:
   case CPXPROB_MIQCP:
-    res = CPXhybbaropt(env, model_, CPX_ALG_NONE);
+    status = CPXhybbaropt(env, model_, CPX_ALG_NONE);
   }
   resetVarMapInternal();
   // This gets communicated to writeSol
-  status_ = res;
+  status_ = status;
   // Print error message in case of error
-  if (res)
-    printf("%s \n", error(res).c_str());
-  return res;
+  AMPLSCPXERRORCHECK("CPX**opt");
+  return status;
 }
 
 std::string CPLEXModel::error(int code) {

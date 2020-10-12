@@ -36,6 +36,11 @@ namespace cpx
 {
   namespace impl
   {
+  /* Define a macro to do our error checking */
+    #define AMPLSCPXERRORCHECK(name)  \
+    if (status)  \
+      throw ampls::AMPLSolverException::format("Error executing #name: %s", error(status).c_str());
+
     struct CPLEXDriverState;
     extern "C" {
 
@@ -62,7 +67,7 @@ namespace cpx
       static CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
         int wherefrom, void* userhandle);
     };
-    std::string getErrorMsg(CPXCENVptr env, int res); 
+  
   }
 }
 
@@ -175,18 +180,21 @@ public:
   }
   double getObj() {
     double obj;
-    CPXgetobjval(getCPXENV(), model_, &obj);
+    int status = CPXgetobjval(getCPXENV(), model_, &obj);
+    AMPLSCPXERRORCHECK("CPXgetobjval");
     return obj;
   }
 
   int getSolution(int first, int length, double* sol) {
-    return CPXgetx(getCPXENV(), model_, sol, first, length - 1);
+    int status = CPXgetx(getCPXENV(), model_, sol, first, length - 1);
+    AMPLSCPXERRORCHECK("CPXgetx");
+    return status;
   }
   std::string error(int code);
 
   void enableLazyConstraints() {
-    CPXsetintparam(getCPXENV(), CPXPARAM_MIP_Strategy_CallbackReducedLP, CPX_OFF);
-    CPXsetintparam(getCPXENV(), CPXPARAM_Preprocessing_Linear, 0);
+    setParam(CPXPARAM_MIP_Strategy_CallbackReducedLP, CPX_OFF);
+    setParam(CPXPARAM_Preprocessing_Linear, 0);
   }
   // CPLEX-specific
   // Access to gurobi C structures
@@ -195,6 +203,20 @@ public:
   }
   CPXENVptr getCPXENV() {
     return cpx::impl::AMPLCPLEXgetInternalEnv();
+  }
+  /**
+  * Set CPLEX control parameter (integers)
+  */
+  void setParam(int CPXPARAM, int value) {
+    int status = CPXsetintparam(getCPXENV(), CPXPARAM, value);
+    AMPLSCPXERRORCHECK("CPXsetintparam");
+  }
+  /**
+  * Set CPLEX control parameters (double)
+  */
+  void setParam(int CPXPARAM, double value) {
+    int status = CPXsetdblparam(getCPXENV(), CPXPARAM, value);
+    AMPLSCPXERRORCHECK("CPXsetdblparam");
   }
 
   ~CPLEXModel() {

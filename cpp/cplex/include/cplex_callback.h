@@ -38,7 +38,7 @@ protected:
     const double* coeffs, CutDirection::Direction direction, double rhs,
     int type);
   CPXCENVptr getCPXENV() { return env_; }
-  void* cbdata() { return cbdata_; }
+  void* getCBData() { return cbdata_; }
 public:
 
   virtual int run() = 0;

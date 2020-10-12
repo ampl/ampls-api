@@ -10,7 +10,8 @@ class MyCallback(gpy.GurobiCallback):
         # self._logfile.write(item)
         print(item)
 
-    def run(self, where):
+    def run(self):
+        where = self.getWhere()
         if where == gpy.GRB_CB_POLLING:
             # Ignore polling callback
             pass
@@ -87,7 +88,8 @@ class MyCallback(gpy.GurobiCallback):
 
 
 # Read model from file
-model = gpy.DRIVER.loadModel('modelint.nl')
+DRIVER = gpy.GurobiDrv()
+model = DRIVER.loadModel('d:\\model.nl')
 
 # Turn off display and heuristics
 #model.setIntParam('OutputFlag', 0)
