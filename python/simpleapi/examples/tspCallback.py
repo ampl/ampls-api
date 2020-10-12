@@ -99,7 +99,7 @@ dist = {
 V = list(range(1, n + 1))
 ampl.param['n'] = n
 ampl.param['c'] = dist
-m = ampl.exportModel("gurobi")
+m = ampl.exportModel("cplex")
 print("Model loaded, nvars=", m.getNumVars())
 
 if ENABLE_CB_MIPSOL:  # needs lazy constraints
@@ -308,9 +308,9 @@ class MyCallback(ampls.GenericCallback):
 
     def run(self):
         try:
-              if ENABLE_CB_MIPSOL and self.getAMPLWhere() == ampls.Where.mipsol:
+              if ENABLE_CB_MIPSOL and self.getAMPLWhere() == ampls.Where.MIPSOL:
                 return self.mipsol()
-              elif ENABLE_CB_MIPNODE and self.getAMPLWhere() == ampls.Where.mipnode:
+              elif ENABLE_CB_MIPNODE and self.getAMPLWhere() == ampls.Where.MIPNODE:
                 return self.mipnode()
               else:
                 return 0
