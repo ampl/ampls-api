@@ -1,5 +1,5 @@
 #include "cplex_interface.h"
-#include "simpleapi/simpleApi.h"
+#include "ampls/ampls.h"
 
 #include <memory> // for unique_ptr
 

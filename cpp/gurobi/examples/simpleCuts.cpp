@@ -1,6 +1,6 @@
 #include "gurobi_interface.h"
 
-#include "simpleapi/simpleApi.h"
+#include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
 #include "gurobi_c.h" // For gurobi routines

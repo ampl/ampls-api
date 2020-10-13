@@ -27,5 +27,5 @@ CSHARP_ARRAYS(const int, int)
 %apply double INPUT[]{ double const* linval }
 %apply char* INPUT[]{ char** indname }
 
-%include "../../../cpp/generic/swig/generic-common.i"
+%include "../../../cpp/ampls/swig/ampls-common.i"
 %include "../../../cpp/cplex/swig/cplex-common.i"

@@ -8,7 +8,7 @@ Example: load
 
 This example shows how to load a model, solve it and display basic information.
 
-.. literalinclude:: ../../../cpp/generic/examples/loadModel.cpp
+.. literalinclude:: ../../../cpp/ampls/examples/loadModel.cpp
    :language: cpp
 
 Example: info callback
@@ -16,5 +16,5 @@ Example: info callback
 
 This example shows how to monitor the progress of the solution process by registering a callback.
 
-.. literalinclude:: ../../../cpp/generic/examples/getInformation.cpp
+.. literalinclude:: ../../../cpp/ampls/examples/getInformation.cpp
    :language: cpp

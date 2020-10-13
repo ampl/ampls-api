@@ -8,7 +8,7 @@ set(PYTHON_SWIG_API amplpy_${solvername}_swig) # name of swig generated wrapper
 include_directories(
   ${PYTHON_INCLUDE_PATH} ${${solvername}_INCLUDE_DIR} # for solver headers
   ${DIR_CPP_INCLUDE} # for solver_interface.h
-  ${SIMPLEAPI_INCLUDE})
+  ${ampls_INCLUDE})
 
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
@@ -26,7 +26,7 @@ set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES CPLUSPLUS
 #                                                                    "-builtin")
 
 add_swig_library(${PYTHON_SWIG_API} python ${SWIG_PYTHON_MODULE_NAME}.i)
-if(NOT ${solvername} STREQUAL "simpleapi")
+if(NOT ${solvername} STREQUAL "ampls")
 swig_link_libraries(${PYTHON_SWIG_API} ${solvername}-drv                    
                     ${PYTHON_LIBRARIES})
 else()
@@ -80,7 +80,7 @@ if(MSVC)
     COMMENT "Copying wheel (${wheel_dir}) to ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/amplpy_${solvername}")
 
 
-if(NOT ${solvername} STREQUAL "simpleapi")
+if(NOT ${solvername} STREQUAL "ampls")
 # Copy ampl solver libs, if defined
 add_custom_command(TARGET amplpy_${solvername}_updatewheel
 DEPENDS amplpy_${solvername}_updatewheel

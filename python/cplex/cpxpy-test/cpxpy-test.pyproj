@@ -6,7 +6,7 @@
     <ProjectHome>.</ProjectHome>
     <StartupFile>CallbackExample.py</StartupFile>
     <SearchPath>..\..\..\..\build\vs64\bin\cpxpy_c;..\..\..\..\build\vs64\bin</SearchPath>
-    <WorkingDirectory>D:\Development\AMPL\escrow-simpleapi\solvers_dist\build\vs64\solvers\cplex\python\bin</WorkingDirectory>
+    <WorkingDirectory>D:\Development\AMPL\escrow-ampls\solvers_dist\build\vs64\solvers\cplex\python\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>cpxpy-test</Name>
     <RootNamespace>grbpy-test</RootNamespace>

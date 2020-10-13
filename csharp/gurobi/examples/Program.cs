@@ -51,7 +51,7 @@ namespace gsharp_test
     {
       GurobiDrv g = new GurobiDrv();
       
-      var m = g.loadModel(@"D:\Development\AMPL\escrow-simpleapi\solvers_dist\test\models\tsp.nl");
+      var m = g.loadModel(@"D:\Development\AMPL\escrow-ampls\solvers_dist\test\models\tsp.nl");
       int nvars = m.getNumVars();
       CB b = new CB();
       m.setCallback(b);

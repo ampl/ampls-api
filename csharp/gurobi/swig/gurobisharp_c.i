@@ -11,5 +11,5 @@ CSHARP_ARRAYS(const int, int)
 %apply double INPUT[]{ const double* coeffs }
 %apply int INPUT[]{ const int* vars }
 
-%include "../../../cpp/generic/swig/generic-common.i"
+%include "../../../cpp/ampls/swig/ampls-common.i"
 %include "../../../cpp/gurobi/swig/gurobi-common.i"

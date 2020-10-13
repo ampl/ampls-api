@@ -34,8 +34,8 @@ extensions = ["breathe", "sphinx.ext.graphviz" ]
 # Breathe Configuration
 #breathe_projects_source = {
    #"SolverAPI" :
-       #( "D:\\Development\\ampl\solvers-public\\cpp\\generic\\include\\simpleapi", 
-#        [ "simpleApi.h" ] )
+       #( "D:\\Development\\ampl\solvers-public\\cpp\\ampls\\include\\ampls", 
+#        [ "ampls.h" ] )
    #}
 
 #breathe_projects = {

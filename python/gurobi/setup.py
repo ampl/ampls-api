@@ -107,7 +107,7 @@ setup(
             os.path.join('amplpy_gurobi', 'libs', 'gurobi', 'include'),
             os.path.join('amplpy_gurobi', 'swig'),
             os.path.join('amplpy_gurobi', 'cpp', 'gurobi', 'include'),
-            os.path.join('amplpy_gurobi', 'cpp', 'generic', 'include'),
+            os.path.join('amplpy_gurobi', 'cpp', 'ampls', 'include'),
         ],
         libraries=['gurobi90', 'gurobi-lib'],
         extra_compile_args=compile_args(),
@@ -119,8 +119,8 @@ setup(
             os.path.join('amplpy_gurobi', 'swig',
                          'amplpy_gurobi_swig_wrap.cxx')
         ] + [
-            os.path.join('amplpy_gurobi', 'cpp', 'generic', 'src', fname)
-            for fname in ls_dir(os.path.join('amplpy_gurobi', 'cpp', 'generic', 'src'))
+            os.path.join('amplpy_gurobi', 'cpp', 'ampls', 'src', fname)
+            for fname in ls_dir(os.path.join('amplpy_gurobi', 'cpp', 'ampls', 'src'))
             if fname.endswith(('.c', '.cpp'))
         ] + [
             os.path.join('amplpy_gurobi', 'cpp', 'gurobi', 'src', fname)

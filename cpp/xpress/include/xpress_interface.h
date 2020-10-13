@@ -7,7 +7,7 @@
 
 #include "xprs.h"
 
-#include "simpleapi/simpleApi.h"
+#include "ampls/ampls.h"
 #include "xpress_callback.h"
 
 

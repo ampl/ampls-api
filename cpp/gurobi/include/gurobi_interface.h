@@ -14,7 +14,7 @@
 #include <map>
 #include <mutex>
 
-#include "simpleapi/simpleApi.h"
+#include "ampls/ampls.h"
 #include "gurobi_callback.h"
 
 #include "gurobi_c.h"

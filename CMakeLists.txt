@@ -113,7 +113,7 @@ else()
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()
 
-add_subdirectory(cpp/generic)
+add_subdirectory(cpp/ampls)
 
 
  # Get rid of warning in newer versions of cmake
@@ -161,9 +161,9 @@ function(AddSolverStub solver includes libs)
     src/${solver}_interface.cpp include/${solver}_callback.h
     src/${solver}_callback.cpp)
   add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
-  target_link_libraries(${TARGETNAME} simpleapi ${libs} ${IMPORTLIB})
+  target_link_libraries(${TARGETNAME} ampls ${libs} ${IMPORTLIB})
   target_include_directories(
-    ${TARGETNAME} PUBLIC ${includes} ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE})
+    ${TARGETNAME} PUBLIC ${includes} ${DIR_CPP_INCLUDE} ${ampls_INCLUDE})
   add_to_folder(${solver} ${TARGETNAME})
   if(NOT WIN32)
     target_compile_options(${TARGETNAME} PRIVATE -fPIC)
@@ -179,7 +179,7 @@ function(AddSolverStub solver includes libs)
         add_executable(${tar} ${src})
         target_include_directories(${tar} PRIVATE
           ${GENERATED_INCLUDE_DIR}) # for test-config
-        target_link_libraries(${tar} simpleapi ${TARGETNAME})
+        target_link_libraries(${tar} ampls ${TARGETNAME})
         add_to_folder(${solver}/examples ${tar})
       endif()
   endforeach()
@@ -192,7 +192,7 @@ function(AddSolverStub solver includes libs)
   target_include_directories(
     ${TARGETNAME}-test
     PRIVATE ${GENERATED_INCLUDE_DIR} # for test-config
-            ${DIR_CPP_INCLUDE} ${SIMPLEAPI_INCLUDE} ${includes})
+            ${DIR_CPP_INCLUDE} ${ampls_INCLUDE} ${includes})
   add_to_folder(${solver} ${TARGETNAME}-test)
   target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
 
@@ -200,7 +200,7 @@ function(AddSolverStub solver includes libs)
     if(SWIG_FOUND)
         include(UseSWIG)
         # Add a custom target just to show  the following common sources in some IDEs
-        add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/generic/swig/generic-common.i
+        add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/ampls/swig/ampls-common.i
                                                    ${DIR_SWIG}/${solver}-common.i
                                                    ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
                                                    ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
@@ -231,9 +231,9 @@ if(ENABLE_xpress)
 endif()
 
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/simpleapi)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/ampls)
 if(WIN32)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/simpleapi)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/ampls)
 endif()
 
 add_subdirectory("doc")

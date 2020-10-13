@@ -10,7 +10,7 @@
 #endif
 #include "ilcplex/cplex.h"
 
-#include "simpleapi/simpleApi.h"
+#include "ampls/ampls.h"
 #include "cplex_callback.h"
 
 #ifdef _WIN32

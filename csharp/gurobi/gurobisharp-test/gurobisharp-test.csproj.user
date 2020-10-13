@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartWorkingDirectory>D:\Development\AMPL\escrow-simpleapi\solvers_dist\build\vs64\bin\cpxsharp_c\</StartWorkingDirectory>
+    <StartWorkingDirectory>D:\Development\AMPL\escrow-ampls\solvers_dist\build\vs64\bin\cpxsharp_c\</StartWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
     <StartProgram>D:\Development\ampl\solvers-public\csharp\cplex\cpxsharp-test\bin\Debug\cpxsharp-test.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <StartWorkingDirectory>D:\Development\ampl\solvers-public\build\vs64\bin\</StartWorkingDirectory>
   </PropertyGroup>
 </Project>

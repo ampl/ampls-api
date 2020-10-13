@@ -10,7 +10,7 @@ include(${CSHARP_USE_FILE})
 include_directories(
   ${${solvername}_INCLUDE_DIR} # for solver headers
   ${DIR_CPP_INCLUDE} # for solver api includes
-  ${SIMPLEAPI_INCLUDE})
+  ${ampls_INCLUDE})
 
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/swig)
@@ -21,7 +21,7 @@ set_source_files_properties(${SWIG_CSHARP_MODULE_NAME}.i PROPERTIES CPLUSPLUS
 set(SWIG_DEPENDS ../../cpp/${solvername}/swig/${solvername}-common.i)
 list(APPEND CMAKE_SWIG_FLAGS "-namespace;ampls")
 add_swig_library(${CSHARP_SWIG_API} csharp ${SWIG_CSHARP_MODULE_NAME}.i)
-if(NOT ${solvername} STREQUAL "simpleapi")
+if(NOT ${solvername} STREQUAL "ampls")
   target_link_libraries(${CSHARP_SWIG_API} ${solvername}-drv ${solvername}-lib)
 endif()
 add_to_folder(${solvername}/swig/csharp ${CSHARP_SWIG_API})

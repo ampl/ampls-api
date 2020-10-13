@@ -28,7 +28,7 @@ import grbpy_c as gpy
 #%%
 # Import gurobipy
 #sys.path.append('/opt/gurobi810/linux64/lib/python3.6_utf32/')
-#sys.path.append('D:/Development/AMPL/escrow-simpleapi/solvers_dist/build/vs64bin')
+#sys.path.append('D:/Development/AMPL/escrow-ampls/solvers_dist/build/vs64bin')
 #import gurobipy as gpy
 
 #%% [markdown]

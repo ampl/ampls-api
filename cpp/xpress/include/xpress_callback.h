@@ -5,7 +5,7 @@
 #include <vector>
 #include <map>
 
-#include "simpleapi/simpleApi.h"
+#include "ampls/ampls.h"
 
 #include "xprs.h"
 
