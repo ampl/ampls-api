@@ -7,7 +7,7 @@
     <ProjectGuid>{00A9E33C-4E3B-48C1-98A9-6B3059C55AA0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>cpxsharp-test</RootNamespace>
-    <AssemblyName>cpxsharp-test</AssemblyName>
+    <AssemblyName>amplssharrp-test</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -12,3 +12,6 @@ obj
 /csharp/gurobi/api/dev_gurobisharp.csproj
 /test/models/*.sol
 /csharp/ampls/api/dev_amplssharp.csproj
+/csharp/simpleapi/api/dev_simpleapisharp.csproj
+/python/cplex/examples/env
+/python/cplex/examples/cb.log

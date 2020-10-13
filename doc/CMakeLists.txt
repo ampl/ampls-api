@@ -5,7 +5,7 @@ if(NOT SPHINX_EXECUTABLE)
   return()
 endif()
 
-find_program(DOXYGEN doxygen)
+find_program(DOXYGEN_EXECUTABLE doxygen)
 if (DOXYGEN)
   add_subdirectory(cpp)
 else()

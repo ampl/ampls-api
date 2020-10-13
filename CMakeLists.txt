@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 project(ampls)
+set(ampls_VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -126,13 +127,6 @@ endmacro()
 
 # Add ampls (generic) project
 add_subdirectory(cpp/ampls)
-# Add ampls swig bindings
-if(SWIG_FOUND)
-  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/ampls)
-  if(WIN32)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/ampls)
-  endif()
-endif()
 
 
 function(AddSolverStub solver includes libs)
@@ -197,13 +191,23 @@ function(AddSolverStub solver includes libs)
   # Tests
   add_prefix(TEST_SOURCES ${DIR_CPP}/test/ ${solver}-test.cpp)
   add_executable(${TARGETNAME}-test ${TEST_SOURCES})
-  target_link_libraries(${TARGETNAME}-test ${libs} ${TARGETNAME} ${IMPORTLIB})
+  target_link_libraries(${TARGETNAME}-test ${libs} ${TARGETNAME})
   target_include_directories(
     ${TARGETNAME}-test
     PRIVATE ${GENERATED_INCLUDE_DIR} # for test-config
             ${DIR_CPP_INCLUDE} ${ampls_INCLUDE} ${includes})
   add_to_folder(${solver} ${TARGETNAME}-test)
   target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
+
+  # Copy runtime dependencies to binary directory
+  foreach(s ${${TARGETNAME}_LIBRARY} $<TARGET_FILE:${IMPORTLIB}>)
+  add_custom_command(
+            TARGET ${TARGETNAME}-test POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${s}"
+                    "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/"
+            COMMENT "Copying ${solvername}-lib to python directory")
+  endforeach()
 
   if (EXISTS ${DIR_SWIG})
     if(SWIG_FOUND)
@@ -229,6 +233,13 @@ if(ENABLE_${s})
 endif()
 endforeach()
 
+# Add ampls swig bindings (must do after the targets below, as )
+if(SWIG_FOUND)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/ampls)
+  if(WIN32)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/ampls)
+  endif()
+endif()
 
 
 # Add the documentation, check for the required programs is implemented
