@@ -113,8 +113,6 @@ else()
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()
 
-add_subdirectory(cpp/ampls)
-
 
  # Get rid of warning in newer versions of cmake
 macro(ADD_SWIG_LIBRARY name language)
@@ -125,6 +123,17 @@ macro(ADD_SWIG_LIBRARY name language)
         TYPE MODULE SOURCES ${ARGN})
   endif()
 endmacro()
+
+# Add ampls (generic) project
+add_subdirectory(cpp/ampls)
+# Add ampls swig bindings
+if(SWIG_FOUND)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/ampls)
+  if(WIN32)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/ampls)
+  endif()
+endif()
+
 
 function(AddSolverStub solver includes libs)
   set(TARGETNAME ${solver}-drv)
@@ -198,7 +207,6 @@ function(AddSolverStub solver includes libs)
 
   if (EXISTS ${DIR_SWIG})
     if(SWIG_FOUND)
-        include(UseSWIG)
         # Add a custom target just to show  the following common sources in some IDEs
         add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/ampls/swig/ampls-common.i
                                                    ${DIR_SWIG}/${solver}-common.i
@@ -214,35 +222,17 @@ function(AddSolverStub solver includes libs)
   endif()
 endfunction()
 
-if(ENABLE_gurobi)
-  addsolverstub(gurobi ${gurobi_INCLUDE_DIR} ${gurobi_LIBRARY})
+# Add the enabled modules
+foreach(s ${SOLVER_NAMES})
+if(ENABLE_${s})
+  addsolverstub(${s} ${${s}_INCLUDE_DIR} ${${s}_LIBRARY})
 endif()
-
-if(ENABLE_cplex)
-  addsolverstub(cplex ${cplex_INCLUDE_DIR} ${cplex_LIBRARY})
-endif()
-
-if(ENABLE_KNITRO)
-  addsolverstub(knitro)
-endif()
-
-if(ENABLE_xpress)
-  addsolverstub(xpress ${xpress_INCLUDE_DIR} ${xpress_LIBRARY}) 
-endif()
+endforeach()
 
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/ampls)
-if(WIN32)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/ampls)
-endif()
 
+# Add the documentation, check for the required programs is implemented
+# in the inner CMake file
 add_subdirectory("doc")
 
 
-# Install python package structure install(
-# DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/amplpy_gurobi/ DESTINATION
-# amplpy_gurobi/ COMPONENT ${PYTHON_SWIG_API}
-# )
-
-# set(CPACK_GENERATOR ZIP) set(CPACK_PACKAGE_VERSION ${AMPL_VERSION})
-# set(CPACK_PACKAGE_FILE_NAME solvers) include(CPack)

@@ -7,7 +7,6 @@
 #include <vector>
 #include <stdexcept>
 #include <memory> // for std::auto_ptr
-#include <mutex>
 #include <cstdarg>
 
 // This declaration is used in the solver-specific implementations
@@ -17,6 +16,7 @@
 #else
 #define ENTRYPOINT
 #endif
+
 
 namespace ampls
 {
@@ -52,7 +52,7 @@ struct Variant
   int integer;     // type 1
   double dbl;      // type 2
   int type;
-  Variant(): str(NULL), integer(0), dbl(0), type(-1) {}
+  Variant() : str(NULL), integer(0), dbl(0), type(-1) {}
   Variant(const char* c) : str(c), integer(0), dbl(0), type(0) {}
   explicit Variant(int v) : str(NULL), integer(v), dbl(0), type(1) {}
   Variant(double v) : str(NULL), integer(0), dbl(v), type(2) {}
@@ -104,10 +104,10 @@ struct Value
 {
   enum  CBValue {
     OBJ = 0,
-    PRE_DELCOLS= 1,
+    PRE_DELCOLS = 1,
     PRE_DELROWS = 2,
     PRE_COEFFCHANGED = 3,
-    ITERATIONS= 4,
+    ITERATIONS = 4,
 
     MIP_RELATIVEGAP = 5
   };
@@ -138,8 +138,69 @@ struct Status
     NOTMAPPED
   };
 };
+} // namespace ampls
+
+// Mutex utility
+#if defined(_MSC_VER)
+#if _MSC_VER >=1700 // __cplusplus is not supported on windows compiler 
+// unless we specify the /Zc compiler setting, so we resort to the _MSC_VER
+// std::mutex was first implemented in VC 2012.
+#define USECPP11MUTEX
+#else
+#define USEWINLOCK
+#include <windows.h>
+typedef SRWLOCK MUTEXIMPL;
+#endif  
+#else
+#if __cplusplus >= 201103L && __STDC_HOSTED__ == 1 && __STDCPP_THREADS__ == 1
+#define USECPP11MUTEX
+#else
+#define USEPTHREADMUTEX
+#include <unistd.h>
+#include <pthread.h>
+#include <stdlib.h>
+typedef pthread_mutex_t  MUTEXIMPL;
+#endif
+#endif
+#ifdef USECPP11MUTEX
+#include <mutex>
+typedef std::mutex MUTEXIMPL;
+#endif
+namespace ampls{
 namespace impl
 {
+class AMPLMutex {
+public:
+  inline AMPLMutex();
+  inline ~AMPLMutex();
+  inline void Lock();    
+  inline void Unlock();
+private:
+  MUTEXIMPL mutex_;
+  // Catch the error of writing Mutex when intending MutexLock.
+      AMPLMutex(AMPLMutex*){}
+      AMPLMutex(const AMPLMutex&) {}
+      AMPLMutex& operator=(const AMPLMutex& m);
+    };
+#ifdef USECPP11MUTEX
+    AMPLMutex::AMPLMutex() { }
+    AMPLMutex::~AMPLMutex() { }
+    void AMPLMutex::Lock() { mutex_.lock(); }
+    void AMPLMutex::Unlock() { mutex_.unlock(); }
+#elif defined(USEWINLOCK)
+    AMPLMutex::AMPLMutex() { InitializeSRWLock(&mutex_); }
+    AMPLMutex::~AMPLMutex() { }
+    void AMPLMutex::Lock() { AcquireSRWLockExclusive(&mutex_); }
+    void AMPLMutex::Unlock() { ReleaseSRWLockExclusive(&mutex_); }
+#elif defined(USEPTHREADMUTEX)
+    AMPLMutex::AMPLMutex() { pthread_mutex_init(&mutex_, NULL); }
+    AMPLMutex::~AMPLMutex() { pthread_mutex_destroy(&mutex_); }
+    void AMPLMutex::Lock() { pthread_mutex_lock(&mutex_); }
+    void AMPLMutex::Unlock() { pthread_mutex_unlock(&mutex_); }
+#undef SAFE_PTHREAD
+
+#endif
+
 /**
 * Infrastructure, should not be used directly.
 * Base class for all callback objects, solvers-specific and/or generic.
@@ -247,7 +308,7 @@ public:
 */
 template<class T> class SolverDriver
 {
-  std::mutex loadMutex;
+  AMPLMutex loadMutex;
 protected:
   virtual T* loadModelImpl(char** args) = 0;
 public:
@@ -262,13 +323,16 @@ public:
 
     char** args = NULL;
     try {
-      const std::lock_guard<std::mutex> lock(loadMutex);
+      
       args = generateArguments(modelName);
+      loadMutex.Lock();
       T* mod = loadModelImpl(args);
+      loadMutex.Unlock();
       deleteParams(args);
       return mod;
     }
     catch (const std::exception& e) {
+      loadMutex.Unlock();
       deleteParams(args);
       throw e;
     }

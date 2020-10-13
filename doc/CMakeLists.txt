@@ -1,9 +1,16 @@
 # Check requirements.
-#find_program(DOXYGEN doxygen)
-#if (NOT DOXYGEN)
-#  message(STATUS "Target doc disabled (requires doxygen)")
-#  return ()
-#endif ()
+find_package(Sphinx)
+if(NOT SPHINX_EXECUTABLE)
+  message(STATUS "Documentation generation disabled (requires sphinx)")
+  return()
+endif()
+
+find_program(DOXYGEN doxygen)
+if (DOXYGEN)
+  add_subdirectory(cpp)
+else()
+  message(STATUS "Cpp documentation disabled (requires doxygen)")
+endif ()
 
              
-add_subdirectory(cpp)
+

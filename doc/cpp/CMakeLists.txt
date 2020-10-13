@@ -1,7 +1,3 @@
-find_package(Doxygen REQUIRED)
-find_package(Sphinx REQUIRED)
-
-
 set(BASEDIR ${CMAKE_CURRENT_SOURCE_DIR}/../../cpp)
 set(DOXYGEN_INPUT_DIR "${BASEDIR}/ampls/include"
                       "${BASEDIR}/gurobi/include"

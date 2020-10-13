@@ -23,6 +23,8 @@ target_include_directories(ampls PRIVATE ${ampls_DIR}
       PUBLIC ${ampls_INCLUDE})
 if(NOT WIN32)
   target_compile_options(ampls PRIVATE -fPIC)
+  find_package(Threads REQUIRED)
+  append(LINKLIBS Threads::Threads)
 endif()
 target_link_libraries(ampls ${LINKLIBS})
 target_compile_features(ampls PUBLIC cxx_std_11)
