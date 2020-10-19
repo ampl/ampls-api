@@ -1,9 +1,9 @@
-.. include:: ../../images/definitions.rst
+.. include:: ../../common/definitions.rst
 
-AMPL solvers API
-================
+|Product|:: AMPL solver libraries 
+================================
 
-Welcome to the AMPL solver libraries documentation. This section introduces a few concepts
+Welcome to the AMPL solver libraries (|Product|) documentation. This section introduces a few concepts
 that are common to all languages and platforms and an overview of the main classes and methods.
 See :ref:`this section <cppreference>` for a comprehensive documentation of the available functionalities.
 

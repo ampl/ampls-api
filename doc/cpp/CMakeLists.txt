@@ -30,7 +30,7 @@ set(SPHINX_INDEX_FILE ${SPHINX_BUILD}/index.html)
 
 file(GLOB_RECURSE DOC_SOURCES ${SPHINX_SOURCE}/*.rst)
 
-set(COMMON_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../images/definitions.rst)
+set(COMMON_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../common/definitions.rst)
 add_custom_command(OUTPUT ${SPHINX_INDEX_FILE}
                   COMMAND
                   ${SPHINX_EXECUTABLE} -b html
@@ -50,7 +50,3 @@ add_custom_command(OUTPUT ${SPHINX_INDEX_FILE}
 add_custom_target(sphinx ALL DEPENDS ${SPHINX_INDEX_FILE}
 SOURCES ${DOC_SOURCES} ${COMMON_FILES})
 add_to_folder(docs/cpp sphinx doxygen)
-# Add an install target to install the docs
-#include(GNUInstallDirs)
-#install(DIRECTORY ${SPHINX_BUILD}
-#DESTINATION ${CMAKE_INSTALL_DOCDIR})

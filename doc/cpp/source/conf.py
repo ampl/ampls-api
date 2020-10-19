@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'SolversAPI'
+project = 'ampls::'
 copyright = '2020, AMPL Inc'
 author = 'AMPL Inc'
 
