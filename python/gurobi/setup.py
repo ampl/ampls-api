@@ -63,7 +63,7 @@ def libdir():
 
 setup(
     name='amplpy_gurobi',
-    version='0.1.0b4',
+    version='0.1.0b5',
     description='GUROBI extension for amplpy',
     long_description=__doc__,
     license='BSD-3',

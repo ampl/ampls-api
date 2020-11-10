@@ -25,7 +25,7 @@ jobs:
         TMP=`pwd`/tmp
         cp support/twine.sh $WHEELHOUSE/twine.sh
         cd python/$SOLVER
-        bash prepare.sh
+        bash prepare.sh linux64
         # bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
@@ -34,6 +34,7 @@ jobs:
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
         mv $TMP/* $WHEELHOUSE/
+        bash prepare.sh # to package libs for all platforms
         python setup.py sdist -d $WHEELHOUSE
         # pip install twine
         # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/* || true
@@ -65,7 +66,7 @@ jobs:
         mkdir -p tmp
         TMP=`pwd`/tmp
         cd python/$SOLVER
-        bash prepare.sh
+        bash prepare.sh osx64
         # bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
@@ -107,7 +108,7 @@ jobs:
         mkdir -p tmp
         TMP=`pwd`/tmp
         cd python/$SOLVER
-        bash prepare.sh
+        bash prepare.sh win64
         # bash swig.sh
         python -m pip install --user --upgrade pip
         python -m pip install urllib3[secure] --upgrade
