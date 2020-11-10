@@ -63,7 +63,7 @@ def libdir():
 
 setup(
     name='amplpy_cplex',
-    version='0.1.0b5',
+    version='0.1.0b6',
     description='CPLEX extension for amplpy',
     long_description=__doc__,
     license='BSD-3',
@@ -71,7 +71,7 @@ setup(
     author='Filipe Brandão',
     author_email='fdabrandao@ampl.com',
     url='http://ampl.com/',
-    download_url='https://github.com/ampl/solvers-public',
+    download_url='https://github.com/ampl/ampls-api',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

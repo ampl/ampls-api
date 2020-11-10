@@ -7,8 +7,6 @@ jobs:
         solver: 'gurobi'
       cplex:
         solver: 'cplex'
-      ampls:
-        solver: 'ampls'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:
@@ -49,8 +47,6 @@ jobs:
         solver: 'gurobi'
       cplex:
         solver: 'cplex'
-      ampls:
-        solver: 'ampls'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps: 
@@ -88,8 +84,6 @@ jobs:
         solver: 'gurobi'
       cplex:
         solver: 'cplex'
-      ampls:
-        solver: 'ampls'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:

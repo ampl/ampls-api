@@ -1,12 +1,10 @@
-import time
-import os
-import random
 from tsp_helpers import tsp_model, ford_fulkerson, UnionFind
-from amplpy import AMPL
-#import amplpy_gurobi as ampls_gurobi
-#import amplpy_cplex as ampls_cplex
-import amplpy_ampls as ampls
 
+from amplpy import AMPL
+import amplpy_gurobi
+import amplpy_cplex
+
+ampls = amplpy_gurobi
 var2tuple = ampls.var2tuple
 tuple2var = ampls.tuple2var
 
@@ -71,7 +69,7 @@ class MyCallback(ampls.GenericCallback):
     def mipnode(self):
         self.CALL_COUNT_MIPNODE += 1
         if VERBOSE:
-            print("GRB_CB_MIP #{}!".format(self.CALL_COUNT_MIPNODE))
+            print("MIPNODE #{}!".format(self.CALL_COUNT_MIPNODE))
         if self.CALL_COUNT_MIPNODE >= 1000:
             return 1
         sol = self.getSolutionVector()

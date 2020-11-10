@@ -10,41 +10,58 @@ try:
 except:
     pass
 
-try:
-    from amplpy_ampls_swig import *
-    GUROBI_DRIVER = GurobiDrv()
-    CPLEX_DRIVER = CPLEXDrv()
-except:
-    pass
-
 
 def exportGurobiModel(self):
     global GUROBI_DRIVER
-    self.option['auxfiles'] = 'c'
-    self.eval('write gnlfileexport;')
-    model = GUROBI_DRIVER.loadModel('nlfileexport.nl')
-    return model
+    import tempfile
+    import shutil
+    import os
+    tmp = tempfile.mkdtemp()
+    fname = os.path.join(tmp, 'model').replace('"', '""')
+    try:
+        self.option['auxfiles'] = 'c'
+        self.eval('write "g{}";'.format(fname))
+        model = GUROBI_DRIVER.loadModel(fname + '.nl')
+        model._solfile = fname + '.sol'
+        os.remove(fname + '.nl')
+        return model
+    except:
+        shutil.rmtree(tmp)
+        raise
 
 
 def exportCplexModel(self):
     global CPLEX_DRIVER
-    self.option['auxfiles'] = 'c'
-    self.eval('write gnlfileexport;')
-    model = CPLEX_DRIVER.loadModel('nlfileexport.nl')
-    return model
+    import tempfile
+    import shutil
+    import os
+    tmp = tempfile.mkdtemp()
+    fname = os.path.join(tmp, 'model').replace('"', '""')
+    try:
+        self.option['auxfiles'] = 'c'
+        self.eval('write "g{}";'.format(fname))
+        model = CPLEX_DRIVER.loadModel(fname + '.nl')
+        model._solfile = fname + '.sol'
+        os.remove(fname + '.nl')
+        return model
+    except:
+        shutil.rmtree(tmp)
+        raise
 
 
 def exportModel(self, driver):
-    if driver == "gurobi":
+    if driver == 'gurobi':
         return self.exportGurobiModel()
-    elif driver == "cplex":
+    elif driver == 'cplex':
         return self.exportCplexModel()
     return None
 
 
-def importSolution(self, mod):
-    mod.writeSol()
-    self.eval('solution nlfileexport.sol;')
+def importSolution(self, model):
+    import os
+    model.writeSol()
+    self.eval('solution "{}";'.format(model._solfile))
+    os.remove(model._solfile)
 
 
 try:

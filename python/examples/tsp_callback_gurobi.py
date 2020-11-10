@@ -1,12 +1,11 @@
-import time
-import os
-import random
 from tsp_helpers import tsp_model, ford_fulkerson, UnionFind
-from amplpy import AMPL
-import amplpy_gurobi as grb
 
-var2tuple = grb.var2tuple
-tuple2var = grb.tuple2var
+from amplpy import AMPL
+import amplpy_gurobi
+
+ampls = amplpy_gurobi
+var2tuple = ampls.var2tuple
+tuple2var = ampls.tuple2var
 
 VERBOSE = True
 ENABLE_CALLBACK = True
@@ -34,7 +33,7 @@ vertices = list(sorted(set(
 )))
 
 
-class MyCallback(grb.GurobiCallback):
+class MyCallback(ampls.GurobiCallback):
     CALL_COUNT_MIPSOL = 0
     CALL_COUNT_MIPNODE = 0
 
@@ -61,7 +60,7 @@ class MyCallback(grb.GurobiCallback):
                                for i in grp for j in grp if i != j]
                 coeffs = [1 for i in range(len(cutvarnames))]
                 self.addLazy(cutvarnames, coeffs,
-                             grb.GRB_LESS_EQUAL, len(grp)-1)
+                             ampls.GRB_LESS_EQUAL, len(grp)-1)
         return 0
 
     def mipnode(self):
@@ -90,7 +89,7 @@ class MyCallback(grb.GurobiCallback):
                 cutvarnames = [tuple2var('x', i, j)
                                for i in p1 for j in p2]
                 coeffs = [1 for i in range(len(cutvarnames))]
-                self.addCut(cutvarnames, coeffs, grb.GRB_GREATER_EQUAL, 1)
+                self.addCut(cutvarnames, coeffs, ampls.GRB_GREATER_EQUAL, 1)
                 print('> max-flow: {}, min-cut: {}, must be == 1'.format(
                     max_flow, min_cut))
                 return 0
@@ -98,9 +97,9 @@ class MyCallback(grb.GurobiCallback):
 
     def run(self, where):
         try:
-            if ENABLE_CB_MIPSOL and where == grb.GRB_CB_MIPSOL:
+            if ENABLE_CB_MIPSOL and where == ampls.GRB_CB_MIPSOL:
                 return self.mipsol()
-            elif ENABLE_CB_MIPNODE and where == grb.GRB_CB_MIPNODE:
+            elif ENABLE_CB_MIPNODE and where == ampls.GRB_CB_MIPNODE:
                 return self.mipnode()
             else:
                 return 0
@@ -117,6 +116,6 @@ m.optimize()
 obj = m.getObj()
 nvars = m.getNumVars()
 print("Solved for {} variables, objective {}".format(nvars, obj))
-if m.getStatus() == grb.Status.OPTIMAL:
+if m.getStatus() == ampls.Status.OPTIMAL:
     ampl.importSolution(m)
     ampl.display('total')

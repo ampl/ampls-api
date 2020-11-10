@@ -71,7 +71,7 @@ setup(
     author='Filipe Brandão',
     author_email='fdabrandao@ampl.com',
     url='http://ampl.com/',
-    download_url='https://github.com/ampl/solvers-public',
+    download_url='https://github.com/ampl/ampls-api',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

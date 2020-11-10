@@ -1,6 +1,5 @@
 import sys
 from tsp_helpers import tsp_model
-# import amplpy_ampls as ampls
 import amplpy_gurobi as ampls_gurobi
 import amplpy_cplex as ampls_cplex
 ampls = ampls_gurobi
