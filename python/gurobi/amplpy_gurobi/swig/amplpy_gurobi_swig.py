@@ -10,9 +10,9 @@ if _swig_python_version_info < (2, 7, 0):
 
 # Pull in all the attributes from the low-level C/C++ module
 if __package__ or "." in __name__:
-    from ._amplpy_cplex_swig import *
+    from ._amplpy_gurobi_swig import *
 else:
-    from _amplpy_cplex_swig import *
+    from _amplpy_gurobi_swig import *
 
 try:
     import builtins as __builtin__
@@ -62,9 +62,6 @@ class _SwigNonDynamicMeta(type):
 
 
 import weakref
-
-
-
 
 
 

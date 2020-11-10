@@ -10,8 +10,9 @@ if platform.system() == 'Windows':
     import ctypes
     try:
         paths = [
-            os.path.join(BASEDIR, 'gurobi81', 'win64'),
-            os.path.join(BASEDIR, 'amplgurobi', 'bin'),
+            os.path.join(BASEDIR, 'libs', 'gurobi', 'lib', 'win64'),
+            os.path.join(BASEDIR, 'libs', 'cplex', 'lib', 'win64'),
+            os.path.join(BASEDIR, 'libs', 'ampls', 'lib'),
         ]
         for path in paths:
             dllfile = glob(os.path.join(path, '*.dll'))[0]
@@ -20,24 +21,7 @@ if platform.system() == 'Windows':
         pass
 
 
-from amplpy_gurobi_swig import *
-
-import types
-
-DRIVER = GurobiDrv()
-
-def exportGurobiModel(self):
-    self.eval('write gnlfile;')
-    grb_model = DRIVER.loadModel('nlfile.nl')
-    return grb_model
-
-
-def importGurobiSolution(self, grb_model):
-    grb_model.writeSol()
-    self.eval('solution nlfile.sol;')
-
-
-def patch(ampl_class):
-    ampl_class.exportGurobiModel = exportGurobiModel
-    ampl_class.importGurobiSolution = importGurobiSolution
-
+try:
+    from .patch import *
+except:
+    raise

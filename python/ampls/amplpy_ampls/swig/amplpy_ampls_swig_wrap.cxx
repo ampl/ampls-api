@@ -3851,190 +3851,216 @@ namespace Swig {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_CPXCALLBACKINFO swig_types[0]
-#define SWIGTYPE_p_CPXCALLBACKSOLUTIONSTRATEGY swig_types[1]
-#define SWIGTYPE_p_CPXINFOTYPE swig_types[2]
-#define SWIGTYPE_p_SwigPyObject swig_types[3]
-#define SWIGTYPE_p_a_sizeof_CPXBYTE___1_1__1__int swig_types[4]
-#define SWIGTYPE_p_a_sizeof_CPXBYTE___1_1__1__intArray swig_types[5]
-#define SWIGTYPE_p_a_sizeof_CPXINT___4_1__1__int swig_types[6]
-#define SWIGTYPE_p_a_sizeof_CPXINT___4_1__1__intArray swig_types[7]
-#define SWIGTYPE_p_a_sizeof_CPXLONG___8_1__1__int swig_types[8]
-#define SWIGTYPE_p_a_sizeof_CPXLONG___8_1__1__intArray swig_types[9]
-#define SWIGTYPE_p_a_sizeof_CPXSHORT___2_1__1__int swig_types[10]
-#define SWIGTYPE_p_a_sizeof_CPXSHORT___2_1__1__intArray swig_types[11]
-#define SWIGTYPE_p_a_sizeof_CPXSIZE___sizeof_size_t__1__1__int swig_types[12]
-#define SWIGTYPE_p_a_sizeof_CPXSIZE___sizeof_size_t__1__1__intArray swig_types[13]
-#define SWIGTYPE_p_a_sizeof_CPXULONG___8_1__1__int swig_types[14]
-#define SWIGTYPE_p_a_sizeof_CPXULONG___8_1__1__intArray swig_types[15]
-#define SWIGTYPE_p_allocator_type swig_types[16]
-#define SWIGTYPE_p_ampls__AMPLModel swig_types[17]
-#define SWIGTYPE_p_ampls__AMPLSolverException swig_types[18]
-#define SWIGTYPE_p_ampls__CPLEXCallback swig_types[19]
-#define SWIGTYPE_p_ampls__CPLEXDrv swig_types[20]
-#define SWIGTYPE_p_ampls__CPLEXModel swig_types[21]
-#define SWIGTYPE_p_ampls__CutDirection swig_types[22]
-#define SWIGTYPE_p_ampls__GenericCallback swig_types[23]
-#define SWIGTYPE_p_ampls__Status swig_types[24]
-#define SWIGTYPE_p_ampls__Value swig_types[25]
-#define SWIGTYPE_p_ampls__Variant swig_types[26]
-#define SWIGTYPE_p_ampls__Where swig_types[27]
-#define SWIGTYPE_p_ampls__cpx__impl__CBWrap swig_types[28]
-#define SWIGTYPE_p_ampls__cpx__impl__CPLEXDriverState swig_types[29]
-#define SWIGTYPE_p_ampls__impl__AMPLMutex swig_types[30]
-#define SWIGTYPE_p_ampls__impl__BaseCallback swig_types[31]
-#define SWIGTYPE_p_char swig_types[32]
-#define SWIGTYPE_p_cpxcallbackcontext swig_types[33]
-#define SWIGTYPE_p_cpxchannel swig_types[34]
-#define SWIGTYPE_p_cpxdeserializer swig_types[35]
-#define SWIGTYPE_p_cpxenv swig_types[36]
-#define SWIGTYPE_p_cpxiodevice swig_types[37]
-#define SWIGTYPE_p_cpxlp swig_types[38]
-#define SWIGTYPE_p_cpxnet swig_types[39]
-#define SWIGTYPE_p_cpxserializer swig_types[40]
-#define SWIGTYPE_p_dblArray swig_types[41]
-#define SWIGTYPE_p_difference_type swig_types[42]
-#define SWIGTYPE_p_double swig_types[43]
-#define SWIGTYPE_p_f_int_p_cpxiodevice__int swig_types[44]
-#define SWIGTYPE_p_f_int_p_cpxiodevice__intArray swig_types[45]
-#define SWIGTYPE_p_f_int_p_q_const__char_p_void__int swig_types[46]
-#define SWIGTYPE_p_f_int_p_q_const__char_p_void__intArray swig_types[47]
-#define SWIGTYPE_p_f_p_cpxcallbackcontext_long_long_p_void__int swig_types[48]
-#define SWIGTYPE_p_f_p_cpxcallbackcontext_long_long_p_void__intArray swig_types[49]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_double__int swig_types[50]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_double__intArray swig_types[51]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_float__int swig_types[52]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_float__intArray swig_types[53]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_int__int swig_types[54]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_int__intArray swig_types[55]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_long_long__int swig_types[56]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_long_long__intArray swig_types[57]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_short__int swig_types[58]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_short__intArray swig_types[59]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_signed_char__int swig_types[60]
-#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_signed_char__intArray swig_types[61]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_double__int swig_types[62]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_double__intArray swig_types[63]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_float__int swig_types[64]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_float__intArray swig_types[65]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_int__int swig_types[66]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_int__intArray swig_types[67]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_long_long__int swig_types[68]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_long_long__intArray swig_types[69]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_short__int swig_types[70]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_short__intArray swig_types[71]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_signed_char__int swig_types[72]
-#define SWIGTYPE_p_f_p_cpxdeserializer_p_signed_char__intArray swig_types[73]
-#define SWIGTYPE_p_f_p_cpxenv_enum_CPXINFOTYPE_int_long_long_p_q_const__void_p_void__void swig_types[74]
-#define SWIGTYPE_p_f_p_cpxenv_int_long_long_p_q_const__void_long_long_p_long_long_p_void_p_void__int swig_types[75]
-#define SWIGTYPE_p_f_p_cpxenv_int_long_long_p_q_const__void_long_long_p_long_long_p_void_p_void__intArray swig_types[76]
-#define SWIGTYPE_p_f_p_cpxiodevice__int swig_types[77]
-#define SWIGTYPE_p_f_p_cpxiodevice__intArray swig_types[78]
-#define SWIGTYPE_p_f_p_cpxserializer_double__int swig_types[79]
-#define SWIGTYPE_p_f_p_cpxserializer_double__intArray swig_types[80]
-#define SWIGTYPE_p_f_p_cpxserializer_float__int swig_types[81]
-#define SWIGTYPE_p_f_p_cpxserializer_float__intArray swig_types[82]
-#define SWIGTYPE_p_f_p_cpxserializer_int__int swig_types[83]
-#define SWIGTYPE_p_f_p_cpxserializer_int__intArray swig_types[84]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long__int swig_types[85]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long__intArray swig_types[86]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__double__int swig_types[87]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__double__intArray swig_types[88]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__float__int swig_types[89]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__float__intArray swig_types[90]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__int__int swig_types[91]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__int__intArray swig_types[92]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__long_long__int swig_types[93]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__long_long__intArray swig_types[94]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__short__int swig_types[95]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__short__intArray swig_types[96]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__signed_char__int swig_types[97]
-#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__signed_char__intArray swig_types[98]
-#define SWIGTYPE_p_f_p_cpxserializer_short__int swig_types[99]
-#define SWIGTYPE_p_f_p_cpxserializer_short__intArray swig_types[100]
-#define SWIGTYPE_p_f_p_cpxserializer_signed_char__int swig_types[101]
-#define SWIGTYPE_p_f_p_cpxserializer_signed_char__intArray swig_types[102]
-#define SWIGTYPE_p_f_p_q_const__char_p_cpxiodevice__int swig_types[103]
-#define SWIGTYPE_p_f_p_q_const__char_p_cpxiodevice__intArray swig_types[104]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_int_p_void__int swig_types[105]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_int_p_void__intArray swig_types[106]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void swig_types[107]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void__int swig_types[108]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void__intArray swig_types[109]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__int swig_types[110]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__intArray swig_types[111]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__int swig_types[112]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__intArray swig_types[113]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__int swig_types[114]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__intArray swig_types[115]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__int swig_types[116]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__intArray swig_types[117]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__int swig_types[118]
-#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__intArray swig_types[119]
-#define SWIGTYPE_p_f_p_q_const__void_size_t_p_cpxiodevice__size_t swig_types[120]
-#define SWIGTYPE_p_f_p_void_long_long_p_char__p_char swig_types[121]
-#define SWIGTYPE_p_f_p_void_p_q_const__char__void swig_types[122]
-#define SWIGTYPE_p_f_p_void_size_t_p_cpxiodevice__size_t swig_types[123]
-#define SWIGTYPE_p_int swig_types[124]
-#define SWIGTYPE_p_intArray swig_types[125]
-#define SWIGTYPE_p_key_type swig_types[126]
-#define SWIGTYPE_p_long_long swig_types[127]
-#define SWIGTYPE_p_mapped_type swig_types[128]
-#define SWIGTYPE_p_p_ASL swig_types[129]
-#define SWIGTYPE_p_p_PyObject swig_types[130]
-#define SWIGTYPE_p_p_char swig_types[131]
-#define SWIGTYPE_p_p_cpxchannel swig_types[132]
-#define SWIGTYPE_p_p_cpxdeserializer swig_types[133]
-#define SWIGTYPE_p_p_cpxenv swig_types[134]
-#define SWIGTYPE_p_p_cpxlp swig_types[135]
-#define SWIGTYPE_p_p_cpxnet swig_types[136]
-#define SWIGTYPE_p_p_cpxserializer swig_types[137]
-#define SWIGTYPE_p_p_f_int_p_q_const__char_p_void__int swig_types[138]
-#define SWIGTYPE_p_p_f_int_p_q_const__char_p_void__intArray swig_types[139]
-#define SWIGTYPE_p_p_f_p_cpxcallbackcontext_long_long_p_void__int swig_types[140]
-#define SWIGTYPE_p_p_f_p_cpxcallbackcontext_long_long_p_void__intArray swig_types[141]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void swig_types[142]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void__int swig_types[143]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void__intArray swig_types[144]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__int swig_types[145]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__intArray swig_types[146]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__int swig_types[147]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__intArray swig_types[148]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__int swig_types[149]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__intArray swig_types[150]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__int swig_types[151]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__intArray swig_types[152]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__int swig_types[153]
-#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__intArray swig_types[154]
-#define SWIGTYPE_p_p_paramset swig_types[155]
-#define SWIGTYPE_p_p_void swig_types[156]
-#define SWIGTYPE_p_paramset swig_types[157]
-#define SWIGTYPE_p_pthread_mutex_t swig_types[158]
-#define SWIGTYPE_p_short swig_types[159]
-#define SWIGTYPE_p_signed_char swig_types[160]
-#define SWIGTYPE_p_size_type swig_types[161]
-#define SWIGTYPE_p_std__allocatorT_double_t swig_types[162]
-#define SWIGTYPE_p_std__allocatorT_std__pairT_int_const_std__string_t_t swig_types[163]
-#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_int_t_t swig_types[164]
-#define SWIGTYPE_p_std__allocatorT_std__string_t swig_types[165]
-#define SWIGTYPE_p_std__invalid_argument swig_types[166]
-#define SWIGTYPE_p_std__lessT_int_t swig_types[167]
-#define SWIGTYPE_p_std__lessT_std__string_t swig_types[168]
-#define SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t swig_types[169]
-#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[170]
-#define SWIGTYPE_p_std__runtime_error swig_types[171]
-#define SWIGTYPE_p_std__string swig_types[172]
-#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[173]
-#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[174]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[175]
-#define SWIGTYPE_p_unsigned_char swig_types[176]
-#define SWIGTYPE_p_unsigned_int swig_types[177]
-#define SWIGTYPE_p_unsigned_long_long swig_types[178]
-#define SWIGTYPE_p_unsigned_short swig_types[179]
-#define SWIGTYPE_p_value_type swig_types[180]
-#define SWIGTYPE_p_void swig_types[181]
-static swig_type_info *swig_types[183];
-static swig_module_info swig_module = {swig_types, 182, 0, 0, 0, 0};
+#define SWIGTYPE_p_ASL swig_types[0]
+#define SWIGTYPE_p_CPXCALLBACKINFO swig_types[1]
+#define SWIGTYPE_p_CPXCALLBACKSOLUTIONSTRATEGY swig_types[2]
+#define SWIGTYPE_p_CPXINFOTYPE swig_types[3]
+#define SWIGTYPE_p_FILE swig_types[4]
+#define SWIGTYPE_p_SwigPyObject swig_types[5]
+#define SWIGTYPE_p__GRBbatch swig_types[6]
+#define SWIGTYPE_p__GRBenv swig_types[7]
+#define SWIGTYPE_p__GRBmodel swig_types[8]
+#define SWIGTYPE_p__GRBsvec swig_types[9]
+#define SWIGTYPE_p_a_sizeof_CPXBYTE___1_1__1__int swig_types[10]
+#define SWIGTYPE_p_a_sizeof_CPXBYTE___1_1__1__intArray swig_types[11]
+#define SWIGTYPE_p_a_sizeof_CPXINT___4_1__1__int swig_types[12]
+#define SWIGTYPE_p_a_sizeof_CPXINT___4_1__1__intArray swig_types[13]
+#define SWIGTYPE_p_a_sizeof_CPXLONG___8_1__1__int swig_types[14]
+#define SWIGTYPE_p_a_sizeof_CPXLONG___8_1__1__intArray swig_types[15]
+#define SWIGTYPE_p_a_sizeof_CPXSHORT___2_1__1__int swig_types[16]
+#define SWIGTYPE_p_a_sizeof_CPXSHORT___2_1__1__intArray swig_types[17]
+#define SWIGTYPE_p_a_sizeof_CPXSIZE___sizeof_size_t__1__1__int swig_types[18]
+#define SWIGTYPE_p_a_sizeof_CPXSIZE___sizeof_size_t__1__1__intArray swig_types[19]
+#define SWIGTYPE_p_a_sizeof_CPXULONG___8_1__1__int swig_types[20]
+#define SWIGTYPE_p_a_sizeof_CPXULONG___8_1__1__intArray swig_types[21]
+#define SWIGTYPE_p_allocator_type swig_types[22]
+#define SWIGTYPE_p_ampls__AMPLModel swig_types[23]
+#define SWIGTYPE_p_ampls__AMPLSolverException swig_types[24]
+#define SWIGTYPE_p_ampls__CPLEXCallback swig_types[25]
+#define SWIGTYPE_p_ampls__CPLEXDrv swig_types[26]
+#define SWIGTYPE_p_ampls__CPLEXModel swig_types[27]
+#define SWIGTYPE_p_ampls__CutDirection swig_types[28]
+#define SWIGTYPE_p_ampls__GenericCallback swig_types[29]
+#define SWIGTYPE_p_ampls__GurobiCallback swig_types[30]
+#define SWIGTYPE_p_ampls__GurobiDrv swig_types[31]
+#define SWIGTYPE_p_ampls__GurobiModel swig_types[32]
+#define SWIGTYPE_p_ampls__Status swig_types[33]
+#define SWIGTYPE_p_ampls__Value swig_types[34]
+#define SWIGTYPE_p_ampls__Variant swig_types[35]
+#define SWIGTYPE_p_ampls__Where swig_types[36]
+#define SWIGTYPE_p_ampls__cpx__impl__CBWrap swig_types[37]
+#define SWIGTYPE_p_ampls__cpx__impl__CPLEXDriverState swig_types[38]
+#define SWIGTYPE_p_ampls__impl__AMPLMutex swig_types[39]
+#define SWIGTYPE_p_ampls__impl__BaseCallback swig_types[40]
+#define SWIGTYPE_p_char swig_types[41]
+#define SWIGTYPE_p_cpxcallbackcontext swig_types[42]
+#define SWIGTYPE_p_cpxchannel swig_types[43]
+#define SWIGTYPE_p_cpxdeserializer swig_types[44]
+#define SWIGTYPE_p_cpxenv swig_types[45]
+#define SWIGTYPE_p_cpxiodevice swig_types[46]
+#define SWIGTYPE_p_cpxlp swig_types[47]
+#define SWIGTYPE_p_cpxnet swig_types[48]
+#define SWIGTYPE_p_cpxserializer swig_types[49]
+#define SWIGTYPE_p_dblArray swig_types[50]
+#define SWIGTYPE_p_difference_type swig_types[51]
+#define SWIGTYPE_p_double swig_types[52]
+#define SWIGTYPE_p_f_int_p_cpxiodevice__int swig_types[53]
+#define SWIGTYPE_p_f_int_p_cpxiodevice__intArray swig_types[54]
+#define SWIGTYPE_p_f_int_p_q_const__char_p_void__int swig_types[55]
+#define SWIGTYPE_p_f_int_p_q_const__char_p_void__intArray swig_types[56]
+#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[57]
+#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[58]
+#define SWIGTYPE_p_f_p_char__int swig_types[59]
+#define SWIGTYPE_p_f_p_char__intArray swig_types[60]
+#define SWIGTYPE_p_f_p_cpxcallbackcontext_long_long_p_void__int swig_types[61]
+#define SWIGTYPE_p_f_p_cpxcallbackcontext_long_long_p_void__intArray swig_types[62]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_double__int swig_types[63]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_double__intArray swig_types[64]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_float__int swig_types[65]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_float__intArray swig_types[66]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_int__int swig_types[67]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_int__intArray swig_types[68]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_long_long__int swig_types[69]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_long_long__intArray swig_types[70]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_short__int swig_types[71]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_short__intArray swig_types[72]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_signed_char__int swig_types[73]
+#define SWIGTYPE_p_f_p_cpxdeserializer_long_long_p_signed_char__intArray swig_types[74]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_double__int swig_types[75]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_double__intArray swig_types[76]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_float__int swig_types[77]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_float__intArray swig_types[78]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_int__int swig_types[79]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_int__intArray swig_types[80]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_long_long__int swig_types[81]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_long_long__intArray swig_types[82]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_short__int swig_types[83]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_short__intArray swig_types[84]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_signed_char__int swig_types[85]
+#define SWIGTYPE_p_f_p_cpxdeserializer_p_signed_char__intArray swig_types[86]
+#define SWIGTYPE_p_f_p_cpxenv_enum_CPXINFOTYPE_int_long_long_p_q_const__void_p_void__void swig_types[87]
+#define SWIGTYPE_p_f_p_cpxenv_int_long_long_p_q_const__void_long_long_p_long_long_p_void_p_void__int swig_types[88]
+#define SWIGTYPE_p_f_p_cpxenv_int_long_long_p_q_const__void_long_long_p_long_long_p_void_p_void__intArray swig_types[89]
+#define SWIGTYPE_p_f_p_cpxiodevice__int swig_types[90]
+#define SWIGTYPE_p_f_p_cpxiodevice__intArray swig_types[91]
+#define SWIGTYPE_p_f_p_cpxserializer_double__int swig_types[92]
+#define SWIGTYPE_p_f_p_cpxserializer_double__intArray swig_types[93]
+#define SWIGTYPE_p_f_p_cpxserializer_float__int swig_types[94]
+#define SWIGTYPE_p_f_p_cpxserializer_float__intArray swig_types[95]
+#define SWIGTYPE_p_f_p_cpxserializer_int__int swig_types[96]
+#define SWIGTYPE_p_f_p_cpxserializer_int__intArray swig_types[97]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long__int swig_types[98]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long__intArray swig_types[99]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__double__int swig_types[100]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__double__intArray swig_types[101]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__float__int swig_types[102]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__float__intArray swig_types[103]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__int__int swig_types[104]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__int__intArray swig_types[105]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__long_long__int swig_types[106]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__long_long__intArray swig_types[107]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__short__int swig_types[108]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__short__intArray swig_types[109]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__signed_char__int swig_types[110]
+#define SWIGTYPE_p_f_p_cpxserializer_long_long_p_q_const__signed_char__intArray swig_types[111]
+#define SWIGTYPE_p_f_p_cpxserializer_short__int swig_types[112]
+#define SWIGTYPE_p_f_p_cpxserializer_short__intArray swig_types[113]
+#define SWIGTYPE_p_f_p_cpxserializer_signed_char__int swig_types[114]
+#define SWIGTYPE_p_f_p_cpxserializer_signed_char__intArray swig_types[115]
+#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int swig_types[116]
+#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray swig_types[117]
+#define SWIGTYPE_p_f_p_q_const__char_p_cpxiodevice__int swig_types[118]
+#define SWIGTYPE_p_f_p_q_const__char_p_cpxiodevice__intArray swig_types[119]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_int_p_void__int swig_types[120]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_int_p_void__intArray swig_types[121]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void swig_types[122]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void__int swig_types[123]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void__intArray swig_types[124]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__int swig_types[125]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__intArray swig_types[126]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__int swig_types[127]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__intArray swig_types[128]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__int swig_types[129]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__intArray swig_types[130]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__int swig_types[131]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__intArray swig_types[132]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__int swig_types[133]
+#define SWIGTYPE_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__intArray swig_types[134]
+#define SWIGTYPE_p_f_p_q_const__void_size_t_p_cpxiodevice__size_t swig_types[135]
+#define SWIGTYPE_p_f_p_void_long_long_p_char__p_char swig_types[136]
+#define SWIGTYPE_p_f_p_void_p_q_const__char__void swig_types[137]
+#define SWIGTYPE_p_f_p_void_p_void__void swig_types[138]
+#define SWIGTYPE_p_f_p_void_size_t_p_cpxiodevice__size_t swig_types[139]
+#define SWIGTYPE_p_f_p_void_size_t_p_void__p_void swig_types[140]
+#define SWIGTYPE_p_f_size_t_p_void__p_void swig_types[141]
+#define SWIGTYPE_p_f_size_t_size_t_p_void__p_void swig_types[142]
+#define SWIGTYPE_p_int swig_types[143]
+#define SWIGTYPE_p_intArray swig_types[144]
+#define SWIGTYPE_p_key_type swig_types[145]
+#define SWIGTYPE_p_long_long swig_types[146]
+#define SWIGTYPE_p_mapped_type swig_types[147]
+#define SWIGTYPE_p_p_ASL swig_types[148]
+#define SWIGTYPE_p_p_FILE swig_types[149]
+#define SWIGTYPE_p_p_PyObject swig_types[150]
+#define SWIGTYPE_p_p__GRBbatch swig_types[151]
+#define SWIGTYPE_p_p__GRBenv swig_types[152]
+#define SWIGTYPE_p_p__GRBmodel swig_types[153]
+#define SWIGTYPE_p_p_char swig_types[154]
+#define SWIGTYPE_p_p_cpxchannel swig_types[155]
+#define SWIGTYPE_p_p_cpxdeserializer swig_types[156]
+#define SWIGTYPE_p_p_cpxenv swig_types[157]
+#define SWIGTYPE_p_p_cpxlp swig_types[158]
+#define SWIGTYPE_p_p_cpxnet swig_types[159]
+#define SWIGTYPE_p_p_cpxserializer swig_types[160]
+#define SWIGTYPE_p_p_f_int_p_q_const__char_p_void__int swig_types[161]
+#define SWIGTYPE_p_p_f_int_p_q_const__char_p_void__intArray swig_types[162]
+#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[163]
+#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[164]
+#define SWIGTYPE_p_p_f_p_cpxcallbackcontext_long_long_p_void__int swig_types[165]
+#define SWIGTYPE_p_p_f_p_cpxcallbackcontext_long_long_p_void__intArray swig_types[166]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void swig_types[167]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void__int swig_types[168]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void__intArray swig_types[169]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__int swig_types[170]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__intArray swig_types[171]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__int swig_types[172]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__intArray swig_types[173]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__int swig_types[174]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__intArray swig_types[175]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__int swig_types[176]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__intArray swig_types[177]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__int swig_types[178]
+#define SWIGTYPE_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__intArray swig_types[179]
+#define SWIGTYPE_p_p_paramset swig_types[180]
+#define SWIGTYPE_p_p_void swig_types[181]
+#define SWIGTYPE_p_paramset swig_types[182]
+#define SWIGTYPE_p_pthread_mutex_t swig_types[183]
+#define SWIGTYPE_p_short swig_types[184]
+#define SWIGTYPE_p_signed_char swig_types[185]
+#define SWIGTYPE_p_size_t swig_types[186]
+#define SWIGTYPE_p_size_type swig_types[187]
+#define SWIGTYPE_p_std__allocatorT_double_t swig_types[188]
+#define SWIGTYPE_p_std__allocatorT_std__pairT_int_const_std__string_t_t swig_types[189]
+#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_int_t_t swig_types[190]
+#define SWIGTYPE_p_std__allocatorT_std__string_t swig_types[191]
+#define SWIGTYPE_p_std__invalid_argument swig_types[192]
+#define SWIGTYPE_p_std__lessT_int_t swig_types[193]
+#define SWIGTYPE_p_std__lessT_std__string_t swig_types[194]
+#define SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t swig_types[195]
+#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[196]
+#define SWIGTYPE_p_std__runtime_error swig_types[197]
+#define SWIGTYPE_p_std__string swig_types[198]
+#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[199]
+#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[200]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[201]
+#define SWIGTYPE_p_unsigned_char swig_types[202]
+#define SWIGTYPE_p_unsigned_int swig_types[203]
+#define SWIGTYPE_p_unsigned_long_long swig_types[204]
+#define SWIGTYPE_p_unsigned_short swig_types[205]
+#define SWIGTYPE_p_value_type swig_types[206]
+#define SWIGTYPE_p_void swig_types[207]
+static swig_type_info *swig_types[209];
+static swig_module_info swig_module = {swig_types, 208, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4046,16 +4072,16 @@ static swig_module_info swig_module = {swig_types, 182, 0, 0, 0, 0};
 #define SWIG_TypeQuery SWIG_Python_TypeQuery
 
 /*-----------------------------------------------
-              @(target):= _amplpy_cplex_swig.so
+              @(target):= _amplpy_ampls_swig.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__amplpy_cplex_swig
+#  define SWIG_init    PyInit__amplpy_ampls_swig
 
 #else
-#  define SWIG_init    init_amplpy_cplex_swig
+#  define SWIG_init    init_amplpy_ampls_swig
 
 #endif
-#define SWIG_name    "_amplpy_cplex_swig"
+#define SWIG_name    "_amplpy_ampls_swig"
 
 #define SWIGVERSION 0x040002 
 #define SWIG_VERSION SWIGVERSION
@@ -7039,9 +7065,9 @@ SWIG_AsVal_bool (PyObject *obj, bool *val)
 }
 
 
-  #include "ilcplex/cplexx.h"
-  #include "cplex_callback.h"
-  #include "cplex_interface.h"
+  #include "gurobi_c.h"
+  #include "gurobi_callback.h"
+  #include "gurobi_interface.h"
 
 
 SWIGINTERNINLINE PyObject *
@@ -7051,12 +7077,61 @@ SWIG_From_char  (char c)
 }
 
 
+SWIGINTERN int
+SWIG_AsCharArray(PyObject * obj, char *val, size_t size)
+{ 
+  char* cptr = 0; size_t csize = 0; int alloc = SWIG_OLDOBJ;
+  int res = SWIG_AsCharPtrAndSize(obj, &cptr, &csize, &alloc);
+  if (SWIG_IsOK(res)) {
+    /* special case of single char conversion when we don't need space for NUL */
+    if (size == 1 && csize == 2 && cptr && !cptr[1]) --csize;
+    if (csize <= size) {
+      if (val) {
+	if (csize) memcpy(val, cptr, csize*sizeof(char));
+	if (csize < size) memset(val + csize, 0, (size - csize)*sizeof(char));
+      }
+      if (alloc == SWIG_NEWOBJ) {
+	delete[] cptr;
+	res = SWIG_DelNewMask(res);
+      }      
+      return res;
+    }
+    if (alloc == SWIG_NEWOBJ) delete[] cptr;
+  }
+  return SWIG_TypeError;
+}
+
+
+SWIGINTERN int
+SWIG_AsVal_char (PyObject * obj, char *val)
+{    
+  int res = SWIG_AsCharArray(obj, val, 1);
+  if (!SWIG_IsOK(res)) {
+    long v;
+    res = SWIG_AddCast(SWIG_AsVal_long (obj, &v));
+    if (SWIG_IsOK(res)) {
+      if ((CHAR_MIN <= v) && (v <= CHAR_MAX)) {
+	if (val) *val = static_cast< char >(v);
+      } else {
+	res = SWIG_OverflowError;
+      }
+    }
+  }
+  return res;
+}
+
+
+  #include "ilcplex/cplexx.h"
+  #include "cplex_callback.h"
+  #include "cplex_interface.h"
+
+
 
 /* ---------------------------------------------------
  * C++ director class methods
  * --------------------------------------------------- */
 
-#include "amplpy_cplex_swig_wrap.h"
+#include "amplpy_ampls_swig_wrap.h"
 
 SwigDirector_GenericCallback::SwigDirector_GenericCallback(PyObject *self): ampls::GenericCallback(), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((ampls::GenericCallback *)this, this); 
@@ -7321,6 +7396,281 @@ ampls::Variant SwigDirector_GenericCallback::getValue(ampls::Value::CBValue v) {
     PyObject *error = PyErr_Occurred();
     if (error) {
       Swig::DirectorMethodException::raise("Error detected when calling 'GenericCallback.getValue'");
+    }
+  }
+  swig_res = SWIG_ConvertPtr(result,&swig_argp,SWIGTYPE_p_ampls__Variant,  0  | 0);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""ampls::Variant""'");
+  }
+  c_result = *(reinterpret_cast< ampls::Variant * >(swig_argp));
+  if (SWIG_IsNewObj(swig_res)) delete reinterpret_cast< ampls::Variant * >(swig_argp);
+  return (ampls::Variant) c_result;
+}
+
+
+SwigDirector_GurobiCallback::SwigDirector_GurobiCallback(PyObject *self): ampls::GurobiCallback(), Swig::Director(self) {
+  SWIG_DIRECTOR_RGTR((ampls::GurobiCallback *)this, this); 
+}
+
+
+
+
+int SwigDirector_GurobiCallback::doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type) {
+  PyObject *self = NULL;
+  (void)self;
+  return ampls::GurobiCallback::doAddCut(nvars,vars,coeffs,direction,rhs,type);
+}
+
+
+int SwigDirector_GurobiCallback::run() {
+  int c_result = SwigValueInit< int >() ;
+  
+  PyObject *self = NULL;
+  (void)self;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call GurobiCallback.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 0;
+  const char *const swig_method_name = "run";
+  PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+  swig::SwigVar_PyObject args = PyTuple_New(0);
+  swig::SwigVar_PyObject result = PyObject_Call(method, (PyObject *) args, NULL);
+#else
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("run");
+  swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name, NULL);
+#endif
+  if (!result) {
+    PyObject *error = PyErr_Occurred();
+    if (error) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'GurobiCallback.run'");
+    }
+  }
+  int swig_val;
+  int swig_res = SWIG_AsVal_int(result, &swig_val);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""int""'");
+  }
+  c_result = static_cast< int >(swig_val);
+  return (int) c_result;
+}
+
+
+SwigDirector_GurobiCallback::~SwigDirector_GurobiCallback() {
+}
+
+int SwigDirector_GurobiCallback::getSolution(int len, double *sol) {
+  PyObject *self = NULL;
+  (void)self;
+  return ampls::GurobiCallback::getSolution(len,sol);
+}
+
+
+double SwigDirector_GurobiCallback::getObj() {
+  double c_result = SwigValueInit< double >() ;
+  
+  PyObject *self = NULL;
+  (void)self;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call GurobiCallback.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 1;
+  const char *const swig_method_name = "getObj";
+  PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+  swig::SwigVar_PyObject args = PyTuple_New(0);
+  swig::SwigVar_PyObject result = PyObject_Call(method, (PyObject *) args, NULL);
+#else
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getObj");
+  swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name, NULL);
+#endif
+  if (!result) {
+    PyObject *error = PyErr_Occurred();
+    if (error) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'GurobiCallback.getObj'");
+    }
+  }
+  double swig_val;
+  int swig_res = SWIG_AsVal_double(result, &swig_val);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""double""'");
+  }
+  c_result = static_cast< double >(swig_val);
+  return (double) c_result;
+}
+
+
+char const *SwigDirector_GurobiCallback::getWhereString() {
+  char *c_result = 0 ;
+  int res ;
+  char *buf = 0 ;
+  int alloc = SWIG_NEWOBJ ;
+  
+  PyObject *self = NULL;
+  (void)self;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call GurobiCallback.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 2;
+  const char *const swig_method_name = "getWhereString";
+  PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+  swig::SwigVar_PyObject args = PyTuple_New(0);
+  swig::SwigVar_PyObject result = PyObject_Call(method, (PyObject *) args, NULL);
+#else
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getWhereString");
+  swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name, NULL);
+#endif
+  if (!result) {
+    PyObject *error = PyErr_Occurred();
+    if (error) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'GurobiCallback.getWhereString'");
+    }
+  }
+  res = SWIG_AsCharPtrAndSize(result, &buf, NULL, &alloc);
+  if (!SWIG_IsOK(res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(res)), "in output value of type '""char const *""'");
+  }
+  if (alloc == SWIG_NEWOBJ) {
+    swig_acquire_ownership_array(buf);
+  }
+  c_result = reinterpret_cast< char * >(buf);
+  return (char const *) c_result;
+}
+
+
+int SwigDirector_GurobiCallback::getWhere() {
+  int c_result = SwigValueInit< int >() ;
+  
+  PyObject *self = NULL;
+  (void)self;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call GurobiCallback.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 3;
+  const char *const swig_method_name = "getWhere";
+  PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+  swig::SwigVar_PyObject args = PyTuple_New(0);
+  swig::SwigVar_PyObject result = PyObject_Call(method, (PyObject *) args, NULL);
+#else
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getWhere");
+  swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name, NULL);
+#endif
+  if (!result) {
+    PyObject *error = PyErr_Occurred();
+    if (error) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'GurobiCallback.getWhere'");
+    }
+  }
+  int swig_val;
+  int swig_res = SWIG_AsVal_int(result, &swig_val);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""int""'");
+  }
+  c_result = static_cast< int >(swig_val);
+  return (int) c_result;
+}
+
+
+char const *SwigDirector_GurobiCallback::getMessage() {
+  char *c_result = 0 ;
+  int res ;
+  char *buf = 0 ;
+  int alloc = SWIG_NEWOBJ ;
+  
+  PyObject *self = NULL;
+  (void)self;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call GurobiCallback.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 4;
+  const char *const swig_method_name = "getMessage";
+  PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+  swig::SwigVar_PyObject args = PyTuple_New(0);
+  swig::SwigVar_PyObject result = PyObject_Call(method, (PyObject *) args, NULL);
+#else
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getMessage");
+  swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name, NULL);
+#endif
+  if (!result) {
+    PyObject *error = PyErr_Occurred();
+    if (error) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'GurobiCallback.getMessage'");
+    }
+  }
+  res = SWIG_AsCharPtrAndSize(result, &buf, NULL, &alloc);
+  if (!SWIG_IsOK(res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(res)), "in output value of type '""char const *""'");
+  }
+  if (alloc == SWIG_NEWOBJ) {
+    swig_acquire_ownership_array(buf);
+  }
+  c_result = reinterpret_cast< char * >(buf);
+  return (char const *) c_result;
+}
+
+
+ampls::Where::CBWhere SwigDirector_GurobiCallback::getAMPLWhere() {
+  ampls::Where::CBWhere c_result = SwigValueInit< ampls::Where::CBWhere >() ;
+  
+  PyObject *self = NULL;
+  (void)self;
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call GurobiCallback.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 5;
+  const char *const swig_method_name = "getAMPLWhere";
+  PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+  swig::SwigVar_PyObject args = PyTuple_New(0);
+  swig::SwigVar_PyObject result = PyObject_Call(method, (PyObject *) args, NULL);
+#else
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getAMPLWhere");
+  swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name, NULL);
+#endif
+  if (!result) {
+    PyObject *error = PyErr_Occurred();
+    if (error) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'GurobiCallback.getAMPLWhere'");
+    }
+  }
+  int swig_val;
+  int swig_res = SWIG_AsVal_int(result, &swig_val);
+  if (!SWIG_IsOK(swig_res)) {
+    Swig::DirectorTypeMismatchException::raise(SWIG_ErrorType(SWIG_ArgError(swig_res)), "in output value of type '""ampls::Where::CBWhere""'");
+  }
+  c_result = static_cast< ampls::Where::CBWhere >(swig_val);
+  return (ampls::Where::CBWhere) c_result;
+}
+
+
+ampls::Variant SwigDirector_GurobiCallback::getValue(ampls::Value::CBValue v) {
+  void *swig_argp ;
+  int swig_res = 0 ;
+  
+  ampls::Variant c_result;
+  PyObject *self = NULL;
+  (void)self;
+  swig::SwigVar_PyObject obj0;
+  obj0 = SWIG_From_int(static_cast< int >(v));
+  if (!swig_get_self()) {
+    Swig::DirectorException::raise("'self' uninitialized, maybe you forgot to call GurobiCallback.__init__.");
+  }
+#if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
+  const size_t swig_method_index = 6;
+  const char *const swig_method_name = "getValue";
+  PyObject *method = swig_get_method(swig_method_index, swig_method_name);
+  swig::SwigVar_PyObject result = PyObject_CallFunctionObjArgs(method ,(PyObject *)obj0, NULL);
+#else
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getValue");
+  swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name ,(PyObject *)obj0, NULL);
+#endif
+  if (!result) {
+    PyObject *error = PyErr_Occurred();
+    if (error) {
+      Swig::DirectorMethodException::raise("Error detected when calling 'GurobiCallback.getValue'");
     }
   }
   swig_res = SWIG_ConvertPtr(result,&swig_argp,SWIGTYPE_p_ampls__Variant,  0  | 0);
@@ -19459,6 +19809,15472 @@ fail:
 
 
 SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_AMPLModel) /* defines _wrap_delete_AMPLModel_destructor_closure */
+
+SWIGINTERN PyObject *_wrap_GRBgetattrinfo(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetattrinfo", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetattrinfo" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetattrinfo" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetattrinfo" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetattrinfo" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetattrinfo" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  {
+    try {
+      result = (int)GRBgetattrinfo(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBisattravailable(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBisattravailable", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBisattravailable" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBisattravailable" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBisattravailable(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetintattr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetintattr", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetintattr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetintattr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetintattr" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBgetintattr(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetintattr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetintattr", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetintattr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetintattr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetintattr" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  {
+    try {
+      result = (int)GRBsetintattr(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetintattrelement(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetintattrelement", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetintattrelement" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetintattrelement" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetintattrelement" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetintattrelement" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  {
+    try {
+      result = (int)GRBgetintattrelement(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetintattrelement(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetintattrelement", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetintattrelement" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetintattrelement" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetintattrelement" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBsetintattrelement" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  {
+    try {
+      result = (int)GRBsetintattrelement(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetintattrarray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetintattrarray", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetintattrarray" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetintattrarray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetintattrarray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBgetintattrarray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetintattrarray" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  {
+    try {
+      result = (int)GRBgetintattrarray(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetintattrarray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetintattrarray", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetintattrarray" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetintattrarray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetintattrarray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBsetintattrarray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetintattrarray" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  {
+    try {
+      result = (int)GRBsetintattrarray(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetintattrlist(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetintattrlist", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetintattrlist" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetintattrlist" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetintattrlist" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetintattrlist" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetintattrlist" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  {
+    try {
+      result = (int)GRBgetintattrlist(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetintattrlist(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetintattrlist", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetintattrlist" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetintattrlist" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetintattrlist" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBsetintattrlist" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetintattrlist" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  {
+    try {
+      result = (int)GRBsetintattrlist(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetcharattrelement(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  char *arg4 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetcharattrelement", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetcharattrelement" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetcharattrelement" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetcharattrelement" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_AsCharPtrAndSize(swig_obj[3], &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetcharattrelement" "', argument " "4"" of type '" "char *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  {
+    try {
+      result = (int)GRBgetcharattrelement(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetcharattrelement(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  char arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  char val4 ;
+  int ecode4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetcharattrelement", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetcharattrelement" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetcharattrelement" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetcharattrelement" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_char(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBsetcharattrelement" "', argument " "4"" of type '" "char""'");
+  } 
+  arg4 = static_cast< char >(val4);
+  {
+    try {
+      result = (int)GRBsetcharattrelement(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetcharattrarray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char *arg5 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetcharattrarray", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetcharattrarray" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetcharattrarray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetcharattrarray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBgetcharattrarray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetcharattrarray" "', argument " "5"" of type '" "char *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  {
+    try {
+      result = (int)GRBgetcharattrarray(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetcharattrarray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char *arg5 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetcharattrarray", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetcharattrarray" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetcharattrarray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetcharattrarray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBsetcharattrarray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetcharattrarray" "', argument " "5"" of type '" "char *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  {
+    try {
+      result = (int)GRBsetcharattrarray(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetcharattrlist(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  char *arg5 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetcharattrlist", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetcharattrlist" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetcharattrlist" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetcharattrlist" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetcharattrlist" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetcharattrlist" "', argument " "5"" of type '" "char *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  {
+    try {
+      result = (int)GRBgetcharattrlist(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetcharattrlist(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  char *arg5 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetcharattrlist", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetcharattrlist" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetcharattrlist" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetcharattrlist" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBsetcharattrlist" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetcharattrlist" "', argument " "5"" of type '" "char *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  {
+    try {
+      result = (int)GRBsetcharattrlist(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetdblattr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  double *arg3 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetdblattr", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetdblattr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetdblattr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetdblattr" "', argument " "3"" of type '" "double *""'"); 
+  }
+  arg3 = reinterpret_cast< double * >(argp3);
+  {
+    try {
+      result = (int)GRBgetdblattr(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetdblattr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  double arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetdblattr", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetdblattr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetdblattr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetdblattr" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  {
+    try {
+      result = (int)GRBsetdblattr(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetdblattrelement(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetdblattrelement", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetdblattrelement" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetdblattrelement" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetdblattrelement" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetdblattrelement" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  {
+    try {
+      result = (int)GRBgetdblattrelement(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetdblattrelement(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  double arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  double val4 ;
+  int ecode4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetdblattrelement", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetdblattrelement" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetdblattrelement" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetdblattrelement" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_double(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBsetdblattrelement" "', argument " "4"" of type '" "double""'");
+  } 
+  arg4 = static_cast< double >(val4);
+  {
+    try {
+      result = (int)GRBsetdblattrelement(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetdblattrarray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetdblattrarray", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetdblattrarray" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetdblattrarray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetdblattrarray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBgetdblattrarray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetdblattrarray" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBgetdblattrarray(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetdblattrarray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetdblattrarray", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetdblattrarray" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetdblattrarray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetdblattrarray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBsetdblattrarray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetdblattrarray" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBsetdblattrarray(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetdblattrlist(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetdblattrlist", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetdblattrlist" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetdblattrlist" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetdblattrlist" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetdblattrlist" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetdblattrlist" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBgetdblattrlist(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetdblattrlist(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetdblattrlist", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetdblattrlist" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetdblattrlist" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetdblattrlist" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBsetdblattrlist" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetdblattrlist" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBsetdblattrlist(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetstrattr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char **arg3 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetstrattr", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetstrattr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetstrattr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetstrattr" "', argument " "3"" of type '" "char **""'"); 
+  }
+  arg3 = reinterpret_cast< char ** >(argp3);
+  {
+    try {
+      result = (int)GRBgetstrattr(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetstrattr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetstrattr", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetstrattr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetstrattr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBsetstrattr" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (int)GRBsetstrattr(arg1,(char const *)arg2,(char const *)arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetstrattrelement(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  char **arg4 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetstrattrelement", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetstrattrelement" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetstrattrelement" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetstrattrelement" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetstrattrelement" "', argument " "4"" of type '" "char **""'"); 
+  }
+  arg4 = reinterpret_cast< char ** >(argp4);
+  {
+    try {
+      result = (int)GRBgetstrattrelement(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetstrattrelement(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  char *arg4 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetstrattrelement", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetstrattrelement" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetstrattrelement" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetstrattrelement" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_AsCharPtrAndSize(swig_obj[3], &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBsetstrattrelement" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  {
+    try {
+      result = (int)GRBsetstrattrelement(arg1,(char const *)arg2,arg3,(char const *)arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetstrattrarray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char **arg5 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetstrattrarray", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetstrattrarray" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetstrattrarray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetstrattrarray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBgetstrattrarray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetstrattrarray" "', argument " "5"" of type '" "char **""'"); 
+  }
+  arg5 = reinterpret_cast< char ** >(argp5);
+  {
+    try {
+      result = (int)GRBgetstrattrarray(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetstrattrarray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char **arg5 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetstrattrarray", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetstrattrarray" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetstrattrarray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetstrattrarray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBsetstrattrarray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetstrattrarray" "', argument " "5"" of type '" "char **""'"); 
+  }
+  arg5 = reinterpret_cast< char ** >(argp5);
+  {
+    try {
+      result = (int)GRBsetstrattrarray(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetstrattrlist(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  char **arg5 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetstrattrlist", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetstrattrlist" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetstrattrlist" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetstrattrlist" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetstrattrlist" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetstrattrlist" "', argument " "5"" of type '" "char **""'"); 
+  }
+  arg5 = reinterpret_cast< char ** >(argp5);
+  {
+    try {
+      result = (int)GRBgetstrattrlist(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetstrattrlist(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  char **arg5 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetstrattrlist", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetstrattrlist" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetstrattrlist" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetstrattrlist" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBsetstrattrlist" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetstrattrlist" "', argument " "5"" of type '" "char **""'"); 
+  }
+  arg5 = reinterpret_cast< char ** >(argp5);
+  {
+    try {
+      result = (int)GRBsetstrattrlist(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetcallbackfunc(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int (*arg2)(GRBmodel *,void *,int,void *) = (int (*)(GRBmodel *,void *,int,void *)) 0 ;
+  void *arg3 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res3 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetcallbackfunc", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetcallbackfunc" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[1], (void**)(&arg2), SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBsetcallbackfunc" "', argument " "2"" of type '" "int (*)(GRBmodel *,void *,int,void *)""'"); 
+    }
+  }
+  res3 = SWIG_ConvertPtr(swig_obj[2],SWIG_as_voidptrptr(&arg3), 0, 0);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBsetcallbackfunc" "', argument " "3"" of type '" "void *""'"); 
+  }
+  {
+    try {
+      result = (int)GRBsetcallbackfunc(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetcallbackfunc(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int (**arg2)(GRBmodel *,void *,int,void *) = (int (**)(GRBmodel *,void *,int,void *)) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetcallbackfunc", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetcallbackfunc" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetcallbackfunc" "', argument " "2"" of type '" "int (**)(GRBmodel *,void *,int,void *)""'"); 
+  }
+  arg2 = reinterpret_cast< int (**)(GRBmodel *,void *,int,void *) >(argp2);
+  {
+    try {
+      result = (int)GRBgetcallbackfunc(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetlogcallbackfunc(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int (*arg2)(char *) = (int (*)(char *)) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetlogcallbackfunc", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetlogcallbackfunc" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[1], (void**)(&arg2), SWIGTYPE_p_f_p_char__int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBsetlogcallbackfunc" "', argument " "2"" of type '" "int (*)(char *)""'"); 
+    }
+  }
+  {
+    try {
+      result = (int)GRBsetlogcallbackfunc(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetlogcallbackfuncenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  int (*arg2)(char *) = (int (*)(char *)) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetlogcallbackfuncenv", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetlogcallbackfuncenv" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[1], (void**)(&arg2), SWIGTYPE_p_f_p_char__int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBsetlogcallbackfuncenv" "', argument " "2"" of type '" "int (*)(char *)""'"); 
+    }
+  }
+  {
+    try {
+      result = (int)GRBsetlogcallbackfuncenv(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcbget(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  void *arg4 = (void *) 0 ;
+  int res1 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBcbget", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0],SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcbget" "', argument " "1"" of type '" "void *""'"); 
+  }
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBcbget" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBcbget" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3],SWIG_as_voidptrptr(&arg4), 0, 0);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBcbget" "', argument " "4"" of type '" "void *""'"); 
+  }
+  {
+    try {
+      result = (int)GRBcbget(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcbsetparam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  int res1 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBcbsetparam", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0],SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcbsetparam" "', argument " "1"" of type '" "void *""'"); 
+  }
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBcbsetparam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBcbsetparam" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (int)GRBcbsetparam(arg1,(char const *)arg2,(char const *)arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcbsolution(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  double *arg2 = (double *) 0 ;
+  double *arg3 = (double *) 0 ;
+  int res1 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBcbsolution", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0],SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcbsolution" "', argument " "1"" of type '" "void *""'"); 
+  }
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[1])) {
+      int size = (int)PyList_Size(swig_obj[1]);
+      int i = 0;
+      arg2 = (double*)malloc(size * sizeof(double));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[1], i);
+        if (PyFloat_Check(o) || PyInt_Check(o)) {
+          arg2[i] = PyFloat_AsDouble(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg2);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[1] == Py_None) {
+      arg2 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBcbsolution" "', argument " "3"" of type '" "double *""'"); 
+  }
+  arg3 = reinterpret_cast< double * >(argp3);
+  {
+    try {
+      result = (int)GRBcbsolution(arg1,(double const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  {
+    free(arg2);
+  }
+  return resultobj;
+fail:
+  {
+    free(arg2);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcbcut(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  char arg5 ;
+  double arg6 ;
+  int res1 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  char val5 ;
+  int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBcbcut", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0],SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcbcut" "', argument " "1"" of type '" "void *""'"); 
+  }
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBcbcut" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[2])) {
+      int size = (int)PyList_Size(swig_obj[2]);
+      int i = 0;
+      arg3 = (int*)malloc(size * sizeof(int));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[2], i);
+        if (PyInt_Check(o)) {
+          arg3[i] = PyInt_AsLong(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain integer numbers");
+          free(arg3);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[2] == Py_None) {
+      arg3 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[3])) {
+      int size = (int)PyList_Size(swig_obj[3]);
+      int i = 0;
+      arg4 = (double*)malloc(size * sizeof(double));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[3], i);
+        if (PyFloat_Check(o) || PyInt_Check(o)) {
+          arg4[i] = PyFloat_AsDouble(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg4);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[3] == Py_None) {
+      arg4 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  ecode5 = SWIG_AsVal_char(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBcbcut" "', argument " "5"" of type '" "char""'");
+  } 
+  arg5 = static_cast< char >(val5);
+  ecode6 = SWIG_AsVal_double(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBcbcut" "', argument " "6"" of type '" "double""'");
+  } 
+  arg6 = static_cast< double >(val6);
+  {
+    try {
+      result = (int)GRBcbcut(arg1,arg2,(int const *)arg3,(double const *)arg4,arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  {
+    free(arg3);
+  }
+  {
+    free(arg4);
+  }
+  return resultobj;
+fail:
+  {
+    free(arg3);
+  }
+  {
+    free(arg4);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcblazy(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  char arg5 ;
+  double arg6 ;
+  int res1 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  char val5 ;
+  int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBcblazy", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0],SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcblazy" "', argument " "1"" of type '" "void *""'"); 
+  }
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBcblazy" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[2])) {
+      int size = (int)PyList_Size(swig_obj[2]);
+      int i = 0;
+      arg3 = (int*)malloc(size * sizeof(int));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[2], i);
+        if (PyInt_Check(o)) {
+          arg3[i] = PyInt_AsLong(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain integer numbers");
+          free(arg3);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[2] == Py_None) {
+      arg3 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[3])) {
+      int size = (int)PyList_Size(swig_obj[3]);
+      int i = 0;
+      arg4 = (double*)malloc(size * sizeof(double));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[3], i);
+        if (PyFloat_Check(o) || PyInt_Check(o)) {
+          arg4[i] = PyFloat_AsDouble(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg4);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[3] == Py_None) {
+      arg4 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  ecode5 = SWIG_AsVal_char(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBcblazy" "', argument " "5"" of type '" "char""'");
+  } 
+  arg5 = static_cast< char >(val5);
+  ecode6 = SWIG_AsVal_double(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBcblazy" "', argument " "6"" of type '" "double""'");
+  } 
+  arg6 = static_cast< double >(val6);
+  {
+    try {
+      result = (int)GRBcblazy(arg1,arg2,(int const *)arg3,(double const *)arg4,arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  {
+    free(arg3);
+  }
+  {
+    free(arg4);
+  }
+  return resultobj;
+fail:
+  {
+    free(arg3);
+  }
+  {
+    free(arg4);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetcoeff(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetcoeff", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetcoeff" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetcoeff" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBgetcoeff" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetcoeff" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  {
+    try {
+      result = (int)GRBgetcoeff(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetconstrs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  int arg6 ;
+  int arg7 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetconstrs", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetconstrs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetconstrs" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetconstrs" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetconstrs" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetconstrs" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBgetconstrs" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBgetconstrs" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  {
+    try {
+      result = (int)GRBgetconstrs(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBXgetconstrs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  size_t *arg2 = (size_t *) 0 ;
+  size_t *arg3 = (size_t *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  int arg6 ;
+  int arg7 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBXgetconstrs", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBXgetconstrs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_size_t, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBXgetconstrs" "', argument " "2"" of type '" "size_t *""'"); 
+  }
+  arg2 = reinterpret_cast< size_t * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_size_t, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBXgetconstrs" "', argument " "3"" of type '" "size_t *""'"); 
+  }
+  arg3 = reinterpret_cast< size_t * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBXgetconstrs" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBXgetconstrs" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBXgetconstrs" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBXgetconstrs" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  {
+    try {
+      result = (int)GRBXgetconstrs(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetvars(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  int arg6 ;
+  int arg7 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetvars", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetvars" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetvars" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetvars" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetvars" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetvars" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBgetvars" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBgetvars" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  {
+    try {
+      result = (int)GRBgetvars(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBXgetvars(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  size_t *arg2 = (size_t *) 0 ;
+  size_t *arg3 = (size_t *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  int arg6 ;
+  int arg7 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBXgetvars", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBXgetvars" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_size_t, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBXgetvars" "', argument " "2"" of type '" "size_t *""'"); 
+  }
+  arg2 = reinterpret_cast< size_t * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_size_t, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBXgetvars" "', argument " "3"" of type '" "size_t *""'"); 
+  }
+  arg3 = reinterpret_cast< size_t * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBXgetvars" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBXgetvars" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBXgetvars" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBXgetvars" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  {
+    try {
+      result = (int)GRBXgetvars(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetsos(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  int arg7 ;
+  int arg8 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  int val8 ;
+  int ecode8 = 0 ;
+  PyObject *swig_obj[8] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetsos", 8, 8, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetsos" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetsos" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetsos" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetsos" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetsos" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetsos" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBgetsos" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  ecode8 = SWIG_AsVal_int(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "GRBgetsos" "', argument " "8"" of type '" "int""'");
+  } 
+  arg8 = static_cast< int >(val8);
+  {
+    try {
+      result = (int)GRBgetsos(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrMax(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrMax", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrMax" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrMax" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrMax" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrMax" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrMax" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetgenconstrMax" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  {
+    try {
+      result = (int)GRBgetgenconstrMax(arg1,arg2,arg3,arg4,arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrMin(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrMin", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrMin" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrMin" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrMin" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrMin" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrMin" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetgenconstrMin" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  {
+    try {
+      result = (int)GRBgetgenconstrMin(arg1,arg2,arg3,arg4,arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrAbs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrAbs", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrAbs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrAbs" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrAbs" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrAbs" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  {
+    try {
+      result = (int)GRBgetgenconstrAbs(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrAnd(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrAnd", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrAnd" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrAnd" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrAnd" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrAnd" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrAnd" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  {
+    try {
+      result = (int)GRBgetgenconstrAnd(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrOr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrOr", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrOr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrOr" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrOr" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrOr" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrOr" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  {
+    try {
+      result = (int)GRBgetgenconstrOr(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrIndicator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  int *arg6 = (int *) 0 ;
+  double *arg7 = (double *) 0 ;
+  char *arg8 = (char *) 0 ;
+  double *arg9 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  int res8 ;
+  char *buf8 = 0 ;
+  int alloc8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrIndicator", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrIndicator" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrIndicator" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrIndicator" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrIndicator" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrIndicator" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetgenconstrIndicator" "', argument " "6"" of type '" "int *""'"); 
+  }
+  arg6 = reinterpret_cast< int * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBgetgenconstrIndicator" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  res8 = SWIG_AsCharPtrAndSize(swig_obj[7], &buf8, NULL, &alloc8);
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBgetgenconstrIndicator" "', argument " "8"" of type '" "char *""'");
+  }
+  arg8 = reinterpret_cast< char * >(buf8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBgetgenconstrIndicator" "', argument " "9"" of type '" "double *""'"); 
+  }
+  arg9 = reinterpret_cast< double * >(argp9);
+  {
+    try {
+      result = (int)GRBgetgenconstrIndicator(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc8 == SWIG_NEWOBJ) delete[] buf8;
+  return resultobj;
+fail:
+  if (alloc8 == SWIG_NEWOBJ) delete[] buf8;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrPWL(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrPWL", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrPWL" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrPWL" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrPWL" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrPWL" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrPWL" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetgenconstrPWL" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBgetgenconstrPWL" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  {
+    try {
+      result = (int)GRBgetgenconstrPWL(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrPoly(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrPoly", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrPoly" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrPoly" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrPoly" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrPoly" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrPoly" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetgenconstrPoly" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  {
+    try {
+      result = (int)GRBgetgenconstrPoly(arg1,arg2,arg3,arg4,arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrExpA(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrExpA", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrExpA" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrExpA" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrExpA" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrExpA" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrExpA" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBgetgenconstrExpA(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrLogA(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrLogA", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrLogA" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrLogA" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrLogA" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrLogA" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrLogA" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBgetgenconstrLogA(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrPow(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrPow", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrPow" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrPow" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrPow" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrPow" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetgenconstrPow" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBgetgenconstrPow(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrExp(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrExp", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrExp" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrExp" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrExp" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrExp" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  {
+    try {
+      result = (int)GRBgetgenconstrExp(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrLog(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrLog", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrLog" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrLog" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrLog" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrLog" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  {
+    try {
+      result = (int)GRBgetgenconstrLog(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrSin(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrSin", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrSin" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrSin" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrSin" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrSin" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  {
+    try {
+      result = (int)GRBgetgenconstrSin(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrCos(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrCos", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrCos" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrCos" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrCos" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrCos" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  {
+    try {
+      result = (int)GRBgetgenconstrCos(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetgenconstrTan(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetgenconstrTan", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetgenconstrTan" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetgenconstrTan" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetgenconstrTan" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetgenconstrTan" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  {
+    try {
+      result = (int)GRBgetgenconstrTan(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetq(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetq", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetq" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetq" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetq" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetq" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetq" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBgetq(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetqconstr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  int *arg6 = (int *) 0 ;
+  int *arg7 = (int *) 0 ;
+  int *arg8 = (int *) 0 ;
+  double *arg9 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetqconstr", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetqconstr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetqconstr" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetqconstr" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetqconstr" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetqconstr" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetqconstr" "', argument " "6"" of type '" "int *""'"); 
+  }
+  arg6 = reinterpret_cast< int * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBgetqconstr" "', argument " "7"" of type '" "int *""'"); 
+  }
+  arg7 = reinterpret_cast< int * >(argp7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBgetqconstr" "', argument " "8"" of type '" "int *""'"); 
+  }
+  arg8 = reinterpret_cast< int * >(argp8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBgetqconstr" "', argument " "9"" of type '" "double *""'"); 
+  }
+  arg9 = reinterpret_cast< double * >(argp9);
+  {
+    try {
+      result = (int)GRBgetqconstr(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetvarbyname(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetvarbyname", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetvarbyname" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetvarbyname" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetvarbyname" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBgetvarbyname(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetconstrbyname(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetconstrbyname", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetconstrbyname" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetconstrbyname" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetconstrbyname" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBgetconstrbyname(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetqconstrbyname(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetqconstrbyname", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetqconstrbyname" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetqconstrbyname" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetqconstrbyname" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBgetqconstrbyname(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetpwlobj(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetpwlobj", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetpwlobj" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetpwlobj" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetpwlobj" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetpwlobj" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetpwlobj" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBgetpwlobj(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBoptimize(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBoptimize" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBoptimize(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBoptimizeasync(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBoptimizeasync" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBoptimizeasync(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBoptimizebatch(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBoptimizebatch", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBoptimizebatch" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBoptimizebatch" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBoptimizebatch(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcopymodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  GRBmodel *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcopymodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (GRBmodel *)GRBcopymodel(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBmodel, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBfixmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBfixmodel", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBfixmodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBfixmodel" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  {
+    try {
+      result = (int)GRBfixmodel(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBfeasrelax(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBfeasrelax", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBfeasrelax" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBfeasrelax" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBfeasrelax" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBfeasrelax" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBfeasrelax" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBfeasrelax" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBfeasrelax" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  {
+    try {
+      result = (int)GRBfeasrelax(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsinglescenariomodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsinglescenariomodel", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsinglescenariomodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsinglescenariomodel" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  {
+    try {
+      result = (int)GRBsinglescenariomodel(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetcbwhatinfo(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int res1 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetcbwhatinfo", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0],SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetcbwhatinfo" "', argument " "1"" of type '" "void *""'"); 
+  }
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetcbwhatinfo" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetcbwhatinfo" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetcbwhatinfo" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  {
+    try {
+      result = (int)GRBgetcbwhatinfo(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBrelaxmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBrelaxmodel", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBrelaxmodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBrelaxmodel" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  {
+    try {
+      result = (int)GRBrelaxmodel(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBconverttofixed(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBconverttofixed" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBconverttofixed(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBpresolvemodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBpresolvemodel", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBpresolvemodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBpresolvemodel" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  {
+    try {
+      result = (int)GRBpresolvemodel(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBiismodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBiismodel", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBiismodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBiismodel" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  {
+    try {
+      result = (int)GRBiismodel(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBfeasibility(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBfeasibility", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBfeasibility" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBfeasibility" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  {
+    try {
+      result = (int)GRBfeasibility(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBlinearizemodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBlinearizemodel", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBlinearizemodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBlinearizemodel" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  {
+    try {
+      result = (int)GRBlinearizemodel(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBresultmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  GRBmodel **arg3 = (GRBmodel **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBresultmodel", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBresultmodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBresultmodel" "', argument " "2"" of type '" "char *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBresultmodel" "', argument " "3"" of type '" "GRBmodel **""'"); 
+  }
+  arg3 = reinterpret_cast< GRBmodel ** >(argp3);
+  {
+    try {
+      result = (int)GRBresultmodel(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBfixedmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  GRBmodel *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBfixedmodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (GRBmodel *)GRBfixedmodel(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBmodel, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBloadenvsyscb(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv **arg1 = (GRBenv **) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *(*arg3)(size_t,void *) = (void *(*)(size_t,void *)) 0 ;
+  void *(*arg4)(size_t,size_t,void *) = (void *(*)(size_t,size_t,void *)) 0 ;
+  void *(*arg5)(void *,size_t,void *) = (void *(*)(void *,size_t,void *)) 0 ;
+  void (*arg6)(void *,void *) = (void (*)(void *,void *)) 0 ;
+  int (*arg7)(void **,void (*)(void *),void *,void *) = (int (*)(void **,void (*)(void *),void *,void *)) 0 ;
+  void (*arg8)(void *,void *) = (void (*)(void *,void *)) 0 ;
+  void *arg9 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res9 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBloadenvsyscb", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBloadenvsyscb" "', argument " "1"" of type '" "GRBenv **""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv ** >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBloadenvsyscb" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[2], (void**)(&arg3), SWIGTYPE_p_f_size_t_p_void__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadenvsyscb" "', argument " "3"" of type '" "void *(*)(size_t,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[3], (void**)(&arg4), SWIGTYPE_p_f_size_t_size_t_p_void__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadenvsyscb" "', argument " "4"" of type '" "void *(*)(size_t,size_t,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[4], (void**)(&arg5), SWIGTYPE_p_f_p_void_size_t_p_void__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadenvsyscb" "', argument " "5"" of type '" "void *(*)(void *,size_t,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[5], (void**)(&arg6), SWIGTYPE_p_f_p_void_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadenvsyscb" "', argument " "6"" of type '" "void (*)(void *,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[6], (void**)(&arg7), SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadenvsyscb" "', argument " "7"" of type '" "int (*)(void **,void (*)(void *),void *,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[7], (void**)(&arg8), SWIGTYPE_p_f_p_void_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadenvsyscb" "', argument " "8"" of type '" "void (*)(void *,void *)""'"); 
+    }
+  }
+  res9 = SWIG_ConvertPtr(swig_obj[8],SWIG_as_voidptrptr(&arg9), 0, 0);
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBloadenvsyscb" "', argument " "9"" of type '" "void *""'"); 
+  }
+  {
+    try {
+      result = (int)GRBloadenvsyscb(arg1,(char const *)arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBemptyenvadv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv **arg1 = (GRBenv **) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  void *(*arg6)(size_t,void *) = (void *(*)(size_t,void *)) 0 ;
+  void *(*arg7)(size_t,size_t,void *) = (void *(*)(size_t,size_t,void *)) 0 ;
+  void *(*arg8)(void *,size_t,void *) = (void *(*)(void *,size_t,void *)) 0 ;
+  void (*arg9)(void *,void *) = (void (*)(void *,void *)) 0 ;
+  int (*arg10)(void **,void (*)(void *),void *,void *) = (int (*)(void **,void (*)(void *),void *,void *)) 0 ;
+  void (*arg11)(void *,void *) = (void (*)(void *,void *)) 0 ;
+  void *arg12 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int res12 ;
+  PyObject *swig_obj[12] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBemptyenvadv", 12, 12, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBemptyenvadv" "', argument " "1"" of type '" "GRBenv **""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv ** >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBemptyenvadv" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBemptyenvadv" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBemptyenvadv" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBemptyenvadv" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[5], (void**)(&arg6), SWIGTYPE_p_f_size_t_p_void__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBemptyenvadv" "', argument " "6"" of type '" "void *(*)(size_t,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[6], (void**)(&arg7), SWIGTYPE_p_f_size_t_size_t_p_void__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBemptyenvadv" "', argument " "7"" of type '" "void *(*)(size_t,size_t,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[7], (void**)(&arg8), SWIGTYPE_p_f_p_void_size_t_p_void__p_void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBemptyenvadv" "', argument " "8"" of type '" "void *(*)(void *,size_t,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[8], (void**)(&arg9), SWIGTYPE_p_f_p_void_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBemptyenvadv" "', argument " "9"" of type '" "void (*)(void *,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[9], (void**)(&arg10), SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBemptyenvadv" "', argument " "10"" of type '" "int (*)(void **,void (*)(void *),void *,void *)""'"); 
+    }
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[10], (void**)(&arg11), SWIGTYPE_p_f_p_void_p_void__void);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBemptyenvadv" "', argument " "11"" of type '" "void (*)(void *,void *)""'"); 
+    }
+  }
+  res12 = SWIG_ConvertPtr(swig_obj[11],SWIG_as_voidptrptr(&arg12), 0, 0);
+  if (!SWIG_IsOK(res12)) {
+    SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "GRBemptyenvadv" "', argument " "12"" of type '" "void *""'"); 
+  }
+  {
+    try {
+      result = (int)GRBemptyenvadv(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBreadmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  GRBmodel **arg3 = (GRBmodel **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBreadmodel", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBreadmodel" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBreadmodel" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBreadmodel" "', argument " "3"" of type '" "GRBmodel **""'"); 
+  }
+  arg3 = reinterpret_cast< GRBmodel ** >(argp3);
+  {
+    try {
+      result = (int)GRBreadmodel(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBread(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBread", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBread" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBread" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBread(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBwrite(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBwrite", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBwrite" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBwrite" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBwrite(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBismodelfile(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBismodelfile" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  {
+    try {
+      result = (int)GRBismodelfile((char const *)arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBisattrfile(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBisattrfile" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  {
+    try {
+      result = (int)GRBisattrfile((char const *)arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBfiletype(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBfiletype" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  {
+    try {
+      result = (int)GRBfiletype((char const *)arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBisrecordfile(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBisrecordfile" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  {
+    try {
+      result = (int)GRBisrecordfile((char const *)arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetjsonsolution(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char **arg2 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetjsonsolution", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetjsonsolution" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetjsonsolution" "', argument " "2"" of type '" "char **""'"); 
+  }
+  arg2 = reinterpret_cast< char ** >(argp2);
+  {
+    try {
+      result = (int)GRBgetjsonsolution(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBloadjson(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char **arg3 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBloadjson", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBloadjson" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBloadjson" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBloadjson" "', argument " "3"" of type '" "char **""'"); 
+  }
+  arg3 = reinterpret_cast< char ** >(argp3);
+  {
+    try {
+      result = (int)GRBloadjson(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBnewmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  char *arg8 = (char *) 0 ;
+  char **arg9 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  int res8 ;
+  char *buf8 = 0 ;
+  int alloc8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBnewmodel", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBnewmodel" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBnewmodel" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBnewmodel" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBnewmodel" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBnewmodel" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBnewmodel" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBnewmodel" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  res8 = SWIG_AsCharPtrAndSize(swig_obj[7], &buf8, NULL, &alloc8);
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBnewmodel" "', argument " "8"" of type '" "char *""'");
+  }
+  arg8 = reinterpret_cast< char * >(buf8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBnewmodel" "', argument " "9"" of type '" "char **""'"); 
+  }
+  arg9 = reinterpret_cast< char ** >(argp9);
+  {
+    try {
+      result = (int)GRBnewmodel(arg1,arg2,(char const *)arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc8 == SWIG_NEWOBJ) delete[] buf8;
+  return resultobj;
+fail:
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc8 == SWIG_NEWOBJ) delete[] buf8;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBloadmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  double arg7 ;
+  double *arg8 = (double *) 0 ;
+  char *arg9 = (char *) 0 ;
+  double *arg10 = (double *) 0 ;
+  int *arg11 = (int *) 0 ;
+  int *arg12 = (int *) 0 ;
+  int *arg13 = (int *) 0 ;
+  double *arg14 = (double *) 0 ;
+  double *arg15 = (double *) 0 ;
+  double *arg16 = (double *) 0 ;
+  char *arg17 = (char *) 0 ;
+  char **arg18 = (char **) 0 ;
+  char **arg19 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  double val7 ;
+  int ecode7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  int res9 ;
+  char *buf9 = 0 ;
+  int alloc9 = 0 ;
+  void *argp10 = 0 ;
+  int res10 = 0 ;
+  void *argp11 = 0 ;
+  int res11 = 0 ;
+  void *argp12 = 0 ;
+  int res12 = 0 ;
+  void *argp13 = 0 ;
+  int res13 = 0 ;
+  void *argp14 = 0 ;
+  int res14 = 0 ;
+  void *argp15 = 0 ;
+  int res15 = 0 ;
+  void *argp16 = 0 ;
+  int res16 = 0 ;
+  int res17 ;
+  char *buf17 = 0 ;
+  int alloc17 = 0 ;
+  void *argp18 = 0 ;
+  int res18 = 0 ;
+  void *argp19 = 0 ;
+  int res19 = 0 ;
+  PyObject *swig_obj[19] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBloadmodel", 19, 19, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBloadmodel" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBloadmodel" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBloadmodel" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBloadmodel" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBloadmodel" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBloadmodel" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_double(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBloadmodel" "', argument " "7"" of type '" "double""'");
+  } 
+  arg7 = static_cast< double >(val7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBloadmodel" "', argument " "8"" of type '" "double *""'"); 
+  }
+  arg8 = reinterpret_cast< double * >(argp8);
+  res9 = SWIG_AsCharPtrAndSize(swig_obj[8], &buf9, NULL, &alloc9);
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBloadmodel" "', argument " "9"" of type '" "char *""'");
+  }
+  arg9 = reinterpret_cast< char * >(buf9);
+  res10 = SWIG_ConvertPtr(swig_obj[9], &argp10,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res10)) {
+    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "GRBloadmodel" "', argument " "10"" of type '" "double *""'"); 
+  }
+  arg10 = reinterpret_cast< double * >(argp10);
+  res11 = SWIG_ConvertPtr(swig_obj[10], &argp11,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res11)) {
+    SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "GRBloadmodel" "', argument " "11"" of type '" "int *""'"); 
+  }
+  arg11 = reinterpret_cast< int * >(argp11);
+  res12 = SWIG_ConvertPtr(swig_obj[11], &argp12,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res12)) {
+    SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "GRBloadmodel" "', argument " "12"" of type '" "int *""'"); 
+  }
+  arg12 = reinterpret_cast< int * >(argp12);
+  res13 = SWIG_ConvertPtr(swig_obj[12], &argp13,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res13)) {
+    SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "GRBloadmodel" "', argument " "13"" of type '" "int *""'"); 
+  }
+  arg13 = reinterpret_cast< int * >(argp13);
+  res14 = SWIG_ConvertPtr(swig_obj[13], &argp14,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res14)) {
+    SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "GRBloadmodel" "', argument " "14"" of type '" "double *""'"); 
+  }
+  arg14 = reinterpret_cast< double * >(argp14);
+  res15 = SWIG_ConvertPtr(swig_obj[14], &argp15,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res15)) {
+    SWIG_exception_fail(SWIG_ArgError(res15), "in method '" "GRBloadmodel" "', argument " "15"" of type '" "double *""'"); 
+  }
+  arg15 = reinterpret_cast< double * >(argp15);
+  res16 = SWIG_ConvertPtr(swig_obj[15], &argp16,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res16)) {
+    SWIG_exception_fail(SWIG_ArgError(res16), "in method '" "GRBloadmodel" "', argument " "16"" of type '" "double *""'"); 
+  }
+  arg16 = reinterpret_cast< double * >(argp16);
+  res17 = SWIG_AsCharPtrAndSize(swig_obj[16], &buf17, NULL, &alloc17);
+  if (!SWIG_IsOK(res17)) {
+    SWIG_exception_fail(SWIG_ArgError(res17), "in method '" "GRBloadmodel" "', argument " "17"" of type '" "char *""'");
+  }
+  arg17 = reinterpret_cast< char * >(buf17);
+  res18 = SWIG_ConvertPtr(swig_obj[17], &argp18,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res18)) {
+    SWIG_exception_fail(SWIG_ArgError(res18), "in method '" "GRBloadmodel" "', argument " "18"" of type '" "char **""'"); 
+  }
+  arg18 = reinterpret_cast< char ** >(argp18);
+  res19 = SWIG_ConvertPtr(swig_obj[18], &argp19,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res19)) {
+    SWIG_exception_fail(SWIG_ArgError(res19), "in method '" "GRBloadmodel" "', argument " "19"" of type '" "char **""'"); 
+  }
+  arg19 = reinterpret_cast< char ** >(argp19);
+  {
+    try {
+      result = (int)GRBloadmodel(arg1,arg2,(char const *)arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12,arg13,arg14,arg15,arg16,arg17,arg18,arg19);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc9 == SWIG_NEWOBJ) delete[] buf9;
+  if (alloc17 == SWIG_NEWOBJ) delete[] buf17;
+  return resultobj;
+fail:
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc9 == SWIG_NEWOBJ) delete[] buf9;
+  if (alloc17 == SWIG_NEWOBJ) delete[] buf17;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBXloadmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  double arg7 ;
+  double *arg8 = (double *) 0 ;
+  char *arg9 = (char *) 0 ;
+  double *arg10 = (double *) 0 ;
+  size_t *arg11 = (size_t *) 0 ;
+  int *arg12 = (int *) 0 ;
+  int *arg13 = (int *) 0 ;
+  double *arg14 = (double *) 0 ;
+  double *arg15 = (double *) 0 ;
+  double *arg16 = (double *) 0 ;
+  char *arg17 = (char *) 0 ;
+  char **arg18 = (char **) 0 ;
+  char **arg19 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  double val7 ;
+  int ecode7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  int res9 ;
+  char *buf9 = 0 ;
+  int alloc9 = 0 ;
+  void *argp10 = 0 ;
+  int res10 = 0 ;
+  void *argp11 = 0 ;
+  int res11 = 0 ;
+  void *argp12 = 0 ;
+  int res12 = 0 ;
+  void *argp13 = 0 ;
+  int res13 = 0 ;
+  void *argp14 = 0 ;
+  int res14 = 0 ;
+  void *argp15 = 0 ;
+  int res15 = 0 ;
+  void *argp16 = 0 ;
+  int res16 = 0 ;
+  int res17 ;
+  char *buf17 = 0 ;
+  int alloc17 = 0 ;
+  void *argp18 = 0 ;
+  int res18 = 0 ;
+  void *argp19 = 0 ;
+  int res19 = 0 ;
+  PyObject *swig_obj[19] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBXloadmodel", 19, 19, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBXloadmodel" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBXloadmodel" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBXloadmodel" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBXloadmodel" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBXloadmodel" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBXloadmodel" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_double(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBXloadmodel" "', argument " "7"" of type '" "double""'");
+  } 
+  arg7 = static_cast< double >(val7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBXloadmodel" "', argument " "8"" of type '" "double *""'"); 
+  }
+  arg8 = reinterpret_cast< double * >(argp8);
+  res9 = SWIG_AsCharPtrAndSize(swig_obj[8], &buf9, NULL, &alloc9);
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBXloadmodel" "', argument " "9"" of type '" "char *""'");
+  }
+  arg9 = reinterpret_cast< char * >(buf9);
+  res10 = SWIG_ConvertPtr(swig_obj[9], &argp10,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res10)) {
+    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "GRBXloadmodel" "', argument " "10"" of type '" "double *""'"); 
+  }
+  arg10 = reinterpret_cast< double * >(argp10);
+  res11 = SWIG_ConvertPtr(swig_obj[10], &argp11,SWIGTYPE_p_size_t, 0 |  0 );
+  if (!SWIG_IsOK(res11)) {
+    SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "GRBXloadmodel" "', argument " "11"" of type '" "size_t *""'"); 
+  }
+  arg11 = reinterpret_cast< size_t * >(argp11);
+  res12 = SWIG_ConvertPtr(swig_obj[11], &argp12,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res12)) {
+    SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "GRBXloadmodel" "', argument " "12"" of type '" "int *""'"); 
+  }
+  arg12 = reinterpret_cast< int * >(argp12);
+  res13 = SWIG_ConvertPtr(swig_obj[12], &argp13,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res13)) {
+    SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "GRBXloadmodel" "', argument " "13"" of type '" "int *""'"); 
+  }
+  arg13 = reinterpret_cast< int * >(argp13);
+  res14 = SWIG_ConvertPtr(swig_obj[13], &argp14,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res14)) {
+    SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "GRBXloadmodel" "', argument " "14"" of type '" "double *""'"); 
+  }
+  arg14 = reinterpret_cast< double * >(argp14);
+  res15 = SWIG_ConvertPtr(swig_obj[14], &argp15,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res15)) {
+    SWIG_exception_fail(SWIG_ArgError(res15), "in method '" "GRBXloadmodel" "', argument " "15"" of type '" "double *""'"); 
+  }
+  arg15 = reinterpret_cast< double * >(argp15);
+  res16 = SWIG_ConvertPtr(swig_obj[15], &argp16,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res16)) {
+    SWIG_exception_fail(SWIG_ArgError(res16), "in method '" "GRBXloadmodel" "', argument " "16"" of type '" "double *""'"); 
+  }
+  arg16 = reinterpret_cast< double * >(argp16);
+  res17 = SWIG_AsCharPtrAndSize(swig_obj[16], &buf17, NULL, &alloc17);
+  if (!SWIG_IsOK(res17)) {
+    SWIG_exception_fail(SWIG_ArgError(res17), "in method '" "GRBXloadmodel" "', argument " "17"" of type '" "char *""'");
+  }
+  arg17 = reinterpret_cast< char * >(buf17);
+  res18 = SWIG_ConvertPtr(swig_obj[17], &argp18,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res18)) {
+    SWIG_exception_fail(SWIG_ArgError(res18), "in method '" "GRBXloadmodel" "', argument " "18"" of type '" "char **""'"); 
+  }
+  arg18 = reinterpret_cast< char ** >(argp18);
+  res19 = SWIG_ConvertPtr(swig_obj[18], &argp19,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res19)) {
+    SWIG_exception_fail(SWIG_ArgError(res19), "in method '" "GRBXloadmodel" "', argument " "19"" of type '" "char **""'"); 
+  }
+  arg19 = reinterpret_cast< char ** >(argp19);
+  {
+    try {
+      result = (int)GRBXloadmodel(arg1,arg2,(char const *)arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12,arg13,arg14,arg15,arg16,arg17,arg18,arg19);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc9 == SWIG_NEWOBJ) delete[] buf9;
+  if (alloc17 == SWIG_NEWOBJ) delete[] buf17;
+  return resultobj;
+fail:
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc9 == SWIG_NEWOBJ) delete[] buf9;
+  if (alloc17 == SWIG_NEWOBJ) delete[] buf17;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddvar(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double arg5 ;
+  double arg6 ;
+  double arg7 ;
+  char arg8 ;
+  char *arg9 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  double val7 ;
+  int ecode7 = 0 ;
+  char val8 ;
+  int ecode8 = 0 ;
+  int res9 ;
+  char *buf9 = 0 ;
+  int alloc9 = 0 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddvar", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddvar" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddvar" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBaddvar" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBaddvar" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  ecode5 = SWIG_AsVal_double(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBaddvar" "', argument " "5"" of type '" "double""'");
+  } 
+  arg5 = static_cast< double >(val5);
+  ecode6 = SWIG_AsVal_double(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBaddvar" "', argument " "6"" of type '" "double""'");
+  } 
+  arg6 = static_cast< double >(val6);
+  ecode7 = SWIG_AsVal_double(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBaddvar" "', argument " "7"" of type '" "double""'");
+  } 
+  arg7 = static_cast< double >(val7);
+  ecode8 = SWIG_AsVal_char(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "GRBaddvar" "', argument " "8"" of type '" "char""'");
+  } 
+  arg8 = static_cast< char >(val8);
+  res9 = SWIG_AsCharPtrAndSize(swig_obj[8], &buf9, NULL, &alloc9);
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBaddvar" "', argument " "9"" of type '" "char const *""'");
+  }
+  arg9 = reinterpret_cast< char * >(buf9);
+  {
+    try {
+      result = (int)GRBaddvar(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,(char const *)arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc9 == SWIG_NEWOBJ) delete[] buf9;
+  return resultobj;
+fail:
+  if (alloc9 == SWIG_NEWOBJ) delete[] buf9;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddvars(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  double *arg8 = (double *) 0 ;
+  double *arg9 = (double *) 0 ;
+  char *arg10 = (char *) 0 ;
+  char **arg11 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  int res10 ;
+  char *buf10 = 0 ;
+  int alloc10 = 0 ;
+  void *argp11 = 0 ;
+  int res11 = 0 ;
+  PyObject *swig_obj[11] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddvars", 11, 11, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddvars" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddvars" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddvars" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBaddvars" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddvars" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBaddvars" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBaddvars" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBaddvars" "', argument " "8"" of type '" "double *""'"); 
+  }
+  arg8 = reinterpret_cast< double * >(argp8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBaddvars" "', argument " "9"" of type '" "double *""'"); 
+  }
+  arg9 = reinterpret_cast< double * >(argp9);
+  res10 = SWIG_AsCharPtrAndSize(swig_obj[9], &buf10, NULL, &alloc10);
+  if (!SWIG_IsOK(res10)) {
+    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "GRBaddvars" "', argument " "10"" of type '" "char *""'");
+  }
+  arg10 = reinterpret_cast< char * >(buf10);
+  res11 = SWIG_ConvertPtr(swig_obj[10], &argp11,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res11)) {
+    SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "GRBaddvars" "', argument " "11"" of type '" "char **""'"); 
+  }
+  arg11 = reinterpret_cast< char ** >(argp11);
+  {
+    try {
+      result = (int)GRBaddvars(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc10 == SWIG_NEWOBJ) delete[] buf10;
+  return resultobj;
+fail:
+  if (alloc10 == SWIG_NEWOBJ) delete[] buf10;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBXaddvars(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  size_t arg3 ;
+  size_t *arg4 = (size_t *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  double *arg8 = (double *) 0 ;
+  double *arg9 = (double *) 0 ;
+  char *arg10 = (char *) 0 ;
+  char **arg11 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  size_t val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  int res10 ;
+  char *buf10 = 0 ;
+  int alloc10 = 0 ;
+  void *argp11 = 0 ;
+  int res11 = 0 ;
+  PyObject *swig_obj[11] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBXaddvars", 11, 11, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBXaddvars" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBXaddvars" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_size_t(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBXaddvars" "', argument " "3"" of type '" "size_t""'");
+  } 
+  arg3 = static_cast< size_t >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_size_t, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBXaddvars" "', argument " "4"" of type '" "size_t *""'"); 
+  }
+  arg4 = reinterpret_cast< size_t * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBXaddvars" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBXaddvars" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBXaddvars" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBXaddvars" "', argument " "8"" of type '" "double *""'"); 
+  }
+  arg8 = reinterpret_cast< double * >(argp8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBXaddvars" "', argument " "9"" of type '" "double *""'"); 
+  }
+  arg9 = reinterpret_cast< double * >(argp9);
+  res10 = SWIG_AsCharPtrAndSize(swig_obj[9], &buf10, NULL, &alloc10);
+  if (!SWIG_IsOK(res10)) {
+    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "GRBXaddvars" "', argument " "10"" of type '" "char *""'");
+  }
+  arg10 = reinterpret_cast< char * >(buf10);
+  res11 = SWIG_ConvertPtr(swig_obj[10], &argp11,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res11)) {
+    SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "GRBXaddvars" "', argument " "11"" of type '" "char **""'"); 
+  }
+  arg11 = reinterpret_cast< char ** >(argp11);
+  {
+    try {
+      result = (int)GRBXaddvars(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc10 == SWIG_NEWOBJ) delete[] buf10;
+  return resultobj;
+fail:
+  if (alloc10 == SWIG_NEWOBJ) delete[] buf10;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddconstr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  char arg5 ;
+  double arg6 ;
+  char *arg7 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  char val5 ;
+  int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  int res7 ;
+  char *buf7 = 0 ;
+  int alloc7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddconstr", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddconstr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddconstr" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBaddconstr" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBaddconstr" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  ecode5 = SWIG_AsVal_char(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBaddconstr" "', argument " "5"" of type '" "char""'");
+  } 
+  arg5 = static_cast< char >(val5);
+  ecode6 = SWIG_AsVal_double(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBaddconstr" "', argument " "6"" of type '" "double""'");
+  } 
+  arg6 = static_cast< double >(val6);
+  res7 = SWIG_AsCharPtrAndSize(swig_obj[6], &buf7, NULL, &alloc7);
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBaddconstr" "', argument " "7"" of type '" "char const *""'");
+  }
+  arg7 = reinterpret_cast< char * >(buf7);
+  {
+    try {
+      result = (int)GRBaddconstr(arg1,arg2,arg3,arg4,arg5,arg6,(char const *)arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return resultobj;
+fail:
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddconstrs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  char *arg7 = (char *) 0 ;
+  double *arg8 = (double *) 0 ;
+  char **arg9 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  int res7 ;
+  char *buf7 = 0 ;
+  int alloc7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddconstrs", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddconstrs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddconstrs" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddconstrs" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBaddconstrs" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddconstrs" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBaddconstrs" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_AsCharPtrAndSize(swig_obj[6], &buf7, NULL, &alloc7);
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBaddconstrs" "', argument " "7"" of type '" "char *""'");
+  }
+  arg7 = reinterpret_cast< char * >(buf7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBaddconstrs" "', argument " "8"" of type '" "double *""'"); 
+  }
+  arg8 = reinterpret_cast< double * >(argp8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBaddconstrs" "', argument " "9"" of type '" "char **""'"); 
+  }
+  arg9 = reinterpret_cast< char ** >(argp9);
+  {
+    try {
+      result = (int)GRBaddconstrs(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return resultobj;
+fail:
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBXaddconstrs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  size_t arg3 ;
+  size_t *arg4 = (size_t *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  char *arg7 = (char *) 0 ;
+  double *arg8 = (double *) 0 ;
+  char **arg9 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  size_t val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  int res7 ;
+  char *buf7 = 0 ;
+  int alloc7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBXaddconstrs", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBXaddconstrs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBXaddconstrs" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_size_t(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBXaddconstrs" "', argument " "3"" of type '" "size_t""'");
+  } 
+  arg3 = static_cast< size_t >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_size_t, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBXaddconstrs" "', argument " "4"" of type '" "size_t *""'"); 
+  }
+  arg4 = reinterpret_cast< size_t * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBXaddconstrs" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBXaddconstrs" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_AsCharPtrAndSize(swig_obj[6], &buf7, NULL, &alloc7);
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBXaddconstrs" "', argument " "7"" of type '" "char *""'");
+  }
+  arg7 = reinterpret_cast< char * >(buf7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBXaddconstrs" "', argument " "8"" of type '" "double *""'"); 
+  }
+  arg8 = reinterpret_cast< double * >(argp8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBXaddconstrs" "', argument " "9"" of type '" "char **""'"); 
+  }
+  arg9 = reinterpret_cast< char ** >(argp9);
+  {
+    try {
+      result = (int)GRBXaddconstrs(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return resultobj;
+fail:
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddrangeconstr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double arg5 ;
+  double arg6 ;
+  char *arg7 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  int res7 ;
+  char *buf7 = 0 ;
+  int alloc7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddrangeconstr", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddrangeconstr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddrangeconstr" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBaddrangeconstr" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBaddrangeconstr" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  ecode5 = SWIG_AsVal_double(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBaddrangeconstr" "', argument " "5"" of type '" "double""'");
+  } 
+  arg5 = static_cast< double >(val5);
+  ecode6 = SWIG_AsVal_double(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBaddrangeconstr" "', argument " "6"" of type '" "double""'");
+  } 
+  arg6 = static_cast< double >(val6);
+  res7 = SWIG_AsCharPtrAndSize(swig_obj[6], &buf7, NULL, &alloc7);
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBaddrangeconstr" "', argument " "7"" of type '" "char const *""'");
+  }
+  arg7 = reinterpret_cast< char * >(buf7);
+  {
+    try {
+      result = (int)GRBaddrangeconstr(arg1,arg2,arg3,arg4,arg5,arg6,(char const *)arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return resultobj;
+fail:
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddrangeconstrs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  double *arg8 = (double *) 0 ;
+  char **arg9 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddrangeconstrs", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddrangeconstrs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddrangeconstrs" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddrangeconstrs" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBaddrangeconstrs" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddrangeconstrs" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBaddrangeconstrs" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBaddrangeconstrs" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBaddrangeconstrs" "', argument " "8"" of type '" "double *""'"); 
+  }
+  arg8 = reinterpret_cast< double * >(argp8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBaddrangeconstrs" "', argument " "9"" of type '" "char **""'"); 
+  }
+  arg9 = reinterpret_cast< char ** >(argp9);
+  {
+    try {
+      result = (int)GRBaddrangeconstrs(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBXaddrangeconstrs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  size_t arg3 ;
+  size_t *arg4 = (size_t *) 0 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  double *arg8 = (double *) 0 ;
+  char **arg9 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  size_t val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBXaddrangeconstrs", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBXaddrangeconstrs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBXaddrangeconstrs" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_size_t(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBXaddrangeconstrs" "', argument " "3"" of type '" "size_t""'");
+  } 
+  arg3 = static_cast< size_t >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_size_t, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBXaddrangeconstrs" "', argument " "4"" of type '" "size_t *""'"); 
+  }
+  arg4 = reinterpret_cast< size_t * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBXaddrangeconstrs" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBXaddrangeconstrs" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBXaddrangeconstrs" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBXaddrangeconstrs" "', argument " "8"" of type '" "double *""'"); 
+  }
+  arg8 = reinterpret_cast< double * >(argp8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBXaddrangeconstrs" "', argument " "9"" of type '" "char **""'"); 
+  }
+  arg9 = reinterpret_cast< char ** >(argp9);
+  {
+    try {
+      result = (int)GRBXaddrangeconstrs(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddsos(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  int *arg6 = (int *) 0 ;
+  double *arg7 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddsos", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddsos" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddsos" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddsos" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBaddsos" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddsos" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBaddsos" "', argument " "6"" of type '" "int *""'"); 
+  }
+  arg6 = reinterpret_cast< int * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBaddsos" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  {
+    try {
+      result = (int)GRBaddsos(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrMax(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int *arg5 = (int *) 0 ;
+  double arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrMax", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrMax" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrMax" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrMax" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[3])) {
+      int size = (int)PyList_Size(swig_obj[3]);
+      int i = 0;
+      arg4 = size;
+      arg5 = (int*)malloc(size * sizeof(int));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[3], i);
+        if (PyInt_Check(o)) {
+          arg5[i] = PyInt_AsLong(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg5);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[3] == Py_None) {
+      arg5 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  ecode6 = SWIG_AsVal_double(swig_obj[4], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBaddgenconstrMax" "', argument " "6"" of type '" "double""'");
+  } 
+  arg6 = static_cast< double >(val6);
+  {
+    try {
+      result = (int)GRBaddgenconstrMax(arg1,(char const *)arg2,arg3,arg4,(int const *)arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg5);
+  }
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg5);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrMin(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int *arg5 = (int *) 0 ;
+  double arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrMin", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrMin" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrMin" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrMin" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[3])) {
+      int size = (int)PyList_Size(swig_obj[3]);
+      int i = 0;
+      arg4 = size;
+      arg5 = (int*)malloc(size * sizeof(int));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[3], i);
+        if (PyInt_Check(o)) {
+          arg5[i] = PyInt_AsLong(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg5);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[3] == Py_None) {
+      arg5 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  ecode6 = SWIG_AsVal_double(swig_obj[4], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBaddgenconstrMin" "', argument " "6"" of type '" "double""'");
+  } 
+  arg6 = static_cast< double >(val6);
+  {
+    try {
+      result = (int)GRBaddgenconstrMin(arg1,(char const *)arg2,arg3,arg4,(int const *)arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg5);
+  }
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg5);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrAbs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrAbs", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrAbs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrAbs" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrAbs" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrAbs" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  {
+    try {
+      result = (int)GRBaddgenconstrAbs(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrAnd(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrAnd", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrAnd" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrAnd" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrAnd" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[3])) {
+      int size = (int)PyList_Size(swig_obj[3]);
+      int i = 0;
+      arg4 = size;
+      arg5 = (int*)malloc(size * sizeof(int));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[3], i);
+        if (PyInt_Check(o)) {
+          arg5[i] = PyInt_AsLong(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg5);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[3] == Py_None) {
+      arg5 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  {
+    try {
+      result = (int)GRBaddgenconstrAnd(arg1,(char const *)arg2,arg3,arg4,(int const *)arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg5);
+  }
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg5);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrOr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrOr", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrOr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrOr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrOr" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[3])) {
+      int size = (int)PyList_Size(swig_obj[3]);
+      int i = 0;
+      arg4 = size;
+      arg5 = (int*)malloc(size * sizeof(int));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[3], i);
+        if (PyInt_Check(o)) {
+          arg5[i] = PyInt_AsLong(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg5);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[3] == Py_None) {
+      arg5 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  {
+    try {
+      result = (int)GRBaddgenconstrOr(arg1,(char const *)arg2,arg3,arg4,(int const *)arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg5);
+  }
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg5);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrIndicator(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int *arg6 = (int *) 0 ;
+  double *arg7 = (double *) 0 ;
+  char arg8 ;
+  double arg9 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  char val8 ;
+  int ecode8 = 0 ;
+  double val9 ;
+  int ecode9 = 0 ;
+  PyObject *swig_obj[8] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrIndicator", 8, 8, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrIndicator" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrIndicator" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrIndicator" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrIndicator" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[4])) {
+      int size = (int)PyList_Size(swig_obj[4]);
+      int i = 0;
+      arg5 = size;
+      arg6 = (int*)malloc(size * sizeof(int));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[4], i);
+        if (PyInt_Check(o)) {
+          arg6[i] = PyInt_AsLong(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg6);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[4] == Py_None) {
+      arg6 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[5])) {
+      int size = (int)PyList_Size(swig_obj[5]);
+      int i = 0;
+      arg7 = (double*)malloc(size * sizeof(double));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[5], i);
+        if (PyFloat_Check(o) || PyInt_Check(o)) {
+          arg7[i] = PyFloat_AsDouble(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg7);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[5] == Py_None) {
+      arg7 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  ecode8 = SWIG_AsVal_char(swig_obj[6], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "GRBaddgenconstrIndicator" "', argument " "8"" of type '" "char""'");
+  } 
+  arg8 = static_cast< char >(val8);
+  ecode9 = SWIG_AsVal_double(swig_obj[7], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "GRBaddgenconstrIndicator" "', argument " "9"" of type '" "double""'");
+  } 
+  arg9 = static_cast< double >(val9);
+  {
+    try {
+      result = (int)GRBaddgenconstrIndicator(arg1,(char const *)arg2,arg3,arg4,arg5,(int const *)arg6,(double const *)arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg6);
+  }
+  {
+    free(arg7);
+  }
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg6);
+  }
+  {
+    free(arg7);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrPWL(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrPWL", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrPWL" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrPWL" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrPWL" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrPWL" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBaddgenconstrPWL" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[5])) {
+      int size = (int)PyList_Size(swig_obj[5]);
+      int i = 0;
+      arg6 = (double*)malloc(size * sizeof(double));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[5], i);
+        if (PyFloat_Check(o) || PyInt_Check(o)) {
+          arg6[i] = PyFloat_AsDouble(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg6);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[5] == Py_None) {
+      arg6 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[6])) {
+      int size = (int)PyList_Size(swig_obj[6]);
+      int i = 0;
+      arg7 = (double*)malloc(size * sizeof(double));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[6], i);
+        if (PyFloat_Check(o) || PyInt_Check(o)) {
+          arg7[i] = PyFloat_AsDouble(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg7);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[6] == Py_None) {
+      arg7 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  {
+    try {
+      result = (int)GRBaddgenconstrPWL(arg1,(char const *)arg2,arg3,arg4,arg5,(double const *)arg6,(double const *)arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg6);
+  }
+  {
+    free(arg7);
+  }
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg6);
+  }
+  {
+    free(arg7);
+  }
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrPoly(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  double *arg6 = (double *) 0 ;
+  char *arg7 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int res7 ;
+  char *buf7 = 0 ;
+  int alloc7 = 0 ;
+  PyObject *swig_obj[7] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrPoly", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrPoly" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrPoly" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrPoly" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrPoly" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBaddgenconstrPoly" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[5])) {
+      int size = (int)PyList_Size(swig_obj[5]);
+      int i = 0;
+      arg6 = (double*)malloc(size * sizeof(double));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[5], i);
+        if (PyFloat_Check(o) || PyInt_Check(o)) {
+          arg6[i] = PyFloat_AsDouble(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg6);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[5] == Py_None) {
+      arg6 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  res7 = SWIG_AsCharPtrAndSize(swig_obj[6], &buf7, NULL, &alloc7);
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBaddgenconstrPoly" "', argument " "7"" of type '" "char const *""'");
+  }
+  arg7 = reinterpret_cast< char * >(buf7);
+  {
+    try {
+      result = (int)GRBaddgenconstrPoly(arg1,(char const *)arg2,arg3,arg4,arg5,(double const *)arg6,(char const *)arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg6);
+  }
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  {
+    free(arg6);
+  }
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrExpA(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  double arg5 ;
+  char *arg6 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  int res6 ;
+  char *buf6 = 0 ;
+  int alloc6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrExpA", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrExpA" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrExpA" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrExpA" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrExpA" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_double(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBaddgenconstrExpA" "', argument " "5"" of type '" "double""'");
+  } 
+  arg5 = static_cast< double >(val5);
+  res6 = SWIG_AsCharPtrAndSize(swig_obj[5], &buf6, NULL, &alloc6);
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBaddgenconstrExpA" "', argument " "6"" of type '" "char const *""'");
+  }
+  arg6 = reinterpret_cast< char * >(buf6);
+  {
+    try {
+      result = (int)GRBaddgenconstrExpA(arg1,(char const *)arg2,arg3,arg4,arg5,(char const *)arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrLogA(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  double arg5 ;
+  char *arg6 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  int res6 ;
+  char *buf6 = 0 ;
+  int alloc6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrLogA", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrLogA" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrLogA" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrLogA" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrLogA" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_double(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBaddgenconstrLogA" "', argument " "5"" of type '" "double""'");
+  } 
+  arg5 = static_cast< double >(val5);
+  res6 = SWIG_AsCharPtrAndSize(swig_obj[5], &buf6, NULL, &alloc6);
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBaddgenconstrLogA" "', argument " "6"" of type '" "char const *""'");
+  }
+  arg6 = reinterpret_cast< char * >(buf6);
+  {
+    try {
+      result = (int)GRBaddgenconstrLogA(arg1,(char const *)arg2,arg3,arg4,arg5,(char const *)arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrPow(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  double arg5 ;
+  char *arg6 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  int res6 ;
+  char *buf6 = 0 ;
+  int alloc6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrPow", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrPow" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrPow" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrPow" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrPow" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_double(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBaddgenconstrPow" "', argument " "5"" of type '" "double""'");
+  } 
+  arg5 = static_cast< double >(val5);
+  res6 = SWIG_AsCharPtrAndSize(swig_obj[5], &buf6, NULL, &alloc6);
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBaddgenconstrPow" "', argument " "6"" of type '" "char const *""'");
+  }
+  arg6 = reinterpret_cast< char * >(buf6);
+  {
+    try {
+      result = (int)GRBaddgenconstrPow(arg1,(char const *)arg2,arg3,arg4,arg5,(char const *)arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrExp(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char *arg5 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrExp", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrExp" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrExp" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrExp" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrExp" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddgenconstrExp" "', argument " "5"" of type '" "char const *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  {
+    try {
+      result = (int)GRBaddgenconstrExp(arg1,(char const *)arg2,arg3,arg4,(char const *)arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrLog(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char *arg5 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrLog", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrLog" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrLog" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrLog" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrLog" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddgenconstrLog" "', argument " "5"" of type '" "char const *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  {
+    try {
+      result = (int)GRBaddgenconstrLog(arg1,(char const *)arg2,arg3,arg4,(char const *)arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrSin(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char *arg5 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrSin", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrSin" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrSin" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrSin" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrSin" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddgenconstrSin" "', argument " "5"" of type '" "char const *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  {
+    try {
+      result = (int)GRBaddgenconstrSin(arg1,(char const *)arg2,arg3,arg4,(char const *)arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrCos(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char *arg5 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrCos", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrCos" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrCos" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrCos" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrCos" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddgenconstrCos" "', argument " "5"" of type '" "char const *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  {
+    try {
+      result = (int)GRBaddgenconstrCos(arg1,(char const *)arg2,arg3,arg4,(char const *)arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddgenconstrTan(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  char *arg5 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddgenconstrTan", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddgenconstrTan" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBaddgenconstrTan" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBaddgenconstrTan" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBaddgenconstrTan" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddgenconstrTan" "', argument " "5"" of type '" "char const *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  {
+    try {
+      result = (int)GRBaddgenconstrTan(arg1,(char const *)arg2,arg3,arg4,(char const *)arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddqconstr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  int arg5 ;
+  int *arg6 = (int *) 0 ;
+  int *arg7 = (int *) 0 ;
+  double *arg8 = (double *) 0 ;
+  char arg9 ;
+  double arg10 ;
+  char *arg11 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  char val9 ;
+  int ecode9 = 0 ;
+  double val10 ;
+  int ecode10 = 0 ;
+  int res11 ;
+  char *buf11 = 0 ;
+  int alloc11 = 0 ;
+  PyObject *swig_obj[11] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddqconstr", 11, 11, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddqconstr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddqconstr" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBaddqconstr" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBaddqconstr" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBaddqconstr" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBaddqconstr" "', argument " "6"" of type '" "int *""'"); 
+  }
+  arg6 = reinterpret_cast< int * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBaddqconstr" "', argument " "7"" of type '" "int *""'"); 
+  }
+  arg7 = reinterpret_cast< int * >(argp7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBaddqconstr" "', argument " "8"" of type '" "double *""'"); 
+  }
+  arg8 = reinterpret_cast< double * >(argp8);
+  ecode9 = SWIG_AsVal_char(swig_obj[8], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "GRBaddqconstr" "', argument " "9"" of type '" "char""'");
+  } 
+  arg9 = static_cast< char >(val9);
+  ecode10 = SWIG_AsVal_double(swig_obj[9], &val10);
+  if (!SWIG_IsOK(ecode10)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode10), "in method '" "GRBaddqconstr" "', argument " "10"" of type '" "double""'");
+  } 
+  arg10 = static_cast< double >(val10);
+  res11 = SWIG_AsCharPtrAndSize(swig_obj[10], &buf11, NULL, &alloc11);
+  if (!SWIG_IsOK(res11)) {
+    SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "GRBaddqconstr" "', argument " "11"" of type '" "char const *""'");
+  }
+  arg11 = reinterpret_cast< char * >(buf11);
+  {
+    try {
+      result = (int)GRBaddqconstr(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,(char const *)arg11);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc11 == SWIG_NEWOBJ) delete[] buf11;
+  return resultobj;
+fail:
+  if (alloc11 == SWIG_NEWOBJ) delete[] buf11;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddcone(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddcone", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddcone" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddcone" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBaddcone" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBaddcone(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBaddqpterms(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBaddqpterms", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBaddqpterms" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBaddqpterms" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBaddqpterms" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBaddqpterms" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBaddqpterms" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBaddqpterms(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdelvars(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBdelvars", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdelvars" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBdelvars" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBdelvars" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBdelvars(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdelconstrs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBdelconstrs", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdelconstrs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBdelconstrs" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBdelconstrs" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBdelconstrs(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdelsos(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBdelsos", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdelsos" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBdelsos" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBdelsos" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBdelsos(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdelgenconstrs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBdelgenconstrs", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdelgenconstrs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBdelgenconstrs" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBdelgenconstrs" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBdelgenconstrs(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdelqconstrs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBdelqconstrs", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdelqconstrs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBdelqconstrs" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBdelqconstrs" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBdelqconstrs(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdelq(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdelq" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBdelq(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBchgcoeffs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBchgcoeffs", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBchgcoeffs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBchgcoeffs" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBchgcoeffs" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBchgcoeffs" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBchgcoeffs" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBchgcoeffs(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBXchgcoeffs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  size_t arg2 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  size_t val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBXchgcoeffs", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBXchgcoeffs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_size_t(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBXchgcoeffs" "', argument " "2"" of type '" "size_t""'");
+  } 
+  arg2 = static_cast< size_t >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBXchgcoeffs" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBXchgcoeffs" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBXchgcoeffs" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBXchgcoeffs(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetpwlobj(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetpwlobj", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetpwlobj" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBsetpwlobj" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetpwlobj" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBsetpwlobj" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetpwlobj" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)GRBsetpwlobj(arg1,arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBupdatemodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBupdatemodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBupdatemodel(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBreset(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBreset", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBreset" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBreset" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (int)GRBreset(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBresetmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBresetmodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBresetmodel(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBfreemodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBfreemodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBfreemodel(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcomputeIIS(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcomputeIIS" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBcomputeIIS(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsvec_len_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  _GRBsvec *arg1 = (_GRBsvec *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsvec_len_set" "', argument " "1"" of type '" "_GRBsvec *""'"); 
+  }
+  arg1 = reinterpret_cast< _GRBsvec * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBsvec_len_set" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  if (arg1) (arg1)->len = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsvec_len_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  _GRBsvec *arg1 = (_GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsvec_len_get", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsvec_len_get" "', argument " "1"" of type '" "_GRBsvec *""'"); 
+  }
+  arg1 = reinterpret_cast< _GRBsvec * >(argp1);
+  result = (int) ((arg1)->len);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsvec_ind_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  _GRBsvec *arg1 = (_GRBsvec *) 0 ;
+  int *arg2 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsvec_ind_set" "', argument " "1"" of type '" "_GRBsvec *""'"); 
+  }
+  arg1 = reinterpret_cast< _GRBsvec * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[0], &argp2,SWIGTYPE_p_int, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsvec_ind_set" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  if (arg1) (arg1)->ind = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsvec_ind_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  _GRBsvec *arg1 = (_GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsvec_ind_get", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsvec_ind_get" "', argument " "1"" of type '" "_GRBsvec *""'"); 
+  }
+  arg1 = reinterpret_cast< _GRBsvec * >(argp1);
+  result = (int *) ((arg1)->ind);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_int, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsvec_val_set(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  _GRBsvec *arg1 = (_GRBsvec *) 0 ;
+  double *arg2 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsvec_val_set" "', argument " "1"" of type '" "_GRBsvec *""'"); 
+  }
+  arg1 = reinterpret_cast< _GRBsvec * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[0], &argp2,SWIGTYPE_p_double, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsvec_val_set" "', argument " "2"" of type '" "double *""'"); 
+  }
+  arg2 = reinterpret_cast< double * >(argp2);
+  if (arg1) (arg1)->val = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsvec_val_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  _GRBsvec *arg1 = (_GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  double *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsvec_val_get", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsvec_val_get" "', argument " "1"" of type '" "_GRBsvec *""'"); 
+  }
+  arg1 = reinterpret_cast< _GRBsvec * >(argp1);
+  result = (double *) ((arg1)->val);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_double, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN int _wrap_new_GRBsvec(PyObject *self, PyObject *args, PyObject *kwargs) {
+  PyObject *resultobj = 0;
+  _GRBsvec *result = 0 ;
+  
+  if (!SWIG_Python_CheckNoKeywords(kwargs, "new_GRBsvec")) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "new_GRBsvec", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      result = (_GRBsvec *)new _GRBsvec();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBsvec, SWIG_BUILTIN_INIT |  0 );
+  return resultobj == Py_None ? -1 : 0;
+fail:
+  return -1;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GRBsvec(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  _GRBsvec *arg1 = (_GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "delete_GRBsvec", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p__GRBsvec, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GRBsvec" "', argument " "1"" of type '" "_GRBsvec *""'"); 
+  }
+  arg1 = reinterpret_cast< _GRBsvec * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_GRBsvec) /* defines _wrap_delete_GRBsvec_destructor_closure */
+
+SWIGINTERN PyObject *_wrap_GRBFSolve(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBsvec *arg2 = (GRBsvec *) 0 ;
+  GRBsvec *arg3 = (GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBFSolve", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBFSolve" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBFSolve" "', argument " "2"" of type '" "GRBsvec *""'"); 
+  }
+  arg2 = reinterpret_cast< GRBsvec * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBFSolve" "', argument " "3"" of type '" "GRBsvec *""'"); 
+  }
+  arg3 = reinterpret_cast< GRBsvec * >(argp3);
+  {
+    try {
+      result = (int)GRBFSolve(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBBinvColj(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  GRBsvec *arg3 = (GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBBinvColj", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBBinvColj" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBBinvColj" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBBinvColj" "', argument " "3"" of type '" "GRBsvec *""'"); 
+  }
+  arg3 = reinterpret_cast< GRBsvec * >(argp3);
+  {
+    try {
+      result = (int)GRBBinvColj(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBBinvj(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  GRBsvec *arg3 = (GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBBinvj", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBBinvj" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBBinvj" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBBinvj" "', argument " "3"" of type '" "GRBsvec *""'"); 
+  }
+  arg3 = reinterpret_cast< GRBsvec * >(argp3);
+  {
+    try {
+      result = (int)GRBBinvj(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBBSolve(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBsvec *arg2 = (GRBsvec *) 0 ;
+  GRBsvec *arg3 = (GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBBSolve", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBBSolve" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBBSolve" "', argument " "2"" of type '" "GRBsvec *""'"); 
+  }
+  arg2 = reinterpret_cast< GRBsvec * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBBSolve" "', argument " "3"" of type '" "GRBsvec *""'"); 
+  }
+  arg3 = reinterpret_cast< GRBsvec * >(argp3);
+  {
+    try {
+      result = (int)GRBBSolve(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBBinvi(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  GRBsvec *arg3 = (GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBBinvi", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBBinvi" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBBinvi" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBBinvi" "', argument " "3"" of type '" "GRBsvec *""'"); 
+  }
+  arg3 = reinterpret_cast< GRBsvec * >(argp3);
+  {
+    try {
+      result = (int)GRBBinvi(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBBinvRowi(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  GRBsvec *arg3 = (GRBsvec *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBBinvRowi", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBBinvRowi" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBBinvRowi" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p__GRBsvec, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBBinvRowi" "', argument " "3"" of type '" "GRBsvec *""'"); 
+  }
+  arg3 = reinterpret_cast< GRBsvec * >(argp3);
+  {
+    try {
+      result = (int)GRBBinvRowi(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetBasisHead(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int *arg2 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetBasisHead", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetBasisHead" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetBasisHead" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  {
+    try {
+      result = (int)GRBgetBasisHead(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcbstoponemultiobj(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *arg2 = (void *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBcbstoponemultiobj", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcbstoponemultiobj" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1],SWIG_as_voidptrptr(&arg2), 0, 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBcbstoponemultiobj" "', argument " "2"" of type '" "void *""'"); 
+  }
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBcbstoponemultiobj" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  {
+    try {
+      result = (int)GRBcbstoponemultiobj(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBstrongbranch(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  int *arg6 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBstrongbranch", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBstrongbranch" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBstrongbranch" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBstrongbranch" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBstrongbranch" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBstrongbranch" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBstrongbranch" "', argument " "6"" of type '" "int *""'"); 
+  }
+  arg6 = reinterpret_cast< int * >(argp6);
+  {
+    try {
+      result = (int)GRBstrongbranch(arg1,arg2,arg3,arg4,arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcheckmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcheckmodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBcheckmodel(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetsignal(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetsignal" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      GRBsetsignal(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBterminate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBterminate" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      GRBterminate(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBreplay(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBreplay" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  {
+    try {
+      result = (int)GRBreplay((char const *)arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetobjective(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  double arg3 ;
+  int arg4 ;
+  int *arg5 = (int *) 0 ;
+  double *arg6 = (double *) 0 ;
+  int arg7 ;
+  int *arg8 = (int *) 0 ;
+  int *arg9 = (int *) 0 ;
+  double *arg10 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  void *argp8 = 0 ;
+  int res8 = 0 ;
+  void *argp9 = 0 ;
+  int res9 = 0 ;
+  void *argp10 = 0 ;
+  int res10 = 0 ;
+  PyObject *swig_obj[10] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetobjective", 10, 10, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetobjective" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBsetobjective" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetobjective" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBsetobjective" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBsetobjective" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBsetobjective" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBsetobjective" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  res8 = SWIG_ConvertPtr(swig_obj[7], &argp8,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBsetobjective" "', argument " "8"" of type '" "int *""'"); 
+  }
+  arg8 = reinterpret_cast< int * >(argp8);
+  res9 = SWIG_ConvertPtr(swig_obj[8], &argp9,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBsetobjective" "', argument " "9"" of type '" "int *""'"); 
+  }
+  arg9 = reinterpret_cast< int * >(argp9);
+  res10 = SWIG_ConvertPtr(swig_obj[9], &argp10,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res10)) {
+    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "GRBsetobjective" "', argument " "10"" of type '" "double *""'"); 
+  }
+  arg10 = reinterpret_cast< double * >(argp10);
+  {
+    try {
+      result = (int)GRBsetobjective(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetobjectiven(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  double arg4 ;
+  double arg5 ;
+  double arg6 ;
+  char *arg7 = (char *) 0 ;
+  double arg8 ;
+  int arg9 ;
+  int *arg10 = (int *) 0 ;
+  double *arg11 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  double val4 ;
+  int ecode4 = 0 ;
+  double val5 ;
+  int ecode5 = 0 ;
+  double val6 ;
+  int ecode6 = 0 ;
+  int res7 ;
+  char *buf7 = 0 ;
+  int alloc7 = 0 ;
+  double val8 ;
+  int ecode8 = 0 ;
+  int val9 ;
+  int ecode9 = 0 ;
+  void *argp10 = 0 ;
+  int res10 = 0 ;
+  void *argp11 = 0 ;
+  int res11 = 0 ;
+  PyObject *swig_obj[11] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetobjectiven", 11, 11, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetobjectiven" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBsetobjectiven" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetobjectiven" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_double(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBsetobjectiven" "', argument " "4"" of type '" "double""'");
+  } 
+  arg4 = static_cast< double >(val4);
+  ecode5 = SWIG_AsVal_double(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBsetobjectiven" "', argument " "5"" of type '" "double""'");
+  } 
+  arg5 = static_cast< double >(val5);
+  ecode6 = SWIG_AsVal_double(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBsetobjectiven" "', argument " "6"" of type '" "double""'");
+  } 
+  arg6 = static_cast< double >(val6);
+  res7 = SWIG_AsCharPtrAndSize(swig_obj[6], &buf7, NULL, &alloc7);
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBsetobjectiven" "', argument " "7"" of type '" "char const *""'");
+  }
+  arg7 = reinterpret_cast< char * >(buf7);
+  ecode8 = SWIG_AsVal_double(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "GRBsetobjectiven" "', argument " "8"" of type '" "double""'");
+  } 
+  arg8 = static_cast< double >(val8);
+  ecode9 = SWIG_AsVal_int(swig_obj[8], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "GRBsetobjectiven" "', argument " "9"" of type '" "int""'");
+  } 
+  arg9 = static_cast< int >(val9);
+  res10 = SWIG_ConvertPtr(swig_obj[9], &argp10,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res10)) {
+    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "GRBsetobjectiven" "', argument " "10"" of type '" "int *""'"); 
+  }
+  arg10 = reinterpret_cast< int * >(argp10);
+  res11 = SWIG_ConvertPtr(swig_obj[10], &argp11,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res11)) {
+    SWIG_exception_fail(SWIG_ArgError(res11), "in method '" "GRBsetobjectiven" "', argument " "11"" of type '" "double *""'"); 
+  }
+  arg11 = reinterpret_cast< double * >(argp11);
+  {
+    try {
+      result = (int)GRBsetobjectiven(arg1,arg2,arg3,arg4,arg5,arg6,(char const *)arg7,arg8,arg9,arg10,arg11);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return resultobj;
+fail:
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBclean2(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int *arg1 = (int *) 0 ;
+  int *arg2 = (int *) 0 ;
+  double *arg3 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBclean2", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBclean2" "', argument " "1"" of type '" "int *""'"); 
+  }
+  arg1 = reinterpret_cast< int * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBclean2" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBclean2" "', argument " "3"" of type '" "double *""'"); 
+  }
+  arg3 = reinterpret_cast< double * >(argp3);
+  {
+    try {
+      GRBclean2(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBclean3(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int *arg1 = (int *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBclean3", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBclean3" "', argument " "1"" of type '" "int *""'"); 
+  }
+  arg1 = reinterpret_cast< int * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBclean3" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBclean3" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBclean3" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  {
+    try {
+      GRBclean3(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBmsg(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBmsg", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBmsg" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBmsg" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      GRBmsg(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetlogfile(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  FILE **arg2 = (FILE **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetlogfile", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetlogfile" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p_FILE, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetlogfile" "', argument " "2"" of type '" "FILE **""'"); 
+  }
+  arg2 = reinterpret_cast< FILE ** >(argp2);
+  {
+    try {
+      result = (int)GRBgetlogfile(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetlogfile(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  FILE *arg2 = (FILE *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetlogfile", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetlogfile" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_FILE, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetlogfile" "', argument " "2"" of type '" "FILE *""'"); 
+  }
+  arg2 = reinterpret_cast< FILE * >(argp2);
+  {
+    try {
+      result = (int)GRBsetlogfile(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetintparam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetintparam", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetintparam" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetintparam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetintparam" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBgetintparam(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetdblparam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  double *arg3 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetdblparam", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetdblparam" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetdblparam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetdblparam" "', argument " "3"" of type '" "double *""'"); 
+  }
+  arg3 = reinterpret_cast< double * >(argp3);
+  {
+    try {
+      result = (int)GRBgetdblparam(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetstrparam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetstrparam", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetstrparam" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetstrparam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetstrparam" "', argument " "3"" of type '" "char *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (int)GRBgetstrparam(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetintparaminfo(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  int *arg5 = (int *) 0 ;
+  int *arg6 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetintparaminfo", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetintparaminfo" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetintparaminfo" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetintparaminfo" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetintparaminfo" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetintparaminfo" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetintparaminfo" "', argument " "6"" of type '" "int *""'"); 
+  }
+  arg6 = reinterpret_cast< int * >(argp6);
+  {
+    try {
+      result = (int)GRBgetintparaminfo(arg1,(char const *)arg2,arg3,arg4,arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetdblparaminfo(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  double *arg3 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetdblparaminfo", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetdblparaminfo" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetdblparaminfo" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetdblparaminfo" "', argument " "3"" of type '" "double *""'"); 
+  }
+  arg3 = reinterpret_cast< double * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetdblparaminfo" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetdblparaminfo" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetdblparaminfo" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  {
+    try {
+      result = (int)GRBgetdblparaminfo(arg1,(char const *)arg2,arg3,arg4,arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetstrparaminfo(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  char *arg4 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetstrparaminfo", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetstrparaminfo" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetstrparaminfo" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetstrparaminfo" "', argument " "3"" of type '" "char *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  res4 = SWIG_AsCharPtrAndSize(swig_obj[3], &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetstrparaminfo" "', argument " "4"" of type '" "char *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  {
+    try {
+      result = (int)GRBgetstrparaminfo(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetparamflags(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  unsigned int *arg3 = (unsigned int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetparamflags", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetparamflags" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetparamflags" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_unsigned_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetparamflags" "', argument " "3"" of type '" "unsigned int *""'"); 
+  }
+  arg3 = reinterpret_cast< unsigned int * >(argp3);
+  {
+    try {
+      result = (int)GRBgetparamflags(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetparam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetparam", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetparam" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetparam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBsetparam" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (int)GRBsetparam(arg1,(char const *)arg2,(char const *)arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetintparam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetintparam", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetintparam" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetintparam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetintparam" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  {
+    try {
+      result = (int)GRBsetintparam(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetdblparam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  double arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetdblparam", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetdblparam" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetdblparam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBsetdblparam" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  {
+    try {
+      result = (int)GRBsetdblparam(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsetstrparam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsetstrparam", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsetstrparam" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsetstrparam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBsetstrparam" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (int)GRBsetstrparam(arg1,(char const *)arg2,(char const *)arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetparamtype(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetparamtype", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetparamtype" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetparamtype" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBgetparamtype(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBresetparams(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBresetparams" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  {
+    try {
+      result = (int)GRBresetparams(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBcopyparams(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  GRBenv *arg2 = (GRBenv *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBcopyparams", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBcopyparams" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBcopyparams" "', argument " "2"" of type '" "GRBenv *""'"); 
+  }
+  arg2 = reinterpret_cast< GRBenv * >(argp2);
+  {
+    try {
+      result = (int)GRBcopyparams(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBwriteparams(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBwriteparams", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBwriteparams" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBwriteparams" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBwriteparams(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBreadparams(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBreadparams", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBreadparams" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBreadparams" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBreadparams(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetnumparams(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetnumparams" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  {
+    try {
+      result = (int)GRBgetnumparams(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetparamname(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  int arg2 ;
+  char **arg3 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetparamname", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetparamname" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetparamname" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetparamname" "', argument " "3"" of type '" "char **""'"); 
+  }
+  arg3 = reinterpret_cast< char ** >(argp3);
+  {
+    try {
+      result = (int)GRBgetparamname(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetnumattributes(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetnumattributes" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBgetnumattributes(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetattrname(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  char **arg3 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetattrname", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetattrname" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetattrname" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetattrname" "', argument " "3"" of type '" "char **""'"); 
+  }
+  arg3 = reinterpret_cast< char ** >(argp3);
+  {
+    try {
+      result = (int)GRBgetattrname(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBloadenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv **arg1 = (GRBenv **) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBloadenv", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBloadenv" "', argument " "1"" of type '" "GRBenv **""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv ** >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBloadenv" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBloadenv(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBemptyenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv **arg1 = (GRBenv **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBemptyenv" "', argument " "1"" of type '" "GRBenv **""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv ** >(argp1);
+  {
+    try {
+      result = (int)GRBemptyenv(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBstartenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBstartenv" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  {
+    try {
+      result = (int)GRBstartenv(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBloadenvadv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv **arg1 = (GRBenv **) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int arg5 ;
+  int arg6 ;
+  char *arg7 = (char *) 0 ;
+  char *arg8 = (char *) 0 ;
+  char *arg9 = (char *) 0 ;
+  char *arg10 = (char *) 0 ;
+  int arg11 ;
+  int arg12 ;
+  char *arg13 = (char *) 0 ;
+  char *arg14 = (char *) 0 ;
+  int (*arg15)(GRBmodel *,void *,int,void *) = (int (*)(GRBmodel *,void *,int,void *)) 0 ;
+  void *arg16 = (void *) 0 ;
+  int (*arg17)(char *) = (int (*)(char *)) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  int val5 ;
+  int ecode5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  int res7 ;
+  char *buf7 = 0 ;
+  int alloc7 = 0 ;
+  int res8 ;
+  char *buf8 = 0 ;
+  int alloc8 = 0 ;
+  int res9 ;
+  char *buf9 = 0 ;
+  int alloc9 = 0 ;
+  int res10 ;
+  char *buf10 = 0 ;
+  int alloc10 = 0 ;
+  int val11 ;
+  int ecode11 = 0 ;
+  int val12 ;
+  int ecode12 = 0 ;
+  int res13 ;
+  char *buf13 = 0 ;
+  int alloc13 = 0 ;
+  int res14 ;
+  char *buf14 = 0 ;
+  int alloc14 = 0 ;
+  int res16 ;
+  PyObject *swig_obj[17] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBloadenvadv", 17, 17, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBloadenvadv" "', argument " "1"" of type '" "GRBenv **""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv ** >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBloadenvadv" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GRBloadenvadv" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBloadenvadv" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  ecode5 = SWIG_AsVal_int(swig_obj[4], &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "GRBloadenvadv" "', argument " "5"" of type '" "int""'");
+  } 
+  arg5 = static_cast< int >(val5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBloadenvadv" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  res7 = SWIG_AsCharPtrAndSize(swig_obj[6], &buf7, NULL, &alloc7);
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBloadenvadv" "', argument " "7"" of type '" "char const *""'");
+  }
+  arg7 = reinterpret_cast< char * >(buf7);
+  res8 = SWIG_AsCharPtrAndSize(swig_obj[7], &buf8, NULL, &alloc8);
+  if (!SWIG_IsOK(res8)) {
+    SWIG_exception_fail(SWIG_ArgError(res8), "in method '" "GRBloadenvadv" "', argument " "8"" of type '" "char const *""'");
+  }
+  arg8 = reinterpret_cast< char * >(buf8);
+  res9 = SWIG_AsCharPtrAndSize(swig_obj[8], &buf9, NULL, &alloc9);
+  if (!SWIG_IsOK(res9)) {
+    SWIG_exception_fail(SWIG_ArgError(res9), "in method '" "GRBloadenvadv" "', argument " "9"" of type '" "char const *""'");
+  }
+  arg9 = reinterpret_cast< char * >(buf9);
+  res10 = SWIG_AsCharPtrAndSize(swig_obj[9], &buf10, NULL, &alloc10);
+  if (!SWIG_IsOK(res10)) {
+    SWIG_exception_fail(SWIG_ArgError(res10), "in method '" "GRBloadenvadv" "', argument " "10"" of type '" "char const *""'");
+  }
+  arg10 = reinterpret_cast< char * >(buf10);
+  ecode11 = SWIG_AsVal_int(swig_obj[10], &val11);
+  if (!SWIG_IsOK(ecode11)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode11), "in method '" "GRBloadenvadv" "', argument " "11"" of type '" "int""'");
+  } 
+  arg11 = static_cast< int >(val11);
+  ecode12 = SWIG_AsVal_int(swig_obj[11], &val12);
+  if (!SWIG_IsOK(ecode12)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode12), "in method '" "GRBloadenvadv" "', argument " "12"" of type '" "int""'");
+  } 
+  arg12 = static_cast< int >(val12);
+  res13 = SWIG_AsCharPtrAndSize(swig_obj[12], &buf13, NULL, &alloc13);
+  if (!SWIG_IsOK(res13)) {
+    SWIG_exception_fail(SWIG_ArgError(res13), "in method '" "GRBloadenvadv" "', argument " "13"" of type '" "char const *""'");
+  }
+  arg13 = reinterpret_cast< char * >(buf13);
+  res14 = SWIG_AsCharPtrAndSize(swig_obj[13], &buf14, NULL, &alloc14);
+  if (!SWIG_IsOK(res14)) {
+    SWIG_exception_fail(SWIG_ArgError(res14), "in method '" "GRBloadenvadv" "', argument " "14"" of type '" "char const *""'");
+  }
+  arg14 = reinterpret_cast< char * >(buf14);
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[14], (void**)(&arg15), SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadenvadv" "', argument " "15"" of type '" "int (*)(GRBmodel *,void *,int,void *)""'"); 
+    }
+  }
+  res16 = SWIG_ConvertPtr(swig_obj[15],SWIG_as_voidptrptr(&arg16), 0, 0);
+  if (!SWIG_IsOK(res16)) {
+    SWIG_exception_fail(SWIG_ArgError(res16), "in method '" "GRBloadenvadv" "', argument " "16"" of type '" "void *""'"); 
+  }
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[16], (void**)(&arg17), SWIGTYPE_p_f_p_char__int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadenvadv" "', argument " "17"" of type '" "int (*)(char *)""'"); 
+    }
+  }
+  {
+    try {
+      result = (int)GRBloadenvadv(arg1,(char const *)arg2,arg3,arg4,arg5,arg6,(char const *)arg7,(char const *)arg8,(char const *)arg9,(char const *)arg10,arg11,arg12,(char const *)arg13,(char const *)arg14,arg15,arg16,arg17);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  if (alloc8 == SWIG_NEWOBJ) delete[] buf8;
+  if (alloc9 == SWIG_NEWOBJ) delete[] buf9;
+  if (alloc10 == SWIG_NEWOBJ) delete[] buf10;
+  if (alloc13 == SWIG_NEWOBJ) delete[] buf13;
+  if (alloc14 == SWIG_NEWOBJ) delete[] buf14;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc7 == SWIG_NEWOBJ) delete[] buf7;
+  if (alloc8 == SWIG_NEWOBJ) delete[] buf8;
+  if (alloc9 == SWIG_NEWOBJ) delete[] buf9;
+  if (alloc10 == SWIG_NEWOBJ) delete[] buf10;
+  if (alloc13 == SWIG_NEWOBJ) delete[] buf13;
+  if (alloc14 == SWIG_NEWOBJ) delete[] buf14;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBloadclientenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv **arg1 = (GRBenv **) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  char *arg4 = (char *) 0 ;
+  char *arg5 = (char *) 0 ;
+  char *arg6 = (char *) 0 ;
+  int arg7 ;
+  int arg8 ;
+  double arg9 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  int res6 ;
+  char *buf6 = 0 ;
+  int alloc6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  int val8 ;
+  int ecode8 = 0 ;
+  double val9 ;
+  int ecode9 = 0 ;
+  PyObject *swig_obj[9] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBloadclientenv", 9, 9, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBloadclientenv" "', argument " "1"" of type '" "GRBenv **""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv ** >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBloadclientenv" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBloadclientenv" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  res4 = SWIG_AsCharPtrAndSize(swig_obj[3], &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBloadclientenv" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBloadclientenv" "', argument " "5"" of type '" "char const *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  res6 = SWIG_AsCharPtrAndSize(swig_obj[5], &buf6, NULL, &alloc6);
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBloadclientenv" "', argument " "6"" of type '" "char const *""'");
+  }
+  arg6 = reinterpret_cast< char * >(buf6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBloadclientenv" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  ecode8 = SWIG_AsVal_int(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "GRBloadclientenv" "', argument " "8"" of type '" "int""'");
+  } 
+  arg8 = static_cast< int >(val8);
+  ecode9 = SWIG_AsVal_double(swig_obj[8], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "GRBloadclientenv" "', argument " "9"" of type '" "double""'");
+  } 
+  arg9 = static_cast< double >(val9);
+  {
+    try {
+      result = (int)GRBloadclientenv(arg1,(char const *)arg2,(char const *)arg3,(char const *)arg4,(char const *)arg5,(char const *)arg6,arg7,arg8,arg9);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBloadclientenvadv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv **arg1 = (GRBenv **) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  char *arg4 = (char *) 0 ;
+  char *arg5 = (char *) 0 ;
+  char *arg6 = (char *) 0 ;
+  int arg7 ;
+  int arg8 ;
+  double arg9 ;
+  int arg10 ;
+  int arg11 ;
+  int arg12 ;
+  int arg13 ;
+  int (*arg14)(GRBmodel *,void *,int,void *) = (int (*)(GRBmodel *,void *,int,void *)) 0 ;
+  void *arg15 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  int res6 ;
+  char *buf6 = 0 ;
+  int alloc6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  int val8 ;
+  int ecode8 = 0 ;
+  double val9 ;
+  int ecode9 = 0 ;
+  int val10 ;
+  int ecode10 = 0 ;
+  int val11 ;
+  int ecode11 = 0 ;
+  int val12 ;
+  int ecode12 = 0 ;
+  int val13 ;
+  int ecode13 = 0 ;
+  int res15 ;
+  PyObject *swig_obj[15] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBloadclientenvadv", 15, 15, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBloadclientenvadv" "', argument " "1"" of type '" "GRBenv **""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv ** >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBloadclientenvadv" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBloadclientenvadv" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  res4 = SWIG_AsCharPtrAndSize(swig_obj[3], &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBloadclientenvadv" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBloadclientenvadv" "', argument " "5"" of type '" "char const *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  res6 = SWIG_AsCharPtrAndSize(swig_obj[5], &buf6, NULL, &alloc6);
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBloadclientenvadv" "', argument " "6"" of type '" "char const *""'");
+  }
+  arg6 = reinterpret_cast< char * >(buf6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBloadclientenvadv" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  ecode8 = SWIG_AsVal_int(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "GRBloadclientenvadv" "', argument " "8"" of type '" "int""'");
+  } 
+  arg8 = static_cast< int >(val8);
+  ecode9 = SWIG_AsVal_double(swig_obj[8], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "GRBloadclientenvadv" "', argument " "9"" of type '" "double""'");
+  } 
+  arg9 = static_cast< double >(val9);
+  ecode10 = SWIG_AsVal_int(swig_obj[9], &val10);
+  if (!SWIG_IsOK(ecode10)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode10), "in method '" "GRBloadclientenvadv" "', argument " "10"" of type '" "int""'");
+  } 
+  arg10 = static_cast< int >(val10);
+  ecode11 = SWIG_AsVal_int(swig_obj[10], &val11);
+  if (!SWIG_IsOK(ecode11)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode11), "in method '" "GRBloadclientenvadv" "', argument " "11"" of type '" "int""'");
+  } 
+  arg11 = static_cast< int >(val11);
+  ecode12 = SWIG_AsVal_int(swig_obj[11], &val12);
+  if (!SWIG_IsOK(ecode12)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode12), "in method '" "GRBloadclientenvadv" "', argument " "12"" of type '" "int""'");
+  } 
+  arg12 = static_cast< int >(val12);
+  ecode13 = SWIG_AsVal_int(swig_obj[12], &val13);
+  if (!SWIG_IsOK(ecode13)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode13), "in method '" "GRBloadclientenvadv" "', argument " "13"" of type '" "int""'");
+  } 
+  arg13 = static_cast< int >(val13);
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[13], (void**)(&arg14), SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadclientenvadv" "', argument " "14"" of type '" "int (*)(GRBmodel *,void *,int,void *)""'"); 
+    }
+  }
+  res15 = SWIG_ConvertPtr(swig_obj[14],SWIG_as_voidptrptr(&arg15), 0, 0);
+  if (!SWIG_IsOK(res15)) {
+    SWIG_exception_fail(SWIG_ArgError(res15), "in method '" "GRBloadclientenvadv" "', argument " "15"" of type '" "void *""'"); 
+  }
+  {
+    try {
+      result = (int)GRBloadclientenvadv(arg1,(char const *)arg2,(char const *)arg3,(char const *)arg4,(char const *)arg5,(char const *)arg6,arg7,arg8,arg9,arg10,arg11,arg12,arg13,arg14,arg15);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  if (alloc6 == SWIG_NEWOBJ) delete[] buf6;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBloadcloudenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv **arg1 = (GRBenv **) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  char *arg4 = (char *) 0 ;
+  char *arg5 = (char *) 0 ;
+  int arg6 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  PyObject *swig_obj[6] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBloadcloudenv", 6, 6, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBloadcloudenv" "', argument " "1"" of type '" "GRBenv **""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv ** >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBloadcloudenv" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBloadcloudenv" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  res4 = SWIG_AsCharPtrAndSize(swig_obj[3], &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBloadcloudenv" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBloadcloudenv" "', argument " "5"" of type '" "char const *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBloadcloudenv" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  {
+    try {
+      result = (int)GRBloadcloudenv(arg1,(char const *)arg2,(char const *)arg3,(char const *)arg4,(char const *)arg5,arg6);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBloadcloudenvadv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv **arg1 = (GRBenv **) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  char *arg4 = (char *) 0 ;
+  char *arg5 = (char *) 0 ;
+  int arg6 ;
+  int arg7 ;
+  int arg8 ;
+  int arg9 ;
+  int arg10 ;
+  int (*arg11)(GRBmodel *,void *,int,void *) = (int (*)(GRBmodel *,void *,int,void *)) 0 ;
+  void *arg12 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  int res5 ;
+  char *buf5 = 0 ;
+  int alloc5 = 0 ;
+  int val6 ;
+  int ecode6 = 0 ;
+  int val7 ;
+  int ecode7 = 0 ;
+  int val8 ;
+  int ecode8 = 0 ;
+  int val9 ;
+  int ecode9 = 0 ;
+  int val10 ;
+  int ecode10 = 0 ;
+  int res12 ;
+  PyObject *swig_obj[12] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBloadcloudenvadv", 12, 12, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBloadcloudenvadv" "', argument " "1"" of type '" "GRBenv **""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv ** >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBloadcloudenvadv" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBloadcloudenvadv" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  res4 = SWIG_AsCharPtrAndSize(swig_obj[3], &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBloadcloudenvadv" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  res5 = SWIG_AsCharPtrAndSize(swig_obj[4], &buf5, NULL, &alloc5);
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBloadcloudenvadv" "', argument " "5"" of type '" "char const *""'");
+  }
+  arg5 = reinterpret_cast< char * >(buf5);
+  ecode6 = SWIG_AsVal_int(swig_obj[5], &val6);
+  if (!SWIG_IsOK(ecode6)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "GRBloadcloudenvadv" "', argument " "6"" of type '" "int""'");
+  } 
+  arg6 = static_cast< int >(val6);
+  ecode7 = SWIG_AsVal_int(swig_obj[6], &val7);
+  if (!SWIG_IsOK(ecode7)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode7), "in method '" "GRBloadcloudenvadv" "', argument " "7"" of type '" "int""'");
+  } 
+  arg7 = static_cast< int >(val7);
+  ecode8 = SWIG_AsVal_int(swig_obj[7], &val8);
+  if (!SWIG_IsOK(ecode8)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode8), "in method '" "GRBloadcloudenvadv" "', argument " "8"" of type '" "int""'");
+  } 
+  arg8 = static_cast< int >(val8);
+  ecode9 = SWIG_AsVal_int(swig_obj[8], &val9);
+  if (!SWIG_IsOK(ecode9)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode9), "in method '" "GRBloadcloudenvadv" "', argument " "9"" of type '" "int""'");
+  } 
+  arg9 = static_cast< int >(val9);
+  ecode10 = SWIG_AsVal_int(swig_obj[9], &val10);
+  if (!SWIG_IsOK(ecode10)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode10), "in method '" "GRBloadcloudenvadv" "', argument " "10"" of type '" "int""'");
+  } 
+  arg10 = static_cast< int >(val10);
+  {
+    int res = SWIG_ConvertFunctionPtr(swig_obj[10], (void**)(&arg11), SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int);
+    if (!SWIG_IsOK(res)) {
+      SWIG_exception_fail(SWIG_ArgError(res), "in method '" "GRBloadcloudenvadv" "', argument " "11"" of type '" "int (*)(GRBmodel *,void *,int,void *)""'"); 
+    }
+  }
+  res12 = SWIG_ConvertPtr(swig_obj[11],SWIG_as_voidptrptr(&arg12), 0, 0);
+  if (!SWIG_IsOK(res12)) {
+    SWIG_exception_fail(SWIG_ArgError(res12), "in method '" "GRBloadcloudenvadv" "', argument " "12"" of type '" "void *""'"); 
+  }
+  {
+    try {
+      result = (int)GRBloadcloudenvadv(arg1,(char const *)arg2,(char const *)arg3,(char const *)arg4,(char const *)arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  if (alloc5 == SWIG_NEWOBJ) delete[] buf5;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  GRBenv *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetenv" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (GRBenv *)GRBgetenv(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBenv, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetconcurrentenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  GRBenv *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetconcurrentenv", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetconcurrentenv" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetconcurrentenv" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (GRBenv *)GRBgetconcurrentenv(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBenv, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdiscardconcurrentenvs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdiscardconcurrentenvs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      GRBdiscardconcurrentenvs(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetmultiobjenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  GRBenv *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetmultiobjenv", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetmultiobjenv" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetmultiobjenv" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (GRBenv *)GRBgetmultiobjenv(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBenv, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdiscardmultiobjenvs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdiscardmultiobjenvs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      GRBdiscardmultiobjenvs(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBreleaselicense(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBreleaselicense" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  {
+    try {
+      GRBreleaselicense(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBfreeenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBfreeenv" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  {
+    try {
+      GRBfreeenv(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgeterrormsg(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  char *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgeterrormsg" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  {
+    try {
+      result = (char *)GRBgeterrormsg(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetmerrormsg(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  char *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetmerrormsg" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (char *)GRBgetmerrormsg(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBversion(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int *arg1 = (int *) 0 ;
+  int *arg2 = (int *) 0 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBversion", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBversion" "', argument " "1"" of type '" "int *""'"); 
+  }
+  arg1 = reinterpret_cast< int * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBversion" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBversion" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      GRBversion(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBplatform(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  char *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBplatform", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      result = (char *)GRBplatform();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBlisttokens(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBlisttokens", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      result = (int)GRBlisttokens();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBtunemodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBtunemodel" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBtunemodel(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBtunemodels(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  GRBmodel **arg2 = (GRBmodel **) 0 ;
+  GRBmodel *arg3 = (GRBmodel *) 0 ;
+  GRBmodel *arg4 = (GRBmodel *) 0 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBtunemodels", 4, 4, swig_obj)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "GRBtunemodels" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBtunemodels" "', argument " "2"" of type '" "GRBmodel **""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel ** >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBtunemodels" "', argument " "3"" of type '" "GRBmodel *""'"); 
+  }
+  arg3 = reinterpret_cast< GRBmodel * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBtunemodels" "', argument " "4"" of type '" "GRBmodel *""'"); 
+  }
+  arg4 = reinterpret_cast< GRBmodel * >(argp4);
+  {
+    try {
+      result = (int)GRBtunemodels(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgettuneresult(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgettuneresult", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgettuneresult" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgettuneresult" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (int)GRBgettuneresult(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgettunelog(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  char **arg3 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgettunelog", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgettunelog" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgettunelog" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgettunelog" "', argument " "3"" of type '" "char **""'"); 
+  }
+  arg3 = reinterpret_cast< char ** >(argp3);
+  {
+    try {
+      result = (int)GRBgettunelog(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBtunemodeladv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  GRBmodel *arg2 = (GRBmodel *) 0 ;
+  GRBmodel *arg3 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBtunemodeladv", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBtunemodeladv" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBtunemodeladv" "', argument " "2"" of type '" "GRBmodel *""'"); 
+  }
+  arg2 = reinterpret_cast< GRBmodel * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBtunemodeladv" "', argument " "3"" of type '" "GRBmodel *""'"); 
+  }
+  arg3 = reinterpret_cast< GRBmodel * >(argp3);
+  {
+    try {
+      result = (int)GRBtunemodeladv(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsortIDi(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  int *arg2 = (int *) 0 ;
+  double *arg3 = (double *) 0 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBsortIDi", 3, 3, swig_obj)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "GRBsortIDi" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBsortIDi" "', argument " "2"" of type '" "int *""'"); 
+  }
+  arg2 = reinterpret_cast< int * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBsortIDi" "', argument " "3"" of type '" "double *""'"); 
+  }
+  arg3 = reinterpret_cast< double * >(argp3);
+  {
+    try {
+      GRBsortIDi(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBabortbatch(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBabortbatch" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  {
+    try {
+      result = (int)GRBabortbatch(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdiscardbatch(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdiscardbatch" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  {
+    try {
+      result = (int)GRBdiscardbatch(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBretrybatch(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBretrybatch" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  {
+    try {
+      result = (int)GRBretrybatch(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBfreebatch(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBfreebatch" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  {
+    try {
+      result = (int)GRBfreebatch(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetbatch(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  GRBbatch **arg3 = (GRBbatch **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetbatch", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetbatch" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetbatch" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetbatch" "', argument " "3"" of type '" "GRBbatch **""'"); 
+  }
+  arg3 = reinterpret_cast< GRBbatch ** >(argp3);
+  {
+    try {
+      result = (int)GRBgetbatch(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetbatchjsonsolution(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  char **arg2 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetbatchjsonsolution", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetbatchjsonsolution" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetbatchjsonsolution" "', argument " "2"" of type '" "char **""'"); 
+  }
+  arg2 = reinterpret_cast< char ** >(argp2);
+  {
+    try {
+      result = (int)GRBgetbatchjsonsolution(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetbatchintattr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int *arg3 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetbatchintattr", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetbatchintattr" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetbatchintattr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetbatchintattr" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  {
+    try {
+      result = (int)GRBgetbatchintattr(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetbatchstrattr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char **arg3 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetbatchstrattr", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetbatchstrattr" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetbatchstrattr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetbatchstrattr" "', argument " "3"" of type '" "char **""'"); 
+  }
+  arg3 = reinterpret_cast< char ** >(argp3);
+  {
+    try {
+      result = (int)GRBgetbatchstrattr(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetbatchattrname(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  int arg2 ;
+  char **arg3 = (char **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetbatchattrname", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetbatchattrname" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgetbatchattrname" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetbatchattrname" "', argument " "3"" of type '" "char **""'"); 
+  }
+  arg3 = reinterpret_cast< char ** >(argp3);
+  {
+    try {
+      result = (int)GRBgetbatchattrname(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetbatchattrflags(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  char *arg2 = (char *) 0 ;
+  unsigned int *arg3 = (unsigned int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetbatchattrflags", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetbatchattrflags" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetbatchattrflags" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_unsigned_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetbatchattrflags" "', argument " "3"" of type '" "unsigned int *""'"); 
+  }
+  arg3 = reinterpret_cast< unsigned int * >(argp3);
+  {
+    try {
+      result = (int)GRBgetbatchattrflags(arg1,(char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetbatchattrinfo(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int *arg3 = (int *) 0 ;
+  int *arg4 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetbatchattrinfo", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetbatchattrinfo" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetbatchattrinfo" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetbatchattrinfo" "', argument " "3"" of type '" "int *""'"); 
+  }
+  arg3 = reinterpret_cast< int * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetbatchattrinfo" "', argument " "4"" of type '" "int *""'"); 
+  }
+  arg4 = reinterpret_cast< int * >(argp4);
+  {
+    try {
+      result = (int)GRBgetbatchattrinfo(arg1,(char const *)arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBupdatebatch(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBupdatebatch" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  {
+    try {
+      result = (int)GRBupdatebatch(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBwritebatchjsonsolution(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBwritebatchjsonsolution", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBwritebatchjsonsolution" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBwritebatchjsonsolution" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBwritebatchjsonsolution(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetnumbatchattributes(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetnumbatchattributes" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  {
+    try {
+      result = (int)GRBgetnumbatchattributes(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBgetbatchenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBbatch *arg1 = (GRBbatch *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  GRBenv *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBbatch, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetbatchenv" "', argument " "1"" of type '" "GRBbatch *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBbatch * >(argp1);
+  {
+    try {
+      result = (GRBenv *)GRBgetbatchenv(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBenv, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBfree(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  void *arg1 = (void *) 0 ;
+  int res1 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0],SWIG_as_voidptrptr(&arg1), 0, 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBfree" "', argument " "1"" of type '" "void *""'"); 
+  }
+  {
+    try {
+      GRBfree(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBsync(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBsync" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      result = (int)GRBsync(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBpingserver(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  char *arg1 = (char *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int res1 ;
+  char *buf1 = 0 ;
+  int alloc1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBpingserver", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf1, NULL, &alloc1);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBpingserver" "', argument " "1"" of type '" "char const *""'");
+  }
+  arg1 = reinterpret_cast< char * >(buf1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBpingserver" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBpingserver((char const *)arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_callback_wrapper(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *arg2 = (void *) 0 ;
+  int arg3 ;
+  void *arg4 = (void *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "callback_wrapper", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "callback_wrapper" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1],SWIG_as_voidptrptr(&arg2), 0, 0);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "callback_wrapper" "', argument " "2"" of type '" "void *""'"); 
+  }
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "callback_wrapper" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[3],SWIG_as_voidptrptr(&arg4), 0, 0);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "callback_wrapper" "', argument " "4"" of type '" "void *""'"); 
+  }
+  {
+    try {
+      result = (int)ampls::grb::impl::callback_wrapper(arg1,arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN int _wrap_new_GurobiCallback(PyObject *self, PyObject *args, PyObject *kwargs) {
+  PyObject *resultobj = 0;
+  PyObject *arg1 = (PyObject *) 0 ;
+  PyObject *swig_obj[1] ;
+  ampls::GurobiCallback *result = 0 ;
+  
+  if (!SWIG_Python_CheckNoKeywords(kwargs, "new_GurobiCallback")) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "new_GurobiCallback", 0, 0, 0)) SWIG_fail;
+  arg1 = self;
+  {
+    try {
+      if ( self->ob_type != ((SwigPyClientData *)(SWIGTYPE_p_ampls__GurobiCallback)->clientdata)->pytype ) {
+        /* subclassed */
+        result = (ampls::GurobiCallback *)new SwigDirector_GurobiCallback(arg1); 
+      } else {
+        SWIG_SetErrorMsg(PyExc_RuntimeError,"accessing abstract class or protected constructor"); 
+        SWIG_fail;
+      }
+      
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_ampls__GurobiCallback, SWIG_BUILTIN_INIT |  0 );
+  return resultobj == Py_None ? -1 : 0;
+fail:
+  return -1;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_where(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_where", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_where" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  {
+    try {
+      result = (int)(arg1)->where();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_run(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_run", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_run" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==self));
+  try {
+    {
+      try {
+        if (upcall) {
+          Swig::DirectorPureVirtualException::raise("ampls::GurobiCallback::run");
+        } else {
+          result = (int)(arg1)->run();
+        }
+      } catch(const ampls::AMPLSolverException &e) {
+        SWIG_exception(SWIG_RuntimeError, e.what());
+      } 
+      catch(...) {
+        SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+      }
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getWhereString(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  char *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_getWhereString", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getWhereString" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==self));
+  try {
+    {
+      try {
+        if (upcall) {
+          result = (char *)(arg1)->ampls::GurobiCallback::getWhereString();
+        } else {
+          result = (char *)(arg1)->getWhereString();
+        }
+      } catch(const ampls::AMPLSolverException &e) {
+        SWIG_exception(SWIG_RuntimeError, e.what());
+      } 
+      catch(...) {
+        SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+      }
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  if (director) {
+    director->swig_release_ownership(SWIG_as_voidptr(result));
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getMessage(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  char *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_getMessage", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getMessage" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==self));
+  try {
+    {
+      try {
+        if (upcall) {
+          result = (char *)(arg1)->ampls::GurobiCallback::getMessage();
+        } else {
+          result = (char *)(arg1)->getMessage();
+        }
+      } catch(const ampls::AMPLSolverException &e) {
+        SWIG_exception(SWIG_RuntimeError, e.what());
+      } 
+      catch(...) {
+        SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+      }
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  if (director) {
+    director->swig_release_ownership(SWIG_as_voidptr(result));
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getObj(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  double result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_getObj", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getObj" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==self));
+  try {
+    {
+      try {
+        if (upcall) {
+          result = (double)(arg1)->ampls::GurobiCallback::getObj();
+        } else {
+          result = (double)(arg1)->getObj();
+        }
+      } catch(const ampls::AMPLSolverException &e) {
+        SWIG_exception(SWIG_RuntimeError, e.what());
+      } 
+      catch(...) {
+        SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+      }
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getCBData(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  void *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_getCBData", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getCBData" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  {
+    try {
+      result = (void *)(arg1)->getCBData();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_void, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getGRBModel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  GRBmodel *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_getGRBModel", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getGRBModel" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  {
+    try {
+      result = (GRBmodel *)(arg1)->getGRBModel();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBmodel, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_terminate(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_terminate", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_terminate" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  {
+    try {
+      (arg1)->terminate();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getInt(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getInt" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiCallback_getInt" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (int)(arg1)->getInt(arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getDouble(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  double result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getDouble" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiCallback_getDouble" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (double)(arg1)->getDouble(arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getDoubleArray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::vector< double,std::allocator< double > > result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getDoubleArray" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiCallback_getDoubleArray" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (arg1)->getDoubleArray(arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = swig::from(static_cast< std::vector< double,std::allocator< double > > >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_setSolution(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  double *arg2 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject *swig_obj[2] ;
+  double result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_setSolution" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[0], &argp2,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiCallback_setSolution" "', argument " "2"" of type '" "double *""'"); 
+  }
+  arg2 = reinterpret_cast< double * >(argp2);
+  {
+    try {
+      result = (double)(arg1)->setSolution(arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getAMPLWhere(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  ampls::Where::CBWhere result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_getAMPLWhere", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getAMPLWhere" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==self));
+  try {
+    {
+      try {
+        if (upcall) {
+          result = (ampls::Where::CBWhere)(arg1)->ampls::GurobiCallback::getAMPLWhere();
+        } else {
+          result = (ampls::Where::CBWhere)(arg1)->getAMPLWhere();
+        }
+      } catch(const ampls::AMPLSolverException &e) {
+        SWIG_exception(SWIG_RuntimeError, e.what());
+      } 
+      catch(...) {
+        SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+      }
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_get(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  ampls::Variant result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_get" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiCallback_get" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (arg1)->get(arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj((new ampls::Variant(static_cast< const ampls::Variant& >(result))), SWIGTYPE_p_ampls__Variant, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiCallback_getValue(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  ampls::Value::CBValue arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  ampls::Variant result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getValue" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiCallback_getValue" "', argument " "2"" of type '" "ampls::Value::CBValue""'");
+  } 
+  arg2 = static_cast< ampls::Value::CBValue >(val2);
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==self));
+  try {
+    {
+      try {
+        if (upcall) {
+          result = (arg1)->ampls::GurobiCallback::getValue(arg2);
+        } else {
+          result = (arg1)->getValue(arg2);
+        }
+      } catch(const ampls::AMPLSolverException &e) {
+        SWIG_exception(SWIG_RuntimeError, e.what());
+      } 
+      catch(...) {
+        SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+      }
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_NewPointerObj((new ampls::Variant(static_cast< const ampls::Variant& >(result))), SWIGTYPE_p_ampls__Variant, SWIG_POINTER_OWN |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GurobiCallback(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "delete_GurobiCallback", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GurobiCallback" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_disown_GurobiCallback(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "disown_GurobiCallback" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
+  {
+    Swig::Director *director = SWIG_DIRECTOR_CAST(arg1);
+    if (director) director->swig_disown();
+  }
+  
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_GurobiCallback) /* defines _wrap_delete_GurobiCallback_destructor_closure */
+
+SWIGINTERN PyObject *_wrap_AMPLloadmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  int arg1 ;
+  char **arg2 = (char **) 0 ;
+  ASL **arg3 = (ASL **) 0 ;
+  int val1 ;
+  int ecode1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  PyObject *swig_obj[3] ;
+  GRBmodel *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AMPLloadmodel", 3, 3, swig_obj)) SWIG_fail;
+  ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
+  if (!SWIG_IsOK(ecode1)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "AMPLloadmodel" "', argument " "1"" of type '" "int""'");
+  } 
+  arg1 = static_cast< int >(val1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_p_char, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLloadmodel" "', argument " "2"" of type '" "char **""'"); 
+  }
+  arg2 = reinterpret_cast< char ** >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_p_ASL, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "AMPLloadmodel" "', argument " "3"" of type '" "ASL **""'"); 
+  }
+  arg3 = reinterpret_cast< ASL ** >(argp3);
+  {
+    try {
+      result = (GRBmodel *)ampls::grb::impl::AMPLloadmodel(arg1,arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBmodel, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AMPLwritesol(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  ASL *arg2 = (ASL *) 0 ;
+  int arg3 ;
+  char *arg4 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int res4 ;
+  char *buf4 = 0 ;
+  int alloc4 = 0 ;
+  PyObject *swig_obj[4] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AMPLwritesol", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLwritesol" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_ASL, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLwritesol" "', argument " "2"" of type '" "ASL *""'"); 
+  }
+  arg2 = reinterpret_cast< ASL * >(argp2);
+  ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AMPLwritesol" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_AsCharPtrAndSize(swig_obj[3], &buf4, NULL, &alloc4);
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "AMPLwritesol" "', argument " "4"" of type '" "char const *""'");
+  }
+  arg4 = reinterpret_cast< char * >(buf4);
+  {
+    try {
+      ampls::grb::impl::AMPLwritesol(arg1,arg2,arg3,(char const *)arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return resultobj;
+fail:
+  if (alloc4 == SWIG_NEWOBJ) delete[] buf4;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_freeEnvironment(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  
+  if (!SWIG_Python_UnpackTuple(args, "freeEnvironment", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      ampls::grb::impl::freeEnvironment();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_freeASL(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ASL **arg1 = (ASL **) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_p_ASL, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "freeASL" "', argument " "1"" of type '" "ASL **""'"); 
+  }
+  arg1 = reinterpret_cast< ASL ** >(argp1);
+  {
+    try {
+      ampls::grb::impl::freeASL(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiDrv_loadModel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiDrv *arg1 = (ampls::GurobiDrv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  SwigValueWrapper< ampls::GurobiModel > result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiDrv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiDrv_loadModel" "', argument " "1"" of type '" "ampls::GurobiDrv *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiDrv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiDrv_loadModel" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (arg1)->loadModel((char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj((new ampls::GurobiModel(static_cast< const ampls::GurobiModel& >(result))), SWIGTYPE_p_ampls__GurobiModel, SWIG_POINTER_OWN |  0 );
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GurobiDrv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiDrv *arg1 = (ampls::GurobiDrv *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "delete_GurobiDrv", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiDrv, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GurobiDrv" "', argument " "1"" of type '" "ampls::GurobiDrv *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiDrv * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN int _wrap_new_GurobiDrv(PyObject *self, PyObject *args, PyObject *kwargs) {
+  PyObject *resultobj = 0;
+  ampls::GurobiDrv *result = 0 ;
+  
+  if (!SWIG_Python_CheckNoKeywords(kwargs, "new_GurobiDrv")) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "new_GurobiDrv", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      result = (ampls::GurobiDrv *)new ampls::GurobiDrv();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_ampls__GurobiDrv, SWIG_BUILTIN_INIT |  0 );
+  return resultobj == Py_None ? -1 : 0;
+fail:
+  return -1;
+}
+
+
+SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_GurobiDrv) /* defines _wrap_delete_GurobiDrv_destructor_closure */
+
+SWIGINTERN PyObject *_wrap_GurobiModel_enableLazyConstraints(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_enableLazyConstraints", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_enableLazyConstraints" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      (arg1)->enableLazyConstraints();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN int _wrap_new_GurobiModel(PyObject *self, PyObject *args, PyObject *kwargs) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  ampls::GurobiModel *result = 0 ;
+  
+  if (!SWIG_Python_CheckNoKeywords(kwargs, "new_GurobiModel")) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "new_GurobiModel", 1, 1, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1, SWIGTYPE_p_ampls__GurobiModel,  0  | 0);
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_GurobiModel" "', argument " "1"" of type '" "ampls::GurobiModel const &""'"); 
+  }
+  if (!argp1) {
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_GurobiModel" "', argument " "1"" of type '" "ampls::GurobiModel const &""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      result = (ampls::GurobiModel *)new ampls::GurobiModel((ampls::GurobiModel const &)*arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_ampls__GurobiModel, SWIG_BUILTIN_INIT |  0 );
+  return resultobj == Py_None ? -1 : 0;
+fail:
+  return -1;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getSolutionVector(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::vector< double,std::allocator< double > > result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_getSolutionVector", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getSolutionVector" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      result = (arg1)->getSolutionVector();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = swig::from(static_cast< std::vector< double,std::allocator< double > > >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_optimize(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_optimize", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_optimize" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      result = (int)(arg1)->optimize();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getStatus(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  ampls::Status::SolStatus result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_getStatus", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getStatus" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      result = (ampls::Status::SolStatus)(arg1)->getStatus();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getNumVars(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_getNumVars", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getNumVars" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      result = (int)(arg1)->getNumVars();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getObj(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  double result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_getObj", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getObj" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      result = (double)(arg1)->getObj();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getSolution(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  double *arg4 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  PyObject *swig_obj[4] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_getSolution", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getSolution" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_getSolution" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(swig_obj[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GurobiModel_getSolution" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  res4 = SWIG_ConvertPtr(swig_obj[2], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GurobiModel_getSolution" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  {
+    try {
+      result = (int)(arg1)->getSolution(arg2,arg3,arg4);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_error(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  std::string result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_error" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_error" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (arg1)->error(arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_std_string(static_cast< std::string >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getIntAttr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getIntAttr" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_getIntAttr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)(arg1)->getIntAttr((char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getDoubleAttr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  double result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getDoubleAttr" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_getDoubleAttr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (double)(arg1)->getDoubleAttr((char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getIntAttrArray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_getIntAttrArray", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getIntAttrArray" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_getIntAttrArray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GurobiModel_getIntAttrArray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GurobiModel_getIntAttrArray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[3], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GurobiModel_getIntAttrArray" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  {
+    try {
+      result = (int)(arg1)->getIntAttrArray((char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getDoubleAttrArray(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  int arg4 ;
+  double *arg5 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_getDoubleAttrArray", 4, 4, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getDoubleAttrArray" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_getDoubleAttrArray" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GurobiModel_getDoubleAttrArray" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  ecode4 = SWIG_AsVal_int(swig_obj[2], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GurobiModel_getDoubleAttrArray" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[3], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GurobiModel_getDoubleAttrArray" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  {
+    try {
+      result = (int)(arg1)->getDoubleAttrArray((char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getIntParam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getIntParam" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_getIntParam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)(arg1)->getIntParam((char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getDoubleParam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  double result;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getDoubleParam" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_getDoubleParam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (double)(arg1)->getDoubleParam((char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getStrParam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  char *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getStrParam" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_getStrParam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (char *)(arg1)->getStrParam((char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_setIntParam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  int arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_setIntParam", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_setIntParam" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_setIntParam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_int(swig_obj[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GurobiModel_setIntParam" "', argument " "3"" of type '" "int""'");
+  } 
+  arg3 = static_cast< int >(val3);
+  {
+    try {
+      result = (int)(arg1)->setIntParam((char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_setDoubleParam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  double arg3 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  double val3 ;
+  int ecode3 = 0 ;
+  PyObject *swig_obj[3] ;
+  double result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_setDoubleParam", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_setDoubleParam" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_setDoubleParam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  ecode3 = SWIG_AsVal_double(swig_obj[1], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GurobiModel_setDoubleParam" "', argument " "3"" of type '" "double""'");
+  } 
+  arg3 = static_cast< double >(val3);
+  {
+    try {
+      result = (double)(arg1)->setDoubleParam((char const *)arg2,arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_setStrParam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  PyObject *swig_obj[3] ;
+  double result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_setStrParam", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_setStrParam" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GurobiModel_setStrParam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GurobiModel_setStrParam" "', argument " "3"" of type '" "char const *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  {
+    try {
+      result = (double)(arg1)->setStrParam((char const *)arg2,(char const *)arg3);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getGRBmodel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  GRBmodel *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_getGRBmodel", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getGRBmodel" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      result = (GRBmodel *)(arg1)->getGRBmodel();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBmodel, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GurobiModel_getGRBenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  GRBenv *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GurobiModel_getGRBenv", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getGRBenv" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      result = (GRBenv *)(arg1)->getGRBenv();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBenv, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_GurobiModel(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "delete_GurobiModel", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_GurobiModel" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_GurobiModel) /* defines _wrap_delete_GurobiModel_destructor_closure */
 
 SWIGINTERN PyObject *_wrap_cpxiodevice_cpxiodev_eof_set(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
@@ -59981,6 +75797,238 @@ static PyMethodDef SwigMethods[] = {
 	 { "generateArguments", _wrap_generateArguments, METH_O, NULL},
 	 { "deleteParams", _wrap_deleteParams, METH_O, NULL},
 	 { "disown_GenericCallback", _wrap_disown_GenericCallback, METH_O, NULL},
+	 { "GRBgetattrinfo", _wrap_GRBgetattrinfo, METH_VARARGS, NULL},
+	 { "GRBisattravailable", _wrap_GRBisattravailable, METH_VARARGS, NULL},
+	 { "GRBgetintattr", _wrap_GRBgetintattr, METH_VARARGS, NULL},
+	 { "GRBsetintattr", _wrap_GRBsetintattr, METH_VARARGS, NULL},
+	 { "GRBgetintattrelement", _wrap_GRBgetintattrelement, METH_VARARGS, NULL},
+	 { "GRBsetintattrelement", _wrap_GRBsetintattrelement, METH_VARARGS, NULL},
+	 { "GRBgetintattrarray", _wrap_GRBgetintattrarray, METH_VARARGS, NULL},
+	 { "GRBsetintattrarray", _wrap_GRBsetintattrarray, METH_VARARGS, NULL},
+	 { "GRBgetintattrlist", _wrap_GRBgetintattrlist, METH_VARARGS, NULL},
+	 { "GRBsetintattrlist", _wrap_GRBsetintattrlist, METH_VARARGS, NULL},
+	 { "GRBgetcharattrelement", _wrap_GRBgetcharattrelement, METH_VARARGS, NULL},
+	 { "GRBsetcharattrelement", _wrap_GRBsetcharattrelement, METH_VARARGS, NULL},
+	 { "GRBgetcharattrarray", _wrap_GRBgetcharattrarray, METH_VARARGS, NULL},
+	 { "GRBsetcharattrarray", _wrap_GRBsetcharattrarray, METH_VARARGS, NULL},
+	 { "GRBgetcharattrlist", _wrap_GRBgetcharattrlist, METH_VARARGS, NULL},
+	 { "GRBsetcharattrlist", _wrap_GRBsetcharattrlist, METH_VARARGS, NULL},
+	 { "GRBgetdblattr", _wrap_GRBgetdblattr, METH_VARARGS, NULL},
+	 { "GRBsetdblattr", _wrap_GRBsetdblattr, METH_VARARGS, NULL},
+	 { "GRBgetdblattrelement", _wrap_GRBgetdblattrelement, METH_VARARGS, NULL},
+	 { "GRBsetdblattrelement", _wrap_GRBsetdblattrelement, METH_VARARGS, NULL},
+	 { "GRBgetdblattrarray", _wrap_GRBgetdblattrarray, METH_VARARGS, NULL},
+	 { "GRBsetdblattrarray", _wrap_GRBsetdblattrarray, METH_VARARGS, NULL},
+	 { "GRBgetdblattrlist", _wrap_GRBgetdblattrlist, METH_VARARGS, NULL},
+	 { "GRBsetdblattrlist", _wrap_GRBsetdblattrlist, METH_VARARGS, NULL},
+	 { "GRBgetstrattr", _wrap_GRBgetstrattr, METH_VARARGS, NULL},
+	 { "GRBsetstrattr", _wrap_GRBsetstrattr, METH_VARARGS, NULL},
+	 { "GRBgetstrattrelement", _wrap_GRBgetstrattrelement, METH_VARARGS, NULL},
+	 { "GRBsetstrattrelement", _wrap_GRBsetstrattrelement, METH_VARARGS, NULL},
+	 { "GRBgetstrattrarray", _wrap_GRBgetstrattrarray, METH_VARARGS, NULL},
+	 { "GRBsetstrattrarray", _wrap_GRBsetstrattrarray, METH_VARARGS, NULL},
+	 { "GRBgetstrattrlist", _wrap_GRBgetstrattrlist, METH_VARARGS, NULL},
+	 { "GRBsetstrattrlist", _wrap_GRBsetstrattrlist, METH_VARARGS, NULL},
+	 { "GRBsetcallbackfunc", _wrap_GRBsetcallbackfunc, METH_VARARGS, NULL},
+	 { "GRBgetcallbackfunc", _wrap_GRBgetcallbackfunc, METH_VARARGS, NULL},
+	 { "GRBsetlogcallbackfunc", _wrap_GRBsetlogcallbackfunc, METH_VARARGS, NULL},
+	 { "GRBsetlogcallbackfuncenv", _wrap_GRBsetlogcallbackfuncenv, METH_VARARGS, NULL},
+	 { "GRBcbget", _wrap_GRBcbget, METH_VARARGS, NULL},
+	 { "GRBcbsetparam", _wrap_GRBcbsetparam, METH_VARARGS, NULL},
+	 { "GRBcbsolution", _wrap_GRBcbsolution, METH_VARARGS, NULL},
+	 { "GRBcbcut", _wrap_GRBcbcut, METH_VARARGS, NULL},
+	 { "GRBcblazy", _wrap_GRBcblazy, METH_VARARGS, NULL},
+	 { "GRBgetcoeff", _wrap_GRBgetcoeff, METH_VARARGS, NULL},
+	 { "GRBgetconstrs", _wrap_GRBgetconstrs, METH_VARARGS, NULL},
+	 { "GRBXgetconstrs", _wrap_GRBXgetconstrs, METH_VARARGS, NULL},
+	 { "GRBgetvars", _wrap_GRBgetvars, METH_VARARGS, NULL},
+	 { "GRBXgetvars", _wrap_GRBXgetvars, METH_VARARGS, NULL},
+	 { "GRBgetsos", _wrap_GRBgetsos, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrMax", _wrap_GRBgetgenconstrMax, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrMin", _wrap_GRBgetgenconstrMin, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrAbs", _wrap_GRBgetgenconstrAbs, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrAnd", _wrap_GRBgetgenconstrAnd, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrOr", _wrap_GRBgetgenconstrOr, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrIndicator", _wrap_GRBgetgenconstrIndicator, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrPWL", _wrap_GRBgetgenconstrPWL, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrPoly", _wrap_GRBgetgenconstrPoly, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrExpA", _wrap_GRBgetgenconstrExpA, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrLogA", _wrap_GRBgetgenconstrLogA, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrPow", _wrap_GRBgetgenconstrPow, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrExp", _wrap_GRBgetgenconstrExp, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrLog", _wrap_GRBgetgenconstrLog, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrSin", _wrap_GRBgetgenconstrSin, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrCos", _wrap_GRBgetgenconstrCos, METH_VARARGS, NULL},
+	 { "GRBgetgenconstrTan", _wrap_GRBgetgenconstrTan, METH_VARARGS, NULL},
+	 { "GRBgetq", _wrap_GRBgetq, METH_VARARGS, NULL},
+	 { "GRBgetqconstr", _wrap_GRBgetqconstr, METH_VARARGS, NULL},
+	 { "GRBgetvarbyname", _wrap_GRBgetvarbyname, METH_VARARGS, NULL},
+	 { "GRBgetconstrbyname", _wrap_GRBgetconstrbyname, METH_VARARGS, NULL},
+	 { "GRBgetqconstrbyname", _wrap_GRBgetqconstrbyname, METH_VARARGS, NULL},
+	 { "GRBgetpwlobj", _wrap_GRBgetpwlobj, METH_VARARGS, NULL},
+	 { "GRBoptimize", _wrap_GRBoptimize, METH_O, NULL},
+	 { "GRBoptimizeasync", _wrap_GRBoptimizeasync, METH_O, NULL},
+	 { "GRBoptimizebatch", _wrap_GRBoptimizebatch, METH_VARARGS, NULL},
+	 { "GRBcopymodel", _wrap_GRBcopymodel, METH_O, NULL},
+	 { "GRBfixmodel", _wrap_GRBfixmodel, METH_VARARGS, NULL},
+	 { "GRBfeasrelax", _wrap_GRBfeasrelax, METH_VARARGS, NULL},
+	 { "GRBsinglescenariomodel", _wrap_GRBsinglescenariomodel, METH_VARARGS, NULL},
+	 { "GRBgetcbwhatinfo", _wrap_GRBgetcbwhatinfo, METH_VARARGS, NULL},
+	 { "GRBrelaxmodel", _wrap_GRBrelaxmodel, METH_VARARGS, NULL},
+	 { "GRBconverttofixed", _wrap_GRBconverttofixed, METH_O, NULL},
+	 { "GRBpresolvemodel", _wrap_GRBpresolvemodel, METH_VARARGS, NULL},
+	 { "GRBiismodel", _wrap_GRBiismodel, METH_VARARGS, NULL},
+	 { "GRBfeasibility", _wrap_GRBfeasibility, METH_VARARGS, NULL},
+	 { "GRBlinearizemodel", _wrap_GRBlinearizemodel, METH_VARARGS, NULL},
+	 { "GRBresultmodel", _wrap_GRBresultmodel, METH_VARARGS, NULL},
+	 { "GRBfixedmodel", _wrap_GRBfixedmodel, METH_O, NULL},
+	 { "GRBloadenvsyscb", _wrap_GRBloadenvsyscb, METH_VARARGS, NULL},
+	 { "GRBemptyenvadv", _wrap_GRBemptyenvadv, METH_VARARGS, NULL},
+	 { "GRBreadmodel", _wrap_GRBreadmodel, METH_VARARGS, NULL},
+	 { "GRBread", _wrap_GRBread, METH_VARARGS, NULL},
+	 { "GRBwrite", _wrap_GRBwrite, METH_VARARGS, NULL},
+	 { "GRBismodelfile", _wrap_GRBismodelfile, METH_O, NULL},
+	 { "GRBisattrfile", _wrap_GRBisattrfile, METH_O, NULL},
+	 { "GRBfiletype", _wrap_GRBfiletype, METH_O, NULL},
+	 { "GRBisrecordfile", _wrap_GRBisrecordfile, METH_O, NULL},
+	 { "GRBgetjsonsolution", _wrap_GRBgetjsonsolution, METH_VARARGS, NULL},
+	 { "GRBloadjson", _wrap_GRBloadjson, METH_VARARGS, NULL},
+	 { "GRBnewmodel", _wrap_GRBnewmodel, METH_VARARGS, NULL},
+	 { "GRBloadmodel", _wrap_GRBloadmodel, METH_VARARGS, NULL},
+	 { "GRBXloadmodel", _wrap_GRBXloadmodel, METH_VARARGS, NULL},
+	 { "GRBaddvar", _wrap_GRBaddvar, METH_VARARGS, NULL},
+	 { "GRBaddvars", _wrap_GRBaddvars, METH_VARARGS, NULL},
+	 { "GRBXaddvars", _wrap_GRBXaddvars, METH_VARARGS, NULL},
+	 { "GRBaddconstr", _wrap_GRBaddconstr, METH_VARARGS, NULL},
+	 { "GRBaddconstrs", _wrap_GRBaddconstrs, METH_VARARGS, NULL},
+	 { "GRBXaddconstrs", _wrap_GRBXaddconstrs, METH_VARARGS, NULL},
+	 { "GRBaddrangeconstr", _wrap_GRBaddrangeconstr, METH_VARARGS, NULL},
+	 { "GRBaddrangeconstrs", _wrap_GRBaddrangeconstrs, METH_VARARGS, NULL},
+	 { "GRBXaddrangeconstrs", _wrap_GRBXaddrangeconstrs, METH_VARARGS, NULL},
+	 { "GRBaddsos", _wrap_GRBaddsos, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrMax", _wrap_GRBaddgenconstrMax, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrMin", _wrap_GRBaddgenconstrMin, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrAbs", _wrap_GRBaddgenconstrAbs, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrAnd", _wrap_GRBaddgenconstrAnd, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrOr", _wrap_GRBaddgenconstrOr, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrIndicator", _wrap_GRBaddgenconstrIndicator, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrPWL", _wrap_GRBaddgenconstrPWL, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrPoly", _wrap_GRBaddgenconstrPoly, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrExpA", _wrap_GRBaddgenconstrExpA, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrLogA", _wrap_GRBaddgenconstrLogA, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrPow", _wrap_GRBaddgenconstrPow, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrExp", _wrap_GRBaddgenconstrExp, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrLog", _wrap_GRBaddgenconstrLog, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrSin", _wrap_GRBaddgenconstrSin, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrCos", _wrap_GRBaddgenconstrCos, METH_VARARGS, NULL},
+	 { "GRBaddgenconstrTan", _wrap_GRBaddgenconstrTan, METH_VARARGS, NULL},
+	 { "GRBaddqconstr", _wrap_GRBaddqconstr, METH_VARARGS, NULL},
+	 { "GRBaddcone", _wrap_GRBaddcone, METH_VARARGS, NULL},
+	 { "GRBaddqpterms", _wrap_GRBaddqpterms, METH_VARARGS, NULL},
+	 { "GRBdelvars", _wrap_GRBdelvars, METH_VARARGS, NULL},
+	 { "GRBdelconstrs", _wrap_GRBdelconstrs, METH_VARARGS, NULL},
+	 { "GRBdelsos", _wrap_GRBdelsos, METH_VARARGS, NULL},
+	 { "GRBdelgenconstrs", _wrap_GRBdelgenconstrs, METH_VARARGS, NULL},
+	 { "GRBdelqconstrs", _wrap_GRBdelqconstrs, METH_VARARGS, NULL},
+	 { "GRBdelq", _wrap_GRBdelq, METH_O, NULL},
+	 { "GRBchgcoeffs", _wrap_GRBchgcoeffs, METH_VARARGS, NULL},
+	 { "GRBXchgcoeffs", _wrap_GRBXchgcoeffs, METH_VARARGS, NULL},
+	 { "GRBsetpwlobj", _wrap_GRBsetpwlobj, METH_VARARGS, NULL},
+	 { "GRBupdatemodel", _wrap_GRBupdatemodel, METH_O, NULL},
+	 { "GRBreset", _wrap_GRBreset, METH_VARARGS, NULL},
+	 { "GRBresetmodel", _wrap_GRBresetmodel, METH_O, NULL},
+	 { "GRBfreemodel", _wrap_GRBfreemodel, METH_O, NULL},
+	 { "GRBcomputeIIS", _wrap_GRBcomputeIIS, METH_O, NULL},
+	 { "GRBFSolve", _wrap_GRBFSolve, METH_VARARGS, NULL},
+	 { "GRBBinvColj", _wrap_GRBBinvColj, METH_VARARGS, NULL},
+	 { "GRBBinvj", _wrap_GRBBinvj, METH_VARARGS, NULL},
+	 { "GRBBSolve", _wrap_GRBBSolve, METH_VARARGS, NULL},
+	 { "GRBBinvi", _wrap_GRBBinvi, METH_VARARGS, NULL},
+	 { "GRBBinvRowi", _wrap_GRBBinvRowi, METH_VARARGS, NULL},
+	 { "GRBgetBasisHead", _wrap_GRBgetBasisHead, METH_VARARGS, NULL},
+	 { "GRBcbstoponemultiobj", _wrap_GRBcbstoponemultiobj, METH_VARARGS, NULL},
+	 { "GRBstrongbranch", _wrap_GRBstrongbranch, METH_VARARGS, NULL},
+	 { "GRBcheckmodel", _wrap_GRBcheckmodel, METH_O, NULL},
+	 { "GRBsetsignal", _wrap_GRBsetsignal, METH_O, NULL},
+	 { "GRBterminate", _wrap_GRBterminate, METH_O, NULL},
+	 { "GRBreplay", _wrap_GRBreplay, METH_O, NULL},
+	 { "GRBsetobjective", _wrap_GRBsetobjective, METH_VARARGS, NULL},
+	 { "GRBsetobjectiven", _wrap_GRBsetobjectiven, METH_VARARGS, NULL},
+	 { "GRBclean2", _wrap_GRBclean2, METH_VARARGS, NULL},
+	 { "GRBclean3", _wrap_GRBclean3, METH_VARARGS, NULL},
+	 { "GRBmsg", _wrap_GRBmsg, METH_VARARGS, NULL},
+	 { "GRBgetlogfile", _wrap_GRBgetlogfile, METH_VARARGS, NULL},
+	 { "GRBsetlogfile", _wrap_GRBsetlogfile, METH_VARARGS, NULL},
+	 { "GRBgetintparam", _wrap_GRBgetintparam, METH_VARARGS, NULL},
+	 { "GRBgetdblparam", _wrap_GRBgetdblparam, METH_VARARGS, NULL},
+	 { "GRBgetstrparam", _wrap_GRBgetstrparam, METH_VARARGS, NULL},
+	 { "GRBgetintparaminfo", _wrap_GRBgetintparaminfo, METH_VARARGS, NULL},
+	 { "GRBgetdblparaminfo", _wrap_GRBgetdblparaminfo, METH_VARARGS, NULL},
+	 { "GRBgetstrparaminfo", _wrap_GRBgetstrparaminfo, METH_VARARGS, NULL},
+	 { "GRBgetparamflags", _wrap_GRBgetparamflags, METH_VARARGS, NULL},
+	 { "GRBsetparam", _wrap_GRBsetparam, METH_VARARGS, NULL},
+	 { "GRBsetintparam", _wrap_GRBsetintparam, METH_VARARGS, NULL},
+	 { "GRBsetdblparam", _wrap_GRBsetdblparam, METH_VARARGS, NULL},
+	 { "GRBsetstrparam", _wrap_GRBsetstrparam, METH_VARARGS, NULL},
+	 { "GRBgetparamtype", _wrap_GRBgetparamtype, METH_VARARGS, NULL},
+	 { "GRBresetparams", _wrap_GRBresetparams, METH_O, NULL},
+	 { "GRBcopyparams", _wrap_GRBcopyparams, METH_VARARGS, NULL},
+	 { "GRBwriteparams", _wrap_GRBwriteparams, METH_VARARGS, NULL},
+	 { "GRBreadparams", _wrap_GRBreadparams, METH_VARARGS, NULL},
+	 { "GRBgetnumparams", _wrap_GRBgetnumparams, METH_O, NULL},
+	 { "GRBgetparamname", _wrap_GRBgetparamname, METH_VARARGS, NULL},
+	 { "GRBgetnumattributes", _wrap_GRBgetnumattributes, METH_O, NULL},
+	 { "GRBgetattrname", _wrap_GRBgetattrname, METH_VARARGS, NULL},
+	 { "GRBloadenv", _wrap_GRBloadenv, METH_VARARGS, NULL},
+	 { "GRBemptyenv", _wrap_GRBemptyenv, METH_O, NULL},
+	 { "GRBstartenv", _wrap_GRBstartenv, METH_O, NULL},
+	 { "GRBloadenvadv", _wrap_GRBloadenvadv, METH_VARARGS, NULL},
+	 { "GRBloadclientenv", _wrap_GRBloadclientenv, METH_VARARGS, NULL},
+	 { "GRBloadclientenvadv", _wrap_GRBloadclientenvadv, METH_VARARGS, NULL},
+	 { "GRBloadcloudenv", _wrap_GRBloadcloudenv, METH_VARARGS, NULL},
+	 { "GRBloadcloudenvadv", _wrap_GRBloadcloudenvadv, METH_VARARGS, NULL},
+	 { "GRBgetenv", _wrap_GRBgetenv, METH_O, NULL},
+	 { "GRBgetconcurrentenv", _wrap_GRBgetconcurrentenv, METH_VARARGS, NULL},
+	 { "GRBdiscardconcurrentenvs", _wrap_GRBdiscardconcurrentenvs, METH_O, NULL},
+	 { "GRBgetmultiobjenv", _wrap_GRBgetmultiobjenv, METH_VARARGS, NULL},
+	 { "GRBdiscardmultiobjenvs", _wrap_GRBdiscardmultiobjenvs, METH_O, NULL},
+	 { "GRBreleaselicense", _wrap_GRBreleaselicense, METH_O, NULL},
+	 { "GRBfreeenv", _wrap_GRBfreeenv, METH_O, NULL},
+	 { "GRBgeterrormsg", _wrap_GRBgeterrormsg, METH_O, NULL},
+	 { "GRBgetmerrormsg", _wrap_GRBgetmerrormsg, METH_O, NULL},
+	 { "GRBversion", _wrap_GRBversion, METH_VARARGS, NULL},
+	 { "GRBplatform", _wrap_GRBplatform, METH_NOARGS, NULL},
+	 { "GRBlisttokens", _wrap_GRBlisttokens, METH_NOARGS, NULL},
+	 { "GRBtunemodel", _wrap_GRBtunemodel, METH_O, NULL},
+	 { "GRBtunemodels", _wrap_GRBtunemodels, METH_VARARGS, NULL},
+	 { "GRBgettuneresult", _wrap_GRBgettuneresult, METH_VARARGS, NULL},
+	 { "GRBgettunelog", _wrap_GRBgettunelog, METH_VARARGS, NULL},
+	 { "GRBtunemodeladv", _wrap_GRBtunemodeladv, METH_VARARGS, NULL},
+	 { "GRBsortIDi", _wrap_GRBsortIDi, METH_VARARGS, NULL},
+	 { "GRBabortbatch", _wrap_GRBabortbatch, METH_O, NULL},
+	 { "GRBdiscardbatch", _wrap_GRBdiscardbatch, METH_O, NULL},
+	 { "GRBretrybatch", _wrap_GRBretrybatch, METH_O, NULL},
+	 { "GRBfreebatch", _wrap_GRBfreebatch, METH_O, NULL},
+	 { "GRBgetbatch", _wrap_GRBgetbatch, METH_VARARGS, NULL},
+	 { "GRBgetbatchjsonsolution", _wrap_GRBgetbatchjsonsolution, METH_VARARGS, NULL},
+	 { "GRBgetbatchintattr", _wrap_GRBgetbatchintattr, METH_VARARGS, NULL},
+	 { "GRBgetbatchstrattr", _wrap_GRBgetbatchstrattr, METH_VARARGS, NULL},
+	 { "GRBgetbatchattrname", _wrap_GRBgetbatchattrname, METH_VARARGS, NULL},
+	 { "GRBgetbatchattrflags", _wrap_GRBgetbatchattrflags, METH_VARARGS, NULL},
+	 { "GRBgetbatchattrinfo", _wrap_GRBgetbatchattrinfo, METH_VARARGS, NULL},
+	 { "GRBupdatebatch", _wrap_GRBupdatebatch, METH_O, NULL},
+	 { "GRBwritebatchjsonsolution", _wrap_GRBwritebatchjsonsolution, METH_VARARGS, NULL},
+	 { "GRBgetnumbatchattributes", _wrap_GRBgetnumbatchattributes, METH_O, NULL},
+	 { "GRBgetbatchenv", _wrap_GRBgetbatchenv, METH_O, NULL},
+	 { "GRBfree", _wrap_GRBfree, METH_O, NULL},
+	 { "GRBsync", _wrap_GRBsync, METH_O, NULL},
+	 { "GRBpingserver", _wrap_GRBpingserver, METH_VARARGS, NULL},
+	 { "callback_wrapper", _wrap_callback_wrapper, METH_VARARGS, NULL},
+	 { "disown_GurobiCallback", _wrap_disown_GurobiCallback, METH_O, NULL},
+	 { "AMPLloadmodel", _wrap_AMPLloadmodel, METH_VARARGS, NULL},
+	 { "AMPLwritesol", _wrap_AMPLwritesol, METH_VARARGS, NULL},
+	 { "freeEnvironment", _wrap_freeEnvironment, METH_NOARGS, NULL},
+	 { "freeASL", _wrap_freeASL, METH_O, NULL},
 	 { "CPXaddcols", _wrap_CPXaddcols, METH_VARARGS, NULL},
 	 { "CPXaddfuncdest", _wrap_CPXaddfuncdest, METH_VARARGS, NULL},
 	 { "CPXaddpwl", _wrap_CPXaddpwl, METH_VARARGS, NULL},
@@ -60552,7 +76600,7 @@ static PyHeapTypeObject SwigPyBuiltin__dblArray_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.dblArray",             /* tp_name */
+    "amplpy_ampls_swig.dblArray",             /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_dblArray_destructor_closure, /* tp_dealloc */
@@ -60768,7 +76816,7 @@ static PyHeapTypeObject SwigPyBuiltin__intArray_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.intArray",             /* tp_name */
+    "amplpy_ampls_swig.intArray",             /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_intArray_destructor_closure, /* tp_dealloc */
@@ -61001,7 +77049,7 @@ static PyHeapTypeObject SwigPyBuiltin__swig__SwigPyIterator_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.SwigPyIterator",       /* tp_name */
+    "amplpy_ampls_swig.SwigPyIterator",       /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_SwigPyIterator_destructor_closure,               /* tp_dealloc */
@@ -61245,7 +77293,7 @@ static PyHeapTypeObject SwigPyBuiltin__std__mapT_std__string_int_t_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.map_string_int",       /* tp_name */
+    "amplpy_ampls_swig.map_string_int",       /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_map_string_int_destructor_closure,               /* tp_dealloc */
@@ -61489,7 +77537,7 @@ static PyHeapTypeObject SwigPyBuiltin__std__mapT_int_std__string_t_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.map_int_string",       /* tp_name */
+    "amplpy_ampls_swig.map_int_string",       /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_map_int_string_destructor_closure,               /* tp_dealloc */
@@ -61732,7 +77780,7 @@ static PyHeapTypeObject SwigPyBuiltin__std__vectorT_std__string_t_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.vector_string",        /* tp_name */
+    "amplpy_ampls_swig.vector_string",        /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_vector_string_destructor_closure,                /* tp_dealloc */
@@ -61975,7 +78023,7 @@ static PyHeapTypeObject SwigPyBuiltin__std__vectorT_double_t_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.vector_double",        /* tp_name */
+    "amplpy_ampls_swig.vector_double",        /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_vector_double_destructor_closure,                /* tp_dealloc */
@@ -62188,7 +78236,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__AMPLSolverException_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.AMPLSolverException",  /* tp_name */
+    "amplpy_ampls_swig.AMPLSolverException",  /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_AMPLSolverException_destructor_closure,          /* tp_dealloc */
@@ -62408,7 +78456,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__Variant_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.Variant",              /* tp_name */
+    "amplpy_ampls_swig.Variant",              /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_Variant_destructor_closure,  /* tp_dealloc */
@@ -62620,7 +78668,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__Where_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.Where",                /* tp_name */
+    "amplpy_ampls_swig.Where",                /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_Where_destructor_closure,    /* tp_dealloc */
@@ -62832,7 +78880,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__Value_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.Value",                /* tp_name */
+    "amplpy_ampls_swig.Value",                /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_Value_destructor_closure,    /* tp_dealloc */
@@ -63044,7 +79092,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__CutDirection_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.CutDirection",         /* tp_name */
+    "amplpy_ampls_swig.CutDirection",         /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_CutDirection_destructor_closure,                 /* tp_dealloc */
@@ -63256,7 +79304,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__Status_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.Status",               /* tp_name */
+    "amplpy_ampls_swig.Status",               /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_Status_destructor_closure,   /* tp_dealloc */
@@ -63470,7 +79518,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__impl__AMPLMutex_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.AMPLMutex",            /* tp_name */
+    "amplpy_ampls_swig.AMPLMutex",            /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_AMPLMutex_destructor_closure,/* tp_dealloc */
@@ -63697,7 +79745,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__impl__BaseCallback_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.BaseCallback",         /* tp_name */
+    "amplpy_ampls_swig.BaseCallback",         /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_BaseCallback_destructor_closure,                 /* tp_dealloc */
@@ -63916,7 +79964,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__GenericCallback_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.GenericCallback",      /* tp_name */
+    "amplpy_ampls_swig.GenericCallback",      /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_GenericCallback_destructor_closure,              /* tp_dealloc */
@@ -64143,7 +80191,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__AMPLModel_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.AMPLModel",            /* tp_name */
+    "amplpy_ampls_swig.AMPLModel",            /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_AMPLModel_destructor_closure,/* tp_dealloc */
@@ -64323,6 +80371,897 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__AMPLModel_type = {
 
 SWIGINTERN SwigPyClientData SwigPyBuiltin__ampls__AMPLModel_clientdata = {0, 0, 0, 0, 0, 0, (PyTypeObject *)&SwigPyBuiltin__ampls__AMPLModel_type};
 
+static SwigPyGetSet GRBsvec_ind_getset = { _wrap_GRBsvec_ind_get, _wrap_GRBsvec_ind_set };
+static SwigPyGetSet GRBsvec___dict___getset = { SwigPyObject_get___dict__, 0 };
+static SwigPyGetSet GRBsvec_len_getset = { _wrap_GRBsvec_len_get, _wrap_GRBsvec_len_set };
+static SwigPyGetSet GRBsvec_val_getset = { _wrap_GRBsvec_val_get, _wrap_GRBsvec_val_set };
+SWIGINTERN PyGetSetDef SwigPyBuiltin___GRBsvec_getset[] = {
+    { (char *)"ind", SwigPyBuiltin_FunpackGetterClosure, SwigPyBuiltin_FunpackSetterClosure, (char *)"", &GRBsvec_ind_getset },
+    { (char *)"__dict__", SwigPyBuiltin_FunpackGetterClosure, 0, (char *)"", &GRBsvec___dict___getset },
+    { (char *)"len", SwigPyBuiltin_FunpackGetterClosure, SwigPyBuiltin_FunpackSetterClosure, (char *)"", &GRBsvec_len_getset },
+    { (char *)"val", SwigPyBuiltin_FunpackGetterClosure, SwigPyBuiltin_FunpackSetterClosure, (char *)"", &GRBsvec_val_getset },
+    { NULL, NULL, NULL, NULL, NULL } /* Sentinel */
+};
+
+SWIGINTERN PyObject *
+SwigPyBuiltin___GRBsvec_richcompare(PyObject *self, PyObject *other, int op) {
+  PyObject *result = NULL;
+  if (!result) {
+    if (SwigPyObject_Check(self) && SwigPyObject_Check(other)) {
+      result = SwigPyObject_richcompare((SwigPyObject *)self, (SwigPyObject *)other, op);
+    } else {
+      result = Py_NotImplemented;
+      Py_INCREF(result);
+    }
+  }
+  return result;
+}
+
+SWIGINTERN PyMethodDef SwigPyBuiltin___GRBsvec_methods[] = {
+  { NULL, NULL, 0, NULL } /* Sentinel */
+};
+
+static PyHeapTypeObject SwigPyBuiltin___GRBsvec_type = {
+  {
+#if PY_VERSION_HEX >= 0x03000000
+    PyVarObject_HEAD_INIT(NULL, 0)
+#else
+    PyObject_HEAD_INIT(NULL)
+    0,                                        /* ob_size */
+#endif
+    "amplpy_ampls_swig.GRBsvec",              /* tp_name */
+    sizeof(SwigPyObject),                     /* tp_basicsize */
+    0,                                        /* tp_itemsize */
+    _wrap_delete_GRBsvec_destructor_closure,  /* tp_dealloc */
+    (printfunc) 0,                            /* tp_print */
+    (getattrfunc) 0,                          /* tp_getattr */
+    (setattrfunc) 0,                          /* tp_setattr */
+#if PY_VERSION_HEX >= 0x03000000
+    0,                                        /* tp_compare */
+#else
+    (cmpfunc) 0,                              /* tp_compare */
+#endif
+    (reprfunc) 0,                             /* tp_repr */
+    &SwigPyBuiltin___GRBsvec_type.as_number,  /* tp_as_number */
+    &SwigPyBuiltin___GRBsvec_type.as_sequence,/* tp_as_sequence */
+    &SwigPyBuiltin___GRBsvec_type.as_mapping, /* tp_as_mapping */
+    SwigPyObject_hash,                        /* tp_hash */
+    (ternaryfunc) 0,                          /* tp_call */
+    (reprfunc) 0,                             /* tp_str */
+    (getattrofunc) 0,                         /* tp_getattro */
+    (setattrofunc) 0,                         /* tp_setattro */
+    &SwigPyBuiltin___GRBsvec_type.as_buffer,  /* tp_as_buffer */
+#if PY_VERSION_HEX >= 0x03000000
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE,   /* tp_flags */
+#else
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES, /* tp_flags */
+#endif
+    "::_GRBsvec",                             /* tp_doc */
+    (traverseproc) 0,                         /* tp_traverse */
+    (inquiry) 0,                              /* tp_clear */
+    SwigPyBuiltin___GRBsvec_richcompare,      /* tp_richcompare */
+    0,                                        /* tp_weaklistoffset */
+    (getiterfunc) 0,                          /* tp_iter */
+    (iternextfunc) 0,                         /* tp_iternext */
+    SwigPyBuiltin___GRBsvec_methods,          /* tp_methods */
+    0,                                        /* tp_members */
+    SwigPyBuiltin___GRBsvec_getset,           /* tp_getset */
+    0,                                        /* tp_base */
+    0,                                        /* tp_dict */
+    (descrgetfunc) 0,                         /* tp_descr_get */
+    (descrsetfunc) 0,                         /* tp_descr_set */
+    offsetof(SwigPyObject, dict),             /* tp_dictoffset */
+    _wrap_new_GRBsvec,                        /* tp_init */
+    (allocfunc) 0,                            /* tp_alloc */
+    (newfunc) 0,                              /* tp_new */
+    (freefunc) 0,                             /* tp_free */
+    (inquiry) 0,                              /* tp_is_gc */
+    (PyObject *) 0,                           /* tp_bases */
+    (PyObject *) 0,                           /* tp_mro */
+    (PyObject *) 0,                           /* tp_cache */
+    (PyObject *) 0,                           /* tp_subclasses */
+    (PyObject *) 0,                           /* tp_weaklist */
+    (destructor) 0,                           /* tp_del */
+    (int) 0,                                  /* tp_version_tag */
+#if PY_VERSION_HEX >= 0x03040000
+    (destructor) 0,                           /* tp_finalize */
+#endif
+#if PY_VERSION_HEX >= 0x03080000
+    (vectorcallfunc) 0,                       /* tp_vectorcall */
+#endif
+#if (PY_VERSION_HEX >= 0x03080000) && (PY_VERSION_HEX < 0x03090000)
+    0,                                        /* tp_print */
+#endif
+#ifdef COUNT_ALLOCS
+    (Py_ssize_t) 0,                           /* tp_allocs */
+    (Py_ssize_t) 0,                           /* tp_frees */
+    (Py_ssize_t) 0,                           /* tp_maxalloc */
+    0,                                        /* tp_prev */
+    0,                                        /* tp_next */
+#endif
+  },
+#if PY_VERSION_HEX >= 0x03050000
+  {
+    (unaryfunc) 0,                            /* am_await */
+    (unaryfunc) 0,                            /* am_aiter */
+    (unaryfunc) 0,                            /* am_anext */
+  },
+#endif
+  {
+    (binaryfunc) 0,                           /* nb_add */
+    (binaryfunc) 0,                           /* nb_subtract */
+    (binaryfunc) 0,                           /* nb_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_remainder */
+    (binaryfunc) 0,                           /* nb_divmod */
+    (ternaryfunc) 0,                          /* nb_power */
+    (unaryfunc) 0,                            /* nb_negative */
+    (unaryfunc) 0,                            /* nb_positive */
+    (unaryfunc) 0,                            /* nb_absolute */
+    (inquiry) 0,                              /* nb_nonzero */
+    (unaryfunc) 0,                            /* nb_invert */
+    (binaryfunc) 0,                           /* nb_lshift */
+    (binaryfunc) 0,                           /* nb_rshift */
+    (binaryfunc) 0,                           /* nb_and */
+    (binaryfunc) 0,                           /* nb_xor */
+    (binaryfunc) 0,                           /* nb_or */
+#if PY_VERSION_HEX < 0x03000000
+    (coercion) 0,                             /* nb_coerce */
+#endif
+    (unaryfunc) 0,                            /* nb_int */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* nb_reserved */
+#else
+    (unaryfunc) 0,                            /* nb_long */
+#endif
+    (unaryfunc) 0,                            /* nb_float */
+#if PY_VERSION_HEX < 0x03000000
+    (unaryfunc) 0,                            /* nb_oct */
+    (unaryfunc) 0,                            /* nb_hex */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_add */
+    (binaryfunc) 0,                           /* nb_inplace_subtract */
+    (binaryfunc) 0,                           /* nb_inplace_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_inplace_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_remainder */
+    (ternaryfunc) 0,                          /* nb_inplace_power */
+    (binaryfunc) 0,                           /* nb_inplace_lshift */
+    (binaryfunc) 0,                           /* nb_inplace_rshift */
+    (binaryfunc) 0,                           /* nb_inplace_and */
+    (binaryfunc) 0,                           /* nb_inplace_xor */
+    (binaryfunc) 0,                           /* nb_inplace_or */
+    (binaryfunc) 0,                           /* nb_floor_divide */
+    (binaryfunc) 0,                           /* nb_true_divide */
+    (binaryfunc) 0,                           /* nb_inplace_floor_divide */
+    (binaryfunc) 0,                           /* nb_inplace_true_divide */
+    (unaryfunc) 0,                            /* nb_index */
+#if PY_VERSION_HEX >= 0x03050000
+    (binaryfunc) 0,                           /* nb_matrix_multiply */
+    (binaryfunc) 0,                           /* nb_inplace_matrix_multiply */
+#endif
+  },
+  {
+    (lenfunc) 0,                              /* mp_length */
+    (binaryfunc) 0,                           /* mp_subscript */
+    (objobjargproc) 0,                        /* mp_ass_subscript */
+  },
+  {
+    (lenfunc) 0,                              /* sq_length */
+    (binaryfunc) 0,                           /* sq_concat */
+    (ssizeargfunc) 0,                         /* sq_repeat */
+    (ssizeargfunc) 0,                         /* sq_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_slice */
+#else
+    (ssizessizeargfunc) 0,                    /* sq_slice */
+#endif
+    (ssizeobjargproc) 0,                      /* sq_ass_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_ass_slice */
+#else
+    (ssizessizeobjargproc) 0,                 /* sq_ass_slice */
+#endif
+    (objobjproc) 0,                           /* sq_contains */
+    (binaryfunc) 0,                           /* sq_inplace_concat */
+    (ssizeargfunc) 0,                         /* sq_inplace_repeat */
+  },
+  {
+#if PY_VERSION_HEX < 0x03000000
+    (readbufferproc) 0,                       /* bf_getreadbuffer */
+    (writebufferproc) 0,                      /* bf_getwritebuffer */
+    (segcountproc) 0,                         /* bf_getsegcount */
+    (charbufferproc) 0,                       /* bf_getcharbuffer */
+#endif
+    (getbufferproc) 0,                        /* bf_getbuffer */
+    (releasebufferproc) 0,                    /* bf_releasebuffer */
+  },
+    (PyObject *) 0,                           /* ht_name */
+    (PyObject *) 0,                           /* ht_slots */
+#if PY_VERSION_HEX >= 0x03030000
+    (PyObject *) 0,                           /* ht_qualname */
+    0,                                        /* ht_cached_keys */
+#endif
+};
+
+SWIGINTERN SwigPyClientData SwigPyBuiltin___GRBsvec_clientdata = {0, 0, 0, 0, 0, 0, (PyTypeObject *)&SwigPyBuiltin___GRBsvec_type};
+
+static SwigPyGetSet GurobiCallback___dict___getset = { SwigPyObject_get___dict__, 0 };
+SWIGINTERN PyGetSetDef SwigPyBuiltin__ampls__GurobiCallback_getset[] = {
+    { (char *)"__dict__", SwigPyBuiltin_FunpackGetterClosure, 0, (char *)"", &GurobiCallback___dict___getset },
+    { NULL, NULL, NULL, NULL, NULL } /* Sentinel */
+};
+
+SWIGINTERN PyObject *
+SwigPyBuiltin__ampls__GurobiCallback_richcompare(PyObject *self, PyObject *other, int op) {
+  PyObject *result = NULL;
+  if (!result) {
+    if (SwigPyObject_Check(self) && SwigPyObject_Check(other)) {
+      result = SwigPyObject_richcompare((SwigPyObject *)self, (SwigPyObject *)other, op);
+    } else {
+      result = Py_NotImplemented;
+      Py_INCREF(result);
+    }
+  }
+  return result;
+}
+
+SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__GurobiCallback_methods[] = {
+  { "where", _wrap_GurobiCallback_where, METH_NOARGS, "" },
+  { "run", _wrap_GurobiCallback_run, METH_NOARGS, "" },
+  { "getWhereString", _wrap_GurobiCallback_getWhereString, METH_NOARGS, "" },
+  { "getMessage", _wrap_GurobiCallback_getMessage, METH_NOARGS, "" },
+  { "getObj", _wrap_GurobiCallback_getObj, METH_NOARGS, "" },
+  { "getCBData", _wrap_GurobiCallback_getCBData, METH_NOARGS, "" },
+  { "getGRBModel", _wrap_GurobiCallback_getGRBModel, METH_NOARGS, "" },
+  { "terminate", _wrap_GurobiCallback_terminate, METH_NOARGS, "" },
+  { "getInt", _wrap_GurobiCallback_getInt, METH_O, "" },
+  { "getDouble", _wrap_GurobiCallback_getDouble, METH_O, "" },
+  { "getDoubleArray", _wrap_GurobiCallback_getDoubleArray, METH_O, "" },
+  { "setSolution", _wrap_GurobiCallback_setSolution, METH_O, "" },
+  { "getAMPLWhere", _wrap_GurobiCallback_getAMPLWhere, METH_NOARGS, "" },
+  { "get", _wrap_GurobiCallback_get, METH_O, "" },
+  { "getValue", _wrap_GurobiCallback_getValue, METH_O, "" },
+  { "__disown__", Swig::Director::swig_pyobj_disown< ampls::GurobiCallback >, METH_NOARGS, "" },
+  { NULL, NULL, 0, NULL } /* Sentinel */
+};
+
+static PyHeapTypeObject SwigPyBuiltin__ampls__GurobiCallback_type = {
+  {
+#if PY_VERSION_HEX >= 0x03000000
+    PyVarObject_HEAD_INIT(NULL, 0)
+#else
+    PyObject_HEAD_INIT(NULL)
+    0,                                        /* ob_size */
+#endif
+    "amplpy_ampls_swig.GurobiCallback",       /* tp_name */
+    sizeof(SwigPyObject),                     /* tp_basicsize */
+    0,                                        /* tp_itemsize */
+    _wrap_delete_GurobiCallback_destructor_closure,               /* tp_dealloc */
+    (printfunc) 0,                            /* tp_print */
+    (getattrfunc) 0,                          /* tp_getattr */
+    (setattrfunc) 0,                          /* tp_setattr */
+#if PY_VERSION_HEX >= 0x03000000
+    0,                                        /* tp_compare */
+#else
+    (cmpfunc) 0,                              /* tp_compare */
+#endif
+    (reprfunc) 0,                             /* tp_repr */
+    &SwigPyBuiltin__ampls__GurobiCallback_type.as_number,         /* tp_as_number */
+    &SwigPyBuiltin__ampls__GurobiCallback_type.as_sequence,       /* tp_as_sequence */
+    &SwigPyBuiltin__ampls__GurobiCallback_type.as_mapping,        /* tp_as_mapping */
+    SwigPyObject_hash,                        /* tp_hash */
+    (ternaryfunc) 0,                          /* tp_call */
+    (reprfunc) 0,                             /* tp_str */
+    (getattrofunc) 0,                         /* tp_getattro */
+    (setattrofunc) 0,                         /* tp_setattro */
+    &SwigPyBuiltin__ampls__GurobiCallback_type.as_buffer,         /* tp_as_buffer */
+#if PY_VERSION_HEX >= 0x03000000
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE,   /* tp_flags */
+#else
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES, /* tp_flags */
+#endif
+    "ampls::GurobiCallback",                  /* tp_doc */
+    (traverseproc) 0,                         /* tp_traverse */
+    (inquiry) 0,                              /* tp_clear */
+    SwigPyBuiltin__ampls__GurobiCallback_richcompare,             /* tp_richcompare */
+    0,                                        /* tp_weaklistoffset */
+    (getiterfunc) 0,                          /* tp_iter */
+    (iternextfunc) 0,                         /* tp_iternext */
+    SwigPyBuiltin__ampls__GurobiCallback_methods,                 /* tp_methods */
+    0,                                        /* tp_members */
+    SwigPyBuiltin__ampls__GurobiCallback_getset,                  /* tp_getset */
+    0,                                        /* tp_base */
+    0,                                        /* tp_dict */
+    (descrgetfunc) 0,                         /* tp_descr_get */
+    (descrsetfunc) 0,                         /* tp_descr_set */
+    offsetof(SwigPyObject, dict),             /* tp_dictoffset */
+    _wrap_new_GurobiCallback,                 /* tp_init */
+    (allocfunc) 0,                            /* tp_alloc */
+    (newfunc) 0,                              /* tp_new */
+    (freefunc) 0,                             /* tp_free */
+    (inquiry) 0,                              /* tp_is_gc */
+    (PyObject *) 0,                           /* tp_bases */
+    (PyObject *) 0,                           /* tp_mro */
+    (PyObject *) 0,                           /* tp_cache */
+    (PyObject *) 0,                           /* tp_subclasses */
+    (PyObject *) 0,                           /* tp_weaklist */
+    (destructor) 0,                           /* tp_del */
+    (int) 0,                                  /* tp_version_tag */
+#if PY_VERSION_HEX >= 0x03040000
+    (destructor) 0,                           /* tp_finalize */
+#endif
+#if PY_VERSION_HEX >= 0x03080000
+    (vectorcallfunc) 0,                       /* tp_vectorcall */
+#endif
+#if (PY_VERSION_HEX >= 0x03080000) && (PY_VERSION_HEX < 0x03090000)
+    0,                                        /* tp_print */
+#endif
+#ifdef COUNT_ALLOCS
+    (Py_ssize_t) 0,                           /* tp_allocs */
+    (Py_ssize_t) 0,                           /* tp_frees */
+    (Py_ssize_t) 0,                           /* tp_maxalloc */
+    0,                                        /* tp_prev */
+    0,                                        /* tp_next */
+#endif
+  },
+#if PY_VERSION_HEX >= 0x03050000
+  {
+    (unaryfunc) 0,                            /* am_await */
+    (unaryfunc) 0,                            /* am_aiter */
+    (unaryfunc) 0,                            /* am_anext */
+  },
+#endif
+  {
+    (binaryfunc) 0,                           /* nb_add */
+    (binaryfunc) 0,                           /* nb_subtract */
+    (binaryfunc) 0,                           /* nb_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_remainder */
+    (binaryfunc) 0,                           /* nb_divmod */
+    (ternaryfunc) 0,                          /* nb_power */
+    (unaryfunc) 0,                            /* nb_negative */
+    (unaryfunc) 0,                            /* nb_positive */
+    (unaryfunc) 0,                            /* nb_absolute */
+    (inquiry) 0,                              /* nb_nonzero */
+    (unaryfunc) 0,                            /* nb_invert */
+    (binaryfunc) 0,                           /* nb_lshift */
+    (binaryfunc) 0,                           /* nb_rshift */
+    (binaryfunc) 0,                           /* nb_and */
+    (binaryfunc) 0,                           /* nb_xor */
+    (binaryfunc) 0,                           /* nb_or */
+#if PY_VERSION_HEX < 0x03000000
+    (coercion) 0,                             /* nb_coerce */
+#endif
+    (unaryfunc) 0,                            /* nb_int */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* nb_reserved */
+#else
+    (unaryfunc) 0,                            /* nb_long */
+#endif
+    (unaryfunc) 0,                            /* nb_float */
+#if PY_VERSION_HEX < 0x03000000
+    (unaryfunc) 0,                            /* nb_oct */
+    (unaryfunc) 0,                            /* nb_hex */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_add */
+    (binaryfunc) 0,                           /* nb_inplace_subtract */
+    (binaryfunc) 0,                           /* nb_inplace_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_inplace_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_remainder */
+    (ternaryfunc) 0,                          /* nb_inplace_power */
+    (binaryfunc) 0,                           /* nb_inplace_lshift */
+    (binaryfunc) 0,                           /* nb_inplace_rshift */
+    (binaryfunc) 0,                           /* nb_inplace_and */
+    (binaryfunc) 0,                           /* nb_inplace_xor */
+    (binaryfunc) 0,                           /* nb_inplace_or */
+    (binaryfunc) 0,                           /* nb_floor_divide */
+    (binaryfunc) 0,                           /* nb_true_divide */
+    (binaryfunc) 0,                           /* nb_inplace_floor_divide */
+    (binaryfunc) 0,                           /* nb_inplace_true_divide */
+    (unaryfunc) 0,                            /* nb_index */
+#if PY_VERSION_HEX >= 0x03050000
+    (binaryfunc) 0,                           /* nb_matrix_multiply */
+    (binaryfunc) 0,                           /* nb_inplace_matrix_multiply */
+#endif
+  },
+  {
+    (lenfunc) 0,                              /* mp_length */
+    (binaryfunc) 0,                           /* mp_subscript */
+    (objobjargproc) 0,                        /* mp_ass_subscript */
+  },
+  {
+    (lenfunc) 0,                              /* sq_length */
+    (binaryfunc) 0,                           /* sq_concat */
+    (ssizeargfunc) 0,                         /* sq_repeat */
+    (ssizeargfunc) 0,                         /* sq_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_slice */
+#else
+    (ssizessizeargfunc) 0,                    /* sq_slice */
+#endif
+    (ssizeobjargproc) 0,                      /* sq_ass_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_ass_slice */
+#else
+    (ssizessizeobjargproc) 0,                 /* sq_ass_slice */
+#endif
+    (objobjproc) 0,                           /* sq_contains */
+    (binaryfunc) 0,                           /* sq_inplace_concat */
+    (ssizeargfunc) 0,                         /* sq_inplace_repeat */
+  },
+  {
+#if PY_VERSION_HEX < 0x03000000
+    (readbufferproc) 0,                       /* bf_getreadbuffer */
+    (writebufferproc) 0,                      /* bf_getwritebuffer */
+    (segcountproc) 0,                         /* bf_getsegcount */
+    (charbufferproc) 0,                       /* bf_getcharbuffer */
+#endif
+    (getbufferproc) 0,                        /* bf_getbuffer */
+    (releasebufferproc) 0,                    /* bf_releasebuffer */
+  },
+    (PyObject *) 0,                           /* ht_name */
+    (PyObject *) 0,                           /* ht_slots */
+#if PY_VERSION_HEX >= 0x03030000
+    (PyObject *) 0,                           /* ht_qualname */
+    0,                                        /* ht_cached_keys */
+#endif
+};
+
+SWIGINTERN SwigPyClientData SwigPyBuiltin__ampls__GurobiCallback_clientdata = {0, 0, 0, 0, 0, 0, (PyTypeObject *)&SwigPyBuiltin__ampls__GurobiCallback_type};
+
+static SwigPyGetSet GurobiDrv___dict___getset = { SwigPyObject_get___dict__, 0 };
+SWIGINTERN PyGetSetDef SwigPyBuiltin__ampls__GurobiDrv_getset[] = {
+    { (char *)"__dict__", SwigPyBuiltin_FunpackGetterClosure, 0, (char *)"", &GurobiDrv___dict___getset },
+    { NULL, NULL, NULL, NULL, NULL } /* Sentinel */
+};
+
+SWIGINTERN PyObject *
+SwigPyBuiltin__ampls__GurobiDrv_richcompare(PyObject *self, PyObject *other, int op) {
+  PyObject *result = NULL;
+  if (!result) {
+    if (SwigPyObject_Check(self) && SwigPyObject_Check(other)) {
+      result = SwigPyObject_richcompare((SwigPyObject *)self, (SwigPyObject *)other, op);
+    } else {
+      result = Py_NotImplemented;
+      Py_INCREF(result);
+    }
+  }
+  return result;
+}
+
+SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__GurobiDrv_methods[] = {
+  { "loadModel", _wrap_GurobiDrv_loadModel, METH_O, "" },
+  { NULL, NULL, 0, NULL } /* Sentinel */
+};
+
+static PyHeapTypeObject SwigPyBuiltin__ampls__GurobiDrv_type = {
+  {
+#if PY_VERSION_HEX >= 0x03000000
+    PyVarObject_HEAD_INIT(NULL, 0)
+#else
+    PyObject_HEAD_INIT(NULL)
+    0,                                        /* ob_size */
+#endif
+    "amplpy_ampls_swig.GurobiDrv",            /* tp_name */
+    sizeof(SwigPyObject),                     /* tp_basicsize */
+    0,                                        /* tp_itemsize */
+    _wrap_delete_GurobiDrv_destructor_closure,/* tp_dealloc */
+    (printfunc) 0,                            /* tp_print */
+    (getattrfunc) 0,                          /* tp_getattr */
+    (setattrfunc) 0,                          /* tp_setattr */
+#if PY_VERSION_HEX >= 0x03000000
+    0,                                        /* tp_compare */
+#else
+    (cmpfunc) 0,                              /* tp_compare */
+#endif
+    (reprfunc) 0,                             /* tp_repr */
+    &SwigPyBuiltin__ampls__GurobiDrv_type.as_number,              /* tp_as_number */
+    &SwigPyBuiltin__ampls__GurobiDrv_type.as_sequence,            /* tp_as_sequence */
+    &SwigPyBuiltin__ampls__GurobiDrv_type.as_mapping,             /* tp_as_mapping */
+    SwigPyObject_hash,                        /* tp_hash */
+    (ternaryfunc) 0,                          /* tp_call */
+    (reprfunc) 0,                             /* tp_str */
+    (getattrofunc) 0,                         /* tp_getattro */
+    (setattrofunc) 0,                         /* tp_setattro */
+    &SwigPyBuiltin__ampls__GurobiDrv_type.as_buffer,              /* tp_as_buffer */
+#if PY_VERSION_HEX >= 0x03000000
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE,   /* tp_flags */
+#else
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES, /* tp_flags */
+#endif
+    "ampls::GurobiDrv",                       /* tp_doc */
+    (traverseproc) 0,                         /* tp_traverse */
+    (inquiry) 0,                              /* tp_clear */
+    SwigPyBuiltin__ampls__GurobiDrv_richcompare,                  /* tp_richcompare */
+    0,                                        /* tp_weaklistoffset */
+    (getiterfunc) 0,                          /* tp_iter */
+    (iternextfunc) 0,                         /* tp_iternext */
+    SwigPyBuiltin__ampls__GurobiDrv_methods,  /* tp_methods */
+    0,                                        /* tp_members */
+    SwigPyBuiltin__ampls__GurobiDrv_getset,   /* tp_getset */
+    0,                                        /* tp_base */
+    0,                                        /* tp_dict */
+    (descrgetfunc) 0,                         /* tp_descr_get */
+    (descrsetfunc) 0,                         /* tp_descr_set */
+    offsetof(SwigPyObject, dict),             /* tp_dictoffset */
+    _wrap_new_GurobiDrv,                      /* tp_init */
+    (allocfunc) 0,                            /* tp_alloc */
+    (newfunc) 0,                              /* tp_new */
+    (freefunc) 0,                             /* tp_free */
+    (inquiry) 0,                              /* tp_is_gc */
+    (PyObject *) 0,                           /* tp_bases */
+    (PyObject *) 0,                           /* tp_mro */
+    (PyObject *) 0,                           /* tp_cache */
+    (PyObject *) 0,                           /* tp_subclasses */
+    (PyObject *) 0,                           /* tp_weaklist */
+    (destructor) 0,                           /* tp_del */
+    (int) 0,                                  /* tp_version_tag */
+#if PY_VERSION_HEX >= 0x03040000
+    (destructor) 0,                           /* tp_finalize */
+#endif
+#if PY_VERSION_HEX >= 0x03080000
+    (vectorcallfunc) 0,                       /* tp_vectorcall */
+#endif
+#if (PY_VERSION_HEX >= 0x03080000) && (PY_VERSION_HEX < 0x03090000)
+    0,                                        /* tp_print */
+#endif
+#ifdef COUNT_ALLOCS
+    (Py_ssize_t) 0,                           /* tp_allocs */
+    (Py_ssize_t) 0,                           /* tp_frees */
+    (Py_ssize_t) 0,                           /* tp_maxalloc */
+    0,                                        /* tp_prev */
+    0,                                        /* tp_next */
+#endif
+  },
+#if PY_VERSION_HEX >= 0x03050000
+  {
+    (unaryfunc) 0,                            /* am_await */
+    (unaryfunc) 0,                            /* am_aiter */
+    (unaryfunc) 0,                            /* am_anext */
+  },
+#endif
+  {
+    (binaryfunc) 0,                           /* nb_add */
+    (binaryfunc) 0,                           /* nb_subtract */
+    (binaryfunc) 0,                           /* nb_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_remainder */
+    (binaryfunc) 0,                           /* nb_divmod */
+    (ternaryfunc) 0,                          /* nb_power */
+    (unaryfunc) 0,                            /* nb_negative */
+    (unaryfunc) 0,                            /* nb_positive */
+    (unaryfunc) 0,                            /* nb_absolute */
+    (inquiry) 0,                              /* nb_nonzero */
+    (unaryfunc) 0,                            /* nb_invert */
+    (binaryfunc) 0,                           /* nb_lshift */
+    (binaryfunc) 0,                           /* nb_rshift */
+    (binaryfunc) 0,                           /* nb_and */
+    (binaryfunc) 0,                           /* nb_xor */
+    (binaryfunc) 0,                           /* nb_or */
+#if PY_VERSION_HEX < 0x03000000
+    (coercion) 0,                             /* nb_coerce */
+#endif
+    (unaryfunc) 0,                            /* nb_int */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* nb_reserved */
+#else
+    (unaryfunc) 0,                            /* nb_long */
+#endif
+    (unaryfunc) 0,                            /* nb_float */
+#if PY_VERSION_HEX < 0x03000000
+    (unaryfunc) 0,                            /* nb_oct */
+    (unaryfunc) 0,                            /* nb_hex */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_add */
+    (binaryfunc) 0,                           /* nb_inplace_subtract */
+    (binaryfunc) 0,                           /* nb_inplace_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_inplace_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_remainder */
+    (ternaryfunc) 0,                          /* nb_inplace_power */
+    (binaryfunc) 0,                           /* nb_inplace_lshift */
+    (binaryfunc) 0,                           /* nb_inplace_rshift */
+    (binaryfunc) 0,                           /* nb_inplace_and */
+    (binaryfunc) 0,                           /* nb_inplace_xor */
+    (binaryfunc) 0,                           /* nb_inplace_or */
+    (binaryfunc) 0,                           /* nb_floor_divide */
+    (binaryfunc) 0,                           /* nb_true_divide */
+    (binaryfunc) 0,                           /* nb_inplace_floor_divide */
+    (binaryfunc) 0,                           /* nb_inplace_true_divide */
+    (unaryfunc) 0,                            /* nb_index */
+#if PY_VERSION_HEX >= 0x03050000
+    (binaryfunc) 0,                           /* nb_matrix_multiply */
+    (binaryfunc) 0,                           /* nb_inplace_matrix_multiply */
+#endif
+  },
+  {
+    (lenfunc) 0,                              /* mp_length */
+    (binaryfunc) 0,                           /* mp_subscript */
+    (objobjargproc) 0,                        /* mp_ass_subscript */
+  },
+  {
+    (lenfunc) 0,                              /* sq_length */
+    (binaryfunc) 0,                           /* sq_concat */
+    (ssizeargfunc) 0,                         /* sq_repeat */
+    (ssizeargfunc) 0,                         /* sq_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_slice */
+#else
+    (ssizessizeargfunc) 0,                    /* sq_slice */
+#endif
+    (ssizeobjargproc) 0,                      /* sq_ass_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_ass_slice */
+#else
+    (ssizessizeobjargproc) 0,                 /* sq_ass_slice */
+#endif
+    (objobjproc) 0,                           /* sq_contains */
+    (binaryfunc) 0,                           /* sq_inplace_concat */
+    (ssizeargfunc) 0,                         /* sq_inplace_repeat */
+  },
+  {
+#if PY_VERSION_HEX < 0x03000000
+    (readbufferproc) 0,                       /* bf_getreadbuffer */
+    (writebufferproc) 0,                      /* bf_getwritebuffer */
+    (segcountproc) 0,                         /* bf_getsegcount */
+    (charbufferproc) 0,                       /* bf_getcharbuffer */
+#endif
+    (getbufferproc) 0,                        /* bf_getbuffer */
+    (releasebufferproc) 0,                    /* bf_releasebuffer */
+  },
+    (PyObject *) 0,                           /* ht_name */
+    (PyObject *) 0,                           /* ht_slots */
+#if PY_VERSION_HEX >= 0x03030000
+    (PyObject *) 0,                           /* ht_qualname */
+    0,                                        /* ht_cached_keys */
+#endif
+};
+
+SWIGINTERN SwigPyClientData SwigPyBuiltin__ampls__GurobiDrv_clientdata = {0, 0, 0, 0, 0, 0, (PyTypeObject *)&SwigPyBuiltin__ampls__GurobiDrv_type};
+
+static SwigPyGetSet GurobiModel___dict___getset = { SwigPyObject_get___dict__, 0 };
+SWIGINTERN PyGetSetDef SwigPyBuiltin__ampls__GurobiModel_getset[] = {
+    { (char *)"__dict__", SwigPyBuiltin_FunpackGetterClosure, 0, (char *)"", &GurobiModel___dict___getset },
+    { NULL, NULL, NULL, NULL, NULL } /* Sentinel */
+};
+
+SWIGINTERN PyObject *
+SwigPyBuiltin__ampls__GurobiModel_richcompare(PyObject *self, PyObject *other, int op) {
+  PyObject *result = NULL;
+  if (!result) {
+    if (SwigPyObject_Check(self) && SwigPyObject_Check(other)) {
+      result = SwigPyObject_richcompare((SwigPyObject *)self, (SwigPyObject *)other, op);
+    } else {
+      result = Py_NotImplemented;
+      Py_INCREF(result);
+    }
+  }
+  return result;
+}
+
+SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__GurobiModel_methods[] = {
+  { "enableLazyConstraints", _wrap_GurobiModel_enableLazyConstraints, METH_NOARGS, "" },
+  { "getSolutionVector", _wrap_GurobiModel_getSolutionVector, METH_NOARGS, "" },
+  { "optimize", _wrap_GurobiModel_optimize, METH_NOARGS, "" },
+  { "getStatus", _wrap_GurobiModel_getStatus, METH_NOARGS, "" },
+  { "getNumVars", _wrap_GurobiModel_getNumVars, METH_NOARGS, "" },
+  { "getObj", _wrap_GurobiModel_getObj, METH_NOARGS, "" },
+  { "getSolution", _wrap_GurobiModel_getSolution, METH_VARARGS, "" },
+  { "error", _wrap_GurobiModel_error, METH_O, "" },
+  { "getIntAttr", _wrap_GurobiModel_getIntAttr, METH_O, "" },
+  { "getDoubleAttr", _wrap_GurobiModel_getDoubleAttr, METH_O, "" },
+  { "getIntAttrArray", _wrap_GurobiModel_getIntAttrArray, METH_VARARGS, "" },
+  { "getDoubleAttrArray", _wrap_GurobiModel_getDoubleAttrArray, METH_VARARGS, "" },
+  { "getIntParam", _wrap_GurobiModel_getIntParam, METH_O, "" },
+  { "getDoubleParam", _wrap_GurobiModel_getDoubleParam, METH_O, "" },
+  { "getStrParam", _wrap_GurobiModel_getStrParam, METH_O, "" },
+  { "setIntParam", _wrap_GurobiModel_setIntParam, METH_VARARGS, "" },
+  { "setDoubleParam", _wrap_GurobiModel_setDoubleParam, METH_VARARGS, "" },
+  { "setStrParam", _wrap_GurobiModel_setStrParam, METH_VARARGS, "" },
+  { "getGRBmodel", _wrap_GurobiModel_getGRBmodel, METH_NOARGS, "" },
+  { "getGRBenv", _wrap_GurobiModel_getGRBenv, METH_NOARGS, "" },
+  { NULL, NULL, 0, NULL } /* Sentinel */
+};
+
+static PyHeapTypeObject SwigPyBuiltin__ampls__GurobiModel_type = {
+  {
+#if PY_VERSION_HEX >= 0x03000000
+    PyVarObject_HEAD_INIT(NULL, 0)
+#else
+    PyObject_HEAD_INIT(NULL)
+    0,                                        /* ob_size */
+#endif
+    "amplpy_ampls_swig.GurobiModel",          /* tp_name */
+    sizeof(SwigPyObject),                     /* tp_basicsize */
+    0,                                        /* tp_itemsize */
+    _wrap_delete_GurobiModel_destructor_closure,                  /* tp_dealloc */
+    (printfunc) 0,                            /* tp_print */
+    (getattrfunc) 0,                          /* tp_getattr */
+    (setattrfunc) 0,                          /* tp_setattr */
+#if PY_VERSION_HEX >= 0x03000000
+    0,                                        /* tp_compare */
+#else
+    (cmpfunc) 0,                              /* tp_compare */
+#endif
+    (reprfunc) 0,                             /* tp_repr */
+    &SwigPyBuiltin__ampls__GurobiModel_type.as_number,            /* tp_as_number */
+    &SwigPyBuiltin__ampls__GurobiModel_type.as_sequence,          /* tp_as_sequence */
+    &SwigPyBuiltin__ampls__GurobiModel_type.as_mapping,           /* tp_as_mapping */
+    SwigPyObject_hash,                        /* tp_hash */
+    (ternaryfunc) 0,                          /* tp_call */
+    (reprfunc) 0,                             /* tp_str */
+    (getattrofunc) 0,                         /* tp_getattro */
+    (setattrofunc) 0,                         /* tp_setattro */
+    &SwigPyBuiltin__ampls__GurobiModel_type.as_buffer,            /* tp_as_buffer */
+#if PY_VERSION_HEX >= 0x03000000
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE,   /* tp_flags */
+#else
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES, /* tp_flags */
+#endif
+    "ampls::GurobiModel",                     /* tp_doc */
+    (traverseproc) 0,                         /* tp_traverse */
+    (inquiry) 0,                              /* tp_clear */
+    SwigPyBuiltin__ampls__GurobiModel_richcompare,                /* tp_richcompare */
+    0,                                        /* tp_weaklistoffset */
+    (getiterfunc) 0,                          /* tp_iter */
+    (iternextfunc) 0,                         /* tp_iternext */
+    SwigPyBuiltin__ampls__GurobiModel_methods,/* tp_methods */
+    0,                                        /* tp_members */
+    SwigPyBuiltin__ampls__GurobiModel_getset, /* tp_getset */
+    0,                                        /* tp_base */
+    0,                                        /* tp_dict */
+    (descrgetfunc) 0,                         /* tp_descr_get */
+    (descrsetfunc) 0,                         /* tp_descr_set */
+    offsetof(SwigPyObject, dict),             /* tp_dictoffset */
+    _wrap_new_GurobiModel,                    /* tp_init */
+    (allocfunc) 0,                            /* tp_alloc */
+    (newfunc) 0,                              /* tp_new */
+    (freefunc) 0,                             /* tp_free */
+    (inquiry) 0,                              /* tp_is_gc */
+    (PyObject *) 0,                           /* tp_bases */
+    (PyObject *) 0,                           /* tp_mro */
+    (PyObject *) 0,                           /* tp_cache */
+    (PyObject *) 0,                           /* tp_subclasses */
+    (PyObject *) 0,                           /* tp_weaklist */
+    (destructor) 0,                           /* tp_del */
+    (int) 0,                                  /* tp_version_tag */
+#if PY_VERSION_HEX >= 0x03040000
+    (destructor) 0,                           /* tp_finalize */
+#endif
+#if PY_VERSION_HEX >= 0x03080000
+    (vectorcallfunc) 0,                       /* tp_vectorcall */
+#endif
+#if (PY_VERSION_HEX >= 0x03080000) && (PY_VERSION_HEX < 0x03090000)
+    0,                                        /* tp_print */
+#endif
+#ifdef COUNT_ALLOCS
+    (Py_ssize_t) 0,                           /* tp_allocs */
+    (Py_ssize_t) 0,                           /* tp_frees */
+    (Py_ssize_t) 0,                           /* tp_maxalloc */
+    0,                                        /* tp_prev */
+    0,                                        /* tp_next */
+#endif
+  },
+#if PY_VERSION_HEX >= 0x03050000
+  {
+    (unaryfunc) 0,                            /* am_await */
+    (unaryfunc) 0,                            /* am_aiter */
+    (unaryfunc) 0,                            /* am_anext */
+  },
+#endif
+  {
+    (binaryfunc) 0,                           /* nb_add */
+    (binaryfunc) 0,                           /* nb_subtract */
+    (binaryfunc) 0,                           /* nb_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_remainder */
+    (binaryfunc) 0,                           /* nb_divmod */
+    (ternaryfunc) 0,                          /* nb_power */
+    (unaryfunc) 0,                            /* nb_negative */
+    (unaryfunc) 0,                            /* nb_positive */
+    (unaryfunc) 0,                            /* nb_absolute */
+    (inquiry) 0,                              /* nb_nonzero */
+    (unaryfunc) 0,                            /* nb_invert */
+    (binaryfunc) 0,                           /* nb_lshift */
+    (binaryfunc) 0,                           /* nb_rshift */
+    (binaryfunc) 0,                           /* nb_and */
+    (binaryfunc) 0,                           /* nb_xor */
+    (binaryfunc) 0,                           /* nb_or */
+#if PY_VERSION_HEX < 0x03000000
+    (coercion) 0,                             /* nb_coerce */
+#endif
+    (unaryfunc) 0,                            /* nb_int */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* nb_reserved */
+#else
+    (unaryfunc) 0,                            /* nb_long */
+#endif
+    (unaryfunc) 0,                            /* nb_float */
+#if PY_VERSION_HEX < 0x03000000
+    (unaryfunc) 0,                            /* nb_oct */
+    (unaryfunc) 0,                            /* nb_hex */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_add */
+    (binaryfunc) 0,                           /* nb_inplace_subtract */
+    (binaryfunc) 0,                           /* nb_inplace_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_inplace_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_remainder */
+    (ternaryfunc) 0,                          /* nb_inplace_power */
+    (binaryfunc) 0,                           /* nb_inplace_lshift */
+    (binaryfunc) 0,                           /* nb_inplace_rshift */
+    (binaryfunc) 0,                           /* nb_inplace_and */
+    (binaryfunc) 0,                           /* nb_inplace_xor */
+    (binaryfunc) 0,                           /* nb_inplace_or */
+    (binaryfunc) 0,                           /* nb_floor_divide */
+    (binaryfunc) 0,                           /* nb_true_divide */
+    (binaryfunc) 0,                           /* nb_inplace_floor_divide */
+    (binaryfunc) 0,                           /* nb_inplace_true_divide */
+    (unaryfunc) 0,                            /* nb_index */
+#if PY_VERSION_HEX >= 0x03050000
+    (binaryfunc) 0,                           /* nb_matrix_multiply */
+    (binaryfunc) 0,                           /* nb_inplace_matrix_multiply */
+#endif
+  },
+  {
+    (lenfunc) 0,                              /* mp_length */
+    (binaryfunc) 0,                           /* mp_subscript */
+    (objobjargproc) 0,                        /* mp_ass_subscript */
+  },
+  {
+    (lenfunc) 0,                              /* sq_length */
+    (binaryfunc) 0,                           /* sq_concat */
+    (ssizeargfunc) 0,                         /* sq_repeat */
+    (ssizeargfunc) 0,                         /* sq_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_slice */
+#else
+    (ssizessizeargfunc) 0,                    /* sq_slice */
+#endif
+    (ssizeobjargproc) 0,                      /* sq_ass_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_ass_slice */
+#else
+    (ssizessizeobjargproc) 0,                 /* sq_ass_slice */
+#endif
+    (objobjproc) 0,                           /* sq_contains */
+    (binaryfunc) 0,                           /* sq_inplace_concat */
+    (ssizeargfunc) 0,                         /* sq_inplace_repeat */
+  },
+  {
+#if PY_VERSION_HEX < 0x03000000
+    (readbufferproc) 0,                       /* bf_getreadbuffer */
+    (writebufferproc) 0,                      /* bf_getwritebuffer */
+    (segcountproc) 0,                         /* bf_getsegcount */
+    (charbufferproc) 0,                       /* bf_getcharbuffer */
+#endif
+    (getbufferproc) 0,                        /* bf_getbuffer */
+    (releasebufferproc) 0,                    /* bf_releasebuffer */
+  },
+    (PyObject *) 0,                           /* ht_name */
+    (PyObject *) 0,                           /* ht_slots */
+#if PY_VERSION_HEX >= 0x03030000
+    (PyObject *) 0,                           /* ht_qualname */
+    0,                                        /* ht_cached_keys */
+#endif
+};
+
+SWIGINTERN SwigPyClientData SwigPyBuiltin__ampls__GurobiModel_clientdata = {0, 0, 0, 0, 0, 0, (PyTypeObject *)&SwigPyBuiltin__ampls__GurobiModel_type};
+
 static SwigPyGetSet cpxiodevice_cpxiodev_rewind_getset = { _wrap_cpxiodevice_cpxiodev_rewind_get, _wrap_cpxiodevice_cpxiodev_rewind_set };
 static SwigPyGetSet cpxiodevice_cpxiodev_error_getset = { _wrap_cpxiodevice_cpxiodev_error_get, _wrap_cpxiodevice_cpxiodev_error_set };
 static SwigPyGetSet cpxiodevice___dict___getset = { SwigPyObject_get___dict__, 0 };
@@ -64373,7 +81312,7 @@ static PyHeapTypeObject SwigPyBuiltin__cpxiodevice_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.cpxiodevice",          /* tp_name */
+    "amplpy_ampls_swig.cpxiodevice",          /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_cpxiodevice_destructor_closure,                  /* tp_dealloc */
@@ -64609,7 +81548,7 @@ static PyHeapTypeObject SwigPyBuiltin__cpxdeserializer_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.cpxdeserializer",      /* tp_name */
+    "amplpy_ampls_swig.cpxdeserializer",      /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_cpxdeserializer_destructor_closure,              /* tp_dealloc */
@@ -64845,7 +81784,7 @@ static PyHeapTypeObject SwigPyBuiltin__cpxserializer_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.cpxserializer",        /* tp_name */
+    "amplpy_ampls_swig.cpxserializer",        /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_cpxserializer_destructor_closure,                /* tp_dealloc */
@@ -65062,7 +82001,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__cpx__impl__CBWrap_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.CBWrap",               /* tp_name */
+    "amplpy_ampls_swig.CBWrap",               /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_CBWrap_destructor_closure,   /* tp_dealloc */
@@ -65276,7 +82215,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__CPLEXDrv_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.CPLEXDrv",             /* tp_name */
+    "amplpy_ampls_swig.CPLEXDrv",             /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_CPLEXDrv_destructor_closure, /* tp_dealloc */
@@ -65498,7 +82437,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__CPLEXModel_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.CPLEXModel",           /* tp_name */
+    "amplpy_ampls_swig.CPLEXModel",           /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_CPLEXModel_destructor_closure,                   /* tp_dealloc */
@@ -65720,7 +82659,7 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__CPLEXCallback_type = {
     PyObject_HEAD_INIT(NULL)
     0,                                        /* ob_size */
 #endif
-    "amplpy_cplex_swig.CPLEXCallback",        /* tp_name */
+    "amplpy_ampls_swig.CPLEXCallback",        /* tp_name */
     sizeof(SwigPyObject),                     /* tp_basicsize */
     0,                                        /* tp_itemsize */
     _wrap_delete_CPLEXCallback_destructor_closure,                /* tp_dealloc */
@@ -65903,74 +82842,32 @@ SWIGINTERN SwigPyClientData SwigPyBuiltin__ampls__CPLEXCallback_clientdata = {0,
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
-static void *_p_dblArrayTo_p_double(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((double *)  ((dblArray *) x));
-}
-static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (**)(cpxenv const *,void *,int,void *,double *,double *,int *,int *))  ((intArray (**)(cpxenv const *,void *,int,void *,double *,double *,int *,int *)) x));
-}
-static void *_p_f_p_q_const__char_p_cpxiodevice__intArrayTo_p_f_p_q_const__char_p_cpxiodevice__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(char const *,cpxiodevice *))  ((intArray (*)(char const *,cpxiodevice *)) x));
-}
-static void *_p_f_int_p_cpxiodevice__intArrayTo_p_f_int_p_cpxiodevice__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(int,cpxiodevice *))  ((intArray (*)(int,cpxiodevice *)) x));
-}
-static void *_p_f_p_cpxiodevice__intArrayTo_p_f_p_cpxiodevice__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxiodevice *))  ((intArray (*)(cpxiodevice *)) x));
-}
-static void *_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxenv const *,void *,int,void *,double,double *,int *,int *))  ((intArray (*)(cpxenv const *,void *,int,void *,double,double *,int *,int *)) x));
-}
-static void *_p_ampls__CPLEXModelTo_p_ampls__AMPLModel(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((ampls::AMPLModel *)  ((ampls::CPLEXModel *) x));
-}
-static void *_p_f_p_cpxserializer_long_long_p_q_const__short__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__short__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,long long,short const *))  ((intArray (*)(cpxserializer *,long long,short const *)) x));
-}
-static void *_p_f_p_cpxserializer_long_long_p_q_const__float__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__float__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,long long,float const *))  ((intArray (*)(cpxserializer *,long long,float const *)) x));
-}
 static void *_p_f_p_cpxserializer_long_long_p_q_const__signed_char__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__signed_char__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int (*)(cpxserializer *,long long,signed char const *))  ((intArray (*)(cpxserializer *,long long,signed char const *)) x));
-}
-static void *_p_f_p_cpxserializer_long_long_p_q_const__long_long__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__long_long__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,long long,long long const *))  ((intArray (*)(cpxserializer *,long long,long long const *)) x));
-}
-static void *_p_f_p_cpxserializer_long_long_p_q_const__double__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__double__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,long long,double const *))  ((intArray (*)(cpxserializer *,long long,double const *)) x));
-}
-static void *_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxenv const *,void *,int,void *,int,int,int,int,int const *,int const *,char const *,double const *,double const *,int *))  ((intArray (*)(cpxenv const *,void *,int,void *,int,int,int,int,int const *,int const *,char const *,double const *,double const *,int *)) x));
 }
 static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int (**)(cpxenv const *,void *,int,void *,int *,int *))  ((intArray (**)(cpxenv const *,void *,int,void *,int *,int *)) x));
 }
-static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (**)(cpxenv const *,void *,int,void *,int,int,int,int,int const *,int const *,char const *,double const *,double const *,int *))  ((intArray (**)(cpxenv const *,void *,int,void *,int,int,int,int,int const *,int const *,char const *,double const *,double const *,int *)) x));
+static void *_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxenv const *,void *,int,void *,int,int,int,int,int const *,int const *,char const *,double const *,double const *,int *))  ((intArray (*)(cpxenv const *,void *,int,void *,int,int,int,int,int const *,int const *,char const *,double const *,double const *,int *)) x));
 }
-static void *_p_f_p_cpxdeserializer_p_short__intArrayTo_p_f_p_cpxdeserializer_p_short__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,short *))  ((intArray (*)(cpxdeserializer *,short *)) x));
+static void *_p_f_p_cpxserializer_long_long_p_q_const__double__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__double__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,long long,double const *))  ((intArray (*)(cpxserializer *,long long,double const *)) x));
 }
-static void *_p_f_p_cpxdeserializer_p_int__intArrayTo_p_f_p_cpxdeserializer_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,int *))  ((intArray (*)(cpxdeserializer *,int *)) x));
+static void *_p_f_p_q_const__cpxenv_int_p_void__intArrayTo_p_f_p_q_const__cpxenv_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxenv const *,int,void *))  ((intArray (*)(cpxenv const *,int,void *)) x));
 }
-static void *_p_f_p_cpxdeserializer_long_long_p_short__intArrayTo_p_f_p_cpxdeserializer_long_long_p_short__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,long long,short *))  ((intArray (*)(cpxdeserializer *,long long,short *)) x));
+static void *_p_f_p_q_const__cpxenv_p_void_int_p_void__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxenv const *,void *,int,void *))  ((intArray (*)(cpxenv const *,void *,int,void *)) x));
 }
-static void *_p_f_p_cpxdeserializer_long_long_p_int__intArrayTo_p_f_p_cpxdeserializer_long_long_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,long long,int *))  ((intArray (*)(cpxdeserializer *,long long,int *)) x));
+static void *_p_p_f_int_p_q_const__char_p_void__intArrayTo_p_p_f_int_p_q_const__char_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (**)(int,char const *,void *))  ((intArray (**)(int,char const *,void *)) x));
 }
-static void *_p_f_p_cpxserializer_short__intArrayTo_p_f_p_cpxserializer_short__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,short))  ((intArray (*)(cpxserializer *,short)) x));
+static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (**)(cpxenv const *,void *,int,void *))  ((intArray (**)(cpxenv const *,void *,int,void *)) x));
 }
-static void *_p_f_p_cpxserializer_int__intArrayTo_p_f_p_cpxserializer_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,int))  ((intArray (*)(cpxserializer *,int)) x));
-}
-static void *_p_f_p_cpxserializer_long_long_p_q_const__int__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,long long,int const *))  ((intArray (*)(cpxserializer *,long long,int const *)) x));
-}
-static void *_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxenv const *,void *,int,void *,int *))  ((intArray (*)(cpxenv const *,void *,int,void *,int *)) x));
+static void *_p_p_f_p_cpxcallbackcontext_long_long_p_void__intArrayTo_p_p_f_p_cpxcallbackcontext_long_long_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (**)(cpxcallbackcontext *,long long,void *))  ((intArray (**)(cpxcallbackcontext *,long long,void *)) x));
 }
 static void *_p_f_int_p_q_const__char_p_void__intArrayTo_p_f_int_p_q_const__char_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int (*)(int,char const *,void *))  ((intArray (*)(int,char const *,void *)) x));
@@ -65978,62 +82875,32 @@ static void *_p_f_int_p_q_const__char_p_void__intArrayTo_p_f_int_p_q_const__char
 static void *_p_f_p_cpxcallbackcontext_long_long_p_void__intArrayTo_p_f_p_cpxcallbackcontext_long_long_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int (*)(cpxcallbackcontext *,long long,void *))  ((intArray (*)(cpxcallbackcontext *,long long,void *)) x));
 }
-static void *_p_p_f_p_cpxcallbackcontext_long_long_p_void__intArrayTo_p_p_f_p_cpxcallbackcontext_long_long_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (**)(cpxcallbackcontext *,long long,void *))  ((intArray (**)(cpxcallbackcontext *,long long,void *)) x));
+static void *_p_f_p__GRBmodel_p_void_int_p_void__intArrayTo_p_f_p__GRBmodel_p_void_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(_GRBmodel *,void *,int,void *))  ((intArray (*)(_GRBmodel *,void *,int,void *)) x));
 }
-static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (**)(cpxenv const *,void *,int,void *))  ((intArray (**)(cpxenv const *,void *,int,void *)) x));
+static void *_p_p_f_p__GRBmodel_p_void_int_p_void__intArrayTo_p_p_f_p__GRBmodel_p_void_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (**)(_GRBmodel *,void *,int,void *))  ((intArray (**)(_GRBmodel *,void *,int,void *)) x));
 }
-static void *_p_p_f_int_p_q_const__char_p_void__intArrayTo_p_p_f_int_p_q_const__char_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (**)(int,char const *,void *))  ((intArray (**)(int,char const *,void *)) x));
-}
-static void *_p_f_p_q_const__cpxenv_p_void_int_p_void__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxenv const *,void *,int,void *))  ((intArray (*)(cpxenv const *,void *,int,void *)) x));
-}
-static void *_p_f_p_q_const__cpxenv_int_p_void__intArrayTo_p_f_p_q_const__cpxenv_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxenv const *,int,void *))  ((intArray (*)(cpxenv const *,int,void *)) x));
-}
-static void *_p_ampls__AMPLSolverExceptionTo_p_std__runtime_error(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::runtime_error *)  ((ampls::AMPLSolverException *) x));
-}
-static void *_p_f_p_cpxdeserializer_p_signed_char__intArrayTo_p_f_p_cpxdeserializer_p_signed_char__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,signed char *))  ((intArray (*)(cpxdeserializer *,signed char *)) x));
-}
-static void *_p_f_p_cpxdeserializer_long_long_p_signed_char__intArrayTo_p_f_p_cpxdeserializer_long_long_p_signed_char__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,long long,signed char *))  ((intArray (*)(cpxdeserializer *,long long,signed char *)) x));
-}
-static void *_p_f_p_cpxserializer_signed_char__intArrayTo_p_f_p_cpxserializer_signed_char__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,signed char))  ((intArray (*)(cpxserializer *,signed char)) x));
-}
-static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (**)(cpxenv const *,void *,int,void *,int *))  ((intArray (**)(cpxenv const *,void *,int,void *,int *)) x));
-}
-static void *_p_f_p_cpxenv_int_long_long_p_q_const__void_long_long_p_long_long_p_void_p_void__intArrayTo_p_f_p_cpxenv_int_long_long_p_q_const__void_long_long_p_long_long_p_void_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxenv *,int,long long,void const *,long long,long long *,void *,void *))  ((intArray (*)(cpxenv *,int,long long,void const *,long long,long long *,void *,void *)) x));
+static void *_p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArrayTo_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(void **,void (*)(void *),void *,void *))  ((intArray (*)(void **,void (*)(void *),void *,void *)) x));
 }
 static void *_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int (*)(cpxenv const *,void *,int,void *,int *,int *))  ((intArray (*)(cpxenv const *,void *,int,void *,int *,int *)) x));
 }
-static void *_p_f_p_cpxdeserializer_p_double__intArrayTo_p_f_p_cpxdeserializer_p_double__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,double *))  ((intArray (*)(cpxdeserializer *,double *)) x));
+static void *_p_intArrayTo_p_int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int *)  ((intArray *) x));
 }
-static void *_p_f_p_cpxdeserializer_long_long_p_double__intArrayTo_p_f_p_cpxdeserializer_long_long_p_double__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,long long,double *))  ((intArray (*)(cpxdeserializer *,long long,double *)) x));
+static void *_p_f_p_cpxserializer_long_long_p_q_const__long_long__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__long_long__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,long long,long long const *))  ((intArray (*)(cpxserializer *,long long,long long const *)) x));
 }
-static void *_p_f_p_cpxserializer_double__intArrayTo_p_f_p_cpxserializer_double__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,double))  ((intArray (*)(cpxserializer *,double)) x));
-}
-static void *_p_f_p_cpxdeserializer_p_float__intArrayTo_p_f_p_cpxdeserializer_p_float__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,float *))  ((intArray (*)(cpxdeserializer *,float *)) x));
-}
-static void *_p_f_p_cpxdeserializer_long_long_p_float__intArrayTo_p_f_p_cpxdeserializer_long_long_p_float__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,long long,float *))  ((intArray (*)(cpxdeserializer *,long long,float *)) x));
-}
-static void *_p_f_p_cpxserializer_float__intArrayTo_p_f_p_cpxserializer_float__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,float))  ((intArray (*)(cpxserializer *,float)) x));
+static void *_p_f_p_cpxenv_int_long_long_p_q_const__void_long_long_p_long_long_p_void_p_void__intArrayTo_p_f_p_cpxenv_int_long_long_p_q_const__void_long_long_p_long_long_p_void_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxenv *,int,long long,void const *,long long,long long *,void *,void *))  ((intArray (*)(cpxenv *,int,long long,void const *,long long,long long *,void *,void *)) x));
 }
 static void *_p_ampls__GenericCallbackTo_p_ampls__impl__BaseCallback(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((ampls::impl::BaseCallback *)  ((ampls::GenericCallback *) x));
+}
+static void *_p_ampls__GurobiCallbackTo_p_ampls__impl__BaseCallback(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((ampls::impl::BaseCallback *)  ((ampls::GurobiCallback *) x));
 }
 static void *_p_ampls__CPLEXCallbackTo_p_ampls__impl__BaseCallback(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((ampls::impl::BaseCallback *)  ((ampls::CPLEXCallback *) x));
@@ -66056,28 +82923,124 @@ static void *_p_a_sizeof_CPXSHORT___2_1__1__intArrayTo_p_a_sizeof_CPXSHORT___2_1
 static void *_p_a_sizeof_CPXBYTE___1_1__1__intArrayTo_p_a_sizeof_CPXBYTE___1_1__1__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int (*)[sizeof(CPXBYTE)==1?1:-1])  ((intArray (*)[sizeof(CPXBYTE)==1?1:-1]) x));
 }
-static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (**)(cpxenv const *,void *,int,void *,double,double *,int *,int *))  ((intArray (**)(cpxenv const *,void *,int,void *,double,double *,int *,int *)) x));
-}
-static void *_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxenv const *,void *,int,void *,double *,double *,int *,int *))  ((intArray (*)(cpxenv const *,void *,int,void *,double *,double *,int *,int *)) x));
-}
-static void *_p_intArrayTo_p_int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int *)  ((intArray *) x));
-}
-static void *_p_f_p_cpxdeserializer_p_long_long__intArrayTo_p_f_p_cpxdeserializer_p_long_long__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxdeserializer *,long long *))  ((intArray (*)(cpxdeserializer *,long long *)) x));
+static void *_p_f_p_cpxserializer_long_long__intArrayTo_p_f_p_cpxserializer_long_long__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,long long))  ((intArray (*)(cpxserializer *,long long)) x));
 }
 static void *_p_f_p_cpxdeserializer_long_long_p_long_long__intArrayTo_p_f_p_cpxdeserializer_long_long_p_long_long__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int (*)(cpxdeserializer *,long long,long long *))  ((intArray (*)(cpxdeserializer *,long long,long long *)) x));
 }
-static void *_p_f_p_cpxserializer_long_long__intArrayTo_p_f_p_cpxserializer_long_long__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(cpxserializer *,long long))  ((intArray (*)(cpxserializer *,long long)) x));
+static void *_p_f_p_cpxdeserializer_p_long_long__intArrayTo_p_f_p_cpxdeserializer_p_long_long__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,long long *))  ((intArray (*)(cpxdeserializer *,long long *)) x));
 }
+static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (**)(cpxenv const *,void *,int,void *,int *))  ((intArray (**)(cpxenv const *,void *,int,void *,int *)) x));
+}
+static void *_p_ampls__GurobiModelTo_p_ampls__AMPLModel(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((ampls::AMPLModel *)  ((ampls::GurobiModel *) x));
+}
+static void *_p_ampls__CPLEXModelTo_p_ampls__AMPLModel(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((ampls::AMPLModel *)  ((ampls::CPLEXModel *) x));
+}
+static void *_p_f_p_q_const__char_p_cpxiodevice__intArrayTo_p_f_p_q_const__char_p_cpxiodevice__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(char const *,cpxiodevice *))  ((intArray (*)(char const *,cpxiodevice *)) x));
+}
+static void *_p_f_int_p_cpxiodevice__intArrayTo_p_f_int_p_cpxiodevice__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(int,cpxiodevice *))  ((intArray (*)(int,cpxiodevice *)) x));
+}
+static void *_p_f_p_cpxiodevice__intArrayTo_p_f_p_cpxiodevice__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxiodevice *))  ((intArray (*)(cpxiodevice *)) x));
+}
+static void *_p_f_p_cpxserializer_long_long_p_q_const__short__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__short__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,long long,short const *))  ((intArray (*)(cpxserializer *,long long,short const *)) x));
+}
+static void *_p_f_p_cpxserializer_double__intArrayTo_p_f_p_cpxserializer_double__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,double))  ((intArray (*)(cpxserializer *,double)) x));
+}
+static void *_p_f_p_cpxdeserializer_long_long_p_double__intArrayTo_p_f_p_cpxdeserializer_long_long_p_double__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,long long,double *))  ((intArray (*)(cpxdeserializer *,long long,double *)) x));
+}
+static void *_p_f_p_cpxdeserializer_p_double__intArrayTo_p_f_p_cpxdeserializer_p_double__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,double *))  ((intArray (*)(cpxdeserializer *,double *)) x));
+}
+static void *_p_f_p_cpxserializer_long_long_p_q_const__float__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__float__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,long long,float const *))  ((intArray (*)(cpxserializer *,long long,float const *)) x));
+}
+static void *_p_f_p_cpxserializer_float__intArrayTo_p_f_p_cpxserializer_float__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,float))  ((intArray (*)(cpxserializer *,float)) x));
+}
+static void *_p_f_p_cpxdeserializer_long_long_p_float__intArrayTo_p_f_p_cpxdeserializer_long_long_p_float__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,long long,float *))  ((intArray (*)(cpxdeserializer *,long long,float *)) x));
+}
+static void *_p_f_p_cpxdeserializer_p_float__intArrayTo_p_f_p_cpxdeserializer_p_float__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,float *))  ((intArray (*)(cpxdeserializer *,float *)) x));
+}
+static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (**)(cpxenv const *,void *,int,void *,double *,double *,int *,int *))  ((intArray (**)(cpxenv const *,void *,int,void *,double *,double *,int *,int *)) x));
+}
+static void *_p_dblArrayTo_p_double(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((double *)  ((dblArray *) x));
+}
+static void *_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxenv const *,void *,int,void *,double,double *,int *,int *))  ((intArray (*)(cpxenv const *,void *,int,void *,double,double *,int *,int *)) x));
+}
+static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void_int_int_int_int_p_q_const__int_p_q_const__int_p_q_const__char_p_q_const__double_p_q_const__double_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (**)(cpxenv const *,void *,int,void *,int,int,int,int,int const *,int const *,char const *,double const *,double const *,int *))  ((intArray (**)(cpxenv const *,void *,int,void *,int,int,int,int,int const *,int const *,char const *,double const *,double const *,int *)) x));
+}
+static void *_p_ampls__AMPLSolverExceptionTo_p_std__runtime_error(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::runtime_error *)  ((ampls::AMPLSolverException *) x));
+}
+static void *_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void_p_double_p_double_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxenv const *,void *,int,void *,double *,double *,int *,int *))  ((intArray (*)(cpxenv const *,void *,int,void *,double *,double *,int *,int *)) x));
+}
+static void *_p_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__intArrayTo_p_p_f_p_q_const__cpxenv_p_void_int_p_void_double_p_double_p_int_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (**)(cpxenv const *,void *,int,void *,double,double *,int *,int *))  ((intArray (**)(cpxenv const *,void *,int,void *,double,double *,int *,int *)) x));
+}
+static void *_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__intArrayTo_p_f_p_q_const__cpxenv_p_void_int_p_void_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxenv const *,void *,int,void *,int *))  ((intArray (*)(cpxenv const *,void *,int,void *,int *)) x));
+}
+static void *_p_f_p_cpxserializer_long_long_p_q_const__int__intArrayTo_p_f_p_cpxserializer_long_long_p_q_const__int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,long long,int const *))  ((intArray (*)(cpxserializer *,long long,int const *)) x));
+}
+static void *_p_f_p_cpxserializer_int__intArrayTo_p_f_p_cpxserializer_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,int))  ((intArray (*)(cpxserializer *,int)) x));
+}
+static void *_p_f_p_cpxserializer_short__intArrayTo_p_f_p_cpxserializer_short__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,short))  ((intArray (*)(cpxserializer *,short)) x));
+}
+static void *_p_f_p_cpxdeserializer_long_long_p_int__intArrayTo_p_f_p_cpxdeserializer_long_long_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,long long,int *))  ((intArray (*)(cpxdeserializer *,long long,int *)) x));
+}
+static void *_p_f_p_cpxdeserializer_long_long_p_short__intArrayTo_p_f_p_cpxdeserializer_long_long_p_short__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,long long,short *))  ((intArray (*)(cpxdeserializer *,long long,short *)) x));
+}
+static void *_p_f_p_cpxdeserializer_p_int__intArrayTo_p_f_p_cpxdeserializer_p_int__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,int *))  ((intArray (*)(cpxdeserializer *,int *)) x));
+}
+static void *_p_f_p_cpxdeserializer_p_short__intArrayTo_p_f_p_cpxdeserializer_p_short__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,short *))  ((intArray (*)(cpxdeserializer *,short *)) x));
+}
+static void *_p_f_p_cpxserializer_signed_char__intArrayTo_p_f_p_cpxserializer_signed_char__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxserializer *,signed char))  ((intArray (*)(cpxserializer *,signed char)) x));
+}
+static void *_p_f_p_cpxdeserializer_long_long_p_signed_char__intArrayTo_p_f_p_cpxdeserializer_long_long_p_signed_char__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,long long,signed char *))  ((intArray (*)(cpxdeserializer *,long long,signed char *)) x));
+}
+static void *_p_f_p_cpxdeserializer_p_signed_char__intArrayTo_p_f_p_cpxdeserializer_p_signed_char__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(cpxdeserializer *,signed char *))  ((intArray (*)(cpxdeserializer *,signed char *)) x));
+}
+static void *_p_f_p_char__intArrayTo_p_f_p_char__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(char *))  ((intArray (*)(char *)) x));
+}
+static swig_type_info _swigt__p_ASL = {"_p_ASL", "ASL *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CPXCALLBACKINFO = {"_p_CPXCALLBACKINFO", "enum CPXCALLBACKINFO *|CPXCALLBACKINFO *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CPXCALLBACKSOLUTIONSTRATEGY = {"_p_CPXCALLBACKSOLUTIONSTRATEGY", "enum CPXCALLBACKSOLUTIONSTRATEGY *|CPXCALLBACKSOLUTIONSTRATEGY *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_CPXINFOTYPE = {"_p_CPXINFOTYPE", "enum CPXINFOTYPE *|CPXINFOTYPE *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_FILE = {"_p_FILE", "FILE *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SwigPyObject = {"_p_SwigPyObject", "SwigPyObject *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p__GRBbatch = {"_p__GRBbatch", "_GRBbatch *|GRBbatch *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p__GRBenv = {"_p__GRBenv", "_GRBenv *|GRBenv *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p__GRBmodel = {"_p__GRBmodel", "_GRBmodel *|GRBmodel *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p__GRBsvec = {"_p__GRBsvec", "_GRBsvec *|GRBsvec *", 0, 0, (void*)&SwigPyBuiltin___GRBsvec_clientdata, 0};
 static swig_type_info _swigt__p_a_sizeof_CPXBYTE___1_1__1__int = {"_p_a_sizeof_CPXBYTE___1_1__1__int", "int (*)[sizeof(CPXBYTE)==1?1:-1]|CPXBYTE_TEST *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_a_sizeof_CPXBYTE___1_1__1__intArray = {"_p_a_sizeof_CPXBYTE___1_1__1__intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_a_sizeof_CPXINT___4_1__1__int = {"_p_a_sizeof_CPXINT___4_1__1__int", "int (*)[sizeof(CPXINT)==4?1:-1]|CPXINT_TEST *", 0, 0, (void*)0, 0};
@@ -66098,6 +83061,9 @@ static swig_type_info _swigt__p_ampls__CPLEXDrv = {"_p_ampls__CPLEXDrv", "ampls:
 static swig_type_info _swigt__p_ampls__CPLEXModel = {"_p_ampls__CPLEXModel", "ampls::CPLEXModel *", 0, 0, (void*)&SwigPyBuiltin__ampls__CPLEXModel_clientdata, 0};
 static swig_type_info _swigt__p_ampls__CutDirection = {"_p_ampls__CutDirection", "ampls::CutDirection *", 0, 0, (void*)&SwigPyBuiltin__ampls__CutDirection_clientdata, 0};
 static swig_type_info _swigt__p_ampls__GenericCallback = {"_p_ampls__GenericCallback", "ampls::GenericCallback *", 0, 0, (void*)&SwigPyBuiltin__ampls__GenericCallback_clientdata, 0};
+static swig_type_info _swigt__p_ampls__GurobiCallback = {"_p_ampls__GurobiCallback", "ampls::GurobiCallback *", 0, 0, (void*)&SwigPyBuiltin__ampls__GurobiCallback_clientdata, 0};
+static swig_type_info _swigt__p_ampls__GurobiDrv = {"_p_ampls__GurobiDrv", "ampls::GurobiDrv *", 0, 0, (void*)&SwigPyBuiltin__ampls__GurobiDrv_clientdata, 0};
+static swig_type_info _swigt__p_ampls__GurobiModel = {"_p_ampls__GurobiModel", "ampls::GurobiModel *", 0, 0, (void*)&SwigPyBuiltin__ampls__GurobiModel_clientdata, 0};
 static swig_type_info _swigt__p_ampls__Status = {"_p_ampls__Status", "ampls::Status *", 0, 0, (void*)&SwigPyBuiltin__ampls__Status_clientdata, 0};
 static swig_type_info _swigt__p_ampls__Value = {"_p_ampls__Value", "ampls::Value *", 0, 0, (void*)&SwigPyBuiltin__ampls__Value_clientdata, 0};
 static swig_type_info _swigt__p_ampls__Variant = {"_p_ampls__Variant", "ampls::Variant *", 0, 0, (void*)&SwigPyBuiltin__ampls__Variant_clientdata, 0};
@@ -66122,6 +83088,10 @@ static swig_type_info _swigt__p_f_int_p_cpxiodevice__int = {"_p_f_int_p_cpxiodev
 static swig_type_info _swigt__p_f_int_p_cpxiodevice__intArray = {"_p_f_int_p_cpxiodevice__intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_f_int_p_q_const__char_p_void__int = {"_p_f_int_p_q_const__char_p_void__int", "CPXMODELASSTCALLBACKFUNC *|int (*)(int,char const *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_int_p_q_const__char_p_void__intArray = {"_p_f_int_p_q_const__char_p_void__intArray", 0, 0, 0, 0, 0};
+static swig_type_info _swigt__p_f_p__GRBmodel_p_void_int_p_void__int = {"_p_f_p__GRBmodel_p_void_int_p_void__int", "int (*)(_GRBmodel *,void *,int,void *)|int (*)(GRBmodel *,void *,int,void *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p__GRBmodel_p_void_int_p_void__intArray = {"_p_f_p__GRBmodel_p_void_int_p_void__intArray", 0, 0, 0, 0, 0};
+static swig_type_info _swigt__p_f_p_char__int = {"_p_f_p_char__int", "int (*)(char *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_char__intArray = {"_p_f_p_char__intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_f_p_cpxcallbackcontext_long_long_p_void__int = {"_p_f_p_cpxcallbackcontext_long_long_p_void__int", "CPXCALLBACKFUNC *|int (*)(cpxcallbackcontext *,long long,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_cpxcallbackcontext_long_long_p_void__intArray = {"_p_f_p_cpxcallbackcontext_long_long_p_void__intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_f_p_cpxdeserializer_long_long_p_double__int = {"_p_f_p_cpxdeserializer_long_long_p_double__int", "int (*)(cpxdeserializer *,long long,double *)|int (*)(CPXDESERIALIZERptr,CPXLONG,double *)", 0, 0, (void*)0, 0};
@@ -66177,6 +83147,8 @@ static swig_type_info _swigt__p_f_p_cpxserializer_short__int = {"_p_f_p_cpxseria
 static swig_type_info _swigt__p_f_p_cpxserializer_short__intArray = {"_p_f_p_cpxserializer_short__intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_f_p_cpxserializer_signed_char__int = {"_p_f_p_cpxserializer_signed_char__int", "int (*)(cpxserializer *,signed char)|int (*)(CPXSERIALIZERptr,CPXBYTE)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_cpxserializer_signed_char__intArray = {"_p_f_p_cpxserializer_signed_char__intArray", 0, 0, 0, 0, 0};
+static swig_type_info _swigt__p_f_p_p_void_p_f_p_void__void_p_void_p_void__int = {"_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int", "int (*)(void **,void (*)(void *),void *,void *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray = {"_p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_f_p_q_const__char_p_cpxiodevice__int = {"_p_f_p_q_const__char_p_cpxiodevice__int", "int (*)(char const *,cpxiodevice *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_q_const__char_p_cpxiodevice__intArray = {"_p_f_p_q_const__char_p_cpxiodevice__intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_f_p_q_const__cpxenv_int_p_void__int = {"_p_f_p_q_const__cpxenv_int_p_void__int", "int (*)(cpxenv const *,int,void *)|int (*)(CPXCENVptr,int,void *)", 0, 0, (void*)0, 0};
@@ -66197,14 +83169,22 @@ static swig_type_info _swigt__p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_in
 static swig_type_info _swigt__p_f_p_q_const__void_size_t_p_cpxiodevice__size_t = {"_p_f_p_q_const__void_size_t_p_cpxiodevice__size_t", "size_t (*)(void const *,size_t,cpxiodevice *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_long_long_p_char__p_char = {"_p_f_p_void_long_long_p_char__p_char", "char *(*)(void *,long long,char *)|CPXNAMEFUNCTION *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_p_q_const__char__void = {"_p_f_p_void_p_q_const__char__void", "void (*)(void *,char const *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_p_void__void = {"_p_f_p_void_p_void__void", "void (*)(void *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_p_void_size_t_p_cpxiodevice__size_t = {"_p_f_p_void_size_t_p_cpxiodevice__size_t", "size_t (*)(void *,size_t,cpxiodevice *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void_size_t_p_void__p_void = {"_p_f_p_void_size_t_p_void__p_void", "void *(*)(void *,size_t,void *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_size_t_p_void__p_void = {"_p_f_size_t_p_void__p_void", "void *(*)(size_t,void *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_size_t_size_t_p_void__p_void = {"_p_f_size_t_size_t_p_void__p_void", "void *(*)(size_t,size_t,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_int = {"_p_int", "CPXINT *|intptr_t *|int *|int_least32_t *|int_fast32_t *|int32_t *|int_fast16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_intArray = {"_p_intArray", "intArray *", 0, 0, (void*)&SwigPyBuiltin__intArray_clientdata, 0};
 static swig_type_info _swigt__p_key_type = {"_p_key_type", "key_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_long_long = {"_p_long_long", "CPXSIZE *|int_least64_t *|int_fast64_t *|int64_t *|CPXLONG *|long long *|intmax_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_mapped_type = {"_p_mapped_type", "mapped_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_ASL = {"_p_p_ASL", "ASL **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_FILE = {"_p_p_FILE", "FILE **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_PyObject = {"_p_p_PyObject", "PyObject **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p__GRBbatch = {"_p_p__GRBbatch", "_GRBbatch **|GRBbatch **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p__GRBenv = {"_p_p__GRBenv", "_GRBenv **|GRBenv **", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p__GRBmodel = {"_p_p__GRBmodel", "_GRBmodel **|GRBmodel **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_cpxchannel = {"_p_p_cpxchannel", "CPXCHANNELptr *|cpxchannel **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_cpxdeserializer = {"_p_p_cpxdeserializer", "cpxdeserializer **|CPXDESERIALIZERptr *", 0, 0, (void*)0, 0};
@@ -66214,6 +83194,8 @@ static swig_type_info _swigt__p_p_cpxnet = {"_p_p_cpxnet", "CPXNETptr *|cpxnet *
 static swig_type_info _swigt__p_p_cpxserializer = {"_p_p_cpxserializer", "cpxserializer **|CPXSERIALIZERptr *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_f_int_p_q_const__char_p_void__int = {"_p_p_f_int_p_q_const__char_p_void__int", "CPXMODELASSTCALLBACKFUNC **|int (**)(int,char const *,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_f_int_p_q_const__char_p_void__intArray = {"_p_p_f_int_p_q_const__char_p_void__intArray", 0, 0, 0, 0, 0};
+static swig_type_info _swigt__p_p_f_p__GRBmodel_p_void_int_p_void__int = {"_p_p_f_p__GRBmodel_p_void_int_p_void__int", "int (**)(_GRBmodel *,void *,int,void *)|int (**)(GRBmodel *,void *,int,void *)", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_p_f_p__GRBmodel_p_void_int_p_void__intArray = {"_p_p_f_p__GRBmodel_p_void_int_p_void__intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_p_f_p_cpxcallbackcontext_long_long_p_void__int = {"_p_p_f_p_cpxcallbackcontext_long_long_p_void__int", "CPXCALLBACKFUNC **|int (**)(cpxcallbackcontext *,long long,void *)", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_f_p_cpxcallbackcontext_long_long_p_void__intArray = {"_p_p_f_p_cpxcallbackcontext_long_long_p_void__intArray", 0, 0, 0, 0, 0};
 static swig_type_info _swigt__p_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void = {"_p_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void", "void (**)(cpxenv const *,int,void *,int,void *)|void (**)(CPXCENVptr,int,void *,int,void *)", 0, 0, (void*)0, 0};
@@ -66235,6 +83217,7 @@ static swig_type_info _swigt__p_paramset = {"_p_paramset", "paramset *|CPXPARAMS
 static swig_type_info _swigt__p_pthread_mutex_t = {"_p_pthread_mutex_t", "MUTEXIMPL *|pthread_mutex_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_short = {"_p_short", "short *|CPXSHORT *|int_least16_t *|int16_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_signed_char = {"_p_signed_char", "signed char *|CPXBYTE *|int_least8_t *|int_fast8_t *|int8_t *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_size_t = {"_p_size_t", "size_t *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__allocatorT_double_t = {"_p_std__allocatorT_double_t", "std::vector< double >::allocator_type *|std::allocator< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__allocatorT_std__pairT_int_const_std__string_t_t = {"_p_std__allocatorT_std__pairT_int_const_std__string_t_t", "std::map< int,std::string >::allocator_type *|std::allocator< std::pair< int const,std::string > > *", 0, 0, (void*)0, 0};
@@ -66258,10 +83241,16 @@ static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0
 static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_ASL,
   &_swigt__p_CPXCALLBACKINFO,
   &_swigt__p_CPXCALLBACKSOLUTIONSTRATEGY,
   &_swigt__p_CPXINFOTYPE,
+  &_swigt__p_FILE,
   &_swigt__p_SwigPyObject,
+  &_swigt__p__GRBbatch,
+  &_swigt__p__GRBenv,
+  &_swigt__p__GRBmodel,
+  &_swigt__p__GRBsvec,
   &_swigt__p_a_sizeof_CPXBYTE___1_1__1__int,
   &_swigt__p_a_sizeof_CPXBYTE___1_1__1__intArray,
   &_swigt__p_a_sizeof_CPXINT___4_1__1__int,
@@ -66282,6 +83271,9 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_ampls__CPLEXModel,
   &_swigt__p_ampls__CutDirection,
   &_swigt__p_ampls__GenericCallback,
+  &_swigt__p_ampls__GurobiCallback,
+  &_swigt__p_ampls__GurobiDrv,
+  &_swigt__p_ampls__GurobiModel,
   &_swigt__p_ampls__Status,
   &_swigt__p_ampls__Value,
   &_swigt__p_ampls__Variant,
@@ -66306,6 +83298,10 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_f_int_p_cpxiodevice__intArray,
   &_swigt__p_f_int_p_q_const__char_p_void__int,
   &_swigt__p_f_int_p_q_const__char_p_void__intArray,
+  &_swigt__p_f_p__GRBmodel_p_void_int_p_void__int,
+  &_swigt__p_f_p__GRBmodel_p_void_int_p_void__intArray,
+  &_swigt__p_f_p_char__int,
+  &_swigt__p_f_p_char__intArray,
   &_swigt__p_f_p_cpxcallbackcontext_long_long_p_void__int,
   &_swigt__p_f_p_cpxcallbackcontext_long_long_p_void__intArray,
   &_swigt__p_f_p_cpxdeserializer_long_long_p_double__int,
@@ -66361,6 +83357,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_f_p_cpxserializer_short__intArray,
   &_swigt__p_f_p_cpxserializer_signed_char__int,
   &_swigt__p_f_p_cpxserializer_signed_char__intArray,
+  &_swigt__p_f_p_p_void_p_f_p_void__void_p_void_p_void__int,
+  &_swigt__p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray,
   &_swigt__p_f_p_q_const__char_p_cpxiodevice__int,
   &_swigt__p_f_p_q_const__char_p_cpxiodevice__intArray,
   &_swigt__p_f_p_q_const__cpxenv_int_p_void__int,
@@ -66381,14 +83379,22 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_f_p_q_const__void_size_t_p_cpxiodevice__size_t,
   &_swigt__p_f_p_void_long_long_p_char__p_char,
   &_swigt__p_f_p_void_p_q_const__char__void,
+  &_swigt__p_f_p_void_p_void__void,
   &_swigt__p_f_p_void_size_t_p_cpxiodevice__size_t,
+  &_swigt__p_f_p_void_size_t_p_void__p_void,
+  &_swigt__p_f_size_t_p_void__p_void,
+  &_swigt__p_f_size_t_size_t_p_void__p_void,
   &_swigt__p_int,
   &_swigt__p_intArray,
   &_swigt__p_key_type,
   &_swigt__p_long_long,
   &_swigt__p_mapped_type,
   &_swigt__p_p_ASL,
+  &_swigt__p_p_FILE,
   &_swigt__p_p_PyObject,
+  &_swigt__p_p__GRBbatch,
+  &_swigt__p_p__GRBenv,
+  &_swigt__p_p__GRBmodel,
   &_swigt__p_p_char,
   &_swigt__p_p_cpxchannel,
   &_swigt__p_p_cpxdeserializer,
@@ -66398,6 +83404,8 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_p_cpxserializer,
   &_swigt__p_p_f_int_p_q_const__char_p_void__int,
   &_swigt__p_p_f_int_p_q_const__char_p_void__intArray,
+  &_swigt__p_p_f_p__GRBmodel_p_void_int_p_void__int,
+  &_swigt__p_p_f_p__GRBmodel_p_void_int_p_void__intArray,
   &_swigt__p_p_f_p_cpxcallbackcontext_long_long_p_void__int,
   &_swigt__p_p_f_p_cpxcallbackcontext_long_long_p_void__intArray,
   &_swigt__p_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void,
@@ -66419,6 +83427,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_pthread_mutex_t,
   &_swigt__p_short,
   &_swigt__p_signed_char,
+  &_swigt__p_size_t,
   &_swigt__p_size_type,
   &_swigt__p_std__allocatorT_double_t,
   &_swigt__p_std__allocatorT_std__pairT_int_const_std__string_t_t,
@@ -66442,10 +83451,16 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_void,
 };
 
+static swig_cast_info _swigc__p_ASL[] = {  {&_swigt__p_ASL, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPXCALLBACKINFO[] = {  {&_swigt__p_CPXCALLBACKINFO, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPXCALLBACKSOLUTIONSTRATEGY[] = {  {&_swigt__p_CPXCALLBACKSOLUTIONSTRATEGY, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_CPXINFOTYPE[] = {  {&_swigt__p_CPXINFOTYPE, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_FILE[] = {  {&_swigt__p_FILE, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SwigPyObject[] = {  {&_swigt__p_SwigPyObject, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p__GRBbatch[] = {  {&_swigt__p__GRBbatch, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p__GRBenv[] = {  {&_swigt__p__GRBenv, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p__GRBmodel[] = {  {&_swigt__p__GRBmodel, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p__GRBsvec[] = {  {&_swigt__p__GRBsvec, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_a_sizeof_CPXBYTE___1_1__1__intArray[] = {{&_swigt__p_a_sizeof_CPXBYTE___1_1__1__intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_a_sizeof_CPXBYTE___1_1__1__int[] = {  {&_swigt__p_a_sizeof_CPXBYTE___1_1__1__int, 0, 0, 0},  {&_swigt__p_a_sizeof_CPXBYTE___1_1__1__intArray, _p_a_sizeof_CPXBYTE___1_1__1__intArrayTo_p_a_sizeof_CPXBYTE___1_1__1__int, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_a_sizeof_CPXINT___4_1__1__intArray[] = {{&_swigt__p_a_sizeof_CPXINT___4_1__1__intArray, 0, 0, 0},{0, 0, 0, 0}};
@@ -66459,13 +83474,16 @@ static swig_cast_info _swigc__p_a_sizeof_CPXSIZE___sizeof_size_t__1__1__int[] = 
 static swig_cast_info _swigc__p_a_sizeof_CPXULONG___8_1__1__intArray[] = {{&_swigt__p_a_sizeof_CPXULONG___8_1__1__intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_a_sizeof_CPXULONG___8_1__1__int[] = {  {&_swigt__p_a_sizeof_CPXULONG___8_1__1__int, 0, 0, 0},  {&_swigt__p_a_sizeof_CPXULONG___8_1__1__intArray, _p_a_sizeof_CPXULONG___8_1__1__intArrayTo_p_a_sizeof_CPXULONG___8_1__1__int, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_allocator_type[] = {  {&_swigt__p_allocator_type, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_ampls__AMPLModel[] = {  {&_swigt__p_ampls__AMPLModel, 0, 0, 0},  {&_swigt__p_ampls__CPLEXModel, _p_ampls__CPLEXModelTo_p_ampls__AMPLModel, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_ampls__AMPLModel[] = {  {&_swigt__p_ampls__AMPLModel, 0, 0, 0},  {&_swigt__p_ampls__GurobiModel, _p_ampls__GurobiModelTo_p_ampls__AMPLModel, 0, 0},  {&_swigt__p_ampls__CPLEXModel, _p_ampls__CPLEXModelTo_p_ampls__AMPLModel, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__AMPLSolverException[] = {  {&_swigt__p_ampls__AMPLSolverException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__CPLEXCallback[] = {  {&_swigt__p_ampls__CPLEXCallback, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__CPLEXDrv[] = {  {&_swigt__p_ampls__CPLEXDrv, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__CPLEXModel[] = {  {&_swigt__p_ampls__CPLEXModel, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__CutDirection[] = {  {&_swigt__p_ampls__CutDirection, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__GenericCallback[] = {  {&_swigt__p_ampls__GenericCallback, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_ampls__GurobiCallback[] = {  {&_swigt__p_ampls__GurobiCallback, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_ampls__GurobiDrv[] = {  {&_swigt__p_ampls__GurobiDrv, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_ampls__GurobiModel[] = {  {&_swigt__p_ampls__GurobiModel, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__Status[] = {  {&_swigt__p_ampls__Status, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__Value[] = {  {&_swigt__p_ampls__Value, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__Variant[] = {  {&_swigt__p_ampls__Variant, 0, 0, 0},{0, 0, 0, 0}};
@@ -66473,7 +83491,7 @@ static swig_cast_info _swigc__p_ampls__Where[] = {  {&_swigt__p_ampls__Where, 0,
 static swig_cast_info _swigc__p_ampls__cpx__impl__CBWrap[] = {  {&_swigt__p_ampls__cpx__impl__CBWrap, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__cpx__impl__CPLEXDriverState[] = {  {&_swigt__p_ampls__cpx__impl__CPLEXDriverState, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__impl__AMPLMutex[] = {  {&_swigt__p_ampls__impl__AMPLMutex, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_ampls__impl__BaseCallback[] = {  {&_swigt__p_ampls__impl__BaseCallback, 0, 0, 0},  {&_swigt__p_ampls__GenericCallback, _p_ampls__GenericCallbackTo_p_ampls__impl__BaseCallback, 0, 0},  {&_swigt__p_ampls__CPLEXCallback, _p_ampls__CPLEXCallbackTo_p_ampls__impl__BaseCallback, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_ampls__impl__BaseCallback[] = {  {&_swigt__p_ampls__impl__BaseCallback, 0, 0, 0},  {&_swigt__p_ampls__GenericCallback, _p_ampls__GenericCallbackTo_p_ampls__impl__BaseCallback, 0, 0},  {&_swigt__p_ampls__GurobiCallback, _p_ampls__GurobiCallbackTo_p_ampls__impl__BaseCallback, 0, 0},  {&_swigt__p_ampls__CPLEXCallback, _p_ampls__CPLEXCallbackTo_p_ampls__impl__BaseCallback, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_cpxcallbackcontext[] = {  {&_swigt__p_cpxcallbackcontext, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_cpxchannel[] = {  {&_swigt__p_cpxchannel, 0, 0, 0},{0, 0, 0, 0}};
@@ -66490,6 +83508,10 @@ static swig_cast_info _swigc__p_f_int_p_cpxiodevice__intArray[] = {{&_swigt__p_f
 static swig_cast_info _swigc__p_f_int_p_cpxiodevice__int[] = {  {&_swigt__p_f_int_p_cpxiodevice__intArray, _p_f_int_p_cpxiodevice__intArrayTo_p_f_int_p_cpxiodevice__int, 0, 0},  {&_swigt__p_f_int_p_cpxiodevice__int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_int_p_q_const__char_p_void__intArray[] = {{&_swigt__p_f_int_p_q_const__char_p_void__intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_int_p_q_const__char_p_void__int[] = {  {&_swigt__p_f_int_p_q_const__char_p_void__int, 0, 0, 0},  {&_swigt__p_f_int_p_q_const__char_p_void__intArray, _p_f_int_p_q_const__char_p_void__intArrayTo_p_f_int_p_q_const__char_p_void__int, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p__GRBmodel_p_void_int_p_void__intArray[] = {{&_swigt__p_f_p__GRBmodel_p_void_int_p_void__intArray, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p__GRBmodel_p_void_int_p_void__int[] = {  {&_swigt__p_f_p__GRBmodel_p_void_int_p_void__int, 0, 0, 0},  {&_swigt__p_f_p__GRBmodel_p_void_int_p_void__intArray, _p_f_p__GRBmodel_p_void_int_p_void__intArrayTo_p_f_p__GRBmodel_p_void_int_p_void__int, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_char__intArray[] = {{&_swigt__p_f_p_char__intArray, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_char__int[] = {  {&_swigt__p_f_p_char__int, 0, 0, 0},  {&_swigt__p_f_p_char__intArray, _p_f_p_char__intArrayTo_p_f_p_char__int, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_cpxcallbackcontext_long_long_p_void__intArray[] = {{&_swigt__p_f_p_cpxcallbackcontext_long_long_p_void__intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_cpxcallbackcontext_long_long_p_void__int[] = {  {&_swigt__p_f_p_cpxcallbackcontext_long_long_p_void__intArray, _p_f_p_cpxcallbackcontext_long_long_p_void__intArrayTo_p_f_p_cpxcallbackcontext_long_long_p_void__int, 0, 0},  {&_swigt__p_f_p_cpxcallbackcontext_long_long_p_void__int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_cpxdeserializer_long_long_p_double__intArray[] = {{&_swigt__p_f_p_cpxdeserializer_long_long_p_double__intArray, 0, 0, 0},{0, 0, 0, 0}};
@@ -66545,6 +83567,8 @@ static swig_cast_info _swigc__p_f_p_cpxserializer_short__intArray[] = {{&_swigt_
 static swig_cast_info _swigc__p_f_p_cpxserializer_short__int[] = {  {&_swigt__p_f_p_cpxserializer_short__int, 0, 0, 0},  {&_swigt__p_f_p_cpxserializer_short__intArray, _p_f_p_cpxserializer_short__intArrayTo_p_f_p_cpxserializer_short__int, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_cpxserializer_signed_char__intArray[] = {{&_swigt__p_f_p_cpxserializer_signed_char__intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_cpxserializer_signed_char__int[] = {  {&_swigt__p_f_p_cpxserializer_signed_char__int, 0, 0, 0},  {&_swigt__p_f_p_cpxserializer_signed_char__intArray, _p_f_p_cpxserializer_signed_char__intArrayTo_p_f_p_cpxserializer_signed_char__int, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray[] = {{&_swigt__p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_p_void_p_f_p_void__void_p_void_p_void__int[] = {  {&_swigt__p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray, _p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArrayTo_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int, 0, 0},  {&_swigt__p_f_p_p_void_p_f_p_void__void_p_void_p_void__int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_q_const__char_p_cpxiodevice__intArray[] = {{&_swigt__p_f_p_q_const__char_p_cpxiodevice__intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_q_const__char_p_cpxiodevice__int[] = {  {&_swigt__p_f_p_q_const__char_p_cpxiodevice__intArray, _p_f_p_q_const__char_p_cpxiodevice__intArrayTo_p_f_p_q_const__char_p_cpxiodevice__int, 0, 0},  {&_swigt__p_f_p_q_const__char_p_cpxiodevice__int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_q_const__cpxenv_int_p_void__intArray[] = {{&_swigt__p_f_p_q_const__cpxenv_int_p_void__intArray, 0, 0, 0},{0, 0, 0, 0}};
@@ -66565,14 +83589,22 @@ static swig_cast_info _swigc__p_f_p_q_const__cpxenv_p_void_int_p_void_p_int_p_in
 static swig_cast_info _swigc__p_f_p_q_const__void_size_t_p_cpxiodevice__size_t[] = {  {&_swigt__p_f_p_q_const__void_size_t_p_cpxiodevice__size_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_long_long_p_char__p_char[] = {  {&_swigt__p_f_p_void_long_long_p_char__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_p_q_const__char__void[] = {  {&_swigt__p_f_p_void_p_q_const__char__void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_void_p_void__void[] = {  {&_swigt__p_f_p_void_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_p_void_size_t_p_cpxiodevice__size_t[] = {  {&_swigt__p_f_p_void_size_t_p_cpxiodevice__size_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_void_size_t_p_void__p_void[] = {  {&_swigt__p_f_p_void_size_t_p_void__p_void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_size_t_p_void__p_void[] = {  {&_swigt__p_f_size_t_p_void__p_void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_size_t_size_t_p_void__p_void[] = {  {&_swigt__p_f_size_t_size_t_p_void__p_void, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_int[] = {  {&_swigt__p_intArray, _p_intArrayTo_p_int, 0, 0},  {&_swigt__p_int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_intArray[] = {  {&_swigt__p_intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_key_type[] = {  {&_swigt__p_key_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_long_long[] = {  {&_swigt__p_long_long, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_mapped_type[] = {  {&_swigt__p_mapped_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_ASL[] = {  {&_swigt__p_p_ASL, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_FILE[] = {  {&_swigt__p_p_FILE, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_PyObject[] = {  {&_swigt__p_p_PyObject, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p__GRBbatch[] = {  {&_swigt__p_p__GRBbatch, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p__GRBenv[] = {  {&_swigt__p_p__GRBenv, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p__GRBmodel[] = {  {&_swigt__p_p__GRBmodel, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_cpxchannel[] = {  {&_swigt__p_p_cpxchannel, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_cpxdeserializer[] = {  {&_swigt__p_p_cpxdeserializer, 0, 0, 0},{0, 0, 0, 0}};
@@ -66582,6 +83614,8 @@ static swig_cast_info _swigc__p_p_cpxnet[] = {  {&_swigt__p_p_cpxnet, 0, 0, 0},{
 static swig_cast_info _swigc__p_p_cpxserializer[] = {  {&_swigt__p_p_cpxserializer, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_f_int_p_q_const__char_p_void__intArray[] = {{&_swigt__p_p_f_int_p_q_const__char_p_void__intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_f_int_p_q_const__char_p_void__int[] = {  {&_swigt__p_p_f_int_p_q_const__char_p_void__int, 0, 0, 0},  {&_swigt__p_p_f_int_p_q_const__char_p_void__intArray, _p_p_f_int_p_q_const__char_p_void__intArrayTo_p_p_f_int_p_q_const__char_p_void__int, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_f_p__GRBmodel_p_void_int_p_void__intArray[] = {{&_swigt__p_p_f_p__GRBmodel_p_void_int_p_void__intArray, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_p_f_p__GRBmodel_p_void_int_p_void__int[] = {  {&_swigt__p_p_f_p__GRBmodel_p_void_int_p_void__int, 0, 0, 0},  {&_swigt__p_p_f_p__GRBmodel_p_void_int_p_void__intArray, _p_p_f_p__GRBmodel_p_void_int_p_void__intArrayTo_p_p_f_p__GRBmodel_p_void_int_p_void__int, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_f_p_cpxcallbackcontext_long_long_p_void__intArray[] = {{&_swigt__p_p_f_p_cpxcallbackcontext_long_long_p_void__intArray, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_f_p_cpxcallbackcontext_long_long_p_void__int[] = {  {&_swigt__p_p_f_p_cpxcallbackcontext_long_long_p_void__intArray, _p_p_f_p_cpxcallbackcontext_long_long_p_void__intArrayTo_p_p_f_p_cpxcallbackcontext_long_long_p_void__int, 0, 0},  {&_swigt__p_p_f_p_cpxcallbackcontext_long_long_p_void__int, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void[] = {  {&_swigt__p_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
@@ -66603,6 +83637,7 @@ static swig_cast_info _swigc__p_paramset[] = {  {&_swigt__p_paramset, 0, 0, 0},{
 static swig_cast_info _swigc__p_pthread_mutex_t[] = {  {&_swigt__p_pthread_mutex_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_short[] = {  {&_swigt__p_short, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_signed_char[] = {  {&_swigt__p_signed_char, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_size_t[] = {  {&_swigt__p_size_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__allocatorT_double_t[] = {  {&_swigt__p_std__allocatorT_double_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__allocatorT_std__pairT_int_const_std__string_t_t[] = {  {&_swigt__p_std__allocatorT_std__pairT_int_const_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -66626,10 +83661,16 @@ static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 
 static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_ASL,
   _swigc__p_CPXCALLBACKINFO,
   _swigc__p_CPXCALLBACKSOLUTIONSTRATEGY,
   _swigc__p_CPXINFOTYPE,
+  _swigc__p_FILE,
   _swigc__p_SwigPyObject,
+  _swigc__p__GRBbatch,
+  _swigc__p__GRBenv,
+  _swigc__p__GRBmodel,
+  _swigc__p__GRBsvec,
   _swigc__p_a_sizeof_CPXBYTE___1_1__1__int,
   _swigc__p_a_sizeof_CPXBYTE___1_1__1__intArray,
   _swigc__p_a_sizeof_CPXINT___4_1__1__int,
@@ -66650,6 +83691,9 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_ampls__CPLEXModel,
   _swigc__p_ampls__CutDirection,
   _swigc__p_ampls__GenericCallback,
+  _swigc__p_ampls__GurobiCallback,
+  _swigc__p_ampls__GurobiDrv,
+  _swigc__p_ampls__GurobiModel,
   _swigc__p_ampls__Status,
   _swigc__p_ampls__Value,
   _swigc__p_ampls__Variant,
@@ -66674,6 +83718,10 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_f_int_p_cpxiodevice__intArray,
   _swigc__p_f_int_p_q_const__char_p_void__int,
   _swigc__p_f_int_p_q_const__char_p_void__intArray,
+  _swigc__p_f_p__GRBmodel_p_void_int_p_void__int,
+  _swigc__p_f_p__GRBmodel_p_void_int_p_void__intArray,
+  _swigc__p_f_p_char__int,
+  _swigc__p_f_p_char__intArray,
   _swigc__p_f_p_cpxcallbackcontext_long_long_p_void__int,
   _swigc__p_f_p_cpxcallbackcontext_long_long_p_void__intArray,
   _swigc__p_f_p_cpxdeserializer_long_long_p_double__int,
@@ -66729,6 +83777,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_f_p_cpxserializer_short__intArray,
   _swigc__p_f_p_cpxserializer_signed_char__int,
   _swigc__p_f_p_cpxserializer_signed_char__intArray,
+  _swigc__p_f_p_p_void_p_f_p_void__void_p_void_p_void__int,
+  _swigc__p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray,
   _swigc__p_f_p_q_const__char_p_cpxiodevice__int,
   _swigc__p_f_p_q_const__char_p_cpxiodevice__intArray,
   _swigc__p_f_p_q_const__cpxenv_int_p_void__int,
@@ -66749,14 +83799,22 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_f_p_q_const__void_size_t_p_cpxiodevice__size_t,
   _swigc__p_f_p_void_long_long_p_char__p_char,
   _swigc__p_f_p_void_p_q_const__char__void,
+  _swigc__p_f_p_void_p_void__void,
   _swigc__p_f_p_void_size_t_p_cpxiodevice__size_t,
+  _swigc__p_f_p_void_size_t_p_void__p_void,
+  _swigc__p_f_size_t_p_void__p_void,
+  _swigc__p_f_size_t_size_t_p_void__p_void,
   _swigc__p_int,
   _swigc__p_intArray,
   _swigc__p_key_type,
   _swigc__p_long_long,
   _swigc__p_mapped_type,
   _swigc__p_p_ASL,
+  _swigc__p_p_FILE,
   _swigc__p_p_PyObject,
+  _swigc__p_p__GRBbatch,
+  _swigc__p_p__GRBenv,
+  _swigc__p_p__GRBmodel,
   _swigc__p_p_char,
   _swigc__p_p_cpxchannel,
   _swigc__p_p_cpxdeserializer,
@@ -66766,6 +83824,8 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_p_cpxserializer,
   _swigc__p_p_f_int_p_q_const__char_p_void__int,
   _swigc__p_p_f_int_p_q_const__char_p_void__intArray,
+  _swigc__p_p_f_p__GRBmodel_p_void_int_p_void__int,
+  _swigc__p_p_f_p__GRBmodel_p_void_int_p_void__intArray,
   _swigc__p_p_f_p_cpxcallbackcontext_long_long_p_void__int,
   _swigc__p_p_f_p_cpxcallbackcontext_long_long_p_void__intArray,
   _swigc__p_p_f_p_q_const__cpxenv_int_p_void_int_p_void__void,
@@ -66787,6 +83847,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_pthread_mutex_t,
   _swigc__p_short,
   _swigc__p_signed_char,
+  _swigc__p_size_t,
   _swigc__p_size_type,
   _swigc__p_std__allocatorT_double_t,
   _swigc__p_std__allocatorT_std__pairT_int_const_std__string_t_t,
@@ -67976,6 +85037,653 @@ SWIG_init(void) {
   Py_INCREF(builtin_pytype);
   PyModule_AddObject(m, "AMPLModel", (PyObject *)builtin_pytype);
   SwigPyBuiltin_AddPublicSymbol(public_interface, "AMPLModel");
+  d = md;
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VERSION_MAJOR",SWIG_From_int(static_cast< int >(9)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VERSION_MINOR",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VERSION_TECHNICAL",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DEFAULT_CS_PRIORITY",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "MAX_CS_PRIORITY",SWIG_From_int(static_cast< int >(100)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DEFAULT_CS_PORT",SWIG_From_int(static_cast< int >(61000)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DEFAULT_CS_HANGUP",SWIG_From_int(static_cast< int >(60)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_OUT_OF_MEMORY",SWIG_From_int(static_cast< int >(10001)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_NULL_ARGUMENT",SWIG_From_int(static_cast< int >(10002)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_INVALID_ARGUMENT",SWIG_From_int(static_cast< int >(10003)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_UNKNOWN_ATTRIBUTE",SWIG_From_int(static_cast< int >(10004)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_DATA_NOT_AVAILABLE",SWIG_From_int(static_cast< int >(10005)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_INDEX_OUT_OF_RANGE",SWIG_From_int(static_cast< int >(10006)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_UNKNOWN_PARAMETER",SWIG_From_int(static_cast< int >(10007)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_VALUE_OUT_OF_RANGE",SWIG_From_int(static_cast< int >(10008)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_NO_LICENSE",SWIG_From_int(static_cast< int >(10009)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_SIZE_LIMIT_EXCEEDED",SWIG_From_int(static_cast< int >(10010)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_CALLBACK",SWIG_From_int(static_cast< int >(10011)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_FILE_READ",SWIG_From_int(static_cast< int >(10012)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_FILE_WRITE",SWIG_From_int(static_cast< int >(10013)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_NUMERIC",SWIG_From_int(static_cast< int >(10014)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_IIS_NOT_INFEASIBLE",SWIG_From_int(static_cast< int >(10015)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_NOT_FOR_MIP",SWIG_From_int(static_cast< int >(10016)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_OPTIMIZATION_IN_PROGRESS",SWIG_From_int(static_cast< int >(10017)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_DUPLICATES",SWIG_From_int(static_cast< int >(10018)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_NODEFILE",SWIG_From_int(static_cast< int >(10019)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_Q_NOT_PSD",SWIG_From_int(static_cast< int >(10020)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_QCP_EQUALITY_CONSTRAINT",SWIG_From_int(static_cast< int >(10021)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_NETWORK",SWIG_From_int(static_cast< int >(10022)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_JOB_REJECTED",SWIG_From_int(static_cast< int >(10023)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_NOT_SUPPORTED",SWIG_From_int(static_cast< int >(10024)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_EXCEED_2B_NONZEROS",SWIG_From_int(static_cast< int >(10025)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_INVALID_PIECEWISE_OBJ",SWIG_From_int(static_cast< int >(10026)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_UPDATEMODE_CHANGE",SWIG_From_int(static_cast< int >(10027)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_CLOUD",SWIG_From_int(static_cast< int >(10028)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_MODEL_MODIFICATION",SWIG_From_int(static_cast< int >(10029)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_CSWORKER",SWIG_From_int(static_cast< int >(10030)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_TUNE_MODEL_TYPES",SWIG_From_int(static_cast< int >(10031)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ERROR_SECURITY",SWIG_From_int(static_cast< int >(10032)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_LESS_EQUAL",SWIG_From_char(static_cast< char >('<')));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GREATER_EQUAL",SWIG_From_char(static_cast< char >('>')));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_EQUAL",SWIG_From_char(static_cast< char >('=')));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CONTINUOUS",SWIG_From_char(static_cast< char >('C')));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BINARY",SWIG_From_char(static_cast< char >('B')));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INTEGER",SWIG_From_char(static_cast< char >('I')));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SEMICONT",SWIG_From_char(static_cast< char >('S')));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SEMIINT",SWIG_From_char(static_cast< char >('N')));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MINIMIZE",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MAXIMIZE",SWIG_From_int(static_cast< int >(-1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SOS_TYPE1",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SOS_TYPE2",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INFINITY",SWIG_From_double(static_cast< double >(1e100)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_UNDEFINED",SWIG_From_double(static_cast< double >(1e101)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MAXINT",SWIG_From_int(static_cast< int >(2000000000)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MAX_NAMELEN",SWIG_From_int(static_cast< int >(255)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MAX_STRLEN",SWIG_From_int(static_cast< int >(512)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MAX_TAGLEN",SWIG_From_int(static_cast< int >(10240)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MAX_CONCURRENT",SWIG_From_int(static_cast< int >(64)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMCONSTRS",SWIG_FromCharPtr("NumConstrs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMVARS",SWIG_FromCharPtr("NumVars"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMSOS",SWIG_FromCharPtr("NumSOS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMQCONSTRS",SWIG_FromCharPtr("NumQConstrs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMGENCONSTRS",SWIG_FromCharPtr("NumGenConstrs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMNZS",SWIG_FromCharPtr("NumNZs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DNUMNZS",SWIG_FromCharPtr("DNumNZs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMQNZS",SWIG_FromCharPtr("NumQNZs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMQCNZS",SWIG_FromCharPtr("NumQCNZs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMINTVARS",SWIG_FromCharPtr("NumIntVars"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMBINVARS",SWIG_FromCharPtr("NumBinVars"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMPWLOBJVARS",SWIG_FromCharPtr("NumPWLObjVars"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_MODELNAME",SWIG_FromCharPtr("ModelName"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_MODELSENSE",SWIG_FromCharPtr("ModelSense"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJCON",SWIG_FromCharPtr("ObjCon"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IS_MIP",SWIG_FromCharPtr("IsMIP"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IS_QP",SWIG_FromCharPtr("IsQP"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IS_QCP",SWIG_FromCharPtr("IsQCP"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IS_MULTIOBJ",SWIG_FromCharPtr("IsMultiObj"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_SERVER",SWIG_FromCharPtr("Server"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_JOBID",SWIG_FromCharPtr("JobID"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_LICENSE_EXPIRATION",SWIG_FromCharPtr("LicenseExpiration"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMTAGGED",SWIG_FromCharPtr("NumTagged"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_BATCHERRORCODE",SWIG_FromCharPtr("BatchErrorCode"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_BATCHERRORMESSAGE",SWIG_FromCharPtr("BatchErrorMessage"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_BATCHID",SWIG_FromCharPtr("BatchID"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_BATCHSTATUS",SWIG_FromCharPtr("BatchStatus"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_LB",SWIG_FromCharPtr("LB"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_UB",SWIG_FromCharPtr("UB"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJ",SWIG_FromCharPtr("Obj"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CHAR_ATTR_VTYPE",SWIG_FromCharPtr("VType"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_START",SWIG_FromCharPtr("Start"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_PSTART",SWIG_FromCharPtr("PStart"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_BRANCHPRIORITY",SWIG_FromCharPtr("BranchPriority"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_VARNAME",SWIG_FromCharPtr("VarName"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_PWLOBJCVX",SWIG_FromCharPtr("PWLObjCvx"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_VARHINTVAL",SWIG_FromCharPtr("VarHintVal"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_VARHINTPRI",SWIG_FromCharPtr("VarHintPri"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_PARTITION",SWIG_FromCharPtr("Partition"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_VTAG",SWIG_FromCharPtr("VTag"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_CTAG",SWIG_FromCharPtr("CTag"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_RHS",SWIG_FromCharPtr("RHS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DSTART",SWIG_FromCharPtr("DStart"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CHAR_ATTR_SENSE",SWIG_FromCharPtr("Sense"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_CONSTRNAME",SWIG_FromCharPtr("ConstrName"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_LAZY",SWIG_FromCharPtr("Lazy"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_QCTAG",SWIG_FromCharPtr("QCTag"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_QCRHS",SWIG_FromCharPtr("QCRHS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CHAR_ATTR_QCSENSE",SWIG_FromCharPtr("QCSense"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_QCNAME",SWIG_FromCharPtr("QCName"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_GENCONSTRTYPE",SWIG_FromCharPtr("GenConstrType"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_GENCONSTRNAME",SWIG_FromCharPtr("GenConstrName"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_FUNCPIECES",SWIG_FromCharPtr("FuncPieces"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_FUNCPIECEERROR",SWIG_FromCharPtr("FuncPieceError"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_FUNCPIECELENGTH",SWIG_FromCharPtr("FuncPieceLength"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_FUNCPIECERATIO",SWIG_FromCharPtr("FuncPieceRatio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MAX_COEFF",SWIG_FromCharPtr("MaxCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MIN_COEFF",SWIG_FromCharPtr("MinCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MAX_BOUND",SWIG_FromCharPtr("MaxBound"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MIN_BOUND",SWIG_FromCharPtr("MinBound"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MAX_OBJ_COEFF",SWIG_FromCharPtr("MaxObjCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MIN_OBJ_COEFF",SWIG_FromCharPtr("MinObjCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MAX_RHS",SWIG_FromCharPtr("MaxRHS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MIN_RHS",SWIG_FromCharPtr("MinRHS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MAX_QCCOEFF",SWIG_FromCharPtr("MaxQCCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MIN_QCCOEFF",SWIG_FromCharPtr("MinQCCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MAX_QOBJ_COEFF",SWIG_FromCharPtr("MaxQObjCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MIN_QOBJ_COEFF",SWIG_FromCharPtr("MinQObjCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MAX_QCLCOEFF",SWIG_FromCharPtr("MaxQCLCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MIN_QCLCOEFF",SWIG_FromCharPtr("MinQCLCoeff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MAX_QCRHS",SWIG_FromCharPtr("MaxQCRHS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MIN_QCRHS",SWIG_FromCharPtr("MinQCRHS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_RUNTIME",SWIG_FromCharPtr("Runtime"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_STATUS",SWIG_FromCharPtr("Status"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJVAL",SWIG_FromCharPtr("ObjVal"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJBOUND",SWIG_FromCharPtr("ObjBound"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJBOUNDC",SWIG_FromCharPtr("ObjBoundC"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_POOLOBJBOUND",SWIG_FromCharPtr("PoolObjBound"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_POOLOBJVAL",SWIG_FromCharPtr("PoolObjVal"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_MIPGAP",SWIG_FromCharPtr("MIPGap"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_SOLCOUNT",SWIG_FromCharPtr("SolCount"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_ITERCOUNT",SWIG_FromCharPtr("IterCount"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_BARITERCOUNT",SWIG_FromCharPtr("BarIterCount"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_NODECOUNT",SWIG_FromCharPtr("NodeCount"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OPENNODECOUNT",SWIG_FromCharPtr("OpenNodeCount"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_HASDUALNORM",SWIG_FromCharPtr("HasDualNorm"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_X",SWIG_FromCharPtr("X"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_XN",SWIG_FromCharPtr("Xn"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_BARX",SWIG_FromCharPtr("BarX"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_RC",SWIG_FromCharPtr("RC"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_VDUALNORM",SWIG_FromCharPtr("VDualNorm"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_VBASIS",SWIG_FromCharPtr("VBasis"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_PI",SWIG_FromCharPtr("Pi"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_QCPI",SWIG_FromCharPtr("QCPi"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SLACK",SWIG_FromCharPtr("Slack"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_QCSLACK",SWIG_FromCharPtr("QCSlack"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_CDUALNORM",SWIG_FromCharPtr("CDualNorm"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_CBASIS",SWIG_FromCharPtr("CBasis"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_BOUND_VIO",SWIG_FromCharPtr("BoundVio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_BOUND_SVIO",SWIG_FromCharPtr("BoundSVio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_BOUND_VIO_INDEX",SWIG_FromCharPtr("BoundVioIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_BOUND_SVIO_INDEX",SWIG_FromCharPtr("BoundSVioIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_BOUND_VIO_SUM",SWIG_FromCharPtr("BoundVioSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_BOUND_SVIO_SUM",SWIG_FromCharPtr("BoundSVioSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_CONSTR_VIO",SWIG_FromCharPtr("ConstrVio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_CONSTR_SVIO",SWIG_FromCharPtr("ConstrSVio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_CONSTR_VIO_INDEX",SWIG_FromCharPtr("ConstrVioIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_CONSTR_SVIO_INDEX",SWIG_FromCharPtr("ConstrSVioIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_CONSTR_VIO_SUM",SWIG_FromCharPtr("ConstrVioSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_CONSTR_SVIO_SUM",SWIG_FromCharPtr("ConstrSVioSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_CONSTR_RESIDUAL",SWIG_FromCharPtr("ConstrResidual"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_CONSTR_SRESIDUAL",SWIG_FromCharPtr("ConstrSResidual"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_CONSTR_RESIDUAL_INDEX",SWIG_FromCharPtr("ConstrResidualIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_CONSTR_SRESIDUAL_INDEX",SWIG_FromCharPtr("ConstrSResidualIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_CONSTR_RESIDUAL_SUM",SWIG_FromCharPtr("ConstrResidualSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_CONSTR_SRESIDUAL_SUM",SWIG_FromCharPtr("ConstrSResidualSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DUAL_VIO",SWIG_FromCharPtr("DualVio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DUAL_SVIO",SWIG_FromCharPtr("DualSVio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_DUAL_VIO_INDEX",SWIG_FromCharPtr("DualVioIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_DUAL_SVIO_INDEX",SWIG_FromCharPtr("DualSVioIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DUAL_VIO_SUM",SWIG_FromCharPtr("DualVioSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DUAL_SVIO_SUM",SWIG_FromCharPtr("DualSVioSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DUAL_RESIDUAL",SWIG_FromCharPtr("DualResidual"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DUAL_SRESIDUAL",SWIG_FromCharPtr("DualSResidual"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_DUAL_RESIDUAL_INDEX",SWIG_FromCharPtr("DualResidualIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_DUAL_SRESIDUAL_INDEX",SWIG_FromCharPtr("DualSResidualIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DUAL_RESIDUAL_SUM",SWIG_FromCharPtr("DualResidualSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_DUAL_SRESIDUAL_SUM",SWIG_FromCharPtr("DualSResidualSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_INT_VIO",SWIG_FromCharPtr("IntVio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_INT_VIO_INDEX",SWIG_FromCharPtr("IntVioIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_INT_VIO_SUM",SWIG_FromCharPtr("IntVioSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_COMPL_VIO",SWIG_FromCharPtr("ComplVio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_COMPL_VIO_INDEX",SWIG_FromCharPtr("ComplVioIndex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_COMPL_VIO_SUM",SWIG_FromCharPtr("ComplVioSum"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_KAPPA",SWIG_FromCharPtr("Kappa"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_KAPPA_EXACT",SWIG_FromCharPtr("KappaExact"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_N2KAPPA",SWIG_FromCharPtr("N2Kappa"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SA_OBJLOW",SWIG_FromCharPtr("SAObjLow"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SA_OBJUP",SWIG_FromCharPtr("SAObjUp"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SA_LBLOW",SWIG_FromCharPtr("SALBLow"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SA_LBUP",SWIG_FromCharPtr("SALBUp"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SA_UBLOW",SWIG_FromCharPtr("SAUBLow"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SA_UBUP",SWIG_FromCharPtr("SAUBUp"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SA_RHSLOW",SWIG_FromCharPtr("SARHSLow"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SA_RHSUP",SWIG_FromCharPtr("SARHSUp"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IIS_MINIMAL",SWIG_FromCharPtr("IISMinimal"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IIS_LB",SWIG_FromCharPtr("IISLB"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IIS_UB",SWIG_FromCharPtr("IISUB"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IIS_CONSTR",SWIG_FromCharPtr("IISConstr"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IIS_SOS",SWIG_FromCharPtr("IISSOS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IIS_QCONSTR",SWIG_FromCharPtr("IISQConstr"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_IIS_GENCONSTR",SWIG_FromCharPtr("IISGenConstr"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_TUNE_RESULTCOUNT",SWIG_FromCharPtr("TuneResultCount"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_FARKASDUAL",SWIG_FromCharPtr("FarkasDual"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_FARKASPROOF",SWIG_FromCharPtr("FarkasProof"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_UNBDRAY",SWIG_FromCharPtr("UnbdRay"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_INFEASVAR",SWIG_FromCharPtr("InfeasVar"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_UNBDVAR",SWIG_FromCharPtr("UnbdVar"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_VARPRESTAT",SWIG_FromCharPtr("VarPreStat"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_PREFIXVAL",SWIG_FromCharPtr("PreFixVal"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJN",SWIG_FromCharPtr("ObjN"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJNVAL",SWIG_FromCharPtr("ObjNVal"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJNCON",SWIG_FromCharPtr("ObjNCon"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJNWEIGHT",SWIG_FromCharPtr("ObjNWeight"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_OBJNPRIORITY",SWIG_FromCharPtr("ObjNPriority"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJNRELTOL",SWIG_FromCharPtr("ObjNRelTol"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_OBJNABSTOL",SWIG_FromCharPtr("ObjNAbsTol"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_OBJNNAME",SWIG_FromCharPtr("ObjNName"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SCENNLB",SWIG_FromCharPtr("ScenNLB"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SCENNUB",SWIG_FromCharPtr("ScenNUB"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SCENNOBJ",SWIG_FromCharPtr("ScenNObj"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SCENNRHS",SWIG_FromCharPtr("ScenNRHS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_SCENNNAME",SWIG_FromCharPtr("ScenNName"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SCENNX",SWIG_FromCharPtr("ScenNX"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SCENNOBJBOUND",SWIG_FromCharPtr("ScenNObjBound"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_SCENNOBJVAL",SWIG_FromCharPtr("ScenNObjVal"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMOBJ",SWIG_FromCharPtr("NumObj"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMSCENARIOS",SWIG_FromCharPtr("NumScenarios"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMSTART",SWIG_FromCharPtr("NumStart"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_ATTR_Xn",SWIG_FromCharPtr("Xn"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_MAX",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_MIN",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_ABS",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_AND",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_OR",SWIG_From_int(static_cast< int >(4)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_INDICATOR",SWIG_From_int(static_cast< int >(5)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_PWL",SWIG_From_int(static_cast< int >(6)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_POLY",SWIG_From_int(static_cast< int >(7)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_EXP",SWIG_From_int(static_cast< int >(8)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_EXPA",SWIG_From_int(static_cast< int >(9)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_LOG",SWIG_From_int(static_cast< int >(10)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_LOGA",SWIG_From_int(static_cast< int >(11)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_POW",SWIG_From_int(static_cast< int >(12)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_SIN",SWIG_From_int(static_cast< int >(13)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_COS",SWIG_From_int(static_cast< int >(14)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_GENCONSTR_TAN",SWIG_From_int(static_cast< int >(15)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_POLLING",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_PRESOLVE",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_SIMPLEX",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIP",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPSOL",SWIG_From_int(static_cast< int >(4)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPNODE",SWIG_From_int(static_cast< int >(5)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MESSAGE",SWIG_From_int(static_cast< int >(6)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_BARRIER",SWIG_From_int(static_cast< int >(7)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MULTIOBJ",SWIG_From_int(static_cast< int >(8)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_PRE_COLDEL",SWIG_From_int(static_cast< int >(1000)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_PRE_ROWDEL",SWIG_From_int(static_cast< int >(1001)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_PRE_SENCHG",SWIG_From_int(static_cast< int >(1002)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_PRE_BNDCHG",SWIG_From_int(static_cast< int >(1003)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_PRE_COECHG",SWIG_From_int(static_cast< int >(1004)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_SPX_ITRCNT",SWIG_From_int(static_cast< int >(2000)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_SPX_OBJVAL",SWIG_From_int(static_cast< int >(2001)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_SPX_PRIMINF",SWIG_From_int(static_cast< int >(2002)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_SPX_DUALINF",SWIG_From_int(static_cast< int >(2003)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_SPX_ISPERT",SWIG_From_int(static_cast< int >(2004)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIP_OBJBST",SWIG_From_int(static_cast< int >(3000)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIP_OBJBND",SWIG_From_int(static_cast< int >(3001)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIP_NODCNT",SWIG_From_int(static_cast< int >(3002)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIP_SOLCNT",SWIG_From_int(static_cast< int >(3003)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIP_CUTCNT",SWIG_From_int(static_cast< int >(3004)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIP_NODLFT",SWIG_From_int(static_cast< int >(3005)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIP_ITRCNT",SWIG_From_int(static_cast< int >(3006)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIP_OBJBNDC",SWIG_From_int(static_cast< int >(3007)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPSOL_SOL",SWIG_From_int(static_cast< int >(4001)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPSOL_OBJ",SWIG_From_int(static_cast< int >(4002)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPSOL_OBJBST",SWIG_From_int(static_cast< int >(4003)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPSOL_OBJBND",SWIG_From_int(static_cast< int >(4004)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPSOL_NODCNT",SWIG_From_int(static_cast< int >(4005)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPSOL_SOLCNT",SWIG_From_int(static_cast< int >(4006)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPSOL_OBJBNDC",SWIG_From_int(static_cast< int >(4007)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPNODE_STATUS",SWIG_From_int(static_cast< int >(5001)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPNODE_REL",SWIG_From_int(static_cast< int >(5002)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPNODE_OBJBST",SWIG_From_int(static_cast< int >(5003)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPNODE_OBJBND",SWIG_From_int(static_cast< int >(5004)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPNODE_NODCNT",SWIG_From_int(static_cast< int >(5005)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPNODE_SOLCNT",SWIG_From_int(static_cast< int >(5006)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPNODE_BRVAR",SWIG_From_int(static_cast< int >(5007)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MIPNODE_OBJBNDC",SWIG_From_int(static_cast< int >(5008)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MSG_STRING",SWIG_From_int(static_cast< int >(6001)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_RUNTIME",SWIG_From_int(static_cast< int >(6002)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_BARRIER_ITRCNT",SWIG_From_int(static_cast< int >(7001)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_BARRIER_PRIMOBJ",SWIG_From_int(static_cast< int >(7002)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_BARRIER_DUALOBJ",SWIG_From_int(static_cast< int >(7003)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_BARRIER_PRIMINF",SWIG_From_int(static_cast< int >(7004)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_BARRIER_DUALINF",SWIG_From_int(static_cast< int >(7005)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_BARRIER_COMPL",SWIG_From_int(static_cast< int >(7006)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MULTIOBJ_OBJCNT",SWIG_From_int(static_cast< int >(8001)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MULTIOBJ_SOLCNT",SWIG_From_int(static_cast< int >(8002)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CB_MULTIOBJ_SOL",SWIG_From_int(static_cast< int >(8003)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_FEASRELAX_LINEAR",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_FEASRELAX_QUADRATIC",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_FEASRELAX_CARDINALITY",SWIG_From_int(static_cast< int >(2)));
+  
+  /* type '::_GRBsvec' */
+  builtin_pytype = (PyTypeObject *)&SwigPyBuiltin___GRBsvec_type;
+  builtin_pytype->tp_dict = d = PyDict_New();
+  SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
+  builtin_pytype->tp_new = PyType_GenericNew;
+  builtin_base_count = 0;
+  builtin_bases[builtin_base_count] = NULL;
+  SwigPyBuiltin_InitBases(builtin_pytype, builtin_bases);
+  PyDict_SetItemString(d, "this", this_descr);
+  PyDict_SetItemString(d, "thisown", thisown_descr);
+  if (PyType_Ready(builtin_pytype) < 0) {
+    PyErr_SetString(PyExc_TypeError, "Could not create type 'GRBsvec'.");
+#if PY_VERSION_HEX >= 0x03000000
+    return NULL;
+#else
+    return;
+#endif
+  }
+  Py_INCREF(builtin_pytype);
+  PyModule_AddObject(m, "GRBsvec", (PyObject *)builtin_pytype);
+  SwigPyBuiltin_AddPublicSymbol(public_interface, "GRBsvec");
+  d = md;
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_LOADED",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_OPTIMAL",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INFEASIBLE",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INF_OR_UNBD",SWIG_From_int(static_cast< int >(4)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_UNBOUNDED",SWIG_From_int(static_cast< int >(5)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CUTOFF",SWIG_From_int(static_cast< int >(6)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_ITERATION_LIMIT",SWIG_From_int(static_cast< int >(7)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_NODE_LIMIT",SWIG_From_int(static_cast< int >(8)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_TIME_LIMIT",SWIG_From_int(static_cast< int >(9)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SOLUTION_LIMIT",SWIG_From_int(static_cast< int >(10)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INTERRUPTED",SWIG_From_int(static_cast< int >(11)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_NUMERIC",SWIG_From_int(static_cast< int >(12)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SUBOPTIMAL",SWIG_From_int(static_cast< int >(13)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INPROGRESS",SWIG_From_int(static_cast< int >(14)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_USER_OBJ_LIMIT",SWIG_From_int(static_cast< int >(15)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BASIC",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_NONBASIC_LOWER",SWIG_From_int(static_cast< int >(-1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_NONBASIC_UPPER",SWIG_From_int(static_cast< int >(-2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SUPERBASIC",SWIG_From_int(static_cast< int >(-3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_BARITERLIMIT",SWIG_FromCharPtr("BarIterLimit"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_CUTOFF",SWIG_FromCharPtr("Cutoff"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_ITERATIONLIMIT",SWIG_FromCharPtr("IterationLimit"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_NODELIMIT",SWIG_FromCharPtr("NodeLimit"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SOLUTIONLIMIT",SWIG_FromCharPtr("SolutionLimit"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_TIMELIMIT",SWIG_FromCharPtr("TimeLimit"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_BESTOBJSTOP",SWIG_FromCharPtr("BestObjStop"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_BESTBDSTOP",SWIG_FromCharPtr("BestBdStop"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_FEASIBILITYTOL",SWIG_FromCharPtr("FeasibilityTol"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_INTFEASTOL",SWIG_FromCharPtr("IntFeasTol"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_MARKOWITZTOL",SWIG_FromCharPtr("MarkowitzTol"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_MIPGAP",SWIG_FromCharPtr("MIPGap"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_MIPGAPABS",SWIG_FromCharPtr("MIPGapAbs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_OPTIMALITYTOL",SWIG_FromCharPtr("OptimalityTol"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_PSDTOL",SWIG_FromCharPtr("PSDTol"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_METHOD",SWIG_FromCharPtr("Method"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_PERTURBVALUE",SWIG_FromCharPtr("PerturbValue"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_OBJSCALE",SWIG_FromCharPtr("ObjScale"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SCALEFLAG",SWIG_FromCharPtr("ScaleFlag"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SIMPLEXPRICING",SWIG_FromCharPtr("SimplexPricing"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_QUAD",SWIG_FromCharPtr("Quad"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_NORMADJUST",SWIG_FromCharPtr("NormAdjust"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SIFTING",SWIG_FromCharPtr("Sifting"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SIFTMETHOD",SWIG_FromCharPtr("SiftMethod"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_BARCONVTOL",SWIG_FromCharPtr("BarConvTol"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_BARCORRECTORS",SWIG_FromCharPtr("BarCorrectors"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_BARHOMOGENEOUS",SWIG_FromCharPtr("BarHomogeneous"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_BARORDER",SWIG_FromCharPtr("BarOrder"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_BARQCPCONVTOL",SWIG_FromCharPtr("BarQCPConvTol"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CROSSOVER",SWIG_FromCharPtr("Crossover"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CROSSOVERBASIS",SWIG_FromCharPtr("CrossoverBasis"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_BRANCHDIR",SWIG_FromCharPtr("BranchDir"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_DEGENMOVES",SWIG_FromCharPtr("DegenMoves"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_DISCONNECTED",SWIG_FromCharPtr("Disconnected"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_HEURISTICS",SWIG_FromCharPtr("Heuristics"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_IMPROVESTARTGAP",SWIG_FromCharPtr("ImproveStartGap"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_IMPROVESTARTTIME",SWIG_FromCharPtr("ImproveStartTime"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_IMPROVESTARTNODES",SWIG_FromCharPtr("ImproveStartNodes"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MINRELNODES",SWIG_FromCharPtr("MinRelNodes"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MIPFOCUS",SWIG_FromCharPtr("MIPFocus"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_NODEFILEDIR",SWIG_FromCharPtr("NodefileDir"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_NODEFILESTART",SWIG_FromCharPtr("NodefileStart"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_NODEMETHOD",SWIG_FromCharPtr("NodeMethod"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_NORELHEURISTIC",SWIG_FromCharPtr("NoRelHeuristic"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PUMPPASSES",SWIG_FromCharPtr("PumpPasses"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_RINS",SWIG_FromCharPtr("RINS"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_SOLFILES",SWIG_FromCharPtr("SolFiles"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_STARTNODELIMIT",SWIG_FromCharPtr("StartNodeLimit"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SUBMIPNODES",SWIG_FromCharPtr("SubMIPNodes"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SYMMETRY",SWIG_FromCharPtr("Symmetry"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_VARBRANCH",SWIG_FromCharPtr("VarBranch"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SOLUTIONNUMBER",SWIG_FromCharPtr("SolutionNumber"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_ZEROOBJNODES",SWIG_FromCharPtr("ZeroObjNodes"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CUTS",SWIG_FromCharPtr("Cuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CLIQUECUTS",SWIG_FromCharPtr("CliqueCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_COVERCUTS",SWIG_FromCharPtr("CoverCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_FLOWCOVERCUTS",SWIG_FromCharPtr("FlowCoverCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_FLOWPATHCUTS",SWIG_FromCharPtr("FlowPathCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_GUBCOVERCUTS",SWIG_FromCharPtr("GUBCoverCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_IMPLIEDCUTS",SWIG_FromCharPtr("ImpliedCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PROJIMPLIEDCUTS",SWIG_FromCharPtr("ProjImpliedCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MIPSEPCUTS",SWIG_FromCharPtr("MIPSepCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MIRCUTS",SWIG_FromCharPtr("MIRCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_STRONGCGCUTS",SWIG_FromCharPtr("StrongCGCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MODKCUTS",SWIG_FromCharPtr("ModKCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_ZEROHALFCUTS",SWIG_FromCharPtr("ZeroHalfCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_NETWORKCUTS",SWIG_FromCharPtr("NetworkCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SUBMIPCUTS",SWIG_FromCharPtr("SubMIPCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_INFPROOFCUTS",SWIG_FromCharPtr("InfProofCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_RLTCUTS",SWIG_FromCharPtr("RLTCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_RELAXLIFTCUTS",SWIG_FromCharPtr("RelaxLiftCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_BQPCUTS",SWIG_FromCharPtr("BQPCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CUTAGGPASSES",SWIG_FromCharPtr("CutAggPasses"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CUTPASSES",SWIG_FromCharPtr("CutPasses"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_GOMORYPASSES",SWIG_FromCharPtr("GomoryPasses"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_WORKERPOOL",SWIG_FromCharPtr("WorkerPool"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_WORKERPASSWORD",SWIG_FromCharPtr("WorkerPassword"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_COMPUTESERVER",SWIG_FromCharPtr("ComputeServer"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_TOKENSERVER",SWIG_FromCharPtr("TokenServer"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_SERVERPASSWORD",SWIG_FromCharPtr("ServerPassword"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SERVERTIMEOUT",SWIG_FromCharPtr("ServerTimeout"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CSROUTER",SWIG_FromCharPtr("CSRouter"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CSGROUP",SWIG_FromCharPtr("CSGroup"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_CSQUEUETIMEOUT",SWIG_FromCharPtr("CSQueueTimeout"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CSPRIORITY",SWIG_FromCharPtr("CSPriority"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CSIDLETIMEOUT",SWIG_FromCharPtr("CSIdleTimeout"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CSTLSINSECURE",SWIG_FromCharPtr("CSTLSInsecure"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_TSPORT",SWIG_FromCharPtr("TSPort"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CLOUDACCESSID",SWIG_FromCharPtr("CloudAccessID"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CLOUDSECRETKEY",SWIG_FromCharPtr("CloudSecretKey"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CLOUDPOOL",SWIG_FromCharPtr("CloudPool"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CLOUDHOST",SWIG_FromCharPtr("CloudHost"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CSMANAGER",SWIG_FromCharPtr("CSManager"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CSAUTHTOKEN",SWIG_FromCharPtr("CSAuthToken"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CSAPIACCESSID",SWIG_FromCharPtr("CSAPIAccessID"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CSAPISECRET",SWIG_FromCharPtr("CSAPISecret"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CSBATCHMODE",SWIG_FromCharPtr("CSBatchMode"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_USERNAME",SWIG_FromCharPtr("Username"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_CSAPPNAME",SWIG_FromCharPtr("CSAppName"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CSCLIENTLOG",SWIG_FromCharPtr("CSClientLog"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_AGGREGATE",SWIG_FromCharPtr("Aggregate"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_AGGFILL",SWIG_FromCharPtr("AggFill"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CONCURRENTMIP",SWIG_FromCharPtr("ConcurrentMIP"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CONCURRENTJOBS",SWIG_FromCharPtr("ConcurrentJobs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_DISPLAYINTERVAL",SWIG_FromCharPtr("DisplayInterval"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_DISTRIBUTEDMIPJOBS",SWIG_FromCharPtr("DistributedMIPJobs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_DUALREDUCTIONS",SWIG_FromCharPtr("DualReductions"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_FEASRELAXBIGM",SWIG_FromCharPtr("FeasRelaxBigM"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_IISMETHOD",SWIG_FromCharPtr("IISMethod"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_INFUNBDINFO",SWIG_FromCharPtr("InfUnbdInfo"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_JSONSOLDETAIL",SWIG_FromCharPtr("JSONSolDetail"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_LAZYCONSTRAINTS",SWIG_FromCharPtr("LazyConstraints"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_LOGFILE",SWIG_FromCharPtr("LogFile"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_LOGTOCONSOLE",SWIG_FromCharPtr("LogToConsole"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MIQCPMETHOD",SWIG_FromCharPtr("MIQCPMethod"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_NONCONVEX",SWIG_FromCharPtr("NonConvex"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_NUMERICFOCUS",SWIG_FromCharPtr("NumericFocus"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_OUTPUTFLAG",SWIG_FromCharPtr("OutputFlag"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PRECRUSH",SWIG_FromCharPtr("PreCrush"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PREDEPROW",SWIG_FromCharPtr("PreDepRow"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PREDUAL",SWIG_FromCharPtr("PreDual"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PREPASSES",SWIG_FromCharPtr("PrePasses"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PREQLINEARIZE",SWIG_FromCharPtr("PreQLinearize"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PRESOLVE",SWIG_FromCharPtr("Presolve"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_PRESOS1BIGM",SWIG_FromCharPtr("PreSOS1BigM"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_PRESOS2BIGM",SWIG_FromCharPtr("PreSOS2BigM"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PRESPARSIFY",SWIG_FromCharPtr("PreSparsify"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PREMIQCPFORM",SWIG_FromCharPtr("PreMIQCPForm"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_QCPDUAL",SWIG_FromCharPtr("QCPDual"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_RECORD",SWIG_FromCharPtr("Record"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_RESULTFILE",SWIG_FromCharPtr("ResultFile"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SEED",SWIG_FromCharPtr("Seed"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_THREADS",SWIG_FromCharPtr("Threads"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_TUNETIMELIMIT",SWIG_FromCharPtr("TuneTimeLimit"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_TUNERESULTS",SWIG_FromCharPtr("TuneResults"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_TUNECRITERION",SWIG_FromCharPtr("TuneCriterion"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_TUNETRIALS",SWIG_FromCharPtr("TuneTrials"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_TUNEOUTPUT",SWIG_FromCharPtr("TuneOutput"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_TUNEJOBS",SWIG_FromCharPtr("TuneJobs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_UPDATEMODE",SWIG_FromCharPtr("UpdateMode"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_OBJNUMBER",SWIG_FromCharPtr("ObjNumber"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MULTIOBJMETHOD",SWIG_FromCharPtr("MultiObjMethod"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MULTIOBJPRE",SWIG_FromCharPtr("MultiObjPre"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SCENARIONUMBER",SWIG_FromCharPtr("ScenarioNumber"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_POOLSOLUTIONS",SWIG_FromCharPtr("PoolSolutions"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_POOLGAP",SWIG_FromCharPtr("PoolGap"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_POOLSEARCHMODE",SWIG_FromCharPtr("PoolSearchMode"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_IGNORENAMES",SWIG_FromCharPtr("IgnoreNames"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_STARTNUMBER",SWIG_FromCharPtr("StartNumber"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PARTITIONPLACE",SWIG_FromCharPtr("PartitionPlace"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_FUNCPIECES",SWIG_FromCharPtr("FuncPieces"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_FUNCPIECELENGTH",SWIG_FromCharPtr("FuncPieceLength"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_FUNCPIECEERROR",SWIG_FromCharPtr("FuncPieceError"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_FUNCPIECERATIO",SWIG_FromCharPtr("FuncPieceRatio"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_FUNCMAXVAL",SWIG_FromCharPtr("FuncMaxVal"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_DUMMY",SWIG_FromCharPtr("Dummy"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_JOBID",SWIG_FromCharPtr("JobID"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CUTS_AUTO",SWIG_From_int(static_cast< int >(-1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CUTS_OFF",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CUTS_CONSERVATIVE",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CUTS_AGGRESSIVE",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_CUTS_VERYAGGRESSIVE",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_PRESOLVE_AUTO",SWIG_From_int(static_cast< int >(-1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_PRESOLVE_OFF",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_PRESOLVE_CONSERVATIVE",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_PRESOLVE_AGGRESSIVE",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_METHOD_AUTO",SWIG_From_int(static_cast< int >(-1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_METHOD_PRIMAL",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_METHOD_DUAL",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_METHOD_BARRIER",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_METHOD_CONCURRENT",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_METHOD_DETERMINISTIC_CONCURRENT",SWIG_From_int(static_cast< int >(4)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_METHOD_DETERMINISTIC_CONCURRENT_SIMPLEX",SWIG_From_int(static_cast< int >(5)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BARHOMOGENEOUS_AUTO",SWIG_From_int(static_cast< int >(-1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BARHOMOGENEOUS_OFF",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BARHOMOGENEOUS_ON",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MIPFOCUS_BALANCED",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MIPFOCUS_FEASIBILITY",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MIPFOCUS_OPTIMALITY",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_MIPFOCUS_BESTBOUND",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BARORDER_AUTOMATIC",SWIG_From_int(static_cast< int >(-1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BARORDER_AMD",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BARORDER_NESTEDDISSECTION",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SIMPLEXPRICING_AUTO",SWIG_From_int(static_cast< int >(-1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SIMPLEXPRICING_PARTIAL",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SIMPLEXPRICING_STEEPEST_EDGE",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SIMPLEXPRICING_DEVEX",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_SIMPLEXPRICING_STEEPEST_QUICK",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VARBRANCH_AUTO",SWIG_From_int(static_cast< int >(-1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VARBRANCH_PSEUDO_REDUCED",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VARBRANCH_PSEUDO_SHADOW",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VARBRANCH_MAX_INFEAS",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VARBRANCH_STRONG",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_PARTITION_EARLY",SWIG_From_int(static_cast< int >(16)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_PARTITION_ROOTSTART",SWIG_From_int(static_cast< int >(8)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_PARTITION_ROOTEND",SWIG_From_int(static_cast< int >(4)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_PARTITION_NODES",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_PARTITION_CLEANUP",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BATCH_STATUS_UNKNOWN",SWIG_From_int(static_cast< int >(0)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BATCH_CREATED",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BATCH_SUBMITTED",SWIG_From_int(static_cast< int >(2)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BATCH_ABORTED",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BATCH_FAILED",SWIG_From_int(static_cast< int >(4)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_BATCH_COMPLETED",SWIG_From_int(static_cast< int >(5)));
+  
+  /* type 'ampls::GurobiCallback' */
+  builtin_pytype = (PyTypeObject *)&SwigPyBuiltin__ampls__GurobiCallback_type;
+  builtin_pytype->tp_dict = d = PyDict_New();
+  SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
+  builtin_pytype->tp_new = PyType_GenericNew;
+  builtin_base_count = 0;
+  builtin_basetype = SWIG_MangledTypeQuery("_p_ampls__impl__BaseCallback");
+  if (builtin_basetype && builtin_basetype->clientdata && ((SwigPyClientData *) builtin_basetype->clientdata)->pytype) {
+    builtin_bases[builtin_base_count++] = ((SwigPyClientData *) builtin_basetype->clientdata)->pytype;
+  } else {
+    PyErr_SetString(PyExc_TypeError, "Could not create type 'GurobiCallback' as base 'ampls::impl::BaseCallback' has not been initialized.\n");
+#if PY_VERSION_HEX >= 0x03000000
+    return NULL;
+#else
+    return;
+#endif
+  }
+  builtin_bases[builtin_base_count] = NULL;
+  SwigPyBuiltin_InitBases(builtin_pytype, builtin_bases);
+  PyDict_SetItemString(d, "this", this_descr);
+  PyDict_SetItemString(d, "thisown", thisown_descr);
+  if (PyType_Ready(builtin_pytype) < 0) {
+    PyErr_SetString(PyExc_TypeError, "Could not create type 'GurobiCallback'.");
+#if PY_VERSION_HEX >= 0x03000000
+    return NULL;
+#else
+    return;
+#endif
+  }
+  Py_INCREF(builtin_pytype);
+  PyModule_AddObject(m, "GurobiCallback", (PyObject *)builtin_pytype);
+  SwigPyBuiltin_AddPublicSymbol(public_interface, "GurobiCallback");
+  d = md;
+  
+  /* type 'ampls::GurobiDrv' */
+  builtin_pytype = (PyTypeObject *)&SwigPyBuiltin__ampls__GurobiDrv_type;
+  builtin_pytype->tp_dict = d = PyDict_New();
+  SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
+  builtin_pytype->tp_new = PyType_GenericNew;
+  builtin_base_count = 0;
+  builtin_bases[builtin_base_count] = NULL;
+  SwigPyBuiltin_InitBases(builtin_pytype, builtin_bases);
+  PyDict_SetItemString(d, "this", this_descr);
+  PyDict_SetItemString(d, "thisown", thisown_descr);
+  if (PyType_Ready(builtin_pytype) < 0) {
+    PyErr_SetString(PyExc_TypeError, "Could not create type 'GurobiDrv'.");
+#if PY_VERSION_HEX >= 0x03000000
+    return NULL;
+#else
+    return;
+#endif
+  }
+  Py_INCREF(builtin_pytype);
+  PyModule_AddObject(m, "GurobiDrv", (PyObject *)builtin_pytype);
+  SwigPyBuiltin_AddPublicSymbol(public_interface, "GurobiDrv");
+  d = md;
+  
+  /* type 'ampls::GurobiModel' */
+  builtin_pytype = (PyTypeObject *)&SwigPyBuiltin__ampls__GurobiModel_type;
+  builtin_pytype->tp_dict = d = PyDict_New();
+  SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
+  builtin_pytype->tp_new = PyType_GenericNew;
+  builtin_base_count = 0;
+  builtin_basetype = SWIG_MangledTypeQuery("_p_ampls__AMPLModel");
+  if (builtin_basetype && builtin_basetype->clientdata && ((SwigPyClientData *) builtin_basetype->clientdata)->pytype) {
+    builtin_bases[builtin_base_count++] = ((SwigPyClientData *) builtin_basetype->clientdata)->pytype;
+  } else {
+    PyErr_SetString(PyExc_TypeError, "Could not create type 'GurobiModel' as base 'ampls::AMPLModel' has not been initialized.\n");
+#if PY_VERSION_HEX >= 0x03000000
+    return NULL;
+#else
+    return;
+#endif
+  }
+  builtin_bases[builtin_base_count] = NULL;
+  SwigPyBuiltin_InitBases(builtin_pytype, builtin_bases);
+  PyDict_SetItemString(d, "this", this_descr);
+  PyDict_SetItemString(d, "thisown", thisown_descr);
+  if (PyType_Ready(builtin_pytype) < 0) {
+    PyErr_SetString(PyExc_TypeError, "Could not create type 'GurobiModel'.");
+#if PY_VERSION_HEX >= 0x03000000
+    return NULL;
+#else
+    return;
+#endif
+  }
+  Py_INCREF(builtin_pytype);
+  PyModule_AddObject(m, "GurobiModel", (PyObject *)builtin_pytype);
+  SwigPyBuiltin_AddPublicSymbol(public_interface, "GurobiModel");
   d = md;
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "CPXSIZE_BITS",SWIG_From_int(static_cast< int >(64)));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "CPX_FEATURES_H",SWIG_From_int(static_cast< int >(1)));

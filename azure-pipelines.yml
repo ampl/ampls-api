@@ -1,19 +1,21 @@
 jobs:
 - job: linux
-  pool: {vmImage: 'Ubuntu-16.04'}
+  pool: {vmImage: 'Ubuntu-18.04'}
   strategy:
     matrix:
       gurobi:
         solver: 'gurobi'
       cplex:
         solver: 'cplex'
+      ampls:
+        solver: 'ampls'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:
     - task: UsePythonVersion@0
-    - script: |
-        sudo apt-get install swig
-      displayName: Install SWIG
+    # - script: |
+    #     sudo apt-get install swig
+    #   displayName: Install SWIG
     - bash: |
         bash libs/download.sh
       displayName: Download libraries
@@ -21,19 +23,20 @@ jobs:
         set -ex
         mkdir -p tmp
         TMP=`pwd`/tmp
+        cp support/twine.sh $WHEELHOUSE/twine.sh
         cd python/$SOLVER
         bash prepare.sh
         # bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
         pip install cibuildwheel==1.6.2
-        CIBW_SKIP='*-manylinux*_i686' cibuildwheel --output-dir $TMP .
+        CIBW_SKIP='pp* *-manylinux*_i686' cibuildwheel --output-dir $TMP .
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
         mv $TMP/* $WHEELHOUSE/
-        # python setup.py sdist -d $WHEELHOUSE
+        python setup.py sdist -d $WHEELHOUSE
         # pip install twine
-        # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
+        # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/* || true
       displayName: Build wheels
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
@@ -45,13 +48,15 @@ jobs:
         solver: 'gurobi'
       cplex:
         solver: 'cplex'
+      ampls:
+        solver: 'ampls'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps: 
     - task: UsePythonVersion@0
-    - script: |
-        brew install swig
-      displayName: Install SWIG
+    # - script: |
+    #     brew install swig
+    #   displayName: Install SWIG
     - bash: |
         bash libs/download.sh
       displayName: Download libraries
@@ -65,7 +70,7 @@ jobs:
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
         pip install cibuildwheel==1.6.2
-        cibuildwheel --output-dir $TMP .
+        CIBW_SKIP='pp*' cibuildwheel --output-dir $TMP .
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
         mv $TMP/* $WHEELHOUSE/
@@ -75,33 +80,28 @@ jobs:
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
 - job: windows
-  pool: {vmImage: 'vs2017-win2016'}
+  pool: {vmImage: 'windows-2019'}
   strategy:
     matrix:
       gurobi:
         solver: 'gurobi'
       cplex:
         solver: 'cplex'
+      ampls:
+        solver: 'ampls'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:
-    - {task: UsePythonVersion@0, inputs: {versionSpec: '2.7', architecture: x64}}
-    - {task: UsePythonVersion@0, inputs: {versionSpec: '3.5', architecture: x64}}
-    - {task: UsePythonVersion@0, inputs: {versionSpec: '3.6', architecture: x64}}
-    - {task: UsePythonVersion@0, inputs: {versionSpec: '3.7', architecture: x64}}
-    - script: |
-        choco install vcpython27 -f -y
-      displayName: Install Visual C++ for Python 2.7
-    - script: |
-        choco install -y --x86 swig
-      displayName: Install SWIG
+    - task: UsePythonVersion@0
+    # - script: |
+    #     choco install vcpython27 -f -y
+    #   displayName: Install Visual C++ for Python 2.7
+    # - script: |
+    #     choco install -y --x86 swig
+    #   displayName: Install SWIG
     - bash: |
         bash libs/download.sh
       displayName: Download libraries
-    - bash: |
-        curl -o libs/gurobi/include/stdint.h https://raw.githubusercontent.com/mattn/gntp-send/master/include/msinttypes/stdint.h
-        cp libs/gurobi/include/stdint.h libs/cplex/include/stdint.h
-      displayName: Download stdint.h
     - bash: |
         set -ex
         mkdir -p tmp
@@ -111,9 +111,9 @@ jobs:
         # bash swig.sh
         python -m pip install --user --upgrade pip
         python -m pip install urllib3[secure] --upgrade
-        python -m pip install cibuildwheel==1.6.2
-        CIBW_SKIP='*-win32' cibuildwheel --output-dir $TMP .
-        cibuildwheel --output-dir $TMP .
+        python -m pip install cibuildwheel==1.6.4
+        # Skipping python 2.7 (due to c++11) and 3.9 (linking error)
+        CIBW_SKIP='*-win32 pp* cp27-* cp39-*' cibuildwheel --output-dir $TMP .
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
         mv $TMP/* $WHEELHOUSE/

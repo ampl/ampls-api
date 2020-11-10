@@ -40,7 +40,7 @@ def make_relative_rpath(paths):
 
 def compile_args():
     if OSTYPE == 'Windows':
-        return ['/TP', '/EHsc', '/std:c11']
+        return ['/TP', '/EHsc']
     elif OSTYPE == 'Linux':
         return ['-std=c++11']
     elif OSTYPE == 'Darwin':
@@ -63,7 +63,7 @@ def libdir():
 
 setup(
     name='amplpy_cplex',
-    version='0.1.0b3',
+    version='0.1.0b4',
     description='CPLEX extension for amplpy',
     long_description=__doc__,
     license='BSD-3',
@@ -93,6 +93,8 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
     packages=['amplpy_cplex'],

@@ -1,0 +1,6 @@
+pip==19.0.3
+setuptools==40.8.0
+amplpy
+amplpy_cplex
+amplpy_gurobi
+amplpy_ampls

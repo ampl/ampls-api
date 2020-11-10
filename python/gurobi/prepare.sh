@@ -1,9 +1,15 @@
 #!/bin/bash
 cd `dirname $0`
-mkdir -p amplpy_gurobi/{cpp,libs}
+SOLVER=gurobi
+PACKAGE=amplpy_gurobi
 
-cp -r ../../cpp/ampls amplpy_gurobi/cpp/ampls
-cp -r ../../cpp/gurobi amplpy_gurobi/cpp/gurobi
+mkdir -p $PACKAGE/cpp
+cp -r ../../cpp/ampls $PACKAGE/cpp/ampls
+cp -r ../../cpp/$SOLVER $PACKAGE/cpp/$SOLVER
 
-cp -r ../../libs/gurobi amplpy_gurobi/libs/gurobi
-cp -r ../../libs/ampls amplpy_gurobi/libs/ampls
+mkdir -p $PACKAGE/libs
+cp -r ../../libs/$SOLVER $PACKAGE/libs/$SOLVER
+for p in linux64 osx64 win64; do
+    mkdir -p $PACKAGE/libs/ampls/$p
+    cp -r ../../libs/ampls/$p/*$SOLVER* $PACKAGE/libs/ampls/$p/
+done

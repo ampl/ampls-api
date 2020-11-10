@@ -1,10 +1,15 @@
 #!/bin/bash
 cd `dirname $0`
-mkdir -p amplpy_cplex/{cpp,libs}
+SOLVER=cplex
+PACKAGE=amplpy_cplex
 
-cp -r ../../cpp/ampls amplpy_cplex/cpp/ampls
-cp -r ../../cpp/cplex amplpy_cplex/cpp/cplex
+mkdir -p $PACKAGE/cpp
+cp -r ../../cpp/ampls $PACKAGE/cpp/ampls
+cp -r ../../cpp/$SOLVER $PACKAGE/cpp/$SOLVER
 
-cp -r ../../libs/cplex amplpy_cplex/libs/cplex
-cp -r ../../libs/ampls amplpy_cplex/libs/ampls
- 
+mkdir -p $PACKAGE/libs
+cp -r ../../libs/$SOLVER $PACKAGE/libs/$SOLVER
+for p in linux64 osx64 win64; do
+    mkdir -p $PACKAGE/libs/ampls/$p
+    cp -r ../../libs/ampls/$p/*$SOLVER* $PACKAGE/libs/ampls/$p/
+done

@@ -1,6 +1,5 @@
 from amplpy import AMPL
 import amplpy_gurobi as gpy
-gpy.patch(AMPL)
 
 ampl = AMPL()
 
@@ -31,7 +30,7 @@ CALL_COUNT_MIP = 0
 CALL_COUNT_MIPSOL = 0
 
 
-class MyCallback(gpy.GRBCallback):
+class MyCallback(gpy.GurobiCallback):
     def run(self, where):
         global CALL_COUNT_MIP, CALL_COUNT_MIPSOL
         try:
@@ -57,7 +56,7 @@ obj = m.optimize()
 nvars = m.getNumVars()
 err = m.writeSol()
 
-ampl.importGurobiSolution(m)
+ampl.importSolution(m)
 o = ampl.getObjective('z')
 
 print("Obj values - AMPL={} Gurobi={}".format(o.value(), obj))

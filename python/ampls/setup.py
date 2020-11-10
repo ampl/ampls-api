@@ -42,9 +42,9 @@ def compile_args():
     if OSTYPE == 'Windows':
         return ['/TP', '/EHsc']
     elif OSTYPE == 'Linux':
-        return []
+        return ['-std=c++11']
     elif OSTYPE == 'Darwin':
-        return []
+        return ['-stdlib=libc++']
     else:
         return []
 
@@ -52,7 +52,7 @@ def compile_args():
 def libdir():
     if OSTYPE == 'Darwin':
         assert x64 is True
-        return 'macos64'
+        return 'osx64'
     elif OSTYPE == 'Linux':
         assert x64 is True
         return 'linux64'
@@ -62,16 +62,16 @@ def libdir():
 
 
 setup(
-    name='amplpy_gurobi',
-    version='0.1.0b3',
-    description='GUROBI extension for amplpy',
+    name='amplpy_ampls',
+    version='0.1.0b4',
+    description='Solver extensions for amplpy',
     long_description=__doc__,
     license='BSD-3',
     platforms='any',
     author='Filipe Brandão',
     author_email='fdabrandao@ampl.com',
     url='http://ampl.com/',
-    download_url='https://github.com/ampl/amplpy',
+    download_url='https://github.com/ampl/solvers-public',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
@@ -93,40 +93,43 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    packages=['amplpy_gurobi'],
+    packages=['amplpy_ampls'],
     ext_modules=[Extension(
-        '_amplpy_gurobi_swig',
+        '_amplpy_ampls_swig',
         library_dirs=[
-            os.path.join('amplpy_gurobi', 'gurobi81', libdir()),
-            os.path.join('amplpy_gurobi', 'amplgurobi', 'lib'),
+            os.path.join('amplpy_ampls', 'libs', 'gurobi', 'lib', libdir()),
+            os.path.join('amplpy_ampls', 'libs', 'cplex', 'lib', libdir()),
+            os.path.join('amplpy_ampls', 'libs', 'ampls', libdir()),
         ],
         define_macros=[('SWIG', 1)],
         include_dirs=[
-            os.path.join('amplpy_gurobi', 'gurobi81', 'include'),
-            os.path.join('amplpy_gurobi', 'swig'),
-            os.path.join('amplpy_gurobi', 'amplgurobi'),
-            os.path.join('amplpy_gurobi', 'ampls', 'include'),
+            os.path.join('amplpy_ampls', 'libs', 'gurobi', 'include'),
+            os.path.join('amplpy_ampls', 'cpp', 'gurobi', 'include'),
+            os.path.join('amplpy_ampls', 'libs', 'cplex', 'include'),
+            os.path.join('amplpy_ampls', 'cpp', 'cplex', 'include'),
+            os.path.join('amplpy_ampls', 'cpp', 'ampls', 'include'),
+            os.path.join('amplpy_ampls', 'swig'),
         ],
-        libraries=['gurobi81', 'gurobidrv-lib'],
+        libraries=['gurobi90', 'gurobi-lib', 'cplex12100', 'cplex-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=[make_relative_rpath([
-            os.path.join('amplpy_gurobi', 'gurobi81', libdir()),
-            os.path.join('amplpy_gurobi', 'amplgurobi', 'lib'),
+            os.path.join('amplpy_ampls', 'libs', 'ampls', libdir()),
+            os.path.join('amplpy_ampls', 'libs', 'gurobi', 'lib', libdir()),
+            os.path.join('amplpy_ampls', 'libs', 'cplex', 'lib', libdir()),
         ])],
         sources=[
-            os.path.join('amplpy_gurobi', 'swig',
-                         'amplpy_gurobi_swig_wrap.cxx')
-        ]+[
-            os.path.join('amplpy_gurobi', 'ampls', fname)
-            for fname in ls_dir(os.path.join('amplpy_gurobi', 'ampls'))
-            if fname.endswith(('.c', '.cpp'))
-        ]+[
-            os.path.join('amplpy_gurobi', 'amplgurobi', fname)
-            for fname in ls_dir(os.path.join('amplpy_gurobi', 'amplgurobi'))
+            os.path.join('amplpy_ampls', 'swig',
+                         'amplpy_ampls_swig_wrap.cxx')
+        ] + [
+            os.path.join('amplpy_ampls', 'cpp', folder, 'src', fname)
+            for folder in ('gurobi', 'cplex', 'ampls')
+            for fname in ls_dir(os.path.join('amplpy_ampls', 'cpp', folder, 'src'))
             if fname.endswith(('.c', '.cpp'))
         ],
     )],
-    package_data={'': ls_dir('amplpy_gurobi/')},
+    package_data={'': ls_dir('amplpy_ampls/')},
 )

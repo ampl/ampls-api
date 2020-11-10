@@ -21,25 +21,6 @@ if platform.system() == 'Windows':
 
 
 try:
-    from amplpy_gurobi_swig import *
+    from .patch import *
 except:
     raise
-
-
-GUROBI_DRIVER = GurobiDrv()
-
-
-def export_gurobi_model(self):
-    self.eval('write gnlfile;')
-    grb_model = GUROBI_DRIVER.loadModel('nlfile.nl')
-    return grb_model
-
-
-def import_gurobi_solution(self, grb_model):
-    grb_model.writeSol()
-    self.eval('solution nlfile.sol;')
-
-
-def gurobi_patch(ampl_class):
-    ampl_class.export_gurobi_model = export_gurobi_model
-    ampl_class.import_gurobi_solution = import_gurobi_solution
