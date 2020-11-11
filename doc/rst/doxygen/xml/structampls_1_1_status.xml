@@ -77,19 +77,20 @@
           </detaileddescription>
         </enumvalue>
         <briefdescription>
+<para>Solution status (generic) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="128" column="17" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="128" bodyend="139"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="134" column="17" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="134" bodyend="145"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="127" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="126" bodyend="140"/>
+    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="130" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="129" bodyend="146"/>
     <listofallmembers>
       <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55aac78d94ffdf887336733b0ad32c76ff1" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>INFEASIBLE</name></member>
       <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55a8294e90454b27598e120103a90577ecd" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>INTERRUPTED</name></member>

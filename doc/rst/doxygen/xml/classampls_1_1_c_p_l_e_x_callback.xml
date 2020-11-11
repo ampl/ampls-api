@@ -2,7 +2,8 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classampls_1_1_c_p_l_e_x_callback" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>ampls::CPLEXCallback</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">ampls::impl::BaseCallback</basecompoundref>
+    <basecompoundref refid="classampls_1_1impl_1_1_base_callback" prot="public" virt="non-virtual">ampls::impl::BaseCallback</basecompoundref>
+    <includes refid="cplex__callback_8h" local="no">cplex_callback.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_callback_1a0006d94a9e99bb12f93e7e5e7e20a1ee" prot="private" static="no" mutable="no">
         <type>char</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="18" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="18" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="29" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_callback_1a4efa435d79ac0ea11aae8685a8ff1945" prot="private" static="no" mutable="no">
         <type>CPXCENVptr</type>
@@ -28,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="22" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="22" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="33" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="33" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_callback_1a2acd1d3ad6552234cdb7e36439ac296a" prot="private" static="no" mutable="no">
         <type>void *</type>
@@ -41,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="24" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="24" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="35" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_callback_1ae802651337dd7c4bb443a618b576d0a0" prot="private" static="no" mutable="no">
         <type>void *</type>
@@ -54,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="26" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="26" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="37" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="37" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_callback_1a72272f7f6442f86abeb5f28c5293979d" prot="private" static="no" mutable="no">
         <type>const char *</type>
@@ -67,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="28" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="28" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="39" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_callback_1af2e6810bf7b8680caca81006f2584569" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -80,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="31" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="31" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="42" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_callback_1a237d648ebb9b4e737fb07c716a1c0556" prot="private" static="no" mutable="no">
         <type>double *</type>
@@ -93,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="32" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="32" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="43" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="43" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="friend">
@@ -108,7 +109,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="19" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="19" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="30" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="friend" id="classampls_1_1_c_p_l_e_x_callback_1a14e3f4c2d307c5bb9c3f07e2afb94a15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>friend class</type>
@@ -121,15 +122,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="20" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="20" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="31" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="31" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
-      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1acd0e1fe3aab624a8258891283ec02648" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1acd0e1fe3aab624a8258891283ec02648" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
         <definition>int ampls::CPLEXCallback::doAddCut</definition>
         <argsstring>(int nvars, const int *vars, const double *coeffs, CutDirection::Direction direction, double rhs, int type)</argsstring>
         <name>doAddCut</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a9b2591d3b64624a01d3e8a20c2e4a678">doAddCut</reimplements>
         <param>
           <type>int</type>
           <declname>nvars</declname>
@@ -160,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="37" column="7"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="48" column="7"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1ab487e49b005cb6fd4146de1d9160fe56" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>CPXCENVptr</type>
@@ -173,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="40" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="40" bodyend="40"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="51" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="51" bodyend="51"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1aae3c8254dd8c31b83024bfa14d49d141" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void *</type>
@@ -186,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="41" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="41" bodyend="41"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="52" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="52" bodyend="52"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -195,13 +197,15 @@
         <definition>virtual int ampls::CPLEXCallback::run</definition>
         <argsstring>()=0</argsstring>
         <name>run</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a0a0c4bd9cd5d0222271b3bc5c28ffd2c">run</reimplements>
         <briefdescription>
+<para>Function to override, called periodically by the optimizer. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="44" column="15"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="55" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a482e6e438aa7e55333405ed580fe1ed7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -214,13 +218,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="45" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="45" bodyend="45"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="56" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="56" bodyend="56"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a438ed4893485adf2e8bd827ac6f910b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a438ed4893485adf2e8bd827ac6f910b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
         <definition>int ampls::CPLEXCallback::getSolution</definition>
         <argsstring>(int len, double *sol)</argsstring>
         <name>getSolution</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1aa9fe36a4df0a9c780eece642133a5625">getSolution</reimplements>
         <param>
           <type>int</type>
           <declname>len</declname>
@@ -230,64 +235,74 @@
           <declname>sol</declname>
         </param>
         <briefdescription>
+<para>Get the current solution. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="49" column="7"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="60" column="7"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1ae7414c835fdc0809a3db2f36a9376928" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1ae7414c835fdc0809a3db2f36a9376928" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>double</type>
         <definition>double ampls::CPLEXCallback::getObj</definition>
         <argsstring>()</argsstring>
         <name>getObj</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a7130b3beb25b77816bc12b87eb761f47">getObj</reimplements>
         <briefdescription>
+<para>Get the current objective value. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="50" column="10"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="61" column="10"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a4008ed7d0edb90504fe4175b01870a0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a4008ed7d0edb90504fe4175b01870a0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>const char *</type>
         <definition>const char* ampls::CPLEXCallback::getWhereString</definition>
         <argsstring>()</argsstring>
         <name>getWhereString</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1aedaf812ee8531e66ed615485a4e1a68e">getWhereString</reimplements>
         <briefdescription>
+<para>Get a textual representation of where in the solution process the callback has been called. </para>
         </briefdescription>
         <detaileddescription>
+<para>NOTE: this is expressed using the solver&apos;s own (not mapped) values </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="52" column="14"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="63" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a380ed8276c4b8d3a48cba1f7dcbf5ed9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a380ed8276c4b8d3a48cba1f7dcbf5ed9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>const char *</type>
         <definition>const char* ampls::CPLEXCallback::getMessage</definition>
         <argsstring>()</argsstring>
         <name>getMessage</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a37ab38b11c94a67683f9a93d3144cc3a">getMessage</reimplements>
         <briefdescription>
+<para>Get the message from the solver (available only for specific values of getWhere) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="53" column="14"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="64" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1ab2816aaba3cde413fa769a4224df7058" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1ab2816aaba3cde413fa769a4224df7058" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042" kindref="member">Where::CBWhere</ref></type>
         <definition>Where::CBWhere ampls::CPLEXCallback::getAMPLWhere</definition>
         <argsstring>()</argsstring>
         <name>getAMPLWhere</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a119bdef2f54ae9c7f6503189208fba1b">getAMPLWhere</reimplements>
         <briefdescription>
+<para>Get where in the solution process the callback has been called (mapped) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="55" column="18" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="55" bodyend="82"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="66" column="18" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="66" bodyend="92"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a9676f431ccd6d11f3f9ebca49fda31e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structampls_1_1_variant" kindref="compound">Variant</ref></type>
@@ -299,12 +314,13 @@
           <declname>what</declname>
         </param>
         <briefdescription>
+<para>Get a value at this stage of the solution process. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="83" column="11"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="94" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1ae64fadf2c49123dcdb35222734e410c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -316,12 +332,13 @@
           <declname>what</declname>
         </param>
         <briefdescription>
+<para>Get an integer value at this stage of the solution process. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="84" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="84" bodyend="100"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="96" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="96" bodyend="112"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a1525c893b18087f5cf58919feb56b832" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -333,38 +350,382 @@
           <declname>what</declname>
         </param>
         <briefdescription>
+<para>Get a double value at this stage of the solution process. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="101" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="101" bodyend="107"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="115" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="115" bodyend="121"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_callback_1a2c2a3f9e31361a96d998be9de774bc9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="structampls_1_1_variant" kindref="compound">Variant</ref></type>
         <definition>virtual Variant ampls::CPLEXCallback::getValue</definition>
         <argsstring>(Value::CBValue v)</argsstring>
         <name>getValue</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1ad32d98636df90f39b6c35610988b22e7">getValue</reimplements>
         <param>
-          <type>Value::CBValue</type>
+          <type><ref refid="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4" kindref="member">Value::CBValue</ref></type>
           <declname>v</declname>
         </param>
         <briefdescription>
+<para>Get a (mapped) value. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="108" column="19" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="108" bodyend="128"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="123" column="19" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="123" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1afdc25279868f0a4fa7db4a1aedc1dc33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, int &gt; &amp;</type>
+        <definition>std::map&lt;std::string, int&gt;&amp; ampls::impl::BaseCallback::getVarMap</definition>
+        <argsstring>()</argsstring>
+        <name>getVarMap</name>
+        <briefdescription>
+<para>Get the map AMPLEntityName -&gt; SolverVarIndex. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="260" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1ab49c7beeee95bf20a4adffbd832c3905" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; int, std::string &gt; &amp;</type>
+        <definition>std::map&lt;int, std::string&gt;&amp; ampls::impl::BaseCallback::getVarMapInverse</definition>
+        <argsstring>()</argsstring>
+        <name>getVarMapInverse</name>
+        <briefdescription>
+<para>Get the map SolverVarIndex -&gt; AMPLEntityName. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="262" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1ae1a2ad8ba0a091668ba2f19c628c5cf2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::impl::BaseCallback::addCut</definition>
+        <argsstring>(std::vector&lt; std::string &gt; vars, const double *coeffs, CutDirection::Direction direction, double rhs)</argsstring>
+        <name>addCut</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Add a user cut using AMPL variables names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of AMPL variable names </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of cut coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Direction of the constraint ampls::CBDirection::Direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right hand side value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="272" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="272" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1ae374fd004d0dbe3fa000510dbbc0e595" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::impl::BaseCallback::addLazy</definition>
+        <argsstring>(std::vector&lt; std::string &gt; vars, const double *coeffs, CutDirection::Direction direction, double rhs)</argsstring>
+        <name>addLazy</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Add a lazy constraint using AMPL variables names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of AMPL variable names </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of cut coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Direction of the constraint ampls::CBDirection::Direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right hand side value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="283" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="283" bodyend="287"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1a045b3a949dd5aa187251eb75269d8cd2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::impl::BaseCallback::addCutsIndices</definition>
+        <argsstring>(int nvars, const int *vars, const double *coeffs, CutDirection::Direction direction, double rhs)</argsstring>
+        <name>addCutsIndices</name>
+        <param>
+          <type>int</type>
+          <declname>nvars</declname>
+        </param>
+        <param>
+          <type>const int *</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Add a user cut using solver indics. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nvars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of variables in the cut (length of *vars) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of variable indices (in the solvers representation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of cut coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Direction of the constraint ampls::CBDirection::Direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right hand side value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="296" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="296" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1a96247a7a0e7c4658b726167029ab6a96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::impl::BaseCallback::addLazyIndices</definition>
+        <argsstring>(int nvars, const int *vars, const double *coeffs, CutDirection::Direction direction, double rhs)</argsstring>
+        <name>addLazyIndices</name>
+        <param>
+          <type>int</type>
+          <declname>nvars</declname>
+        </param>
+        <param>
+          <type>const int *</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Add a lazy constraint using solver indics. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nvars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of variables in the cut (length of *vars) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of variable indices (in the solvers representation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of cut coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Direction of the constraint ampls::CBDirection::Direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right hand side value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="308" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="308" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1a0ab7fac421618d28667cf3a0c303a696" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; ampls::impl::BaseCallback::getSolutionVector</definition>
+        <argsstring>()</argsstring>
+        <name>getSolutionVector</name>
+        <briefdescription>
+<para>Get the current solution vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="314" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1a1db37d52ad71b57811dbad3c6e12e5f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int ampls::impl::BaseCallback::getWhere</definition>
+        <argsstring>()</argsstring>
+        <name>getWhere</name>
+        <reimplementedby refid="classampls_1_1_generic_callback_1a2d083553a3c7d87504a17ba7d573161e">getWhere</reimplementedby>
+        <briefdescription>
+<para>Get an iteger representing where in the solution process the callback has been called. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>NOTE: this is expressed using the solver&apos;s own (not mapped) values </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="322" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="322" bodyend="322"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Base class for CPLEX callbacks, inherit from this to declare a callback to be called at various stages of the solution process. </para>
     </briefdescription>
     <detaileddescription>
+<para>Provides all mapping between solver-specific and generic values. To implement a callback, you should implement the <ref refid="classampls_1_1_c_p_l_e_x_callback_1a02e0901f2d2f7dc1a86ec27668385a0b" kindref="member">run()</ref> method and set it via <ref refid="classampls_1_1_a_m_p_l_model_1a5c20eba868bd9a8207dd44b39c7cdfde" kindref="member">AMPLModel::setCallback()</ref> before starting the solution process via <ref refid="classampls_1_1_a_m_p_l_model_1a7e639a340228e6f93f64fd1de4e44338" kindref="member">AMPLModel::optimize()</ref>. Depending on where the callback is called from, you can obtain various information about the progress of the optimization and can modify the behaviour of the solver. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
         <label>ampls::impl::BaseCallback</label>
+        <link refid="classampls_1_1impl_1_1_base_callback"/>
       </node>
       <node id="1">
         <label>ampls::CPLEXCallback</label>
@@ -376,6 +737,7 @@
     <collaborationgraph>
       <node id="2">
         <label>ampls::impl::BaseCallback</label>
+        <link refid="classampls_1_1impl_1_1_base_callback"/>
       </node>
       <node id="1">
         <label>ampls::CPLEXCallback</label>
@@ -384,28 +746,38 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="17" column="46" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="17" bodyend="129"/>
+    <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" line="28" column="46" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_callback.h" bodystart="28" bodyend="144"/>
     <listofallmembers>
+      <member refid="classampls_1_1impl_1_1_base_callback_1ae1a2ad8ba0a091668ba2f19c628c5cf2" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>addCut</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a045b3a949dd5aa187251eb75269d8cd2" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>addCutsIndices</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1ae374fd004d0dbe3fa000510dbbc0e595" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>addLazy</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a96247a7a0e7c4658b726167029ab6a96" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>addLazyIndices</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1ae1ce73b27f0d898a60929f848c4cfb61" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>BaseCallback</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1ae802651337dd7c4bb443a618b576d0a0" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>cbdata_</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a0006d94a9e99bb12f93e7e5e7e20a1ee" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>CODE</name></member>
-      <member refid="classampls_1_1_c_p_l_e_x_callback_1acd0e1fe3aab624a8258891283ec02648" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>doAddCut</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_callback_1acd0e1fe3aab624a8258891283ec02648" prot="private" virt="virtual"><scope>ampls::CPLEXCallback</scope><name>doAddCut</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a4efa435d79ac0ea11aae8685a8ff1945" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>env_</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a9676f431ccd6d11f3f9ebca49fda31e1" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>get</name></member>
-      <member refid="classampls_1_1_c_p_l_e_x_callback_1ab2816aaba3cde413fa769a4224df7058" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getAMPLWhere</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_callback_1ab2816aaba3cde413fa769a4224df7058" prot="public" virt="virtual"><scope>ampls::CPLEXCallback</scope><name>getAMPLWhere</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1aae3c8254dd8c31b83024bfa14d49d141" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getCBData</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1ab487e49b005cb6fd4146de1d9160fe56" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getCPXENV</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a1525c893b18087f5cf58919feb56b832" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getDouble</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1ae64fadf2c49123dcdb35222734e410c5" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getInt</name></member>
-      <member refid="classampls_1_1_c_p_l_e_x_callback_1a380ed8276c4b8d3a48cba1f7dcbf5ed9" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getMessage</name></member>
-      <member refid="classampls_1_1_c_p_l_e_x_callback_1ae7414c835fdc0809a3db2f36a9376928" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getObj</name></member>
-      <member refid="classampls_1_1_c_p_l_e_x_callback_1a438ed4893485adf2e8bd827ac6f910b7" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getSolution</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_callback_1a380ed8276c4b8d3a48cba1f7dcbf5ed9" prot="public" virt="virtual"><scope>ampls::CPLEXCallback</scope><name>getMessage</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_callback_1ae7414c835fdc0809a3db2f36a9376928" prot="public" virt="virtual"><scope>ampls::CPLEXCallback</scope><name>getObj</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_callback_1a438ed4893485adf2e8bd827ac6f910b7" prot="public" virt="virtual"><scope>ampls::CPLEXCallback</scope><name>getSolution</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a0ab7fac421618d28667cf3a0c303a696" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getSolutionVector</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a2c2a3f9e31361a96d998be9de774bc9d" prot="public" virt="virtual"><scope>ampls::CPLEXCallback</scope><name>getValue</name></member>
-      <member refid="classampls_1_1_c_p_l_e_x_callback_1a4008ed7d0edb90504fe4175b01870a0c" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getWhereString</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1afdc25279868f0a4fa7db4a1aedc1dc33" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getVarMap</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1ab49c7beeee95bf20a4adffbd832c3905" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>getVarMapInverse</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a1db37d52ad71b57811dbad3c6e12e5f2" prot="public" virt="virtual"><scope>ampls::CPLEXCallback</scope><name>getWhere</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_callback_1a4008ed7d0edb90504fe4175b01870a0c" prot="public" virt="virtual"><scope>ampls::CPLEXCallback</scope><name>getWhereString</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a2acd1d3ad6552234cdb7e36439ac296a" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>lp_</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a72272f7f6442f86abeb5f28c5293979d" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>msg_</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1af2e6810bf7b8680caca81006f2584569" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>objval_</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a02e0901f2d2f7dc1a86ec27668385a0b" prot="public" virt="pure-virtual"><scope>ampls::CPLEXCallback</scope><name>run</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a237d648ebb9b4e737fb07c716a1c0556" prot="private" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>x_</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a21b90616d9a4b4d115085bb163483a1c" prot="public" virt="virtual"><scope>ampls::CPLEXCallback</scope><name>~BaseCallback</name></member>
       <member refid="classampls_1_1_c_p_l_e_x_callback_1a482e6e438aa7e55333405ed580fe1ed7" prot="public" virt="non-virtual"><scope>ampls::CPLEXCallback</scope><name>~CPLEXCallback</name></member>
     </listofallmembers>
   </compounddef>

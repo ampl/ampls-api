@@ -37,14 +37,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="117" column="17" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="117" bodyend="124"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="119" column="17" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="119" bodyend="126"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="115" column="19" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="115" bodyend="125"/>
+    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="117" column="19" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="117" bodyend="127"/>
     <listofallmembers>
       <member refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" prot="public" virt="non-virtual"><scope>ampls::CutDirection</scope><name>Direction</name></member>
       <member refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbcaae8d9d2b9412044e5e54e1defa08ee7a" prot="public" virt="non-virtual"><scope>ampls::CutDirection</scope><name>EQ</name></member>

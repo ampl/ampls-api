@@ -136,7 +136,6 @@ public:
     fileName_ = other.fileName_;
     other.copied_ = true;
   }
-
   
   Status::SolStatus getStatus() {
     int cpxstatus = CPXgetstat(getCPXENV(), model_);
@@ -205,24 +204,23 @@ public:
     setParam(CPXPARAM_MIP_Strategy_CallbackReducedLP, CPX_OFF);
     setParam(CPXPARAM_Preprocessing_Linear, 0);
   }
-  // CPLEX-specific
-  // Access to gurobi C structures
+  
+  // ********************* CPLEX specific *********************
+
+  /** Get the pointer to the native CPLEX LP model object */
   CPXLPptr getCPXLP() {
     return model_;
   }
+  /** Get the pointer to the native CPLEX environment object */
   CPXENVptr getCPXENV() {
     return cpx::impl::AMPLCPLEXgetInternalEnv();
   }
-  /**
-  * Set CPLEX control parameter (integers)
-  */
+  /** Set an integer CPLEX control parameter */
   void setParam(int CPXPARAM, int value) {
     int status = CPXsetintparam(getCPXENV(), CPXPARAM, value);
     AMPLSCPXERRORCHECK("CPXsetintparam");
   }
-  /**
-  * Set CPLEX control parameters (double)
-  */
+  /** Set a double CPLEX control parameter */
   void setParam(int CPXPARAM, double value) {
     int status = CPXsetdblparam(getCPXENV(), CPXPARAM, value);
     AMPLSCPXERRORCHECK("CPXsetdblparam");

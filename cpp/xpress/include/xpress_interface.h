@@ -226,30 +226,34 @@ public:
   }
 
 
-  // XPRESS-specific
-  // Access to XPRESS C structures
+  // ******************* XPRESS specific *******************
+  /** Get a pointer to the underlying XPRESSprob object */
   XPRSprob getXPRSprob() {
     return prob_;
   }
  
-  ~XPRESSModel() {
-    if (copied_)
-      return;
-   
-  }
-
+  
+  /** Get an integer attribute */
   int getInt(int what) {
     int ret;
     XPRSgetintattrib(prob_, what, &ret);
     return ret;
   }
+  /** Get a double attribute */
   double getDouble(int what) {
     double ret;
     XPRSgetdblattrib(prob_, what, &ret);
     return ret;
   }
+  /** Return true if the problem is MIP*/
   bool isMIP() {
     return getInt(XPRS_ORIGINALMIPENTS) > 0;
+  }
+
+  ~XPRESSModel() {
+    if (copied_)
+      return;
+   
   }
 };
 

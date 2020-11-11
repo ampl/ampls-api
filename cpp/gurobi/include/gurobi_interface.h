@@ -47,14 +47,15 @@ Encapsulates the main environment of the gurobi driver
 */
 class GurobiDrv : public impl::SolverDriver<GurobiModel>  {
   void freeGurobiEnv();
-   /**
+
+  GurobiModel* loadModelImpl(char** args);
+public:
+  /**
   * Load a model from an NL file.
   * Mappings between solver row and column numbers and AMPL names are
   * available only if the row and col files have been generated as well,
   * by means of the ampl option `option auxfiles cr;` before writing the NL file.
   */
-  GurobiModel* loadModelImpl(char** args);
-public:
   GurobiModel loadModel(const char* modelName);
   ~GurobiDrv();
 };
@@ -138,42 +139,52 @@ public:
 
   std::string error(int code);
 
-  // Gurobi-specific
-  int getIntAttr(const char* name);
-  double getDoubleAttr(const char* name);
-  int getIntAttrArray(const char* name, int first, int length, int* arr);
-  int getDoubleAttrArray(const char* name, int first, int length, double* arr);
+  // **************** Gurobi-specific ****************
 
+  /** Get an integer model attribute (using gurobi C library name) */
+  int getIntAttr(const char* name);
+  /** Get a double model attribute (using gurobi C library name) */
+  double getDoubleAttr(const char* name);
+  /** Get an integer array model attribute (using gurobi C library name) */
+  int getIntAttrArray(const char* name, int first, int length, int* arr);
+  /** Get a double array model attribute (using gurobi C library name) */
+  int getDoubleAttrArray(const char* name, int first, int length, double* arr);
+  /** Get an integer parameter (using gurobi C library name) */
   int getIntParam(const char* name) {
     int v;
     int error = GRBgetintparam(GRBgetenv(GRBModel_), name, &v);
     return v;
   }
+  /** Get a double parameter (using gurobi C library name) */
   double getDoubleParam(const char* name) {
     double v;
     int error = GRBgetdblparam(GRBgetenv(GRBModel_), name, &v);
     return v;
   }
+  /** Get a textual parameter (using gurobi C library name) */
   char* getStrParam(const char* name) {
     char* v;
     int error = GRBgetstrparam(GRBgetenv(GRBModel_), name, v);
     return v;
   }
-
+  /** Set an integer parameter (using gurobi C library name) */
   int setIntParam(const char* name, int value) {
     return GRBsetintparam(GRBgetenv(GRBModel_), name, value);
   }
+  /** Set a double parameter (using gurobi C library name) */
   double setDoubleParam(const char* name, double value) {
     return GRBsetdblparam(GRBgetenv(GRBModel_), name, value);
   }
+  /** Set a textual parameter (using gurobi C library name) */
   double setStrParam(const char* name, const char* value) {
     return GRBsetstrparam(GRBgetenv(GRBModel_), name, value);
   }
 
-  // Access to gurobi C structures
+  /** Get the pointer to the native C GRBmodel structure */
   GRBmodel* getGRBmodel() {
     return GRBModel_;
   }
+  /** Get the pointer to the native C GRBenv structure */
   GRBenv* getGRBenv() {
     if (GRBModel_ != NULL)
       return GRBgetenv(GRBModel_);
@@ -181,7 +192,6 @@ public:
   }
 
   ~GurobiModel();
-
 };
 } // namespace
 #endif // GUROBI_INTERFACE_H_INCLUDE_

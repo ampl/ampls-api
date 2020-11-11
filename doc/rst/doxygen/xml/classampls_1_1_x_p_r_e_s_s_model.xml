@@ -79,7 +79,7 @@
         <name>setCallbackDerived</name>
         <reimplements refid="classampls_1_1_a_m_p_l_model_1a27190416a7add5411ea850feca3eb9b0">setCallbackDerived</reimplements>
         <param>
-          <type>impl::BaseCallback *</type>
+          <type><ref refid="classampls_1_1impl_1_1_base_callback" kindref="compound">impl::BaseCallback</ref> *</type>
           <declname>callback</declname>
         </param>
         <briefdescription>
@@ -91,7 +91,7 @@
         <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="138" column="7"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_model_1a13003dc9b666c13fcac5ed082ad4121f" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>impl::BaseCallback *</type>
+        <type><ref refid="classampls_1_1impl_1_1_base_callback" kindref="compound">impl::BaseCallback</ref> *</type>
         <definition>impl::BaseCallback* ampls::XPRESSModel::createCallbackImplDerived</definition>
         <argsstring>(GenericCallback *callback)</argsstring>
         <name>createCallbackImplDerived</name>
@@ -146,12 +146,13 @@
         <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="153" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_model_1ad6c068e22295d54c7dbbcd8b6d6ce7e2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>Status::SolStatus</type>
+        <type><ref refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55" kindref="member">Status::SolStatus</ref></type>
         <definition>Status::SolStatus ampls::XPRESSModel::getStatus</definition>
         <argsstring>()</argsstring>
         <name>getStatus</name>
         <reimplements refid="classampls_1_1_a_m_p_l_model_1aa30ec04fefc1c4cc6d3d906f4e662384">getStatus</reimplements>
         <briefdescription>
+<para>Get the solution status. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -256,12 +257,63 @@
         <argsstring>()</argsstring>
         <name>getXPRSprob</name>
         <briefdescription>
+<para>Get a pointer to the underlying XPRESSprob object. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="231" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="231" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_model_1a88262ecc56adbb8e514f6d5b13917529" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::XPRESSModel::getInt</definition>
+        <argsstring>(int what)</argsstring>
+        <name>getInt</name>
+        <param>
+          <type>int</type>
+          <declname>what</declname>
+        </param>
+        <briefdescription>
+<para>Get an integer attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="237" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="237" bodyend="241"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_model_1aafda8404ff9214482e0a3ca4e19cd8cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ampls::XPRESSModel::getDouble</definition>
+        <argsstring>(int what)</argsstring>
+        <name>getDouble</name>
+        <param>
+          <type>int</type>
+          <declname>what</declname>
+        </param>
+        <briefdescription>
+<para>Get a double attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="243" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="243" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_model_1a443f6c8ad8aa9ba1489d7cfa4543a828" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ampls::XPRESSModel::isMIP</definition>
+        <argsstring>()</argsstring>
+        <name>isMIP</name>
+        <briefdescription>
+<para>Return true if the problem is MIP. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="249" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="249" bodyend="251"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_model_1ab5c2e74f92ac4a03204f81d3c81b2f31" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -274,54 +326,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="235" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="235" bodyend="239"/>
-      </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_model_1a88262ecc56adbb8e514f6d5b13917529" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>int</type>
-        <definition>int ampls::XPRESSModel::getInt</definition>
-        <argsstring>(int what)</argsstring>
-        <name>getInt</name>
-        <param>
-          <type>int</type>
-          <declname>what</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="241" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="241" bodyend="245"/>
-      </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_model_1aafda8404ff9214482e0a3ca4e19cd8cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>double</type>
-        <definition>double ampls::XPRESSModel::getDouble</definition>
-        <argsstring>(int what)</argsstring>
-        <name>getDouble</name>
-        <param>
-          <type>int</type>
-          <declname>what</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="246" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="246" bodyend="250"/>
-      </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_model_1a443f6c8ad8aa9ba1489d7cfa4543a828" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>bool</type>
-        <definition>bool ampls::XPRESSModel::isMIP</definition>
-        <argsstring>()</argsstring>
-        <name>isMIP</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="251" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="251" bodyend="253"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="253" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="253" bodyend="257"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ae8938457c2e37d5f5e19e528f492b8c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
@@ -334,7 +339,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="458" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="458" bodyend="460"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="495" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="495" bodyend="497"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a0a9ebfa649684a9d6faf6e13f85a32ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::map&lt; int, std::string &gt;</type>
@@ -348,7 +353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="466" column="12"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="506" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a2f5456b17543eb0a6a0c2409617bdd1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::map&lt; std::string, int &gt;</type>
@@ -362,7 +367,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="471" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="471" bodyend="474"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="511" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="511" bodyend="514"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ab4fd6f2a6b0f91dd4983de98e7003c30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::map&lt; std::string, int &gt;</type>
@@ -380,7 +385,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="478" column="12"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="518" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a5c20eba868bd9a8207dd44b39c7cdfde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -399,7 +404,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="485" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="485" bodyend="491"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="525" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="525" bodyend="531"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a0e051acaa733bd9d45354b218966de0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -407,7 +412,7 @@
         <argsstring>(impl::BaseCallback *callback)</argsstring>
         <name>setCallback</name>
         <param>
-          <type>impl::BaseCallback *</type>
+          <type><ref refid="classampls_1_1impl_1_1_base_callback" kindref="compound">impl::BaseCallback</ref> *</type>
           <declname>callback</declname>
         </param>
         <briefdescription>
@@ -417,7 +422,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="495" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="495" bodyend="499"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="535" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="535" bodyend="539"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a70499ebc7d909088db21d0b96b53175f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -431,7 +436,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="503" column="15"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="543" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1acb0a7c8e8c0e38b0bc71615daeead693" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -439,13 +444,13 @@
         <argsstring>()</argsstring>
         <name>writeSol</name>
         <briefdescription>
-<para>Write the solution file. </para>
+<para>Write the solution file to the defualt location (filename.sol in the original directory) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="523" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="523" bodyend="525"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="566" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="566" bodyend="568"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a64d58554792987885e83128a9faa60c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -457,13 +462,13 @@
           <declname>solFileName</declname>
         </param>
         <briefdescription>
-<para>Write the solution file. </para>
+<para>Write the solution file to a specific file. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="529" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="529" bodyend="531"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="572" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="572" bodyend="574"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1aa45dbd2191a82acea153e2b3d6c1573d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -473,13 +478,13 @@
         <reimplementedby refid="classampls_1_1_gurobi_model_1adbb5e96a0c091c80aed2dec216fb320a">enableLazyConstraints</reimplementedby>
         <reimplementedby refid="classampls_1_1_c_p_l_e_x_model_1aec76c78adf93f703fb59b84f7031ba90">enableLazyConstraints</reimplementedby>
         <briefdescription>
-<para>Enable adding lazy constraints via callbacks. </para>
+<para>Enable adding lazy constraints via callbacks (to be called only once) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="555" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="555" bodyend="555"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="597" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="597" bodyend="597"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ac2e1800d30c2751eb9464cbbf16da70f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -497,7 +502,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="559" column="8"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="601" column="8"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -530,7 +535,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="128" column="35" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="128" bodyend="254"/>
+    <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="128" column="35" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="128" bodyend="258"/>
     <listofallmembers>
       <member refid="classampls_1_1_a_m_p_l_model_1a15442f8b8c6cf29ba2bef3c986e3d246" prot="public" virt="non-virtual"><scope>ampls::XPRESSModel</scope><name>AMPLModel</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_model_1a81e8d15903b229843c318db8f616d30c" prot="private" virt="non-virtual"><scope>ampls::XPRESSModel</scope><name>copied_</name></member>

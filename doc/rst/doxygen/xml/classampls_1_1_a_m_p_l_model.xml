@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="424" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="424" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="459" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="459" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_a_m_p_l_model_1a81519bc2dc8d731d7e35f25200028a5d" prot="private" static="no" mutable="no">
         <type>std::map&lt; std::string, int &gt;</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="425" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="425" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="460" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="460" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_a_m_p_l_model_1a1b3c482a4666f3bc5001eab9f98ff686" prot="private" static="no" mutable="no">
         <type>std::string</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="439" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="439" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="474" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="474" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="friend">
@@ -59,7 +59,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="422" column="19"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="457" column="19"/>
       </memberdef>
       <memberdef kind="friend" id="classampls_1_1_a_m_p_l_model_1ad6a149baa47abc03d4084c3063b95514" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>friend std::map&lt; int, std::string &gt; &amp;</type>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="423" column="19"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="458" column="19"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="430" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="430" bodyend="436"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="465" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="465" bodyend="471"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a3431fa7976cea2dadc156ae9c0f9f4c7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -100,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="440" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="440" bodyend="440"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="475" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="475" bodyend="475"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a3aeb4df66d9435fe4b87214bc26837a4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="442" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="442" bodyend="447"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="476" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="476" bodyend="481"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a27190416a7add5411ea850feca3eb9b0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>int</type>
@@ -124,7 +124,7 @@
         <reimplementedby refid="classampls_1_1_c_p_l_e_x_model_1a50a61cba49641cdce2687083ad92fda2">setCallbackDerived</reimplementedby>
         <reimplementedby refid="classampls_1_1_x_p_r_e_s_s_model_1a6e1af19528a96adf7944c40a8641a469">setCallbackDerived</reimplementedby>
         <param>
-          <type>impl::BaseCallback *</type>
+          <type><ref refid="classampls_1_1impl_1_1_base_callback" kindref="compound">impl::BaseCallback</ref> *</type>
           <declname>callback</declname>
         </param>
         <briefdescription>
@@ -133,10 +133,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="448" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="448" bodyend="450"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="482" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="482" bodyend="484"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a08289f51a8292285dcdd2d472ff9924d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>impl::BaseCallback *</type>
+        <type><ref refid="classampls_1_1impl_1_1_base_callback" kindref="compound">impl::BaseCallback</ref> *</type>
         <definition>virtual impl::BaseCallback* ampls::AMPLModel::createCallbackImplDerived</definition>
         <argsstring>(GenericCallback *callback)</argsstring>
         <name>createCallbackImplDerived</name>
@@ -153,7 +153,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="451" column="30" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="451" bodyend="453"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="485" column="30" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="485" bodyend="487"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1afce5959882c970916e545b69e71bd5c1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -173,7 +173,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="454" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="454" bodyend="456"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="488" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="488" bodyend="490"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -188,7 +188,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="458" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="458" bodyend="460"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="495" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="495" bodyend="497"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a15442f8b8c6cf29ba2bef3c986e3d246" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -205,7 +205,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="461" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="461" bodyend="461"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="501" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="501" bodyend="501"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a0a9ebfa649684a9d6faf6e13f85a32ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::map&lt; int, std::string &gt;</type>
@@ -219,7 +219,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="466" column="12"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="506" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a2f5456b17543eb0a6a0c2409617bdd1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::map&lt; std::string, int &gt;</type>
@@ -233,7 +233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="471" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="471" bodyend="474"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="511" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="511" bodyend="514"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ab4fd6f2a6b0f91dd4983de98e7003c30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::map&lt; std::string, int &gt;</type>
@@ -251,7 +251,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="478" column="12"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="518" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a5c20eba868bd9a8207dd44b39c7cdfde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -270,7 +270,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="485" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="485" bodyend="491"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="525" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="525" bodyend="531"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a0e051acaa733bd9d45354b218966de0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -278,7 +278,7 @@
         <argsstring>(impl::BaseCallback *callback)</argsstring>
         <name>setCallback</name>
         <param>
-          <type>impl::BaseCallback *</type>
+          <type><ref refid="classampls_1_1impl_1_1_base_callback" kindref="compound">impl::BaseCallback</ref> *</type>
           <declname>callback</declname>
         </param>
         <briefdescription>
@@ -288,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="495" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="495" bodyend="499"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="535" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="535" bodyend="539"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a70499ebc7d909088db21d0b96b53175f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -302,7 +302,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="503" column="15"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="543" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a83f292201e3a0181e6c796e50edce69f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>int</type>
@@ -319,10 +319,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="507" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="507" bodyend="509"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="547" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="547" bodyend="549"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1aa30ec04fefc1c4cc6d3d906f4e662384" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>Status::SolStatus</type>
+        <type><ref refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55" kindref="member">Status::SolStatus</ref></type>
         <definition>virtual Status::SolStatus ampls::AMPLModel::getStatus</definition>
         <argsstring>()</argsstring>
         <name>getStatus</name>
@@ -330,12 +330,13 @@
         <reimplementedby refid="classampls_1_1_c_p_l_e_x_model_1a79e7d67545eb5cc0bf5dbbbc9ba6bc08">getStatus</reimplementedby>
         <reimplementedby refid="classampls_1_1_x_p_r_e_s_s_model_1ad6c068e22295d54c7dbbcd8b6d6ce7e2">getStatus</reimplementedby>
         <briefdescription>
+<para>Get the solution status. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="510" column="29" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="510" bodyend="512"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="553" column="29" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="553" bodyend="555"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a7e639a340228e6f93f64fd1de4e44338" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>int</type>
@@ -352,7 +353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="516" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="516" bodyend="518"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="559" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="559" bodyend="561"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1acb0a7c8e8c0e38b0bc71615daeead693" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -360,13 +361,13 @@
         <argsstring>()</argsstring>
         <name>writeSol</name>
         <briefdescription>
-<para>Write the solution file. </para>
+<para>Write the solution file to the defualt location (filename.sol in the original directory) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="523" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="523" bodyend="525"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="566" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="566" bodyend="568"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a64d58554792987885e83128a9faa60c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -378,13 +379,13 @@
           <declname>solFileName</declname>
         </param>
         <briefdescription>
-<para>Write the solution file. </para>
+<para>Write the solution file to a specific file. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="529" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="529" bodyend="531"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="572" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="572" bodyend="574"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ada258dda5511214bdc3318bc99d0ec9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>int</type>
@@ -413,7 +414,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="536" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="536" bodyend="538"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="578" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="578" bodyend="580"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ac465963811921794564f08959d2acbe2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>double</type>
@@ -430,7 +431,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="542" column="18" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="542" bodyend="544"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="584" column="18" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="584" bodyend="586"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a842b77149c818c530b630999d1fded8d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>std::string</type>
@@ -451,7 +452,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="548" column="23" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="548" bodyend="550"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="590" column="23" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="590" bodyend="592"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1aa45dbd2191a82acea153e2b3d6c1573d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -461,13 +462,13 @@
         <reimplementedby refid="classampls_1_1_gurobi_model_1adbb5e96a0c091c80aed2dec216fb320a">enableLazyConstraints</reimplementedby>
         <reimplementedby refid="classampls_1_1_c_p_l_e_x_model_1aec76c78adf93f703fb59b84f7031ba90">enableLazyConstraints</reimplementedby>
         <briefdescription>
-<para>Enable adding lazy constraints via callbacks. </para>
+<para>Enable adding lazy constraints via callbacks (to be called only once) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="555" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="555" bodyend="555"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="597" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="597" bodyend="597"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ac2e1800d30c2751eb9464cbbf16da70f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -485,14 +486,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="559" column="8"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="601" column="8"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
 <para>Store an in-memory representation of an AMPL model, which can be constructed by loading it from an NL file using the <computeroutput>loadModel</computeroutput> function available in a solver driver (i.e. </para>
     </briefdescription>
     <detaileddescription>
-<para><ref refid="classampls_1_1_c_p_l_e_x_drv_1a71082f2f36b151e2f8eda791420fabca" kindref="member">CPLEXDrv::loadModel()</ref>, GurobiDrv::loadModel() or <ref refid="classampls_1_1_x_p_r_e_s_s_drv_1a64fc7c302b7501158d0a63f97ce8e1ab" kindref="member">XPRESSDrv::loadModel()</ref>). It also contains two-way mappings between solver column and row numbers and AMPL entity names. </para>
+<para><ref refid="classampls_1_1_c_p_l_e_x_drv_1a71082f2f36b151e2f8eda791420fabca" kindref="member">CPLEXDrv::loadModel()</ref>, <ref refid="classampls_1_1_gurobi_drv_1a5b1afd5368afda8d2f61671de34715b1" kindref="member">GurobiDrv::loadModel()</ref> or <ref refid="classampls_1_1_x_p_r_e_s_s_drv_1a64fc7c302b7501158d0a63f97ce8e1ab" kindref="member">XPRESSDrv::loadModel()</ref>). It also contains two-way mappings between solver column and row numbers and AMPL entity names. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="1">
@@ -518,7 +519,7 @@
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="421" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="420" bodyend="560"/>
+    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="456" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="455" bodyend="602"/>
     <listofallmembers>
       <member refid="classampls_1_1_a_m_p_l_model_1a3431fa7976cea2dadc156ae9c0f9f4c7" prot="private" virt="non-virtual"><scope>ampls::AMPLModel</scope><name>AMPLModel</name></member>
       <member refid="classampls_1_1_a_m_p_l_model_1a15442f8b8c6cf29ba2bef3c986e3d246" prot="public" virt="non-virtual"><scope>ampls::AMPLModel</scope><name>AMPLModel</name></member>

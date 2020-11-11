@@ -14,6 +14,17 @@ namespace ampls
 namespace cpx { namespace impl { class CBWrap; } }
 class CPLEXModel;
 
+/**
+* Base class for CPLEX callbacks, inherit from this to declare a
+* callback to be called at various stages of the solution process.
+* Provides all mapping between solver-specific and generic values.
+* To implement a callback, you should implement the run() method and
+* set it via AMPLModel::setCallback() before starting the solution
+* process via AMPLModel::optimize().
+* Depending on where the callback is called from, you can obtain various
+* information about the progress of the optimization and can modify the behaviour
+* of the solver.
+*/
 class CPLEXCallback : public impl::BaseCallback {
   char CODE[60];
   friend class CPLEXModel;
@@ -53,7 +64,6 @@ public:
   const char* getMessage();
 
   Where::CBWhere getAMPLWhere() {
-
     switch (getWhere())
     {
     case -1:
@@ -80,7 +90,9 @@ public:
       return Where::NOTMAPPED;
     }
   }
+  /** Get a  value at this stage of the solution process */
   Variant get(int what);
+  /** Get an integer value at this stage of the solution process*/
   int getInt(int what)
   {
     int res;
@@ -98,6 +110,8 @@ public:
     }
     throw std::runtime_error("Not supported yet");
   }
+
+  /** Get a double value at this stage of the solution process*/
   double getDouble(int what)
   {
     double res;
@@ -105,6 +119,7 @@ public:
       what, &res);
     return res;
   }
+
   virtual Variant getValue(Value::CBValue v) {
     switch (v)
     {

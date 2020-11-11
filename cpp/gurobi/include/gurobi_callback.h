@@ -15,6 +15,17 @@ int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
 } }
 class GurobiModel;
 
+/**
+* Base class for Gurobi callbacks, inherit from this to declare a
+* callback to be called at various stages of the solution process.
+* Provides all mapping between solver-specific and generic values.
+* To implement a callback, you should implement the run() method and
+* set it via AMPLModel::setCallback() before starting the solution
+* process via AMPLModel::optimize().
+* Depending on where the callback is called from, you can obtain various
+* information about the progress of the optimization and can modify the behaviour
+* of the solver.
+*/
 class GurobiCallback : public impl::BaseCallback {
   friend int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
   friend class GurobiModel;
@@ -45,23 +56,18 @@ public:
   */
   const char* getMessage();
 
-  // Interface
   using BaseCallback::getSolutionVector;
   int getSolution(int len, double* sol);
   double getObj();
-  /* Gurobi - specific */
 
-  /**
-   * Get CBdata, useful for calling gurobi c library functions
-   */
+  // ************** Gurobi specific **************
+  /** Get CBdata, useful for calling gurobi c library functions */
   void* getCBData() { return cbdata_; }
-  /**
- * Get the underlying gurobi model pointer
- */
+  /** * Get the underlying gurobi model pointer */
   GRBmodel* getGRBModel();
-
+  /** Terminate the solution */
   void terminate();
-
+  /** Get an integer attribute (using gurobi C library enumeration to specify what)*/
   int getInt(int what) {
     int res;
     int status = GRBcbget(cbdata_, where_, what, &res);
@@ -69,6 +75,7 @@ public:
       throw ampls::AMPLSolverException::format("Error while getting int attribute, code: %d", status);
     return res;
   }
+  /** Get a double attribute (using gurobi C library enumeration to specify what)*/
   double getDouble(int what) {
     double res;
     int status = GRBcbget(cbdata_, where_, what, &res);
@@ -76,6 +83,7 @@ public:
       throw ampls::AMPLSolverException::format("Error while getting double, code: %d", status);
     return res;
   }
+  /** Get a double array attribute (using gurobi C library enumeration to specify what)*/
   std::vector<double> getDoubleArray(int what) {
     int len = model_->getNumVars();
     std::vector<double> res;
@@ -85,6 +93,7 @@ public:
       throw ampls::AMPLSolverException::format("Error while getting double attribute, code: %d", status);
     return res;
   }
+  /** Set the current solution */
   double setSolution(double* x)
   {
     double obj;
@@ -93,6 +102,7 @@ public:
       throw ampls::AMPLSolverException::format("Error while setting solution, code: %d", status);
     return obj;
   }
+
   virtual Where::CBWhere getAMPLWhere() {
     switch (where_)
     {
@@ -111,9 +121,10 @@ public:
     default:
       return Where::NOTMAPPED;
     }
-
   }
+  /** Get a value (using gurobi C library enumeration to specify what)*/
   Variant get(int what);
+  
   virtual Variant getValue(Value::CBValue v) {
     switch (v)
     {

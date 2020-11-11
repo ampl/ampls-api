@@ -36,6 +36,32 @@
     <member refid="classampls_1_1_a_m_p_l_solver_exception_1a4aaafe5a6de34bc3d6ce2e9092a018c2" kind="function"><name>AMPLSolverException</name></member>
     <member refid="classampls_1_1_a_m_p_l_solver_exception_1af4fbca2915e43f651431c53e85f893d2" kind="function"><name>format</name></member>
   </compound>
+  <compound refid="classampls_1_1impl_1_1_base_callback" kind="class"><name>ampls::impl::BaseCallback</name>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a2b5ab7b3b3afc078e56b3ae4fcc972bb" kind="friend"><name>ampls::AMPLModel</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a456f39f9b19866651f5d635a062e1e81" kind="friend"><name>ampls::GenericCallback</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ad0c1ad2f35b45abf6efc7c86123d251c" kind="variable"><name>model_</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a0497cc0e0f25734f6566940d7139d730" kind="variable"><name>where_</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a9b2591d3b64624a01d3e8a20c2e4a678" kind="function"><name>doAddCut</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a677a1a9dcfb1f2ff60c143cd873cab06" kind="function"><name>callAddCut</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a142f4bff4dd7ea2ed3fd67cfc28c7d5f" kind="function"><name>printCut</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae1ce73b27f0d898a60929f848c4cfb61" kind="function"><name>BaseCallback</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a0a0c4bd9cd5d0222271b3bc5c28ffd2c" kind="function"><name>run</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1afdc25279868f0a4fa7db4a1aedc1dc33" kind="function"><name>getVarMap</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ab49c7beeee95bf20a4adffbd832c3905" kind="function"><name>getVarMapInverse</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a21b90616d9a4b4d115085bb163483a1c" kind="function"><name>~BaseCallback</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae1a2ad8ba0a091668ba2f19c628c5cf2" kind="function"><name>addCut</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae374fd004d0dbe3fa000510dbbc0e595" kind="function"><name>addLazy</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a045b3a949dd5aa187251eb75269d8cd2" kind="function"><name>addCutsIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a96247a7a0e7c4658b726167029ab6a96" kind="function"><name>addLazyIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a0ab7fac421618d28667cf3a0c303a696" kind="function"><name>getSolutionVector</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1aa9fe36a4df0a9c780eece642133a5625" kind="function"><name>getSolution</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a7130b3beb25b77816bc12b87eb761f47" kind="function"><name>getObj</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a1db37d52ad71b57811dbad3c6e12e5f2" kind="function"><name>getWhere</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1aedaf812ee8531e66ed615485a4e1a68e" kind="function"><name>getWhereString</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a37ab38b11c94a67683f9a93d3144cc3a" kind="function"><name>getMessage</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a119bdef2f54ae9c7f6503189208fba1b" kind="function"><name>getAMPLWhere</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ad32d98636df90f39b6c35610988b22e7" kind="function"><name>getValue</name></member>
+  </compound>
   <compound refid="classampls_1_1_c_p_l_e_x_callback" kind="class"><name>ampls::CPLEXCallback</name>
     <member refid="classampls_1_1_c_p_l_e_x_callback_1a0006d94a9e99bb12f93e7e5e7e20a1ee" kind="variable"><name>CODE</name></member>
     <member refid="classampls_1_1_c_p_l_e_x_callback_1a4efa435d79ac0ea11aae8685a8ff1945" kind="variable"><name>env_</name></member>
@@ -60,6 +86,14 @@
     <member refid="classampls_1_1_c_p_l_e_x_callback_1ae64fadf2c49123dcdb35222734e410c5" kind="function"><name>getInt</name></member>
     <member refid="classampls_1_1_c_p_l_e_x_callback_1a1525c893b18087f5cf58919feb56b832" kind="function"><name>getDouble</name></member>
     <member refid="classampls_1_1_c_p_l_e_x_callback_1a2c2a3f9e31361a96d998be9de774bc9d" kind="function"><name>getValue</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1afdc25279868f0a4fa7db4a1aedc1dc33" kind="function"><name>getVarMap</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ab49c7beeee95bf20a4adffbd832c3905" kind="function"><name>getVarMapInverse</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae1a2ad8ba0a091668ba2f19c628c5cf2" kind="function"><name>addCut</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae374fd004d0dbe3fa000510dbbc0e595" kind="function"><name>addLazy</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a045b3a949dd5aa187251eb75269d8cd2" kind="function"><name>addCutsIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a96247a7a0e7c4658b726167029ab6a96" kind="function"><name>addLazyIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a0ab7fac421618d28667cf3a0c303a696" kind="function"><name>getSolutionVector</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a1db37d52ad71b57811dbad3c6e12e5f2" kind="function"><name>getWhere</name></member>
   </compound>
   <compound refid="classampls_1_1_c_p_l_e_x_drv" kind="class"><name>ampls::CPLEXDrv</name>
     <member refid="classampls_1_1_c_p_l_e_x_drv_1a322921f9a26cbccdaaabd6483e3bbb58" kind="function"><name>freeCPLEXEnv</name></member>
@@ -117,10 +151,18 @@
     <member refid="classampls_1_1_generic_callback_1a0295e930a87b94a2e3b999384d1b8641" kind="function"><name>getSolution</name></member>
     <member refid="classampls_1_1_generic_callback_1ad4a1215d96d6253cc6e6123c1f17fa43" kind="function"><name>getObj</name></member>
     <member refid="classampls_1_1_generic_callback_1a2d083553a3c7d87504a17ba7d573161e" kind="function"><name>getWhere</name></member>
+    <member refid="classampls_1_1_generic_callback_1a5c83dffe88e068e92808079272862c9d" kind="function"><name>getAMPLWhere</name></member>
     <member refid="classampls_1_1_generic_callback_1a7f69267f558e37005b58aa20ac542678" kind="function"><name>getWhereString</name></member>
     <member refid="classampls_1_1_generic_callback_1a30728efaf3669ebb32c9526ab1fcec51" kind="function"><name>getMessage</name></member>
-    <member refid="classampls_1_1_generic_callback_1a5c83dffe88e068e92808079272862c9d" kind="function"><name>getAMPLWhere</name></member>
     <member refid="classampls_1_1_generic_callback_1ae13e8bfc990cc93a2ce335c41fd5e259" kind="function"><name>getValue</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a0a0c4bd9cd5d0222271b3bc5c28ffd2c" kind="function"><name>run</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1afdc25279868f0a4fa7db4a1aedc1dc33" kind="function"><name>getVarMap</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ab49c7beeee95bf20a4adffbd832c3905" kind="function"><name>getVarMapInverse</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae1a2ad8ba0a091668ba2f19c628c5cf2" kind="function"><name>addCut</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae374fd004d0dbe3fa000510dbbc0e595" kind="function"><name>addLazy</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a045b3a949dd5aa187251eb75269d8cd2" kind="function"><name>addCutsIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a96247a7a0e7c4658b726167029ab6a96" kind="function"><name>addLazyIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a0ab7fac421618d28667cf3a0c303a696" kind="function"><name>getSolutionVector</name></member>
   </compound>
   <compound refid="classampls_1_1_gurobi_callback" kind="class"><name>ampls::GurobiCallback</name>
     <member refid="classampls_1_1_gurobi_callback_1a494a827f2e36d44c3322d0f9f72c0a84" kind="friend"><name>GurobiModel</name></member>
@@ -144,6 +186,14 @@
     <member refid="classampls_1_1_gurobi_callback_1afc3ca09bbcecda5000aff83760eb304a" kind="function"><name>getAMPLWhere</name></member>
     <member refid="classampls_1_1_gurobi_callback_1a518a3f2da40a7d16857b6f83e29521c9" kind="function"><name>get</name></member>
     <member refid="classampls_1_1_gurobi_callback_1a72b270a24fc66be7a1c53dae11eec638" kind="function"><name>getValue</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1afdc25279868f0a4fa7db4a1aedc1dc33" kind="function"><name>getVarMap</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ab49c7beeee95bf20a4adffbd832c3905" kind="function"><name>getVarMapInverse</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae1a2ad8ba0a091668ba2f19c628c5cf2" kind="function"><name>addCut</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae374fd004d0dbe3fa000510dbbc0e595" kind="function"><name>addLazy</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a045b3a949dd5aa187251eb75269d8cd2" kind="function"><name>addCutsIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a96247a7a0e7c4658b726167029ab6a96" kind="function"><name>addLazyIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a0ab7fac421618d28667cf3a0c303a696" kind="function"><name>getSolutionVector</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a1db37d52ad71b57811dbad3c6e12e5f2" kind="function"><name>getWhere</name></member>
   </compound>
   <compound refid="classampls_1_1_gurobi_drv" kind="class"><name>ampls::GurobiDrv</name>
     <member refid="classampls_1_1_gurobi_drv_1a5015d5695d427c3cc744967c0e42d2d7" kind="function"><name>freeGurobiEnv</name></member>
@@ -252,11 +302,19 @@
     <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a62afabcf273b7d7490c2b4280c3e1491" kind="function"><name>getWhereString</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a3a8d34578ddf224a537d9f9e14a537e0" kind="function"><name>getMessage</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a9d8559cf45923a614cd3510986be2712" kind="function"><name>getAMPLWhere</name></member>
+    <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a2c2a544a0303035b0a7d712ffb72442a" kind="function"><name>getValue</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_callback_1ad6a58a47aad7465b48a63a90d01bf703" kind="function"><name>get</name></member>
-    <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a17012cb7d78ef76655675227f6393190" kind="function"><name>getXPRSprob</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a122c6cc4d89abe87448a7e478104dd3f" kind="function"><name>getInt</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a535c0c91f8e66e5f73f4172bcd62aa0d" kind="function"><name>getDouble</name></member>
-    <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a2c2a544a0303035b0a7d712ffb72442a" kind="function"><name>getValue</name></member>
+    <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a17012cb7d78ef76655675227f6393190" kind="function"><name>getXPRSprob</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1afdc25279868f0a4fa7db4a1aedc1dc33" kind="function"><name>getVarMap</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ab49c7beeee95bf20a4adffbd832c3905" kind="function"><name>getVarMapInverse</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae1a2ad8ba0a091668ba2f19c628c5cf2" kind="function"><name>addCut</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1ae374fd004d0dbe3fa000510dbbc0e595" kind="function"><name>addLazy</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a045b3a949dd5aa187251eb75269d8cd2" kind="function"><name>addCutsIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a96247a7a0e7c4658b726167029ab6a96" kind="function"><name>addLazyIndices</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a0ab7fac421618d28667cf3a0c303a696" kind="function"><name>getSolutionVector</name></member>
+    <member refid="classampls_1_1impl_1_1_base_callback_1a1db37d52ad71b57811dbad3c6e12e5f2" kind="function"><name>getWhere</name></member>
   </compound>
   <compound refid="classampls_1_1_x_p_r_e_s_s_drv" kind="class"><name>ampls::XPRESSDrv</name>
     <member refid="classampls_1_1_x_p_r_e_s_s_drv_1a2c8968a7151832520fac2a76e0a6e3db" kind="function"><name>freeXPRESSEnv</name></member>
@@ -281,10 +339,10 @@
     <member refid="classampls_1_1_x_p_r_e_s_s_model_1ad1df45b69ec933bdd38d7211910a16c5" kind="function"><name>getSolution</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_model_1ac2a27a24a31e33f3351bb118e491b87d" kind="function"><name>error</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_model_1a53c48e4ba3f12866f1b6af36b7fb774a" kind="function"><name>getXPRSprob</name></member>
-    <member refid="classampls_1_1_x_p_r_e_s_s_model_1ab5c2e74f92ac4a03204f81d3c81b2f31" kind="function"><name>~XPRESSModel</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_model_1a88262ecc56adbb8e514f6d5b13917529" kind="function"><name>getInt</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_model_1aafda8404ff9214482e0a3ca4e19cd8cd" kind="function"><name>getDouble</name></member>
     <member refid="classampls_1_1_x_p_r_e_s_s_model_1a443f6c8ad8aa9ba1489d7cfa4543a828" kind="function"><name>isMIP</name></member>
+    <member refid="classampls_1_1_x_p_r_e_s_s_model_1ab5c2e74f92ac4a03204f81d3c81b2f31" kind="function"><name>~XPRESSModel</name></member>
     <member refid="classampls_1_1_a_m_p_l_model_1ae8938457c2e37d5f5e19e528f492b8c4" kind="function"><name>getFileName</name></member>
     <member refid="classampls_1_1_a_m_p_l_model_1a0a9ebfa649684a9d6faf6e13f85a32ff" kind="function"><name>getVarMapInverse</name></member>
     <member refid="classampls_1_1_a_m_p_l_model_1a2f5456b17543eb0a6a0c2409617bdd1a" kind="function"><name>getVarMap</name></member>
@@ -304,6 +362,8 @@
   <compound refid="namespaceampls_1_1cpx" kind="namespace"><name>ampls::cpx</name>
   </compound>
   <compound refid="namespaceampls_1_1grb" kind="namespace"><name>ampls::grb</name>
+  </compound>
+  <compound refid="namespaceampls_1_1impl" kind="namespace"><name>ampls::impl</name>
   </compound>
   <compound refid="namespaceampls_1_1xpress" kind="namespace"><name>ampls::xpress</name>
   </compound>
@@ -330,24 +390,26 @@
   </compound>
   <compound refid="xpress__interface_8h" kind="file"><name>xpress_interface.h</name>
   </compound>
-  <compound refid="dir_021c4d6555c59d21f4bb184920aa16d8" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls</name>
+  <compound refid="dir_14a18a777f0b02a1b6fd06c492803693" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls</name>
   </compound>
-  <compound refid="dir_dc30c8ac1cd8daf1658b988d43886fa3" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls/include/ampls</name>
+  <compound refid="dir_3a71cff1a52028f5908015a4810e20c0" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls/include/ampls</name>
   </compound>
-  <compound refid="dir_7cef8aa332c24d674456b17af1c94ca6" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/cplex</name>
+  <compound refid="dir_7b27852cdbfda45e2602b0f9a2c15da8" kind="dir"><name>D:/Development/ampl/ampls-api</name>
   </compound>
-  <compound refid="dir_df511e5bd85cec96854b39d5e1c27aa8" kind="dir"><name>D:/Development/ampl/ampls-api/cpp</name>
+  <compound refid="dir_13f05dab79ed591d39060cbbca09721a" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/cplex</name>
   </compound>
-  <compound refid="dir_3158c873e3f29edac3968a0e7e41d6b3" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/gurobi</name>
+  <compound refid="dir_4ecc16fc84cfde6c0b3a8c2451e1b045" kind="dir"><name>D:/Development/ampl/ampls-api/cpp</name>
   </compound>
-  <compound refid="dir_e803311099ed0583a054a714eafeaf00" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/cplex/include</name>
+  <compound refid="dir_6dda35f232ca126f3d10014ab4a87659" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/gurobi</name>
   </compound>
-  <compound refid="dir_687f8b5507520f0cf38799dc44ae8fb4" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/xpress/include</name>
+  <compound refid="dir_944c4383b2fd3fb50fd7982b93c47093" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/cplex/include</name>
   </compound>
-  <compound refid="dir_36d6ae9765bee0b81c5482b3c506a1c9" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/gurobi/include</name>
+  <compound refid="dir_6ca9c46e63c4dc3a2bb111657d2d2b56" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/xpress/include</name>
   </compound>
-  <compound refid="dir_68f3ef940aa10bd6eccdd96b840ea31c" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls/include</name>
+  <compound refid="dir_4d8f61671ae4aab13af5e0675973927c" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls/include</name>
   </compound>
-  <compound refid="dir_fd05d7d48d29ff115e3f590cec43142f" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/xpress</name>
+  <compound refid="dir_0eb0eb466e3e3e1a8c53491842290a51" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/gurobi/include</name>
+  </compound>
+  <compound refid="dir_a70b75c4d16409e2a6def08eca98596a" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/xpress</name>
   </compound>
 </doxygenindex>

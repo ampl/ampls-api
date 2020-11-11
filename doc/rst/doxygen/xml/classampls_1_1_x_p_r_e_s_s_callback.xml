@@ -2,7 +2,8 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classampls_1_1_x_p_r_e_s_s_callback" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>ampls::XPRESSCallback</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">ampls::impl::BaseCallback</basecompoundref>
+    <basecompoundref refid="classampls_1_1impl_1_1_base_callback" prot="public" virt="non-virtual">ampls::impl::BaseCallback</basecompoundref>
+    <includes refid="xpress__callback_8h" local="no">xpress_callback.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classampls_1_1_x_p_r_e_s_s_callback_1a7e9f90afa5373bb97899d45b547c1a54" prot="private" static="no" mutable="no">
         <type>char</type>
@@ -15,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="32" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="32" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="44" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_x_p_r_e_s_s_callback_1a919e7f78675160395f9ffb0f6f65981a" prot="private" static="no" mutable="no">
         <type>XPRSprob</type>
@@ -28,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="37" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="37" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="49" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_x_p_r_e_s_s_callback_1a589cb49d160be4512d4e03fa7ef3d7cd" prot="private" static="no" mutable="no">
         <type>void *</type>
@@ -41,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="39" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="39" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="51" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="51" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_x_p_r_e_s_s_callback_1a2a355a3976866ec0a2d229e0ca06b8d9" prot="private" static="no" mutable="no">
         <type>const char *</type>
@@ -54,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="42" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="42" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="54" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_x_p_r_e_s_s_callback_1aed302de30794bf36dafde78350c6cde9" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -67,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="43" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="43" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="55" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_x_p_r_e_s_s_callback_1a1e415723fbdbfea57790f8724fb1f975" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -80,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="46" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="46" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="58" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="58" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_x_p_r_e_s_s_callback_1ae4ced198caf6d8f312c0ad14ea577fc9" prot="private" static="no" mutable="no">
         <type>double *</type>
@@ -93,7 +94,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="47" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="47" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="59" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="59" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="friend">
@@ -108,15 +109,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="34" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="34" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="46" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="46" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a93e57c85ad2d43c0c223dde44ae8a86b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a93e57c85ad2d43c0c223dde44ae8a86b" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
         <definition>int ampls::XPRESSCallback::doAddCut</definition>
         <argsstring>(int nvars, const int *vars, const double *coeffs, CutDirection::Direction direction, double rhs, int type)</argsstring>
         <name>doAddCut</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a9b2591d3b64624a01d3e8a20c2e4a678">doAddCut</reimplements>
         <param>
           <type>int</type>
           <declname>nvars</declname>
@@ -147,7 +149,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="52" column="7"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="64" column="7"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -156,13 +158,15 @@
         <definition>virtual int ampls::XPRESSCallback::run</definition>
         <argsstring>()=0</argsstring>
         <name>run</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a0a0c4bd9cd5d0222271b3bc5c28ffd2c">run</reimplements>
         <briefdescription>
+<para>Function to override, called periodically by the optimizer. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="57" column="15"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="69" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a24327c7e3b11f2f57f14c125727fbc17" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -175,13 +179,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="58" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="58" bodyend="58"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="70" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="70" bodyend="70"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a3f6aad2bf46013f0e00fae61f6cda1d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a3f6aad2bf46013f0e00fae61f6cda1d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
         <definition>int ampls::XPRESSCallback::getSolution</definition>
         <argsstring>(int len, double *sol)</argsstring>
         <name>getSolution</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1aa9fe36a4df0a9c780eece642133a5625">getSolution</reimplements>
         <param>
           <type>int</type>
           <declname>len</declname>
@@ -191,64 +196,93 @@
           <declname>sol</declname>
         </param>
         <briefdescription>
+<para>Get the current solution. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="62" column="7"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="73" column="7"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a41ead140f16c2ef5f9a466bceeed7aa6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a41ead140f16c2ef5f9a466bceeed7aa6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>double</type>
         <definition>double ampls::XPRESSCallback::getObj</definition>
         <argsstring>()</argsstring>
         <name>getObj</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a7130b3beb25b77816bc12b87eb761f47">getObj</reimplements>
         <briefdescription>
+<para>Get the current objective value. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="63" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="63" bodyend="66"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="74" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="74" bodyend="79"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a62afabcf273b7d7490c2b4280c3e1491" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a62afabcf273b7d7490c2b4280c3e1491" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>const char *</type>
         <definition>const char* ampls::XPRESSCallback::getWhereString</definition>
         <argsstring>()</argsstring>
         <name>getWhereString</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1aedaf812ee8531e66ed615485a4e1a68e">getWhereString</reimplements>
         <briefdescription>
+<para>Get a textual representation of where in the solution process the callback has been called. </para>
         </briefdescription>
         <detaileddescription>
+<para>NOTE: this is expressed using the solver&apos;s own (not mapped) values </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="67" column="14"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="80" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a3a8d34578ddf224a537d9f9e14a537e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a3a8d34578ddf224a537d9f9e14a537e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>const char *</type>
         <definition>const char* ampls::XPRESSCallback::getMessage</definition>
         <argsstring>()</argsstring>
         <name>getMessage</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a37ab38b11c94a67683f9a93d3144cc3a">getMessage</reimplements>
         <briefdescription>
+<para>Get the message from the solver (available only for specific values of getWhere) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="68" column="14"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="81" column="14"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a9d8559cf45923a614cd3510986be2712" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a9d8559cf45923a614cd3510986be2712" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type><ref refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042" kindref="member">Where::CBWhere</ref></type>
         <definition>Where::CBWhere ampls::XPRESSCallback::getAMPLWhere</definition>
         <argsstring>()</argsstring>
         <name>getAMPLWhere</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1a119bdef2f54ae9c7f6503189208fba1b">getAMPLWhere</reimplements>
         <briefdescription>
+<para>Get where in the solution process the callback has been called (mapped) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="70" column="18" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="70" bodyend="83"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="83" column="18" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="83" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a2c2a544a0303035b0a7d712ffb72442a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="structampls_1_1_variant" kindref="compound">Variant</ref></type>
+        <definition>virtual Variant ampls::XPRESSCallback::getValue</definition>
+        <argsstring>(Value::CBValue v)</argsstring>
+        <name>getValue</name>
+        <reimplements refid="classampls_1_1impl_1_1_base_callback_1ad32d98636df90f39b6c35610988b22e7">getValue</reimplements>
+        <param>
+          <type><ref refid="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4" kindref="member">Value::CBValue</ref></type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Get a (mapped) value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="97" column="20" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="97" bodyend="109"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1ad6a58a47aad7465b48a63a90d01bf703" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structampls_1_1_variant" kindref="compound">Variant</ref></type>
@@ -260,25 +294,13 @@
           <declname>what</declname>
         </param>
         <briefdescription>
+<para>Get an attribute variant. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="84" column="11"/>
-      </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a17012cb7d78ef76655675227f6393190" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>XPRSprob</type>
-        <definition>XPRSprob ampls::XPRESSCallback::getXPRSprob</definition>
-        <argsstring>()</argsstring>
-        <name>getXPRSprob</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="85" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="85" bodyend="87"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="113" column="11"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a122c6cc4d89abe87448a7e478104dd3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -290,12 +312,13 @@
           <declname>what</declname>
         </param>
         <briefdescription>
+<para>Get an integer attribute. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="88" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="88" bodyend="93"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="116" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="116" bodyend="121"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a535c0c91f8e66e5f73f4172bcd62aa0d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -307,34 +330,372 @@
           <declname>what</declname>
         </param>
         <briefdescription>
+<para>Get a double attribute. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="94" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="94" bodyend="99"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="123" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="123" bodyend="128"/>
       </memberdef>
-      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a2c2a544a0303035b0a7d712ffb72442a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type><ref refid="structampls_1_1_variant" kindref="compound">Variant</ref></type>
-        <definition>virtual Variant ampls::XPRESSCallback::getValue</definition>
-        <argsstring>(Value::CBValue v)</argsstring>
-        <name>getValue</name>
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_callback_1a17012cb7d78ef76655675227f6393190" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>XPRSprob</type>
+        <definition>XPRSprob ampls::XPRESSCallback::getXPRSprob</definition>
+        <argsstring>()</argsstring>
+        <name>getXPRSprob</name>
+        <briefdescription>
+<para>Get the underlying XPRSprob structure. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="130" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="130" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1afdc25279868f0a4fa7db4a1aedc1dc33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, int &gt; &amp;</type>
+        <definition>std::map&lt;std::string, int&gt;&amp; ampls::impl::BaseCallback::getVarMap</definition>
+        <argsstring>()</argsstring>
+        <name>getVarMap</name>
+        <briefdescription>
+<para>Get the map AMPLEntityName -&gt; SolverVarIndex. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="260" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1ab49c7beeee95bf20a4adffbd832c3905" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; int, std::string &gt; &amp;</type>
+        <definition>std::map&lt;int, std::string&gt;&amp; ampls::impl::BaseCallback::getVarMapInverse</definition>
+        <argsstring>()</argsstring>
+        <name>getVarMapInverse</name>
+        <briefdescription>
+<para>Get the map SolverVarIndex -&gt; AMPLEntityName. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="262" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1ae1a2ad8ba0a091668ba2f19c628c5cf2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::impl::BaseCallback::addCut</definition>
+        <argsstring>(std::vector&lt; std::string &gt; vars, const double *coeffs, CutDirection::Direction direction, double rhs)</argsstring>
+        <name>addCut</name>
         <param>
-          <type>Value::CBValue</type>
-          <declname>v</declname>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
         </param>
         <briefdescription>
+<para>Add a user cut using AMPL variables names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of AMPL variable names </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of cut coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Direction of the constraint ampls::CBDirection::Direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right hand side value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="272" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="272" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1ae374fd004d0dbe3fa000510dbbc0e595" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::impl::BaseCallback::addLazy</definition>
+        <argsstring>(std::vector&lt; std::string &gt; vars, const double *coeffs, CutDirection::Direction direction, double rhs)</argsstring>
+        <name>addLazy</name>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Add a lazy constraint using AMPL variables names. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of AMPL variable names </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of cut coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Direction of the constraint ampls::CBDirection::Direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right hand side value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="283" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="283" bodyend="287"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1a045b3a949dd5aa187251eb75269d8cd2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::impl::BaseCallback::addCutsIndices</definition>
+        <argsstring>(int nvars, const int *vars, const double *coeffs, CutDirection::Direction direction, double rhs)</argsstring>
+        <name>addCutsIndices</name>
+        <param>
+          <type>int</type>
+          <declname>nvars</declname>
+        </param>
+        <param>
+          <type>const int *</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Add a user cut using solver indics. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nvars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of variables in the cut (length of *vars) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of variable indices (in the solvers representation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of cut coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Direction of the constraint ampls::CBDirection::Direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right hand side value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="296" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="296" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1a96247a7a0e7c4658b726167029ab6a96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::impl::BaseCallback::addLazyIndices</definition>
+        <argsstring>(int nvars, const int *vars, const double *coeffs, CutDirection::Direction direction, double rhs)</argsstring>
+        <name>addLazyIndices</name>
+        <param>
+          <type>int</type>
+          <declname>nvars</declname>
+        </param>
+        <param>
+          <type>const int *</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Add a lazy constraint using solver indics. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nvars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of variables in the cut (length of *vars) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of variable indices (in the solvers representation) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>coeffs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of cut coefficients </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>direction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Direction of the constraint ampls::CBDirection::Direction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Right hand side value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="308" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="308" bodyend="312"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1a0ab7fac421618d28667cf3a0c303a696" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; ampls::impl::BaseCallback::getSolutionVector</definition>
+        <argsstring>()</argsstring>
+        <name>getSolutionVector</name>
+        <briefdescription>
+<para>Get the current solution vector. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="100" column="19" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="100" bodyend="112"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="314" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1impl_1_1_base_callback_1a1db37d52ad71b57811dbad3c6e12e5f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int ampls::impl::BaseCallback::getWhere</definition>
+        <argsstring>()</argsstring>
+        <name>getWhere</name>
+        <reimplementedby refid="classampls_1_1_generic_callback_1a2d083553a3c7d87504a17ba7d573161e">getWhere</reimplementedby>
+        <briefdescription>
+<para>Get an iteger representing where in the solution process the callback has been called. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>NOTE: this is expressed using the solver&apos;s own (not mapped) values </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="322" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="322" bodyend="322"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
+<para>Base class for XPRESS callbacks, inherit from this to declare a callback to be called at various stages of the solution process. </para>
     </briefdescription>
     <detaileddescription>
+<para>Provides all mapping between solver-specific and generic values. To implement a callback, you should implement the <ref refid="classampls_1_1_x_p_r_e_s_s_callback_1a30969f0d5b24a4f610098e9b7a91fdbf" kindref="member">run()</ref> method and set it via <ref refid="classampls_1_1_a_m_p_l_model_1a5c20eba868bd9a8207dd44b39c7cdfde" kindref="member">AMPLModel::setCallback()</ref> before starting the solution process via <ref refid="classampls_1_1_a_m_p_l_model_1a7e639a340228e6f93f64fd1de4e44338" kindref="member">AMPLModel::optimize()</ref>. Depending on where the callback is called from, you can obtain various information about the progress of the optimization and can modify the behaviour of the solver. </para>
     </detaileddescription>
     <inheritancegraph>
       <node id="1">
@@ -345,6 +706,7 @@
       </node>
       <node id="2">
         <label>ampls::impl::BaseCallback</label>
+        <link refid="classampls_1_1impl_1_1_base_callback"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
@@ -356,21 +718,31 @@
       </node>
       <node id="2">
         <label>ampls::impl::BaseCallback</label>
+        <link refid="classampls_1_1impl_1_1_base_callback"/>
       </node>
     </collaborationgraph>
-    <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="31" column="47" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="31" bodyend="113"/>
+    <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" line="43" column="47" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_callback.h" bodystart="43" bodyend="133"/>
     <listofallmembers>
+      <member refid="classampls_1_1impl_1_1_base_callback_1ae1a2ad8ba0a091668ba2f19c628c5cf2" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>addCut</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a045b3a949dd5aa187251eb75269d8cd2" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>addCutsIndices</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1ae374fd004d0dbe3fa000510dbbc0e595" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>addLazy</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a96247a7a0e7c4658b726167029ab6a96" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>addLazyIndices</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1ae1ce73b27f0d898a60929f848c4cfb61" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>BaseCallback</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a7e9f90afa5373bb97899d45b547c1a54" prot="private" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>BUFFER</name></member>
-      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a93e57c85ad2d43c0c223dde44ae8a86b" prot="private" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>doAddCut</name></member>
+      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a93e57c85ad2d43c0c223dde44ae8a86b" prot="private" virt="virtual"><scope>ampls::XPRESSCallback</scope><name>doAddCut</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1ad6a58a47aad7465b48a63a90d01bf703" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>get</name></member>
-      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a9d8559cf45923a614cd3510986be2712" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getAMPLWhere</name></member>
+      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a9d8559cf45923a614cd3510986be2712" prot="public" virt="virtual"><scope>ampls::XPRESSCallback</scope><name>getAMPLWhere</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a535c0c91f8e66e5f73f4172bcd62aa0d" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getDouble</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a122c6cc4d89abe87448a7e478104dd3f" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getInt</name></member>
-      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a3a8d34578ddf224a537d9f9e14a537e0" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getMessage</name></member>
-      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a41ead140f16c2ef5f9a466bceeed7aa6" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getObj</name></member>
-      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a3f6aad2bf46013f0e00fae61f6cda1d7" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getSolution</name></member>
+      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a3a8d34578ddf224a537d9f9e14a537e0" prot="public" virt="virtual"><scope>ampls::XPRESSCallback</scope><name>getMessage</name></member>
+      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a41ead140f16c2ef5f9a466bceeed7aa6" prot="public" virt="virtual"><scope>ampls::XPRESSCallback</scope><name>getObj</name></member>
+      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a3f6aad2bf46013f0e00fae61f6cda1d7" prot="public" virt="virtual"><scope>ampls::XPRESSCallback</scope><name>getSolution</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a0ab7fac421618d28667cf3a0c303a696" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getSolutionVector</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a2c2a544a0303035b0a7d712ffb72442a" prot="public" virt="virtual"><scope>ampls::XPRESSCallback</scope><name>getValue</name></member>
-      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a62afabcf273b7d7490c2b4280c3e1491" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getWhereString</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1afdc25279868f0a4fa7db4a1aedc1dc33" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getVarMap</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1ab49c7beeee95bf20a4adffbd832c3905" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getVarMapInverse</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a1db37d52ad71b57811dbad3c6e12e5f2" prot="public" virt="virtual"><scope>ampls::XPRESSCallback</scope><name>getWhere</name></member>
+      <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a62afabcf273b7d7490c2b4280c3e1491" prot="public" virt="virtual"><scope>ampls::XPRESSCallback</scope><name>getWhereString</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a17012cb7d78ef76655675227f6393190" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>getXPRSprob</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a2a355a3976866ec0a2d229e0ca06b8d9" prot="private" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>msg_</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1aed302de30794bf36dafde78350c6cde9" prot="private" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>msgType</name></member>
@@ -379,6 +751,7 @@
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a919e7f78675160395f9ffb0f6f65981a" prot="private" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>prob_</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a30969f0d5b24a4f610098e9b7a91fdbf" prot="public" virt="pure-virtual"><scope>ampls::XPRESSCallback</scope><name>run</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1ae4ced198caf6d8f312c0ad14ea577fc9" prot="private" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>x_</name></member>
+      <member refid="classampls_1_1impl_1_1_base_callback_1a21b90616d9a4b4d115085bb163483a1c" prot="public" virt="virtual"><scope>ampls::XPRESSCallback</scope><name>~BaseCallback</name></member>
       <member refid="classampls_1_1_x_p_r_e_s_s_callback_1a24327c7e3b11f2f57f14c125727fbc17" prot="public" virt="non-virtual"><scope>ampls::XPRESSCallback</scope><name>~XPRESSCallback</name></member>
     </listofallmembers>
   </compounddef>

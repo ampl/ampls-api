@@ -21,6 +21,7 @@
     <innerclass refid="classampls_1_1_x_p_r_e_s_s_model" prot="public">ampls::XPRESSModel</innerclass>
     <innernamespace refid="namespaceampls_1_1cpx">ampls::cpx</innernamespace>
     <innernamespace refid="namespaceampls_1_1grb">ampls::grb</innernamespace>
+    <innernamespace refid="namespaceampls_1_1impl">ampls::impl</innernamespace>
     <innernamespace refid="namespaceampls_1_1xpress">ampls::xpress</innernamespace>
       <sectiondef kind="func">
       <memberdef kind="function" id="ampls_8h_1a2953204c98723de2c61509f7ac71c5b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">

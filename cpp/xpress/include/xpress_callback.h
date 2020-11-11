@@ -28,6 +28,18 @@ enum class XPRESSWhere
 };
 }
 }
+
+/**
+* Base class for XPRESS callbacks, inherit from this to declare a
+* callback to be called at various stages of the solution process.
+* Provides all mapping between solver-specific and generic values.
+* To implement a callback, you should implement the run() method and
+* set it via AMPLModel::setCallback() before starting the solution
+* process via AMPLModel::optimize().
+* Depending on where the callback is called from, you can obtain various
+* information about the progress of the optimization and can modify the behaviour
+* of the solver.
+*/
 class XPRESSCallback : public impl::BaseCallback {
   char BUFFER[256];
 
@@ -57,12 +69,13 @@ public:
   virtual int run() = 0;
   ~XPRESSCallback() {};
 
-  // Interface
   using BaseCallback::getSolutionVector;
   int getSolution(int len, double* sol);
   double getObj() {
-    // TODO if in MIP?
-    return getDouble(XPRS_LPOBJVAL);
+    if (getInt(XPRS_ORIGINALMIPENTS) > 0)
+      return getDouble(XPRS_MIPOBJVAL);
+    else
+      return getDouble(XPRS_LPOBJVAL);
   }
   const char* getWhereString();
   const char* getMessage();
@@ -79,25 +92,9 @@ public:
     default:
       return Where::NOTMAPPED;
     }
-    
   }
-  Variant get(int what);
-  XPRSprob getXPRSprob() {
-    return prob_;
-  }
-  int getInt(int what)
-  {
-    int val;
-    XPRSgetintattrib(prob_, what, &val);
-    return val;
-  }
-  double getDouble(int what)
-  {
-    double val;
-    XPRSgetdblattrib(prob_, what, &val);
-    return val;
-  }
-  virtual Variant getValue(Value::CBValue v) {
+
+   virtual Variant getValue(Value::CBValue v) {
     switch (v)
     {
     case Value::PRE_DELCOLS:
@@ -109,6 +106,29 @@ public:
     }
     throw std::runtime_error("Not supported yet");
     return Variant(); // silence gcc warning
+  }
+
+  // ************ XPRESS specific ************
+  /** Get an attribute variant */
+  Variant get(int what);
+
+  /** Get an integer attribute */
+  int getInt(int what)
+  {
+    int val;
+    XPRSgetintattrib(prob_, what, &val);
+    return val;
+  }
+  /** Get a double attribute */
+  double getDouble(int what)
+  {
+    double val;
+    XPRSgetdblattrib(prob_, what, &val);
+    return val;
+  }
+  /** Get the underlying XPRSprob structure*/
+    XPRSprob getXPRSprob() {
+    return prob_;
   }
 };
 

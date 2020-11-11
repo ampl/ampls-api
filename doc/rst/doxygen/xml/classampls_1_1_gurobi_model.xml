@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="73" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="73" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="74" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_gurobi_model_1a65d6c4551477870e3841625af6ae534e" prot="private" static="no" mutable="yes">
         <type>bool</type>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="75" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="75" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="76" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_gurobi_model_1ac23aef95247db1f4082fb551a727c61d" prot="private" static="no" mutable="no">
         <type>GRBmodel *</type>
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="76" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="76" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="77" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="77" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_gurobi_model_1ac6b22329948a91d0f4c43c516464abef" prot="private" static="no" mutable="no">
         <type>ASL *</type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="77" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="77" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="78" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classampls_1_1_gurobi_model_1a661183999ec2eea9cbc193138a1c8835" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -68,7 +68,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="78" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="78" bodyend="-1"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="79" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="79" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -83,7 +83,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="80" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="80" bodyend="81"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="81" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="81" bodyend="82"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a0106335fca3e34e0fd55278cdb15472f" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -92,7 +92,7 @@
         <name>setCallbackDerived</name>
         <reimplements refid="classampls_1_1_a_m_p_l_model_1a27190416a7add5411ea850feca3eb9b0">setCallbackDerived</reimplements>
         <param>
-          <type>impl::BaseCallback *</type>
+          <type><ref refid="classampls_1_1impl_1_1_base_callback" kindref="compound">impl::BaseCallback</ref> *</type>
           <declname>callback</declname>
         </param>
         <briefdescription>
@@ -101,10 +101,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="84" column="7"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="85" column="7"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a9d191db93833367d3e9ecf5bc445c69d" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>impl::BaseCallback *</type>
+        <type><ref refid="classampls_1_1impl_1_1_base_callback" kindref="compound">impl::BaseCallback</ref> *</type>
         <definition>impl::BaseCallback* ampls::GurobiModel::createCallbackImplDerived</definition>
         <argsstring>(GenericCallback *callback)</argsstring>
         <name>createCallbackImplDerived</name>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="85" column="22"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="86" column="22"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a249b482be9404183a6caa16e74f42902" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
@@ -137,7 +137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="86" column="8"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="87" column="8"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -148,13 +148,13 @@
         <name>enableLazyConstraints</name>
         <reimplements refid="classampls_1_1_a_m_p_l_model_1aa45dbd2191a82acea153e2b3d6c1573d">enableLazyConstraints</reimplements>
         <briefdescription>
-<para>Enable adding lazy constraints via callbacks. </para>
+<para>Enable adding lazy constraints via callbacks (to be called only once) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="88" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="88" bodyend="91"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="89" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="89" bodyend="92"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a4148d0557ff0d8c6f3e9c2ca7a2987b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -171,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="92" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="92" bodyend="97"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="93" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="93" bodyend="98"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1ad374a0553ae664a6a19ab028554fd492" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>int</type>
@@ -186,21 +186,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="100" column="7"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="101" column="7"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1ac69a3612e67a909dc1de029d63f902ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
-        <type>Status::SolStatus</type>
+        <type><ref refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55" kindref="member">Status::SolStatus</ref></type>
         <definition>Status::SolStatus ampls::GurobiModel::getStatus</definition>
         <argsstring>()</argsstring>
         <name>getStatus</name>
         <reimplements refid="classampls_1_1_a_m_p_l_model_1aa30ec04fefc1c4cc6d3d906f4e662384">getStatus</reimplements>
         <briefdescription>
+<para>Get the solution status. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="102" column="21" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="102" bodyend="128"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="103" column="21" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="103" bodyend="129"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1aa7d5a71be21a0bd56d37e8c8fcb18727" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>int</type>
@@ -215,7 +216,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="129" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="129" bodyend="131"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="130" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="130" bodyend="132"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1abb643bb44cd116e6525556d04f6f6af0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>double</type>
@@ -230,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="132" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="132" bodyend="134"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="133" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="133" bodyend="135"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a7f389bb22ef8a5ec7620da71097b846c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>int</type>
@@ -257,7 +258,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="135" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="135" bodyend="137"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="136" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="136" bodyend="138"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1abd00bf4004a1678f0217ad3a77c7cf0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>std::string</type>
@@ -276,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="139" column="15"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="140" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a398811b78ddf278875e3225d07532d7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -288,12 +289,13 @@
           <declname>name</declname>
         </param>
         <briefdescription>
+<para>Get an integer model attribute (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="142" column="7"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="145" column="7"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a6247b0cca3cb748d7150a4695c8a97e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -305,12 +307,13 @@
           <declname>name</declname>
         </param>
         <briefdescription>
+<para>Get a double model attribute (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="143" column="10"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="147" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a549955574cc944645f7aa35de7600e3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -334,12 +337,13 @@
           <declname>arr</declname>
         </param>
         <briefdescription>
+<para>Get an integer array model attribute (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="144" column="7"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="149" column="7"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1af703215c927fe1b26dfe53f39f3b52e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -363,12 +367,13 @@
           <declname>arr</declname>
         </param>
         <briefdescription>
+<para>Get a double array model attribute (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="145" column="7"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="151" column="7"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a9ff8d15283728f98d7d8334dd6ba085a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -380,12 +385,13 @@
           <declname>name</declname>
         </param>
         <briefdescription>
+<para>Get an integer parameter (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="147" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="147" bodyend="151"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="153" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="153" bodyend="157"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1ad058a756ca93ae70d07df0555f422150" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -397,12 +403,13 @@
           <declname>name</declname>
         </param>
         <briefdescription>
+<para>Get a double parameter (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="152" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="152" bodyend="156"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="159" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="159" bodyend="163"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a85182588892354b0891cc884eb597088" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>char *</type>
@@ -414,12 +421,13 @@
           <declname>name</declname>
         </param>
         <briefdescription>
+<para>Get a textual parameter (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="157" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="157" bodyend="161"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="165" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="165" bodyend="169"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a3bb3f4d4613c1bb06b9dc05c51bc9873" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -435,12 +443,13 @@
           <declname>value</declname>
         </param>
         <briefdescription>
+<para>Set an integer parameter (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="163" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="163" bodyend="165"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="171" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="171" bodyend="173"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a2c1b1bc1fd187262750f723f5e1fc253" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -456,12 +465,13 @@
           <declname>value</declname>
         </param>
         <briefdescription>
+<para>Set a double parameter (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="166" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="166" bodyend="168"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="175" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="175" bodyend="177"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a9dc2b262fa4a4ce81de789e3dbdbbfcc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -477,12 +487,13 @@
           <declname>value</declname>
         </param>
         <briefdescription>
+<para>Set a textual parameter (using gurobi C library name) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="169" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="169" bodyend="171"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="179" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="179" bodyend="181"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a43e0b80b517f5d59930aa9667c05c94e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>GRBmodel *</type>
@@ -490,12 +501,13 @@
         <argsstring>()</argsstring>
         <name>getGRBmodel</name>
         <briefdescription>
+<para>Get the pointer to the native C GRBmodel structure. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="174" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="174" bodyend="176"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="184" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="184" bodyend="186"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a6202f8b567442ba501261a354858799d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>GRBenv *</type>
@@ -503,12 +515,13 @@
         <argsstring>()</argsstring>
         <name>getGRBenv</name>
         <briefdescription>
+<para>Get the pointer to the native C GRBenv structure. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="177" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="177" bodyend="181"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="188" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="188" bodyend="192"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a76b1b223bd0e47742bc95bc3364cb082" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -521,7 +534,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="183" column="3"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="194" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_model_1a70499ebc7d909088db21d0b96b53175f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -535,7 +548,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="98" column="3"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="99" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ae8938457c2e37d5f5e19e528f492b8c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
@@ -548,7 +561,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="458" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="458" bodyend="460"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="495" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="495" bodyend="497"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a0a9ebfa649684a9d6faf6e13f85a32ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::map&lt; int, std::string &gt;</type>
@@ -562,7 +575,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="466" column="12"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="506" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a2f5456b17543eb0a6a0c2409617bdd1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::map&lt; std::string, int &gt;</type>
@@ -576,7 +589,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="471" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="471" bodyend="474"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="511" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="511" bodyend="514"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ab4fd6f2a6b0f91dd4983de98e7003c30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::map&lt; std::string, int &gt;</type>
@@ -594,7 +607,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="478" column="12"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="518" column="12"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a5c20eba868bd9a8207dd44b39c7cdfde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -613,7 +626,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="485" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="485" bodyend="491"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="525" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="525" bodyend="531"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a0e051acaa733bd9d45354b218966de0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -621,7 +634,7 @@
         <argsstring>(impl::BaseCallback *callback)</argsstring>
         <name>setCallback</name>
         <param>
-          <type>impl::BaseCallback *</type>
+          <type><ref refid="classampls_1_1impl_1_1_base_callback" kindref="compound">impl::BaseCallback</ref> *</type>
           <declname>callback</declname>
         </param>
         <briefdescription>
@@ -631,7 +644,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="495" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="495" bodyend="499"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="535" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="535" bodyend="539"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1acb0a7c8e8c0e38b0bc71615daeead693" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -639,13 +652,13 @@
         <argsstring>()</argsstring>
         <name>writeSol</name>
         <briefdescription>
-<para>Write the solution file. </para>
+<para>Write the solution file to the defualt location (filename.sol in the original directory) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="523" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="523" bodyend="525"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="566" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="566" bodyend="568"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a64d58554792987885e83128a9faa60c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>
@@ -657,13 +670,13 @@
           <declname>solFileName</declname>
         </param>
         <briefdescription>
-<para>Write the solution file. </para>
+<para>Write the solution file to a specific file. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="529" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="529" bodyend="531"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="572" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="572" bodyend="574"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ac2e1800d30c2751eb9464cbbf16da70f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -681,7 +694,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="559" column="8"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="601" column="8"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -714,7 +727,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="72" column="35" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="72" bodyend="185"/>
+    <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="73" column="35" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="73" bodyend="195"/>
     <listofallmembers>
       <member refid="classampls_1_1_a_m_p_l_model_1a15442f8b8c6cf29ba2bef3c986e3d246" prot="public" virt="non-virtual"><scope>ampls::GurobiModel</scope><name>AMPLModel</name></member>
       <member refid="classampls_1_1_gurobi_model_1ac6b22329948a91d0f4c43c516464abef" prot="private" virt="non-virtual"><scope>ampls::GurobiModel</scope><name>asl_</name></member>

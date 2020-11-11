@@ -65,16 +65,17 @@ class GenericCallback;
 char** generateArguments(const char* modelName);
 void deleteParams(char** params);
 
-/**
-* These (generic) values identify where in the solution
-* process a callback has been called; to get this generic value
-* call GenericCallback::getAMPLType().
-* Not all solvers "where" are mapped to these values; in case
-* the callback is called with a not-mapped "where" parameter,
-* refer to the solver-specific functionality.
-*/
+
 struct Where
 {
+  /**
+  * These values (generic) identify where in the solution
+  * process a callback has been called; to get this generic value
+  * call GenericCallback::getAMPLType().
+  * Not all solvers "where" are mapped to these values; in case
+  * the callback is called with a not-mapped "where" parameter,
+  * refer to the solver-specific functionality.
+  */
   enum CBWhere
   {
     /** When the solver wants to print a message, obtain it via GenericCallback::getMessage.*/
@@ -94,14 +95,15 @@ struct Where
   };
 };
 
-/**
-* Which (generic) values to get in a callback; just a subset of all the
-* value types are mapped here.
-* In case a not mapped value is required, refer to the solver-specific
-* API.
-*/
+
 struct Value
 {
+  /**
+  * Which values (generic) to get in a callback; just a subset of all the
+  * value types are mapped here.
+  * In case a not mapped value is required, refer to the solver-specific
+  * API.
+  */
   enum  CBValue {
     OBJ = 0,
     PRE_DELCOLS = 1,
@@ -123,8 +125,12 @@ struct CutDirection {
     LE
   };
 };
+
 struct Status
 {
+  /**
+  * Solution status (generic)
+  */
   enum SolStatus {
     UNKNOWN,
     OPTIMAL,
@@ -257,48 +263,74 @@ public:
 
   virtual ~BaseCallback() {};
 
-  /** Add a cut (AMPL variables names) 
-  *
-  *   @param direction Direction of the constraint ampls::CBDirection::Direction
+  /** Add a user cut using AMPL variables names.
+  * @param vars Vector of AMPL variable names
+  * @param coeffs Vector of cut coefficients 
+  * @param direction Direction of the constraint ampls::CBDirection::Direction
+  * @param rhs Right hand side value
   */
   int addCut(std::vector<std::string> vars,
     const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 0);
   }
-  /** Add a cut (solver indices) */
-  int addCutsIndices(int nvars, const int* vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs)
-  {
-    return doAddCut(nvars, vars, coeffs, direction, rhs, 0);
-  }
+    /** Add a lazy constraint using AMPL variables names.
+  * @param vars Vector of AMPL variable names
+  * @param coeffs Vector of cut coefficients 
+  * @param direction Direction of the constraint ampls::CBDirection::Direction
+  * @param rhs Right hand side value
+  */
   int addLazy(std::vector<std::string> vars,
     const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 1);
   }
+
+  /** Add a user cut using solver indics
+  * @param nvars Number of variables in the cut (length of *vars)
+  * @param vars Vector of variable indices (in the solvers representation)
+  * @param coeffs Vector of cut coefficients 
+  * @param direction Direction of the constraint ampls::CBDirection::Direction
+  * @param rhs Right hand side value
+  */
+  int addCutsIndices(int nvars, const int* vars,
+    const double* coeffs, CutDirection::Direction direction, double rhs)
+  {
+    return doAddCut(nvars, vars, coeffs, direction, rhs, 0);
+  }
+  /** Add a lazy constraint using solver indics
+  * @param nvars Number of variables in the cut (length of *vars)
+  * @param vars Vector of variable indices (in the solvers representation)
+  * @param coeffs Vector of cut coefficients 
+  * @param direction Direction of the constraint ampls::CBDirection::Direction
+  * @param rhs Right hand side value
+  */
   int addLazyIndices(int nvars, const int* vars,
     const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return doAddCut(nvars, vars, coeffs, direction, rhs, 1);
   }
+  /** Get the current solution vector */
   std::vector<double> getSolutionVector();
-  /**
-  Get the current solution
-  */
+  /** Get the current solution */
   virtual int getSolution(int len, double* sol) = 0;
-
+  /** Get the current objective value */
   virtual double getObj() = 0;
-
-  virtual const char* getWhereString() = 0;
-
+  /** Get an iteger representing where in the solution process the callback has been called.
+     NOTE: this is expressed using the solver's own (not mapped) values
+  */
   virtual int getWhere() { return where_; }
-
+  /** Get a textual representation of where in the solution process the callback has been called.
+   * NOTE: this is expressed using the solver's own (not mapped) values
+   */
+  virtual const char* getWhereString() = 0;
+  
+  /** Get the message from the solver (available only for specific values of getWhere) */
   virtual const char* getMessage() = 0;
 
-  // Return mapped "whereFrom"
-  // Obviously it only makes sense for the generic callback
+  /** Get where in the solution process the callback has been called (mapped) */
   virtual Where::CBWhere getAMPLWhere() = 0;
+  /** Get a (mapped) value */
   virtual Variant getValue(Value::CBValue v) = 0;
 };
 
@@ -373,7 +405,7 @@ protected:
   }
 
 public:
-  /** Get the current solution vector */
+  /** Get the current solution vector   */
   int getSolution(int len, double *sol)
   {
     return impl_->getSolution(len, sol);
@@ -383,9 +415,17 @@ public:
   {
     return impl_->getObj();
   }
+  /** Get an iteger representing where in the solution process the callback has been called.
+   * NOTE: this is expressed using the solver's own (not mapped) values
+  */
   int getWhere()
   {
     return impl_->getWhere();
+  }
+  /** Get where in the solution process the callback has been called (mapped) */
+  Where::CBWhere getAMPLWhere()
+  {
+    return impl_->getAMPLWhere();
   }
   /** Get a textual representation of the current solver status*/
   const char *getWhereString()
@@ -396,11 +436,6 @@ public:
   const char *getMessage()
   {
     return impl_->getMessage();
-  }
-  /** Return mapped "whereFrom" */
-  Where::CBWhere getAMPLWhere()
-  {
-    return impl_->getAMPLWhere();
   }
   /** Get a value from the solver */
   Variant getValue(Value::CBValue v)
@@ -438,7 +473,6 @@ class AMPLModel
 protected:
   std::string fileName_;
   AMPLModel() {}
-  //AMPLModel(const char* fileName) : fileName_(fileName) {}
   void resetVarMapInternal()
   {
     // Clear the internally cached maps
@@ -455,9 +489,15 @@ protected:
     throw AMPLSolverException("Not implemented in base class!");
   };
 public:
+  /*
+  Get the name of the NL file where the model has been loaded from
+  */
   std::string getFileName() {
     return fileName_;
   }
+  /*
+  Copy constructor
+  */
   AMPLModel(const AMPLModel &other) : fileName_(other.fileName_) {}
 
   /**
@@ -507,6 +547,9 @@ public:
   virtual int getNumVars() {
     throw AMPLSolverException("Not implemented in base class!");
   };
+  /** 
+  Get the solution status
+  */
   virtual Status::SolStatus getStatus() {
     throw AMPLSolverException("Not implemented in base class!");
   }
@@ -518,21 +561,20 @@ public:
   };
 
   /**
-  * Write the solution file
+  Write the solution file to the defualt location (filename.sol in the original directory)
   */
   virtual void writeSol() {
     writeSolImpl(NULL);
   };
   /**
-* Write the solution file
-*/
+  Write the solution file to a specific file
+  */
   virtual void writeSol(const char* solFileName) {
     writeSolImpl(solFileName);
   };
   /**
   Get "length" variables of the current problem in an array, starting at the specified
-  position 
-  */
+  position */
   virtual int getSolution(int first, int length, double *sol) {
     throw AMPLSolverException("Not implemented in base class!");
   };
@@ -550,7 +592,7 @@ public:
   };
 
   /**
-  Enable adding lazy constraints via callbacks
+  Enable adding lazy constraints via callbacks (to be called only once)
   */
   virtual void enableLazyConstraints() { }
   /**

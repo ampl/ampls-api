@@ -28,14 +28,12 @@
           <declname>args</declname>
         </param>
         <briefdescription>
-<para>Load a model from an NL file. </para>
         </briefdescription>
         <detaileddescription>
-<para>Mappings between solver row and column numbers and AMPL names are available only if the row and col files have been generated as well, by means of the ampl option <computeroutput>option auxfiles cr;</computeroutput> before writing the NL file. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="56" column="15"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="51" column="15"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -49,12 +47,14 @@
           <declname>modelName</declname>
         </param>
         <briefdescription>
+<para>Load a model from an NL file. </para>
         </briefdescription>
         <detaileddescription>
+<para>Mappings between solver row and column numbers and AMPL names are available only if the row and col files have been generated as well, by means of the ampl option <computeroutput>option auxfiles cr;</computeroutput> before writing the NL file. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="58" column="15"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="59" column="15"/>
       </memberdef>
       <memberdef kind="function" id="classampls_1_1_gurobi_drv_1a885d8d6ab6cf60389fbec0c4ef6ce023" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="59" column="3"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="60" column="3"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -97,7 +97,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="48" column="43" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="48" bodyend="60"/>
+    <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="48" column="43" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="48" bodyend="61"/>
     <listofallmembers>
       <member refid="classampls_1_1_gurobi_drv_1a5015d5695d427c3cc744967c0e42d2d7" prot="private" virt="non-virtual"><scope>ampls::GurobiDrv</scope><name>freeGurobiEnv</name></member>
       <member refid="classampls_1_1_gurobi_drv_1a5b1afd5368afda8d2f61671de34715b1" prot="public" virt="non-virtual"><scope>ampls::GurobiDrv</scope><name>loadModel</name></member>

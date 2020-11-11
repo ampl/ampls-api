@@ -2,7 +2,6 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="structampls_1_1_where" kind="struct" language="C++" prot="public">
     <compoundname>ampls::Where</compoundname>
-    <includes refid="ampls_8h" local="no">ampls.h</includes>
       <sectiondef kind="public-type">
       <memberdef kind="enum" id="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042" prot="public" static="no" strong="no">
         <type></type>
@@ -71,21 +70,21 @@
           </detaileddescription>
         </enumvalue>
         <briefdescription>
+<para>These values (generic) identify where in the solution process a callback has been called; to get this generic value call GenericCallback::getAMPLType(). </para>
         </briefdescription>
         <detaileddescription>
+<para>Not all solvers &quot;where&quot; are mapped to these values; in case the callback is called with a not-mapped &quot;where&quot; parameter, refer to the solver-specific functionality. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="79" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="78" bodyend="94"/>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="80" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="79" bodyend="95"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>These (generic) values identify where in the solution process a callback has been called; to get this generic value call GenericCallback::getAMPLType(). </para>
     </briefdescription>
     <detaileddescription>
-<para>Not all solvers &quot;where&quot; are mapped to these values; in case the callback is called with a not-mapped &quot;where&quot; parameter, refer to the solver-specific functionality. </para>
     </detaileddescription>
-    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="77" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="76" bodyend="95"/>
+    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="70" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="69" bodyend="96"/>
     <listofallmembers>
       <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>CBWhere</name></member>
       <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042a7e81cfb76f4bc07a100627ea17e6a403" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>LPSOLVE</name></member>

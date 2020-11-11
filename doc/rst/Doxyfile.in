@@ -24,4 +24,4 @@ EXPAND_ONLY_PREDEF     = YES
 HIDE_FRIEND_COMPOUNDS  = YES
 PREDEFINED = __cplusplus \
 			 protected=private
-EXCLUDE_SYMBOLS = AMPLAPI_EXPORTS AMPL_EXPLICIT fmt::* ampls::impl ampls::cpx::impl ampls::grb::impl ampls::xpress::impl
+EXCLUDE_SYMBOLS = ampls::impl::AMPLMutex ampls::impl::SolverDriver ampls::cpx::impl ampls::grb::impl ampls::xpress::impl
