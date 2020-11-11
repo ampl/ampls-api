@@ -63,7 +63,7 @@ def libdir():
 
 setup(
     name='amplpy_cplex',
-    version='0.1.0b6',
+    version='0.1.0b8',
     description='CPLEX extension for amplpy',
     long_description=__doc__,
     license='BSD-3',

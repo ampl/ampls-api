@@ -13,29 +13,26 @@ class MyCallback(ampls.GenericCallback):
         self.nMIPnodes = 0
 
     def run(self):
-        try:
-            t = self.getAMPLWhere()
-            print("AMPL Phase: {}, from solver: {}".format(
-                t, self.getWhereString()))
-            if t == ampls.Where.MSG:
-                # print(self.getMessage())
-                return 0
-            if t == ampls.Where.LPSOLVE:
-                print("LP solve, {} iterations".format(
-                    self.getValue(ampls.Value.ITERATIONS).integer))
-                return 0
-            if t == ampls.Where.PRESOLVE:
-                print("Presolve, eliminated {} rows and {} columns.".format(
-                    self.getValue(ampls.Value.PRE_DELROWS).integer,
-                    self.getValue(ampls.Value.PRE_DELCOLS).integer))
-                return 0
-            if t == ampls.Where.MIPNODE:
-                self.nMIPnodes += 1
-                print("New MIP node, count {}".format(self.nMIPnodes))
-            if t == ampls.Where.MIPSOL:
-                print("MIP Solution = {}".format(self.getObj()))
-        except Exception as e:
-            print(e)
+        t = self.getAMPLWhere()
+        print("AMPL Phase: {}, from solver: {}".format(
+            t, self.getWhereString()))
+        if t == ampls.Where.MSG:
+            # print(self.getMessage())
+            return 0
+        if t == ampls.Where.LPSOLVE:
+            print("LP solve, {} iterations".format(
+                self.getValue(ampls.Value.ITERATIONS).integer))
+            return 0
+        if t == ampls.Where.PRESOLVE:
+            print("Presolve, eliminated {} rows and {} columns.".format(
+                self.getValue(ampls.Value.PRE_DELROWS).integer,
+                self.getValue(ampls.Value.PRE_DELCOLS).integer))
+            return 0
+        if t == ampls.Where.MIPNODE:
+            self.nMIPnodes += 1
+            print("New MIP node, count {}".format(self.nMIPnodes))
+        if t == ampls.Where.MIPSOL:
+            print("MIP Solution = {}".format(self.getObj()))
         return 0
 
 
@@ -44,7 +41,7 @@ class MyCplexCallback(ampls_cplex.CPLEXCallback):
         try:
             print('>>', dir(self))
             w = self.getWhere()
-            #where = self.getWhereText()
+            # where = self.getWhereText()
             print(w)
             return 0
         except Exception as e:
@@ -55,7 +52,7 @@ class MyGurobiCallback(ampls_gurobi.GurobiCallback):
     def run(self):
         print(dir(self))
         w = self.getWhere()
-        #where = self.getWhereText()
+        # where = self.getWhereText()
         print(w)
         return 0
 
