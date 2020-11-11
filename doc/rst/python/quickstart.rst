@@ -10,8 +10,10 @@ These sets of API are designed to work in conjunction with the AMPL solver libra
 be obtained from https://ampl.com/; these libraries provide the core functionalities of reading 
 the `NL` file and writing the `sol` file and, for some solvers, allow the use of the AMPL license.
 
-Prerequisites
--------------
+Install via Python package manager
+----------------------------------
+
+
 
 To build the libraries, you must have:
 

@@ -2,20 +2,13 @@
 
 .. module:: ampls
 
-AMPLSolver
-==========
+GurobiDrv
+=========
 
+.. class:: GurobiDrv()
 
+   Wraps the gurobi driver functionality.
 
-.. class:: AMPLSolver()
+.. function:: GurobiDrv.loadModel()
 
-   Store an in-memory representation of an AMPL model, which can be constructed by loading it from an NL file.
-   It also contains two-way mappings between solver column and row numbers and AMPL entity names.
-
-
-.. function:: AMPLSolver.loadModel()
-
-   Loads a model.
-
-
-Reference to :func:`AMPLSolver.loadModel`.
+   Loads a model, returing a :class:`GurobiModel` instance.

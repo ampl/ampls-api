@@ -1,0 +1,19 @@
+digraph hierarchy {
+size="8,8"
+node[shape=record,style=filled,fillcolor=gray95]
+edge[dir=back, arrowtail=empty]
+
+SolverDriver[label = "{SolverDriver|}"]
+GurobiDrv[label = "{GurobiDrv|Construct an instance of GurobiModel}"]
+
+AMPLModel[label = "{AMPLModel|}"]
+GurobiModel[label = "{GurobiModel|Holds a reference to the native\lGRBModel object and implements\lcommon functionalities by means\lof the Gurobi C API}"]
+
+BaseCallback[label = "{BaseCallback|Represents a callback to be used\lduring the solution process}"]
+GurobiCallback[label = "{GurobiCallback|Provides the interface functionalities\lby means of the Gurobi C API}"]
+
+AMPLModel->GurobiModel
+SolverDriver->GurobiDrv
+BaseCallback->GurobiCallback
+}
+

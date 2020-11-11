@@ -41,10 +41,8 @@ XPRESSDrv::~XPRESSDrv() {
 
 XPRESSModel* XPRESSDrv::loadModelImpl(char** args) {
   XPRESSModel* m = new XPRESSModel();
-  XPRSprob prob;
   m->state_ = xpress::impl::AMPLXPRESSloadModel(3, args, &m->prob_);
   m->fileName_ = args[1];
-  
   return m;
 }
 XPRESSModel XPRESSDrv::loadModel(const char* modelName) {

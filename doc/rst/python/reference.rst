@@ -12,4 +12,6 @@ AMPL classes
 .. toctree::
    :maxdepth: 2
 
+   ref/AMPLModel
    ref/AMPLSolver
+   

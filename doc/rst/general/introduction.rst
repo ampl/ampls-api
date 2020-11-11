@@ -1,6 +1,7 @@
 .. include:: ../common/definitions.rst
 .. include:: ../common/images.rst
 
+.. _genarchitecture:
 
 Introduction
 ============
@@ -23,6 +24,8 @@ About this documentation
 
 The documentation of this API is split in a generic part, that highlights language-agnostic concepts and a 
 set of specific ones.
+
+The (generic) introduction can be found :ref:`here <genericarchitecture>`.
 
 Below the link to the C++ and Pyton documentations:
 

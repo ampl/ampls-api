@@ -13,7 +13,9 @@ Contents
 .. toctree::
    :maxdepth: 2
   
-   general/genintroduction
+   general/introduction
+   general/structure
+   general/usage
    
 cpp
 ---

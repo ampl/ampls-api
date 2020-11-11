@@ -1,0 +1,13 @@
+digraph hierarchy {
+size="6,6"
+node[shape=record,style=filled,fillcolor=gray95]
+edge[dir=back, arrowtail=empty]
+
+SolverDriver[label = "{SolverDriver|Constructs an instance\lof a model in solver\lmemory}"]
+
+AMPLModel[label = "{AMPLModel|Holds a reference to the model in\lsolver memory and wraps the\lmost common\lfunctionalities}"]
+
+BaseCB[label = "{BaseCallback|Represents a callback to be used\lduring the solution process}"]
+
+}
+

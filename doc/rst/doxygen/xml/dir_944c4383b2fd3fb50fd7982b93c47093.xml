@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_944c4383b2fd3fb50fd7982b93c47093" kind="dir">
+    <compoundname>D:/Development/ampl/ampls-api/cpp/cplex/include</compoundname>
+    <innerfile refid="cplex__callback_8h">cplex_callback.h</innerfile>
+    <innerfile refid="cplex__interface_8h">cplex_interface.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/"/>
+  </compounddef>
+</doxygen>
