@@ -1,12 +1,9 @@
 import sys
-import amplpy_gurobi as grb
+import amplpy_gurobi as ampls
 from tsp_helpers import tsp_model
 
 
-# Define my callback function
-
-
-class MyCallback(grb.GurobiCallback):
+class MyCallback(ampls.GurobiCallback):
     def __init(self):
         super.__init__(self)
 
@@ -17,25 +14,25 @@ class MyCallback(grb.GurobiCallback):
     def run(self):
         try:
             where = self.getWhere()
-            if where == grb.GRB_CB_POLLING:
+            if where == ampls.GRB_CB_POLLING:
                 # Ignore polling callback
                 pass
-            elif where == grb.GRB_CB_PRESOLVE:
+            elif where == ampls.GRB_CB_PRESOLVE:
                 # Presolve callback
-                cdels = self.get(grb.GRB_CB_PRE_COLDEL)
-                rdels = self.get(grb.GRB_CB_PRE_ROWDEL)
+                cdels = self.get(ampls.GRB_CB_PRE_COLDEL)
+                rdels = self.get(ampls.GRB_CB_PRE_ROWDEL)
                 if cdels or rdels:
                     print('%d columns and %d rows are removed' %
                           (cdels, rdels))
-            elif where == grb.GRB_CB_SIMPLEX:
+            elif where == ampls.GRB_CB_SIMPLEX:
                 # Simplex callback
-                itcnt = self.get(grb.GRB_CB_SPX_ITRCNT)
+                itcnt = self.get(ampls.GRB_CB_SPX_ITRCNT)
                 if itcnt - model._lastiter >= 100:
                     self._lastiter = itcnt
-                    obj = self.get(grb.GRB_CB_SPX_OBJVAL)
-                    ispert = self.get(grb.GRB_CB_SPX_ISPERT)
-                    pinf = self.get(grb.GRB_CB_SPX_SPX_PRIMINF)
-                    dinf = self.get(grb.GRB_CB_SPX_SPX_DUALINF)
+                    obj = self.get(ampls.GRB_CB_SPX_OBJVAL)
+                    ispert = self.get(ampls.GRB_CB_SPX_ISPERT)
+                    pinf = self.get(ampls.GRB_CB_SPX_SPX_PRIMINF)
+                    dinf = self.get(ampls.GRB_CB_SPX_SPX_DUALINF)
                     if ispert == 0:
                         ch = ' '
                     elif ispert == 1:
@@ -43,17 +40,17 @@ class MyCallback(grb.GurobiCallback):
                     else:
                         ch = 'P'
                     print('%d %g%s %g %g' % (int(itcnt), obj, ch, pinf, dinf))
-            elif where == grb.GRB_CB_MIP:
+            elif where == ampls.GRB_CB_MIP:
                 # General MIP callback
-                nodecnt = self.get(grb.GRB_CB_MIP_NODCNT)
-                objbst = self.get(grb.GRB_CB_MIP_OBJBST)
-                objbnd = self.get(grb.GRB_CB_MIP_OBJBND)
-                solcnt = self.get(grb.GRB_CB_MIP_SOLCNT)
+                nodecnt = self.get(ampls.GRB_CB_MIP_NODCNT)
+                objbst = self.get(ampls.GRB_CB_MIP_OBJBST)
+                objbnd = self.get(ampls.GRB_CB_MIP_OBJBND)
+                solcnt = self.get(ampls.GRB_CB_MIP_SOLCNT)
                 if nodecnt - self._lastnode >= 100:
                     self._lastnode = nodecnt
-                    actnodes = self.get(grb.GRB_CB_MIP_NODLFT)
-                    itcnt = self.get(grb.GRB_CB_MIP_ITRCNT)
-                    cutcnt = self.get(grb.GRB_CB_MIP_CUTCNT)
+                    actnodes = self.get(ampls.GRB_CB_MIP_NODLFT)
+                    itcnt = self.get(ampls.GRB_CB_MIP_ITRCNT)
+                    cutcnt = self.get(ampls.GRB_CB_MIP_CUTCNT)
                     print('%d %d %d %g %g %d %d' % (nodecnt, actnodes,
                                                     itcnt, objbst, objbnd, solcnt, cutcnt))
                 if abs(objbst - objbnd) < 0.1 * (1.0 + abs(objbst)):
@@ -62,33 +59,33 @@ class MyCallback(grb.GurobiCallback):
                 if nodecnt >= 10000 and solcnt:
                     print('Stop early - 10000 nodes explored')
                     self.terminate()
-            elif where == grb.GRB_CB_MIPSOL:
+            elif where == ampls.GRB_CB_MIPSOL:
                 # MIP solution callback
-                nodecnt = self.get(grb.GRB_CB_MIPSOL_NODCNT)
-                obj = self.get(grb.GRB_CB_MIPSOL_OBJ)
-                solcnt = self.get(grb.GRB_CB_MIPSOL_SOLCNT)
+                nodecnt = self.get(ampls.GRB_CB_MIPSOL_NODCNT)
+                obj = self.get(ampls.GRB_CB_MIPSOL_OBJ)
+                solcnt = self.get(ampls.GRB_CB_MIPSOL_SOLCNT)
                 x = self.getSolutionVector()
                 print('**** New solution at node %d, obj %g, sol %d, '
                       'x[0] = %g ****' % (nodecnt, obj, solcnt, x[0]))
-            elif where == grb.GRB_CB_MIPNODE:
+            elif where == ampls.GRB_CB_MIPNODE:
                 # MIP node callback
                 print('**** New node ****')
-                if self.get(grb.GRB_CB_MIPNODE_STATUS) == GRB.Status.OPTIMAL:
+                if self.get(ampls.GRB_CB_MIPNODE_STATUS) == ampls.Status.OPTIMAL:
                     x = self.getNodeRel(model._vars)
                     model.cbSetSolution(model.getVars(), x)
-            elif where == grb.GRB_CB_BARRIER:
+            elif where == ampls.GRB_CB_BARRIER:
                 # Barrier callback
-                itcnt = self.get(grb.GRB_CB_BARRIER_ITRCNT)
-                primobj = self.get(grb.GRB_CB_BARRIER_PRIMOBJ)
-                dualobj = self.get(grb.GRB_CB_BARRIER_DUALOBJ)
-                priminf = self.get(grb.GRB_CB_BARRIER_PRIMINF)
-                dualinf = self.get(grb.GRB_CB_BARRIER_DUALINF)
-                cmpl = self.get(grb.GRB_CB_BARRIER_COMPL)
+                itcnt = self.get(ampls.GRB_CB_BARRIER_ITRCNT)
+                primobj = self.get(ampls.GRB_CB_BARRIER_PRIMOBJ)
+                dualobj = self.get(ampls.GRB_CB_BARRIER_DUALOBJ)
+                priminf = self.get(ampls.GRB_CB_BARRIER_PRIMINF)
+                dualinf = self.get(ampls.GRB_CB_BARRIER_DUALINF)
+                cmpl = self.get(ampls.GRB_CB_BARRIER_COMPL)
                 print('%d %g %g %g %g %g' % (itcnt, primobj, dualobj,
                                              priminf, dualinf, cmpl))
-            elif where == grb.GRB_CB_MESSAGE:
+            elif where == ampls.GRB_CB_MESSAGE:
                 # Message callback
-                msg = self.get(grb.GRB_CB_MSG_STRING)
+                msg = self.get(ampls.GRB_CB_MSG_STRING)
                 self.log(msg)
             return 0
         except Exception as e:

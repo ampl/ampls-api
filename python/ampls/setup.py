@@ -63,7 +63,7 @@ def libdir():
 
 setup(
     name='amplpy_ampls',
-    version='0.1.0b4',
+    version='0.1.0b5',
     description='Solver extensions for amplpy',
     long_description=__doc__,
     license='BSD-3',
@@ -71,7 +71,7 @@ setup(
     author='Filipe Brandão',
     author_email='fdabrandao@ampl.com',
     url='http://ampl.com/',
-    download_url='https://github.com/ampl/solvers-public',
+    download_url='https://github.com/ampl/ampls-api',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

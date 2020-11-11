@@ -1,6 +1,8 @@
-import sys
-import amplpy_ampls as ampls
 from tsp_helpers import tsp_model
+
+import amplpy_gurobi
+import amplpy_cplex
+ampls = amplpy_gurobi
 
 statuses = {
     ampls.Status.OPTIMAL: "optimal",
@@ -15,10 +17,11 @@ statuses = {
     ampls.Status.NOTMAPPED: "not mapped"
 }
 
-# Generic function doing the optimization and reading the results
-
 
 def doStuff(a):
+    '''
+    Generic function doing the optimization and reading the results
+    '''
     # Optimize with default settings
     a.optimize()
     # Print the status (using the map above to have a description)
