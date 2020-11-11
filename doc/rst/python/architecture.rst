@@ -3,12 +3,28 @@
 Architecture
 ============
 
-This section contains an overview of the architecture of the solvers API.
+This section contains an overview of the architecture of the solvers API on Python; 
+the classes are similar to the cpp version (shown :ref:`here <cpparchitecture>`) but are split
+in separate modules.
 
-The first diagram presents the classes storing the AMPL models themselves:
+So far, the publicly available python packages are `amplpy-gurobi <https://pypi.org/project/amplpy-gurobi/>`_ and 
+`amplpy-cplex <https://pypi.org/project/amplpy-cplex>`_.
 
-.. graphviz:: ../images/AMPLModel.dot
+This diagram shows the available classes in three groups:
 
-The following diagram presents the classes encapsulating the callbacks:
+.. graphviz:: ../images/PythonStructure.dot
 
-.. graphviz:: ../images/callbacks.dot
+both amplpy-gurobi and amplpy-cplex contain the `base` group and the solver-specific classes.
+In addition to the classes implemented in this library, the modules contain wrappers to the solvers' native
+C library functions, useful when implementing a "solver native" :ref:`usage <genusage>`.
+
+amplpy
+------
+
+If amplpy is installed, importing the modules add the following functions, which help creating the solver APIs 
+objects and, after solving them, importing them back to AMPL:
+
+- amplpy.AMPL.exportGurobiModel
+- amplpy.AMPL.exportCplexModel
+- amplpy.AMPL.exportModel(drivername)
+- amplpy.AMPL.importSolution(AMPLModel)

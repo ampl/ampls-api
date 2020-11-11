@@ -1,0 +1,19 @@
+graph G {
+    size="10,10"
+  layout=fdp
+  subgraph clusterBase {
+    label="base"
+    AMPLModel BaseCallback GenericCallback;
+  }
+  subgraph clusterGurobi {
+      label="amplpy-gurobi" 
+      GurobiModel  GurobiCallback "Gurobi C entry points"
+    }
+  subgraph clusterCplex {
+      label="amplpy-cplex" 
+    CPLEXModel CPLEXCallback "CPLEX C entry points"
+  }
+
+  clusterBase -- clusterGurobi
+  clusterBase -- clusterCplex
+}

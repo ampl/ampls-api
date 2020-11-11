@@ -390,26 +390,24 @@
   </compound>
   <compound refid="xpress__interface_8h" kind="file"><name>xpress_interface.h</name>
   </compound>
-  <compound refid="dir_14a18a777f0b02a1b6fd06c492803693" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls</name>
+  <compound refid="dir_021c4d6555c59d21f4bb184920aa16d8" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls</name>
   </compound>
-  <compound refid="dir_3a71cff1a52028f5908015a4810e20c0" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls/include/ampls</name>
+  <compound refid="dir_dc30c8ac1cd8daf1658b988d43886fa3" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls/include/ampls</name>
   </compound>
-  <compound refid="dir_7b27852cdbfda45e2602b0f9a2c15da8" kind="dir"><name>D:/Development/ampl/ampls-api</name>
+  <compound refid="dir_7cef8aa332c24d674456b17af1c94ca6" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/cplex</name>
   </compound>
-  <compound refid="dir_13f05dab79ed591d39060cbbca09721a" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/cplex</name>
+  <compound refid="dir_df511e5bd85cec96854b39d5e1c27aa8" kind="dir"><name>D:/Development/ampl/ampls-api/cpp</name>
   </compound>
-  <compound refid="dir_4ecc16fc84cfde6c0b3a8c2451e1b045" kind="dir"><name>D:/Development/ampl/ampls-api/cpp</name>
+  <compound refid="dir_3158c873e3f29edac3968a0e7e41d6b3" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/gurobi</name>
   </compound>
-  <compound refid="dir_6dda35f232ca126f3d10014ab4a87659" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/gurobi</name>
+  <compound refid="dir_e803311099ed0583a054a714eafeaf00" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/cplex/include</name>
   </compound>
-  <compound refid="dir_944c4383b2fd3fb50fd7982b93c47093" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/cplex/include</name>
+  <compound refid="dir_687f8b5507520f0cf38799dc44ae8fb4" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/xpress/include</name>
   </compound>
-  <compound refid="dir_6ca9c46e63c4dc3a2bb111657d2d2b56" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/xpress/include</name>
+  <compound refid="dir_36d6ae9765bee0b81c5482b3c506a1c9" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/gurobi/include</name>
   </compound>
-  <compound refid="dir_4d8f61671ae4aab13af5e0675973927c" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls/include</name>
+  <compound refid="dir_68f3ef940aa10bd6eccdd96b840ea31c" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/ampls/include</name>
   </compound>
-  <compound refid="dir_0eb0eb466e3e3e1a8c53491842290a51" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/gurobi/include</name>
-  </compound>
-  <compound refid="dir_a70b75c4d16409e2a6def08eca98596a" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/xpress</name>
+  <compound refid="dir_fd05d7d48d29ff115e3f590cec43142f" kind="dir"><name>D:/Development/ampl/ampls-api/cpp/xpress</name>
   </compound>
 </doxygenindex>

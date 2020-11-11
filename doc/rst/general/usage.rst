@@ -3,7 +3,7 @@
 Usage
 =====
 
-The APIs provided by ampls:: can be used in three ways (:ref:`_genstructure`); each has its own advantages and drawbacks:
+The APIs provided by ampls:: can be used in three ways (:ref:`genstructure`); each has its own advantages and drawbacks:
 
 * **Generic usage**: using only functions available in the base classes, the same code can be reused to implement solver-independent logic. To support this type of usage, the class ``GenericCallback`` is provided (:cpp:class:`cpp <ampls::GenericCallback>`, :py:class:`python <ampls.GenericCallback>`), deriving which a solver-independent callback can be defined.
 * **Solver specific usage**: using the additional functions provided by each solver implementation, the code can be used only with one solver
@@ -50,4 +50,12 @@ Here we gain access to the native C pointer and use the solver's C library to ac
         GRBmodel* grbm = model.getGRBmodel()
         double obj;
         int status = GRBgetdblattr(grbm, name, &obj);
+
+If we used CPLEX, the code would be relying on the CPLEX C library:
+
+.. code-block:: cpp
+        
+        // model would be an ampl::CPLEXModel here
+        double obj;
+        int status = CPXgetobjval(model.getCPXENV(), model.getCPXLP(), &obj);
 
