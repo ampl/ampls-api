@@ -312,7 +312,10 @@ template<class T> class SolverDriver
 protected:
   virtual T* loadModelImpl(char** args) = 0;
 public:
-  
+  /**
+  Not to be used directly; to be called in the solver driver `loadModel` function implementations to provide
+  common functionalities like mutex and exception handling
+  */
   T* loadModelGeneric(const char* modelName)
   {
     FILE* f = fopen(modelName, "rb");
@@ -348,8 +351,8 @@ public:
 * generic callback.
 * Provides all mapping between solver-specific and generic values.
 * To implement a callback, you should implement the run() method and
-* set it via AMPLModel::setGenericCallback() before starting the solution
-* process via AMPLModel::solve().
+* set it via AMPLModel::setCallback() before starting the solution
+* process via AMPLModel::optimize().
 * Depending on where the callback is called from, you can obtain various 
 * information about the progress of the optimization and can modify the behaviour
 * of the solver.
@@ -405,9 +408,12 @@ public:
     return impl_->getValue(v);
   }
 };
+  
 /**
 * Store an in-memory representation of an AMPL model, which 
-* can be constructed by loading it from an NL file.
+* can be constructed by loading it from an NL file using the `loadModel` function
+* available in a solver driver (i.e. CPLEXDrv::loadModel(), 
+* GurobiDrv::loadModel() or XPRESSDrv::loadModel()).
 * It also contains two-way mappings between solver column and row numbers and
 * AMPL entity names.
 */

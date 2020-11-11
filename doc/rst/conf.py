@@ -32,15 +32,9 @@ release = '0.1'
 # ones.
 extensions = ["breathe", "sphinx.ext.graphviz" ]
 # Breathe Configuration
-#breathe_projects_source = {
-   #"SolverAPI" :
-       #( "D:\\Development\\ampl\solvers-public\\cpp\\ampls\\include\\ampls", 
-#        [ "ampls.h" ] )
-   #}
-
-#breathe_projects = {
-    #"SolverAPI":"D:\\Development\\ampl\solvers-public\\build\\doc\\cpp\\doxygen\\doxyxml"
-    #}
+breathe_projects = {
+   "SolverAPI":"doxygen/xml"
+}
 breathe_default_project = "SolverAPI"
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -69,7 +63,7 @@ html_theme_options = {
     'logo': 'logo.png',
     "github_banner": "true",
     "github_user" :"ampl",
-    "github_repo" : "solvers-public",
+    "github_repo" : "ampls-api",
     "logo_name" : "true"
 
     }

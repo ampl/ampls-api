@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classampls_1_1_gurobi_drv" kind="class" language="C++" prot="public">
+    <compoundname>ampls::GurobiDrv</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ampls::impl::SolverDriver&lt; GurobiModel &gt;</basecompoundref>
+    <includes refid="gurobi__interface_8h" local="no">gurobi_interface.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classampls_1_1_gurobi_drv_1a5015d5695d427c3cc744967c0e42d2d7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ampls::GurobiDrv::freeGurobiEnv</definition>
+        <argsstring>()</argsstring>
+        <name>freeGurobiEnv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="49" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_drv_1a11227fef692b771d28c1a7120f21db5e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classampls_1_1_gurobi_model" kindref="compound">GurobiModel</ref> *</type>
+        <definition>GurobiModel* ampls::GurobiDrv::loadModelImpl</definition>
+        <argsstring>(char **args)</argsstring>
+        <name>loadModelImpl</name>
+        <param>
+          <type>char **</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Load a model from an NL file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Mappings between solver row and column numbers and AMPL names are available only if the row and col files have been generated as well, by means of the ampl option <computeroutput>option auxfiles cr;</computeroutput> before writing the NL file. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="56" column="15"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classampls_1_1_gurobi_drv_1a5b1afd5368afda8d2f61671de34715b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classampls_1_1_gurobi_model" kindref="compound">GurobiModel</ref></type>
+        <definition>GurobiModel ampls::GurobiDrv::loadModel</definition>
+        <argsstring>(const char *modelName)</argsstring>
+        <name>loadModel</name>
+        <param>
+          <type>const char *</type>
+          <declname>modelName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="58" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_drv_1a885d8d6ab6cf60389fbec0c4ef6ce023" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ampls::GurobiDrv::~GurobiDrv</definition>
+        <argsstring>()</argsstring>
+        <name>~GurobiDrv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="59" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Encapsulates the main environment of the gurobi driver. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ampls::impl::SolverDriver&lt; GurobiModel &gt;</label>
+      </node>
+      <node id="1">
+        <label>ampls::GurobiDrv</label>
+        <link refid="classampls_1_1_gurobi_drv"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ampls::impl::SolverDriver&lt; GurobiModel &gt;</label>
+      </node>
+      <node id="1">
+        <label>ampls::GurobiDrv</label>
+        <link refid="classampls_1_1_gurobi_drv"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" line="48" column="43" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_interface.h" bodystart="48" bodyend="60"/>
+    <listofallmembers>
+      <member refid="classampls_1_1_gurobi_drv_1a5015d5695d427c3cc744967c0e42d2d7" prot="private" virt="non-virtual"><scope>ampls::GurobiDrv</scope><name>freeGurobiEnv</name></member>
+      <member refid="classampls_1_1_gurobi_drv_1a5b1afd5368afda8d2f61671de34715b1" prot="public" virt="non-virtual"><scope>ampls::GurobiDrv</scope><name>loadModel</name></member>
+      <member refid="classampls_1_1_gurobi_drv_1a11227fef692b771d28c1a7120f21db5e" prot="private" virt="non-virtual"><scope>ampls::GurobiDrv</scope><name>loadModelImpl</name></member>
+      <member refid="classampls_1_1_gurobi_drv_1a885d8d6ab6cf60389fbec0c4ef6ce023" prot="public" virt="non-virtual"><scope>ampls::GurobiDrv</scope><name>~GurobiDrv</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classampls_1_1_gurobi_callback" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>ampls::GurobiCallback</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ampls::impl::BaseCallback</basecompoundref>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classampls_1_1_gurobi_callback_1a494a827f2e36d44c3322d0f9f72c0a84" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class GurobiModel</definition>
+        <argsstring></argsstring>
+        <name>GurobiModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="20" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classampls_1_1_gurobi_callback_1a8546f569a12265a3f95f641e894e4b1a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend int</type>
+        <definition>int grb::impl::callback_wrapper</definition>
+        <argsstring>(GRBmodel *model, void *cbdata, int where, void *usrdata)</argsstring>
+        <name>grb::impl::callback_wrapper</name>
+        <param>
+          <type>GRBmodel *</type>
+          <declname>model</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>cbdata</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>where</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>usrdata</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="19" column="14"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classampls_1_1_gurobi_callback_1af2adca4522a63bd18376beec76639d43" prot="private" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* ampls::GurobiCallback::cbdata_</definition>
+        <argsstring></argsstring>
+        <name>cbdata_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="21" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1aa23a09c09782f4739a2451ac3d87f912" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::GurobiCallback::doAddCut</definition>
+        <argsstring>(int nvars, const int *vars, const double *coeffs, CutDirection::Direction direction, double rhs, int type)</argsstring>
+        <name>doAddCut</name>
+        <param>
+          <type>int</type>
+          <declname>nvars</declname>
+        </param>
+        <param>
+          <type>const int *</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="25" column="7"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a2b4ddde4ff063f01b21ca3167db4ea9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ampls::GurobiCallback::GurobiCallback</definition>
+        <argsstring>()</argsstring>
+        <name>GurobiCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="31" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1add73dd75cdfe604ed718e4ec4ac3a1f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::GurobiCallback::where</definition>
+        <argsstring>()</argsstring>
+        <name>where</name>
+        <briefdescription>
+<para>Get where the callback is called from in Gurobi_C library metrics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="35" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="35" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a0fd14c649730bfb782693f164cf26054" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int ampls::GurobiCallback::run</definition>
+        <argsstring>()=0</argsstring>
+        <name>run</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="38" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1ad175b4940cc3e9bf0f17c6d4fc4ed953" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char* ampls::GurobiCallback::getWhereString</definition>
+        <argsstring>()</argsstring>
+        <name>getWhereString</name>
+        <briefdescription>
+<para>Get a string description of where the callback was called from. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="42" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1aa35fa6a964723a08f7a64af6523e22bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char* ampls::GurobiCallback::getMessage</definition>
+        <argsstring>()</argsstring>
+        <name>getMessage</name>
+        <briefdescription>
+<para>To get the gurobi log message. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="46" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a852662d911f96d49e8037ea42b2c7248" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::GurobiCallback::getSolution</definition>
+        <argsstring>(int len, double *sol)</argsstring>
+        <name>getSolution</name>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>sol</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="50" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a0a26111b395f07bb2f96e48655f9f0e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double ampls::GurobiCallback::getObj</definition>
+        <argsstring>()</argsstring>
+        <name>getObj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="51" column="10"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a4178150cfd671d259f937a5feb4d3903" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void *</type>
+        <definition>void* ampls::GurobiCallback::getCBData</definition>
+        <argsstring>()</argsstring>
+        <name>getCBData</name>
+        <briefdescription>
+<para>Get CBdata, useful for calling gurobi c library functions. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="57" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a318c5befa7aa1dd0657c23233e56ed3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>GRBmodel *</type>
+        <definition>GRBmodel* ampls::GurobiCallback::getGRBModel</definition>
+        <argsstring>()</argsstring>
+        <name>getGRBModel</name>
+        <briefdescription>
+<para>Get the underlying gurobi model pointer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="61" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a017ff805c06dc0d482b49ccaebbef70e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ampls::GurobiCallback::terminate</definition>
+        <argsstring>()</argsstring>
+        <name>terminate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="63" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1ad86e45c6fed855f3113e37c41fdd06db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::GurobiCallback::getInt</definition>
+        <argsstring>(int what)</argsstring>
+        <name>getInt</name>
+        <param>
+          <type>int</type>
+          <declname>what</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="65" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="65" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a831c9531a7378f340013f9300b417e6f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ampls::GurobiCallback::getDouble</definition>
+        <argsstring>(int what)</argsstring>
+        <name>getDouble</name>
+        <param>
+          <type>int</type>
+          <declname>what</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="72" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="72" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a6f94c12907f3399a76c0d656b8d28a96" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; ampls::GurobiCallback::getDoubleArray</definition>
+        <argsstring>(int what)</argsstring>
+        <name>getDoubleArray</name>
+        <param>
+          <type>int</type>
+          <declname>what</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="79" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="79" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a4b8cbd715e37f4340a871be978ec4337" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ampls::GurobiCallback::setSolution</definition>
+        <argsstring>(double *x)</argsstring>
+        <name>setSolution</name>
+        <param>
+          <type>double *</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="88" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="88" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1afc3ca09bbcecda5000aff83760eb304a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042" kindref="member">Where::CBWhere</ref></type>
+        <definition>virtual Where::CBWhere ampls::GurobiCallback::getAMPLWhere</definition>
+        <argsstring>()</argsstring>
+        <name>getAMPLWhere</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="96" column="26" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="96" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a518a3f2da40a7d16857b6f83e29521c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structampls_1_1_variant" kindref="compound">Variant</ref></type>
+        <definition>Variant ampls::GurobiCallback::get</definition>
+        <argsstring>(int what)</argsstring>
+        <name>get</name>
+        <param>
+          <type>int</type>
+          <declname>what</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="116" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_gurobi_callback_1a72b270a24fc66be7a1c53dae11eec638" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="structampls_1_1_variant" kindref="compound">Variant</ref></type>
+        <definition>virtual Variant ampls::GurobiCallback::getValue</definition>
+        <argsstring>(Value::CBValue v)</argsstring>
+        <name>getValue</name>
+        <param>
+          <type>Value::CBValue</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="117" column="19" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="117" bodyend="141"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ampls::impl::BaseCallback</label>
+      </node>
+      <node id="1">
+        <label>ampls::GurobiCallback</label>
+        <link refid="classampls_1_1_gurobi_callback"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ampls::impl::BaseCallback</label>
+      </node>
+      <node id="1">
+        <label>ampls::GurobiCallback</label>
+        <link refid="classampls_1_1_gurobi_callback"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="18" column="47" bodyfile="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" bodystart="18" bodyend="142"/>
+    <listofallmembers>
+      <member refid="classampls_1_1_gurobi_callback_1af2adca4522a63bd18376beec76639d43" prot="private" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>cbdata_</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1aa23a09c09782f4739a2451ac3d87f912" prot="private" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>doAddCut</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a518a3f2da40a7d16857b6f83e29521c9" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>get</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1afc3ca09bbcecda5000aff83760eb304a" prot="public" virt="virtual"><scope>ampls::GurobiCallback</scope><name>getAMPLWhere</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a4178150cfd671d259f937a5feb4d3903" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>getCBData</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a831c9531a7378f340013f9300b417e6f" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>getDouble</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a6f94c12907f3399a76c0d656b8d28a96" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>getDoubleArray</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a318c5befa7aa1dd0657c23233e56ed3c" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>getGRBModel</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1ad86e45c6fed855f3113e37c41fdd06db" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>getInt</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1aa35fa6a964723a08f7a64af6523e22bd" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>getMessage</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a0a26111b395f07bb2f96e48655f9f0e9" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>getObj</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a852662d911f96d49e8037ea42b2c7248" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>getSolution</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a72b270a24fc66be7a1c53dae11eec638" prot="public" virt="virtual"><scope>ampls::GurobiCallback</scope><name>getValue</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1ad175b4940cc3e9bf0f17c6d4fc4ed953" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>getWhereString</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a8546f569a12265a3f95f641e894e4b1a" prot="private" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>grb::impl::callback_wrapper</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a2b4ddde4ff063f01b21ca3167db4ea9d" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>GurobiCallback</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a0fd14c649730bfb782693f164cf26054" prot="public" virt="pure-virtual"><scope>ampls::GurobiCallback</scope><name>run</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a4b8cbd715e37f4340a871be978ec4337" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>setSolution</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1a017ff805c06dc0d482b49ccaebbef70e" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>terminate</name></member>
+      <member refid="classampls_1_1_gurobi_callback_1add73dd75cdfe604ed718e4ec4ac3a1f2" prot="public" virt="non-virtual"><scope>ampls::GurobiCallback</scope><name>where</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

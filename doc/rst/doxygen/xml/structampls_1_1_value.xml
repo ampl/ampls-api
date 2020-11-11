@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structampls_1_1_value" kind="struct" language="C++" prot="public">
+    <compoundname>ampls::Value</compoundname>
+    <includes refid="ampls_8h" local="no">ampls.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4" prot="public" static="no" strong="no">
+        <type></type>
+        <name>CBValue</name>
+        <enumvalue id="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a53fb065a20217591d02bc2ab15af34eb" prot="public">
+          <name>OBJ</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a553550003c4c8c316528aded5299567a" prot="public">
+          <name>PRE_DELCOLS</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a6b1f891a0cc83afd31c15c8059cf250d" prot="public">
+          <name>PRE_DELROWS</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4aa0e8bb3f590113a469983fc3f915c84b" prot="public">
+          <name>PRE_COEFFCHANGED</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a5a4c903c83ddd4a03cb4635912da2e13" prot="public">
+          <name>ITERATIONS</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a43009176afdead340ac8bc4baa5aacf7" prot="public">
+          <name>MIP_RELATIVEGAP</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="105" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="105" bodyend="113"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Which (generic) values to get in a callback; just a subset of all the value types are mapped here. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>In case a not mapped value is required, refer to the solver-specific API. </para>
+    </detaileddescription>
+    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="104" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="103" bodyend="114"/>
+    <listofallmembers>
+      <member refid="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4" prot="public" virt="non-virtual"><scope>ampls::Value</scope><name>CBValue</name></member>
+      <member refid="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a5a4c903c83ddd4a03cb4635912da2e13" prot="public" virt="non-virtual"><scope>ampls::Value</scope><name>ITERATIONS</name></member>
+      <member refid="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a43009176afdead340ac8bc4baa5aacf7" prot="public" virt="non-virtual"><scope>ampls::Value</scope><name>MIP_RELATIVEGAP</name></member>
+      <member refid="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a53fb065a20217591d02bc2ab15af34eb" prot="public" virt="non-virtual"><scope>ampls::Value</scope><name>OBJ</name></member>
+      <member refid="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4aa0e8bb3f590113a469983fc3f915c84b" prot="public" virt="non-virtual"><scope>ampls::Value</scope><name>PRE_COEFFCHANGED</name></member>
+      <member refid="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a553550003c4c8c316528aded5299567a" prot="public" virt="non-virtual"><scope>ampls::Value</scope><name>PRE_DELCOLS</name></member>
+      <member refid="structampls_1_1_value_1a02a2e639e9a044e14fbea34e00adf9c4a6b1f891a0cc83afd31c15c8059cf250d" prot="public" virt="non-virtual"><scope>ampls::Value</scope><name>PRE_DELROWS</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

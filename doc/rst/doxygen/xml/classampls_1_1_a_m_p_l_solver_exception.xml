@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classampls_1_1_a_m_p_l_solver_exception" kind="class" language="C++" prot="public">
+    <compoundname>ampls::AMPLSolverException</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">runtime_error</basecompoundref>
+    <includes refid="ampls_8h" local="no">ampls.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_solver_exception_1a011957f57cb8e1d9128df23435322ed0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ampls::AMPLSolverException::AMPLSolverException</definition>
+        <argsstring>(const char *msg)</argsstring>
+        <name>AMPLSolverException</name>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="29" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_solver_exception_1a4aaafe5a6de34bc3d6ce2e9092a018c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ampls::AMPLSolverException::AMPLSolverException</definition>
+        <argsstring>(std::string &amp;msg)</argsstring>
+        <name>AMPLSolverException</name>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="31" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="31" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_solver_exception_1af4fbca2915e43f651431c53e85f893d2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classampls_1_1_a_m_p_l_solver_exception" kindref="compound">AMPLSolverException</ref></type>
+        <definition>static AMPLSolverException ampls::AMPLSolverException::format</definition>
+        <argsstring>(const char *msg,...)</argsstring>
+        <name>format</name>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="33" column="30" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="33" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Wrapper for all ampl solver exceptions. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>std::runtime_error</label>
+      </node>
+      <node id="1">
+        <label>ampls::AMPLSolverException</label>
+        <link refid="classampls_1_1_a_m_p_l_solver_exception"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>std::runtime_error</label>
+      </node>
+      <node id="1">
+        <label>ampls::AMPLSolverException</label>
+        <link refid="classampls_1_1_a_m_p_l_solver_exception"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="27" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="26" bodyend="42"/>
+    <listofallmembers>
+      <member refid="classampls_1_1_a_m_p_l_solver_exception_1a011957f57cb8e1d9128df23435322ed0" prot="public" virt="non-virtual"><scope>ampls::AMPLSolverException</scope><name>AMPLSolverException</name></member>
+      <member refid="classampls_1_1_a_m_p_l_solver_exception_1a4aaafe5a6de34bc3d6ce2e9092a018c2" prot="public" virt="non-virtual"><scope>ampls::AMPLSolverException</scope><name>AMPLSolverException</name></member>
+      <member refid="classampls_1_1_a_m_p_l_solver_exception_1af4fbca2915e43f651431c53e85f893d2" prot="public" virt="non-virtual"><scope>ampls::AMPLSolverException</scope><name>format</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

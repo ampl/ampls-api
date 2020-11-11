@@ -77,13 +77,22 @@ namespace cpx
 Encapsulates the main environment of the gurobi driver;
 without modifications, a static CPLEXENV is created in the
 AMPL driver, and it would be fairly easy to lose track of it;
-this way, it is deleted in the destructor.
+this way, it is deleted in the destructor. 
 */
 class CPLEXDrv : public impl::SolverDriver<CPLEXModel> {
   void freeCPLEXEnv();
   CPLEXModel* loadModelImpl(char** args);
 public:
+ /**
+ * Load a model from an NL file.
+ * Mappings between solver row and column numbers and AMPL names are
+ * available only if the row and col files have been generated as well,
+ * by means of the ampl option `option auxfiles cr;` before writing the NL file.
+ */
   CPLEXModel loadModel(const char* modelName);
+  /**
+   * Get the pointer to the native `CPXENVptr` wrapped by this driver
+  */
   CPXENVptr getEnv() {
     return cpx::impl::AMPLCPLEXgetInternalEnv();
   }

@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structampls_1_1_status" kind="struct" language="C++" prot="public">
+    <compoundname>ampls::Status</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55" prot="public" static="no" strong="no">
+        <type></type>
+        <name>SolStatus</name>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55aa3a39b8fcc725874cd588c20400bb1ee" prot="public">
+          <name>UNKNOWN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55af1e1d414165fc240aa4f8fc5b5ee77f2" prot="public">
+          <name>OPTIMAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55aac78d94ffdf887336733b0ad32c76ff1" prot="public">
+          <name>INFEASIBLE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55a769bb038760ab58c4ea03388742c0a73" prot="public">
+          <name>UNBOUNDED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55ae6a29336768dd369c2f47a1ce5562a5c" prot="public">
+          <name>LIMIT_ITERATION</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55ad895b7bcfe7582dfe4c0be60b720d38a" prot="public">
+          <name>LIMIT_NODE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55a22ef66894dc471870ea3164586541818" prot="public">
+          <name>LIMIT_TIME</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55a83b51cb739b805756225a6c01943a136" prot="public">
+          <name>LIMIT_SOLUTION</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55a8294e90454b27598e120103a90577ecd" prot="public">
+          <name>INTERRUPTED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55ad190097bc2547a252a701427c1e969d9" prot="public">
+          <name>NOTMAPPED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="128" column="17" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="128" bodyend="139"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="127" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="126" bodyend="140"/>
+    <listofallmembers>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55aac78d94ffdf887336733b0ad32c76ff1" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>INFEASIBLE</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55a8294e90454b27598e120103a90577ecd" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>INTERRUPTED</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55ae6a29336768dd369c2f47a1ce5562a5c" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>LIMIT_ITERATION</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55ad895b7bcfe7582dfe4c0be60b720d38a" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>LIMIT_NODE</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55a83b51cb739b805756225a6c01943a136" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>LIMIT_SOLUTION</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55a22ef66894dc471870ea3164586541818" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>LIMIT_TIME</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55ad190097bc2547a252a701427c1e969d9" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>NOTMAPPED</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55af1e1d414165fc240aa4f8fc5b5ee77f2" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>OPTIMAL</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>SolStatus</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55a769bb038760ab58c4ea03388742c0a73" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>UNBOUNDED</name></member>
+      <member refid="structampls_1_1_status_1ac9af71923f3fa814232dba8959abbe55aa3a39b8fcc725874cd588c20400bb1ee" prot="public" virt="non-virtual"><scope>ampls::Status</scope><name>UNKNOWN</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

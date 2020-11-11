@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_3158c873e3f29edac3968a0e7e41d6b3" kind="dir">
+    <compoundname>D:/Development/ampl/ampls-api/cpp/gurobi</compoundname>
+    <innerdir refid="dir_36d6ae9765bee0b81c5482b3c506a1c9">D:/Development/ampl/ampls-api/cpp/gurobi/include</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Development/ampl/ampls-api/cpp/gurobi/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_fd05d7d48d29ff115e3f590cec43142f" kind="dir">
+    <compoundname>D:/Development/ampl/ampls-api/cpp/xpress</compoundname>
+    <innerdir refid="dir_687f8b5507520f0cf38799dc44ae8fb4">D:/Development/ampl/ampls-api/cpp/xpress/include</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Development/ampl/ampls-api/cpp/xpress/"/>
+  </compounddef>
+</doxygen>

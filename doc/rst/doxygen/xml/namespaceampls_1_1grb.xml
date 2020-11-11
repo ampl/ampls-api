@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="namespaceampls_1_1grb" kind="namespace" language="C++">
+    <compoundname>ampls::grb</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/gurobi_callback.h" line="13" column="13"/>
+  </compounddef>
+</doxygen>

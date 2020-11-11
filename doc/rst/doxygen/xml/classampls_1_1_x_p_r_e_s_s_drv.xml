@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classampls_1_1_x_p_r_e_s_s_drv" kind="class" language="C++" prot="public">
+    <compoundname>ampls::XPRESSDrv</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ampls::impl::SolverDriver&lt; XPRESSModel &gt;</basecompoundref>
+    <includes refid="xpress__interface_8h" local="no">xpress_interface.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_drv_1a2c8968a7151832520fac2a76e0a6e3db" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ampls::XPRESSDrv::freeXPRESSEnv</definition>
+        <argsstring>()</argsstring>
+        <name>freeXPRESSEnv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="107" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_drv_1adda92cd9b26500f7b25d1c18ae99007f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classampls_1_1_x_p_r_e_s_s_model" kindref="compound">XPRESSModel</ref> *</type>
+        <definition>XPRESSModel* ampls::XPRESSDrv::loadModelImpl</definition>
+        <argsstring>(char **args)</argsstring>
+        <name>loadModelImpl</name>
+        <param>
+          <type>char **</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="108" column="15"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_drv_1a64fc7c302b7501158d0a63f97ce8e1ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classampls_1_1_x_p_r_e_s_s_model" kindref="compound">XPRESSModel</ref></type>
+        <definition>XPRESSModel ampls::XPRESSDrv::loadModel</definition>
+        <argsstring>(const char *modelName)</argsstring>
+        <name>loadModel</name>
+        <param>
+          <type>const char *</type>
+          <declname>modelName</declname>
+        </param>
+        <briefdescription>
+<para>Load a model from an NL file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Mappings between solver row and column numbers and AMPL names are available only if the row and col files have been generated as well, by means of the ampl option <computeroutput>option auxfiles cr;</computeroutput> before writing the NL file. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="116" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_x_p_r_e_s_s_drv_1a3873fa11f503e302bb3dde7139c8ac24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ampls::XPRESSDrv::~XPRESSDrv</definition>
+        <argsstring>()</argsstring>
+        <name>~XPRESSDrv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="117" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Encapsulates the main environment of the gurobi driver; without modifications, a static CPLEXENV is created in the AMPL driver, and it would be fairly easy to lose track of it; this way, it is deleted in the destructor. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ampls::XPRESSDrv</label>
+        <link refid="classampls_1_1_x_p_r_e_s_s_drv"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ampls::impl::SolverDriver&lt; XPRESSModel &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ampls::XPRESSDrv</label>
+        <link refid="classampls_1_1_x_p_r_e_s_s_drv"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ampls::impl::SolverDriver&lt; XPRESSModel &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" line="106" column="43" bodyfile="D:/Development/ampl/ampls-api/cpp/xpress/include/xpress_interface.h" bodystart="106" bodyend="118"/>
+    <listofallmembers>
+      <member refid="classampls_1_1_x_p_r_e_s_s_drv_1a2c8968a7151832520fac2a76e0a6e3db" prot="private" virt="non-virtual"><scope>ampls::XPRESSDrv</scope><name>freeXPRESSEnv</name></member>
+      <member refid="classampls_1_1_x_p_r_e_s_s_drv_1a64fc7c302b7501158d0a63f97ce8e1ab" prot="public" virt="non-virtual"><scope>ampls::XPRESSDrv</scope><name>loadModel</name></member>
+      <member refid="classampls_1_1_x_p_r_e_s_s_drv_1adda92cd9b26500f7b25d1c18ae99007f" prot="private" virt="non-virtual"><scope>ampls::XPRESSDrv</scope><name>loadModelImpl</name></member>
+      <member refid="classampls_1_1_x_p_r_e_s_s_drv_1a3873fa11f503e302bb3dde7139c8ac24" prot="public" virt="non-virtual"><scope>ampls::XPRESSDrv</scope><name>~XPRESSDrv</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

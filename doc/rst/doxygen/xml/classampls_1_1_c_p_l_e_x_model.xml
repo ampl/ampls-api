@@ -1,0 +1,620 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classampls_1_1_c_p_l_e_x_model" kind="class" language="C++" prot="public">
+    <compoundname>ampls::CPLEXModel</compoundname>
+    <basecompoundref refid="classampls_1_1_a_m_p_l_model" prot="public" virt="non-virtual">ampls::AMPLModel</basecompoundref>
+    <includes refid="cplex__interface_8h" local="no">cplex_interface.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_model_1a69996616fb938c188d23fa23422c580c" prot="private" static="no" mutable="no">
+        <type>friend</type>
+        <definition>friend ampls::CPLEXModel::CPLEXDrv</definition>
+        <argsstring></argsstring>
+        <name>CPLEXDrv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="111" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_model_1a3e3a7e5671ef0d6de0e6c34038a57ff5" prot="private" static="no" mutable="yes">
+        <type>bool</type>
+        <definition>bool ampls::CPLEXModel::copied_</definition>
+        <argsstring></argsstring>
+        <name>copied_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="113" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_model_1ad073ad2ae73cda1f05ec2aa61952e502" prot="private" static="no" mutable="no">
+        <type>cpx::impl::CPLEXDriverState *</type>
+        <definition>cpx::impl::CPLEXDriverState* ampls::CPLEXModel::state_</definition>
+        <argsstring></argsstring>
+        <name>state_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="114" column="31" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_model_1a6d67d54ed18f1fb409bb2c80ed3126d5" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ampls::CPLEXModel::status_</definition>
+        <argsstring></argsstring>
+        <name>status_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="115" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_model_1a327ff3c4d212879b5f915a990eb4289c" prot="private" static="no" mutable="no">
+        <type>CPXLPptr</type>
+        <definition>CPXLPptr ampls::CPLEXModel::model_</definition>
+        <argsstring></argsstring>
+        <name>model_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="116" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_model_1a42d342963e094e73e7ce6c238ad153b7" prot="private" static="no" mutable="no">
+        <type>ASL *</type>
+        <definition>ASL* ampls::CPLEXModel::asl_</definition>
+        <argsstring></argsstring>
+        <name>asl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="117" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classampls_1_1_c_p_l_e_x_model_1a99930590678489366a891291ea235d1b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ampls::CPLEXModel::lastErrorCode_</definition>
+        <argsstring></argsstring>
+        <name>lastErrorCode_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="118" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1aca45521c6572998a8401102eca2757c6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ampls::CPLEXModel::CPLEXModel</definition>
+        <argsstring>()</argsstring>
+        <name>CPLEXModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="119" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="119" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a50a61cba49641cdce2687083ad92fda2" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int ampls::CPLEXModel::setCallbackDerived</definition>
+        <argsstring>(impl::BaseCallback *callback)</argsstring>
+        <name>setCallbackDerived</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1a27190416a7add5411ea850feca3eb9b0">setCallbackDerived</reimplements>
+        <param>
+          <type>impl::BaseCallback *</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="122" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a4e839dc013493e1d843d7ee3d7605430" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>impl::BaseCallback *</type>
+        <definition>impl::BaseCallback* ampls::CPLEXModel::createCallbackImplDerived</definition>
+        <argsstring>(GenericCallback *callback)</argsstring>
+        <name>createCallbackImplDerived</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1a08289f51a8292285dcdd2d472ff9924d">createCallbackImplDerived</reimplements>
+        <param>
+          <type><ref refid="classampls_1_1_generic_callback" kindref="compound">GenericCallback</ref> *</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="123" column="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a187cb760b7112add8ad64a0d09af06fd" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ampls::CPLEXModel::writeSolImpl</definition>
+        <argsstring>(const char *solFileName)</argsstring>
+        <name>writeSolImpl</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1afce5959882c970916e545b69e71bd5c1">writeSolImpl</reimplements>
+        <param>
+          <type>const char *</type>
+          <declname>solFileName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="124" column="8"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a9059b747944ab5ca5a2d5ed14f136598" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ampls::CPLEXModel::CPLEXModel</definition>
+        <argsstring>(const CPLEXModel &amp;other)</argsstring>
+        <name>CPLEXModel</name>
+        <param>
+          <type>const <ref refid="classampls_1_1_c_p_l_e_x_model" kindref="compound">CPLEXModel</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="127" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="127" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a79e7d67545eb5cc0bf5dbbbc9ba6bc08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>Status::SolStatus</type>
+        <definition>Status::SolStatus ampls::CPLEXModel::getStatus</definition>
+        <argsstring>()</argsstring>
+        <name>getStatus</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1aa30ec04fefc1c4cc6d3d906f4e662384">getStatus</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="141" column="21" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="141" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a305db26ef2018f0929bbb54d667ebcd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int ampls::CPLEXModel::optimize</definition>
+        <argsstring>()</argsstring>
+        <name>optimize</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1a7e639a340228e6f93f64fd1de4e44338">optimize</reimplements>
+        <briefdescription>
+<para>Start the optimization process. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="185" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a8db26a2b33405fd1a27847be2f9adc0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int ampls::CPLEXModel::getNumVars</definition>
+        <argsstring>()</argsstring>
+        <name>getNumVars</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1a83f292201e3a0181e6c796e50edce69f">getNumVars</reimplements>
+        <briefdescription>
+<para>Get the number of variables. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="187" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="187" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a762520c58f1f2556287e6ad22dd9aec6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double ampls::CPLEXModel::getObj</definition>
+        <argsstring>()</argsstring>
+        <name>getObj</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1ac465963811921794564f08959d2acbe2">getObj</reimplements>
+        <briefdescription>
+<para>Get the current objective value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="190" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="190" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a89f29debba7b81aa5e878dce75d9b0b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int ampls::CPLEXModel::getSolution</definition>
+        <argsstring>(int first, int length, double *sol)</argsstring>
+        <name>getSolution</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1ada258dda5511214bdc3318bc99d0ec9f">getSolution</reimplements>
+        <param>
+          <type>int</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>length</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>sol</declname>
+        </param>
+        <briefdescription>
+<para>Get &quot;length&quot; variables of the current problem in an array, starting at the specified position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="197" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="197" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a536804deb3e226eeee513791aada54ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::string</type>
+        <definition>std::string ampls::CPLEXModel::error</definition>
+        <argsstring>(int code)</argsstring>
+        <name>error</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1a842b77149c818c530b630999d1fded8d">error</reimplements>
+        <param>
+          <type>int</type>
+          <declname>code</declname>
+        </param>
+        <briefdescription>
+<para>Get the error message corresponding to the code. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="202" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1aec76c78adf93f703fb59b84f7031ba90" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void ampls::CPLEXModel::enableLazyConstraints</definition>
+        <argsstring>()</argsstring>
+        <name>enableLazyConstraints</name>
+        <reimplements refid="classampls_1_1_a_m_p_l_model_1aa45dbd2191a82acea153e2b3d6c1573d">enableLazyConstraints</reimplements>
+        <briefdescription>
+<para>Enable adding lazy constraints via callbacks. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="204" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="204" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a8ec9845e7557730011ab866af2c705b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>CPXLPptr</type>
+        <definition>CPXLPptr ampls::CPLEXModel::getCPXLP</definition>
+        <argsstring>()</argsstring>
+        <name>getCPXLP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="210" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="210" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a59b86eb2c167ddcd3bf35e9f96a2d139" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>CPXENVptr</type>
+        <definition>CPXENVptr ampls::CPLEXModel::getCPXENV</definition>
+        <argsstring>()</argsstring>
+        <name>getCPXENV</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="213" column="13" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="213" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a9fc639a496dbc6d40b4ce476827ce680" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ampls::CPLEXModel::setParam</definition>
+        <argsstring>(int CPXPARAM, int value)</argsstring>
+        <name>setParam</name>
+        <param>
+          <type>int</type>
+          <declname>CPXPARAM</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set CPLEX control parameter (integers) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="219" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="219" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a4414754311f3033b8b9dff1f60deb8b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ampls::CPLEXModel::setParam</definition>
+        <argsstring>(int CPXPARAM, double value)</argsstring>
+        <name>setParam</name>
+        <param>
+          <type>int</type>
+          <declname>CPXPARAM</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set CPLEX control parameters (double) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="226" column="8" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="226" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_model_1a11c226178b9f22f1139975687b40b79f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ampls::CPLEXModel::~CPLEXModel</definition>
+        <argsstring>()</argsstring>
+        <name>~CPLEXModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="231" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="231" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ae8938457c2e37d5f5e19e528f492b8c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string ampls::AMPLModel::getFileName</definition>
+        <argsstring>()</argsstring>
+        <name>getFileName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="458" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="458" bodyend="460"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a0a9ebfa649684a9d6faf6e13f85a32ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; int, std::string &gt;</type>
+        <definition>std::map&lt;int, std::string&gt; ampls::AMPLModel::getVarMapInverse</definition>
+        <argsstring>()</argsstring>
+        <name>getVarMapInverse</name>
+        <briefdescription>
+<para>Get the map from variable name to index in the solver interface. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="466" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a2f5456b17543eb0a6a0c2409617bdd1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::map&lt; std::string, int &gt;</type>
+        <definition>std::map&lt;std::string, int&gt; ampls::AMPLModel::getVarMap</definition>
+        <argsstring>()</argsstring>
+        <name>getVarMap</name>
+        <briefdescription>
+<para>Get the map from variable name to index in the solver interface. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="471" column="12" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="471" bodyend="474"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ab4fd6f2a6b0f91dd4983de98e7003c30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::map&lt; std::string, int &gt;</type>
+        <definition>std::map&lt;std::string, int&gt; ampls::AMPLModel::getVarMapFiltered</definition>
+        <argsstring>(const char *beginWith)</argsstring>
+        <name>getVarMapFiltered</name>
+        <param>
+          <type>const char *</type>
+          <declname>beginWith</declname>
+        </param>
+        <briefdescription>
+<para>Return the variable map, filtered by the variable name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="478" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a5c20eba868bd9a8207dd44b39c7cdfde" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::AMPLModel::setCallback</definition>
+        <argsstring>(GenericCallback *callback)</argsstring>
+        <name>setCallback</name>
+        <param>
+          <type><ref refid="classampls_1_1_generic_callback" kindref="compound">GenericCallback</ref> *</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+<para>Set a generic callback to be called during optimization. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function is automatically dispatched when (and only when) assigning an <ref refid="classampls_1_1_generic_callback" kindref="compound">ampls::GenericCallback</ref>, as it needs a special treatment to automatically create the solver-specific wrapper </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="485" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="485" bodyend="491"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a0e051acaa733bd9d45354b218966de0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::AMPLModel::setCallback</definition>
+        <argsstring>(impl::BaseCallback *callback)</argsstring>
+        <name>setCallback</name>
+        <param>
+          <type>impl::BaseCallback *</type>
+          <declname>callback</declname>
+        </param>
+        <briefdescription>
+<para>Set callback to be called during optimization. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="495" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="495" bodyend="499"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a70499ebc7d909088db21d0b96b53175f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; ampls::AMPLModel::getSolutionVector</definition>
+        <argsstring>()</argsstring>
+        <name>getSolutionVector</name>
+        <briefdescription>
+<para>Get all the variables of the current problem. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="503" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1acb0a7c8e8c0e38b0bc71615daeead693" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ampls::AMPLModel::writeSol</definition>
+        <argsstring>()</argsstring>
+        <name>writeSol</name>
+        <briefdescription>
+<para>Write the solution file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="523" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="523" bodyend="525"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1a64d58554792987885e83128a9faa60c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ampls::AMPLModel::writeSol</definition>
+        <argsstring>(const char *solFileName)</argsstring>
+        <name>writeSol</name>
+        <param>
+          <type>const char *</type>
+          <declname>solFileName</declname>
+        </param>
+        <briefdescription>
+<para>Write the solution file. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="529" column="16" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="529" bodyend="531"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_a_m_p_l_model_1ac2e1800d30c2751eb9464cbbf16da70f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ampls::AMPLModel::printModelVars</definition>
+        <argsstring>(bool onlyNonZero)</argsstring>
+        <name>printModelVars</name>
+        <param>
+          <type>bool</type>
+          <declname>onlyNonZero</declname>
+        </param>
+        <briefdescription>
+<para>Utility function: prints all variables to screen. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="559" column="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Encapsulates all the instance level information for a CPLEX model, namely the CPLEX object, the relative ASL and all the locals of the driver up to the moment in which optimize would be called. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>It can not be created any other way than by reading an nl file, and any assignment moves actual ownership. At the end of its life, it deletes the relative structures. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ampls::AMPLModel</label>
+        <link refid="classampls_1_1_a_m_p_l_model"/>
+      </node>
+      <node id="1">
+        <label>ampls::CPLEXModel</label>
+        <link refid="classampls_1_1_c_p_l_e_x_model"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ampls::AMPLModel</label>
+        <link refid="classampls_1_1_a_m_p_l_model"/>
+      </node>
+      <node id="1">
+        <label>ampls::CPLEXModel</label>
+        <link refid="classampls_1_1_c_p_l_e_x_model"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="110" column="34" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="110" bodyend="244"/>
+    <listofallmembers>
+      <member refid="classampls_1_1_a_m_p_l_model_1a15442f8b8c6cf29ba2bef3c986e3d246" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>AMPLModel</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a42d342963e094e73e7ce6c238ad153b7" prot="private" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>asl_</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a3e3a7e5671ef0d6de0e6c34038a57ff5" prot="private" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>copied_</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a69996616fb938c188d23fa23422c580c" prot="private" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>CPLEXDrv</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1aca45521c6572998a8401102eca2757c6" prot="private" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>CPLEXModel</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a9059b747944ab5ca5a2d5ed14f136598" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>CPLEXModel</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a4e839dc013493e1d843d7ee3d7605430" prot="private" virt="virtual"><scope>ampls::CPLEXModel</scope><name>createCallbackImplDerived</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1aec76c78adf93f703fb59b84f7031ba90" prot="public" virt="virtual"><scope>ampls::CPLEXModel</scope><name>enableLazyConstraints</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a536804deb3e226eeee513791aada54ce" prot="public" virt="virtual"><scope>ampls::CPLEXModel</scope><name>error</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a59b86eb2c167ddcd3bf35e9f96a2d139" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>getCPXENV</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a8ec9845e7557730011ab866af2c705b1" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>getCPXLP</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1ae8938457c2e37d5f5e19e528f492b8c4" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>getFileName</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a8db26a2b33405fd1a27847be2f9adc0f" prot="public" virt="virtual"><scope>ampls::CPLEXModel</scope><name>getNumVars</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a762520c58f1f2556287e6ad22dd9aec6" prot="public" virt="virtual"><scope>ampls::CPLEXModel</scope><name>getObj</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a89f29debba7b81aa5e878dce75d9b0b1" prot="public" virt="virtual"><scope>ampls::CPLEXModel</scope><name>getSolution</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1a70499ebc7d909088db21d0b96b53175f" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>getSolutionVector</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a79e7d67545eb5cc0bf5dbbbc9ba6bc08" prot="public" virt="virtual"><scope>ampls::CPLEXModel</scope><name>getStatus</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1a2f5456b17543eb0a6a0c2409617bdd1a" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>getVarMap</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1ab4fd6f2a6b0f91dd4983de98e7003c30" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>getVarMapFiltered</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1a0a9ebfa649684a9d6faf6e13f85a32ff" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>getVarMapInverse</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a99930590678489366a891291ea235d1b" prot="private" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>lastErrorCode_</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a327ff3c4d212879b5f915a990eb4289c" prot="private" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>model_</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a305db26ef2018f0929bbb54d667ebcd1" prot="public" virt="virtual"><scope>ampls::CPLEXModel</scope><name>optimize</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1ac2e1800d30c2751eb9464cbbf16da70f" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>printModelVars</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1a5c20eba868bd9a8207dd44b39c7cdfde" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>setCallback</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1a0e051acaa733bd9d45354b218966de0e" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>setCallback</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a50a61cba49641cdce2687083ad92fda2" prot="private" virt="virtual"><scope>ampls::CPLEXModel</scope><name>setCallbackDerived</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a9fc639a496dbc6d40b4ce476827ce680" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>setParam</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a4414754311f3033b8b9dff1f60deb8b7" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>setParam</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1ad073ad2ae73cda1f05ec2aa61952e502" prot="private" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>state_</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a6d67d54ed18f1fb409bb2c80ed3126d5" prot="private" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>status_</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1acb0a7c8e8c0e38b0bc71615daeead693" prot="public" virt="virtual"><scope>ampls::CPLEXModel</scope><name>writeSol</name></member>
+      <member refid="classampls_1_1_a_m_p_l_model_1a64d58554792987885e83128a9faa60c5" prot="public" virt="virtual"><scope>ampls::CPLEXModel</scope><name>writeSol</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a187cb760b7112add8ad64a0d09af06fd" prot="private" virt="virtual"><scope>ampls::CPLEXModel</scope><name>writeSolImpl</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_model_1a11c226178b9f22f1139975687b40b79f" prot="public" virt="non-virtual"><scope>ampls::CPLEXModel</scope><name>~CPLEXModel</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

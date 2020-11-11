@@ -47,6 +47,12 @@ Encapsulates the main environment of the gurobi driver
 */
 class GurobiDrv : public impl::SolverDriver<GurobiModel>  {
   void freeGurobiEnv();
+   /**
+  * Load a model from an NL file.
+  * Mappings between solver row and column numbers and AMPL names are
+  * available only if the row and col files have been generated as well,
+  * by means of the ampl option `option auxfiles cr;` before writing the NL file.
+  */
   GurobiModel* loadModelImpl(char** args);
 public:
   GurobiModel loadModel(const char* modelName);

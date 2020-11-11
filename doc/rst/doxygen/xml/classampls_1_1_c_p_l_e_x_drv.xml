@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classampls_1_1_c_p_l_e_x_drv" kind="class" language="C++" prot="public">
+    <compoundname>ampls::CPLEXDrv</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ampls::impl::SolverDriver&lt; CPLEXModel &gt;</basecompoundref>
+    <includes refid="cplex__interface_8h" local="no">cplex_interface.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_drv_1a322921f9a26cbccdaaabd6483e3bbb58" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ampls::CPLEXDrv::freeCPLEXEnv</definition>
+        <argsstring>()</argsstring>
+        <name>freeCPLEXEnv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="83" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_drv_1a4f6523eb57871a9502d6ddfe6653d7c7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classampls_1_1_c_p_l_e_x_model" kindref="compound">CPLEXModel</ref> *</type>
+        <definition>CPLEXModel* ampls::CPLEXDrv::loadModelImpl</definition>
+        <argsstring>(char **args)</argsstring>
+        <name>loadModelImpl</name>
+        <param>
+          <type>char **</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="84" column="14"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_drv_1a71082f2f36b151e2f8eda791420fabca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classampls_1_1_c_p_l_e_x_model" kindref="compound">CPLEXModel</ref></type>
+        <definition>CPLEXModel ampls::CPLEXDrv::loadModel</definition>
+        <argsstring>(const char *modelName)</argsstring>
+        <name>loadModel</name>
+        <param>
+          <type>const char *</type>
+          <declname>modelName</declname>
+        </param>
+        <briefdescription>
+<para>Load a model from an NL file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Mappings between solver row and column numbers and AMPL names are available only if the row and col files have been generated as well, by means of the ampl option <computeroutput>option auxfiles cr;</computeroutput> before writing the NL file. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="92" column="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_drv_1a96c7a62ac06cdc947bc3c5a24f0f2c3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>CPXENVptr</type>
+        <definition>CPXENVptr ampls::CPLEXDrv::getEnv</definition>
+        <argsstring>()</argsstring>
+        <name>getEnv</name>
+        <briefdescription>
+<para>Get the pointer to the native <computeroutput>CPXENVptr</computeroutput> wrapped by this driver. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="96" column="13" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="96" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_c_p_l_e_x_drv_1a22a4566f3ff3faebe94f68bf950aa792" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ampls::CPLEXDrv::~CPLEXDrv</definition>
+        <argsstring>()</argsstring>
+        <name>~CPLEXDrv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="99" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Encapsulates the main environment of the gurobi driver; without modifications, a static CPLEXENV is created in the AMPL driver, and it would be fairly easy to lose track of it; this way, it is deleted in the destructor. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ampls::CPLEXDrv</label>
+        <link refid="classampls_1_1_c_p_l_e_x_drv"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ampls::impl::SolverDriver&lt; CPLEXModel &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ampls::CPLEXDrv</label>
+        <link refid="classampls_1_1_c_p_l_e_x_drv"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ampls::impl::SolverDriver&lt; CPLEXModel &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" line="82" column="42" bodyfile="D:/Development/ampl/ampls-api/cpp/cplex/include/cplex_interface.h" bodystart="82" bodyend="100"/>
+    <listofallmembers>
+      <member refid="classampls_1_1_c_p_l_e_x_drv_1a322921f9a26cbccdaaabd6483e3bbb58" prot="private" virt="non-virtual"><scope>ampls::CPLEXDrv</scope><name>freeCPLEXEnv</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_drv_1a96c7a62ac06cdc947bc3c5a24f0f2c3f" prot="public" virt="non-virtual"><scope>ampls::CPLEXDrv</scope><name>getEnv</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_drv_1a71082f2f36b151e2f8eda791420fabca" prot="public" virt="non-virtual"><scope>ampls::CPLEXDrv</scope><name>loadModel</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_drv_1a4f6523eb57871a9502d6ddfe6653d7c7" prot="private" virt="non-virtual"><scope>ampls::CPLEXDrv</scope><name>loadModelImpl</name></member>
+      <member refid="classampls_1_1_c_p_l_e_x_drv_1a22a4566f3ff3faebe94f68bf950aa792" prot="public" virt="non-virtual"><scope>ampls::CPLEXDrv</scope><name>~CPLEXDrv</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

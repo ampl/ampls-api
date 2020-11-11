@@ -107,6 +107,12 @@ class XPRESSDrv : public impl::SolverDriver<XPRESSModel> {
   void freeXPRESSEnv();
   XPRESSModel* loadModelImpl(char** args);
 public:
+  /**
+  * Load a model from an NL file.
+  * Mappings between solver row and column numbers and AMPL names are
+  * available only if the row and col files have been generated as well,
+  * by means of the ampl option `option auxfiles cr;` before writing the NL file.
+  */
   XPRESSModel loadModel(const char* modelName);
   ~XPRESSDrv();
 };

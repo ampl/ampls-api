@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structampls_1_1_where" kind="struct" language="C++" prot="public">
+    <compoundname>ampls::Where</compoundname>
+    <includes refid="ampls_8h" local="no">ampls.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042" prot="public" static="no" strong="no">
+        <type></type>
+        <name>CBWhere</name>
+        <enumvalue id="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042a88558f52ddfae4ac1a558c0486e3cd8c" prot="public">
+          <name>MSG</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>When the solver wants to print a message, obtain it via <ref refid="classampls_1_1_generic_callback_1a30728efaf3669ebb32c9526ab1fcec51" kindref="member">GenericCallback::getMessage</ref>. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042ab203fc2f3927fa41df3f738a3eed1739" prot="public">
+          <name>PRESOLVE</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>Presolve phase. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042a7e81cfb76f4bc07a100627ea17e6a403" prot="public">
+          <name>LPSOLVE</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>Executing simplex. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042a523ee4b74d34be2efc4f6fe7c5536505" prot="public">
+          <name>MIPNODE</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Exploring a MIP node. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042aedf156b4c62355855d5ba3a5f048ff78" prot="public">
+          <name>MIPSOL</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+<para>Found a new MIP solution. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042a03ff016dba71af513856af789ed102ef" prot="public">
+          <name>MIP</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+<para>Executing MIP algorithm. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042ab9f95179527c98ecd25ed4ef1a00f1c7" prot="public">
+          <name>NOTMAPPED</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+<para>Not mapped, refer to the specific user documentation. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="79" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="78" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>These (generic) values identify where in the solution process a callback has been called; to get this generic value call GenericCallback::getAMPLType(). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Not all solvers &quot;where&quot; are mapped to these values; in case the callback is called with a not-mapped &quot;where&quot; parameter, refer to the solver-specific functionality. </para>
+    </detaileddescription>
+    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="77" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="76" bodyend="95"/>
+    <listofallmembers>
+      <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>CBWhere</name></member>
+      <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042a7e81cfb76f4bc07a100627ea17e6a403" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>LPSOLVE</name></member>
+      <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042a03ff016dba71af513856af789ed102ef" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>MIP</name></member>
+      <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042a523ee4b74d34be2efc4f6fe7c5536505" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>MIPNODE</name></member>
+      <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042aedf156b4c62355855d5ba3a5f048ff78" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>MIPSOL</name></member>
+      <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042a88558f52ddfae4ac1a558c0486e3cd8c" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>MSG</name></member>
+      <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042ab9f95179527c98ecd25ed4ef1a00f1c7" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>NOTMAPPED</name></member>
+      <member refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042ab203fc2f3927fa41df3f738a3eed1739" prot="public" virt="non-virtual"><scope>ampls::Where</scope><name>PRESOLVE</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

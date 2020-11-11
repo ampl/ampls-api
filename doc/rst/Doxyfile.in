@@ -11,9 +11,9 @@ JAVADOC_AUTOBRIEF = YES
 AUTOLINK_SUPPORT = YES
 INLINE_INHERITED_MEMB = YES
 INHERIT_DOCS = YES
-GENERATE_HTML = YES
+GENERATE_HTML = NO
 GENERATE_XML = YES
-XML_OUTPUT   = doxyxml
+XML_OUTPUT   = xml
 ALIASES = "rst=\verbatim embed:rst"
 ALIASES += "endrst=\endverbatim"
 ALIASES += "rststar=\verbatim embed:rst:leading-asterisk"
@@ -24,4 +24,4 @@ EXPAND_ONLY_PREDEF     = YES
 HIDE_FRIEND_COMPOUNDS  = YES
 PREDEFINED = __cplusplus \
 			 protected=private
-EXCLUDE_SYMBOLS = AMPLAPI_EXPORTS AMPL_EXPLICIT fmt::*
+EXCLUDE_SYMBOLS = AMPLAPI_EXPORTS AMPL_EXPLICIT fmt::* ampls::impl ampls::cpx::impl ampls::grb::impl ampls::xpress::impl

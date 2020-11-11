@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classampls_1_1_generic_callback" kind="class" language="C++" prot="public">
+    <compoundname>ampls::GenericCallback</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ampls::impl::BaseCallback</basecompoundref>
+    <includes refid="ampls_8h" local="no">ampls.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classampls_1_1_generic_callback_1aabceb835e7204f84eaa7c07e068ebf42" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class AMPLModel</definition>
+        <argsstring></argsstring>
+        <name>AMPLModel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="362" column="3" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="362" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classampls_1_1_generic_callback_1a0449a9dec295ad39525dd718aa4a2149" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; impl::BaseCallback &gt;</type>
+        <definition>std::unique_ptr&lt;impl::BaseCallback&gt; ampls::GenericCallback::impl_</definition>
+        <argsstring></argsstring>
+        <name>impl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="365" column="19" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="365" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classampls_1_1_generic_callback_1ac407fd9cc32abe03ba7c41ba9fa20b6f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int ampls::GenericCallback::doAddCut</definition>
+        <argsstring>(int nvars, const int *vars, const double *coeffs, CutDirection::Direction direction, double rhs, int type)</argsstring>
+        <name>doAddCut</name>
+        <param>
+          <type>int</type>
+          <declname>nvars</declname>
+        </param>
+        <param>
+          <type>const int *</type>
+          <declname>vars</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type><ref refid="structampls_1_1_cut_direction_1ac489a749f09eb06578453d6e2c95fbbc" kindref="member">CutDirection::Direction</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rhs</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="368" column="15" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="368" bodyend="373"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classampls_1_1_generic_callback_1a0295e930a87b94a2e3b999384d1b8641" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::GenericCallback::getSolution</definition>
+        <argsstring>(int len, double *sol)</argsstring>
+        <name>getSolution</name>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>sol</declname>
+        </param>
+        <briefdescription>
+<para>Get the current solution vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="377" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="377" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_generic_callback_1ad4a1215d96d6253cc6e6123c1f17fa43" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double ampls::GenericCallback::getObj</definition>
+        <argsstring>()</argsstring>
+        <name>getObj</name>
+        <briefdescription>
+<para>Get the current objective value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="382" column="10" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="382" bodyend="385"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_generic_callback_1a2d083553a3c7d87504a17ba7d573161e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int ampls::GenericCallback::getWhere</definition>
+        <argsstring>()</argsstring>
+        <name>getWhere</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="386" column="7" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="386" bodyend="389"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_generic_callback_1a7f69267f558e37005b58aa20ac542678" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char* ampls::GenericCallback::getWhereString</definition>
+        <argsstring>()</argsstring>
+        <name>getWhereString</name>
+        <briefdescription>
+<para>Get a textual representation of the current solver status. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="391" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="391" bodyend="394"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_generic_callback_1a30728efaf3669ebb32c9526ab1fcec51" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char* ampls::GenericCallback::getMessage</definition>
+        <argsstring>()</argsstring>
+        <name>getMessage</name>
+        <briefdescription>
+<para>Get the message that was being printed (if where == msg) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="396" column="14" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="396" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_generic_callback_1a5c83dffe88e068e92808079272862c9d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structampls_1_1_where_1a947a48282f0b83342b827a7ab6841042" kindref="member">Where::CBWhere</ref></type>
+        <definition>Where::CBWhere ampls::GenericCallback::getAMPLWhere</definition>
+        <argsstring>()</argsstring>
+        <name>getAMPLWhere</name>
+        <briefdescription>
+<para>Return mapped &quot;whereFrom&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="401" column="18" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="401" bodyend="404"/>
+      </memberdef>
+      <memberdef kind="function" id="classampls_1_1_generic_callback_1ae13e8bfc990cc93a2ce335c41fd5e259" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structampls_1_1_variant" kindref="compound">Variant</ref></type>
+        <definition>Variant ampls::GenericCallback::getValue</definition>
+        <argsstring>(Value::CBValue v)</argsstring>
+        <name>getValue</name>
+        <param>
+          <type>Value::CBValue</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Get a value from the solver. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="406" column="11" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="406" bodyend="409"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Base abstract class for generic callbacks, inherit from this to declare a generic callback. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Provides all mapping between solver-specific and generic values. To implement a callback, you should implement the run() method and set it via <ref refid="classampls_1_1_a_m_p_l_model_1a5c20eba868bd9a8207dd44b39c7cdfde" kindref="member">AMPLModel::setCallback()</ref> before starting the solution process via <ref refid="classampls_1_1_a_m_p_l_model_1a7e639a340228e6f93f64fd1de4e44338" kindref="member">AMPLModel::optimize()</ref>. Depending on where the callback is called from, you can obtain various information about the progress of the optimization and can modify the behaviour of the solver. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ampls::GenericCallback</label>
+        <link refid="classampls_1_1_generic_callback"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ampls::impl::BaseCallback</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ampls::GenericCallback</label>
+        <link refid="classampls_1_1_generic_callback"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ampls::impl::BaseCallback</label>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" line="361" column="1" bodyfile="D:/Development/ampl/ampls-api/cpp/ampls/include/ampls/ampls.h" bodystart="360" bodyend="410"/>
+    <listofallmembers>
+      <member refid="classampls_1_1_generic_callback_1ac407fd9cc32abe03ba7c41ba9fa20b6f" prot="private" virt="virtual"><scope>ampls::GenericCallback</scope><name>doAddCut</name></member>
+      <member refid="classampls_1_1_generic_callback_1a5c83dffe88e068e92808079272862c9d" prot="public" virt="non-virtual"><scope>ampls::GenericCallback</scope><name>getAMPLWhere</name></member>
+      <member refid="classampls_1_1_generic_callback_1a30728efaf3669ebb32c9526ab1fcec51" prot="public" virt="non-virtual"><scope>ampls::GenericCallback</scope><name>getMessage</name></member>
+      <member refid="classampls_1_1_generic_callback_1ad4a1215d96d6253cc6e6123c1f17fa43" prot="public" virt="non-virtual"><scope>ampls::GenericCallback</scope><name>getObj</name></member>
+      <member refid="classampls_1_1_generic_callback_1a0295e930a87b94a2e3b999384d1b8641" prot="public" virt="non-virtual"><scope>ampls::GenericCallback</scope><name>getSolution</name></member>
+      <member refid="classampls_1_1_generic_callback_1ae13e8bfc990cc93a2ce335c41fd5e259" prot="public" virt="non-virtual"><scope>ampls::GenericCallback</scope><name>getValue</name></member>
+      <member refid="classampls_1_1_generic_callback_1a2d083553a3c7d87504a17ba7d573161e" prot="public" virt="non-virtual"><scope>ampls::GenericCallback</scope><name>getWhere</name></member>
+      <member refid="classampls_1_1_generic_callback_1a7f69267f558e37005b58aa20ac542678" prot="public" virt="non-virtual"><scope>ampls::GenericCallback</scope><name>getWhereString</name></member>
+      <member refid="classampls_1_1_generic_callback_1a0449a9dec295ad39525dd718aa4a2149" prot="private" virt="non-virtual"><scope>ampls::GenericCallback</scope><name>impl_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

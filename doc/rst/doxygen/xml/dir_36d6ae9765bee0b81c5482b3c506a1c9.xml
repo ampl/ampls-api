@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="dir_36d6ae9765bee0b81c5482b3c506a1c9" kind="dir">
+    <compoundname>D:/Development/ampl/ampls-api/cpp/gurobi/include</compoundname>
+    <innerfile refid="gurobi__callback_8h">gurobi_callback.h</innerfile>
+    <innerfile refid="gurobi__interface_8h">gurobi_interface.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Development/ampl/ampls-api/cpp/gurobi/include/"/>
+  </compounddef>
+</doxygen>
