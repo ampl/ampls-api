@@ -11,7 +11,7 @@ if platform.system() == 'Windows':
     try:
         paths = [
             os.path.join(BASEDIR, 'libs', 'cplex', 'lib', 'win64'),
-            os.path.join(BASEDIR, 'libs', 'ampls', 'lib'),
+            os.path.join(BASEDIR, 'libs', 'ampls', 'win64'),
         ]
         for path in paths:
             dllfile = glob(os.path.join(path, '*.dll'))[0]

@@ -107,8 +107,8 @@ jobs:
         python -m pip install --user --upgrade pip
         python -m pip install urllib3[secure] --upgrade
         python -m pip install cibuildwheel==1.6.4
-        # Skipping python 2.7 (due to c++11) and 3.9 (linking error)
-        CIBW_SKIP='*-win32 pp* cp27-* cp39-*' cibuildwheel --output-dir $TMP .
+        # Skipping python 2.7 (due to c++11)
+        CIBW_SKIP='*-win32 pp* cp27-*' cibuildwheel --output-dir $TMP .
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
         mv $TMP/* $WHEELHOUSE/

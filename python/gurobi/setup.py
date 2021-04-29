@@ -23,21 +23,6 @@ def ls_dir(base_dir):
     ]
 
 
-def make_relative_rpath(paths):
-    if OSTYPE == 'Darwin':
-        return '-Wl,'+','.join([
-            '-rpath,@loader_path/' + path
-            for path in paths
-        ])
-    elif OSTYPE == 'Linux':
-        return '-Wl,'+','.join([
-            '-rpath,$ORIGIN/' + path
-            for path in paths
-        ])
-    else:
-        return ''
-
-
 def compile_args():
     if OSTYPE == 'Windows':
         return ['/TP', '/EHsc']
@@ -61,9 +46,25 @@ def libdir():
         return 'win64'
 
 
+def link_args():
+    rpaths = [
+        os.path.join('amplpy_gurobi', 'libs', 'ampls', libdir()),
+        os.path.join('amplpy_gurobi', 'libs', 'gurobi', 'lib', libdir()),
+    ]
+    if OSTYPE == 'Darwin':
+        return ['-Wl,-rpath,@loader_path/' + rpath for rpath in rpaths]
+    elif OSTYPE == 'Linux':
+        return ['-Wl,-rpath,$ORIGIN/' + rpath for rpath in rpaths]
+    else:
+        # Return [] instead of [''] for Windows in order to avoid:
+        #  cannot open input file '.obj' in build on distutils from Python 3.9
+        # https://github.com/pypa/setuptools/issues/2417
+        return []
+
+
 setup(
     name='amplpy_gurobi',
-    version='0.1.0b8',
+    version='0.1.0b10',
     description='GUROBI extension for amplpy',
     long_description=__doc__,
     license='BSD-3',
@@ -113,10 +114,7 @@ setup(
         ],
         libraries=['gurobi90', 'gurobi-lib'],
         extra_compile_args=compile_args(),
-        extra_link_args=[make_relative_rpath([
-            os.path.join('amplpy_gurobi', 'libs', 'ampls', libdir()),
-            os.path.join('amplpy_gurobi', 'libs', 'gurobi', 'lib', libdir()),
-        ])],
+        extra_link_args=link_args(),
         sources=[
             os.path.join('amplpy_gurobi', 'swig',
                          'amplpy_gurobi_swig_wrap.cxx')
