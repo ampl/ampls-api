@@ -27,7 +27,9 @@ class MyGenericCallback : public ampls::GenericCallback
     // Get the generic mapping
     ampls::Where::CBWhere where = getAMPLWhere();
     printf("Where: %i\n", where);
-    return 0;
+    if(where != ampls::Where::MSG)
+      printf("Time elapsed: %fs\n", getValue(ampls::Value::RUNTIME).dbl);
+    
     switch (where)
     {
     case ampls::Where::MSG:

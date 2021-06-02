@@ -146,6 +146,8 @@ public:
         return get(GRB_CB_MIP_ITRCNT);
       if (where_ == GRB_CB_BARRIER)
         return get(GRB_CB_BARRIER_ITRCNT);
+    case Value::RUNTIME:
+      return get(GRB_CB_RUNTIME);
     default:
       throw AMPLSolverException("Specified value unknown.");
     }

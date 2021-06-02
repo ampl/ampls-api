@@ -138,6 +138,13 @@ public:
       return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
     case Value::MIP_RELATIVEGAP:
       return get(CPX_CALLBACK_INFO_MIP_REL_GAP);
+    case Value::RUNTIME:
+    {
+      double time;
+      int status = CPXXgettime(env_, &time);
+      double starttime = getDouble(CPX_CALLBACK_INFO_STARTTIME);
+      return Variant(time- starttime);
+    }
     default: throw AMPLSolverException("Specified value unknown.");
     }
   }

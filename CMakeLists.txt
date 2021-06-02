@@ -16,6 +16,9 @@ set(BUILD "" CACHE STRING "Comma-separated list of solver drivers to build,  set
 if (BUILD)
   if (BUILD STREQUAL all)
     message(STATUS "Building all solvers")
+    foreach(s ${SOLVER_NAMES})
+      set(ENABLE_${s} on)
+    endforeach()
   else()
     string(REGEX MATCHALL "[^,]+" SOLVERS_TOBUILD "${BUILD}")
     # Disable all
@@ -79,9 +82,9 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/903)
-  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/1210)
-  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/36.01.10)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/911)
+  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2010)
+  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/37.01.03)
 else()
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs)
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi)
@@ -94,10 +97,10 @@ foreach(s ${SOLVER_NAMES})
 endforeach()
 
 if(WIN32)
-    set(gurobi_LIBRARY "${gurobi_BASE_DIR}/lib/win64/gurobi90.lib"
-                       "${gurobi_BASE_DIR}/lib/win64/gurobi90.dll")
-    set(cplex_LIBRARY "${cplex_BASE_DIR}/lib/win64/cplex12100.lib"
-                      "${cplex_BASE_DIR}/lib/win64/cplex12100.dll")
+    set(gurobi_LIBRARY "${gurobi_BASE_DIR}/lib/win64/gurobi91.lib"
+                       "${gurobi_BASE_DIR}/lib/win64/gurobi91.dll")
+    set(cplex_LIBRARY "${cplex_BASE_DIR}/lib/win64/cplex2010.lib"
+                      "${cplex_BASE_DIR}/lib/win64/cplex2010.dll")
     set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/win64/xprs.lib)
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/win64) # AMPL base driver library locations
 elseif(APPLE)

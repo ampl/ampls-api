@@ -110,8 +110,11 @@ struct Value
     PRE_DELROWS = 2,
     PRE_COEFFCHANGED = 3,
     ITERATIONS = 4,
+    RUNTIME = 5,
 
-    MIP_RELATIVEGAP = 5
+    MIP_RELATIVEGAP = 6
+
+    
   };
 };
 struct CutDirection {
