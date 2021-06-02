@@ -128,7 +128,7 @@ int main(int argc, char** argv) {
   ampls::XPRESSDrv xpress;
   ampls::XPRESSModel x = xpress.loadModel(buffer);
   // Use it as generic model
- // doStuff(x, "xpress");
+  doStuff(x, "xpress");
 #endif
   return 1;
  

@@ -1,12 +1,75 @@
 #include "cplex_interface.h"
 #include "cplex_callback.h"
 
+
+#define CPX_CALL( call ) do { if (int e=call) \
+  throw AMPLSolverException::format( \
+    "  Call failed: %s with code %d", #call, e ); } while (0)
+
+
 namespace ampls
 {
 char errbuf[CPXMESSAGEBUFSIZE];
 const char* CPLEXCallback::getMessage() {
   return msg_;
 }
+
+
+double CPLEXCallback::getDouble(int what)
+{
+  double res;
+  CPX_CALL(CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
+    what, &res));
+  return res;
+}
+
+int CPLEXCallback::getInt(int what)
+{
+  int res;
+  int status;
+  if (what < CPX_CALLBACK_INFO_NODE_SIINF)
+  {
+    status = CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
+      what, &res);
+    if (status)
+    {
+      printf("While getting %d (where=%d)\n", what, where_);
+      printf("ERROR %s\n", model_->error(status).c_str());
+    }
+    return res;
+  }
+  throw std::runtime_error("Not supported yet");
+}
+
+Variant CPLEXCallback::getValue(Value::CBValue v) {
+  switch (v)
+  {
+  case Value::ITERATIONS:
+    if (where_ < CPX_CALLBACK_MIP)
+      return get(CPX_CALLBACK_INFO_ITCOUNT);
+    else
+      return get(CPX_CALLBACK_INFO_MIP_ITERATIONS);
+  case Value::OBJ:
+    return Variant(getObj());
+  case Value::PRE_DELCOLS:
+    return get(CPX_CALLBACK_INFO_PRESOLVE_COLSGONE);
+  case Value::PRE_DELROWS:
+    return get(CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE);
+  case Value::PRE_COEFFCHANGED:
+    return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
+  case Value::MIP_RELATIVEGAP:
+    return get(CPX_CALLBACK_INFO_MIP_REL_GAP);
+  case Value::RUNTIME:
+  {
+    double time;
+    CPX_CALL(CPXXgettime(env_, &time));
+    double starttime = getDouble(CPX_CALLBACK_INFO_STARTTIME);
+    return Variant(time - starttime);
+  }
+  default: throw AMPLSolverException("Specified value unknown.");
+  }
+}
+
 
 int CPLEXCallback::doAddCut(int nvars, const int* vars,
   const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {

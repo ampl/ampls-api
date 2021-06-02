@@ -88,4 +88,20 @@ Variant XPRESSCallback::get(int what)
   throw AMPLSolverException("Invalid parameter");
 }
 
+Variant XPRESSCallback::getValue(Value::CBValue v) {
+  switch (v)
+  {
+  case Value::PRE_DELCOLS:
+    return Variant(getInt(XPRS_ORIGINALCOLS) - getInt(XPRS_COLS));
+  case Value::PRE_DELROWS:
+    return Variant(getInt(XPRS_ORIGINALROWS) - getInt(XPRS_ROWS));
+  case Value::PRE_COEFFCHANGED:
+    return Variant(0);
+  case Value::RUNTIME:
+    return Variant(((double)clock() - ((XPRESSModel*)model_)->tStart_) / CLOCKS_PER_SEC);
+  }
+  throw std::runtime_error("Not supported yet");
+  return Variant(); // silence gcc warning
+}
+
 } // namespace

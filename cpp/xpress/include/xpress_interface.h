@@ -10,6 +10,7 @@
 #include "ampls/ampls.h"
 #include "xpress_callback.h"
 
+#include "time.h"
 
 struct ASL;
 
@@ -131,6 +132,8 @@ class XPRESSModel : public AMPLModel {
   mutable bool copied_;
   xpress::impl::XPressDriverState* state_;
   XPRSprob prob_;
+  friend XPRESSCallback;
+  clock_t tStart_;
 
   XPRESSModel() :  copied_(false), state_(NULL),
     prob_(NULL) {}

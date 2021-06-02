@@ -9,6 +9,9 @@
 
 #include "ilcplex/cplex.h"
 
+
+
+
 namespace ampls
 {
 namespace cpx { namespace impl { class CBWrap; } }
@@ -93,61 +96,13 @@ public:
   /** Get a  value at this stage of the solution process */
   Variant get(int what);
   /** Get an integer value at this stage of the solution process*/
-  int getInt(int what)
-  {
-    int res;
-    int status;
-    if (what < CPX_CALLBACK_INFO_NODE_SIINF)
-    {
-      status = CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
-        what, &res);
-      if (status)
-      {
-        printf("While getting %d (where=%d)\n", what, where_);
-        printf("ERROR %s\n", model_->error(status).c_str());
-      }
-      return res;
-    }
-    throw std::runtime_error("Not supported yet");
-  }
+  int getInt(int what);
 
   /** Get a double value at this stage of the solution process*/
-  double getDouble(int what)
-  {
-    double res;
-    int status = CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
-      what, &res);
-    return res;
-  }
+  double getDouble(int what);
 
-  virtual Variant getValue(Value::CBValue v) {
-    switch (v)
-    {
-    case Value::ITERATIONS:
-      if (where_ < CPX_CALLBACK_MIP)
-        return get(CPX_CALLBACK_INFO_ITCOUNT);
-      else
-        return get(CPX_CALLBACK_INFO_MIP_ITERATIONS);
-    case Value::OBJ:
-      return Variant(getObj());
-    case Value::PRE_DELCOLS:
-      return get(CPX_CALLBACK_INFO_PRESOLVE_COLSGONE);
-    case Value::PRE_DELROWS:
-      return get(CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE);
-    case Value::PRE_COEFFCHANGED:
-      return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
-    case Value::MIP_RELATIVEGAP:
-      return get(CPX_CALLBACK_INFO_MIP_REL_GAP);
-    case Value::RUNTIME:
-    {
-      double time;
-      int status = CPXXgettime(env_, &time);
-      double starttime = getDouble(CPX_CALLBACK_INFO_STARTTIME);
-      return Variant(time- starttime);
-    }
-    default: throw AMPLSolverException("Specified value unknown.");
-    }
-  }
+  virtual Variant getValue(Value::CBValue v);
+
 };
 
 } // namespace
