@@ -11,6 +11,8 @@
 // that cannot properly map an out double[].
 // Not yet.
 %ignore ampls::GurobiCallback::getSolution;
+%template(SolverDriverGrb) ampls::impl::SolverDriver<ampls::GurobiModel>;
+
 
 %include "gurobi_c.h"
 %include "gurobi_callback.h"

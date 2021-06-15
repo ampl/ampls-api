@@ -125,33 +125,7 @@ public:
   /** Get a value (using gurobi C library enumeration to specify what)*/
   Variant get(int what);
   
-  virtual Variant getValue(Value::CBValue v) {
-    switch (v)
-    {
-    case Value::OBJ:
-      return Variant(getObj());
-    case Value::MIP_RELATIVEGAP:
-      return get(GRB_CB_MIPNODE_REL);
-    case Value::PRE_DELCOLS:
-      return get(GRB_CB_PRE_COLDEL);
-    case Value::PRE_DELROWS:
-      return get(GRB_CB_PRE_ROWDEL);
-    case Value::PRE_COEFFCHANGED:
-      return get(GRB_CB_PRE_COECHG);
-    case Value::ITERATIONS:
-      if (where_ == GRB_CB_SIMPLEX)
-        return get(GRB_CB_SPX_ITRCNT);
-      if ((where_ >= GRB_CB_MIP) &&
-        (where_ >= GRB_CB_MIPNODE))
-        return get(GRB_CB_MIP_ITRCNT);
-      if (where_ == GRB_CB_BARRIER)
-        return get(GRB_CB_BARRIER_ITRCNT);
-    case Value::RUNTIME:
-      return get(GRB_CB_RUNTIME);
-    default:
-      throw AMPLSolverException("Specified value unknown.");
-    }
-  }
+  virtual Variant getValue(Value::CBValue v);
 };
 
 } // namespace

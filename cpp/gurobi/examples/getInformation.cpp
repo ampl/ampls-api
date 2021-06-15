@@ -47,29 +47,6 @@ class MyGurobiCallback : public ampls::GurobiCallback
     {
       printf("GRB_CB_MIP_SOLCNT %d\n", getInt(GRB_CB_MIP_SOLCNT));
       printf("GRB_CB_MIP_OBJBST %f\n", getDouble(GRB_CB_MIP_OBJBST));
-    }
-    else if (where == GRB_CB_SIMPLEX)
-    {
-      /* Simplex callback */
-      double itcnt, obj, pinf, dinf;
-      int    ispert;
-      char   ch;
-      itcnt = getInt(GRB_CB_SPX_ITRCNT);
-      
-      if (itcnt - lastIter >= 100) {
-        lastIter = itcnt;
-        obj = getDouble(GRB_CB_SPX_OBJVAL);
-        ispert = getInt(GRB_CB_SPX_ISPERT);
-        pinf = getDouble(GRB_CB_SPX_PRIMINF);
-        dinf = getDouble(GRB_CB_SPX_DUALINF);
-        if (ispert == 0) ch = ' ';
-        else if (ispert == 1) ch = 'S';
-        else                  ch = 'P';
-        printf("%7.0f %14.7e%c %13.6e %13.6e\n", itcnt, obj, ch, pinf, dinf);
-      }
-    }
-    else if (where == GRB_CB_MIP)
-    {
       double objBest = getDouble(GRB_CB_MIP_OBJBST);
       double objBnd = getDouble(GRB_CB_MIP_OBJBND);
       if (fabs(objBest - objBnd) < 0.1 * (1.0 + fabs(objBest))) {
@@ -77,9 +54,29 @@ class MyGurobiCallback : public ampls::GurobiCallback
         GRBterminate(getGRBModel());
       }
     }
+      else if (where == GRB_CB_SIMPLEX)
+      {
+        /* Simplex callback */
+        double itcnt, obj, pinf, dinf;
+        int    ispert;
+        char   ch;
+        itcnt = getInt(GRB_CB_SPX_ITRCNT);
+
+        if (itcnt - lastIter >= 100) {
+          lastIter = itcnt;
+          obj = getDouble(GRB_CB_SPX_OBJVAL);
+          ispert = getInt(GRB_CB_SPX_ISPERT);
+          pinf = getDouble(GRB_CB_SPX_PRIMINF);
+          dinf = getDouble(GRB_CB_SPX_DUALINF);
+          if (ispert == 0) ch = ' ';
+          else if (ispert == 1) ch = 'S';
+          else                  ch = 'P';
+          printf("%7.0f %14.7e%c %13.6e %13.6e\n", itcnt, obj, ch, pinf, dinf);
+        }
+      }
     printf("** End of callback handler **\n\n");
     return 0;
-  }
+    }
 };
 
 

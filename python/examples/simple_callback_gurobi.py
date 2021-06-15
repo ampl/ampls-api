@@ -22,12 +22,12 @@ class MyCallback(ampls.GurobiCallback):
             global CALL_COUNT_MIP, CALL_COUNT_MIPSOL
             if where == ampls.GRB_CB_MIPSOL:
                 CALL_COUNT_MIPSOL += 1
-                print(self.getSolution())
+                print(self.getSolutionVector())
                 print("GRB_CB_MIP_SOL #{}!".format(CALL_COUNT_MIPSOL))
             elif where == ampls.GRB_CB_MIP:
                 CALL_COUNT_MIP += 1
                 print("GRB_CB_MIP #{}!".format(CALL_COUNT_MIP))
-                print(self.getSolution())
+                print(self.getSolutionVector())
                 if CALL_COUNT_MIP >= 10:
                     return 1
         except Exception as e:
@@ -38,7 +38,8 @@ class MyCallback(ampls.GurobiCallback):
 m = ampl.exportGurobiModel()
 cb = MyCallback()
 m.setCallback(cb)
-obj = m.optimize()
+m.optimize()
+obj = m.getObj()
 nvars = m.getNumVars()
 err = m.writeSol()
 

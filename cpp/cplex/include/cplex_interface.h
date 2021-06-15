@@ -110,18 +110,34 @@ At the end of its life, it deletes the relative structures.
 class CPLEXModel : public AMPLModel {
   friend CPLEXDrv;
 
+  // map
+  std::map<int, int> parametersMap = {
+     {SolverParams::INT_SolutionLimit , CPXPARAM_MIP_Limits_Solutions},
+     {SolverParams::DBL_MIPGap , CPXPARAM_MIP_Tolerances_MIPGap},
+     {SolverParams::DBL_TimeLimit , CPXPARAM_TimeLimit}
+  };
+  int getCPXParamAlias(SolverParams::SolverParameters params)
+  {
+    auto cpxParam = parametersMap.find(params);
+    if (cpxParam != parametersMap.end())
+      return cpxParam->second;
+    throw AMPLSolverException("Not implemented!");
+  }
+
   mutable bool copied_;
   cpx::impl::CPLEXDriverState* state_;
   int status_;
   CPXLPptr model_;
   ASL* asl_;
   int lastErrorCode_;
-  CPLEXModel() :  copied_(false), state_(NULL), status_(0) , 
-    model_(NULL), asl_(NULL),lastErrorCode_(0) {}
-  
+  CPLEXModel() : copied_(false), state_(NULL), status_(0),
+    model_(NULL), asl_(NULL), lastErrorCode_(0) {}
+
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
   void writeSolImpl(const char* solFileName);
+
+
 
 public:
   CPLEXModel(const CPLEXModel& other) :
@@ -136,48 +152,49 @@ public:
     fileName_ = other.fileName_;
     other.copied_ = true;
   }
-  
+
+
   Status::SolStatus getStatus() {
     int cpxstatus = CPXgetstat(getCPXENV(), model_);
-    switch (cpxstatus) 
+    switch (cpxstatus)
     {
-      case CPX_STAT_OPTIMAL: // simplex and barrier optimal
-      case CPXMIP_OPTIMAL: // MIP optimal
-      case CPXMIP_OPTIMAL_TOL:
-        return Status::OPTIMAL;
-      case CPX_STAT_INFEASIBLE: // Problem infeasible
-      case CPXMIP_INFEASIBLE:
-        return Status::INFEASIBLE;
-      case CPX_STAT_UNBOUNDED: // Problem unbounded
-      case CPXMIP_UNBOUNDED:
-        return Status::UNBOUNDED;
-      case CPX_STAT_ABORT_OBJ_LIM: // Objective limit exceeded
-      case CPX_STAT_ABORT_PRIM_OBJ_LIM: 
-      case CPX_STAT_ABORT_DUAL_OBJ_LIM:
-      case CPX_STAT_CONFLICT_ABORT_OBJ_LIM:
-      case CPXMIP_SOL_LIM:
-        return Status::LIMIT_SOLUTION;
-      case CPX_STAT_ABORT_IT_LIM:
-      case CPX_STAT_CONFLICT_ABORT_IT_LIM:
-      case CPXMIP_NODE_LIM_FEAS:
-      case CPXMIP_NODE_LIM_INFEAS:
-        return Status::LIMIT_ITERATION;
-      case CPX_STAT_ABORT_DETTIME_LIM:
-      case CPX_STAT_ABORT_TIME_LIM:
-      case CPX_STAT_CONFLICT_ABORT_DETTIME_LIM:
-      case CPXMIP_DETTIME_LIM_FEAS:
-      case CPXMIP_DETTIME_LIM_INFEAS:
-      case CPXMIP_TIME_LIM_FEAS:
-      case CPXMIP_TIME_LIM_INFEAS:
-        return Status::LIMIT_TIME;
-      case CPX_STAT_ABORT_USER:
-      case CPXMIP_ABORT_FEAS:
-      case CPXMIP_ABORT_INFEAS:
-      case CPXMIP_ABORT_RELAXATION_UNBOUNDED:
-      case CPXMIP_ABORT_RELAXED:
-        return Status::INTERRUPTED;
-      default:
-        return Status::UNKNOWN;
+    case CPX_STAT_OPTIMAL: // simplex and barrier optimal
+    case CPXMIP_OPTIMAL: // MIP optimal
+    case CPXMIP_OPTIMAL_TOL:
+      return Status::OPTIMAL;
+    case CPX_STAT_INFEASIBLE: // Problem infeasible
+    case CPXMIP_INFEASIBLE:
+      return Status::INFEASIBLE;
+    case CPX_STAT_UNBOUNDED: // Problem unbounded
+    case CPXMIP_UNBOUNDED:
+      return Status::UNBOUNDED;
+    case CPX_STAT_ABORT_OBJ_LIM: // Objective limit exceeded
+    case CPX_STAT_ABORT_PRIM_OBJ_LIM:
+    case CPX_STAT_ABORT_DUAL_OBJ_LIM:
+    case CPX_STAT_CONFLICT_ABORT_OBJ_LIM:
+    case CPXMIP_SOL_LIM:
+      return Status::LIMIT_SOLUTION;
+    case CPX_STAT_ABORT_IT_LIM:
+    case CPX_STAT_CONFLICT_ABORT_IT_LIM:
+    case CPXMIP_NODE_LIM_FEAS:
+    case CPXMIP_NODE_LIM_INFEAS:
+      return Status::LIMIT_ITERATION;
+    case CPX_STAT_ABORT_DETTIME_LIM:
+    case CPX_STAT_ABORT_TIME_LIM:
+    case CPX_STAT_CONFLICT_ABORT_DETTIME_LIM:
+    case CPXMIP_DETTIME_LIM_FEAS:
+    case CPXMIP_DETTIME_LIM_INFEAS:
+    case CPXMIP_TIME_LIM_FEAS:
+    case CPXMIP_TIME_LIM_INFEAS:
+      return Status::LIMIT_TIME;
+    case CPX_STAT_ABORT_USER:
+    case CPXMIP_ABORT_FEAS:
+    case CPXMIP_ABORT_INFEAS:
+    case CPXMIP_ABORT_RELAXATION_UNBOUNDED:
+    case CPXMIP_ABORT_RELAXED:
+      return Status::INTERRUPTED;
+    default:
+      return Status::UNKNOWN;
     }
   }
 
@@ -204,7 +221,7 @@ public:
     setParam(CPXPARAM_MIP_Strategy_CallbackReducedLP, CPX_OFF);
     setParam(CPXPARAM_Preprocessing_Linear, 0);
   }
-  
+
   // ********************* CPLEX specific *********************
 
   /** Get the pointer to the native CPLEX LP model object */
@@ -215,6 +232,7 @@ public:
   CPXENVptr getCPXENV() {
     return cpx::impl::AMPLCPLEXgetInternalEnv();
   }
+
   /** Set an integer CPLEX control parameter */
   void setParam(int CPXPARAM, int value) {
     int status = CPXsetintparam(getCPXENV(), CPXPARAM, value);
@@ -225,6 +243,24 @@ public:
     int status = CPXsetdblparam(getCPXENV(), CPXPARAM, value);
     AMPLSCPXERRORCHECK("CPXsetdblparam");
   }
+
+  /** Get an integer CPLEX control parameter */
+  int getIntParam(int CPXPARAM) {
+    int value;
+    int status = CPXgetintparam(getCPXENV(), CPXPARAM, &value);
+    AMPLSCPXERRORCHECK("CPXgetintparam");
+    return value;
+  }
+
+  /** Get a double CPLEX control parameter */
+  double getDoubleParam(int CPXPARAM) {
+    double value;
+    int status = CPXgetdblparam(getCPXENV(), CPXPARAM, &value);
+    AMPLSCPXERRORCHECK("CPXgetdblparam");
+    return value;
+  }
+
+
 
   ~CPLEXModel() {
     // TODO: This way the CPLEX environment is closed when the model is closed, wich makes sense
@@ -239,6 +275,27 @@ public:
     if (asl_)
       cpx::impl::AMPLCPLEXfreeASL(&asl_);
   }
+
+  /**Get an integer parameter using ampls aliases*/
+  int getAMPLsIntParameter(SolverParams::SolverParameters params) {
+    return getIntParam(getCPXParamAlias(params));
+  }
+  /**Get a double parameter using ampls aliases*/
+  double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
+    return getDoubleParam(getCPXParamAlias(params));
+  }
+
+  /**Set an integer parameter using ampls aliases*/
+  void setAMPLsParameter(SolverParams::SolverParameters params,
+    int value) {
+    setParam(getCPXParamAlias(params), value);
+  }
+  /**Set a double parameter using ampls aliases*/
+  void setAMPLsParameter(SolverParams::SolverParameters params,
+    double value) {
+    setParam(getCPXParamAlias(params), value);
+  }
+
 };
 
 } // namespace

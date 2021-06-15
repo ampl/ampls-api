@@ -75,7 +75,9 @@ int GurobiModel::getIntAttr(const char* name) {
 }
 double GurobiModel::getDoubleAttr(const char* name) {
   double v;
-  int r = GRBgetdblattr(GRBModel_, name, &v);
+  int r = GRBgetdblattr(GRBModel_, name, &v); 
+  if (r != 0)
+    return -1;
   return v;
 }
 

@@ -54,6 +54,7 @@ namespace gurobisharp_test
       public override int run()
       {
         var f = getAMPLWhere();
+        System.Console.WriteLine($"Elapsed time {getValue(Value.CBValue.RUNTIME)}");
         switch(f)
         {
           case Where.LPSOLVE:
@@ -69,7 +70,6 @@ namespace gurobisharp_test
           case Where.NOTMAPPED:
             Console.WriteLine($"Not mapped! Where = {getWhereString()}");
             break;
-
           default:
             return 0;
         }
@@ -80,6 +80,7 @@ namespace gurobisharp_test
       static void Main(string[] args)
     {
       GurobiDrv g = new GurobiDrv();
+      
             try
             {
                 var m = g.loadModel(@"D:\Development\AMPL\solvers-public\test\models\tsp.nl");

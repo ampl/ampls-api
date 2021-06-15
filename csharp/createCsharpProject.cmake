@@ -7,8 +7,12 @@ find_package(CSharp)
 include(${CSHARP_USE_FILE})
 
 # ############ Create SWIG wrapper #############
+# Workaround to bypass licensing routines
+set(gurobi_INCLUDE_DIR ${gurobi_INCLUDE_DIR}/gurobi)
+set(includeDir ${${solvername}_INCLUDE_DIR})
+
 include_directories(
-  ${${solvername}_INCLUDE_DIR} # for solver headers
+  ${includeDir} # for solver headers
   ${DIR_CPP_INCLUDE} # for solver api includes
   ${ampls_INCLUDE})
 

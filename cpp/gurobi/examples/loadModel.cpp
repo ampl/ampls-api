@@ -69,5 +69,8 @@ int main(int argc, char** argv) {
       printf("Index: %i AMPL: %s=%f\n", i, gf[i].c_str(), vars[i]);
   }
   delete[] varsFromGurobi;
+
+
+
   return 0;
 }

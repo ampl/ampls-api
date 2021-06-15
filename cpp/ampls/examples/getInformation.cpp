@@ -26,14 +26,13 @@ class MyGenericCallback : public ampls::GenericCallback
     double obj;
     // Get the generic mapping
     ampls::Where::CBWhere where = getAMPLWhere();
-    printf("Where: %i\n", where);
-    if(where != ampls::Where::MSG)
-      printf("Time elapsed: %fs\n", getValue(ampls::Value::RUNTIME).dbl);
+   // printf("Where: %i\n", where);
+    
     
     switch (where)
     {
     case ampls::Where::MSG:
-     // printf(getMessage());
+    //  printf(getMessage());
       return 0;
     case ampls::Where::PRESOLVE:
       if((getValue(ampls::Value::PRE_DELROWS).integer+
@@ -47,15 +46,19 @@ class MyGenericCallback : public ampls::GenericCallback
     case ampls::Where::MIPNODE:
       nMIPnodes++;
       printf("\nNew MIP node. Count: %d", nMIPnodes);
+      printf("\nRel MIP GAP: %f", getValue(ampls::Value::MIP_RELATIVEGAP).dbl);
       return 0;
     case ampls::Where::MIP:
     case ampls::Where::MIPSOL:
       try {
         obj = getObj();
         printf("\nMIP Objective = %f", getObj());
+        printf("\nRel MIP GAP: %f", getValue(ampls::Value::MIP_RELATIVEGAP).dbl);
         return 0;
       }
-      catch (...) {}
+      catch (...) {
+        return 0;
+      }
     case ampls::Where::NOTMAPPED:
       printf("\nNot mapped! Where: %s", getWhereString());
     }
@@ -69,6 +72,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   // Set a (generic) callback
   MyGenericCallback cb;
   m.setCallback(&cb);
+  m.setAMPLsParameter(ampls::SolverParams::DBL_MIPGap, 0.9);
   // Start the optimization process
   m.optimize();
   // Get the objective value
@@ -113,8 +117,10 @@ int main(int argc, char** argv) {
   ampls::GurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
   doStuff(g, "gurobi");
+  double mipgap = g.getDoubleAttr(GRB_DBL_ATTR_MIPGAP);
+  printf("\nFINAL MIP GAP=%f\n", mipgap);
 #endif
-
+  /*
 #ifdef USE_cplex
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
@@ -130,6 +136,7 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(x, "xpress");
 #endif
-  return 1;
+*/
+  return 0;
  
 }

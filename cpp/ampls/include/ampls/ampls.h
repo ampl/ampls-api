@@ -62,9 +62,20 @@ struct Variant
 // Forward declarations
 class AMPLModel;
 class GenericCallback;
-char** generateArguments(const char* modelName);
+char** generateArguments(const char* modelName, std::vector<std::string> options);
 void deleteParams(char** params);
 
+
+struct SolverParams
+{
+  enum SolverParameters
+  {
+    DBL_MIPGap,
+    DBL_TimeLimit,
+
+    INT_SolutionLimit
+  };
+};
 
 struct Where
 {
@@ -113,8 +124,6 @@ struct Value
     RUNTIME = 5,
 
     MIP_RELATIVEGAP = 6
-
-    
   };
 };
 struct CutDirection {
@@ -343,10 +352,11 @@ public:
 */
 template<class T> class SolverDriver
 {
+  std::vector<std::string> options_;
+
   AMPLMutex loadMutex;
 protected:
   virtual T* loadModelImpl(char** args) = 0;
-public:
   /**
   Not to be used directly; to be called in the solver driver `loadModel` function implementations to provide
   common functionalities like mutex and exception handling
@@ -361,8 +371,8 @@ public:
 
     char** args = NULL;
     try {
-      
-      args = generateArguments(modelName);
+
+      args = generateArguments(modelName, options_);
       loadMutex.Lock();
       T* mod = loadModelImpl(args);
       loadMutex.Unlock();
@@ -375,9 +385,13 @@ public:
       throw e;
     }
   }
-
+public:
+  SolverDriver() {}
   ~SolverDriver() {}
 
+  void setOptions(std::vector<std::string> options) {
+    options_ = options; 
+  }
 };
 } // namespace impl
 
@@ -602,6 +616,26 @@ public:
   Utility function: prints all variables to screen
   */
   void printModelVars(bool onlyNonZero);
+
+  /**Set an integer parameter using ampls aliases*/
+  virtual void setAMPLsParameter(SolverParams::SolverParameters params,
+    int value) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  /**Set a double parameter using ampls aliases*/
+  virtual void setAMPLsParameter(SolverParams::SolverParameters params,
+    double value) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+
+  /**Set an integer parameter identified by its ampls aliase*/
+  virtual int getAMPLsIntParameter(SolverParams::SolverParameters params)  {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  /**Get a double parameter identified by its ampls alias*/
+  virtual double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
 };
 
 } // namespace

@@ -9,20 +9,26 @@
 
 namespace ampls
 {
-char** generateArguments(const char* modelName)
+char** generateArguments(const char* modelName, std::vector<std::string> options)
 {
+  
   // Add exe name, -AMPL and \0
-  char** params = new char* [4];
+  char** params = new char* [options.size()+4];
   const char* MYNAME = "my";
   const char* OPTION = "-AMPL";
 
   params[0] = new char[strlen(MYNAME) + 1];
-  params[1] = new char[strlen(modelName) + 1];
-  params[2] = new char[strlen(OPTION) + 1];
   strcpy(params[0], MYNAME);
-  strcpy(params[2], OPTION);
+  params[1] = new char[strlen(modelName) + 1];
   strcpy(params[1], modelName);
-  params[3] = NULL;
+  params[2] = new char[strlen(OPTION) + 1];
+  strcpy(params[2], OPTION);
+  for (int i = 0; i < options.size(); i++)
+  {
+    params[i + 3] = new char[strlen(options[i].data()) + 1];
+    strcpy(params[i+3], options[i].data());
+  }
+  params[3+ options.size()] = NULL;
   return params;
 }
 

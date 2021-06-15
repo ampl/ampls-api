@@ -5,8 +5,12 @@ find_package(PythonLibs REQUIRED)
 set(PYTHON_SWIG_API amplpy_${solvername}_swig) # name of swig generated wrapper
 
 # ############ Create SWIG wrapper #############
+# Workaround to bypass licensing routines
+set(gurobi_INCLUDE_DIR ${gurobi_INCLUDE_DIR}/gurobi)
+set(includeDir ${${solvername}_INCLUDE_DIR})
+
 include_directories(
-  ${PYTHON_INCLUDE_PATH} ${${solvername}_INCLUDE_DIR} # for solver headers
+  ${PYTHON_INCLUDE_PATH} ${includeDir} # for solver headers
   ${DIR_CPP_INCLUDE} # for solver_interface.h
   ${ampls_INCLUDE})
 
@@ -19,12 +23,8 @@ set(SWIG_PYTHON_MODULE_NAME "amplpy_${solvername}/swig/amplpy_${solvername}_swig
 set(SWIG_PYTHON_WRAPPER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}.py")
 set(SWIG_CPP_SOURCE "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.cxx")
 set(SWIG_CPP_HEADER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.h")
-
 set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES CPLUSPLUS
                                                                     ON)
-#set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES SWIG_FLAGS
-#                                                                    "-builtin")
-
 add_swig_library(${PYTHON_SWIG_API} python ${SWIG_PYTHON_MODULE_NAME}.i)
 if(NOT ${solvername} STREQUAL "ampls")
 swig_link_libraries(${PYTHON_SWIG_API} ${solvername}-drv                    
@@ -63,11 +63,11 @@ add_custom_target(
           ${wheel_dir}/${PYTHON_SWIG_API}_wrap.h)
 
 add_to_folder(${solvername}/swig/py ${PYTHON_SWIG_API} amplpy_${solvername}_updatewheel)
-
+message("CMAKE_CURRENT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}")
 if(MSVC)
   include_external_msproject(
     amplpy_${solvername}_examples
-    ${CMAKE_CURRENT_SOURCE_DIR}/examples/amplpy_${solvername}_examples.pyproj
+    ${CMAKE_CURRENT_SOURCE_DIR}/../examples/amplpy_${solvername}_examples.pyproj
     amplpy_${solvername}_examples)
   add_to_folder(${solvername}/swig/py amplpy_${solvername}_examples)
   add_custom_command(TARGET amplpy_${solvername}_updatewheel

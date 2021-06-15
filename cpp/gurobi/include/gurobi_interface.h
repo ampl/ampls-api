@@ -46,6 +46,8 @@ class Callback;
 Encapsulates the main environment of the gurobi driver
 */
 class GurobiDrv : public impl::SolverDriver<GurobiModel>  {
+
+
   void freeGurobiEnv();
 
   GurobiModel* loadModelImpl(char** args);
@@ -57,6 +59,7 @@ public:
   * by means of the ampl option `option auxfiles cr;` before writing the NL file.
   */
   GurobiModel loadModel(const char* modelName);
+
   ~GurobiDrv();
 };
 
@@ -73,6 +76,21 @@ we could use directly the C pointer to GRBmodel.
 class GurobiModel : public AMPLModel {
   friend GurobiDrv;
 
+  // map
+  std::map<int, const char*> parametersMap = {
+     {SolverParams::INT_SolutionLimit , GRB_INT_PAR_SOLUTIONLIMIT},
+     {SolverParams::DBL_MIPGap , GRB_DBL_PAR_MIPGAP},
+     {SolverParams::DBL_TimeLimit , GRB_DBL_PAR_TIMELIMIT}
+  };
+
+  const char* getGRBParamAlias(SolverParams::SolverParameters params)
+  {
+    auto cpxParam = parametersMap.find(params);
+    if (cpxParam != parametersMap.end())
+      return cpxParam->second;
+    throw AMPLSolverException("Not implemented!");
+  }
+
   mutable bool copied_;
   GRBmodel* GRBModel_;
   ASL* asl_;
@@ -88,7 +106,7 @@ class GurobiModel : public AMPLModel {
 public:
   void enableLazyConstraints()
   {
-    setIntParam(GRB_INT_PAR_LAZYCONSTRAINTS, 1);
+    setParam(GRB_INT_PAR_LAZYCONSTRAINTS, 1);
   }
   GurobiModel(const GurobiModel& other) :
     AMPLModel(other), copied_(false), GRBModel_(other.GRBModel_), 
@@ -149,6 +167,7 @@ public:
   int getIntAttrArray(const char* name, int first, int length, int* arr);
   /** Get a double array model attribute (using gurobi C library name) */
   int getDoubleAttrArray(const char* name, int first, int length, double* arr);
+
   /** Get an integer parameter (using gurobi C library name) */
   int getIntParam(const char* name) {
     int v;
@@ -168,15 +187,15 @@ public:
     return v;
   }
   /** Set an integer parameter (using gurobi C library name) */
-  int setIntParam(const char* name, int value) {
+  int setParam(const char* name, int value) {
     return GRBsetintparam(GRBgetenv(GRBModel_), name, value);
   }
   /** Set a double parameter (using gurobi C library name) */
-  double setDoubleParam(const char* name, double value) {
+  double setParam(const char* name, double value) {
     return GRBsetdblparam(GRBgetenv(GRBModel_), name, value);
   }
   /** Set a textual parameter (using gurobi C library name) */
-  double setStrParam(const char* name, const char* value) {
+  double setParam(const char* name, const char* value) {
     return GRBsetstrparam(GRBgetenv(GRBModel_), name, value);
   }
 
@@ -192,6 +211,27 @@ public:
   }
 
   ~GurobiModel();
+
+  /**Set an integer parameter using ampls aliases*/
+  void setAMPLsParameter(SolverParams::SolverParameters param,
+    int value) {
+    setParam(getGRBParamAlias(param), value);
+  }
+  /**Set a double parameter using ampls aliases*/
+  void setAMPLsParameter(SolverParams::SolverParameters param,
+    double value) {    
+    setParam(getGRBParamAlias(param), value);
+  }
+
+  /**Get an integer parameter using ampls aliases*/
+  int getAMPLsIntParameter(SolverParams::SolverParameters params) {
+    return getIntParam(getGRBParamAlias(params));
+  }
+  /**Get a double parameter using ampls aliases*/
+  double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
+    return getDoubleParam(getGRBParamAlias(params));
+  }
+
 };
 } // namespace
 #endif // GUROBI_INTERFACE_H_INCLUDE_

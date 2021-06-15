@@ -27,8 +27,8 @@ public:
     virtual ~SwigDirector_GenericCallback();
     virtual int getSolution(int len, double *sol);
     virtual double getObj();
-    virtual char const *getWhereString();
     virtual int getWhere();
+    virtual char const *getWhereString();
     virtual char const *getMessage();
     virtual ampls::Where::CBWhere getAMPLWhere();
     virtual ampls::Variant getValue(ampls::Value::CBValue v);
@@ -80,8 +80,8 @@ public:
     virtual ~SwigDirector_GurobiCallback();
     virtual int getSolution(int len, double *sol);
     virtual double getObj();
-    virtual char const *getWhereString();
     virtual int getWhere();
+    virtual char const *getWhereString();
     virtual char const *getMessage();
     virtual ampls::Where::CBWhere getAMPLWhere();
     virtual ampls::Variant getValue(ampls::Value::CBValue v);

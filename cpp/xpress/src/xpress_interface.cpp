@@ -91,7 +91,7 @@ impl::BaseCallback* XPRESSModel::createCallbackImplDerived(GenericCallback* call
 
 int XPRESSModel::optimize() {
   tStart_ = clock();
-  if (getInt(XPRS_ORIGINALMIPENTS) > 0)
+  if (getIntAttr(XPRS_ORIGINALMIPENTS) > 0)
     return XPRSmipoptimize(prob_, NULL);
   else
     return XPRSlpoptimize(prob_, NULL);

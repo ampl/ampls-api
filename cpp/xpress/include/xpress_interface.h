@@ -141,6 +141,22 @@ class XPRESSModel : public AMPLModel {
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 
+  // map
+  std::map<int, int> parametersMap = {
+     {SolverParams::INT_SolutionLimit , XPRS_MAXMIPSOL},
+     {SolverParams::DBL_MIPGap , XPRS_MIPRELSTOP},
+     {SolverParams::DBL_TimeLimit , XPRS_MAXTIME}
+  };
+
+  int getXPRESSParamAlias(SolverParams::SolverParameters params) const
+  {
+    auto xpressParam = parametersMap.find(params);
+    if (xpressParam != parametersMap.end())
+      return xpressParam->second;
+    throw AMPLSolverException("Not implemented!");
+  }
+
+
 public:
 
   XPRESSModel(const XPRESSModel& other) :
@@ -158,7 +174,7 @@ public:
   Status::SolStatus getStatus() {
     if (!isMIP())
     {
-      int stat = getInt(XPRS_LPSTATUS);
+      int stat = getIntAttr(XPRS_LPSTATUS);
       switch (stat)
       {
       case XPRS_LP_UNSTARTED:
@@ -181,7 +197,7 @@ public:
     }
     else
     {
-      int stat = getInt(XPRS_MIPSTATUS);
+      int stat = getIntAttr(XPRS_MIPSTATUS);
       switch (stat)
       {
       case XPRS_MIP_NOT_LOADED:
@@ -206,13 +222,13 @@ public:
   int optimize();
 
   int getNumVars() {
-    return getInt(XPRS_ORIGINALCOLS);
+    return getIntAttr(XPRS_ORIGINALCOLS);
   }
   double getObj() {
     if(isMIP())
-      return getDouble(XPRS_MIPOBJVAL);
+      return getDoubleAttr(XPRS_MIPOBJVAL);
     else
-      return getDouble(XPRS_LPOBJVAL);
+      return getDoubleAttr(XPRS_LPOBJVAL);
   }
 
   int getSolution(int first, int length, double* sol) {
@@ -236,27 +252,71 @@ public:
   }
  
   
-  /** Get an integer attribute */
-  int getInt(int what) {
+  /** Get an integer attribute identified by XPRESS native enum */
+  int getIntAttr(int what) {
     int ret;
     XPRSgetintattrib(prob_, what, &ret);
     return ret;
   }
-  /** Get a double attribute */
-  double getDouble(int what) {
+  /** Get a double attribute  identified by XPRESS native enum*/
+  double getDoubleAttr(int what) {
     double ret;
     XPRSgetdblattrib(prob_, what, &ret);
     return ret;
   }
   /** Return true if the problem is MIP*/
   bool isMIP() {
-    return getInt(XPRS_ORIGINALMIPENTS) > 0;
+    return getIntAttr(XPRS_ORIGINALMIPENTS) > 0;
   }
 
   ~XPRESSModel() {
     if (copied_)
       return;
    
+  }
+
+  /** Set an integer XPRESS control parameter */
+  void setParam(int XPRSParam, int value) {
+    XPRSsetintcontrol(prob_, XPRSParam, value);
+  }
+  /** Set a double XPRESS control parameter */
+  void setParam(int XPRSParam, double value) {
+    XPRSsetdblcontrol(prob_, XPRSParam, value);
+  }
+
+  /** Get an integer XPRESS control parameter */
+  int getIntParam(int XPRSParam) {
+    int value;
+    int status= XPRSgetintcontrol(prob_, XPRSParam, &value);
+    return value;
+  }
+
+  /** Get a double XPRESS control parameter */
+  double getDoubleParam(int XPRSParam) {
+    double value;
+    int status = XPRSgetdblcontrol(prob_, XPRSParam, &value);
+    return value;
+  }
+
+
+  /**Set an integer parameter using ampls aliases*/
+  void setAMPLsParameter(SolverParams::SolverParameters param,
+    int value) {
+    setParam(getXPRESSParamAlias(param), value);
+  }
+  /**Set a double parameter using ampls aliases*/
+  void setAMPLsParameter(SolverParams::SolverParameters param,
+    double value) {
+    setParam(getXPRESSParamAlias(param), value);
+  }
+
+  /**Get an integer parameter using ampls aliases*/
+  int getAMPLsIntParameter(SolverParams::SolverParameters params) {
+    return getIntParam(getXPRESSParamAlias(params));
+  }
+  /**Get a double parameter using ampls aliases*/
+  double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
+    return getDoubleParam(getXPRESSParamAlias(params));
   }
 };
 

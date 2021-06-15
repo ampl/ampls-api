@@ -17,6 +17,9 @@ const char* MODELNAME = "tsp.nl";
 
 double doStuff(ampls::AMPLModel& m, const char *name) 
 {
+  // Set parameter with common mapping
+  m.setAMPLsParameter(ampls::SolverParams::DBL_MIPGap, 0.2);
+
   // Start the optimization process
   m.optimize();
   printf("\n");
@@ -60,10 +63,15 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
 
+
+  std::vector<std::string>  options = { "return_mipgap=3"};
+
 #ifdef USE_gurobi
   // Load a model using gurobi driver
   ampls::GurobiDrv gurobi;
+  gurobi.setOptions(options);
   ampls::GurobiModel g = gurobi.loadModel(buffer);
+  
   // Use it as generic model
   doStuff(g, "gurobi");
 #endif
