@@ -1,16 +1,20 @@
 # Import utilities
 import os, sys
 from math import floor, ceil
-##
-#from __future__ import print_function
 from amplpy import AMPL
+
 #import amplpy_gurobi as ampls
 import amplpy_cplex as ampls
-#from amplpy import register_magics
-##register_magics('_ampl_cells')  # Store %%ampl cells in the list _ampl_cells
 from patch import  *
 
-solver = "gurobi"
+# For notebooks
+#from __future__ import print_function
+#from amplpy import register_magics
+##register_magics('_ampl_cells')  # Store %%ampl cells in the list _ampl_cells
+
+
+
+solver = "cplex"
 
 master="""param nPatterns integer > 0;
 
@@ -120,9 +124,8 @@ class MyCallback(ampls.GenericCallback):
                 self._current += 1
                 return 1
         return 0
+
 Master.option['relax_integrality'] = 0
-
-
 # Export model to ampls
 # If we plan to import the results back to AMPL, we have to explicitly set what additional
 # suffixes we want returned at this stage

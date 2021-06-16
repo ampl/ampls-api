@@ -1,4 +1,4 @@
-Gurobi 9.0.3: optimal solution; objective 379.36228176040595
+Gurobi 9.1.1: optimal solution; objective 379.36228176040595
 82 simplex iterations
 No dual variables returned.
 

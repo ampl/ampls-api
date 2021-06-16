@@ -19,7 +19,7 @@ else:
     ENABLE_CB_MIPSOL = True  # must add sub-tour elimination constraints
 
 ampl = tsp_model('tsp_51_1.txt', ENABLE_MTZ)
-m = ampl.exportModel("cplex")
+m = ampl.exportModel("gurobi")
 print("Model loaded, nvars=", m.getNumVars())
 
 if ENABLE_CB_MIPSOL:  # needs lazy constraints

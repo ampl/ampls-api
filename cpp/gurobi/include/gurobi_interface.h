@@ -26,6 +26,12 @@ namespace grb
 {
   namespace impl
   {
+
+    /* Define a macro to do our error checking */
+    #define AMPLSGRBERRORCHECK(name)  \
+    if (status)  \
+      throw ampls::AMPLSolverException::format("Error executing #name: %s", error(status).c_str());
+
     extern "C" {
       // Imported from the GUROBI driver
       ENTRYPOINT GRBmodel* AMPLloadmodel(int argc, char** argv, ASL** asl);
@@ -171,32 +177,38 @@ public:
   /** Get an integer parameter (using gurobi C library name) */
   int getIntParam(const char* name) {
     int v;
-    int error = GRBgetintparam(GRBgetenv(GRBModel_), name, &v);
+    int status = GRBgetintparam(GRBgetenv(GRBModel_), name, &v);
+    AMPLSGRBERRORCHECK("GRBgetintparam")
     return v;
   }
   /** Get a double parameter (using gurobi C library name) */
   double getDoubleParam(const char* name) {
     double v;
-    int error = GRBgetdblparam(GRBgetenv(GRBModel_), name, &v);
+    int status = GRBgetdblparam(GRBgetenv(GRBModel_), name, &v);
+    AMPLSGRBERRORCHECK("GRBgetdblparam")
     return v;
   }
   /** Get a textual parameter (using gurobi C library name) */
   char* getStrParam(const char* name) {
     char* v;
-    int error = GRBgetstrparam(GRBgetenv(GRBModel_), name, v);
+    int status = GRBgetstrparam(GRBgetenv(GRBModel_), name, v);
+    AMPLSGRBERRORCHECK("GRBgetstrparam")
     return v;
   }
   /** Set an integer parameter (using gurobi C library name) */
-  int setParam(const char* name, int value) {
-    return GRBsetintparam(GRBgetenv(GRBModel_), name, value);
+  void setParam(const char* name, int value) {
+    int status = GRBsetintparam(GRBgetenv(GRBModel_), name, value);
+    AMPLSGRBERRORCHECK("GRBsetintparam")
   }
   /** Set a double parameter (using gurobi C library name) */
-  double setParam(const char* name, double value) {
-    return GRBsetdblparam(GRBgetenv(GRBModel_), name, value);
+  void setParam(const char* name, double value) {
+    int status = GRBsetdblparam(GRBgetenv(GRBModel_), name, value);
+    AMPLSGRBERRORCHECK("GRBsetdblparam")
   }
   /** Set a textual parameter (using gurobi C library name) */
-  double setParam(const char* name, const char* value) {
-    return GRBsetstrparam(GRBgetenv(GRBModel_), name, value);
+  void setParam(const char* name, const char* value) {
+    int status = GRBsetstrparam(GRBgetenv(GRBModel_), name, value);
+    AMPLSGRBERRORCHECK("GRBsetdblparam")
   }
 
   /** Get the pointer to the native C GRBmodel structure */

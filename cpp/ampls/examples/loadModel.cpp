@@ -63,7 +63,6 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
 
-
   std::vector<std::string>  options = { "return_mipgap=3"};
 
 #ifdef USE_gurobi
@@ -79,6 +78,7 @@ int main(int argc, char** argv) {
 #ifdef USE_cplex
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
+  cplex.setOptions(options);
   ampls::CPLEXModel c = cplex.loadModel(buffer);
   // Use it as generic model
   doStuff(c, "cplex");
@@ -87,6 +87,7 @@ int main(int argc, char** argv) {
 #ifdef USE_xpress
   // Load a model using CPLEX driver
   ampls::XPRESSDrv xpress;
+  xpress.setOptions(options);
   ampls::XPRESSModel x = xpress.loadModel(buffer);
   // Use it as generic model
   doStuff(x, "xpress");

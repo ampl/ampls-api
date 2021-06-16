@@ -110,7 +110,7 @@ At the end of its life, it deletes the relative structures.
 class CPLEXModel : public AMPLModel {
   friend CPLEXDrv;
 
-  // map
+  // Map from ampls solverparams to CPLEX parameters
   std::map<int, int> parametersMap = {
      {SolverParams::INT_SolutionLimit , CPXPARAM_MIP_Limits_Solutions},
      {SolverParams::DBL_MIPGap , CPXPARAM_MIP_Tolerances_MIPGap},
@@ -259,8 +259,6 @@ public:
     AMPLSCPXERRORCHECK("CPXgetdblparam");
     return value;
   }
-
-
 
   ~CPLEXModel() {
     // TODO: This way the CPLEX environment is closed when the model is closed, wich makes sense
