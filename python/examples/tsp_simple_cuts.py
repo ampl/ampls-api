@@ -4,7 +4,7 @@ from patch import  *
 
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
-import matplotlib.cm as cmx
+
 
 tspAMPLModel = """set NODES ordered;
 param hpos {NODES} >= 0;
@@ -54,31 +54,7 @@ POINTS = ampl.getData("hpos,vpos").toList()
 CPOINTS = {node : complex(x, y) for (node, x, y) in POINTS}
 
 
-# Functions to plot the tours
-def plotTours(tours, points_coordinate : dict):
-    colors = ['b', 'g', 'c', 'm', 'y', 'k']
-    for i, tour in enumerate(tours):
-      tourCoordinates = [points_coordinate[point.strip("'")] for point in tour]
-      color = colors[i % len(colors)]
-      plot_all(tourCoordinates, color = color)
-    plt.show()
 
-def plot_all(tour, alpha=1, color=None):
-    # Plot the tour as blue lines between blue circles
-    plotline(list(tour) + [tour[0]], alpha=alpha, color=color)
-    plotline([tour[0]], 's', alpha=alpha, color=color)
-    
-def plotline(points, style='o-', alpha=1, color=None):
-    "Plot a list of points (complex numbers) in the 2-D plane."
-    X, Y = XY(points)
-    if color:
-        plt.plot(X, Y, style, alpha=alpha, color=color)
-    else:
-        plt.plot(X, Y, style, alpha=alpha)
-    
-def XY(points):
-    "Given a list of points, return two lists: X coordinates, and Y coordinates."
-    return [p.real for p in points], [p.imag for p in points]
 
 
 # Graphs helper routines
@@ -142,10 +118,13 @@ def amplSubTourElimination(ampl : AMPL):
     # Get solution
     ARCS = ampl.getData("{(i,j) in PAIRS : X[i,j]>0} X[i,j];")
     ARCS = set([(i,j) for (i,j,k)in ARCS.toList()])
-    subtours = findSubTours(ARCS, NODES)
+    nodes = NODES.copy()
+    subtours = findSubTours(ARCS, nodes)
+    
     # If we have only one tour, the solution is valid
     if len(subtours) <= 1:
       break
+    plotTours(subtours, CPOINTS)
     # Else add the current tours to the list of subtours
     allsubtours.extend(subtours)
     # And add those to the constraints by assigning the values to
@@ -184,7 +163,7 @@ def solverSubTourElimination(ampl : AMPL, solver):
   ampl.importSolution(model)
 
 
-
+# Callback class that actually add the cuts if subtours are found in a solution
 class MyCallback(ampls.GenericCallback):
    def run(self):
      try:
