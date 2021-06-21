@@ -42,9 +42,17 @@ def compile_args():
     if OSTYPE == 'Windows':
         return ['/TP', '/EHsc']
     elif OSTYPE == 'Linux':
-        return ['-std=c++11']
+        ignore_warnings = [
+            '-Wno-stringop-truncation',
+            '-Wno-catch-value',
+            '-Wno-unused-variable',
+        ]
+        return ['-std=c++11'] + ignore_warnings
     elif OSTYPE == 'Darwin':
-        return ['-stdlib=libc++']
+        ignore_warnings = [
+            '-Wno-unused-variable',
+        ]
+        return ['-std=c++11', '-mmacosx-version-min=10.9'] + ignore_warnings
     else:
         return []
 
@@ -63,7 +71,7 @@ def libdir():
 
 setup(
     name='amplpy_ampls',
-    version='0.1.0b5',
+    version='0.1.0b11',
     description='Solver extensions for amplpy',
     long_description=__doc__,
     license='BSD-3',
