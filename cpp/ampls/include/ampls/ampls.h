@@ -389,6 +389,19 @@ public:
   SolverDriver() {}
   ~SolverDriver() {}
 
+  /**
+  Set AMPL options (using AMPL solver drivers command line semantics), especially useful to instruct the library
+  to return suffixes when returning the solution to AMPL.
+  NOTE: MUST be called before loading the model.
+
+  Example:
+  
+      std::vector<std::string>  options = { "return_mipgap=3"};
+      ampls::GurobiDrv gurobi;
+      gurobi.setOptions(options);
+      ampls::GurobiModel g = gurobi.loadModel("modelfile.nl");
+  ```
+  */
   void setOptions(std::vector<std::string> options) {
     options_ = options; 
   }
