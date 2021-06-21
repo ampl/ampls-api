@@ -142,12 +142,12 @@ class CPLEXModel : public AMPLModel {
 public:
   CPLEXModel(const CPLEXModel& other) :
     AMPLModel(other),
-    state_(other.state_),
-    asl_(other.asl_),
-    model_(other.model_),
-    lastErrorCode_(other.lastErrorCode_),
     copied_(false),
-    status_(other.status_)
+    state_(other.state_),
+    status_(other.status_),
+    model_(other.model_),
+    asl_(other.asl_),
+    lastErrorCode_(other.lastErrorCode_)
   {
     fileName_ = other.fileName_;
     other.copied_ = true;

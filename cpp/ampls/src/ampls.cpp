@@ -23,7 +23,7 @@ char** generateArguments(const char* modelName, std::vector<std::string> options
   strcpy(params[1], modelName);
   params[2] = new char[strlen(OPTION) + 1];
   strcpy(params[2], OPTION);
-  for (int i = 0; i < options.size(); i++)
+  for (size_t i = 0; i < options.size(); i++)
   {
     params[i + 3] = new char[strlen(options[i].data()) + 1];
     strcpy(params[i+3], options[i].data());

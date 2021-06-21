@@ -102,8 +102,8 @@ class GurobiModel : public AMPLModel {
   ASL* asl_;
   int lastErrorCode_;
 
-  GurobiModel() : AMPLModel(), GRBModel_(NULL), asl_(NULL),
-    lastErrorCode_(0), copied_(false) {}
+  GurobiModel() : AMPLModel(), copied_(false), GRBModel_(NULL),
+    asl_(NULL), lastErrorCode_(0) {}
 
   // Interface implementation
   int setCallbackDerived(impl::BaseCallback* callback);
@@ -190,7 +190,7 @@ public:
   }
   /** Get a textual parameter (using gurobi C library name) */
   char* getStrParam(const char* name) {
-    char* v;
+    char* v = NULL;
     int status = GRBgetstrparam(GRBgetenv(GRBModel_), name, v);
     AMPLSGRBERRORCHECK("GRBgetstrparam")
     return v;
