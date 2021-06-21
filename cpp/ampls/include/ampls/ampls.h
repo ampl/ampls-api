@@ -26,10 +26,11 @@ Wrapper for all ampl solver exceptions
 class AMPLSolverException : public std::runtime_error
 {
 public:
+  /**Constructor for exception with message*/
   AMPLSolverException(const char* msg) : std::runtime_error(msg) { }
-
+  /**Constructor for exception with message*/
   AMPLSolverException(std::string& msg) : std::runtime_error(msg) { }
-
+  /**Constructor for exception with format message (printf semantics)*/
   static AMPLSolverException format(const char* msg, ...)
   {
     char buffer[1000];
@@ -48,13 +49,24 @@ public:
 */
 struct Variant
 {
+  /**Access the string reference*/
   const char* str; // type 0
+  /**Access the integer value*/
   int integer;     // type 1
+  /**Access the double value*/
   double dbl;      // type 2
+  /**Stores the type of this variant*/
   int type;
+  /** Create an empty Variant (type = -1) */
   Variant() : str(NULL), integer(0), dbl(0), type(-1) {}
+  /** Create a string reference Variant (type 0), contains a reference 
+  to a string, accessible via .str */
   Variant(const char* c) : str(c), integer(0), dbl(0), type(0) {}
+  /** Create an int Variant (type 1), contains an integer
+  accessible via .integer */
   explicit Variant(int v) : str(NULL), integer(v), dbl(0), type(1) {}
+  /** Create a double Variant (type 2), contains a double
+  accessible via .dbl */
   Variant(double v) : str(NULL), integer(0), dbl(v), type(2) {}
 
 };
@@ -68,11 +80,19 @@ void deleteParams(char** params);
 
 struct SolverParams
 {
+  /**
+  * Enumerate generic solver control parameters
+  * (e.g. parameters that are mapped to then solver-dependent controls).
+  * In case a not mapped control is required, refer to the solver-specific
+  * API.
+  */
   enum SolverParameters
   {
+    /** Stopping relative MIP gap */
     DBL_MIPGap,
+    /** Stopping time limit */
     DBL_TimeLimit,
-
+    /** Stopping number of solutions limit (for MIP) */
     INT_SolutionLimit
   };
 };
@@ -116,13 +136,19 @@ struct Value
   * API.
   */
   enum  CBValue {
+    /** Objective value*/
     OBJ = 0,
+    /** Presolve: number of deleted columns*/
     PRE_DELCOLS = 1,
+    /** Presolve: number of deleted rows*/
     PRE_DELROWS = 2,
+    /** Presolve: number of coefficients changed*/
     PRE_COEFFCHANGED = 3,
+    /** Number of algorithm iterations*/
     ITERATIONS = 4,
+    /** Time since solution start*/
     RUNTIME = 5,
-
+    /** Current relative MIP gapt*/
     MIP_RELATIVEGAP = 6
   };
 };
@@ -144,14 +170,23 @@ struct Status
   * Solution status (generic)
   */
   enum SolStatus {
+    /**Not known*/
     UNKNOWN,
+    /**Optimal*/
     OPTIMAL,
+    /**Infeasible problem*/
     INFEASIBLE,
+    /**Unbounded problem*/
     UNBOUNDED,
+    /**Hit an iterations limit*/
     LIMIT_ITERATION,
+    /**Hit a nodes limit*/
     LIMIT_NODE,
+    /**Hit a time limit*/
     LIMIT_TIME,
+    /**Hit a number of solutionslimit*/
     LIMIT_SOLUTION,
+    /**Interrupted by the user*/
     INTERRUPTED,
     NOTMAPPED
   };
@@ -427,6 +462,8 @@ private:
   std::unique_ptr<impl::BaseCallback> impl_;
 
 protected:
+  /**To be implemented in the deriving class, adds the specified cut using 
+  the solver interface*/
   virtual int doAddCut(int nvars, const int* vars,
     const double* coeffs, CutDirection::Direction direction, double rhs,
                        int type)
@@ -519,13 +556,13 @@ protected:
     throw AMPLSolverException("Not implemented in base class!");
   };
 public:
-  /*
+  /**
   Get the name of the NL file where the model has been loaded from
   */
   std::string getFileName() {
     return fileName_;
   }
-  /*
+  /**
   Copy constructor
   */
   AMPLModel(const AMPLModel &other) : fileName_(other.fileName_) {}
