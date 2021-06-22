@@ -174,9 +174,9 @@ class MyCallback(ampls.GenericCallback):
           subTours = findSubTours(set(arcs), set(vertices))
           if len(subTours) ==1:
             print("No subtours detected. Ending optimization.")
-            return 0
+            return -1
           plotTours(subTours, CPOINTS)
-          for subTour in subTours:
+          for subTour in subTours[:-1]:
             st1 = set(subTour)
             nst1 = set(vertices) - st1
             externalArcs = [(i,j) if i < j else (j,i) for i in st1 for j in nst1]
@@ -186,8 +186,6 @@ class MyCallback(ampls.GenericCallback):
             print(f"Adding cut {varsExternalArcs}")
             self.addLazyIndices(varsExternalArcs , coeffs,
                                   ampls.CutDirection.GE, 2)
-            if len(subTours) == 2: # do not add the second subtour if we have only 2
-              return 0
         return 0
      except Exception as e:
        print('Error:', e)

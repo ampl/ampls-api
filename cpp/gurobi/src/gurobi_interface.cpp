@@ -10,6 +10,11 @@ int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* 
   cb->cbdata_ = cbdata;
   cb->where_ = where;
   int res = cb->run();
+  if (res == -1)
+  {
+    GRBterminate(model);
+    return 0;
+  }
   return res;
 }
 

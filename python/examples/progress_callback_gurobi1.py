@@ -38,7 +38,7 @@ class MyCallback(ampls.GurobiCallback):
                     self._lastiter = itcnt
                     obj = self.getDouble(ampls.GRB_CB_SPX_OBJVAL)
                     ispert = self.getInt(ampls.GRB_CB_SPX_ISPERT)
-                    pinf = self.getDouble(ampls.GRB_CB_SPX_SPX_PRIMINF)
+                    pinf = self.getDouble(ampls.GRB_CB_SPX_PRIMINF)
                     dinf = self.getDouble(ampls.GRB_CB_SPX_SPX_DUALINF)
                     if ispert == 0:
                         ch = ' '
