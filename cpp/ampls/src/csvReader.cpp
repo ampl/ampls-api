@@ -101,7 +101,8 @@ std::map<std::string, int> createMap(std::istream& in, const char* beginWith) {
       break;
     }
     if ((beginWith == NULL) || (startsWith(row, beginWith)))
-      map[row] = i++;
+        map[row] = i;
+    i++;
   }
   return map;
 }
