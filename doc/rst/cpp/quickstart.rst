@@ -24,16 +24,16 @@ Installation
 
 The following is a generic installation procedure; OS-specific commands are omitted.
 
-1. Clone the solver libraries from `GitHub <https://github.com/ampl/solvers-public>`_::
+1. Clone the solver libraries from `GitHub <https://github.com/ampl/ampls-api>`_::
 
-        git clone https://github.com/ampl/solvers-public.git 
+        git clone https://github.com/ampl/ampls-api.git 
 
 
 2. Download the solver libraries package appropriate for your platform from `here <https://ampl.com>`_
-3. Extract them to `solvers-public/libs`
-4. Create a build directory in `solvers-public`::
+3. Extract them to `ampls-api/libs`
+4. Create a build directory in `ampls-api`::
 
-        cd solvers-public
+        cd ampls-api
         mkdir build
         cd build
 

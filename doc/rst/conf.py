@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'ampls::'
-copyright = '2020, AMPL Inc'
+copyright = '2021, AMPL Inc'
 author = 'AMPL Inc'
 
 # The full version, including alpha/beta/rc tags
