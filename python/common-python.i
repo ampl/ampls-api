@@ -138,6 +138,7 @@
   }
 }
 
-%pythonappend ampls::AMPLModel::getSolutionDict() %{return val.asdict()%}
-%pythonappend ampls::impl::BaseCallback::getSolutionDict() %{return val.asdict()%}
+// The following are useful to return python dictionaries when not using the -builtin switch
+// %pythonappend ampls::AMPLModel::getSolutionDict() %{return val.asdict()%}
+// %pythonappend ampls::impl::BaseCallback::getSolutionDict() %{return val.asdict()%}
 

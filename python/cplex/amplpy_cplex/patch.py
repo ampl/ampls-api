@@ -88,6 +88,11 @@ def exportModel(self, driver, options=None):
 
 
 def importSolution(self, model):
+    if isinstance(model, dict):
+        self.eval(''.join(
+            'let {} := {};'.format(name, value)
+            for name, value in model.items()
+        ))
     import os
     model.writeSol()
     self.eval('solution "{}";'.format(model._solfile))

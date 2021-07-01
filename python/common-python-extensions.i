@@ -1,6 +1,6 @@
 %extend ampls::AMPLModel{
 
-   std::map<std::string, double> getSolutionDict() {
+   std::map<std::string, double> _getSolutionDict() {
     std::vector<double> sol = self->getSolutionVector();
     std::map<int, std::string> map = self->getVarMapInverse();
     std::map<std::string, double> res;
@@ -13,7 +13,7 @@
 
 %extend ampls::impl::BaseCallback{
 
-   std::map<std::string, double> getSolutionDict() {
+   std::map<std::string, double> _getSolutionDict() {
     std::vector<double> sol = self->getSolutionVector();
     std::map<int, std::string> map = self->getVarMapInverse();
     std::map<std::string, double> res;
