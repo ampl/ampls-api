@@ -1,3 +1,10 @@
+import types
+
+
+def getSolutionDict(self):
+    return dict(self._getSolutionDict())
+
+
 def setCallback(self, cb):
     def run(self):
         try:
@@ -6,9 +13,10 @@ def setCallback(self, cb):
             print('Error:', e)
             return 0
 
-    import types
     cb._run = cb.run
     cb.run = types.MethodType(run, cb)
+    # Workaround for issue #2
+    cb.getSolutionDict = types.MethodType(getSolutionDict, cb)
     super(type(cb), cb).__init__()
     self._setCallback(cb)
 
@@ -32,9 +40,10 @@ if __package__ == 'amplpy_cplex':
             model = CPLEX_DRIVER.loadModel(fname + '.nl')
             model._solfile = fname + '.sol'
             os.remove(fname + '.nl')
-            import types
             model._setCallback = model.setCallback
             model.setCallback = types.MethodType(setCallback, model)
+            # Workaround for issue #2
+            model.getSolutionDict = types.MethodType(getSolutionDict, model)
             return model
         except:
             shutil.rmtree(tmp)
@@ -65,9 +74,10 @@ if __package__ == 'amplpy_gurobi':
             model = GUROBI_DRIVER.loadModel(fname + '.nl')
             model._solfile = fname + '.sol'
             os.remove(fname + '.nl')
-            import types
             model._setCallback = model.setCallback
             model.setCallback = types.MethodType(setCallback, model)
+            # Workaround for issue #2
+            model.getSolutionDict = types.MethodType(getSolutionDict, model)
             return model
         except:
             shutil.rmtree(tmp)
