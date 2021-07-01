@@ -4,3 +4,5 @@
 %include "../../../../cpp/ampls/swig/ampls-common.i"
 %include "../../../../cpp/cplex/swig/cplex-common.i"
 
+%include "../../../common-python-extensions.i"
+

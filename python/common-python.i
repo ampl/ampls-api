@@ -137,3 +137,7 @@
     break;
   }
 }
+
+%pythonappend ampls::AMPLModel::getSolutionDict() %{return val.asdict()%}
+%pythonappend ampls::impl::BaseCallback::getSolutionDict() %{return val.asdict()%}
+

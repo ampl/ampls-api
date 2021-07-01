@@ -218,6 +218,7 @@ function(AddSolverStub solver includes libs)
         add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/ampls/swig/ampls-common.i
                                                    ${DIR_SWIG}/${solver}-common.i
                                                    ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python.i
+                                                   ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python-extensions.i
                                                    ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
                                                    ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
                                                    )
