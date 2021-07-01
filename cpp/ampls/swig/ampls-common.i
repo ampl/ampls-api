@@ -23,6 +23,7 @@
 namespace std {
   %template(map_string_int)map<string, int>;
   %template(map_int_string)map<int, string>;
+  %template(map_string_double)map<string, double>;
   %template(vector_string)vector<string>;
   %template(vector_double)vector<double>;
 }
@@ -31,5 +32,6 @@ namespace std {
 %ignore ampls::BaseCallback::doAddCut;
 %ignore ampls::GenericCallback::doAddCut;
 %ignore ampls::GenericCallback::getSolution;
+
 
 %include "ampls/ampls.h"
