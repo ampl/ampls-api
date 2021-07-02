@@ -23,14 +23,17 @@ minimize Tour_Length: sum {(i,j) in PAIRS} distance[i,j] * X[i,j];
 subject to Visit_All {i in NODES}:
    sum {(i,j) in PAIRS} X[i,j] + sum {(j,i) in PAIRS} X[j,i] = 2;"""
 
-PLOTSUBTOURS = True
+# Set execution parameters
+PLOTSUBTOURS = False
 solver = "gurobi"
+tspFile = "tsp/pr226.tsp"
+# Load model in AMPL
 ampl = AMPL()
 ampl.eval(tspAMPLModel)
 ampl.option["solver"]=solver
 
 
-def getDataFrameFromTspFile(tspFile):
+def getDictFromTspFile(tspFile):
   p = tsp.load(tspFile)
   if not p.is_depictable:
     printf("Problem is not depictable!")
@@ -43,22 +46,23 @@ def getDataFrameFromTspFile(tspFile):
     i+=1
   formatString = f"{{:0{i}d}}"
   nodes = {formatString.format(value) : p.node_coords[index+1] for index, value in enumerate(p.get_nodes())}
-  df = DataFrame(index=[('NODES')],
-            columns=['hpos', 'vpos'])
-  df.setValues(nodes)
-  return df
+  return nodes
 
 # Set problem data from tsp file
-df = getDataFrameFromTspFile("e:/downloads/airports.tsp")
+nodes = getDictFromTspFile(tspFile)
+
+# Pass them to AMPL using a dataframe
+df = DataFrame(index=[('NODES')], columns=['hpos', 'vpos'])
+df.setValues(nodes)
 ampl.setData(df, "NODES")
 
 # Set some globals that never change during the execution of the problem
-NODES = set(ampl.getData("NODES").toList())
-POINTS = ampl.getData("hpos,vpos").toList()
-
-CPOINTS = {node : complex(x, y) for (node, x, y) in POINTS}
+NODES = set(nodes.keys())
+CPOINTS = {node : complex(coordinate[0], coordinate[1]) for (node, coordinate) in nodes.items()}
 
 
+
+# Plot helpers
 def plotTours(tours: list, points_coordinate: dict):
     # Plot all the tours in the list each with a different color
     colors = ['b', 'g', 'c', 'm', 'y', 'k']
@@ -165,7 +169,6 @@ def amplSubTourElimination(ampl : AMPL):
 
 
 # Global variables to store entities needed by the callbacks
-# that never change
 xvars = None
 xinverse = None
 vertices = None
@@ -233,12 +236,16 @@ class MyCallback(ampls.GenericCallback):
        return 0
 
 # Set to true to use AMPL, False to use solver callbacks
-doAMPL = False
+doAMPL = True
+now = time.time()
 if doAMPL:
   amplSubTourElimination(ampl)
 else:
   solverSubTourElimination(ampl, solver)
 
+then = time.time()
+
+print(f"Elapsed {then-now} seconds")
 # Get the solution into ARCS
 ARCS = ampl.getData("{(i,j) in PAIRS : X[i,j]>0} X[i,j];")
 ARCS = set([(i,j) for (i,j,k)in ARCS.toList()])
