@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{17BB8FED-2DA7-4235-A495-A971033A2E8B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>gsharp_test</RootNamespace>
-    <AssemblyName>gsharp-test</AssemblyName>
+    <RootNamespace>ampls_examples</RootNamespace>
+    <AssemblyName>ampls-gurobi-examples</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoadModelGeneric.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,9 +53,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\api\dev_gsharp.csproj">
-      <Project>{49dce1cb-2fbc-4f78-bbc2-d9d30bf4544d}</Project>
-      <Name>dev_gsharp</Name>
+    <ProjectReference Include="..\api\dev_gurobisharp.csproj">
+      <Project>{2138a0c3-4c0f-436a-b5b0-da18ea56afe3}</Project>
+      <Name>dev_gurobisharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

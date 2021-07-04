@@ -65,7 +65,7 @@ namespace amplsharp_test
 
         static void Main(string[] args)
         {
-            const string model = @"D:\Development\AMPL\solvers-public\test\models\tsp.nl";
+            const string model = @"D:\Development\AMPL\ampls-api\test\models\model.nl";
             CPLEXDrv cpx = new CPLEXDrv();
             var mc = cpx.loadModel(model);
             DoStuff(mc);

@@ -20,8 +20,7 @@ include_directories(
 set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/swig)
 set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set(SWIG_CSHARP_MODULE_NAME "swig/${solvername}sharp_c")
-set_source_files_properties(${SWIG_CSHARP_MODULE_NAME}.i PROPERTIES CPLUSPLUS
-                                                                    ON)
+set_source_files_properties(${SWIG_CSHARP_MODULE_NAME}.i PROPERTIES CPLUSPLUS ON)
 set(SWIG_DEPENDS ../../cpp/${solvername}/swig/${solvername}-common.i)
 list(APPEND CMAKE_SWIG_FLAGS "-namespace;ampls")
 add_swig_library(${CSHARP_SWIG_API} csharp ${SWIG_CSHARP_MODULE_NAME}.i)
@@ -93,6 +92,10 @@ if(MSVC)
     ${solvername}sharp-test
     ${CMAKE_CURRENT_SOURCE_DIR}/${solvername}sharp-test/${solvername}sharp-test.csproj
     ${solvername}sharp-test)
-  add_to_folder(${solvername}/swig/csharp ${solvername}sharp-test)
+    include_external_msproject(
+    ${solvername}sharp-examples
+    ${CMAKE_CURRENT_SOURCE_DIR}/examples/${solvername}sharp-examples.csproj
+    ${solvername}sharp-examples)
+  add_to_folder(${solvername}/swig/csharp ${solvername}sharp-test ${solvername}sharp-examples)
 endif()
 endmacro()
