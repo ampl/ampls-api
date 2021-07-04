@@ -26,7 +26,7 @@ subject to Visit_All {i in NODES}:
 # Set execution parameters
 PLOTSUBTOURS = False
 solver = "gurobi"
-tspFile = "tsp/pr226.tsp"
+tspFile = "tsp/gr96.tsp"
 # Load model in AMPL
 ampl = AMPL()
 ampl.eval(tspAMPLModel)
@@ -236,7 +236,7 @@ class MyCallback(ampls.GenericCallback):
        return 0
 
 # Set to true to use AMPL, False to use solver callbacks
-doAMPL = True
+doAMPL = False
 now = time.time()
 if doAMPL:
   amplSubTourElimination(ampl)

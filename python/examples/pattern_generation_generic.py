@@ -3,8 +3,8 @@ import os, sys
 from math import floor, ceil
 from amplpy import AMPL
 
-#import amplpy_gurobi as ampls
-import amplpy_cplex as ampls
+import amplpy_gurobi as ampls
+#import amplpy_cplex as ampls
 from patch import  *
 
 # For notebooks
@@ -14,7 +14,7 @@ from patch import  *
 
 
 
-solver = "cplex"
+solver = "gurobi"
 
 master="""param nPatterns integer > 0;
 
@@ -104,25 +104,30 @@ while True:
     Master.eval('let nPatterns := nPatterns + 1;')
     Master.eval('let {w in WIDTHS} rolls[w, nPatterns] := newPat[w];')
 
-stopdict = { 'time'   : (  5,    15,   30 ),
-             'gaptol' : ( .0002, .002, .02 )
-           }
+
 
 class MyCallback(ampls.GenericCallback):
+    def __init__(self, stoprule):
+      super(MyCallback, self).__init__()
+      self._stoprule = stoprule
+      self._current = 0
+      self._continueOpt = True
+
     def setCurrentGap(self):
       print("Increasing gap tolerance to %.2f%%" % \
                     (100*self._stoprule['gaptol'][self._current]))
       ampls_model.setAMPLsParameter(ampls.SolverParams.DBL_MIPGap,
                              self._stoprule['gaptol'][self._current])
+      self._current += 1
     def run(self):
         where = self.getAMPLWhere()
         if where == ampls.Where.MIPNODE:
             runtime = self.getValue(ampls.Value.RUNTIME).dbl
             if runtime >= self._stoprule['time'][self._current]:
+                print(f"Current is: {self._stoprule['time'][self._current]}")
                 print(f"Stopping optimization at {runtime} seconds")
                 self._continueOpt = True
-                self._current += 1
-                return 1
+                return -1
         return 0
 
 Master.option['relax_integrality'] = 0
@@ -132,17 +137,13 @@ Master.option['relax_integrality'] = 0
 # In this case, we want to return the mip gap as a suffix
 ampls_model = Master.exportModel(solver, ["return_mipgap=5"])
 
-callback = MyCallback()
+# Callback's stopping rule is created here...
+stopdict = { 'time'   : (  1,    2,   3, 60 ),
+             'gaptol' : ( .0002, .002, .02, .1 )
+}
+# ...and initialized in the constructor
+callback = MyCallback(stopdict)
 ampls_model.setCallback(callback)
-
-# Convey the stopping rule to the callback
-if len(stopdict) == 0:
-    callback._stoprule = {'time': (1e+10,), 'gaptol': (1,)}
-else:
-    stopdict['time'] += (1e+10,)
-    stopdict['gaptol'] += (1,)
-    callback._stoprule = stopdict
-callback._current = 0
 
 # Invoke solver
 # Most solvers (e.g. Gurobi https://support.gurobi.com/hc/en-us/articles/360039233191-How-do-I-change-parameters-in-a-callback-)
@@ -156,12 +157,11 @@ while callback._continueOpt:
   if callback._continueOpt:
     callback.setCurrentGap()
 
-
 # Import solution from the solver
 Master.importSolution(ampls_model)
 
-if solver == "gurobi":
-  print(f"From Gurobi MIPGap={100*ampls_model.getDoubleAttr(GRB_DBL_ATTR_MIPGAP):.3f}%")
+if solver == "gurobi": # use solver-specific API to get the actual MIPGAP
+  print(f"From Gurobi MIPGap={100*ampls_model.getDoubleAttr(ampls.GRB_DBL_ATTR_MIPGAP):.3f}%")
 
 print(f"From AMPL MIPGap={100*Master.getValue('TotalRawRolls.relmipgap'):.3f}%")
 print(f"Objective value: {Master.getValue('TotalRawRolls')}")

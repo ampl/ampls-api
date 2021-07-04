@@ -42,6 +42,8 @@ ampl = tsp_model('tsp_51_1.txt')
 
 cm = ampl.exportCplexModel()
 doStuff(cm)
+ddd = cm.getSolutionDict()
 
 gm = ampl.exportGurobiModel()
 doStuff(gm)
+ddd = cm.getSolutionDict()
