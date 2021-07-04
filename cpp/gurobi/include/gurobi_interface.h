@@ -82,13 +82,14 @@ we could use directly the C pointer to GRBmodel.
 class GurobiModel : public AMPLModel {
   friend GurobiDrv;
 
-  // map
+  // Map for solver parameters
   std::map<int, const char*> parametersMap = {
      {SolverParams::INT_SolutionLimit , GRB_INT_PAR_SOLUTIONLIMIT},
      {SolverParams::DBL_MIPGap , GRB_DBL_PAR_MIPGAP},
-     {SolverParams::DBL_TimeLimit , GRB_DBL_PAR_TIMELIMIT}
+     {SolverParams::DBL_TimeLimit , GRB_DBL_PAR_TIMELIMIT},
+     {SolverParams::INT_LP_Algorithm, GRB_INT_PAR_METHOD}
   };
-
+  const int LPalgorithmMap[4] = { -1, 0, 1, 2};
   const char* getGRBParamAlias(SolverParams::SolverParameters params)
   {
     auto cpxParam = parametersMap.find(params);
@@ -227,6 +228,8 @@ public:
   /**Set an integer parameter using ampls aliases*/
   void setAMPLsParameter(SolverParams::SolverParameters param,
     int value) {
+    if (param == SolverParams::INT_LP_Algorithm)
+      value = LPalgorithmMap[value];
     setParam(getGRBParamAlias(param), value);
   }
   /**Set a double parameter using ampls aliases*/

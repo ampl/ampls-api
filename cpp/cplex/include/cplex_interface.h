@@ -74,7 +74,7 @@ namespace cpx
 
 
 /**
-Encapsulates the main environment of the gurobi driver;
+Encapsulates the main environment of the CPLEX driver;
 without modifications, a static CPLEXENV is created in the
 AMPL driver, and it would be fairly easy to lose track of it;
 this way, it is deleted in the destructor. 
@@ -114,8 +114,11 @@ class CPLEXModel : public AMPLModel {
   std::map<int, int> parametersMap = {
      {SolverParams::INT_SolutionLimit , CPXPARAM_MIP_Limits_Solutions},
      {SolverParams::DBL_MIPGap , CPXPARAM_MIP_Tolerances_MIPGap},
-     {SolverParams::DBL_TimeLimit , CPXPARAM_TimeLimit}
+     {SolverParams::DBL_TimeLimit , CPXPARAM_TimeLimit},
+     {SolverParams::INT_LP_Algorithm, CPXPARAM_LPMethod}
   };
+  const int LPalgorithmMap[4] = { CPX_ALG_AUTOMATIC, CPX_ALG_PRIMAL, CPX_ALG_DUAL, CPX_ALG_BARRIER };
+
   int getCPXParamAlias(SolverParams::SolverParameters params)
   {
     auto cpxParam = parametersMap.find(params);
@@ -275,23 +278,25 @@ public:
   }
 
   /**Get an integer parameter using ampls aliases*/
-  int getAMPLsIntParameter(SolverParams::SolverParameters params) {
-    return getIntParam(getCPXParamAlias(params));
+  int getAMPLsIntParameter(SolverParams::SolverParameters param) {
+    return getIntParam(getCPXParamAlias(param));
   }
   /**Get a double parameter using ampls aliases*/
-  double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
-    return getDoubleParam(getCPXParamAlias(params));
+  double getAMPLsDoubleParameter(SolverParams::SolverParameters param) {
+    return getDoubleParam(getCPXParamAlias(param));
   }
 
   /**Set an integer parameter using ampls aliases*/
-  void setAMPLsParameter(SolverParams::SolverParameters params,
+  void setAMPLsParameter(SolverParams::SolverParameters param,
     int value) {
-    setParam(getCPXParamAlias(params), value);
+    if (param == SolverParams::INT_LP_Algorithm)
+      value = LPalgorithmMap[value];
+    setParam(getCPXParamAlias(param), value);
   }
   /**Set a double parameter using ampls aliases*/
-  void setAMPLsParameter(SolverParams::SolverParameters params,
+  void setAMPLsParameter(SolverParams::SolverParameters param,
     double value) {
-    setParam(getCPXParamAlias(params), value);
+    setParam(getCPXParamAlias(param), value);
   }
 
 };

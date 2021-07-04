@@ -2,7 +2,7 @@
 #include "cplex_callback.h"
 
 
-#define CPX_CALL( call ) do { if (int e=call) \
+#define CPLEX_CALL( call ) do { if (int e=call) \
   throw AMPLSolverException::format( \
     "  Call failed: %s with code %d", #call, e ); } while (0)
 
@@ -18,7 +18,7 @@ const char* CPLEXCallback::getMessage() {
 double CPLEXCallback::getDouble(int what)
 {
   double res;
-  CPX_CALL(CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
+  CPLEX_CALL(CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
     what, &res));
   return res;
 }
@@ -62,7 +62,7 @@ Variant CPLEXCallback::getValue(Value::CBValue v) {
   case Value::RUNTIME:
   {
     double time;
-    CPX_CALL(CPXXgettime(env_, &time));
+    CPLEX_CALL(CPXXgettime(env_, &time));
     double starttime = getDouble(CPX_CALLBACK_INFO_STARTTIME);
     return Variant(time - starttime);
   }

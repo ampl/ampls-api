@@ -93,7 +93,28 @@ struct SolverParams
     /** Stopping time limit */
     DBL_TimeLimit,
     /** Stopping number of solutions limit (for MIP) */
-    INT_SolutionLimit
+    INT_SolutionLimit,
+    /** Algorithm for LP problems */
+    INT_LP_Algorithm
+  };
+};
+
+struct LPAlgorithms
+{
+  /**
+  Algorithm to use when solving continous problems.
+  Use solver-specific API to set other methods.
+  */ 
+  enum LPAlgorithm
+  {
+    /** Let the solver decide*/
+    Auto=0,
+    /** Primal simplex */
+    PrimalSimplex=1,
+    /** Dual simplex */
+    DualSimplex=2,
+    /** Barrier algorithm */
+    Barrier=3
   };
 };
 
@@ -364,20 +385,20 @@ public:
   /** Get the current objective value */
   virtual double getObj() = 0;
   /** Get an iteger representing where in the solution process the callback has been called.
-     NOTE: this is expressed using the solver's own (not mapped) values
+     NOTE: this is expressed using the solver's own (not generic) values
   */
   virtual int getWhere() { return where_; }
   /** Get a textual representation of where in the solution process the callback has been called.
-   * NOTE: this is expressed using the solver's own (not mapped) values
+   * NOTE: this is expressed using the solver's own (not generic) values
    */
   virtual const char* getWhereString() = 0;
   
   /** Get the message from the solver (available only for specific values of getWhere) */
   virtual const char* getMessage() = 0;
 
-  /** Get where in the solution process the callback has been called (mapped) */
+  /** Get where in the solution process the callback has been called (generic) */
   virtual Where::CBWhere getAMPLWhere() = 0;
-  /** Get a (mapped) value */
+  /** Get a (generic) value */
   virtual Variant getValue(Value::CBValue v) = 0;
 };
 
@@ -444,15 +465,15 @@ public:
 } // namespace impl
 
 /**
-* Base abstract class for generic callbacks, inherit from this to declare a 
-* generic callback.
+* Base abstract class for generic callbacks, inherit from this class to implement
+* a generic callback.
 * Provides all mapping between solver-specific and generic values.
 * To implement a callback, you should implement the run() method and
 * set it via AMPLModel::setCallback() before starting the solution
 * process via AMPLModel::optimize().
-* Depending on where the callback is called from, you can obtain various 
-* information about the progress of the optimization and can modify the behaviour
-* of the solver.
+* Depending on where in the solution process the callback is called from, 
+* you can obtain various information about the progress of the optimization 
+* and can modify the behaviour of the solver.
 */
 class GenericCallback : public impl::BaseCallback
 {
@@ -462,8 +483,6 @@ private:
   std::unique_ptr<impl::BaseCallback> impl_;
 
 protected:
-  /**To be implemented in the deriving class, adds the specified cut using 
-  the solver interface*/
   virtual int doAddCut(int nvars, const int* vars,
     const double* coeffs, CutDirection::Direction direction, double rhs,
                        int type)
@@ -483,13 +502,13 @@ public:
     return impl_->getObj();
   }
   /** Get an iteger representing where in the solution process the callback has been called.
-   * NOTE: this is expressed using the solver's own (not mapped) values
+   * NOTE: this is expressed using the solver's own (not generic) values
   */
   int getWhere()
   {
     return impl_->getWhere();
   }
-  /** Get where in the solution process the callback has been called (mapped) */
+  /** Get where in the solution process the callback has been called (generic) */
   Where::CBWhere getAMPLWhere()
   {
     return impl_->getAMPLWhere();
@@ -580,7 +599,9 @@ public:
     return getVarMapFiltered(NULL);
   }
   /**
-  Return the variable map, filtered by the variable name
+  Return the variable map filtered by the variable name, to avoid
+  getting the whole (possibly large) map
+  @param beginWith Prefix to be matched
   */
   std::map<std::string, int> getVarMapFiltered(const char *beginWith);
   
@@ -588,6 +609,7 @@ public:
   Set a generic callback to be called during optimization. This function is
   automatically dispatched when (and only when) assigning an ampls::GenericCallback,
   as it needs a special treatment to automatically create the solver-specific wrapper
+  @param callback The generic callback to be set
   */
   int setCallback(GenericCallback *callback)
   {
@@ -598,6 +620,7 @@ public:
   }
   /**
   Set callback to be called during optimization
+  @param callback The callback to be set
   */
   int setCallback(impl::BaseCallback *callback)
   {
@@ -615,7 +638,7 @@ public:
     throw AMPLSolverException("Not implemented in base class!");
   };
   /** 
-  Get the solution status
+  Get the solution status  P(generic)
   */
   virtual Status::SolStatus getStatus() {
     throw AMPLSolverException("Not implemented in base class!");
@@ -635,13 +658,18 @@ public:
   };
   /**
   Write the solution file to a specific file
+  @param solFileName Path of the solution file to write
   */
   virtual void writeSol(const char* solFileName) {
     writeSolImpl(solFileName);
   };
   /**
   Get "length" variables of the current problem in an array, starting at the specified
-  position */
+  position 
+  @param first Index of the first variable to return
+  @param length Number of variables to return
+  @param sol Array to store the values
+  */
   virtual int getSolution(int first, int length, double *sol) {
     throw AMPLSolverException("Not implemented in base class!");
   };
@@ -659,7 +687,9 @@ public:
   };
 
   /**
-  Enable adding lazy constraints via callbacks (to be called only once)
+  Enable adding lazy constraints via callbacks (to be called only once),
+  call before calling AMPLModel::optimize() if planning to add lazy constraints
+  via callbacks
   */
   virtual void enableLazyConstraints() { }
   /**
@@ -667,22 +697,36 @@ public:
   */
   void printModelVars(bool onlyNonZero);
 
-  /**Set an integer parameter using ampls aliases*/
-  virtual void setAMPLsParameter(SolverParams::SolverParameters params,
+  /**
+  Set an integer parameter (solver control) using ampls generic aliases
+  @param param The parameter to be set
+  @param value The integer value to set
+  */
+  virtual void setAMPLsParameter(SolverParams::SolverParameters param,
     int value) {
     throw AMPLSolverException("Not implemented in base class!");
   }
-  /**Set a double parameter using ampls aliases*/
+  /**
+  Set an double parameter (solver control) using ampls generic aliases
+  @param param The parameter to be set
+  @param value The double value to set
+  */
   virtual void setAMPLsParameter(SolverParams::SolverParameters params,
     double value) {
     throw AMPLSolverException("Not implemented in base class!");
   }
 
-  /**Set an integer parameter identified by its ampls aliase*/
+  /**
+  Get the value of an integer parameter (solver control) using ampls generic aliases
+  @param param The parameter to get
+  */
   virtual int getAMPLsIntParameter(SolverParams::SolverParameters params)  {
     throw AMPLSolverException("Not implemented in base class!");
   }
-  /**Get a double parameter identified by its ampls alias*/
+  /**
+  Get the value of a double parameter (solver control) using ampls generic aliases
+  @param param The parameter to get
+  */
   virtual double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
     throw AMPLSolverException("Not implemented in base class!");
   }

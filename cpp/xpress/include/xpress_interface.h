@@ -145,9 +145,10 @@ class XPRESSModel : public AMPLModel {
   std::map<int, int> parametersMap = {
      {SolverParams::INT_SolutionLimit , XPRS_MAXMIPSOL},
      {SolverParams::DBL_MIPGap , XPRS_MIPRELSTOP},
-     {SolverParams::DBL_TimeLimit , XPRS_MAXTIME}
+     {SolverParams::DBL_TimeLimit , XPRS_MAXTIME},
+     {SolverParams::INT_LP_Algorithm , XPRS_ALGORITHM}
   };
-
+  const int LPalgorithmMap[4] = { -1, 3, 2, 4 };
   int getXPRESSParamAlias(SolverParams::SolverParameters params) const
   {
     auto xpressParam = parametersMap.find(params);
@@ -302,6 +303,12 @@ public:
   /**Set an integer parameter using ampls aliases*/
   void setAMPLsParameter(SolverParams::SolverParameters param,
     int value) {
+    if (param == SolverParams::INT_LP_Algorithm)
+    {
+      if (value == LPAlgorithms::Auto)
+        return; // No "automatic" in xpress
+      value = LPalgorithmMap[value];
+    }
     setParam(getXPRESSParamAlias(param), value);
   }
   /**Set a double parameter using ampls aliases*/
