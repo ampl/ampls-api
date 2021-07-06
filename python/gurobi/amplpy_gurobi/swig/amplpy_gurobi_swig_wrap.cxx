@@ -7050,13 +7050,14 @@ SWIG_FromCharPtr(const char *cptr)
   return SWIG_FromCharPtrAndSize(cptr, (cptr ? strlen(cptr) : 0));
 }
 
-SWIGINTERN std::map< std::string,double,std::less< std::string >,std::allocator< std::pair< std::string const,double > > > ampls_impl_BaseCallback__getSolutionDict(ampls::impl::BaseCallback *self){
+SWIGINTERN PyObject *ampls_impl_BaseCallback_getSolutionDict(ampls::impl::BaseCallback *self){
+    PyObject* res = PyDict_New();
     std::vector<double> sol = self->getSolutionVector();
     std::map<int, std::string> map = self->getVarMapInverse();
-    std::map<std::string, double> res;
     std::map<int, std::string>::const_iterator it;
-    for (it = map.begin(); it != map.end(); it++)
-      res[it->second] = sol[it->first];
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
+    }
     return res;
   }
 
@@ -7073,13 +7074,14 @@ SWIG_AsVal_bool (PyObject *obj, bool *val)
   return SWIG_OK;
 }
 
-SWIGINTERN std::map< std::string,double,std::less< std::string >,std::allocator< std::pair< std::string const,double > > > ampls_AMPLModel__getSolutionDict(ampls::AMPLModel *self){
+SWIGINTERN PyObject *ampls_AMPLModel_getSolutionDict(ampls::AMPLModel *self){
+    PyObject* res = PyDict_New();
     std::vector<double> sol = self->getSolutionVector();
     std::map<int, std::string> map = self->getVarMapInverse();
-    std::map<std::string, double> res;
     std::map<int, std::string>::const_iterator it;
-    for (it = map.begin(); it != map.end(); it++)
-      res[it->second] = sol[it->first];
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
+    }
     return res;
   }
 
@@ -20095,23 +20097,23 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_BaseCallback__getSolutionDict(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_BaseCallback_getSolutionDict(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::impl::BaseCallback *arg1 = (ampls::impl::BaseCallback *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject *swig_obj[1] ;
-  std::map< std::string,double,std::less< std::string >,std::allocator< std::pair< std::string const,double > > > result;
+  PyObject *result = 0 ;
   
-  if (!SWIG_Python_UnpackTuple(args, "BaseCallback__getSolutionDict", 0, 0, 0)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "BaseCallback_getSolutionDict", 0, 0, 0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__impl__BaseCallback, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseCallback__getSolutionDict" "', argument " "1"" of type '" "ampls::impl::BaseCallback *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseCallback_getSolutionDict" "', argument " "1"" of type '" "ampls::impl::BaseCallback *""'"); 
   }
   arg1 = reinterpret_cast< ampls::impl::BaseCallback * >(argp1);
   {
     try {
-      result = ampls_impl_BaseCallback__getSolutionDict(arg1);
+      result = (PyObject *)ampls_impl_BaseCallback_getSolutionDict(arg1);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -20119,7 +20121,7 @@ SWIGINTERN PyObject *_wrap_BaseCallback__getSolutionDict(PyObject *self, PyObjec
       SWIG_exception(SWIG_RuntimeError, "Unknown exception");
     }
   }
-  resultobj = swig::from(static_cast< std::map< std::string,double,std::less< std::string >,std::allocator< std::pair< std::string const,double > > > >(result));
+  resultobj = result;
   return resultobj;
 fail:
   return NULL;
@@ -21467,23 +21469,23 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_AMPLModel__getSolutionDict(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_AMPLModel_getSolutionDict(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject *swig_obj[1] ;
-  std::map< std::string,double,std::less< std::string >,std::allocator< std::pair< std::string const,double > > > result;
+  PyObject *result = 0 ;
   
-  if (!SWIG_Python_UnpackTuple(args, "AMPLModel__getSolutionDict", 0, 0, 0)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "AMPLModel_getSolutionDict", 0, 0, 0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel__getSolutionDict" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getSolutionDict" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
   {
     try {
-      result = ampls_AMPLModel__getSolutionDict(arg1);
+      result = (PyObject *)ampls_AMPLModel_getSolutionDict(arg1);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -21491,7 +21493,7 @@ SWIGINTERN PyObject *_wrap_AMPLModel__getSolutionDict(PyObject *self, PyObject *
       SWIG_exception(SWIG_RuntimeError, "Unknown exception");
     }
   }
-  resultobj = swig::from(static_cast< std::map< std::string,double,std::less< std::string >,std::allocator< std::pair< std::string const,double > > > >(result));
+  resultobj = result;
   return resultobj;
 fail:
   return NULL;
@@ -41240,7 +41242,7 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__impl__BaseCallback_methods[] = {
   { "getMessage", _wrap_BaseCallback_getMessage, METH_NOARGS, "" },
   { "getAMPLWhere", _wrap_BaseCallback_getAMPLWhere, METH_NOARGS, "" },
   { "getValue", _wrap_BaseCallback_getValue, METH_O, "" },
-  { "_getSolutionDict", _wrap_BaseCallback__getSolutionDict, METH_NOARGS, "" },
+  { "getSolutionDict", _wrap_BaseCallback_getSolutionDict, METH_NOARGS, "" },
   { NULL, NULL, 0, NULL } /* Sentinel */
 };
 
@@ -41690,7 +41692,7 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__AMPLModel_methods[] = {
   { "setAMPLsParameter", _wrap_AMPLModel_setAMPLsParameter, METH_VARARGS, "" },
   { "getAMPLsIntParameter", _wrap_AMPLModel_getAMPLsIntParameter, METH_O, "" },
   { "getAMPLsDoubleParameter", _wrap_AMPLModel_getAMPLsDoubleParameter, METH_O, "" },
-  { "_getSolutionDict", _wrap_AMPLModel__getSolutionDict, METH_NOARGS, "" },
+  { "getSolutionDict", _wrap_AMPLModel_getSolutionDict, METH_NOARGS, "" },
   { NULL, NULL, 0, NULL } /* Sentinel */
 };
 
