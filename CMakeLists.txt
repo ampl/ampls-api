@@ -82,7 +82,7 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/911)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/912)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2010)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/37.01.03)
 else()
@@ -104,16 +104,16 @@ if(WIN32)
     set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/win64/xprs.lib)
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/win64) # AMPL base driver library locations
 elseif(APPLE)
-    set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/osx64/libgurobi90.dylib)
-    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/osx64/libcplex12100.dylib)
+    set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/osx64/libgurobi91.dylib)
+    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/osx64/libcplex2010.dylib)
     set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/osx64/libxprs.dylib
                       ${xpress_BASE_DIR}/lib/osx64/libxprl.dylib)
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/osx64) # AMPL base driver library locations
 else()
-    set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/linux64/libgurobi90.so)
-    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/linux64/libcplex12100.so)
-    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/linux64/libxprs.so.36.01
-                        ${xpress_BASE_DIR}/lib/linux64/libxprl.so.x8.10 )
+    set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/linux64/libgurobi91.so)
+    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/linux64/libcplex2010.so)
+    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/linux64/libxprs.so.37.01
+                        ${xpress_BASE_DIR}/lib/linux64/libxprl.so.x8.11 )
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()
 

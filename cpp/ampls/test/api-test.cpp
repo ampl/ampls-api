@@ -118,6 +118,7 @@ int main(int argc, char** argv) {
 #ifdef USE_cplex
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
+  cplex.setOptions({ "outlev=1" });
   ampls::CPLEXModel c = cplex.loadModel(buffer);
   // Use it as generic model
   doStuff(c, "cplex");

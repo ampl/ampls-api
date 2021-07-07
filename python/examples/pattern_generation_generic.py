@@ -135,7 +135,7 @@ Master.option['relax_integrality'] = 0
 # If we plan to import the results back to AMPL, we have to explicitly set what additional
 # suffixes we want returned at this stage
 # In this case, we want to return the mip gap as a suffix
-ampls_model = Master.exportModel(solver, ["return_mipgap=5"])
+ampls_model = Master.exportModel(solver, ["return_mipgap=5", "outlev=1"])
 
 # Callback's stopping rule is created here...
 stopdict = { 'time'   : (  1,    2,   3, 60 ),

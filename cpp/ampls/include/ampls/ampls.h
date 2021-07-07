@@ -576,7 +576,7 @@ protected:
   };
 public:
   /**
-  Get the name of the NL file where the model has been loaded from
+  Get the name of the NL file from which the model has been loaded from
   */
   std::string getFileName() {
     return fileName_;
@@ -587,7 +587,7 @@ public:
   AMPLModel(const AMPLModel &other) : fileName_(other.fileName_) {}
 
   /**
-  Get the map from variable name to index in the solver interface
+  Get the map from variable index in the solver interface to AMPL variable instance name
   */
   std::map<int, std::string> getVarMapInverse();
 

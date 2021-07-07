@@ -35,7 +35,8 @@ int XPRESSCallback::getSolution(int len, double* sol) {
     throw AMPLSolverException::format("Must allocate an array of at least %d elements.", nvars);
   if (where_ == (int)xpress::impl::XPRESSWhere::prenode)
     return XPRSgetpresolvesol(prob_, sol, NULL, NULL, NULL);
-  if (where_ == (int)xpress::impl::XPRESSWhere::optnode)
+  if ((where_ == (int)xpress::impl::XPRESSWhere::optnode) ||
+    (where_ == (int)xpress::impl::XPRESSWhere::intsol))
     return XPRSgetlpsol(prob_, sol, NULL, NULL, NULL);
 
   throw ampls::AMPLSolverException("Cannot get the solution vector in this stage.");
