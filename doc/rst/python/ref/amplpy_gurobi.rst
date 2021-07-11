@@ -15,38 +15,34 @@ GurobiModel
         
     Get an integer model attribute (using gurobi C library name)
 
-    .. method:: getDoubleAttr(const char *name)
+    .. method:: getDoubleAttr(name : str)
     Get a double model attribute (using gurobi C library name)
 
-    .. method:: getIntAttrArray(const char *name, int first, int length, int *arr)
+    .. method:: getIntAttrVector(name : str) -> list
         
     Get an integer array model attribute (using gurobi C library name)
 
-    .. method:: getDoubleAttrArray(const char *name, int first, int length, double *arr)
+    .. method:: getDoubleAttrVector(name : str)
 
     Get a double array model attribute (using gurobi C library name)
 
-    .. method:: getIntParam(const char *name)
+    .. method:: getIntParam(name : str)
 
     Get an integer parameter (using gurobi C library name)
 
-    .. method:: getDoubleParam(const char *name)
+    .. method:: getDoubleParam(name : str)
 
     Get a double parameter (using gurobi C library name)
 
-    .. method:: setIntParam(const char *name, int value)
+    .. method:: setParam(name : str)
 
-    Set an integer parameter (using gurobi C library name)
+    Set a integer parameter (using gurobi C library name)
 
-    .. method:: setDoubleParam(const char *name, double value)
-
-    Set a double parameter (using gurobi C library name)
-
-    .. method:: getGRBmodel()
+    .. method:: getGRBmodel() -> GRBmodel
 
     Get the pointer to the native C GRBmodel structure.
 
-    .. method:: getGRBenv()
+    .. method:: getGRBenv() -> GRBenv
 
     Get the pointer to the native C GRBenv structure.
 
@@ -78,15 +74,15 @@ GurobiCallback
 
       Terminate the solution.
 
-   .. method:: getInt(int what)
+   .. method:: getInt(what : int)
 
       Get an integer attribute (using gurobi C library enumeration to specify what)
 
-   .. method:: getDouble(int what)
+   .. method:: getDouble(what : int)
 
       Get a double attribute (using gurobi C library enumeration to specify what)
 
-   .. method:: getDoubleArray(int what)
+   .. method:: getDoubleArray(what : int)
 
       Get a double array attribute (using gurobi C library enumeration to specify what)
 

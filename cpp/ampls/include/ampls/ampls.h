@@ -283,7 +283,9 @@ class BaseCallback
 {
   friend class ampls::AMPLModel;
   friend class ampls::GenericCallback;
-
+  bool cutDebug_;
+  bool cutDebugIntCoefficients_;
+  bool cutDebugPrintVarNames_;
 protected:
   AMPLModel* model_;
   int where_;
@@ -295,7 +297,8 @@ protected:
     const double* coeffs, CutDirection::Direction direction, double rhs,
     int type);
   void printCut(int nvars, const int* vars, const double* coeffs, 
-    CutDirection::Direction direction, double rhs)
+    CutDirection::Direction direction, double rhs, bool intCoeffs = false,
+    bool varNames = false)
   {
     std::string sense;
     switch (direction)
@@ -312,16 +315,60 @@ protected:
     default:
       throw AMPLSolverException("Unexpected cut direction");
     }
-    for (int i = 0; i < nvars; ++i) {
-      printf("%f*x[%d]", coeffs[i], vars[i]);
-      if (i < nvars - 1)
-        printf(" + ");
+  
+    
+    if (varNames)
+    {
+      std::map<int, std::string> imap = getVarMapInverse();
+      if (intCoeffs)
+      {
+        for (int i = 0; i < nvars; ++i) {
+          printf("%d*%s", (int)coeffs[i], imap[vars[i]].c_str());
+          if (i < nvars - 1)
+            printf(" + ");
+        }
+      }
+      else
+      { 
+        for (int i = 0; i < nvars; ++i) {
+          printf("%f*%s", coeffs[i], imap[vars[i]].c_str());
+          if (i < nvars - 1)
+            printf(" + ");
+        }
+      }
+    }
+    else
+    {
+      if (intCoeffs)
+      {
+        for (int i = 0; i < nvars; ++i) {
+          printf("%d*x[%d]", (int)coeffs[i], vars[i]);
+          if (i < nvars - 1)
+            printf(" + ");
+        }
+      }
+      else
+      {
+        for (int i = 0; i < nvars; ++i) {
+          printf("%f*x[%d]", coeffs[i], vars[i]);
+          if (i < nvars - 1)
+            printf(" + ");
+        }
+      }
     }
     printf(" %s %f\n", sense.c_str(), rhs);
 
   }
 public:
-  BaseCallback() : model_(NULL) {}
+  void setDebugCuts(bool cutDebug, bool cutDebugIntCoefficients, bool cutDebugPrintVarNames)
+  {
+    cutDebug_ = cutDebug;
+    cutDebugIntCoefficients_ = cutDebugIntCoefficients;
+    cutDebugPrintVarNames_ = cutDebugPrintVarNames;
+  }
+
+  BaseCallback() :cutDebug_(false), cutDebugIntCoefficients_(false),
+    cutDebugPrintVarNames_(false), model_(NULL), where_(0) {}
   /** Function to override, called periodically by the optimizer*/
   virtual int run() = 0;
   /** Get the map AMPLEntityName -> SolverVarIndex*/

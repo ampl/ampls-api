@@ -121,8 +121,6 @@
   delete $1;
 }
 
-
-
 %typemap(out) myobj get(int type) {
   switch ($1.type)
   {

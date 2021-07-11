@@ -106,6 +106,9 @@ int impl::BaseCallback::callAddCut(std::vector<std::string>& vars,
     else
       indices.push_back(map[vars[i]]);
   }
+  if (cutDebug_)
+    printCut((int)length, &indices[0], coeffs, direction, rhs, 
+      cutDebugIntCoefficients_, cutDebugPrintVarNames_);
   return doAddCut((int)length, &indices[0], coeffs, direction, rhs, lazy);
 }
 
