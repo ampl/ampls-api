@@ -7,6 +7,7 @@ jobs:
         solver: 'gurobi'
       cplex:
         solver: 'cplex'
+        CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:
@@ -27,8 +28,8 @@ jobs:
         # bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
-        pip install cibuildwheel==1.6.2
-        CIBW_SKIP='pp* *-manylinux*_i686' cibuildwheel --output-dir $TMP .
+        pip install cibuildwheel==1.12.0
+        CIBW_SKIP='pp* *-manylinux*_i686 cp27-*' cibuildwheel --output-dir $TMP .
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
         mv $TMP/* $WHEELHOUSE/
@@ -66,7 +67,7 @@ jobs:
         # bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
-        pip install cibuildwheel==1.6.2
+        pip install cibuildwheel==1.12.0
         CIBW_SKIP='pp*' cibuildwheel --output-dir $TMP .
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
@@ -106,7 +107,7 @@ jobs:
         # bash swig.sh
         python -m pip install --user --upgrade pip
         python -m pip install urllib3[secure] --upgrade
-        python -m pip install cibuildwheel==1.6.4
+        python -m pip install cibuildwheel==1.12.0
         # Skipping python 2.7 (due to c++11)
         CIBW_SKIP='*-win32 pp* cp27-*' cibuildwheel --output-dir $TMP .
         ls -l $TMP
