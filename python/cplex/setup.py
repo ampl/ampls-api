@@ -72,7 +72,7 @@ def link_args():
 
 setup(
     name='amplpy_cplex',
-    version='0.1.0b14',
+    version='0.1.0b15',
     description='CPLEX extension for amplpy',
     long_description=__doc__,
     license='BSD-3',
@@ -120,7 +120,7 @@ setup(
             os.path.join('amplpy_cplex', 'cpp', 'cplex', 'include'),
             os.path.join('amplpy_cplex', 'cpp', 'ampls', 'include'),
         ],
-        libraries=['cplex12100', 'cplex-lib'],
+        libraries=['cplex2010', 'cplex-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[

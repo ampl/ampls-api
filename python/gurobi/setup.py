@@ -72,7 +72,7 @@ def link_args():
 
 setup(
     name='amplpy_gurobi',
-    version='0.1.0b14',
+    version='0.1.0b15',
     description='GUROBI extension for amplpy',
     long_description=__doc__,
     license='BSD-3',
@@ -120,7 +120,7 @@ setup(
             os.path.join('amplpy_gurobi', 'cpp', 'gurobi', 'include'),
             os.path.join('amplpy_gurobi', 'cpp', 'ampls', 'include'),
         ],
-        libraries=['gurobi90', 'gurobi-lib'],
+        libraries=['gurobi91', 'gurobi-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[

@@ -3866,71 +3866,72 @@ namespace Swig {
 #define SWIGTYPE_p_ampls__GurobiCallback swig_types[12]
 #define SWIGTYPE_p_ampls__GurobiDrv swig_types[13]
 #define SWIGTYPE_p_ampls__GurobiModel swig_types[14]
-#define SWIGTYPE_p_ampls__SolverParams swig_types[15]
-#define SWIGTYPE_p_ampls__Status swig_types[16]
-#define SWIGTYPE_p_ampls__Value swig_types[17]
-#define SWIGTYPE_p_ampls__Variant swig_types[18]
-#define SWIGTYPE_p_ampls__Where swig_types[19]
-#define SWIGTYPE_p_ampls__impl__AMPLMutex swig_types[20]
-#define SWIGTYPE_p_ampls__impl__BaseCallback swig_types[21]
-#define SWIGTYPE_p_ampls__impl__SolverDriverT_ampls__GurobiModel_t swig_types[22]
-#define SWIGTYPE_p_char swig_types[23]
-#define SWIGTYPE_p_dblArray swig_types[24]
-#define SWIGTYPE_p_difference_type swig_types[25]
-#define SWIGTYPE_p_double swig_types[26]
-#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[27]
-#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[28]
-#define SWIGTYPE_p_f_p_char__int swig_types[29]
-#define SWIGTYPE_p_f_p_char__intArray swig_types[30]
-#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int swig_types[31]
-#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray swig_types[32]
-#define SWIGTYPE_p_f_p_void_p_void__void swig_types[33]
-#define SWIGTYPE_p_f_p_void_size_t_p_void__p_void swig_types[34]
-#define SWIGTYPE_p_f_size_t_p_void__p_void swig_types[35]
-#define SWIGTYPE_p_f_size_t_size_t_p_void__p_void swig_types[36]
-#define SWIGTYPE_p_int swig_types[37]
-#define SWIGTYPE_p_intArray swig_types[38]
-#define SWIGTYPE_p_key_type swig_types[39]
-#define SWIGTYPE_p_long_long swig_types[40]
-#define SWIGTYPE_p_mapped_type swig_types[41]
-#define SWIGTYPE_p_p_ASL swig_types[42]
-#define SWIGTYPE_p_p_FILE swig_types[43]
-#define SWIGTYPE_p_p_PyObject swig_types[44]
-#define SWIGTYPE_p_p__GRBbatch swig_types[45]
-#define SWIGTYPE_p_p__GRBenv swig_types[46]
-#define SWIGTYPE_p_p__GRBmodel swig_types[47]
-#define SWIGTYPE_p_p_char swig_types[48]
-#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[49]
-#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[50]
-#define SWIGTYPE_p_pthread_mutex_t swig_types[51]
-#define SWIGTYPE_p_short swig_types[52]
-#define SWIGTYPE_p_signed_char swig_types[53]
-#define SWIGTYPE_p_size_t swig_types[54]
-#define SWIGTYPE_p_size_type swig_types[55]
-#define SWIGTYPE_p_std__allocatorT_double_t swig_types[56]
-#define SWIGTYPE_p_std__allocatorT_std__pairT_int_const_std__string_t_t swig_types[57]
-#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_double_t_t swig_types[58]
-#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_int_t_t swig_types[59]
-#define SWIGTYPE_p_std__allocatorT_std__string_t swig_types[60]
-#define SWIGTYPE_p_std__invalid_argument swig_types[61]
-#define SWIGTYPE_p_std__lessT_int_t swig_types[62]
-#define SWIGTYPE_p_std__lessT_std__string_t swig_types[63]
-#define SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t swig_types[64]
-#define SWIGTYPE_p_std__mapT_std__string_double_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_double_t_t_t swig_types[65]
-#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[66]
-#define SWIGTYPE_p_std__runtime_error swig_types[67]
-#define SWIGTYPE_p_std__string swig_types[68]
-#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[69]
-#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[70]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[71]
-#define SWIGTYPE_p_unsigned_char swig_types[72]
-#define SWIGTYPE_p_unsigned_int swig_types[73]
-#define SWIGTYPE_p_unsigned_long_long swig_types[74]
-#define SWIGTYPE_p_unsigned_short swig_types[75]
-#define SWIGTYPE_p_value_type swig_types[76]
-#define SWIGTYPE_p_void swig_types[77]
-static swig_type_info *swig_types[79];
-static swig_module_info swig_module = {swig_types, 78, 0, 0, 0, 0};
+#define SWIGTYPE_p_ampls__LPAlgorithms swig_types[15]
+#define SWIGTYPE_p_ampls__SolverParams swig_types[16]
+#define SWIGTYPE_p_ampls__Status swig_types[17]
+#define SWIGTYPE_p_ampls__Value swig_types[18]
+#define SWIGTYPE_p_ampls__Variant swig_types[19]
+#define SWIGTYPE_p_ampls__Where swig_types[20]
+#define SWIGTYPE_p_ampls__impl__AMPLMutex swig_types[21]
+#define SWIGTYPE_p_ampls__impl__BaseCallback swig_types[22]
+#define SWIGTYPE_p_ampls__impl__SolverDriverT_ampls__GurobiModel_t swig_types[23]
+#define SWIGTYPE_p_char swig_types[24]
+#define SWIGTYPE_p_dblArray swig_types[25]
+#define SWIGTYPE_p_difference_type swig_types[26]
+#define SWIGTYPE_p_double swig_types[27]
+#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[28]
+#define SWIGTYPE_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[29]
+#define SWIGTYPE_p_f_p_char__int swig_types[30]
+#define SWIGTYPE_p_f_p_char__intArray swig_types[31]
+#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int swig_types[32]
+#define SWIGTYPE_p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArray swig_types[33]
+#define SWIGTYPE_p_f_p_void_p_void__void swig_types[34]
+#define SWIGTYPE_p_f_p_void_size_t_p_void__p_void swig_types[35]
+#define SWIGTYPE_p_f_size_t_p_void__p_void swig_types[36]
+#define SWIGTYPE_p_f_size_t_size_t_p_void__p_void swig_types[37]
+#define SWIGTYPE_p_int swig_types[38]
+#define SWIGTYPE_p_intArray swig_types[39]
+#define SWIGTYPE_p_key_type swig_types[40]
+#define SWIGTYPE_p_long_long swig_types[41]
+#define SWIGTYPE_p_mapped_type swig_types[42]
+#define SWIGTYPE_p_p_ASL swig_types[43]
+#define SWIGTYPE_p_p_FILE swig_types[44]
+#define SWIGTYPE_p_p_PyObject swig_types[45]
+#define SWIGTYPE_p_p__GRBbatch swig_types[46]
+#define SWIGTYPE_p_p__GRBenv swig_types[47]
+#define SWIGTYPE_p_p__GRBmodel swig_types[48]
+#define SWIGTYPE_p_p_char swig_types[49]
+#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__int swig_types[50]
+#define SWIGTYPE_p_p_f_p__GRBmodel_p_void_int_p_void__intArray swig_types[51]
+#define SWIGTYPE_p_pthread_mutex_t swig_types[52]
+#define SWIGTYPE_p_short swig_types[53]
+#define SWIGTYPE_p_signed_char swig_types[54]
+#define SWIGTYPE_p_size_t swig_types[55]
+#define SWIGTYPE_p_size_type swig_types[56]
+#define SWIGTYPE_p_std__allocatorT_double_t swig_types[57]
+#define SWIGTYPE_p_std__allocatorT_std__pairT_int_const_std__string_t_t swig_types[58]
+#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_double_t_t swig_types[59]
+#define SWIGTYPE_p_std__allocatorT_std__pairT_std__string_const_int_t_t swig_types[60]
+#define SWIGTYPE_p_std__allocatorT_std__string_t swig_types[61]
+#define SWIGTYPE_p_std__invalid_argument swig_types[62]
+#define SWIGTYPE_p_std__lessT_int_t swig_types[63]
+#define SWIGTYPE_p_std__lessT_std__string_t swig_types[64]
+#define SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t swig_types[65]
+#define SWIGTYPE_p_std__mapT_std__string_double_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_double_t_t_t swig_types[66]
+#define SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t swig_types[67]
+#define SWIGTYPE_p_std__runtime_error swig_types[68]
+#define SWIGTYPE_p_std__string swig_types[69]
+#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[70]
+#define SWIGTYPE_p_std__vectorT_std__string_std__allocatorT_std__string_t_t swig_types[71]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[72]
+#define SWIGTYPE_p_unsigned_char swig_types[73]
+#define SWIGTYPE_p_unsigned_int swig_types[74]
+#define SWIGTYPE_p_unsigned_long_long swig_types[75]
+#define SWIGTYPE_p_unsigned_short swig_types[76]
+#define SWIGTYPE_p_value_type swig_types[77]
+#define SWIGTYPE_p_void swig_types[78]
+static swig_type_info *swig_types[80];
+static swig_module_info swig_module = {swig_types, 79, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -7060,6 +7061,24 @@ SWIGINTERN PyObject *ampls_impl_BaseCallback_getSolutionDict(ampls::impl::BaseCa
     }
     return res;
   }
+SWIGINTERN PyObject *ampls_impl_BaseCallback_getVarMap(ampls::impl::BaseCallback *self){
+    PyObject* res = PyDict_New();
+    std::map<std::string, int> map = self->getVarMap();
+    std::map<std::string, int>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
+    }
+    return res;
+  }
+SWIGINTERN PyObject *ampls_impl_BaseCallback_getVarMapInverse(ampls::impl::BaseCallback *self){
+    PyObject* res = PyDict_New();
+    std::map<int,std::string> map = self->getVarMapInverse();
+    std::map<int,std::string>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyInt_FromLong(it->first), PyString_FromString(it->second.c_str()));
+    }
+    return res;
+  }
 
 SWIGINTERN int
 SWIG_AsVal_bool (PyObject *obj, bool *val)
@@ -7081,6 +7100,33 @@ SWIGINTERN PyObject *ampls_AMPLModel_getSolutionDict(ampls::AMPLModel *self){
     std::map<int, std::string>::const_iterator it;
     for (it = map.begin(); it != map.end(); ++it) {
       PyDict_SetItem(res, PyString_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
+    }
+    return res;
+  }
+SWIGINTERN PyObject *ampls_AMPLModel_getVarMap(ampls::AMPLModel *self){
+    PyObject* res = PyDict_New();
+    std::map<std::string, int> map = self->getVarMap();
+    std::map<std::string, int>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
+    }
+    return res;
+  }
+SWIGINTERN PyObject *ampls_AMPLModel_getVarMapFiltered(ampls::AMPLModel *self,char const *beginWith){
+    PyObject* res = PyDict_New();
+    std::map<std::string, int> map = self->getVarMapFiltered(beginWith);
+    std::map<std::string, int>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
+    }
+    return res;
+  }
+SWIGINTERN PyObject *ampls_AMPLModel_getVarMapInverse(ampls::AMPLModel *self){
+    PyObject* res = PyDict_New();
+    std::map<int,std::string> map = self->getVarMapInverse();
+    std::map<int,std::string>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyInt_FromLong(it->first), PyString_FromString(it->second.c_str()));
     }
     return res;
   }
@@ -18956,6 +19002,61 @@ fail:
 
 SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_SolverParams) /* defines _wrap_delete_SolverParams_destructor_closure */
 
+SWIGINTERN int _wrap_new_LPAlgorithms(PyObject *self, PyObject *args, PyObject *kwargs) {
+  PyObject *resultobj = 0;
+  ampls::LPAlgorithms *result = 0 ;
+  
+  if (!SWIG_Python_CheckNoKeywords(kwargs, "new_LPAlgorithms")) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "new_LPAlgorithms", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      result = (ampls::LPAlgorithms *)new ampls::LPAlgorithms();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_ampls__LPAlgorithms, SWIG_BUILTIN_INIT |  0 );
+  return resultobj == Py_None ? -1 : 0;
+fail:
+  return -1;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_LPAlgorithms(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::LPAlgorithms *arg1 = (ampls::LPAlgorithms *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "delete_LPAlgorithms", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__LPAlgorithms, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_LPAlgorithms" "', argument " "1"" of type '" "ampls::LPAlgorithms *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::LPAlgorithms * >(argp1);
+  {
+    try {
+      delete arg1;
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_LPAlgorithms) /* defines _wrap_delete_LPAlgorithms_destructor_closure */
+
 SWIGINTERN int _wrap_new_Where(PyObject *self, PyObject *args, PyObject *kwargs) {
   PyObject *resultobj = 0;
   ampls::Where *result = 0 ;
@@ -19316,68 +19417,6 @@ SWIGINTERN PyObject *_wrap_BaseCallback_run(PyObject *self, PyObject *args) {
     }
   }
   resultobj = SWIG_From_int(static_cast< int >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_BaseCallback_getVarMap(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  ampls::impl::BaseCallback *arg1 = (ampls::impl::BaseCallback *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *result = 0 ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "BaseCallback_getVarMap", 0, 0, 0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__impl__BaseCallback, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseCallback_getVarMap" "', argument " "1"" of type '" "ampls::impl::BaseCallback *""'"); 
-  }
-  arg1 = reinterpret_cast< ampls::impl::BaseCallback * >(argp1);
-  {
-    try {
-      result = (std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > *) &(arg1)->getVarMap();
-    } catch(const ampls::AMPLSolverException &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    } 
-    catch(...) {
-      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__mapT_std__string_int_std__lessT_std__string_t_std__allocatorT_std__pairT_std__string_const_int_t_t_t, 0 |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_BaseCallback_getVarMapInverse(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  ampls::impl::BaseCallback *arg1 = (ampls::impl::BaseCallback *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > *result = 0 ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "BaseCallback_getVarMapInverse", 0, 0, 0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__impl__BaseCallback, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseCallback_getVarMapInverse" "', argument " "1"" of type '" "ampls::impl::BaseCallback *""'"); 
-  }
-  arg1 = reinterpret_cast< ampls::impl::BaseCallback * >(argp1);
-  {
-    try {
-      result = (std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > *) &(arg1)->getVarMapInverse();
-    } catch(const ampls::AMPLSolverException &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    } 
-    catch(...) {
-      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
-    }
-  }
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__mapT_int_std__string_std__lessT_int_t_std__allocatorT_std__pairT_int_const_std__string_t_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
@@ -20128,6 +20167,68 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_BaseCallback_getVarMap(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::impl::BaseCallback *arg1 = (ampls::impl::BaseCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "BaseCallback_getVarMap", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__impl__BaseCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseCallback_getVarMap" "', argument " "1"" of type '" "ampls::impl::BaseCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::impl::BaseCallback * >(argp1);
+  {
+    try {
+      result = (PyObject *)ampls_impl_BaseCallback_getVarMap(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_BaseCallback_getVarMapInverse(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::impl::BaseCallback *arg1 = (ampls::impl::BaseCallback *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "BaseCallback_getVarMapInverse", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__impl__BaseCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseCallback_getVarMapInverse" "', argument " "1"" of type '" "ampls::impl::BaseCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::impl::BaseCallback * >(argp1);
+  {
+    try {
+      result = (PyObject *)ampls_impl_BaseCallback_getVarMapInverse(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_BaseCallback) /* defines _wrap_delete_BaseCallback_destructor_closure */
 
 SWIGINTERN PyObject *_wrap_GenericCallback_getObj(PyObject *self, PyObject *args) {
@@ -20581,111 +20682,6 @@ fail:
     "  Possible C/C++ prototypes are:\n"
     "    ampls::AMPLModel::AMPLModel(ampls::AMPLModel const &)\n");
   return -1;
-}
-
-
-SWIGINTERN PyObject *_wrap_AMPLModel_getVarMapInverse(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > result;
-  
-  if (!SWIG_Python_UnpackTuple(args, "AMPLModel_getVarMapInverse", 0, 0, 0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getVarMapInverse" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
-  }
-  arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
-  {
-    try {
-      result = (arg1)->getVarMapInverse();
-    } catch(const ampls::AMPLSolverException &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    } 
-    catch(...) {
-      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
-    }
-  }
-  resultobj = swig::from(static_cast< std::map< int,std::string,std::less< int >,std::allocator< std::pair< int const,std::string > > > >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_AMPLModel_getVarMap(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  PyObject *swig_obj[1] ;
-  std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > result;
-  
-  if (!SWIG_Python_UnpackTuple(args, "AMPLModel_getVarMap", 0, 0, 0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getVarMap" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
-  }
-  arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
-  {
-    try {
-      result = (arg1)->getVarMap();
-    } catch(const ampls::AMPLSolverException &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    } 
-    catch(...) {
-      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
-    }
-  }
-  resultobj = swig::from(static_cast< std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > >(result));
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_AMPLModel_getVarMapFiltered(PyObject *self, PyObject *args) {
-  PyObject *resultobj = 0;
-  ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject *swig_obj[2] ;
-  std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > result;
-  
-  if (!args) SWIG_fail;
-  swig_obj[0] = args;
-  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getVarMapFiltered" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
-  }
-  arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
-  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLModel_getVarMapFiltered" "', argument " "2"" of type '" "char const *""'");
-  }
-  arg2 = reinterpret_cast< char * >(buf2);
-  {
-    try {
-      result = (arg1)->getVarMapFiltered((char const *)arg2);
-    } catch(const ampls::AMPLSolverException &e) {
-      SWIG_exception(SWIG_RuntimeError, e.what());
-    } 
-    catch(...) {
-      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
-    }
-  }
-  resultobj = swig::from(static_cast< std::map< std::string,int,std::less< std::string >,std::allocator< std::pair< std::string const,int > > > >(result));
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
-  return NULL;
 }
 
 
@@ -21486,6 +21482,111 @@ SWIGINTERN PyObject *_wrap_AMPLModel_getSolutionDict(PyObject *self, PyObject *a
   {
     try {
       result = (PyObject *)ampls_AMPLModel_getSolutionDict(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AMPLModel_getVarMap(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AMPLModel_getVarMap", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getVarMap" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
+  {
+    try {
+      result = (PyObject *)ampls_AMPLModel_getVarMap(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = result;
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AMPLModel_getVarMapFiltered(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  PyObject *result = 0 ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getVarMapFiltered" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[0], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "AMPLModel_getVarMapFiltered" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (PyObject *)ampls_AMPLModel_getVarMapFiltered(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = result;
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AMPLModel_getVarMapInverse(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  PyObject *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AMPLModel_getVarMapInverse", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getVarMapInverse" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
+  {
+    try {
+      result = (PyObject *)ampls_AMPLModel_getVarMapInverse(arg1);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -32219,6 +32320,75 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_GRBgetlongstrparam(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char *arg3 = (char *) 0 ;
+  int arg4 ;
+  int *arg5 = (int *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  int res3 ;
+  char *buf3 = 0 ;
+  int alloc3 = 0 ;
+  int val4 ;
+  int ecode4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  PyObject *swig_obj[5] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetlongstrparam", 5, 5, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetlongstrparam" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetlongstrparam" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetlongstrparam" "', argument " "3"" of type '" "char *""'");
+  }
+  arg3 = reinterpret_cast< char * >(buf3);
+  ecode4 = SWIG_AsVal_int(swig_obj[3], &val4);
+  if (!SWIG_IsOK(ecode4)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "GRBgetlongstrparam" "', argument " "4"" of type '" "int""'");
+  } 
+  arg4 = static_cast< int >(val4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_int, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetlongstrparam" "', argument " "5"" of type '" "int *""'"); 
+  }
+  arg5 = reinterpret_cast< int * >(argp5);
+  {
+    try {
+      result = (int)GRBgetlongstrparam(arg1,(char const *)arg2,arg3,arg4,arg5);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return resultobj;
+fail:
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  if (alloc3 == SWIG_NEWOBJ) delete[] buf3;
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_GRBgetintparaminfo(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   GRBenv *arg1 = (GRBenv *) 0 ;
@@ -33972,6 +34142,76 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_GRBgettuneenv(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[2] ;
+  GRBenv *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgettuneenv", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgettuneenv" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GRBgettuneenv" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    try {
+      result = (GRBenv *)GRBgettuneenv(arg1,arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p__GRBenv, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBdiscardtuneenvs(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  
+  if (!args) SWIG_fail;
+  swig_obj[0] = args;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBdiscardtuneenvs" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  {
+    try {
+      GRBdiscardtuneenvs(arg1);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_GRBreleaselicense(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   GRBenv *arg1 = (GRBenv *) 0 ;
@@ -34098,6 +34338,84 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_GRBgetcommstats(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBenv *arg1 = (GRBenv *) 0 ;
+  double *arg2 = (double *) 0 ;
+  double *arg3 = (double *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  double *arg6 = (double *) 0 ;
+  double *arg7 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  void *argp3 = 0 ;
+  int res3 = 0 ;
+  void *argp4 = 0 ;
+  int res4 = 0 ;
+  void *argp5 = 0 ;
+  int res5 = 0 ;
+  void *argp6 = 0 ;
+  int res6 = 0 ;
+  void *argp7 = 0 ;
+  int res7 = 0 ;
+  PyObject *swig_obj[7] ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBgetcommstats", 7, 7, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBenv, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBgetcommstats" "', argument " "1"" of type '" "GRBenv *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBenv * >(argp1);
+  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBgetcommstats" "', argument " "2"" of type '" "double *""'"); 
+  }
+  arg2 = reinterpret_cast< double * >(argp2);
+  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res3)) {
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBgetcommstats" "', argument " "3"" of type '" "double *""'"); 
+  }
+  arg3 = reinterpret_cast< double * >(argp3);
+  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res4)) {
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBgetcommstats" "', argument " "4"" of type '" "double *""'"); 
+  }
+  arg4 = reinterpret_cast< double * >(argp4);
+  res5 = SWIG_ConvertPtr(swig_obj[4], &argp5,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res5)) {
+    SWIG_exception_fail(SWIG_ArgError(res5), "in method '" "GRBgetcommstats" "', argument " "5"" of type '" "double *""'"); 
+  }
+  arg5 = reinterpret_cast< double * >(argp5);
+  res6 = SWIG_ConvertPtr(swig_obj[5], &argp6,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res6)) {
+    SWIG_exception_fail(SWIG_ArgError(res6), "in method '" "GRBgetcommstats" "', argument " "6"" of type '" "double *""'"); 
+  }
+  arg6 = reinterpret_cast< double * >(argp6);
+  res7 = SWIG_ConvertPtr(swig_obj[6], &argp7,SWIGTYPE_p_double, 0 |  0 );
+  if (!SWIG_IsOK(res7)) {
+    SWIG_exception_fail(SWIG_ArgError(res7), "in method '" "GRBgetcommstats" "', argument " "7"" of type '" "double *""'"); 
+  }
+  arg7 = reinterpret_cast< double * >(argp7);
+  {
+    try {
+      GRBgetcommstats(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_GRBversion(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   int *arg1 = (int *) 0 ;
@@ -34166,6 +34484,28 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_GRBplatformext(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  char *result = 0 ;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBplatformext", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      result = (char *)GRBplatformext();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_FromCharPtr((const char *)result);
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_GRBlisttokens(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   int result;
@@ -34182,6 +34522,27 @@ SWIGINTERN PyObject *_wrap_GRBlisttokens(PyObject *self, PyObject *args) {
     }
   }
   resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBprinttuneparams(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBprinttuneparams", 0, 0, 0)) SWIG_fail;
+  {
+    try {
+      GRBprinttuneparams();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -34225,19 +34586,16 @@ SWIGINTERN PyObject *_wrap_GRBtunemodels(PyObject *self, PyObject *args) {
   int arg1 ;
   GRBmodel **arg2 = (GRBmodel **) 0 ;
   GRBmodel *arg3 = (GRBmodel *) 0 ;
-  GRBmodel *arg4 = (GRBmodel *) 0 ;
   int val1 ;
   int ecode1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   void *argp3 = 0 ;
   int res3 = 0 ;
-  void *argp4 = 0 ;
-  int res4 = 0 ;
-  PyObject *swig_obj[4] ;
+  PyObject *swig_obj[3] ;
   int result;
   
-  if (!SWIG_Python_UnpackTuple(args, "GRBtunemodels", 4, 4, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "GRBtunemodels", 3, 3, swig_obj)) SWIG_fail;
   ecode1 = SWIG_AsVal_int(swig_obj[0], &val1);
   if (!SWIG_IsOK(ecode1)) {
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "GRBtunemodels" "', argument " "1"" of type '" "int""'");
@@ -34253,14 +34611,9 @@ SWIGINTERN PyObject *_wrap_GRBtunemodels(PyObject *self, PyObject *args) {
     SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBtunemodels" "', argument " "3"" of type '" "GRBmodel *""'"); 
   }
   arg3 = reinterpret_cast< GRBmodel * >(argp3);
-  res4 = SWIG_ConvertPtr(swig_obj[3], &argp4,SWIGTYPE_p__GRBmodel, 0 |  0 );
-  if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "GRBtunemodels" "', argument " "4"" of type '" "GRBmodel *""'"); 
-  }
-  arg4 = reinterpret_cast< GRBmodel * >(argp4);
   {
     try {
-      result = (int)GRBtunemodels(arg1,arg2,arg3,arg4);
+      result = (int)GRBtunemodels(arg1,arg2,arg3);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -34365,17 +34718,14 @@ SWIGINTERN PyObject *_wrap_GRBtunemodeladv(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   GRBmodel *arg1 = (GRBmodel *) 0 ;
   GRBmodel *arg2 = (GRBmodel *) 0 ;
-  GRBmodel *arg3 = (GRBmodel *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
-  void *argp3 = 0 ;
-  int res3 = 0 ;
-  PyObject *swig_obj[3] ;
+  PyObject *swig_obj[2] ;
   int result;
   
-  if (!SWIG_Python_UnpackTuple(args, "GRBtunemodeladv", 3, 3, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "GRBtunemodeladv", 2, 2, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBtunemodeladv" "', argument " "1"" of type '" "GRBmodel *""'"); 
@@ -34386,14 +34736,9 @@ SWIGINTERN PyObject *_wrap_GRBtunemodeladv(PyObject *self, PyObject *args) {
     SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBtunemodeladv" "', argument " "2"" of type '" "GRBmodel *""'"); 
   }
   arg2 = reinterpret_cast< GRBmodel * >(argp2);
-  res3 = SWIG_ConvertPtr(swig_obj[2], &argp3,SWIGTYPE_p__GRBmodel, 0 |  0 );
-  if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "GRBtunemodeladv" "', argument " "3"" of type '" "GRBmodel *""'"); 
-  }
-  arg3 = reinterpret_cast< GRBmodel * >(argp3);
   {
     try {
-      result = (int)GRBtunemodeladv(arg1,arg2,arg3);
+      result = (int)GRBtunemodeladv(arg1,arg2);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -35165,6 +35510,48 @@ SWIGINTERN PyObject *_wrap_GRBpingserver(PyObject *self, PyObject *args) {
   return resultobj;
 fail:
   if (alloc1 == SWIG_NEWOBJ) delete[] buf1;
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_GRBprefetchattr(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  GRBmodel *arg1 = (GRBmodel *) 0 ;
+  char *arg2 = (char *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int res2 ;
+  char *buf2 = 0 ;
+  int alloc2 = 0 ;
+  PyObject *swig_obj[2] ;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GRBprefetchattr", 2, 2, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p__GRBmodel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GRBprefetchattr" "', argument " "1"" of type '" "GRBmodel *""'"); 
+  }
+  arg1 = reinterpret_cast< GRBmodel * >(argp1);
+  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "GRBprefetchattr" "', argument " "2"" of type '" "char const *""'");
+  }
+  arg2 = reinterpret_cast< char * >(buf2);
+  {
+    try {
+      result = (int)GRBprefetchattr(arg1,(char const *)arg2);
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
+  return resultobj;
+fail:
   if (alloc2 == SWIG_NEWOBJ) delete[] buf2;
   return NULL;
 }
@@ -37542,6 +37929,7 @@ static PyMethodDef SwigMethods[] = {
 	 { "GRBgetintparam", _wrap_GRBgetintparam, METH_VARARGS, NULL},
 	 { "GRBgetdblparam", _wrap_GRBgetdblparam, METH_VARARGS, NULL},
 	 { "GRBgetstrparam", _wrap_GRBgetstrparam, METH_VARARGS, NULL},
+	 { "GRBgetlongstrparam", _wrap_GRBgetlongstrparam, METH_VARARGS, NULL},
 	 { "GRBgetintparaminfo", _wrap_GRBgetintparaminfo, METH_VARARGS, NULL},
 	 { "GRBgetdblparaminfo", _wrap_GRBgetdblparaminfo, METH_VARARGS, NULL},
 	 { "GRBgetstrparaminfo", _wrap_GRBgetstrparaminfo, METH_VARARGS, NULL},
@@ -37572,13 +37960,18 @@ static PyMethodDef SwigMethods[] = {
 	 { "GRBdiscardconcurrentenvs", _wrap_GRBdiscardconcurrentenvs, METH_O, NULL},
 	 { "GRBgetmultiobjenv", _wrap_GRBgetmultiobjenv, METH_VARARGS, NULL},
 	 { "GRBdiscardmultiobjenvs", _wrap_GRBdiscardmultiobjenvs, METH_O, NULL},
+	 { "GRBgettuneenv", _wrap_GRBgettuneenv, METH_VARARGS, NULL},
+	 { "GRBdiscardtuneenvs", _wrap_GRBdiscardtuneenvs, METH_O, NULL},
 	 { "GRBreleaselicense", _wrap_GRBreleaselicense, METH_O, NULL},
 	 { "GRBfreeenv", _wrap_GRBfreeenv, METH_O, NULL},
 	 { "GRBgeterrormsg", _wrap_GRBgeterrormsg, METH_O, NULL},
 	 { "GRBgetmerrormsg", _wrap_GRBgetmerrormsg, METH_O, NULL},
+	 { "GRBgetcommstats", _wrap_GRBgetcommstats, METH_VARARGS, NULL},
 	 { "GRBversion", _wrap_GRBversion, METH_VARARGS, NULL},
 	 { "GRBplatform", _wrap_GRBplatform, METH_NOARGS, NULL},
+	 { "GRBplatformext", _wrap_GRBplatformext, METH_NOARGS, NULL},
 	 { "GRBlisttokens", _wrap_GRBlisttokens, METH_NOARGS, NULL},
+	 { "GRBprinttuneparams", _wrap_GRBprinttuneparams, METH_NOARGS, NULL},
 	 { "GRBtunemodel", _wrap_GRBtunemodel, METH_O, NULL},
 	 { "GRBtunemodels", _wrap_GRBtunemodels, METH_VARARGS, NULL},
 	 { "GRBgettuneresult", _wrap_GRBgettuneresult, METH_VARARGS, NULL},
@@ -37603,6 +37996,7 @@ static PyMethodDef SwigMethods[] = {
 	 { "GRBfree", _wrap_GRBfree, METH_O, NULL},
 	 { "GRBsync", _wrap_GRBsync, METH_O, NULL},
 	 { "GRBpingserver", _wrap_GRBpingserver, METH_VARARGS, NULL},
+	 { "GRBprefetchattr", _wrap_GRBprefetchattr, METH_VARARGS, NULL},
 	 { "callback_wrapper", _wrap_callback_wrapper, METH_VARARGS, NULL},
 	 { "disown_GurobiCallback", _wrap_disown_GurobiCallback, METH_O, NULL},
 	 { "AMPLloadmodel", _wrap_AMPLloadmodel, METH_VARARGS, NULL},
@@ -40144,6 +40538,218 @@ static PyHeapTypeObject SwigPyBuiltin__ampls__SolverParams_type = {
 
 SWIGINTERN SwigPyClientData SwigPyBuiltin__ampls__SolverParams_clientdata = {0, 0, 0, 0, 0, 0, (PyTypeObject *)&SwigPyBuiltin__ampls__SolverParams_type};
 
+static SwigPyGetSet LPAlgorithms___dict___getset = { SwigPyObject_get___dict__, 0 };
+SWIGINTERN PyGetSetDef SwigPyBuiltin__ampls__LPAlgorithms_getset[] = {
+    { (char *)"__dict__", SwigPyBuiltin_FunpackGetterClosure, 0, (char *)"", &LPAlgorithms___dict___getset },
+    { NULL, NULL, NULL, NULL, NULL } /* Sentinel */
+};
+
+SWIGINTERN PyObject *
+SwigPyBuiltin__ampls__LPAlgorithms_richcompare(PyObject *self, PyObject *other, int op) {
+  PyObject *result = NULL;
+  if (!result) {
+    if (SwigPyObject_Check(self) && SwigPyObject_Check(other)) {
+      result = SwigPyObject_richcompare((SwigPyObject *)self, (SwigPyObject *)other, op);
+    } else {
+      result = Py_NotImplemented;
+      Py_INCREF(result);
+    }
+  }
+  return result;
+}
+
+SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__LPAlgorithms_methods[] = {
+  { NULL, NULL, 0, NULL } /* Sentinel */
+};
+
+static PyHeapTypeObject SwigPyBuiltin__ampls__LPAlgorithms_type = {
+  {
+#if PY_VERSION_HEX >= 0x03000000
+    PyVarObject_HEAD_INIT(NULL, 0)
+#else
+    PyObject_HEAD_INIT(NULL)
+    0,                                        /* ob_size */
+#endif
+    "amplpy_gurobi_swig.LPAlgorithms",        /* tp_name */
+    sizeof(SwigPyObject),                     /* tp_basicsize */
+    0,                                        /* tp_itemsize */
+    _wrap_delete_LPAlgorithms_destructor_closure,                 /* tp_dealloc */
+    (printfunc) 0,                            /* tp_print */
+    (getattrfunc) 0,                          /* tp_getattr */
+    (setattrfunc) 0,                          /* tp_setattr */
+#if PY_VERSION_HEX >= 0x03000000
+    0,                                        /* tp_compare */
+#else
+    (cmpfunc) 0,                              /* tp_compare */
+#endif
+    (reprfunc) 0,                             /* tp_repr */
+    &SwigPyBuiltin__ampls__LPAlgorithms_type.as_number,           /* tp_as_number */
+    &SwigPyBuiltin__ampls__LPAlgorithms_type.as_sequence,         /* tp_as_sequence */
+    &SwigPyBuiltin__ampls__LPAlgorithms_type.as_mapping,          /* tp_as_mapping */
+    SwigPyObject_hash,                        /* tp_hash */
+    (ternaryfunc) 0,                          /* tp_call */
+    (reprfunc) 0,                             /* tp_str */
+    (getattrofunc) 0,                         /* tp_getattro */
+    (setattrofunc) 0,                         /* tp_setattro */
+    &SwigPyBuiltin__ampls__LPAlgorithms_type.as_buffer,           /* tp_as_buffer */
+#if PY_VERSION_HEX >= 0x03000000
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE,   /* tp_flags */
+#else
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_CHECKTYPES, /* tp_flags */
+#endif
+    "ampls::LPAlgorithms",                    /* tp_doc */
+    (traverseproc) 0,                         /* tp_traverse */
+    (inquiry) 0,                              /* tp_clear */
+    SwigPyBuiltin__ampls__LPAlgorithms_richcompare,               /* tp_richcompare */
+    0,                                        /* tp_weaklistoffset */
+    (getiterfunc) 0,                          /* tp_iter */
+    (iternextfunc) 0,                         /* tp_iternext */
+    SwigPyBuiltin__ampls__LPAlgorithms_methods,                   /* tp_methods */
+    0,                                        /* tp_members */
+    SwigPyBuiltin__ampls__LPAlgorithms_getset,/* tp_getset */
+    0,                                        /* tp_base */
+    0,                                        /* tp_dict */
+    (descrgetfunc) 0,                         /* tp_descr_get */
+    (descrsetfunc) 0,                         /* tp_descr_set */
+    offsetof(SwigPyObject, dict),             /* tp_dictoffset */
+    _wrap_new_LPAlgorithms,                   /* tp_init */
+    (allocfunc) 0,                            /* tp_alloc */
+    (newfunc) 0,                              /* tp_new */
+    (freefunc) 0,                             /* tp_free */
+    (inquiry) 0,                              /* tp_is_gc */
+    (PyObject *) 0,                           /* tp_bases */
+    (PyObject *) 0,                           /* tp_mro */
+    (PyObject *) 0,                           /* tp_cache */
+    (PyObject *) 0,                           /* tp_subclasses */
+    (PyObject *) 0,                           /* tp_weaklist */
+    (destructor) 0,                           /* tp_del */
+    (int) 0,                                  /* tp_version_tag */
+#if PY_VERSION_HEX >= 0x03040000
+    (destructor) 0,                           /* tp_finalize */
+#endif
+#if PY_VERSION_HEX >= 0x03080000
+    (vectorcallfunc) 0,                       /* tp_vectorcall */
+#endif
+#if (PY_VERSION_HEX >= 0x03080000) && (PY_VERSION_HEX < 0x03090000)
+    0,                                        /* tp_print */
+#endif
+#ifdef COUNT_ALLOCS
+    (Py_ssize_t) 0,                           /* tp_allocs */
+    (Py_ssize_t) 0,                           /* tp_frees */
+    (Py_ssize_t) 0,                           /* tp_maxalloc */
+    0,                                        /* tp_prev */
+    0,                                        /* tp_next */
+#endif
+  },
+#if PY_VERSION_HEX >= 0x03050000
+  {
+    (unaryfunc) 0,                            /* am_await */
+    (unaryfunc) 0,                            /* am_aiter */
+    (unaryfunc) 0,                            /* am_anext */
+  },
+#endif
+  {
+    (binaryfunc) 0,                           /* nb_add */
+    (binaryfunc) 0,                           /* nb_subtract */
+    (binaryfunc) 0,                           /* nb_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_remainder */
+    (binaryfunc) 0,                           /* nb_divmod */
+    (ternaryfunc) 0,                          /* nb_power */
+    (unaryfunc) 0,                            /* nb_negative */
+    (unaryfunc) 0,                            /* nb_positive */
+    (unaryfunc) 0,                            /* nb_absolute */
+    (inquiry) 0,                              /* nb_nonzero */
+    (unaryfunc) 0,                            /* nb_invert */
+    (binaryfunc) 0,                           /* nb_lshift */
+    (binaryfunc) 0,                           /* nb_rshift */
+    (binaryfunc) 0,                           /* nb_and */
+    (binaryfunc) 0,                           /* nb_xor */
+    (binaryfunc) 0,                           /* nb_or */
+#if PY_VERSION_HEX < 0x03000000
+    (coercion) 0,                             /* nb_coerce */
+#endif
+    (unaryfunc) 0,                            /* nb_int */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* nb_reserved */
+#else
+    (unaryfunc) 0,                            /* nb_long */
+#endif
+    (unaryfunc) 0,                            /* nb_float */
+#if PY_VERSION_HEX < 0x03000000
+    (unaryfunc) 0,                            /* nb_oct */
+    (unaryfunc) 0,                            /* nb_hex */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_add */
+    (binaryfunc) 0,                           /* nb_inplace_subtract */
+    (binaryfunc) 0,                           /* nb_inplace_multiply */
+#if PY_VERSION_HEX < 0x03000000
+    (binaryfunc) 0,                           /* nb_inplace_divide */
+#endif
+    (binaryfunc) 0,                           /* nb_inplace_remainder */
+    (ternaryfunc) 0,                          /* nb_inplace_power */
+    (binaryfunc) 0,                           /* nb_inplace_lshift */
+    (binaryfunc) 0,                           /* nb_inplace_rshift */
+    (binaryfunc) 0,                           /* nb_inplace_and */
+    (binaryfunc) 0,                           /* nb_inplace_xor */
+    (binaryfunc) 0,                           /* nb_inplace_or */
+    (binaryfunc) 0,                           /* nb_floor_divide */
+    (binaryfunc) 0,                           /* nb_true_divide */
+    (binaryfunc) 0,                           /* nb_inplace_floor_divide */
+    (binaryfunc) 0,                           /* nb_inplace_true_divide */
+    (unaryfunc) 0,                            /* nb_index */
+#if PY_VERSION_HEX >= 0x03050000
+    (binaryfunc) 0,                           /* nb_matrix_multiply */
+    (binaryfunc) 0,                           /* nb_inplace_matrix_multiply */
+#endif
+  },
+  {
+    (lenfunc) 0,                              /* mp_length */
+    (binaryfunc) 0,                           /* mp_subscript */
+    (objobjargproc) 0,                        /* mp_ass_subscript */
+  },
+  {
+    (lenfunc) 0,                              /* sq_length */
+    (binaryfunc) 0,                           /* sq_concat */
+    (ssizeargfunc) 0,                         /* sq_repeat */
+    (ssizeargfunc) 0,                         /* sq_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_slice */
+#else
+    (ssizessizeargfunc) 0,                    /* sq_slice */
+#endif
+    (ssizeobjargproc) 0,                      /* sq_ass_item */
+#if PY_VERSION_HEX >= 0x03000000
+    (void *) 0,                               /* was_sq_ass_slice */
+#else
+    (ssizessizeobjargproc) 0,                 /* sq_ass_slice */
+#endif
+    (objobjproc) 0,                           /* sq_contains */
+    (binaryfunc) 0,                           /* sq_inplace_concat */
+    (ssizeargfunc) 0,                         /* sq_inplace_repeat */
+  },
+  {
+#if PY_VERSION_HEX < 0x03000000
+    (readbufferproc) 0,                       /* bf_getreadbuffer */
+    (writebufferproc) 0,                      /* bf_getwritebuffer */
+    (segcountproc) 0,                         /* bf_getsegcount */
+    (charbufferproc) 0,                       /* bf_getcharbuffer */
+#endif
+    (getbufferproc) 0,                        /* bf_getbuffer */
+    (releasebufferproc) 0,                    /* bf_releasebuffer */
+  },
+    (PyObject *) 0,                           /* ht_name */
+    (PyObject *) 0,                           /* ht_slots */
+#if PY_VERSION_HEX >= 0x03030000
+    (PyObject *) 0,                           /* ht_qualname */
+    0,                                        /* ht_cached_keys */
+#endif
+};
+
+SWIGINTERN SwigPyClientData SwigPyBuiltin__ampls__LPAlgorithms_clientdata = {0, 0, 0, 0, 0, 0, (PyTypeObject *)&SwigPyBuiltin__ampls__LPAlgorithms_type};
+
 static SwigPyGetSet Where___dict___getset = { SwigPyObject_get___dict__, 0 };
 SWIGINTERN PyGetSetDef SwigPyBuiltin__ampls__Where_getset[] = {
     { (char *)"__dict__", SwigPyBuiltin_FunpackGetterClosure, 0, (char *)"", &Where___dict___getset },
@@ -41228,8 +41834,6 @@ SwigPyBuiltin__ampls__impl__BaseCallback_richcompare(PyObject *self, PyObject *o
 
 SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__impl__BaseCallback_methods[] = {
   { "run", _wrap_BaseCallback_run, METH_NOARGS, "" },
-  { "getVarMap", _wrap_BaseCallback_getVarMap, METH_NOARGS, "" },
-  { "getVarMapInverse", _wrap_BaseCallback_getVarMapInverse, METH_NOARGS, "" },
   { "addCut", _wrap_BaseCallback_addCut, METH_VARARGS, "" },
   { "addLazy", _wrap_BaseCallback_addLazy, METH_VARARGS, "" },
   { "addCutsIndices", _wrap_BaseCallback_addCutsIndices, METH_VARARGS, "" },
@@ -41243,6 +41847,8 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__impl__BaseCallback_methods[] = {
   { "getAMPLWhere", _wrap_BaseCallback_getAMPLWhere, METH_NOARGS, "" },
   { "getValue", _wrap_BaseCallback_getValue, METH_O, "" },
   { "getSolutionDict", _wrap_BaseCallback_getSolutionDict, METH_NOARGS, "" },
+  { "getVarMap", _wrap_BaseCallback_getVarMap, METH_NOARGS, "" },
+  { "getVarMapInverse", _wrap_BaseCallback_getVarMapInverse, METH_NOARGS, "" },
   { NULL, NULL, 0, NULL } /* Sentinel */
 };
 
@@ -41675,9 +42281,6 @@ SwigPyBuiltin__ampls__AMPLModel_richcompare(PyObject *self, PyObject *other, int
 
 SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__AMPLModel_methods[] = {
   { "getFileName", _wrap_AMPLModel_getFileName, METH_NOARGS, "" },
-  { "getVarMapInverse", _wrap_AMPLModel_getVarMapInverse, METH_NOARGS, "" },
-  { "getVarMap", _wrap_AMPLModel_getVarMap, METH_NOARGS, "" },
-  { "getVarMapFiltered", _wrap_AMPLModel_getVarMapFiltered, METH_O, "" },
   { "setCallback", _wrap_AMPLModel_setCallback, METH_VARARGS, "" },
   { "getSolutionVector", _wrap_AMPLModel_getSolutionVector, METH_NOARGS, "" },
   { "getNumVars", _wrap_AMPLModel_getNumVars, METH_NOARGS, "" },
@@ -41693,6 +42296,9 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__AMPLModel_methods[] = {
   { "getAMPLsIntParameter", _wrap_AMPLModel_getAMPLsIntParameter, METH_O, "" },
   { "getAMPLsDoubleParameter", _wrap_AMPLModel_getAMPLsDoubleParameter, METH_O, "" },
   { "getSolutionDict", _wrap_AMPLModel_getSolutionDict, METH_NOARGS, "" },
+  { "getVarMap", _wrap_AMPLModel_getVarMap, METH_NOARGS, "" },
+  { "getVarMapFiltered", _wrap_AMPLModel_getVarMapFiltered, METH_O, "" },
+  { "getVarMapInverse", _wrap_AMPLModel_getVarMapInverse, METH_NOARGS, "" },
   { NULL, NULL, 0, NULL } /* Sentinel */
 };
 
@@ -42998,14 +43604,14 @@ static void *_p_dblArrayTo_p_double(void *x, int *SWIGUNUSEDPARM(newmemory)) {
 static void *_p_ampls__GurobiModelTo_p_ampls__AMPLModel(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((ampls::AMPLModel *)  ((ampls::GurobiModel *) x));
 }
-static void *_p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArrayTo_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((int (*)(void **,void (*)(void *),void *,void *))  ((intArray (*)(void **,void (*)(void *),void *,void *)) x));
-}
 static void *_p_p_f_p__GRBmodel_p_void_int_p_void__intArrayTo_p_p_f_p__GRBmodel_p_void_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int (**)(_GRBmodel *,void *,int,void *))  ((intArray (**)(_GRBmodel *,void *,int,void *)) x));
 }
 static void *_p_f_p__GRBmodel_p_void_int_p_void__intArrayTo_p_f_p__GRBmodel_p_void_int_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((int (*)(_GRBmodel *,void *,int,void *))  ((intArray (*)(_GRBmodel *,void *,int,void *)) x));
+}
+static void *_p_f_p_p_void_p_f_p_void__void_p_void_p_void__intArrayTo_p_f_p_p_void_p_f_p_void__void_p_void_p_void__int(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((int (*)(void **,void (*)(void *),void *,void *))  ((intArray (*)(void **,void (*)(void *),void *,void *)) x));
 }
 static void *_p_ampls__AMPLSolverExceptionTo_p_std__runtime_error(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((std::runtime_error *)  ((ampls::AMPLSolverException *) x));
@@ -43040,6 +43646,7 @@ static swig_type_info _swigt__p_ampls__GenericCallback = {"_p_ampls__GenericCall
 static swig_type_info _swigt__p_ampls__GurobiCallback = {"_p_ampls__GurobiCallback", "ampls::GurobiCallback *", 0, 0, (void*)&SwigPyBuiltin__ampls__GurobiCallback_clientdata, 0};
 static swig_type_info _swigt__p_ampls__GurobiDrv = {"_p_ampls__GurobiDrv", "ampls::GurobiDrv *", 0, 0, (void*)&SwigPyBuiltin__ampls__GurobiDrv_clientdata, 0};
 static swig_type_info _swigt__p_ampls__GurobiModel = {"_p_ampls__GurobiModel", "ampls::GurobiModel *", 0, 0, (void*)&SwigPyBuiltin__ampls__GurobiModel_clientdata, 0};
+static swig_type_info _swigt__p_ampls__LPAlgorithms = {"_p_ampls__LPAlgorithms", "ampls::LPAlgorithms *", 0, 0, (void*)&SwigPyBuiltin__ampls__LPAlgorithms_clientdata, 0};
 static swig_type_info _swigt__p_ampls__SolverParams = {"_p_ampls__SolverParams", "ampls::SolverParams *", 0, 0, (void*)&SwigPyBuiltin__ampls__SolverParams_clientdata, 0};
 static swig_type_info _swigt__p_ampls__Status = {"_p_ampls__Status", "ampls::Status *", 0, 0, (void*)&SwigPyBuiltin__ampls__Status_clientdata, 0};
 static swig_type_info _swigt__p_ampls__Value = {"_p_ampls__Value", "ampls::Value *", 0, 0, (void*)&SwigPyBuiltin__ampls__Value_clientdata, 0};
@@ -43120,6 +43727,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_ampls__GurobiCallback,
   &_swigt__p_ampls__GurobiDrv,
   &_swigt__p_ampls__GurobiModel,
+  &_swigt__p_ampls__LPAlgorithms,
   &_swigt__p_ampls__SolverParams,
   &_swigt__p_ampls__Status,
   &_swigt__p_ampls__Value,
@@ -43200,6 +43808,7 @@ static swig_cast_info _swigc__p_ampls__GenericCallback[] = {  {&_swigt__p_ampls_
 static swig_cast_info _swigc__p_ampls__GurobiCallback[] = {  {&_swigt__p_ampls__GurobiCallback, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__GurobiDrv[] = {  {&_swigt__p_ampls__GurobiDrv, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__GurobiModel[] = {  {&_swigt__p_ampls__GurobiModel, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_ampls__LPAlgorithms[] = {  {&_swigt__p_ampls__LPAlgorithms, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__SolverParams[] = {  {&_swigt__p_ampls__SolverParams, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__Status[] = {  {&_swigt__p_ampls__Status, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ampls__Value[] = {  {&_swigt__p_ampls__Value, 0, 0, 0},{0, 0, 0, 0}};
@@ -43280,6 +43889,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_ampls__GurobiCallback,
   _swigc__p_ampls__GurobiDrv,
   _swigc__p_ampls__GurobiModel,
+  _swigc__p_ampls__LPAlgorithms,
   _swigc__p_ampls__SolverParams,
   _swigc__p_ampls__Status,
   _swigc__p_ampls__Value,
@@ -44321,6 +44931,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DBL_MIPGap",SWIG_From_int(static_cast< int >(ampls::SolverParams::DBL_MIPGap)));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DBL_TimeLimit",SWIG_From_int(static_cast< int >(ampls::SolverParams::DBL_TimeLimit)));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "INT_SolutionLimit",SWIG_From_int(static_cast< int >(ampls::SolverParams::INT_SolutionLimit)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "INT_LP_Algorithm",SWIG_From_int(static_cast< int >(ampls::SolverParams::INT_LP_Algorithm)));
   SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
   builtin_pytype->tp_new = PyType_GenericNew;
   builtin_base_count = 0;
@@ -44339,6 +44950,33 @@ SWIG_init(void) {
   Py_INCREF(builtin_pytype);
   PyModule_AddObject(m, "SolverParams", (PyObject *)builtin_pytype);
   SwigPyBuiltin_AddPublicSymbol(public_interface, "SolverParams");
+  d = md;
+  
+  /* type 'ampls::LPAlgorithms' */
+  builtin_pytype = (PyTypeObject *)&SwigPyBuiltin__ampls__LPAlgorithms_type;
+  builtin_pytype->tp_dict = d = PyDict_New();
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "Auto",SWIG_From_int(static_cast< int >(ampls::LPAlgorithms::Auto)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "PrimalSimplex",SWIG_From_int(static_cast< int >(ampls::LPAlgorithms::PrimalSimplex)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DualSimplex",SWIG_From_int(static_cast< int >(ampls::LPAlgorithms::DualSimplex)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "Barrier",SWIG_From_int(static_cast< int >(ampls::LPAlgorithms::Barrier)));
+  SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
+  builtin_pytype->tp_new = PyType_GenericNew;
+  builtin_base_count = 0;
+  builtin_bases[builtin_base_count] = NULL;
+  SwigPyBuiltin_InitBases(builtin_pytype, builtin_bases);
+  PyDict_SetItemString(d, "this", this_descr);
+  PyDict_SetItemString(d, "thisown", thisown_descr);
+  if (PyType_Ready(builtin_pytype) < 0) {
+    PyErr_SetString(PyExc_TypeError, "Could not create type 'LPAlgorithms'.");
+#if PY_VERSION_HEX >= 0x03000000
+    return NULL;
+#else
+    return;
+#endif
+  }
+  Py_INCREF(builtin_pytype);
+  PyModule_AddObject(m, "LPAlgorithms", (PyObject *)builtin_pytype);
+  SwigPyBuiltin_AddPublicSymbol(public_interface, "LPAlgorithms");
   d = md;
   
   /* type 'ampls::Where' */
@@ -44586,8 +45224,8 @@ SWIG_init(void) {
   SwigPyBuiltin_AddPublicSymbol(public_interface, "SolverDriverGrb");
   d = md;
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VERSION_MAJOR",SWIG_From_int(static_cast< int >(9)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VERSION_MINOR",SWIG_From_int(static_cast< int >(0)));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VERSION_TECHNICAL",SWIG_From_int(static_cast< int >(3)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VERSION_MINOR",SWIG_From_int(static_cast< int >(1)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_VERSION_TECHNICAL",SWIG_From_int(static_cast< int >(2)));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DEFAULT_CS_PRIORITY",SWIG_From_int(static_cast< int >(0)));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "MAX_CS_PRIORITY",SWIG_From_int(static_cast< int >(100)));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DEFAULT_CS_PORT",SWIG_From_int(static_cast< int >(61000)));
@@ -44666,6 +45304,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_JOBID",SWIG_FromCharPtr("JobID"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_LICENSE_EXPIRATION",SWIG_FromCharPtr("LicenseExpiration"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_NUMTAGGED",SWIG_FromCharPtr("NumTagged"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_FINGERPRINT",SWIG_FromCharPtr("Fingerprint"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_ATTR_BATCHERRORCODE",SWIG_FromCharPtr("BatchErrorCode"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_BATCHERRORMESSAGE",SWIG_FromCharPtr("BatchErrorMessage"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_ATTR_BATCHID",SWIG_FromCharPtr("BatchID"));
@@ -44975,12 +45614,14 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_IMPROVESTARTGAP",SWIG_FromCharPtr("ImproveStartGap"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_IMPROVESTARTTIME",SWIG_FromCharPtr("ImproveStartTime"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_IMPROVESTARTNODES",SWIG_FromCharPtr("ImproveStartNodes"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_INTEGRALITYFOCUS",SWIG_FromCharPtr("IntegralityFocus"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MINRELNODES",SWIG_FromCharPtr("MinRelNodes"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MIPFOCUS",SWIG_FromCharPtr("MIPFocus"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_NODEFILEDIR",SWIG_FromCharPtr("NodefileDir"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_NODEFILESTART",SWIG_FromCharPtr("NodefileStart"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_NODEMETHOD",SWIG_FromCharPtr("NodeMethod"));
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_NORELHEURISTIC",SWIG_FromCharPtr("NoRelHeuristic"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_NORELHEURTIME",SWIG_FromCharPtr("NoRelHeurTime"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_NORELHEURWORK",SWIG_FromCharPtr("NoRelHeurWork"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PUMPPASSES",SWIG_FromCharPtr("PumpPasses"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_RINS",SWIG_FromCharPtr("RINS"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_STR_PAR_SOLFILES",SWIG_FromCharPtr("SolFiles"));
@@ -45009,6 +45650,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_RLTCUTS",SWIG_FromCharPtr("RLTCuts"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_RELAXLIFTCUTS",SWIG_FromCharPtr("RelaxLiftCuts"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_BQPCUTS",SWIG_FromCharPtr("BQPCuts"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_PSDCUTS",SWIG_FromCharPtr("PSDCuts"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CUTAGGPASSES",SWIG_FromCharPtr("CutAggPasses"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_CUTPASSES",SWIG_FromCharPtr("CutPasses"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_GOMORYPASSES",SWIG_FromCharPtr("GomoryPasses"));
@@ -45076,6 +45718,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_TUNETRIALS",SWIG_FromCharPtr("TuneTrials"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_TUNEOUTPUT",SWIG_FromCharPtr("TuneOutput"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_TUNEJOBS",SWIG_FromCharPtr("TuneJobs"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_TUNECLEANUP",SWIG_FromCharPtr("TuneCleanup"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_UPDATEMODE",SWIG_FromCharPtr("UpdateMode"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_OBJNUMBER",SWIG_FromCharPtr("ObjNumber"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_MULTIOBJMETHOD",SWIG_FromCharPtr("MultiObjMethod"));
@@ -45083,6 +45726,7 @@ SWIG_init(void) {
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_SCENARIONUMBER",SWIG_FromCharPtr("ScenarioNumber"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_POOLSOLUTIONS",SWIG_FromCharPtr("PoolSolutions"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_POOLGAP",SWIG_FromCharPtr("PoolGap"));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_DBL_PAR_POOLGAPABS",SWIG_FromCharPtr("PoolGapAbs"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_POOLSEARCHMODE",SWIG_FromCharPtr("PoolSearchMode"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_IGNORENAMES",SWIG_FromCharPtr("IgnoreNames"));
   SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "GRB_INT_PAR_STARTNUMBER",SWIG_FromCharPtr("StartNumber"));
