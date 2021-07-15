@@ -93,6 +93,7 @@ def importSolution(self, model):
             'let {} := {};'.format(name, value)
             for name, value in model.items()
         ))
+        return
     import os
     model.writeSol()
     self.eval('solution "{}";'.format(model._solfile))

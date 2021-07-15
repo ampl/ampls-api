@@ -72,7 +72,7 @@ def link_args():
 
 setup(
     name='amplpy_gurobi',
-    version='0.1.0b15',
+    version='0.1.0b16',
     description='GUROBI extension for amplpy',
     long_description=__doc__,
     license='BSD-3',
