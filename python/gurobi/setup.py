@@ -3,8 +3,19 @@
 AMPLPY-GUROBI
 -------------
 
-GUROBI driver for AMPL.
+GUROBI driver for AMPL. This package uses AMPLS-API, which is an open source set of lightweight
+interfaces between AMPL and solvers, which allow:
 
+- Read in an AMPL model instance from an `NL` file
+- Write out the solution as a `sol` file, ready to be imported by AMPL
+- A choiche between:
+   - Use of all the solver's capabilities, using its own C API functionalities
+   - Use of a (provided) generic interface, that encapsulates the most common 
+     functionalities of the solver interfaces, permitting hassle-free solver swap
+- Usage of existing AMPL licenses, when used together with the AMPL drivers
+
+The interfaces are available for multiple languages; the core is written in C++ and it is wrapped using
+[swig](https://www.swig.org) to other target languages.
 """
 from setuptools import setup, Extension
 import platform
@@ -72,7 +83,7 @@ def link_args():
 
 setup(
     name='amplpy_gurobi',
-    version='0.1.0b17',
+    version='0.1.0b18',
     description='GUROBI extension for amplpy',
     long_description=__doc__,
     license='BSD-3',

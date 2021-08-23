@@ -24,3 +24,5 @@ try:
     from .patch import *
 except:
     raise
+
+__version__ = '0.1.0b18'

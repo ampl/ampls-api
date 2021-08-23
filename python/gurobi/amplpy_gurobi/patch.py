@@ -121,4 +121,14 @@ def tuple2var(varname, *args):
 
 
 def var2tuple(varname):
-    return tuple([varname[:varname.find('[')]] + varname[varname.find('[')+1: -1].split(','))
+    indices = varname[varname.find('[')+1: -1].split(',')
+    for i in range(len(indices)):
+        indices[i] = indices[i].strip(' ')
+        if indices[i][0] in ('\'', '\"'):
+            indices[i] = indices[i][1:-1]
+        else:
+            try:
+                indices[i] = int(indices[i])
+            except:
+                pass
+    return tuple([varname[:varname.find('[')]] + indices)
