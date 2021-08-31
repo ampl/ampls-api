@@ -14,8 +14,9 @@ public:
   virtual int run()
   {
     int where = getWhere();
+    printf("Where is %d\n", where);
     void*cbdata = getCBData();
-    if (where == GRB_CB_MIP) {
+    if (where == GRB_CB_MIP) { 
       double nodecount;
       int error = GRBcbget(cbdata, where, GRB_CB_MIP_NODCNT, (void *) &nodecount);
       if (error) return 0;
@@ -34,6 +35,7 @@ int main(int argc, char** argv) {
   // Load a model using gurobi driver
   ampls::GurobiDrv gurobi;
   ampls::GurobiModel m = gurobi.loadModel(buffer);
+
     // Set a (generic) callback
   MyGurobiCallback cb;
   m.setCallback(&cb);

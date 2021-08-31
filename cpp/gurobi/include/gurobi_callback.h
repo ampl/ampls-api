@@ -30,6 +30,20 @@ class GurobiCallback : public impl::BaseCallback {
   friend int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
   friend class GurobiModel;
   void* cbdata_;
+  static char toGRBSense(ampls::CutDirection::Direction dir)
+  {
+    switch (dir)
+    {
+    case CutDirection::EQ:
+      return GRB_EQUAL;
+    case CutDirection::GE:
+      return GRB_GREATER_EQUAL;
+    case CutDirection::LE:
+      return GRB_LESS_EQUAL;
+    }
+    throw std::runtime_error("Unexpected CutDirection value");
+  }
+
 
 protected:
   // Interface
@@ -40,12 +54,7 @@ protected:
 public:
 
   GurobiCallback() : cbdata_(NULL) {}
-  /**
-  * Get where the callback is called from in Gurobi_C library metrics
-  */
-  int where() {
-    return where_;
-  }
+  
   virtual int run() = 0;
   /**
   Get a string description of where the callback was called from
@@ -57,6 +66,7 @@ public:
   const char* getMessage();
 
   using BaseCallback::getSolutionVector;
+  using BaseCallback::getWhere;
   int getSolution(int len, double* sol);
   double getObj();
 

@@ -8,6 +8,8 @@
 #include <stdexcept>
 #include <memory> // for std::auto_ptr
 #include <cstdarg>
+#include <cmath> // for nan
+
 
 // This declaration is used in the solver-specific implementations
 // to import functions from the solver libraries
@@ -38,6 +40,7 @@ public:
     va_start(aptr, msg);
     vsprintf(buffer, msg, aptr);
     va_end(aptr);
+    
     return AMPLSolverException(buffer);
   }
 };
@@ -77,6 +80,14 @@ class GenericCallback;
 char** generateArguments(const char* modelName, std::vector<std::string> options);
 void deleteParams(char** params);
 
+
+struct VarType {
+  enum Type {
+    Continuous,
+    Binary,
+    Integer
+  };
+};
 
 struct SolverParams
 {
@@ -147,7 +158,6 @@ struct Where
   };
 };
 
-
 struct Value
 {
   /**
@@ -173,6 +183,7 @@ struct Value
     MIP_RELATIVEGAP = 6
   };
 };
+
 struct CutDirection {
   /** Direction of a cut to be added*/
   enum Direction {
@@ -183,6 +194,14 @@ struct CutDirection {
     /** <= Less or equal*/
     LE
   };
+  static std::string toString(Direction dir) {
+    if (dir == Direction::EQ)
+      return "=";
+    if (dir == Direction::GE)
+      return ">=";
+    if (dir == Direction::LE)
+      return "<=";
+  }
 };
 
 struct Status
@@ -240,9 +259,115 @@ typedef pthread_mutex_t  MUTEXIMPL;
 #include <mutex>
 typedef std::mutex MUTEXIMPL;
 #endif
+
 namespace ampls{
+
 namespace impl
 {
+  
+  template<typename ... Args>
+  std::string string_format(const std::string& format, Args ... args)
+  {
+    int size_s = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
+    if (size_s <= 0) { throw std::runtime_error("Error during formatting."); }
+    auto size = static_cast<size_t>(size_s);
+    auto buf = std::make_unique<char[]>(size);
+    std::snprintf(buf.get(), size, format.c_str(), args ...);
+    return std::string(buf.get(), buf.get() + size - 1); // We don't want the '\0' inside
+  }
+
+  class Entity
+  {
+
+    std::string name_;
+    std::vector<int> indices_;
+    std::vector<double> coeffs_;
+    int solverIndex_;
+    double value_;
+  public:
+    Entity(std::string name, std::vector<int> indices,
+      std::vector<double> coeffs) : name_(name), indices_(indices), coeffs_(coeffs), solverIndex_(-1),
+      value_(nanl(""))
+    {}
+
+    std::string name() const { return name_; }
+
+    std::vector<int> indices() const { return indices_; }
+    std::vector<double> coeffs() const { return coeffs_; }
+
+    void solverIndex(int index) { solverIndex_ = index; }
+    int solverIndex()const { return solverIndex_; }
+
+    void value(double v) { value_ = v; }
+    double value() const { return value_; }
+  };
+  class Records; // forward for toAMPLString
+  class Constraint : public Entity
+  {
+    ampls::CutDirection::Direction sense_;
+    double rhs_;
+
+  public:
+    Constraint(std::string name, std::vector<int> indices,
+      std::vector<double> coeffs, ampls::CutDirection::Direction sense, double rhs) :
+      Entity(name, indices, coeffs), sense_(sense), rhs_(rhs) {}
+
+    ampls::CutDirection::Direction sense() { return sense_; }
+    double rhs() { return rhs_; }
+    std::string toAMPLString(const std::map<int, std::string>& varMap, const Records& records);
+    
+  };
+
+  class Variable : public Entity
+  {
+  public:
+    Variable(std::string name, std::vector<int> indices,
+      std::vector<double> coeffs, double lb, double ub,
+      double objCoefficient, VarType::Type type) :
+      Entity(name, indices, coeffs),ub_(ub), lb_(lb), obj_(objCoefficient), type_(type) {}
+
+    double ub_;
+    double lb_;
+    double obj_;
+    VarType::Type type_;
+    std::string toAMPLString(const std::map<int, std::string>& map, const Records & records);
+  };
+
+  class Records
+  {
+  public:
+    std::vector<Variable> vars_;
+    std::vector<Constraint> cons_;
+    void addVariable(const Variable& v)
+    {
+      vars_.push_back(v);
+    }
+
+    void addConstraint(const Constraint& v)
+    {
+      cons_.push_back(v);
+    }
+
+
+    std::vector<int> getVarIndices()
+    {
+      std::vector<int> indices(vars_.size());
+      int i = 0;
+      for (auto v : vars_)
+        indices[i++] = v.solverIndex();
+      return indices;
+    }
+    std::vector<int> getConsIndices()
+    {
+      std::vector<int> indices(cons_.size());
+      int i = 0;
+      for (auto v : cons_)
+        indices[i++] = v.solverIndex();
+      return indices;
+    }
+
+  };
+
 class AMPLMutex {
 public:
   inline AMPLMutex();
@@ -360,6 +485,10 @@ protected:
 
   }
 public:
+  // NEW API
+  void recordConstraint(int variables[], double coefficients[], int sense, double rhs);
+  void recordVariable(int constraints[], double coefficients[]);
+
   void setDebugCuts(bool cutDebug, bool cutDebugIntCoefficients, bool cutDebugPrintVarNames)
   {
     cutDebug_ = cutDebug;
@@ -603,6 +732,8 @@ class AMPLModel
       varMapInverse_ = getVarMapInverse();
   }
 
+
+
 protected:
   std::string fileName_;
   AMPLModel() {}
@@ -614,14 +745,69 @@ protected:
   }
   virtual int setCallbackDerived(impl::BaseCallback* callback) {
     throw AMPLSolverException("Not implemented in base class!");
-  };
+  }
   virtual impl::BaseCallback *createCallbackImplDerived(GenericCallback *callback)   {
     throw AMPLSolverException("Not implemented in base class!");
-  };
+  }
   virtual void writeSolImpl(const char* solFileName) {
     throw AMPLSolverException("Not implemented in base class!");
-  };
+  }
+
+  impl::Records records_;
+  std::vector<double> getConstraintsValueImpl(const std::vector<int>& indices) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  virtual int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],
+    ampls::CutDirection::Direction sense, double rhs) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  virtual int addVariableImpl(const char* name, int numnz, const int cons[], const double coefficients[],
+    double lb, double ub, double objcoeff, ampls::VarType::Type type) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
 public:
+
+  // New API
+  std::string getRecordedVariables() {
+    std::string d;
+    std::map<int, std::string> map = getConsMapInverse();
+    for (auto v : records_.vars_)
+      d = d + v.toAMPLString(map, records_) + "\n";
+    return d;
+  
+  }
+  std::string getRecordedConstraints() {
+    std::string d;
+    std::map<int, std::string> map = getVarMapInverse();
+    for (auto c : records_.cons_)
+      d = d + c.toAMPLString(map, records_) + "\n";
+    return d;
+  }
+
+  void recordConstraint(const char* name, const std::vector<int> &vars, 
+    const std::vector<double> &coefficients, ampls::CutDirection::Direction sense, double rhs) {
+    impl::Constraint c = impl::Constraint(name, vars, coefficients, sense, rhs);
+    int index = addConstraintImpl(name, vars.size(), vars.data(), coefficients.data(), sense, rhs);
+    c.solverIndex(index);
+    records_.addConstraint(c);
+  }
+  void recordVariable(const char* name, double lb, double ub,
+    VarType::Type type) {
+    std::vector<int> indices;
+    std::vector<double> values;
+    recordVariable(name, indices, values, lb, ub, nan(""), type);
+  }
+
+  void recordVariable(const char* name, const std::vector<int>& cons,
+      const std::vector<double>& coefficients, double lb, double ub, double objCoefficient,
+      VarType::Type type) {
+     impl::Variable v = impl::Variable(name, cons, coefficients, lb, ub, objCoefficient, type);
+     int index = addVariableImpl(name, cons.size(), cons.data(), coefficients.data(), lb, ub, objCoefficient, type);
+     v.solverIndex(index);
+     records_.addVariable(v);
+  }
+
+
   /**
   Get the name of the NL file from which the model has been loaded from
   */
@@ -637,6 +823,10 @@ public:
   Get the map from variable index in the solver interface to AMPL variable instance name
   */
   std::map<int, std::string> getVarMapInverse();
+  /**
+  Get the map from constraint index in the solver interface to AMPL variable instance name
+  */
+  std::map<int, std::string> getConsMapInverse();
 
   /**
   Get the map from variable name to index in the solver interface
@@ -645,13 +835,29 @@ public:
   {
     return getVarMapFiltered(NULL);
   }
+
+  /**
+  Get the map from constraint name to index in the solver interface
+  */
+  std::map<std::string, int> getConsMap()
+  {
+    return getConsMapFiltered(NULL);
+  }
+
   /**
   Return the variable map filtered by the variable name, to avoid
   getting the whole (possibly large) map
   @param beginWith Prefix to be matched
   */
   std::map<std::string, int> getVarMapFiltered(const char *beginWith);
-  
+
+  /**
+  Return the constraint map filtered by the constraint name, to avoid
+  getting the whole (possibly large) map
+  @param beginWith Prefix to be matched
+  */
+  std::map<std::string, int> getConsMapFiltered(const char* beginWith);
+
   /**
   Set a generic callback to be called during optimization. This function is
   automatically dispatched when (and only when) assigning an ampls::GenericCallback,

@@ -113,21 +113,7 @@ const char* GurobiCallback::getMessage()
 
 int GurobiCallback::doAddCut(int nvars, const int* vars,
   const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
-  char sense;
-  switch (direction)
-  {
-  case CutDirection::EQ:
-    sense = GRB_EQUAL;
-    break;
-  case CutDirection::GE:
-    sense = GRB_GREATER_EQUAL;
-    break;
-  case CutDirection::LE:
-    sense = GRB_LESS_EQUAL;
-    break;
-  default:
-    throw AMPLSolverException("Unexpected cut direction");
-  }
+  char sense = toGRBSense(direction);
   if (lazy)
   {
     return GRBcblazy(cbdata_, nvars, vars,

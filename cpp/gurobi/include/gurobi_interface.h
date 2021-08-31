@@ -247,6 +247,60 @@ public:
     return getDoubleParam(getGRBParamAlias(params));
   }
 
+  std::vector<double> getConstraintsValueImpl(const std::vector<int>& indices) {
+    int min = INT_MAX, max = INT_MIN;
+    for (int i : indices)
+    {
+      if (i < min) min = i;
+      if (i > max) max = i;
+    }
+    int n = max - min;
+    std::vector<double> values;
+    values.resize(n);
+    getDoubleAttrArray(GRB_DBL_ATTR_RC, min, n, values.data());
+    return values;
+  }
+
+  int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],
+    ampls::CutDirection::Direction sense, double rhs) {
+    char grbsense = GurobiCallback::toGRBSense(sense);
+    int status = GRBaddconstr(getGRBmodel(), numnz, const_cast<int*>(vars),
+      const_cast<double*>(coefficients), grbsense, rhs, name);
+    status=  GRBupdatemodel(getGRBmodel());
+    return getIntAttr(GRB_INT_ATTR_NUMCONSTRS)-1;
+  }
+
+  int addVariableImpl(const char* name, int numnz, const int cons[], const double coefficients[],
+    double lb, double ub, double objcoeff, ampls::VarType::Type type) {
+    char t;
+    switch (type)
+    {
+      case VarType::Continuous:
+        t = GRB_CONTINUOUS;
+        break;
+      case VarType::Binary:
+        t = GRB_BINARY;
+        break;
+      case VarType::Integer:
+        t = GRB_INTEGER;
+        break;
+    }
+    if (numnz == 0)
+    {
+      int status = GRBaddvar(getGRBmodel(), 0, NULL, NULL, objcoeff, lb, ub, t, name);
+      printf("Status %d\n", status);
+    }
+    else {
+      int status = GRBaddvar(getGRBmodel(), numnz, const_cast<int*>(cons),
+        const_cast<double*>(coefficients), objcoeff, lb, ub, t, name);
+        printf("Status %d\n", status);
+    }
+    GRBupdatemodel(getGRBmodel());
+    return getIntAttr(GRB_INT_ATTR_NUMVARS)-1;
+  }
+
+
+
 };
 } // namespace
 #endif // GUROBI_INTERFACE_H_INCLUDE_

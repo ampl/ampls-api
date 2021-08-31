@@ -40,6 +40,37 @@ foreach(s ${SOLVER_NAMES})
  endif()
  endforeach()
 
+ 
+ # Find amplapi, if present add combined examples
+if(WIN32)
+  set(libdir win64)
+  set(libname "ampl-2.0.6.0.lib")
+  set(dllname "ampl-2.0.6.0.dll")
+elseif(APPLE)
+  set(libdir osx64)
+else()
+ set(libdir linux64)
+ set(libname "libampl.so")
+endif()
+set(AMPLAPIDIR ${CMAKE_CURRENT_SOURCE_DIR}/../../libs/amplapi/${libdir})
+if(EXISTS ${AMPLAPIDIR}/lib)
+  set(BUILD_AMPLAPI_EXAMPLES ON)
+  add_library(amplapi SHARED IMPORTED)
+
+  
+  if(WIN32)
+  set_target_properties(
+  amplapi PROPERTIES
+    IMPORTED_IMPLIB ${AMPLAPIDIR}/lib/${libname}
+    IMPORTED_LOCATION ${AMPLAPIDIR}/bin/${dllname}
+    INTERFACE_INCLUDE_DIRECTORIES ${AMPLAPIDIR}/include)
+  else()
+  set_target_properties(amplapi PROPERTIES
+    IMPORTED_LOCATION ${AMPLAPIDIR}/lib/${libname}
+    INTERFACE_INCLUDE_DIRECTORIES ${AMPLAPIDIR}/include)
+  endif()
+endif()
+
 # Examples
 macro(addExample name category src)
     set(tar ${category}-${name}) 
@@ -53,10 +84,23 @@ macro(addExample name category src)
 endmacro()
 
 if(PREPROCESSORDEFS)
-    set(EXAMPLES loadModel getInformation simpleCuts)
+    set(EXAMPLES loadModel getInformation simpleCuts )
     foreach(e ${EXAMPLES})
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
     endforeach()
+    if(BUILD_AMPLAPI_EXAMPLES)
+      foreach(e cuttingStock addConstraints)
+        addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
+        target_link_libraries(ampls-${e} amplapi)
+        add_custom_command ( TARGET ampls-${e} POST_BUILD
+          COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          $<TARGET_FILE:amplapi> $<TARGET_FILE_DIR:ampls-${e}>
+          COMMENT "Copying amplapi dynamic library to binary directory"
+        )
+      endforeach()
+    endif()
+
+    # Add tests
     add_prefix(TEST_SOURCES ${ampls_DIR}/test/
       api-test.cpp)
     add_executable(ampls-test ${TEST_SOURCES})

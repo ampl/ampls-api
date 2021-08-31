@@ -121,26 +121,32 @@ public:
 
   friend std::ostream& operator<<(std::ostream& out, const Tour& t)
   {
-    int lastTo = t.arcs[0].to;
-    for(int i=1; i< t.arcs.size(); i++)
+    std::set<Arc> toVisit(++t.arcs.begin(), t.arcs.end());
+    Arc current = *t.arcs.begin();
+    out << current.from << "-" << current.to;
+    int lastTo = current.to;
+    while (toVisit.size() > 0)
     {
-      if (t.arcs[i].from == lastTo)
+      for (auto a : toVisit)
       {
-        if(i==1)
-          out << t.arcs[0].from << "-" << t.arcs[0].to;
-        lastTo = t.arcs[i].to;
-        out << "-" << t.arcs[i].from;
-      }
-      else
-      {
-        if (i == 1)
-          out << t.arcs[0].to << "-" << t.arcs[0].from;
-        lastTo = t.arcs[i].from;
-        out << "-" << t.arcs[i].to;
+        if ((a.from == lastTo) || (a.to == lastTo))
+        {
+          toVisit.erase(a);
+          current = a;
+          if (a.from == lastTo)
+          {
+            out << "-" << a.to;
+            lastTo = a.to;
+          }
+          else
+          {
+            out << "-" << a.from;
+            lastTo = a.from;
+          }
+          break;
+        }
       }
     }
-    Arc lastArc = t.arcs[t.arcs.size() - 1];
-    out << "-" << (lastTo == lastArc.from ? lastArc.from : lastArc.to);
     return out;
   }
 
@@ -165,7 +171,6 @@ public:
   }
 };
 
-  
 std::set<int> setDiff(std::set<int> s1, std::set<int> s2)
 {
   std::set<int> result;
@@ -174,12 +179,8 @@ std::set<int> setDiff(std::set<int> s1, std::set<int> s2)
   return result;
 }
 
-
-
 class MyGenericCallbackCut : public ampls::GenericCallback
 {
-  std::map<std::string, int> _map;
-  std::map<int, std::string> _inversemap;
   std::map<int, Arc> xvar;
   std::map<Arc, int> xinverse;
   std::set<int> vertices;
@@ -191,9 +192,7 @@ public:
 
   void setMap(std::map<std::string, int> map, std::map<int, std::string> inversemap)
   {
-    _map = map;
-    _inversemap = inversemap;
-     for (auto it : _map)
+     for (auto it : map)
      {
         Arc cur = Arc::fromVar(it.first);
         xvar[it.second] = cur;
