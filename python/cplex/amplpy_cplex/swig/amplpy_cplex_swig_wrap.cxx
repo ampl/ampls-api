@@ -7264,7 +7264,7 @@ SWIG_From_char  (char c)
  * C++ director class methods
  * --------------------------------------------------- */
 
-#include "amplpy_cplex_swigPYTHON_wrap.h"
+#include "amplpy_cplex_swig_wrap.h"
 
 SwigDirector_GenericCallback::SwigDirector_GenericCallback(PyObject *self): ampls::GenericCallback(), Swig::Director(self) {
   SWIG_DIRECTOR_RGTR((ampls::GenericCallback *)this, this); 

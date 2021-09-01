@@ -117,14 +117,15 @@ macro( CSHARP_ADD_PROJECT type name )
   
   set(CSHARP_${name}_BINARY ${CSHARP_OUTPUT_DIR}/${ACTUAL_NAME}${CSHARP_BINARY_SUFFIX}.${output})
   set(CSHARP_${name}_BINARY_NAME ${ACTUAL_NAME}${CSHARP_BINARY_SUFFIX}.${output})
-  
+
+
   # Add custom target and command
   #MESSAGE( STATUS "Adding C# ${type} ${name}: '${CSHARP_COMPILER} /t:${type} /out:${name}${CSHARP_BINARY_SUFFIX}.${output} ${EXTRA_FLAGS} ${CSHARP_SDK} ${refs} ${sources}'" )
   add_custom_command(
     COMMENT "Compiling C# ${type} ${name}: '${CSHARP_COMPILER} /unsafe /t:${type} /out:${CSHARP_${name}_BINARY} /platform:${CSHARP_PLATFORM} ${CSHARP_SDK} ${refs} ${sources}'"
     OUTPUT ${CSHARP_${name}_BINARY}
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CSHARP_OUTPUT_DIR}
-    COMMAND ${CMAKE_COMMAND} -DFILES_TO_COPY="${source_list}" -DDESTINATION_DIR="${CMAKE_CURRENT_BINARY_DIR}" -P "${CMAKE_SOURCE_DIR}/support/cmake/CopyListOfFiles.cmake"
+    COMMAND ${CMAKE_COMMAND} -DFILES_TO_COPY="${source_list}" -DDESTINATION_DIR="${CMAKE_CURRENT_BINARY_DIR}" -P "${AMPLS_BASE_DIRECTORY}/support/cmake/CopyListOfFiles.cmake"
     COMMAND ${CSHARP_COMPILER}
     ARGS /t:${type} /out:${CSHARP_${name}_BINARY} /unsafe ${EXTRA_FLAGS} ${CSHARP_SDK} ${refs} ${sources}
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

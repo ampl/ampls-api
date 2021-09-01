@@ -1,0 +1,5 @@
+FILE(READ ${INPUT_SOURCE} filecontents)
+get_filename_component(fn ${INPUT_SOURCE} NAME_WE)
+get_filename_component(new ${OUTPUT_SOURCE} NAME_WE)
+STRING(REGEX REPLACE "${fn}" "${new}" modfilecontents "${filecontents}" )
+FILE(WRITE ${OUTPUT_SOURCE} "${modfilecontents}")

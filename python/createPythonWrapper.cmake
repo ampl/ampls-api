@@ -59,8 +59,9 @@ add_custom_target(
   amplpy_${solvername}_updatewheel
   DEPENDS ${PYTHON_SWIG_API}
   COMMAND ${CMAKE_COMMAND} -E copy ${SWIG_PYTHON_WRAPPER} ${wheel_dir}
-  COMMAND ${CMAKE_COMMAND} -E copy ${SWIG_CPP_SOURCE}
-          ${wheel_dir}/${PYTHON_SWIG_API}_wrap.cxx
+  COMMAND ${CMAKE_COMMAND} -DINPUT_SOURCE=${SWIG_CPP_SOURCE} 
+  -DOUTPUT_SOURCE=${wheel_dir}/${PYTHON_SWIG_API}_wrap.cxx
+  -P "${CMAKE_CURRENT_SOURCE_DIR}/../copyAndModifySource.cmake"
   COMMAND ${CMAKE_COMMAND} -E copy ${SWIG_CPP_HEADER}
           ${wheel_dir}/${PYTHON_SWIG_API}_wrap.h)
 
