@@ -1,13 +1,10 @@
 #include "ampls/ampls.h"
-
-#include <cstring>
+#include "csvReader.h"
 
 #include <fstream>      // std::filebuf
 #include <iostream>     // std::ios, std::istream
-#include <stdexcept>    // std::runtime_error
-#include "csvReader.h"
-
 #include <sstream> // string concatenation
+#include <cstring> // for strcpy and strlen
 
 namespace ampls
 {
@@ -173,7 +170,7 @@ namespace impl {
     if (!std::isinf(ub_))
       ss << string_format("<=%f,", ub_);
 
-    if (!isnan(obj_))
+    if (!std::isnan(obj_))
       ss << string_format("obj %s %f,", consMap.at(consMap.size() - 1).c_str(), obj_);
 
     for (int i = 0; i < indices().size(); i++)

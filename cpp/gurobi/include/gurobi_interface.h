@@ -9,15 +9,14 @@
 #define API 
 #endif
 
+#include "ampls/ampls.h"
+#include "gurobi_callback.h"
+#include "gurobi_c.h"
 
 #include <string>
 #include <map>
 #include <mutex>
-
-#include "ampls/ampls.h"
-#include "gurobi_callback.h"
-
-#include "gurobi_c.h"
+#include <climits>  // for INT_MAX
 
 struct ASL;
 namespace ampls

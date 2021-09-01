@@ -50,7 +50,7 @@ elseif(APPLE)
   set(libdir osx64)
 else()
  set(libdir linux64)
- set(libname "libampl.so")
+ set(libname "libampl.so.2.0.6.0")
 endif()
 set(AMPLAPIDIR ${CMAKE_CURRENT_SOURCE_DIR}/../../libs/amplapi/${libdir})
 if(EXISTS ${AMPLAPIDIR}/lib)
@@ -79,7 +79,7 @@ macro(addExample name category src)
     target_include_directories(${tar} PRIVATE
        ${GENERATED_INCLUDE_DIR} # for test-config
      )
-    target_link_libraries(${tar} ${LINKLIBS})
+    target_link_libraries(${tar} PRIVATE ${LINKLIBS})
     add_to_folder(${category}/examples ${tar})
 endmacro()
 
@@ -91,7 +91,7 @@ if(PREPROCESSORDEFS)
     if(BUILD_AMPLAPI_EXAMPLES)
       foreach(e cuttingStock addConstraints)
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
-        target_link_libraries(ampls-${e} amplapi)
+        target_link_libraries(ampls-${e} PRIVATE amplapi)
         add_custom_command ( TARGET ampls-${e} POST_BUILD
           COMMAND ${CMAKE_COMMAND} -E copy_if_different
           $<TARGET_FILE:amplapi> $<TARGET_FILE_DIR:ampls-${e}>
