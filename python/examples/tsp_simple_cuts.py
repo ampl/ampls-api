@@ -1,6 +1,6 @@
 from amplpy import AMPL, DataFrame
 import amplpy_gurobi as ampls
-from patch import  *
+from amplpy_gurobi.patch import  *
 import time
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors

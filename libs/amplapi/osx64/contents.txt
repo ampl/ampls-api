@@ -1,0 +1,10 @@
+This directory should contain the contents of the archive containing amplapi for the specified architecture, e.g.:
+
+./bin
+./doc
+./examples
+./include
+./lib
+./matlab
+./changes.txt
+

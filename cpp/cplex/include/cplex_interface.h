@@ -206,6 +206,11 @@ public:
   int getNumVars() {
     return CPXXgetnumcols(getCPXENV(), model_);
   }
+
+  int getNumCons() {
+    return CPXXgetnumrows(getCPXENV(), model_);
+  };
+
   double getObj() {
     double obj;
     int status = CPXgetobjval(getCPXENV(), model_, &obj);

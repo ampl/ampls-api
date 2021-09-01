@@ -41,8 +41,6 @@ void deleteParams(char** params)
   delete[] params;
 }
 
-
-
 std::string getSuffixedFileName(const std::string& nlFileName, const char* ext) {
   size_t lastindex = nlFileName.find_last_of(".");
   std::string basename;
@@ -97,37 +95,6 @@ std::map<int, std::string> AMPLModel::getConsMapInverse() {
 }
 
 
-std::map<std::string, int>& impl::BaseCallback::getVarMap() {
-  model_->getVarMapsInternal();
-  return model_->varMap_;
-}
-
-std::map<int, std::string>& impl::BaseCallback::getVarMapInverse() {
-  model_->getVarMapsInternal();
-  return model_->varMapInverse_;
-}
-
-
-int impl::BaseCallback::callAddCut(std::vector<std::string>& vars,
-  const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
-  std::size_t length = vars.size();
-  std::map<std::string, int> map = getVarMap();
-  std::vector<int> indices;
-  indices.reserve(length);
-  for (size_t i = 0; i < vars.size(); i++)
-  {
-    std::map<std::string, int>::iterator it = map.find(vars[i]);
-    if (it == map.end())
-      throw AMPLSolverException::format("Variable %s not found in variable map", vars[i].c_str());
-    else
-      indices.push_back(map[vars[i]]);
-  }
-  if (cutDebug_)
-    printCut((int)length, &indices[0], coeffs, direction, rhs, 
-      cutDebugIntCoefficients_, cutDebugPrintVarNames_);
-  return doAddCut((int)length, &indices[0], coeffs, direction, rhs, lazy);
-}
-
 std::vector<double> AMPLModel::getSolutionVector() {
   int len = getNumVars();
   std::vector<double> res;
@@ -144,23 +111,26 @@ void AMPLModel::printModelVars(bool onlyNonZero) {
       printf("(%i) %s=%f\n", a.second, a.first.data(), sol[a.second]);
 }
 
-std::vector<double> impl::BaseCallback::getSolutionVector() {
 
-  int len = model_->getNumVars();
-  std::vector<double> res;
-  res.resize(len);
-  int s;
-  try {
-    s = getSolution(len, res.data());
-  }
-  catch (...)
-  {
-    return res;
-  }
-  return res;
-}
 
 namespace impl {
+
+  std::vector<double> BaseCallback::getSolutionVector() {
+
+    int len = model_->getNumVars();
+    std::vector<double> res;
+    res.resize(len);
+    int s;
+    try {
+      s = getSolution(len, res.data());
+    }
+    catch (...)
+    {
+      return res;
+    }
+    return res;
+  }
+
 
   std::string Constraint::toAMPLString(const std::map<int, std::string>& varMap,
     const Records& records) {
@@ -221,6 +191,44 @@ namespace impl {
     }
     ss << ";";
     return ss.str();
+  }
+
+
+  std::map<std::string, int>& BaseCallback::getVarMap() {
+    model_->getVarMapsInternal();
+    return model_->varMap_;
+  }
+
+  std::map<int, std::string>& BaseCallback::getVarMapInverse() {
+    model_->getVarMapsInternal();
+    return model_->varMapInverse_;
+  }
+
+  int BaseCallback::callAddCut(std::vector<std::string>& vars,
+    const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
+    std::size_t length = vars.size();
+    std::map<std::string, int> map = getVarMap();
+    std::vector<int> indices;
+    indices.reserve(length);
+    for (size_t i = 0; i < vars.size(); i++)
+    {
+      std::map<std::string, int>::iterator it = map.find(vars[i]);
+      if (it == map.end())
+        throw AMPLSolverException::format("Variable %s not found in variable map", vars[i].c_str());
+      else
+        indices.push_back(map[vars[i]]);
+    }
+    if (cutDebug_)
+      printCut((int)length, &indices[0], coeffs, direction, rhs,
+        cutDebugIntCoefficients_, cutDebugPrintVarNames_);
+    return doAddCut((int)length, &indices[0], coeffs, direction, rhs, lazy);
+  }
+
+  void BaseCallback::recordConstraint(const char* name, const std::vector<int>& vars,
+    const std::vector<double>& coefficients, CutDirection::Direction sense, double rhs) {
+    auto c = Constraint(name, vars, coefficients, sense, rhs);
+    c.solverIndex(model_->getNumCons() + model_->records_.getNumConstraints());
+    model_->records_.addConstraint(c);
   }
 
 

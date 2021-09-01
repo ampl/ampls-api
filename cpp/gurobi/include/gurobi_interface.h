@@ -155,6 +155,9 @@ public:
   int getNumVars() {
     return getIntAttr(GRB_INT_ATTR_NUMVARS);
   }
+  int getNumCons() {
+    return getIntAttr(GRB_INT_ATTR_NUMCONSTRS);
+  };
   double getObj() {
     return getDoubleAttr(GRB_DBL_ATTR_OBJVAL);
   }

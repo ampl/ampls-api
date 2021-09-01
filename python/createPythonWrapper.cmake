@@ -65,7 +65,6 @@ add_custom_target(
           ${wheel_dir}/${PYTHON_SWIG_API}_wrap.h)
 
 add_to_folder(${solvername}/swig/py ${PYTHON_SWIG_API} amplpy_${solvername}_updatewheel)
-message("CMAKE_CURRENT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}")
 if(MSVC)
   include_external_msproject(
     amplpy_${solvername}_examples

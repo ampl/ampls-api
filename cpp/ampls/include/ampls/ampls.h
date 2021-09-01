@@ -201,6 +201,7 @@ struct CutDirection {
       return ">=";
     if (dir == Direction::LE)
       return "<=";
+    throw std::invalid_argument("Unexpected cut direction value");
   }
 };
 
@@ -366,6 +367,13 @@ namespace impl
       return indices;
     }
 
+    std::size_t getNumConstraints() {
+      return cons_.size();
+    }
+    std::size_t getNumVariables() {
+      return vars_.size();
+    }
+
   };
 
 class AMPLMutex {
@@ -485,9 +493,21 @@ protected:
 
   }
 public:
-  // NEW API
-  void recordConstraint(int variables[], double coefficients[], int sense, double rhs);
-  void recordVariable(int constraints[], double coefficients[]);
+  void recordConstraint(const char* name, const std::vector<int>& vars,
+    const std::vector<double>& coefficients, CutDirection::Direction sense, double rhs);
+
+  void recordVariable(const char* name, double lb, double ub, VarType::Type type)
+  {
+    throw std::runtime_error("Not implemented!");
+  }
+
+  void recordVariable(const char* name, const std::vector<int>& cons,
+    const std::vector<double>& coefficients, double lb, double ub, double objCoefficient,
+    VarType::Type type)
+  {
+    throw std::runtime_error("Not implemented!");
+  }
+
 
   void setDebugCuts(bool cutDebug, bool cutDebugIntCoefficients, bool cutDebugPrintVarNames)
   {
@@ -718,6 +738,17 @@ class AMPLModel
 {
   friend std::map<std::string, int>& impl::BaseCallback::getVarMap();
   friend std::map<int, std::string>& impl::BaseCallback::getVarMapInverse();
+
+
+  friend void impl::BaseCallback::recordConstraint(const char* name, const std::vector<int>& vars,
+    const std::vector<double>& coefficients, CutDirection::Direction sense, double rhs);
+
+  friend void impl::BaseCallback::recordVariable(const char* name, double lb, double ub, VarType::Type type);
+
+  friend void impl::BaseCallback::recordVariable(const char* name, const std::vector<int>& cons,
+    const std::vector<double>& coefficients, double lb, double ub, double objCoefficient,
+    VarType::Type type);
+
   std::map<int, std::string> varMapInverse_;
   std::map<std::string, int> varMap_;
   /*
@@ -888,6 +919,12 @@ public:
   Get the number of variables
   */
   virtual int getNumVars() {
+    throw AMPLSolverException("Not implemented in base class!");
+  };
+  /**
+  Get the number of constraints
+  */
+  virtual int getNumCons() {
     throw AMPLSolverException("Not implemented in base class!");
   };
   /** 
