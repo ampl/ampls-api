@@ -269,7 +269,7 @@ public:
     int status = GRBaddconstr(getGRBmodel(), numnz, const_cast<int*>(vars),
       const_cast<double*>(coefficients), grbsense, rhs, name);
     status=  GRBupdatemodel(getGRBmodel());
-    return getIntAttr(GRB_INT_ATTR_NUMCONSTRS)-1;
+    return getNumCons()-1;
   }
 
   int addVariableImpl(const char* name, int numnz, const int cons[], const double coefficients[],
@@ -287,18 +287,19 @@ public:
         t = GRB_INTEGER;
         break;
     }
+    int status = 0;
     if (numnz == 0)
     {
-      int status = GRBaddvar(getGRBmodel(), 0, NULL, NULL, objcoeff, lb, ub, t, name);
-      printf("Status %d\n", status);
+       status = GRBaddvar(getGRBmodel(), 0, NULL, NULL, objcoeff, lb, ub, t, name);
     }
     else {
-      int status = GRBaddvar(getGRBmodel(), numnz, const_cast<int*>(cons),
+      status = GRBaddvar(getGRBmodel(), numnz, const_cast<int*>(cons),
         const_cast<double*>(coefficients), objcoeff, lb, ub, t, name);
-        printf("Status %d\n", status);
     }
+    if (status != 0)
+      throw ampls::AMPLSolverException::format("Could not add variable, code: %d.", status);;
     GRBupdatemodel(getGRBmodel());
-    return getIntAttr(GRB_INT_ATTR_NUMVARS)-1;
+    return getNumVars()-1;
   }
 
 

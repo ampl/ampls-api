@@ -18,6 +18,7 @@ const char* MODELNAME = "tsp.nl";
 class MyGenericCallback : public ampls::GenericCallback
 {
   int nMIPnodes = 0;
+  int nadd = 0;
   virtual int run()
   {
     // Prints out the name of the solution phase where the solver is called from
@@ -25,9 +26,10 @@ class MyGenericCallback : public ampls::GenericCallback
     //printf("\nCalled from %s\n", getWhere());
     double obj;
     // Get the generic mapping
-    ampls::Where::CBWhere where = getAMPLWhere();
+     ampls::Where::CBWhere where = getAMPLWhere();
    // printf("Where: %i\n", where);
     
+    char BUFFER[100];
     
     switch (where)
     {

@@ -81,11 +81,12 @@ char** generateArguments(const char* modelName, std::vector<std::string> options
 void deleteParams(char** params);
 
 
+
 struct VarType {
   enum Type {
-    Continuous,
-    Binary,
-    Integer
+    Continuous=0,
+    Binary=1,
+    Integer=2
   };
 };
 
@@ -188,11 +189,11 @@ struct CutDirection {
   /** Direction of a cut to be added*/
   enum Direction {
     /** = Equal*/
-    EQ,
+    EQ = 0,
     /** >= Greater or equal*/
-    GE,
+    GE = 1,
     /** <= Less or equal*/
-    LE
+    LE = 2
   };
   static std::string toString(Direction dir) {
     if (dir == Direction::EQ)
@@ -262,34 +263,42 @@ typedef std::mutex MUTEXIMPL;
 #endif
 
 namespace ampls{
-
-namespace impl
-{
-  
-  template<typename ... Args>
-  std::string string_format(const std::string& format, Args ... args)
-  {
-    int size_s = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
-    if (size_s <= 0) { throw std::runtime_error("Error during formatting."); }
-    auto size = static_cast<size_t>(size_s);
-    std::vector<char> buf(size);
-    std::snprintf(buf.data(), size, format.c_str(), args ...);
-    return std::string(buf.data(), buf.data() + size - 1); // We don't want the '\0' inside
+  namespace impl {
+    class Records; // forward for toAMPLString
+    template<typename ... Args>
+    std::string string_format(const std::string& format, Args ... args)
+    {
+      int size_s = std::snprintf(nullptr, 0, format.c_str(), args ...) + 1; // Extra space for '\0'
+      if (size_s <= 0) { throw std::runtime_error("Error during formatting."); }
+      auto size = static_cast<size_t>(size_s);
+      std::vector<char> buf(size);
+      std::snprintf(buf.data(), size, format.c_str(), args ...);
+      return std::string(buf.data(), buf.data() + size - 1); // We don't want the '\0' inside
+    }
   }
 
   class Entity
   {
-
-    std::string name_;
     std::vector<int> indices_;
     std::vector<double> coeffs_;
     int solverIndex_;
     double value_;
+  protected:
+    std::string name_;
   public:
     Entity(std::string name, std::vector<int> indices,
       std::vector<double> coeffs) : name_(name), indices_(indices), coeffs_(coeffs), solverIndex_(-1),
       value_(nanl(""))
     {}
+
+    Entity(const char* name, int nnz, const int* indices,
+      const double* coeffs) : solverIndex_(-1),
+      value_(nanl("")) {
+      if (name != NULL)
+        name_ = std::string(name);
+      indices_.insert(indices_.begin(), &indices[0], &indices[nnz]);
+      coeffs_.insert(coeffs_.begin(), &coeffs[0], &coeffs[nnz]);
+    }
 
     std::string name() const { return name_; }
 
@@ -302,38 +311,70 @@ namespace impl
     void value(double v) { value_ = v; }
     double value() const { return value_; }
   };
-  class Records; // forward for toAMPLString
+  
   class Constraint : public Entity
   {
+    static int nConsAdded;
     ampls::CutDirection::Direction sense_;
     double rhs_;
-
+    void assignName()
+    {
+      name_ = impl::string_format("ampl_con_%d", ++nConsAdded);
+    }
   public:
     Constraint(std::string name, std::vector<int> indices,
-      std::vector<double> coeffs, ampls::CutDirection::Direction sense, double rhs) :
-      Entity(name, indices, coeffs), sense_(sense), rhs_(rhs) {}
+      std::vector<double> coeffs, CutDirection::Direction sense, double rhs) :
+      Entity(name, indices, coeffs), sense_(sense), rhs_(rhs) {
+      if (name.size() == 0)
+        assignName();
+    }
 
-    ampls::CutDirection::Direction sense() { return sense_; }
-    double rhs() { return rhs_; }
-    std::string toAMPLString(const std::map<int, std::string>& varMap, const Records& records);
-    
+    Constraint(const char* name, int nnz, const int* indices,
+      const double* coeffs, ampls::CutDirection::Direction sense, double rhs) :
+      Entity(name, nnz, indices, coeffs), sense_(sense), rhs_(rhs) {
+      if (name == NULL)
+        assignName();
+    }
+
+    ampls::CutDirection::Direction sense() const { return sense_; }
+    double rhs() const { return rhs_; }
+    std::string toAMPLString(const std::map<int, std::string>& varMap, 
+      const impl::Records& records) const;
+
   };
-
   class Variable : public Entity
   {
+    static int nVarsAdded;
+    void assignName()
+    {
+      name_ = impl::string_format("ampl_var_%d", ++nVarsAdded);
+    }
   public:
     Variable(std::string name, std::vector<int> indices,
       std::vector<double> coeffs, double lb, double ub,
       double objCoefficient, VarType::Type type) :
-      Entity(name, indices, coeffs),ub_(ub), lb_(lb), obj_(objCoefficient), type_(type) {}
+      Entity("", indices, coeffs), ub_(ub), lb_(lb), obj_(objCoefficient), type_(type) {
+      if (name.size() == 0)
+        assignName();
+    }
+
+    Variable(const char* name, int nnz, const int* indices,
+      const double* coeffs, double lb, double ub,
+      double objCoefficient, VarType::Type type) :
+      Entity(name, nnz, indices, coeffs), ub_(ub), lb_(lb), obj_(objCoefficient), type_(type) {
+      if (name == NULL)
+        assignName();
+    }
 
     double ub_;
     double lb_;
     double obj_;
     VarType::Type type_;
-    std::string toAMPLString(const std::map<int, std::string>& map, const Records & records);
+    std::string toAMPLString(const std::map<int, std::string>& map, const impl::Records& records) const;
   };
-
+  
+namespace impl
+{
   class Records
   {
   public:
@@ -375,6 +416,9 @@ namespace impl
     }
 
   };
+
+
+ 
 
 class AMPLMutex {
 public:
@@ -422,13 +466,16 @@ class BaseCallback
 protected:
   AMPLModel* model_;
   int where_;
-  virtual int doAddCut(int nvars, const int* vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs,
-    int type) = 0;
+  virtual int doAddCut(const ampls::Constraint& c, int type) = 0;
 
-  int callAddCut(std::vector<std::string>& vars,
+  ampls::Constraint callAddCut(std::vector<std::string>& vars,
     const double* coeffs, CutDirection::Direction direction, double rhs,
     int type);
+
+  ampls::Constraint callDoAddCut(int length, const int* indices,
+    const double* coeffs, CutDirection::Direction direction, double rhs,
+    int type);
+
   void printCut(int nvars, const int* vars, const double* coeffs, 
     CutDirection::Direction direction, double rhs, bool intCoeffs = false,
     bool varNames = false)
@@ -448,8 +495,6 @@ protected:
     default:
       throw AMPLSolverException("Unexpected cut direction");
     }
-  
-    
     if (varNames)
     {
       std::map<int, std::string> imap = getVarMapInverse();
@@ -493,21 +538,16 @@ protected:
 
   }
 public:
-  void recordConstraint(const char* name, const std::vector<int>& vars,
-    const std::vector<double>& coefficients, CutDirection::Direction sense, double rhs);
+  void recordVariable(const ampls::Variable& v);
+  void recordConstraint(const ampls::Constraint& c);
+  ampls::Variable addVariable(int nnz, const int* cons,
+    const double* coefficients, double lb, double ub, double objCoefficient,
+    VarType::Type type, const char* name = NULL);
 
-  void recordVariable(const char* name, double lb, double ub, VarType::Type type)
-  {
-    throw std::runtime_error("Not implemented!");
+  ampls::Variable addVariable(double lb, double ub,
+    VarType::Type type, const char* name = NULL) {
+    return addVariable(0, NULL, NULL, lb, ub, 0, type, name);
   }
-
-  void recordVariable(const char* name, const std::vector<int>& cons,
-    const std::vector<double>& coefficients, double lb, double ub, double objCoefficient,
-    VarType::Type type)
-  {
-    throw std::runtime_error("Not implemented!");
-  }
-
 
   void setDebugCuts(bool cutDebug, bool cutDebugIntCoefficients, bool cutDebugPrintVarNames)
   {
@@ -533,7 +573,7 @@ public:
   * @param direction Direction of the constraint ampls::CBDirection::Direction
   * @param rhs Right hand side value
   */
-  int addCut(std::vector<std::string> vars,
+  ampls::Constraint addCut(std::vector<std::string> vars,
     const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 0);
@@ -544,7 +584,7 @@ public:
   * @param direction Direction of the constraint ampls::CBDirection::Direction
   * @param rhs Right hand side value
   */
-  int addLazy(std::vector<std::string> vars,
+  ampls::Constraint addLazy(std::vector<std::string> vars,
     const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return callAddCut(vars, coeffs, direction, rhs, 1);
@@ -557,10 +597,10 @@ public:
   * @param direction Direction of the constraint ampls::CBDirection::Direction
   * @param rhs Right hand side value
   */
-  int addCutsIndices(int nvars, const int* vars,
+  ampls::Constraint addCutsIndices(int nvars, const int* vars,
     const double* coeffs, CutDirection::Direction direction, double rhs)
   {
-    return doAddCut(nvars, vars, coeffs, direction, rhs, 0);
+    return callDoAddCut(nvars, vars, coeffs, direction, rhs, 0);
   }
   /** Add a lazy constraint using solver indics
   * @param nvars Number of variables in the cut (length of *vars)
@@ -569,10 +609,10 @@ public:
   * @param direction Direction of the constraint ampls::CBDirection::Direction
   * @param rhs Right hand side value
   */
-  int addLazyIndices(int nvars, const int* vars,
+  ampls::Constraint addLazyIndices(int nvars, const int* vars,
     const double* coeffs, CutDirection::Direction direction, double rhs)
   {
-    return doAddCut(nvars, vars, coeffs, direction, rhs, 1);
+    return callDoAddCut(nvars, vars, coeffs, direction, rhs, 1);
   }
   /** Get the current solution vector */
   std::vector<double> getSolutionVector();
@@ -679,11 +719,9 @@ private:
   std::unique_ptr<impl::BaseCallback> impl_;
 
 protected:
-  virtual int doAddCut(int nvars, const int* vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs,
-                       int type)
+  int doAddCut(const ampls::Constraint& c, int type)
   {
-    return impl_->doAddCut(nvars, vars, coeffs, direction, rhs, type);
+    return impl_->doAddCut(c, type);
   }
 
 public:
@@ -739,15 +777,7 @@ class AMPLModel
   friend std::map<std::string, int>& impl::BaseCallback::getVarMap();
   friend std::map<int, std::string>& impl::BaseCallback::getVarMapInverse();
 
-
-  friend void impl::BaseCallback::recordConstraint(const char* name, const std::vector<int>& vars,
-    const std::vector<double>& coefficients, CutDirection::Direction sense, double rhs);
-
-  friend void impl::BaseCallback::recordVariable(const char* name, double lb, double ub, VarType::Type type);
-
-  friend void impl::BaseCallback::recordVariable(const char* name, const std::vector<int>& cons,
-    const std::vector<double>& coefficients, double lb, double ub, double objCoefficient,
-    VarType::Type type);
+  friend void impl::BaseCallback::recordConstraint(const ampls::Constraint&);
 
   std::map<int, std::string> varMapInverse_;
   std::map<std::string, int> varMap_;
@@ -799,43 +829,50 @@ protected:
 public:
 
   // New API
-  std::string getRecordedVariables() {
+  std::string getRecordedVariables(bool keep = false) {
     std::string d;
     std::map<int, std::string> map = getConsMapInverse();
     for (auto v : records_.vars_)
       d = d + v.toAMPLString(map, records_) + "\n";
+    if(!keep) records_.vars_.clear();
     return d;
   
   }
-  std::string getRecordedConstraints() {
+  std::string getRecordedConstraints(bool keep = false) {
     std::string d;
     std::map<int, std::string> map = getVarMapInverse();
     for (auto c : records_.cons_)
       d = d + c.toAMPLString(map, records_) + "\n";
+    if (!keep) records_.cons_.clear();
     return d;
   }
 
-  void recordConstraint(const char* name, const std::vector<int> &vars, 
-    const std::vector<double> &coefficients, ampls::CutDirection::Direction sense, double rhs) {
-    impl::Constraint c = impl::Constraint(name, vars, coefficients, sense, rhs);
-    int index = addConstraintImpl(name, vars.size(), vars.data(), coefficients.data(), sense, rhs);
+  ampls::Constraint addConstraint(int nnz, const int* vars,
+    const double* coefficients, ampls::CutDirection::Direction sense, double rhs, const char* name = NULL) {
+    Constraint c = Constraint(name, nnz, vars, coefficients, sense, rhs);
+    int index = addConstraintImpl(name, nnz, vars, coefficients, sense, rhs);
     c.solverIndex(index);
+    return c;
+  }
+  void recordConstraint(const ampls::Constraint &c) {
     records_.addConstraint(c);
   }
-  void recordVariable(const char* name, double lb, double ub,
-    VarType::Type type) {
-    std::vector<int> indices;
-    std::vector<double> values;
-    recordVariable(name, indices, values, lb, ub, nan(""), type);
+  void recordVariable(const ampls::Variable& v) {
+    records_.addVariable(v);
   }
 
-  void recordVariable(const char* name, const std::vector<int>& cons,
-      const std::vector<double>& coefficients, double lb, double ub, double objCoefficient,
-      VarType::Type type) {
-     impl::Variable v = impl::Variable(name, cons, coefficients, lb, ub, objCoefficient, type);
-     int index = addVariableImpl(name, cons.size(), cons.data(), coefficients.data(), lb, ub, objCoefficient, type);
-     v.solverIndex(index);
-     records_.addVariable(v);
+  ampls::Variable addVariable(double lb, double ub,
+    VarType::Type type, const char* name = NULL) {
+    return addVariable(0, NULL, NULL, lb, ub, 0, type, name);
+  }
+
+  ampls::Variable addVariable(int nnz, const int* cons,
+      const double* coefficients, double lb, double ub, double objCoefficient,
+      VarType::Type type, const char* name = NULL) {
+    Variable v = Variable(name, nnz, cons, coefficients, lb, ub, objCoefficient, type);
+    int index = addVariableImpl(name, nnz, cons, coefficients, lb, ub, objCoefficient, type);
+    v.solverIndex(index);
+    return v;
   }
 
 

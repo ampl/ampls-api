@@ -71,23 +71,9 @@ Variant CPLEXCallback::getValue(Value::CBValue v) {
 }
 
 
-int CPLEXCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
-  char sense;
-  switch (direction)
-  {
-    case CutDirection::EQ:
-      sense = 'E';
-      break;
-    case CutDirection::GE:
-      sense = 'G';
-      break;
-    case CutDirection::LE:
-      sense = 'L';
-      break;
-    default:
-      throw AMPLSolverException("Unexpected cut direction");
-  }
+
+int CPLEXCallback::doAddCut(const ampls::Constraint& c, int lazy) {
+  char sense = toCPLEXSense(c.sense());
 
   int res;
   if (lazy)
@@ -97,8 +83,8 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
       (where_ == CPX_CALLBACK_MIP_CUT_UNBD)
       )
     {
-      res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, nvars, rhs, sense, vars,
-        coeffs, CPX_USECUT_FORCE);
+      res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, c.indices().size(), c.rhs(), 
+        sense, c.indices().data(), c.coeffs().data(), CPX_USECUT_FORCE);
     }
     else
       return 0;
@@ -107,8 +93,8 @@ int CPLEXCallback::doAddCut(int nvars, const int* vars,
   {
     if ((where_ == CPX_CALLBACK_MIP_CUT_LOOP) ||
       (where_ == CPX_CALLBACK_MIP_CUT_LAST))
-      res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, nvars, rhs, sense, vars,
-        coeffs, CPX_USECUT_FILTER);
+      res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, c.indices().size(), c.rhs(),
+        sense, c.indices().data(), c.coeffs().data(), CPX_USECUT_FILTER);
     else
       return 0;
   }
@@ -319,6 +305,13 @@ Variant CPLEXCallback::get(int what)
     break;
   }
   return r;
+}
+
+const char toCPLEXMap[3] = { 'E', 'G', 'L' };
+
+char CPLEXCallback::toCPLEXSense(ampls::CutDirection::Direction direction)
+{
+  return toCPLEXMap[(int)direction];
 }
 
 } // namespace

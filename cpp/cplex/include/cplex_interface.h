@@ -304,6 +304,32 @@ public:
     setParam(getCPXParamAlias(param), value);
   }
 
+  int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],
+    ampls::CutDirection::Direction sense, double rhs) {
+    double rhsd[] = { rhs };
+    char sensed[] = { CPLEXCallback::toCPLEXSense(sense) };
+    int rowbegin[] = { 0 };
+    char* named[] = { const_cast<char*>(name) };
+
+    // TODO Infinity CPX_INFBOUND 
+    int status = CPXaddrows(getCPXENV(), getCPXLP(), 0, 1,
+      numnz, rhsd, sensed, rowbegin, vars, coefficients, NULL, named);
+    return getNumCons() - 1;
+  }
+  const char toCPLEXType[3] = { CPX_CONTINUOUS, CPX_BINARY, CPX_INTEGER };
+  int addVariableImpl(const char* name, int numnz, const int cons[], const double coefficients[],
+    double lb, double ub, double objcoeff, ampls::VarType::Type type) {
+    double objd[] = { objcoeff };
+    double ubd[] = { ub };
+    double lbd[] = { lb };
+    char* named[] = { const_cast<char*>(name) };
+    int status = CPXaddcols(getCPXENV(), getCPXLP(), 1, numnz, objd, 0, cons, coefficients, lbd, ubd, named);
+    char varType[] = { toCPLEXType[(int)type] };
+    int indices[] = { getNumVars() - 1 };
+    CPXchgctype(getCPXENV(), getCPXLP(), 1, indices, varType);
+    return indices[0];
+  }
+
 };
 
 } // namespace

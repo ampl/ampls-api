@@ -45,11 +45,11 @@ class CPLEXCallback : public impl::BaseCallback {
   double objval_;
   double* x_;
 
-
+  static char toCPLEXSense(ampls::CutDirection::Direction direction);
+  
 protected:
   // Interface
-  int doAddCut(int nvars, const int* vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs,
+  int doAddCut(const ampls::Constraint& c,
     int type);
   CPXCENVptr getCPXENV() { return env_; }
   void* getCBData() { return cbdata_; }
@@ -102,6 +102,8 @@ public:
   double getDouble(int what);
 
   virtual Variant getValue(Value::CBValue v);
+
+
 
 };
 

@@ -125,8 +125,10 @@ public:
     Arc current = *t.arcs.begin();
     out << current.from << "-" << current.to;
     int lastTo = current.to;
+    bool found = false;
     while (toVisit.size() > 0)
     {
+      found = false;
       for (auto a : toVisit)
       {
         if ((a.from == lastTo) || (a.to == lastTo))
@@ -143,8 +145,16 @@ public:
             out << "-" << a.from;
             lastTo = a.from;
           }
+          found = true;
           break;
         }
+      }
+      if (!found)
+      {
+        current = *toVisit.begin();
+        toVisit.erase(current);
+        lastTo = current.to;
+        out << "MALFORMED: (" << current.from << "-" << current.to << ") ";
       }
     }
     return out;
@@ -250,13 +260,14 @@ public:
             varsIndexToAdd.push_back(xinverse[a]);
           std::vector<double> coeffs(varsIndexToAdd.size());
           std::fill(coeffs.begin(), coeffs.end(), 1);
-          int status = addLazyIndices(varsIndexToAdd.size(),
+          ampls::Constraint c= addLazyIndices(varsIndexToAdd.size(),
             varsIndexToAdd.data(), coeffs.data(),
             ampls::CutDirection::GE, 2);
-          if (status != 0)
-            printf("status != 0: %d\n", status);
+          recordConstraint(c);
           //if (sts.size() == 2)
           //  break;
+          std::cout << "# n constraints: " << model_->getNumCons() << "\n";
+          
         }
         std::cout << "Added cuts. ";
       }
@@ -323,7 +334,7 @@ int main(int argc, char** argv) {
   // Load a model using gurobi driver
   ampls::GurobiDrv gurobi;
   gurobi.setOptions({ "mipgap=1e-9" });
-  ampls::GurobiModel g = gurobi.loadModel(buffer);
+ ampls::GurobiModel g = gurobi.loadModel(buffer);
   g.enableLazyConstraints();
   // Use it as generic model
   doStuff(g, "gurobi");

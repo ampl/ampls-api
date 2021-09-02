@@ -111,18 +111,17 @@ const char* GurobiCallback::getMessage()
   return msg;
 }
 
-int GurobiCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
-  char sense = toGRBSense(direction);
+int GurobiCallback::doAddCut(const ampls::Constraint& c, int lazy) {
+  char sense = toGRBSense(c.sense());
   if (lazy)
   {
-    return GRBcblazy(cbdata_, nvars, vars,
-      coeffs, sense, rhs);
+    return GRBcblazy(cbdata_, c.indices().size(), c.indices().data(),
+      c.coeffs().data(), sense, c.rhs());
   }
   else
   {
-    return GRBcbcut(cbdata_, nvars, vars,
-      coeffs, sense, rhs);
+    return GRBcbcut(cbdata_, c.indices().size(), c.indices().data(),
+      c.coeffs().data(), sense, c.rhs());
   }
 }
 

@@ -77,7 +77,6 @@ std::map<std::string, int> getMapFiltered(const std::string& filename, const cha
   return map;
 }
 
-
 std::map<std::string, int> AMPLModel::getVarMapFiltered(const char* beginWith) {
   return getMapFiltered(fileName_, "col", beginWith);
 }
@@ -90,7 +89,6 @@ std::map<std::string, int> AMPLModel::getConsMapFiltered(const char* beginWith) 
 std::map<int, std::string> AMPLModel::getConsMapInverse() {
   return getMapInverse(fileName_, "row");
 }
-
 
 std::vector<double> AMPLModel::getSolutionVector() {
   int len = getNumVars();
@@ -107,8 +105,69 @@ void AMPLModel::printModelVars(bool onlyNonZero) {
     if ( (!onlyNonZero) || (sol[a.second] != 0))
       printf("(%i) %s=%f\n", a.second, a.first.data(), sol[a.second]);
 }
+int Variable::nVarsAdded = 0;
+int Constraint::nConsAdded = 0;
 
+std::string Constraint::toAMPLString(const std::map<int, std::string>& varMap,
+  const impl::Records& records) const {
+  std::stringstream ss;
+  ss << impl::string_format("%s: to_come+", name().c_str());
+  for (int i = 0; i < indices().size(); i++)
+  {
+    if (coeffs()[i] == 0)
+      continue;
 
+    int index = indices()[i];
+
+    std::string name;
+    if (index >= varMap.size())
+      name = records.vars_[index - varMap.size()].name();
+    else
+      name = varMap.at(index);
+
+    if (coeffs()[i] > 0)
+      ss << impl::string_format("+%f*%s", coeffs()[i], varMap.at(indices()[i]).c_str());
+    else
+      ss << impl::string_format("%f*%s", coeffs()[i], varMap.at(indices()[i]).c_str());
+  }
+  ss << impl::string_format("%s %f;", CutDirection::toString(sense()).c_str(), rhs());
+  return ss.str();
+}
+
+std::string Variable::toAMPLString(const std::map<int, std::string>& consMap,
+  const impl::Records& records) const  {
+  std::stringstream ss;
+  ss << impl::string_format("var %s ", name().c_str());
+
+  if (type_ == VarType::Binary)
+    ss << "binary";
+  if (type_ == VarType::Integer)
+    ss << "integer";
+
+  if (!std::isinf(lb_))
+    ss << impl::string_format(">=%f, ", lb_);
+  if (!std::isinf(ub_))
+    ss << impl::string_format("<=%f,", ub_);
+
+  if (!std::isnan(obj_))
+    ss << impl::string_format("obj %s %f,", consMap.at(static_cast<int>(consMap.size()) - 1).c_str(), obj_);
+
+  for (int i = 0; i < indices().size(); i++)
+  {
+    if (coeffs()[i] == 0)
+      continue;
+    int index = indices()[i];
+    std::string name;
+    if (index >= (consMap.size() - 1))
+      name = records.cons_[index - consMap.size() + 1].name();
+    else
+      name = consMap.at(index);
+
+    ss << impl::string_format("coeff %s %f,", name.c_str(), coeffs()[i]);
+  }
+  ss << ";";
+  return ss.str();
+}
 
 namespace impl {
 
@@ -129,67 +188,6 @@ namespace impl {
   }
 
 
-  std::string Constraint::toAMPLString(const std::map<int, std::string>& varMap,
-    const Records& records) {
-    std::stringstream ss;
-    ss << string_format("%s: to_come+", name().c_str());
-    for (int i = 0; i < indices().size(); i++)
-    {
-      if (coeffs()[i] == 0)
-        continue;
-
-      int index = indices()[i];
-
-      std::string name;
-      if (index >= varMap.size())
-        name = records.vars_[index - varMap.size()].name();
-      else
-        name = varMap.at(index);
-
-      if (coeffs()[i] > 0)
-        ss << string_format("+%f*%s", coeffs()[i], varMap.at(indices()[i]).c_str());
-      else
-        ss << string_format("%f*%s", coeffs()[i], varMap.at(indices()[i]).c_str());
-    }
-    ss << string_format("%s %f;", CutDirection::toString(sense()).c_str(), rhs());
-    return ss.str();
-  }
-
-  std::string Variable::toAMPLString(const std::map<int, std::string>& consMap, 
-    const Records& records) {
-    std::stringstream ss;
-    ss << string_format("var %s ", name().c_str());
-
-    if (type_ == VarType::Binary)
-      ss << "binary";
-    if (type_ == VarType::Integer)
-      ss << "integer";
-
-    if (!std::isinf(lb_))
-      ss << string_format(">=%f, ", lb_);
-    if (!std::isinf(ub_))
-      ss << string_format("<=%f,", ub_);
-
-    if (!std::isnan(obj_))
-      ss << string_format("obj %s %f,", consMap.at(consMap.size() - 1).c_str(), obj_);
-
-    for (int i = 0; i < indices().size(); i++)
-    {
-      if (coeffs()[i] == 0)
-        continue;
-      int index = indices()[i];
-      std::string name;
-      if (index >= (consMap.size()-1))
-        name = records.cons_[index - consMap.size()+1].name();
-      else
-        name = consMap.at(index);
-
-      ss << string_format("coeff %s %f,", name.c_str(), coeffs()[i]);
-    }
-    ss << ";";
-    return ss.str();
-  }
-
 
   std::map<std::string, int>& BaseCallback::getVarMap() {
     model_->getVarMapsInternal();
@@ -201,7 +199,18 @@ namespace impl {
     return model_->varMapInverse_;
   }
 
-  int BaseCallback::callAddCut(std::vector<std::string>& vars,
+  ampls::Constraint BaseCallback::callDoAddCut(int length, const int* indices,
+    const double* coeffs, CutDirection::Direction direction, double rhs,
+    int type) {
+    ampls::Constraint c(NULL, length, indices, coeffs, direction, rhs);
+    int status = doAddCut(c, type);
+    if (status)
+      throw ampls::AMPLSolverException::format("Error while adding cut!");
+    c.solverIndex(model_->getNumCons() - 1);
+    return c;
+  }
+
+  ampls::Constraint BaseCallback::callAddCut(std::vector<std::string>& vars,
     const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
     std::size_t length = vars.size();
     std::map<std::string, int> map = getVarMap();
@@ -218,15 +227,23 @@ namespace impl {
     if (cutDebug_)
       printCut((int)length, &indices[0], coeffs, direction, rhs,
         cutDebugIntCoefficients_, cutDebugPrintVarNames_);
-    return doAddCut((int)length, &indices[0], coeffs, direction, rhs, lazy);
+   
+    return callDoAddCut((int)length, indices.data(), coeffs, direction, rhs, lazy);
   }
 
-  void BaseCallback::recordConstraint(const char* name, const std::vector<int>& vars,
-    const std::vector<double>& coefficients, CutDirection::Direction sense, double rhs) {
-    auto c = Constraint(name, vars, coefficients, sense, rhs);
-    c.solverIndex(model_->getNumCons() + model_->records_.getNumConstraints());
-    model_->records_.addConstraint(c);
+
+  void BaseCallback::recordVariable(const ampls::Variable& v) {
+    model_->recordVariable(v);
   }
+  void BaseCallback::recordConstraint(const ampls::Constraint& c) {
+    model_->recordConstraint(c);
+  }
+  ampls::Variable BaseCallback::addVariable(int nnz, const int* cons,
+    const double* coefficients, double lb, double ub, double objCoefficient,
+    VarType::Type type, const char* name) {
+    return model_->addVariable(nnz, cons, coefficients, lb, ub, objCoefficient, type, name);
+  }
+
 
 
 }
