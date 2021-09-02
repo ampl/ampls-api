@@ -37,13 +37,11 @@ public:
       for (int i = 0; i < sol.size(); i++)
         printf("x[%d] = %f\n", i, sol[i]);
         */
-      status= addLazy(vars, coefs, ampls::CutDirection::GE, 2);
+      auto c=  addLazy(vars, coefs, ampls::CutDirection::GE, 2);
       std::vector<int>indices;
       indices.push_back(1);
       indices.push_back(2);
       //status = addLazyIndices(2, indices.data(), coefs, ampls::CBDirection::ge, 1);
-      if (status != 0)
-        return status;
     }
     if (where_ == CPX_CALLBACK_PRESOLVE) {
 

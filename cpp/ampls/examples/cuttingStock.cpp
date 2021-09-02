@@ -28,8 +28,8 @@ double doStuff(ampls::AMPLModel& m, const char *name)
     indices[i] = i;
     values[i] = i % 2 == 0 ? 1.0 : -1.0;
   }
-  m.recordConstraint("additional", indices, values,
-    ampls::CutDirection::LE, 1);
+  m.addConstraint(indices.size(), indices.data(), values.data(),
+    ampls::CutDirection::LE, 1, "additional");
   // Start the optimization process
   m.optimize();
   std::string rs = m.getRecordedConstraints();
