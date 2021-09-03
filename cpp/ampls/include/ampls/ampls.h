@@ -9,7 +9,7 @@
 #include <stdexcept>    // std::runtime_error
 #include <cmath> // for std::nan
 #include <memory> // std::unique_ptr
-
+#include <iostream> // for operator overloading
 
 // This declaration is used in the solver-specific implementations
 // to import functions from the solver libraries
@@ -279,16 +279,18 @@ namespace ampls{
 
   class Entity
   {
+    friend class impl::Records;
     std::vector<int> indices_;
     std::vector<double> coeffs_;
     int solverIndex_;
     double value_;
+    bool exportedToAMPL_;
   protected:
     std::string name_;
   public:
     Entity(std::string name, std::vector<int> indices,
       std::vector<double> coeffs) : name_(name), indices_(indices), coeffs_(coeffs), solverIndex_(-1),
-      value_(nanl(""))
+      value_(nanl("")), exportedToAMPL_(false)
     {}
 
     Entity(const char* name, int nnz, const int* indices,
@@ -310,6 +312,9 @@ namespace ampls{
 
     void value(double v) { value_ = v; }
     double value() const { return value_; }
+    virtual std::string toAMPLString(const std::map<int, std::string>& varMap,
+      const std::map<int, std::string>& consMap,
+      const impl::Records& records) const = 0;
   };
   
   class Constraint : public Entity
@@ -339,6 +344,7 @@ namespace ampls{
     ampls::CutDirection::Direction sense() const { return sense_; }
     double rhs() const { return rhs_; }
     std::string toAMPLString(const std::map<int, std::string>& varMap, 
+      const std::map<int, std::string>& consMap,
       const impl::Records& records) const;
 
   };
@@ -370,26 +376,38 @@ namespace ampls{
     double lb_;
     double obj_;
     VarType::Type type_;
-    std::string toAMPLString(const std::map<int, std::string>& map, const impl::Records& records) const;
+    std::string toAMPLString(const std::map<int, std::string>& map, 
+      const std::map<int, std::string>& consMap,
+      const impl::Records& records) const;
   };
   
 namespace impl
 {
   class Records
   {
+    AMPLModel* parent;
   public:
+    Records(AMPLModel &a) {
+      parent = &a;
+    }
+
     std::vector<Variable> vars_;
     std::vector<Constraint> cons_;
+    std::vector<Entity*> entities_;
+
+    std::string getRecordedEntities(bool exportToAMPL = false);
+
     void addVariable(const Variable& v)
     {
       vars_.push_back(v);
+      entities_.push_back(&vars_[vars_.size()-1]);
     }
 
-    void addConstraint(const Constraint& v)
+    void addConstraint(const Constraint& c)
     {
-      cons_.push_back(v);
+      cons_.push_back(c);
+      entities_.push_back(&cons_[cons_.size() - 1]);
     }
-
 
     std::vector<int> getVarIndices()
     {
@@ -538,8 +556,8 @@ protected:
 
   }
 public:
-  void recordVariable(const ampls::Variable& v);
-  void recordConstraint(const ampls::Constraint& c);
+  void record(const ampls::Variable& v);
+  void record(const ampls::Constraint& c);
   ampls::Variable addVariable(int nnz, const int* cons,
     const double* coefficients, double lb, double ub, double objCoefficient,
     VarType::Type type, const char* name = NULL);
@@ -777,8 +795,6 @@ class AMPLModel
   friend std::map<std::string, int>& impl::BaseCallback::getVarMap();
   friend std::map<int, std::string>& impl::BaseCallback::getVarMapInverse();
 
-  friend void impl::BaseCallback::recordConstraint(const ampls::Constraint&);
-
   std::map<int, std::string> varMapInverse_;
   std::map<std::string, int> varMap_;
   /*
@@ -797,7 +813,7 @@ class AMPLModel
 
 protected:
   std::string fileName_;
-  AMPLModel() {}
+  AMPLModel() : records_(*this){}
   void resetVarMapInternal()
   {
     // Clear the internally cached maps
@@ -828,23 +844,9 @@ protected:
   }
 public:
 
-  // New API
-  std::string getRecordedVariables(bool keep = false) {
-    std::string d;
-    std::map<int, std::string> map = getConsMapInverse();
-    for (auto v : records_.vars_)
-      d = d + v.toAMPLString(map, records_) + "\n";
-    if(!keep) records_.vars_.clear();
-    return d;
-  
-  }
-  std::string getRecordedConstraints(bool keep = false) {
-    std::string d;
-    std::map<int, std::string> map = getVarMapInverse();
-    for (auto c : records_.cons_)
-      d = d + c.toAMPLString(map, records_) + "\n";
-    if (!keep) records_.cons_.clear();
-    return d;
+
+  std::string getRecordedEntities(bool exportToAMPL = true) {
+    return records_.getRecordedEntities(exportToAMPL);
   }
 
   ampls::Constraint addConstraint(int nnz, const int* vars,
@@ -854,10 +856,10 @@ public:
     c.solverIndex(index);
     return c;
   }
-  void recordConstraint(const ampls::Constraint &c) {
+  void record(const ampls::Constraint &c) {
     records_.addConstraint(c);
   }
-  void recordVariable(const ampls::Variable& v) {
+  void record(const ampls::Variable& v) {
     records_.addVariable(v);
   }
 
@@ -885,7 +887,7 @@ public:
   /**
   Copy constructor
   */
-  AMPLModel(const AMPLModel &other) : fileName_(other.fileName_) {}
+  AMPLModel(const AMPLModel &other) : records_(*this), fileName_(other.fileName_) {}
 
   /**
   Get the map from variable index in the solver interface to AMPL variable instance name

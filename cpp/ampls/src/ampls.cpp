@@ -108,7 +108,31 @@ void AMPLModel::printModelVars(bool onlyNonZero) {
 int Variable::nVarsAdded = 0;
 int Constraint::nConsAdded = 0;
 
+
+std::string impl::Records::getRecordedEntities(bool exportToAMPL) {
+  std::stringstream ss;
+  auto vmap = parent->getVarMapInverse();
+  auto cmap = parent->getConsMapInverse();
+  if (exportToAMPL) {
+    for (auto e : entities_)
+    {
+      if (!e->exportedToAMPL_)
+      {
+        ss << e->toAMPLString(vmap, cmap, *this) << std::endl;
+        e->exportedToAMPL_ = true;
+      }
+    }
+  }
+  else {
+    for (auto e : entities_)
+     ss << e->toAMPLString(vmap, cmap, *this) << std::endl;
+  }
+  return ss.str();
+}
+
+
 std::string Constraint::toAMPLString(const std::map<int, std::string>& varMap,
+  const std::map<int, std::string>& consMap,
   const impl::Records& records) const {
   std::stringstream ss;
   ss << impl::string_format("%s: to_come+", name().c_str());
@@ -134,7 +158,8 @@ std::string Constraint::toAMPLString(const std::map<int, std::string>& varMap,
   return ss.str();
 }
 
-std::string Variable::toAMPLString(const std::map<int, std::string>& consMap,
+std::string Variable::toAMPLString(const std::map<int, std::string>& varMap, 
+  const std::map<int, std::string>& consMap,
   const impl::Records& records) const  {
   std::stringstream ss;
   ss << impl::string_format("var %s ", name().c_str());
@@ -232,11 +257,11 @@ namespace impl {
   }
 
 
-  void BaseCallback::recordVariable(const ampls::Variable& v) {
-    model_->recordVariable(v);
+  void BaseCallback::record(const ampls::Variable& v) {
+    model_->record(v);
   }
-  void BaseCallback::recordConstraint(const ampls::Constraint& c) {
-    model_->recordConstraint(c);
+  void BaseCallback::record(const ampls::Constraint& c) {
+    model_->record(c);
   }
   ampls::Variable BaseCallback::addVariable(int nnz, const int* cons,
     const double* coefficients, double lb, double ub, double objCoefficient,

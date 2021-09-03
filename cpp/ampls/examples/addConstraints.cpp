@@ -44,8 +44,7 @@ public:
   static void importModel(ampl::AMPL& a, ampls::AMPLModel& g) {
     g.writeSol();
     a.eval("solution ___modelexport___.sol;");
-    a.eval(g.getRecordedConstraints());
-    a.eval(g.getRecordedVariables());
+    a.eval(g.getRecordedEntities());
   }
 
 };
@@ -78,11 +77,11 @@ void doStuff(ampls::AMPLModel& m, const char* name)
     indices[i] = i;
 
   // Add it to the solver and records it for AMPL
-  m.recordConstraint(m.addConstraint(n, indices.data(), coeff.data(), ampls::CutDirection::LE, n));
+  m.record(m.addConstraint(n, indices.data(), coeff.data(), ampls::CutDirection::LE, n));
   m.optimize();
   printStatistics(m, name);
 
-  m.recordVariable(m.addVariable(0, NULL, NULL, 0, 10, 100, ampls::VarType::Integer));
+  m.record(m.addVariable(0, NULL, NULL, 0, 10, 100, ampls::VarType::Integer));
   m.optimize();
   printStatistics(m, name);
 }

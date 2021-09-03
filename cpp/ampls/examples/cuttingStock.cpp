@@ -32,8 +32,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
     ampls::CutDirection::LE, 1, "additional");
   // Start the optimization process
   m.optimize();
-  std::string rs = m.getRecordedConstraints();
-  std::cout << rs << "\n";
+  std::cout << m.getRecordedEntities(false) << "\n";
 
   // Get the objective value
   double obj = m.getObj();

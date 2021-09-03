@@ -263,7 +263,7 @@ public:
           ampls::Constraint c= addLazyIndices(varsIndexToAdd.size(),
             varsIndexToAdd.data(), coeffs.data(),
             ampls::CutDirection::GE, 2);
-          recordConstraint(c);
+          record(c);
           //if (sts.size() == 2)
           //  break;
           std::cout << "# n constraints: " << model_->getNumCons() << "\n";
