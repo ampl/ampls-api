@@ -225,6 +225,10 @@ public:
   int getNumVars() {
     return getIntAttr(XPRS_ORIGINALCOLS);
   }
+
+  int getNumCons() {
+    return getIntAttr(XPRS_ORIGINALROWS);
+  }
   double getObj() {
     if(isMIP())
       return getDoubleAttr(XPRS_MIPOBJVAL);

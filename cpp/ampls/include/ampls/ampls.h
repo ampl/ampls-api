@@ -494,12 +494,11 @@ protected:
     const double* coeffs, CutDirection::Direction direction, double rhs,
     int type);
 
-  void printCut(int nvars, const int* vars, const double* coeffs, 
-    CutDirection::Direction direction, double rhs, bool intCoeffs = false,
+  void printCut(const ampls::Constraint& c, bool intCoeffs = false,
     bool varNames = false)
   {
     std::string sense;
-    switch (direction)
+    switch (c.sense())
     {
     case CutDirection::EQ:
       sense = "= ";
@@ -513,13 +512,14 @@ protected:
     default:
       throw AMPLSolverException("Unexpected cut direction");
     }
+    int nvars = c.indices().size();
     if (varNames)
     {
       std::map<int, std::string> imap = getVarMapInverse();
       if (intCoeffs)
       {
         for (int i = 0; i < nvars; ++i) {
-          printf("%d*%s", (int)coeffs[i], imap[vars[i]].c_str());
+          printf("%d*%s", (int)c.coeffs()[i], imap[c.indices()[i]].c_str());
           if (i < nvars - 1)
             printf(" + ");
         }
@@ -527,7 +527,7 @@ protected:
       else
       { 
         for (int i = 0; i < nvars; ++i) {
-          printf("%f*%s", coeffs[i], imap[vars[i]].c_str());
+          printf("%f*%s", c.coeffs()[i], imap[c.indices()[i]].c_str());
           if (i < nvars - 1)
             printf(" + ");
         }
@@ -538,7 +538,7 @@ protected:
       if (intCoeffs)
       {
         for (int i = 0; i < nvars; ++i) {
-          printf("%d*x[%d]", (int)coeffs[i], vars[i]);
+          printf("%d*x[%d]", (int)c.coeffs()[i], c.indices()[i]);
           if (i < nvars - 1)
             printf(" + ");
         }
@@ -546,13 +546,13 @@ protected:
       else
       {
         for (int i = 0; i < nvars; ++i) {
-          printf("%f*x[%d]", coeffs[i], vars[i]);
+          printf("%f*x[%d]", c.coeffs()[i], c.indices()[i]);
           if (i < nvars - 1)
             printf(" + ");
         }
       }
     }
-    printf(" %s %f\n", sense.c_str(), rhs);
+    printf(" %s %f\n", sense.c_str(), c.rhs());
 
   }
 public:

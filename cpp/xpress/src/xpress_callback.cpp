@@ -7,12 +7,10 @@ const char* XPRESSCallback::getMessage() {
   return msg_;
 }
 
-int XPRESSCallback::doAddCut(int nvars, const int* vars,
-  const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
-
-  printCut(nvars, vars, coeffs, direction, rhs);
+int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
+  printCut(c);
   char sense;
-  switch (direction)
+  switch (c.sense())
   {
     case CutDirection::EQ:
       sense = 'E';
@@ -24,7 +22,7 @@ int XPRESSCallback::doAddCut(int nvars, const int* vars,
       sense = 'L';
       break;
     default:
-      throw AMPLSolverException::format("Unexpected cut direction: %d", (int)direction);
+      throw AMPLSolverException::format("Unexpected cut direction: %d", (int)c.sense());
   }
   throw std::runtime_error("Not implemented yet");
 }

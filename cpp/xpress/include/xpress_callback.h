@@ -61,9 +61,7 @@ class XPRESSCallback : public impl::BaseCallback {
 
 protected:
   // Interface
-  int doAddCut(int nvars, const int* vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs,
-    int type);
+  int doAddCut(const ampls::Constraint& c, int type);
 public:
 
   virtual int run() = 0;

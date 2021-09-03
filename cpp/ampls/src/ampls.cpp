@@ -250,7 +250,7 @@ namespace impl {
         indices.push_back(map[vars[i]]);
     }
     if (cutDebug_)
-      printCut((int)length, &indices[0], coeffs, direction, rhs,
+      printCut(ampls::Constraint(NULL, (int)length, &indices[0], coeffs, direction, rhs),
         cutDebugIntCoefficients_, cutDebugPrintVarNames_);
    
     return callDoAddCut((int)length, indices.data(), coeffs, direction, rhs, lazy);

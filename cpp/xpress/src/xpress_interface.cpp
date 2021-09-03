@@ -68,9 +68,7 @@ int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
 
   status = XPRSsetcbmessage(prob_, xpress::impl::CBWrap::message_callback_wrapper,
     callback);
-  if (status)
-    return status;
-
+  return status;
   // TODO Finish!
 }
 

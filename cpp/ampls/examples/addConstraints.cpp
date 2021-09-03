@@ -26,8 +26,7 @@ public:
     a.eval("option auxfiles cr;");
     a.eval("write g___modelexport___;");
     ampls::GurobiDrv gurobi;
-    ampls::GurobiModel g = gurobi.loadModel("___modelexport___.nl");
-    return g;
+    return gurobi.loadModel("___modelexport___.nl");
   }
 #endif
 
@@ -35,11 +34,19 @@ public:
   static ampls::CPLEXModel exportCPLEXModel(ampl::AMPL& a) {
     a.eval("option auxfiles cr;");
     a.eval("write g___modelexport___;");
-    ampls::CPLEXDrv gurobi;
-    ampls::CPLEXModel g = gurobi.loadModel("___modelexport___.nl");
-    return g;
+    ampls::CPLEXDrv cpx;
+    return cpx.loadModel("___modelexport___.nl");
   }
+#endif
 
+#ifdef USE_xpress
+  
+    static ampls::XPRESSModel exportXPRESSModel(ampl::AMPL& a) {
+    a.eval("option auxfiles cr;");
+    a.eval("write g___modelexport___;");
+    ampls::XPRESSDrv xpress;
+    return xpress.loadModel("___modelexport___.nl");
+  }
 #endif
   static void importModel(ampl::AMPL& a, ampls::AMPLModel& g) {
     g.writeSol();
@@ -104,6 +111,11 @@ int main(int argc, char** argv) {
   ampls::CPLEXModel c = AMPLAPIInterface::exportCPLEXModel(ampl);
   doStuff(c, "cplex");
 #endif
+
+#ifdef  USE_xpress
+  ampls::XPRESSModel x = AMPLAPIInterface::exportXPRESSModel(ampl);
+  doStuff(x, "xpress");
+#endif 
 
   AMPLAPIInterface::importModel(ampl, g);
   printStatistics(ampl);
