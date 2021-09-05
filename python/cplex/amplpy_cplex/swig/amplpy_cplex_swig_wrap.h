@@ -19,9 +19,9 @@ class SwigDirector_GenericCallback : public ampls::GenericCallback, public Swig:
 
 public:
     SwigDirector_GenericCallback(PyObject *self);
-    virtual int doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type);
-    virtual int doAddCutSwigPublic(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type) {
-      return ampls::GenericCallback::doAddCut(nvars,vars,coeffs,direction,rhs,type);
+    virtual int doAddCut(ampls::Constraint const &c, int type);
+    virtual int doAddCutSwigPublic(ampls::Constraint const &c, int type) {
+      return ampls::GenericCallback::doAddCut(c,type);
     }
     virtual int run();
     virtual ~SwigDirector_GenericCallback();
@@ -72,9 +72,9 @@ class SwigDirector_CPLEXCallback : public ampls::CPLEXCallback, public Swig::Dir
 
 public:
     SwigDirector_CPLEXCallback(PyObject *self);
-    virtual int doAddCut(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type);
-    virtual int doAddCutSwigPublic(int nvars, int const *vars, double const *coeffs, ampls::CutDirection::Direction direction, double rhs, int type) {
-      return ampls::CPLEXCallback::doAddCut(nvars,vars,coeffs,direction,rhs,type);
+    virtual int doAddCut(ampls::Constraint const &c, int type);
+    virtual int doAddCutSwigPublic(ampls::Constraint const &c, int type) {
+      return ampls::CPLEXCallback::doAddCut(c,type);
     }
     virtual int run();
     virtual ~SwigDirector_CPLEXCallback();
