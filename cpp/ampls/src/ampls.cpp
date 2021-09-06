@@ -6,6 +6,7 @@
 #include <sstream> // string concatenation
 #include <cstring> // for strcpy and strlen
 
+#include <cmath>  // for abs
 namespace ampls
 {
 char** generateArguments(const char* modelName, std::vector<std::string> options)
@@ -195,6 +196,14 @@ std::string Variable::toAMPLString(const std::map<int, std::string>& varMap,
 }
 
 namespace impl {
+
+  double calculateRelMIPGAP(double obj, double bbound)
+  {
+    double absmipgap = std::abs(obj - bbound);
+    obj = std::abs(obj);
+    return absmipgap / (1e-10 + obj);
+  }
+
 
   std::vector<double> BaseCallback::getSolutionVector() {
 

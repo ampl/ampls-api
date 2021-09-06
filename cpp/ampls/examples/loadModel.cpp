@@ -15,45 +15,46 @@
 
 const char* MODELNAME = "tsp.nl";
 
-double doStuff(ampls::AMPLModel& m, const char *name) 
+
+double doStuff(ampls::AMPLModel& m) 
 {
   // Set parameter with common mapping
-  m.setAMPLsParameter(ampls::SolverParams::DBL_MIPGap, 0.2);
+  m.setAMPLsParameter(ampls::SolverParams::DBL_MIPGap, 0.1);
 
   // Start the optimization process
   m.optimize();
-  printf("\n");
+  printf("\n%s solution ",m.driver());
   // Get the generic status
   ampls::Status::SolStatus s = m.getStatus();
   switch (s)
   {
   case ampls::Status::OPTIMAL:
-    printf("Optimal ");
+    printf("optimal\n");
     break;
   case ampls::Status::INFEASIBLE:
-    printf("Infeasible ");
+    printf("infeasible\n");
     break;
   case ampls::Status::UNBOUNDED:
-    printf("Unbounded ");
+    printf("unbounded\n");
     break;
   default:
-    printf("Status (%d) ", s);
+    printf("Status (%d)\n", s);
   }
   // Get the objective value
   double obj = m.getObj();
-  printf("solution with %s=%f\n", name, obj);
-  
+  printf("%s: Objective=%f\n", m.driver(), obj);
+  printf("%s: Relative MIP gap=%f\n", m.driver(), m.getAMPLsDoubleAttribute(ampls::SolverAttributes::DBL_RELMIPGap));
 
   // Get the solution vector and count the non-zeros
   std::vector<double> solution = m.getSolutionVector();
   int nnz = 0;
   for (int i = 0; i < solution.size(); i++)
     if (solution[i] != 0) nnz++;
-  printf("Number of non zeroes = %d\n", nnz);
+  printf("%s: Number of non zeroes=%d\n", m.driver(), nnz);
   // Write the AMPL sol file
   char BUFFER[1024];
-  sprintf(BUFFER, "%s-%s.sol", m.getFileName().c_str(), name);
-  printf("Writing solution file to: %s\n", BUFFER);
+  sprintf(BUFFER, "%s-%s.sol", m.getFileName().c_str(), m.driver());
+  printf("%s: Writing solution file to: %s\n\n\n", m.driver(), BUFFER);
   m.writeSol(BUFFER);
   return obj;
 }
@@ -70,9 +71,8 @@ int main(int argc, char** argv) {
   ampls::GurobiDrv gurobi;
   gurobi.setOptions(options);
   ampls::GurobiModel g = gurobi.loadModel(buffer);
-  
   // Use it as generic model
-  doStuff(g, "gurobi");
+  doStuff(g);
 #endif
 
 #ifdef USE_cplex
@@ -81,16 +81,16 @@ int main(int argc, char** argv) {
   cplex.setOptions(options);
   ampls::CPLEXModel c = cplex.loadModel(buffer);
   // Use it as generic model
-  doStuff(c, "cplex");
+  doStuff(c);
 #endif
 
 #ifdef USE_xpress
   // Load a model using CPLEX driver
   ampls::XPRESSDrv xpress;
-  xpress.setOptions(options);
+  //xpress.setOptions(options);
   ampls::XPRESSModel x = xpress.loadModel(buffer);
   // Use it as generic model
-  doStuff(x, "xpress");
+  doStuff(x);
 #endif
   return 0;
 }

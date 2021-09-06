@@ -35,20 +35,21 @@ void XPRS_CC CBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
 
 
 XPRESSDrv::~XPRESSDrv() {
-  xpress::impl::AMPLXPRESSfreeEnv();
+  if (owning_)
+    xpress::impl::AMPLXPRESSfreeEnv();
 }
 
 
-XPRESSModel* XPRESSDrv::loadModelImpl(char** args) {
-  XPRESSModel* m = new XPRESSModel();
-  m->state_ = xpress::impl::AMPLXPRESSloadModel(3, args, &m->prob_);
-  m->fileName_ = args[1];
+XPRESSModel XPRESSDrv::loadModelImpl(char** args) {
+  owning_ = true;
+  XPRESSModel m;
+  m.state_ = xpress::impl::AMPLXPRESSloadModel(3, args, &m.prob_);
+  m.fileName_ = args[1];
+  m.driver_ = *this;
   return m;
 }
 XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
-  std::unique_ptr<XPRESSModel> mod(loadModelGeneric(modelName));
-  XPRESSModel c(*mod);
-  return c;
+  return loadModelGeneric(modelName);
 }
 
 

@@ -55,7 +55,7 @@ class GurobiDrv : public impl::SolverDriver<GurobiModel>  {
 
   void freeGurobiEnv();
 
-  GurobiModel* loadModelImpl(char** args);
+  GurobiModel loadModelImpl(char** args);
 public:
   /**
   * Load a model from an NL file.
@@ -97,6 +97,18 @@ class GurobiModel : public AMPLModel {
     throw AMPLSolverException("Not implemented!");
   }
 
+  // Map for solver attributes
+  std::map<int, const char*> attribsMap = {
+     {SolverAttributes::DBL_RELMIPGap, GRB_DBL_ATTR_MIPGAP}
+  };
+  const char* getGRBAttribAlias(SolverAttributes::Attribs attrib)
+  {
+    auto cpxParam = attribsMap.find(attrib);
+    if (cpxParam != attribsMap.end())
+      return cpxParam->second;
+    throw AMPLSolverException("Not implemented!");
+  }
+
   mutable bool copied_;
   GRBmodel* GRBModel_;
   ASL* asl_;
@@ -121,6 +133,8 @@ public:
     other.copied_ = true;
   }
   using AMPLModel::getSolutionVector;
+
+  const char* driver() { return "Gurobi"; }
 
   int optimize();
 
@@ -247,6 +261,23 @@ public:
   /**Get a double parameter using ampls aliases*/
   double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
     return getDoubleParam(getGRBParamAlias(params));
+  }
+
+  /** Get an integer attribute using ampls aliases */
+  int getAMPLsIntAttribute(SolverAttributes::Attribs attrib) {
+    return getIntAttr(getGRBAttribAlias(attrib));
+  }
+  /** Get a double attribute using ampls aliases */
+  double getAMPLsDoubleAttribute(SolverAttributes::Attribs attrib) {
+
+    switch (attrib)
+    {
+    case SolverAttributes::DBL_RELMIPGap:
+      return impl::calculateRelMIPGAP(getDoubleAttr(GRB_DBL_ATTR_OBJVAL),
+        getDoubleAttr(GRB_DBL_ATTR_OBJBOUND));
+    default:
+      return getDoubleParam(getGRBAttribAlias(attrib));
+    }
   }
 
   std::vector<double> getConstraintsValueImpl(const std::vector<int>& indices) {

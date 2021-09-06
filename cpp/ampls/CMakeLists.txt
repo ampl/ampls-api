@@ -89,7 +89,7 @@ if(PREPROCESSORDEFS)
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
     endforeach()
     if(BUILD_AMPLAPI_EXAMPLES)
-      foreach(e cuttingStock addConstraints)
+      foreach(e cuttingStock addEntities)
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
         target_link_libraries(ampls-${e} PRIVATE amplapi)
         add_custom_command ( TARGET ampls-${e} POST_BUILD

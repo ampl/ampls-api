@@ -26,23 +26,19 @@ void GurobiDrv::freeGurobiEnv()
 {
   grb::impl::freeEnvironment();
 }
-GurobiModel* GurobiDrv::loadModelImpl(char** args) {
-  GurobiModel* m = new GurobiModel();
-  GRBmodel* inner= grb::impl::AMPLloadmodel(3, args, &m->asl_);
+GurobiModel GurobiDrv::loadModelImpl(char** args) {
+  GurobiModel m;
+  GRBmodel* inner= grb::impl::AMPLloadmodel(3, args, &m.asl_);
   if (inner == NULL)
-  {
-    delete m;
     throw AMPLSolverException::format("Trouble when loading model %s, most likely license-related.", args[1]);
-  }
-  m->GRBModel_ = inner;
-  m->lastErrorCode_ = -1;
-  m->fileName_ = args[1];
+  
+  m.GRBModel_ = inner;
+  m.lastErrorCode_ = -1;
+  m.fileName_ = args[1];
   return m;
 }
 GurobiModel GurobiDrv::loadModel(const char* modelName) {
-  std::unique_ptr<GurobiModel> mod(loadModelGeneric(modelName));
-  GurobiModel c(*mod);
-  return c;
+  return loadModelGeneric(modelName);
 }
 
 void GurobiModel::writeSolImpl(const char* solFileName) {

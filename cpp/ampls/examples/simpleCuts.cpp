@@ -229,6 +229,7 @@ public:
     // Get the generic mapping
     if (getAMPLWhere() == ampls::Where::MIPSOL)
     {
+      printf("Obj = %d\n", this->getValue(ampls::Value::OBJ));
       nrun++;
       // Add the the cut!
       auto arcs = solutionToArcs(getSolutionVector());
@@ -313,14 +314,7 @@ int main(int argc, char** argv) {
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "tspg96.nl");
-#ifdef USE_cplex
-  // Load a model using CPLEX driver
-  ampls::CPLEXDrv cplex;
-  cplex.setOptions({ "mipgap=1e-9" });
-  ampls::CPLEXModel c = cplex.loadModel(buffer);
-  // Use it as generic model
-  doStuff(c, "cplex");
-#endif/*
+
 #ifdef USE_xpress
   // Load a model using CPLEX driver
   ampls::XPRESSDrv xpress;
@@ -329,7 +323,16 @@ int main(int argc, char** argv) {
   doStuff(x, "xpress");
 #endif
 
-*/
+
+#ifdef USE_cplex
+  // Load a model using CPLEX driver
+  ampls::CPLEXDrv cplex;
+  cplex.setOptions({ "mipgap=1e-9" });
+  ampls::CPLEXModel c = cplex.loadModel(buffer);
+  // Use it as generic model
+  doStuff(c, "cplex");
+#endif
+
 #ifdef USE_gurobi
   // Load a model using gurobi driver
   ampls::GurobiDrv gurobi;

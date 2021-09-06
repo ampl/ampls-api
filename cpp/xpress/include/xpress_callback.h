@@ -58,6 +58,7 @@ class XPRESSCallback : public impl::BaseCallback {
   double objval_;
   double* x_;
 
+  static const char toXPRESSRowType[3];
 
 protected:
   // Interface

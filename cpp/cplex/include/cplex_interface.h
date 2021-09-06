@@ -56,7 +56,9 @@ namespace cpx
     }
     
     class CBWrap {
+      
     public:
+      static bool skipMsgCallback;
       static int CPXPUBLIC lp_callback_wrapper(CPXCENVptr env, void* lp, int wf, void* cbh);
       static int CPXPUBLIC cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
         void* cbhandle, int* useraction_p);
@@ -81,7 +83,7 @@ this way, it is deleted in the destructor.
 */
 class CPLEXDrv : public impl::SolverDriver<CPLEXModel> {
   void freeCPLEXEnv();
-  CPLEXModel* loadModelImpl(char** args);
+  CPLEXModel loadModelImpl(char** args);
 public:
  /**
  * Load a model from an NL file.
@@ -156,6 +158,7 @@ public:
     other.copied_ = true;
   }
 
+  const char* driver() { return "CPLEX"; }
 
   Status::SolStatus getStatus() {
     int cpxstatus = CPXgetstat(getCPXENV(), model_);
@@ -279,7 +282,7 @@ public:
     CPXENVptr env = getCPXENV();
     CPXcloseCPLEX(&env);
     if (asl_)
-      cpx::impl::AMPLCPLEXfreeASL(&asl_);
+        cpx::impl::AMPLCPLEXfreeASL(&asl_);
   }
 
   /**Get an integer parameter using ampls aliases*/
@@ -302,6 +305,26 @@ public:
   void setAMPLsParameter(SolverParams::SolverParameters param,
     double value) {
     setParam(getCPXParamAlias(param), value);
+  }
+
+
+
+  /** Get an integer attribute using ampls aliases */
+  int getAMPLsIntAttribute(SolverAttributes::Attribs attrib) {
+    throw ampls::AMPLSolverException("Not supported");
+  }
+  /** Get a double attribute using ampls aliases */
+  double getAMPLsDoubleAttribute(SolverAttributes::Attribs attrib) {
+    switch (attrib)
+    {
+    case SolverAttributes::DBL_RELMIPGap:
+      double bobj, obj;
+      CPXgetbestobjval(getCPXENV(), getCPXLP(), &bobj);
+      CPXgetmipobjval(getCPXENV(), getCPXLP(), &obj);
+      return impl::calculateRelMIPGAP(obj, bobj);
+    default:
+      throw ampls::AMPLSolverException("Not supported");
+    }
   }
 
   int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],

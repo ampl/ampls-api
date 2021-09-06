@@ -52,10 +52,12 @@ int CPXPUBLIC  cpx::impl::CBWrap::cut_callback_wrapper(CPXCENVptr env, void* cbd
   return 0;
 }
 
-
+bool cpx::impl::CBWrap::skipMsgCallback = false;
 void CPXPUBLIC
 cpx::impl::CBWrap::msg_callback_wrapper(void* handle, const char* msg)
 {
+  if (cpx::impl::CBWrap::skipMsgCallback)
+    return;
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(handle);
   cb->where_ = -1;
   cb->msg_ = msg;
@@ -72,32 +74,35 @@ void CPLEXDrv::freeCPLEXEnv()
 }
 
 
-CPLEXModel* CPLEXDrv::loadModelImpl(char** args) {
-  CPLEXModel* m = new CPLEXModel();
+CPLEXModel CPLEXDrv::loadModelImpl(char** args) {
+  CPLEXModel m;
   CPXLPptr modelptr;
   ASL* aslptr;
   cpx::impl::CPLEXDriverState* state = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
     &aslptr);
   if (state == NULL)
     throw AMPLSolverException::format("Trouble when loading model %s, most likely license-related.", args[1]);
-  m->state_ = state;
-  m->model_ = modelptr;
-  m->asl_ = aslptr;
-  m->lastErrorCode_ = -1;
-  m->fileName_ = args[1];
+  m.state_ = state;
+  m.model_ = modelptr;
+  m.asl_ = aslptr;
+  m.lastErrorCode_ = -1;
+  m.fileName_ = args[1];
   return m;
 }
 CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
-  std::unique_ptr<CPLEXModel> mod(loadModelGeneric(modelName));
-  CPLEXModel c(*mod);
-  return c;
+  return loadModelGeneric(modelName);
 }
 
 void CPLEXModel::writeSolImpl(const char* solFileName) {
+  // Disable msg callback while writing solution file
+  // to avoid spurious messages due to the driver implementation
+  cpx::impl::CBWrap::skipMsgCallback = true;
   cpx::impl::AMPLCPLEXwritesol(state_, model_, status_, solFileName);
+  cpx::impl::CBWrap::skipMsgCallback = false;
 }
 
 int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
+  cpx::impl::CBWrap::skipMsgCallback = false;
   /* Now get the standard channels.  If an error, just call our
       message function directly. */
   CPXCHANNELptr cpxresults, cpxwarning, cpxerror, cpxlog;

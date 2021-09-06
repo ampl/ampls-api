@@ -3,28 +3,22 @@
 
 namespace ampls
 {
+
+const char XPRESSCallback::toXPRESSRowType[3] = { 'E', 'G', 'L' };
+
 const char* XPRESSCallback::getMessage() {
   return msg_;
 }
 
 int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
-  printCut(c);
-  char sense;
-  switch (c.sense())
-  {
-    case CutDirection::EQ:
-      sense = 'E';
-      break;
-    case CutDirection::GE:
-      sense = 'G';
-      break;
-    case CutDirection::LE:
-      sense = 'L';
-      break;
-    default:
-      throw AMPLSolverException::format("Unexpected cut direction: %d", (int)c.sense());
-  }
-  throw std::runtime_error("Not implemented yet");
+  int cutType[] = { 1 };
+  char sense[] = { toXPRESSRowType[(int)c.sense()] };
+  double rhs[] = { c.rhs() };
+  int start[] = { 0, c.indices().size() };
+
+  printf("I have %d vars and %d cons\n", model_->getNumVars(), model_->getNumCons());
+  return XPRSaddcuts(prob_, 1, cutType, sense, rhs, start,
+    c.indices().data(), c.coeffs().data());
 }
 
 int XPRESSCallback::getSolution(int len, double* sol) {
@@ -96,6 +90,11 @@ Variant XPRESSCallback::getValue(Value::CBValue v) {
     return Variant(getInt(XPRS_ORIGINALROWS) - getInt(XPRS_ROWS));
   case Value::PRE_COEFFCHANGED:
     return Variant(0);
+  case Value::ITERATIONS:
+    return Variant(getInt(XPRS_BARITER));
+  case Value::OBJ:
+    return Variant(getDouble(XPRS_MIPBESTOBJVAL));
+    //return Variant(getDouble(XPRS_LPOBJVAL));
   case Value::RUNTIME:
     return Variant(((double)clock() - ((XPRESSModel*)model_)->tStart_) / CLOCKS_PER_SEC);
   }

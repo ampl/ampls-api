@@ -22,6 +22,12 @@ namespace xpress
 {
   namespace impl
   {
+    /* Define a macro to do our error checking */
+    #define AMPLSXPRSERRORCHECK(name)  \
+    if (status)  \
+      throw ampls::AMPLSolverException::format("Error executing #name: %s", error(status).c_str());
+
+
     struct XPressDriverState;
     extern "C" {
       ENTRYPOINT void AMPLXPRESSfreeEnv();
@@ -99,14 +105,13 @@ class XPRESSCallback;
 class XPRESSModel;
 
 /**
-Encapsulates the main environment of the gurobi driver;
-without modifications, a static CPLEXENV is created in the
-AMPL driver, and it would be fairly easy to lose track of it;
-this way, it is deleted in the destructor.
+Encapsulates the main environment of the xpress driver; the environment is then
+associated with the model being instantiated and deleted with it
 */
 class XPRESSDrv : public impl::SolverDriver<XPRESSModel> {
+  bool owning_;
   void freeXPRESSEnv();
-  XPRESSModel* loadModelImpl(char** args);
+  XPRESSModel loadModelImpl(char** args);
 public:
   /**
   * Load a model from an NL file.
@@ -116,6 +121,17 @@ public:
   */
   XPRESSModel loadModel(const char* modelName);
   ~XPRESSDrv();
+
+  XPRESSDrv() : owning_(false) {}
+
+  XPRESSDrv(XPRESSDrv& other) : owning_(other.owning_){
+    other.owning_ = false;
+  }
+  XPRESSDrv& operator=(XPRESSDrv& other) {
+    owning_ = other.owning_;
+    other.owning_ = false;
+    return *this;
+  }
 };
 
 /**
@@ -128,20 +144,23 @@ At the end of its life, it deletes the relative structures.
 */
 class XPRESSModel : public AMPLModel {
   friend XPRESSDrv;
+  friend XPRESSCallback;
 
   mutable bool copied_;
-  xpress::impl::XPressDriverState* state_;
   XPRSprob prob_;
-  friend XPRESSCallback;
   clock_t tStart_;
+  xpress::impl::XPressDriverState* state_;
 
-  XPRESSModel() :  copied_(false), state_(NULL),
-    prob_(NULL) {}
+  XPRESSDrv  driver_;
+  
+
+  XPRESSModel() :  copied_(false),
+    prob_(NULL), tStart_(0), state_(NULL) {}
   
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 
-  // map
+  // Parameters map
   std::map<int, int> parametersMap = {
      {SolverParams::INT_SolutionLimit , XPRS_MAXMIPSOL},
      {SolverParams::DBL_MIPGap , XPRS_MIPRELSTOP},
@@ -157,18 +176,42 @@ class XPRESSModel : public AMPLModel {
     throw AMPLSolverException("Not implemented!");
   }
 
-
+  // Attributes map
+  std::map<int, int> attribsMap = { };
+  int getXPRESSParamAlias(SolverAttributes::Attribs attrib) const
+  {
+    auto xpressParam = parametersMap.find(attrib);
+    if (xpressParam != parametersMap.end())
+      return xpressParam->second;
+    throw AMPLSolverException("Not implemented!");
+  }
+ 
 public:
 
-  XPRESSModel(const XPRESSModel& other) :
-    AMPLModel(other),
-    state_(other.state_),
-    prob_(other.prob_),
-    copied_(false)
-  {
-    fileName_ = other.fileName_;
+  XPRESSModel(XPRESSModel const&) = delete;
+  XPRESSModel& operator=(XPRESSModel const&) = delete;
+
+
+  XPRESSModel& operator=(XPRESSModel&& other) noexcept {
+    if (this != &other)
+    {
+      prob_ = other.prob_;
+      copied_ = false;
+      tStart_ = other.tStart_;
+
+      state_ = std::move(other.state_);
+      fileName_ = other.fileName_;
+      driver_ = std::move(other.driver_);
+    }
+    return *this;
+    }
+
+  XPRESSModel(XPRESSModel && other) noexcept : copied_(false), prob_(NULL),
+    tStart_(0), state_(NULL) {
+    *this = std::move(other);
     other.copied_ = true;
   }
+  const char* driver() { return "Xpress"; }
 
   void writeSolImpl(const char* solFileName);
 
@@ -260,13 +303,15 @@ public:
   /** Get an integer attribute identified by XPRESS native enum */
   int getIntAttr(int what) {
     int ret;
-    XPRSgetintattrib(prob_, what, &ret);
+    int status = XPRSgetintattrib(prob_, what, &ret);
+    AMPLSXPRSERRORCHECK("XPRSgetintattrib")
     return ret;
   }
   /** Get a double attribute  identified by XPRESS native enum*/
   double getDoubleAttr(int what) {
     double ret;
-    XPRSgetdblattrib(prob_, what, &ret);
+    int status = XPRSgetdblattrib(prob_, what, &ret);
+    AMPLSXPRSERRORCHECK("XPRSgetdblattrib")
     return ret;
   }
   /** Return true if the problem is MIP*/
@@ -277,22 +322,24 @@ public:
   ~XPRESSModel() {
     if (copied_)
       return;
-   
   }
 
   /** Set an integer XPRESS control parameter */
   void setParam(int XPRSParam, int value) {
-    XPRSsetintcontrol(prob_, XPRSParam, value);
+    int status = XPRSsetintcontrol(prob_, XPRSParam, value);
+    AMPLSXPRSERRORCHECK("XPRSsetintcontrol")
   }
   /** Set a double XPRESS control parameter */
   void setParam(int XPRSParam, double value) {
-    XPRSsetdblcontrol(prob_, XPRSParam, value);
+    int status = XPRSsetdblcontrol(prob_, XPRSParam, value);
+    AMPLSXPRSERRORCHECK("XPRSsetdblcontrol")
   }
 
   /** Get an integer XPRESS control parameter */
   int getIntParam(int XPRSParam) {
     int value;
     int status= XPRSgetintcontrol(prob_, XPRSParam, &value);
+    AMPLSXPRSERRORCHECK("XPRSgetintcontrol")
     return value;
   }
 
@@ -300,6 +347,7 @@ public:
   double getDoubleParam(int XPRSParam) {
     double value;
     int status = XPRSgetdblcontrol(prob_, XPRSParam, &value);
+    AMPLSXPRSERRORCHECK("XPRSgetdblcontrol")
     return value;
   }
 
@@ -329,6 +377,53 @@ public:
   double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
     return getDoubleParam(getXPRESSParamAlias(params));
   }
+
+
+  /** Get an integer attribute using ampls aliases */
+  int getAMPLsIntAttribute(SolverAttributes::Attribs attrib) {
+    return getIntAttr(getXPRESSParamAlias(attrib));
+  }
+  /** Get a double attribute using ampls aliases */
+  double getAMPLsDoubleAttribute(SolverAttributes::Attribs attrib) {
+    switch (attrib)
+    {
+    case SolverAttributes::DBL_RELMIPGap:
+      return impl::calculateRelMIPGAP(getDoubleAttr(XPRS_MIPOBJVAL),
+        getDoubleAttr(XPRS_BESTBOUND));
+    default:
+      return getDoubleAttr(getXPRESSParamAlias(attrib));
+    }
+    
+  }
+
+
+
+  int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],
+    ampls::CutDirection::Direction sense, double rhs) {
+    double rhsd[] = { rhs };
+    char sensed[] = { XPRESSCallback::toXPRESSRowType[(int)sense] };
+    int rowbegin[] = { 0 };
+    char* named[] = { const_cast<char*>(name) };
+    // TODO Handle Infinity
+    int status =  XPRSaddrows(prob_,1, numnz, sensed, 
+      rhsd, NULL, rowbegin, vars, coefficients);
+    return getNumCons() - 1;
+  }
+  const char toXPRESSType[3] = { 'C', 'B', 'I'};
+  int addVariableImpl(const char* name, int numnz, const int cons[], const double coefficients[],
+    double lb, double ub, double objcoeff, ampls::VarType::Type type) {
+    double objd[] = { objcoeff };
+    double ubd[] = { ub };
+    double lbd[] = { lb };
+    char* named[] = { const_cast<char*>(name) };
+    int status = XPRSaddcols(prob_, 1, numnz, objd, 0, cons, coefficients, lbd, ubd);
+    char varType[] = { toXPRESSType[(int)type] };
+    int indices[] = { getNumVars() - 1 };
+    XPRSchgcoltype(prob_, 1, indices, varType);
+    return indices[0];
+  }
+
+
 };
 
 } // namespace

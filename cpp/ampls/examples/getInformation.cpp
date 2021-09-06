@@ -103,6 +103,9 @@ double doStuff(ampls::AMPLModel& m, const char *name)
     if (solution[i] != 0) nnz++;
   printf("\nNumber of non zeroes = %d\n", nnz);
 
+  double mipgap = m.getAMPLsDoubleAttribute(ampls::SolverAttributes::DBL_RELMIPGap);
+  printf("\nSolution MIP gap=%f\n", mipgap);
+
   // Write the AMPL sol file
   m.writeSol();
   return obj;
@@ -119,8 +122,6 @@ int main(int argc, char** argv) {
   ampls::GurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
   doStuff(g, "gurobi");
-  double mipgap = g.getDoubleAttr(GRB_DBL_ATTR_MIPGAP);
-  printf("\nFINAL MIP GAP=%f\n", mipgap);
 #endif
   /*
 #ifdef USE_cplex

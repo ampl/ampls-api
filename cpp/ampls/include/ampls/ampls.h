@@ -90,6 +90,13 @@ struct VarType {
   };
 };
 
+struct SolverAttributes {
+  enum Attribs {
+    /** Current solution's relative MIP gap */
+    DBL_RELMIPGap
+  };
+
+};
 struct SolverParams
 {
   /**
@@ -275,6 +282,7 @@ namespace ampls{
       std::snprintf(buf.data(), size, format.c_str(), args ...);
       return std::string(buf.data(), buf.data() + size - 1); // We don't want the '\0' inside
     }
+    double calculateRelMIPGAP(double obj, double bbound);
   }
 
   class Entity
@@ -666,12 +674,12 @@ template<class T> class SolverDriver
 
   AMPLMutex loadMutex;
 protected:
-  virtual T* loadModelImpl(char** args) = 0;
+  virtual T loadModelImpl(char** args) = 0;
   /**
   Not to be used directly; to be called in the solver driver `loadModel` function implementations to provide
   common functionalities like mutex and exception handling
   */
-  T* loadModelGeneric(const char* modelName)
+  T loadModelGeneric(const char* modelName)
   {
     FILE* f = fopen(modelName, "rb");
     if (!f)
@@ -684,7 +692,7 @@ protected:
 
       args = generateArguments(modelName, options_);
       loadMutex.Lock();
-      T* mod = loadModelImpl(args);
+      T mod = loadModelImpl(args);
       loadMutex.Unlock();
       deleteParams(args);
       return mod;
@@ -844,7 +852,7 @@ protected:
   }
 public:
 
-
+  virtual const char* driver() { throw AMPLSolverException("Not implemented in base class!"); }
   std::string getRecordedEntities(bool exportToAMPL = true) {
     return records_.getRecordedEntities(exportToAMPL);
   }
@@ -1056,9 +1064,18 @@ public:
   Get the value of a double parameter (solver control) using ampls generic aliases
   @param param The parameter to get
   */
-  virtual double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
+  virtual double getAMPLsDoubleParameter(SolverParams::SolverParameters param) {
     throw AMPLSolverException("Not implemented in base class!");
   }
+
+  virtual int getAMPLsIntAttribute(SolverAttributes::Attribs)  {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+
+  virtual double getAMPLsDoubleAttribute(SolverAttributes::Attribs) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+
 };
 
 } // namespace
