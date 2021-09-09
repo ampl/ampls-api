@@ -57,6 +57,7 @@ namespace AMPLAPIInterface
   void importModel(ampl::AMPL& a, ampls::AMPLModel& g) {
     g.writeSol();
     a.eval("solution ___modelexport___.sol;");
+    std::cout << g.getRecordedEntities() << "\n";
     a.eval(g.getRecordedEntities());
   }
 };
@@ -65,7 +66,8 @@ void printStatistics(ampl::AMPL& ampl) {
   printf("AMPL: I have %d variables and %d constraints\n",
     static_cast<int>(ampl.getValue("_nvars").dbl()),
     static_cast<int>(ampl.getValue("_ncons").dbl()));
-
+  printf("My variables are\n");
+  ampl.eval("display _VARS;");
 }
 
 void printStatistics(ampls::AMPLModel& m, const char* name)
@@ -119,8 +121,6 @@ int main(int argc, char** argv) {
 #ifdef USE_gurobi
   doStuff<ampls::GurobiModel>("gurobi");
 #endif
-  
-
 #ifdef  USE_xpress
   doStuff<ampls::XPRESSModel>("xpress");
 #endif 

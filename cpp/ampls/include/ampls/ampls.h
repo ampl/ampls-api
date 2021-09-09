@@ -93,7 +93,9 @@ struct VarType {
 struct SolverAttributes {
   enum Attribs {
     /** Current solution's relative MIP gap */
-    DBL_RELMIPGap
+    DBL_RelMIPGap,
+    /** Current objective bound */
+    DBL_CurrentObjBound,
   };
 
 };
@@ -196,7 +198,7 @@ struct Value
     ITERATIONS = 4,
     /** Time since solution start*/
     RUNTIME = 5,
-    /** Current relative MIP gapt*/
+    /** Current relative MIP gap*/
     MIP_RELATIVEGAP = 6
   };
 };

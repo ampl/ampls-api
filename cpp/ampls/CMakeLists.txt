@@ -84,7 +84,7 @@ macro(addExample name category src)
 endmacro()
 
 if(PREPROCESSORDEFS)
-    set(EXAMPLES loadModel getInformation simpleCuts )
+    set(EXAMPLES loadModel getInformation tsp )
     foreach(e ${EXAMPLES})
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
     endforeach()

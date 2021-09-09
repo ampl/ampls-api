@@ -323,16 +323,24 @@ public:
   }
   /** Get a double attribute using ampls aliases */
   double getAMPLsDoubleAttribute(SolverAttributes::Attribs attrib) {
+    double val;
+    int status;
     switch (attrib)
     {
-    case SolverAttributes::DBL_RELMIPGap:
-      double bobj, obj;
-      CPXgetbestobjval(getCPXENV(), getCPXLP(), &bobj);
+    case SolverAttributes::DBL_RelMIPGap:
+      double obj;
+      CPXgetbestobjval(getCPXENV(), getCPXLP(), &val);
       CPXgetmipobjval(getCPXENV(), getCPXLP(), &obj);
-      return impl::calculateRelMIPGAP(obj, bobj);
+      return impl::calculateRelMIPGAP(obj, val);
+    case SolverAttributes::DBL_CurrentObjBound:
+      status = CPXgetbestobjval(getCPXENV(), getCPXLP(), &val);
+      AMPLSCPXERRORCHECK("CPXgetbestobjval")
+      break;
     default:
       throw ampls::AMPLSolverException("Not supported");
     }
+    
+    return val;
   }
 
   int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],

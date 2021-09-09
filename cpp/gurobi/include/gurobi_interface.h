@@ -99,7 +99,8 @@ class GurobiModel : public AMPLModel {
 
   // Map for solver attributes
   std::map<int, const char*> attribsMap = {
-     {SolverAttributes::DBL_RELMIPGap, GRB_DBL_ATTR_MIPGAP}
+     {SolverAttributes::DBL_RelMIPGap, GRB_DBL_ATTR_MIPGAP},
+    {SolverAttributes::DBL_CurrentObjBound, GRB_DBL_ATTR_OBJBOUND}
   };
   const char* getGRBAttribAlias(SolverAttributes::Attribs attrib)
   {
@@ -269,10 +270,9 @@ public:
   }
   /** Get a double attribute using ampls aliases */
   double getAMPLsDoubleAttribute(SolverAttributes::Attribs attrib) {
-
     switch (attrib)
     {
-    case SolverAttributes::DBL_RELMIPGap:
+    case SolverAttributes::DBL_RelMIPGap:
       return impl::calculateRelMIPGAP(getDoubleAttr(GRB_DBL_ATTR_OBJVAL),
         getDoubleAttr(GRB_DBL_ATTR_OBJBOUND));
     default:

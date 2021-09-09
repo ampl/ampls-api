@@ -43,7 +43,7 @@ double doStuff(ampls::AMPLModel& m)
   // Get the objective value
   double obj = m.getObj();
   printf("%s: Objective=%f\n", m.driver(), obj);
-  printf("%s: Relative MIP gap=%f\n", m.driver(), m.getAMPLsDoubleAttribute(ampls::SolverAttributes::DBL_RELMIPGap));
+  printf("%s: Relative MIP gap=%f\n", m.driver(), m.getAMPLsDoubleAttribute(ampls::SolverAttributes::DBL_RelMIPGap));
 
   // Get the solution vector and count the non-zeros
   std::vector<double> solution = m.getSolutionVector();

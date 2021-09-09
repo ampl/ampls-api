@@ -229,6 +229,7 @@ public:
     // Get the generic mapping
     if (getAMPLWhere() == ampls::Where::MIPSOL)
     {
+      
       nrun++;
       // Add the the cut!
       auto arcs = solutionToArcs(getSolutionVector());

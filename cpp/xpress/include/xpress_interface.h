@@ -407,9 +407,11 @@ public:
   double getAMPLsDoubleAttribute(SolverAttributes::Attribs attrib) {
     switch (attrib)
     {
-    case SolverAttributes::DBL_RELMIPGap:
+    case SolverAttributes::DBL_RelMIPGap:
       return impl::calculateRelMIPGAP(getDoubleAttr(XPRS_MIPOBJVAL),
         getDoubleAttr(XPRS_BESTBOUND));
+    case SolverAttributes::DBL_CurrentObjBound:
+      return getDoubleAttr(XPRS_BESTBOUND);
     default:
       return getDoubleAttr(getXPRESSParamAlias(attrib));
     }

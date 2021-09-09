@@ -103,7 +103,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
     if (solution[i] != 0) nnz++;
   printf("\nNumber of non zeroes = %d\n", nnz);
 
-  double mipgap = m.getAMPLsDoubleAttribute(ampls::SolverAttributes::DBL_RELMIPGap);
+  double mipgap = m.getAMPLsDoubleAttribute(ampls::SolverAttributes::DBL_RelMIPGap);
   printf("\nSolution MIP gap=%f\n", mipgap);
 
   // Write the AMPL sol file
