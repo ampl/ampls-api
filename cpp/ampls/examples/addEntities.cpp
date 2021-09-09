@@ -15,47 +15,50 @@
 
 #include "ampl/ampl.h"
 
-class AMPLAPIInterface
+namespace AMPLAPIInterface
 {
-  static void doExport(ampl::AMPL& a) {
-    a.eval("option auxfiles cr;");
-    a.eval("write g___modelexport___;");
-  }
-public:
+  namespace impl {
 
-  
-  template <class T> static T exportModel(ampl::AMPL& a);
+    void doExport(ampl::AMPL& a) {
+      a.eval("option auxfiles cr;");
+      a.eval("write g___modelexport___;");
+    }
 
+    template <class T> T exportModel(ampl::AMPL& a);
 #ifdef USE_gurobi
-  template<> static ampls::GurobiModel exportModel<ampls::GurobiModel>(ampl::AMPL& a) {
-    doExport(a);
-    ampls::GurobiDrv gurobi;
-    return gurobi.loadModel("___modelexport___.nl");
-  }
+    template<> ampls::GurobiModel exportModel<ampls::GurobiModel>(ampl::AMPL& a) {
+      doExport(a);
+      ampls::GurobiDrv gurobi;
+      return gurobi.loadModel("___modelexport___.nl");
+    }
 #endif
 
 #ifdef USE_cplex
-  template<> static ampls::CPLEXModel exportModel<ampls::CPLEXModel>(ampl::AMPL& a) {
-    doExport(a);
-    ampls::CPLEXDrv cplex;
-    return cplex.loadModel("___modelexport___.nl");
-  }
+    template<> ampls::CPLEXModel exportModel<ampls::CPLEXModel>(ampl::AMPL& a) {
+      doExport(a);
+      ampls::CPLEXDrv cplex;
+      return cplex.loadModel("___modelexport___.nl");
+    }
 #endif
 
 #ifdef USE_xpress
-  template<> static ampls::XPRESSModel exportModel<ampls::XPRESSModel>(ampl::AMPL& a) {
-    doExport(a);
-    ampls::XPRESSDrv xpress;
-    return xpress.loadModel("___modelexport___.nl");
-  }
+    template<> ampls::XPRESSModel exportModel<ampls::XPRESSModel>(ampl::AMPL& a) {
+      doExport(a);
+      ampls::XPRESSDrv xpress;
+      return xpress.loadModel("___modelexport___.nl");
+    }
 #endif
+  }
 
-  static void importModel(ampl::AMPL& a, ampls::AMPLModel& g) {
+  template <class T> T exportModel(ampl::AMPL& a) {
+    return impl::exportModel<T>(a);
+  }
+
+  void importModel(ampl::AMPL& a, ampls::AMPLModel& g) {
     g.writeSol();
     a.eval("solution ___modelexport___.sol;");
     a.eval(g.getRecordedEntities());
   }
-
 };
 
 void printStatistics(ampl::AMPL& ampl) {

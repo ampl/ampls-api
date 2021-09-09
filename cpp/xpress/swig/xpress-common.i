@@ -4,6 +4,33 @@
   #include "xpress_callback.h"
   #include "xpress_interface.h"
 %}
+// Ignore 64 bits functions as they are confusing SWIG on *nix
+%ignore XPRSsetintcontrol64;
+%ignore XPRSgetintcontrol64;
+%ignore XPRSgetintattrib64;
+%ignore XPRSloadlp64;
+%ignore XPRSloadqp64;
+%ignore XPRSloadqglobal64;
+%ignore XPRSloadglobal64;
+%ignore XPRSaddpwlcons64;
+%ignore XPRSgetpwlcons64;
+%ignore XPRSaddgencons64;
+%ignore XPRSgetgencons64;
+%ignore XPRSgetcols64;
+%ignore XPRSgetrows64;
+%ignore XPRSgetmqobj64;
+%ignore XPRSgetglobal64;
+%ignore XPRSaddrows64;
+%ignore XPRSaddsets64;
+%ignore XPRSaddcols64;
+%ignore XPRSaddcuts64;
+%ignore XPRSgetcpcuts64;
+%ignore XPRSstorecuts64;
+%ignore XPRSchgmcoef64;
+%ignore XPRSchgmqobj64;
+%ignore XPRSaddqmatrix64;
+%ignore XPRSloadqcqp64;
+%ignore XPRSloadqcqpglobal64;
 
 %feature("director") ampls::XPRESSCallback;
 %ignore ampls::XPRESSCallback::doAddCut;
