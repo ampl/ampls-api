@@ -39,7 +39,7 @@ namespace cpx
   /* Define a macro to do our error checking */
     #define AMPLSCPXERRORCHECK(name)  \
     if (status)  \
-      throw ampls::AMPLSolverException::format("Error executing #name: %s", error(status).c_str());
+      throw ampls::AMPLSolverException::format("Error executing " #name":\n%s", error(status).c_str());
 
     struct CPLEXDriverState;
     extern "C" {
@@ -66,8 +66,12 @@ namespace cpx
       static int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env,
         void* cbdata, int wherefrom, void* cbhandle, double objval, double* x, int* isfeas_p,
         int* useraction_p);
+      static int CPXPUBLIC heuristiccallbackfunc_wrapper(CPXCENVptr env,
+        void* cbdata, int wherefrom, void* cbhandle, double* objval_p,
+        double* x, int* checkfeas_p, int* useraction_p);
+
       static CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
-        int wherefrom, void* userhandle);
+        int wherefrom, void* userhandle, int capabilities);
     };
   
   }
@@ -143,6 +147,8 @@ class CPLEXModel : public AMPLModel {
   void writeSolImpl(const char* solFileName);
 
 
+ // std::vector<double> getConstraintsValueImpl(int offset, int length);
+ // std::vector<double> getVarsValueImpl(int offset, int length);
 
 public:
   CPLEXModel(const CPLEXModel& other) :
@@ -337,6 +343,7 @@ public:
     // TODO Infinity CPX_INFBOUND 
     int status = CPXaddrows(getCPXENV(), getCPXLP(), 0, 1,
       numnz, rhsd, sensed, rowbegin, vars, coefficients, NULL, named);
+    AMPLSCPXERRORCHECK("CPXaddrows")
     return getNumCons() - 1;
   }
   const char toCPLEXType[3] = { CPX_CONTINUOUS, CPX_BINARY, CPX_INTEGER };
@@ -347,11 +354,15 @@ public:
     double lbd[] = { lb };
     char* named[] = { const_cast<char*>(name) };
     int status = CPXaddcols(getCPXENV(), getCPXLP(), 1, numnz, objd, 0, cons, coefficients, lbd, ubd, named);
+    AMPLSCPXERRORCHECK("CPXaddcols")
     char varType[] = { toCPLEXType[(int)type] };
     int indices[] = { getNumVars() - 1 };
     CPXchgctype(getCPXENV(), getCPXLP(), 1, indices, varType);
     return indices[0];
   }
+
+  std::vector<double>  getConstraintsValueImpl(int offset, int length);
+  std::vector<double> getVarsValueImpl(int offset, int length);
 
 };
 

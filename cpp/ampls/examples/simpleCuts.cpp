@@ -225,7 +225,7 @@ public:
   virtual int run()
   {
     if (getAMPLWhere() == ampls::Where::MSG)
-      std::cout << getMessage();
+      std::cout << getMessage() << std::endl;
     // Get the generic mapping
     if (getAMPLWhere() == ampls::Where::MIPSOL)
     {

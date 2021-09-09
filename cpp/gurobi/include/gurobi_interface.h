@@ -29,7 +29,7 @@ namespace grb
     /* Define a macro to do our error checking */
     #define AMPLSGRBERRORCHECK(name)  \
     if (status)  \
-      throw ampls::AMPLSolverException::format("Error executing #name: %s", error(status).c_str());
+      throw ampls::AMPLSolverException::format("Error executing " #name":\n%s", error(status).c_str());
 
     extern "C" {
       // Imported from the GUROBI driver
@@ -333,6 +333,8 @@ public:
     return getNumVars()-1;
   }
 
+  std::vector<double>  getConstraintsValueImpl(int offset, int length);
+  std::vector<double> getVarsValueImpl(int offset, int length);
 
 
 };

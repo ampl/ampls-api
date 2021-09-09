@@ -13,13 +13,13 @@
 
 #include <cstring> // for strcat 
 
-const char* MODELNAME = "tsp.nl";
+const char* MODELNAME = "___modelexport___.nl";
 
 class MyGenericCallback : public ampls::GenericCallback
 {
   int nMIPnodes = 0;
   int nadd = 0;
-  virtual int run()
+  int run()
   {
     // Prints out the name of the solution phase where the solver is called from
     // (solver specific)
@@ -27,14 +27,14 @@ class MyGenericCallback : public ampls::GenericCallback
     double obj;
     // Get the generic mapping
      ampls::Where::CBWhere where = getAMPLWhere();
-   // printf("Where: %i\n", where);
+     //printf("Where: %i\n", where);
     
     char BUFFER[100];
     
     switch (where)
     {
     case ampls::Where::MSG:
-    //  printf(getMessage());
+      std::cout<<getMessage() << std::endl;
       return 0;
     case ampls::Where::PRESOLVE:
       if((getValue(ampls::Value::PRE_DELROWS).integer+
@@ -74,7 +74,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   // Set a (generic) callback
   MyGenericCallback cb;
   m.setCallback(&cb);
-  m.setAMPLsParameter(ampls::SolverParams::DBL_MIPGap, 0.9);
+  m.setAMPLsParameter(ampls::SolverParams::DBL_MIPGap, 0.001);
   // Start the optimization process
   m.optimize();
   // Get the objective value
@@ -115,7 +115,7 @@ int main(int argc, char** argv) {
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
-  
+  /*
 #ifdef USE_gurobi
   // Load a model using gurobi driver
   ampls::GurobiDrv gurobi;
@@ -123,7 +123,7 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(g, "gurobi");
 #endif
-  /*
+  
 #ifdef USE_cplex
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
@@ -131,7 +131,7 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(c, "cplex");
 #endif
-
+*/
 #ifdef USE_xpress
   // Load a model using CPLEX driver
   ampls::XPRESSDrv xpress;
@@ -139,7 +139,7 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(x, "xpress");
 #endif
-*/
+
   return 0;
  
 }

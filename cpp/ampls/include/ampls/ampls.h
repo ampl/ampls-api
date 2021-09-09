@@ -166,6 +166,15 @@ struct Where
   };
 };
 
+struct CanDo
+{
+  enum Functionality
+  {
+    /** Can a solution be imported at this stage */
+    IMPORT_SOLUTION = 0
+  };
+};
+
 struct Value
 {
   /**
@@ -288,6 +297,7 @@ namespace ampls{
   class Entity
   {
     friend class impl::Records;
+    
     std::vector<int> indices_;
     std::vector<double> coeffs_;
     int solverIndex_;
@@ -295,15 +305,16 @@ namespace ampls{
     bool exportedToAMPL_;
   protected:
     std::string name_;
+    AMPLModel* parent_;
   public:
-    Entity(std::string name, std::vector<int> indices,
-      std::vector<double> coeffs) : name_(name), indices_(indices), coeffs_(coeffs), solverIndex_(-1),
-      value_(nanl("")), exportedToAMPL_(false)
+    Entity(AMPLModel* parent, std::string name, std::vector<int> indices,
+      std::vector<double> coeffs) : name_(name), indices_(indices), coeffs_(coeffs), 
+      solverIndex_(-1), value_(nanl("")), exportedToAMPL_(false), parent_(parent)
     {}
 
-    Entity(const char* name, int nnz, const int* indices,
+    Entity(AMPLModel* parent, const char* name, int nnz, const int* indices,
       const double* coeffs) : solverIndex_(-1),
-      value_(nanl("")) {
+      value_(nanl("")), exportedToAMPL_(false), parent_(parent) {
       if (name != NULL)
         name_ = std::string(name);
       indices_.insert(indices_.begin(), &indices[0], &indices[nnz]);
@@ -327,24 +338,22 @@ namespace ampls{
   
   class Constraint : public Entity
   {
-    static int nConsAdded;
+    friend class AMPLModel;
     ampls::CutDirection::Direction sense_;
     double rhs_;
-    void assignName()
-    {
-      name_ = impl::string_format("ampl_con_%d", ++nConsAdded);
-    }
+    void assignName();
+    
   public:
-    Constraint(std::string name, std::vector<int> indices,
+    Constraint(AMPLModel* parent, std::string name, std::vector<int> indices,
       std::vector<double> coeffs, CutDirection::Direction sense, double rhs) :
-      Entity(name, indices, coeffs), sense_(sense), rhs_(rhs) {
+      Entity(parent, name, indices, coeffs), sense_(sense), rhs_(rhs) {
       if (name.size() == 0)
         assignName();
     }
 
-    Constraint(const char* name, int nnz, const int* indices,
+    Constraint(AMPLModel* parent, const char* name, int nnz, const int* indices,
       const double* coeffs, ampls::CutDirection::Direction sense, double rhs) :
-      Entity(name, nnz, indices, coeffs), sense_(sense), rhs_(rhs) {
+      Entity(parent, name, nnz, indices, coeffs), sense_(sense), rhs_(rhs) {
       if (name == NULL)
         assignName();
     }
@@ -358,24 +367,21 @@ namespace ampls{
   };
   class Variable : public Entity
   {
-    static int nVarsAdded;
-    void assignName()
-    {
-      name_ = impl::string_format("ampl_var_%d", ++nVarsAdded);
-    }
+    friend class AMPLModel;
+    void assignName();
   public:
-    Variable(std::string name, std::vector<int> indices,
+    Variable(AMPLModel* parent, std::string name, std::vector<int> indices,
       std::vector<double> coeffs, double lb, double ub,
       double objCoefficient, VarType::Type type) :
-      Entity("", indices, coeffs), ub_(ub), lb_(lb), obj_(objCoefficient), type_(type) {
+      Entity(parent, name, indices, coeffs), ub_(ub), lb_(lb), obj_(objCoefficient), type_(type) {
       if (name.size() == 0)
         assignName();
     }
 
-    Variable(const char* name, int nnz, const int* indices,
+    Variable(AMPLModel* parent, const char* name, int nnz, const int* indices,
       const double* coeffs, double lb, double ub,
       double objCoefficient, VarType::Type type) :
-      Entity(name, nnz, indices, coeffs), ub_(ub), lb_(lb), obj_(objCoefficient), type_(type) {
+      Entity(parent, name, nnz, indices, coeffs), ub_(ub), lb_(lb), obj_(objCoefficient), type_(type) {
       if (name == NULL)
         assignName();
     }
@@ -417,21 +423,15 @@ namespace impl
       entities_.push_back(&cons_[cons_.size() - 1]);
     }
 
-    std::vector<int> getVarIndices()
+    void getVarIndices(int& min, int& max)
     {
-      std::vector<int> indices(vars_.size());
-      int i = 0;
-      for (auto v : vars_)
-        indices[i++] = v.solverIndex();
-      return indices;
+      min = vars_.front().solverIndex();
+      max = vars_.back().solverIndex();
     }
-    std::vector<int> getConsIndices()
+    void getConsIndices(int &min, int &max)
     {
-      std::vector<int> indices(cons_.size());
-      int i = 0;
-      for (auto v : cons_)
-        indices[i++] = v.solverIndex();
-      return indices;
+      min = cons_.front().solverIndex();
+      max = cons_.back().solverIndex();
     }
 
     std::size_t getNumConstraints() {
@@ -442,9 +442,6 @@ namespace impl
     }
 
   };
-
-
- 
 
 class AMPLMutex {
 public:
@@ -563,7 +560,14 @@ protected:
     printf(" %s %f\n", sense.c_str(), c.rhs());
 
   }
+  int currentCapabilities_;
 public:
+  
+  // Check if the specified functionality is available at this stage
+  bool checkCanDo(CanDo::Functionality f) {
+    return currentCapabilities_ && (int)f;
+  }
+
   void record(const ampls::Variable& v);
   void record(const ampls::Constraint& c);
   ampls::Variable addVariable(int nnz, const int* cons,
@@ -640,6 +644,13 @@ public:
   {
     return callDoAddCut(nvars, vars, coeffs, direction, rhs, 1);
   }
+
+  virtual int setHeuristicSolution(int nvars, const int* indices, const double* values) = 0;
+    // Gurobi: where: GRB_CB_MIPNODE, GRBcbsolution https://www.gurobi.com/documentation/9.1/refman/c_cbsolution.html
+    // CPLEX:  CPXsetheuristiccallbackfunc, http://www-eio.upc.es/lceio/manuals/cplex-11/html/usrcplex/advMIPcontrolInterface5.html#:~:text=Once%20this%20routine%20has%20been,the%20best%20available%20integer%20solution).
+    // and https://github.com/renvieir/ioc/blob/master/cplex/examples/src/c/admipex2.c
+    // Xpress: https://www.fico.com/fico-xpress-optimization/docs/latest/solver/optimizer/HTML/XPRSaddmipsol.html
+
   /** Get the current solution vector */
   std::vector<double> getSolutionVector();
   /** Get the current solution */
@@ -802,6 +813,10 @@ class AMPLModel
 {
   friend std::map<std::string, int>& impl::BaseCallback::getVarMap();
   friend std::map<int, std::string>& impl::BaseCallback::getVarMapInverse();
+  friend std::string impl::Records::getRecordedEntities(bool);
+  friend void ampls::Constraint::assignName();
+  friend void ampls::Variable::assignName();
+
 
   std::map<int, std::string> varMapInverse_;
   std::map<std::string, int> varMap_;
@@ -817,6 +832,12 @@ class AMPLModel
       varMapInverse_ = getVarMapInverse();
   }
 
+  int numConsAdded() {
+    return records_.cons_.size()+1;
+  }
+  int numVarsAdded() {
+    return records_.vars_.size()+1;
+  }
 
 
 protected:
@@ -839,7 +860,10 @@ protected:
   }
 
   impl::Records records_;
-  std::vector<double> getConstraintsValueImpl(const std::vector<int>& indices) {
+  virtual std::vector<double> getConstraintsValueImpl(int offset, int length) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  virtual std::vector<double> getVarsValueImpl(int offset, int length) {
     throw AMPLSolverException("Not implemented in base class!");
   }
   virtual int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],
@@ -859,7 +883,7 @@ public:
 
   ampls::Constraint addConstraint(int nnz, const int* vars,
     const double* coefficients, ampls::CutDirection::Direction sense, double rhs, const char* name = NULL) {
-    Constraint c = Constraint(name, nnz, vars, coefficients, sense, rhs);
+    Constraint c = Constraint(this, name, nnz, vars, coefficients, sense, rhs);
     int index = addConstraintImpl(name, nnz, vars, coefficients, sense, rhs);
     c.solverIndex(index);
     return c;
@@ -879,7 +903,7 @@ public:
   ampls::Variable addVariable(int nnz, const int* cons,
       const double* coefficients, double lb, double ub, double objCoefficient,
       VarType::Type type, const char* name = NULL) {
-    Variable v = Variable(name, nnz, cons, coefficients, lb, ub, objCoefficient, type);
+    Variable v = Variable(this, name, nnz, cons, coefficients, lb, ub, objCoefficient, type);
     int index = addVariableImpl(name, nnz, cons, coefficients, lb, ub, objCoefficient, type);
     v.solverIndex(index);
     return v;

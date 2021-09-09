@@ -11,10 +11,10 @@ const char* XPRESSCallback::getMessage() {
 }
 
 int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
-  int cutType[] = { 1 };
-  char sense[] = { toXPRESSRowType[(int)c.sense()] };
-  double rhs[] = { c.rhs() };
-  int start[] = { 0, c.indices().size() };
+  int cutType[1] = { 1 };
+  char sense[1] = { toXPRESSRowType[(int)c.sense()] };
+  double rhs[1] = { c.rhs() };
+  int start[2] = { 0, c.indices().size() };
 
   printf("I have %d vars and %d cons\n", model_->getNumVars(), model_->getNumCons());
   return XPRSaddcuts(prob_, 1, cutType, sense, rhs, start,
@@ -100,6 +100,11 @@ Variant XPRESSCallback::getValue(Value::CBValue v) {
   }
   throw std::runtime_error("Not supported yet");
   return Variant(); // silence gcc warning
+}
+
+int XPRESSCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
+  return XPRSaddmipsol(prob_, nvars, values, indices, NULL);
+
 }
 
 } // namespace

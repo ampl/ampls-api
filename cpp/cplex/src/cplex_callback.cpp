@@ -314,4 +314,11 @@ char CPLEXCallback::toCPLEXSense(ampls::CutDirection::Direction direction)
   return toCPLEXMap[(int)direction];
 }
 
+int CPLEXCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
+  heurUserAction_ = CPX_CALLBACK_SET;
+  for (int i = 0; i < nvars; i++)
+    x_[indices[i]] = values[i];
+  return 0;
+}
+
 } // namespace

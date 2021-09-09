@@ -7,6 +7,8 @@
 #include <cstring> // for strcpy and strlen
 
 #include <cmath>  // for abs
+#include <algorithm> // for min_element, max_element
+
 namespace ampls
 {
 char** generateArguments(const char* modelName, std::vector<std::string> options)
@@ -106,14 +108,21 @@ void AMPLModel::printModelVars(bool onlyNonZero) {
     if ( (!onlyNonZero) || (sol[a.second] != 0))
       printf("(%i) %s=%f\n", a.second, a.first.data(), sol[a.second]);
 }
-int Variable::nVarsAdded = 0;
-int Constraint::nConsAdded = 0;
-
 
 std::string impl::Records::getRecordedEntities(bool exportToAMPL) {
   std::stringstream ss;
   auto vmap = parent->getVarMapInverse();
   auto cmap = parent->getConsMapInverse();
+  int begin, end;
+  if (vars_.size() > 0)
+  {
+    getVarIndices(begin, end);
+    auto values = parent->getVarsValueImpl(begin, end - begin+1);
+    for (int i = 0; i < values.size(); i++)
+      vars_[i].value(values[i]);
+  }
+
+  
   if (exportToAMPL) {
     for (auto e : entities_)
     {
@@ -192,6 +201,8 @@ std::string Variable::toAMPLString(const std::map<int, std::string>& varMap,
     ss << impl::string_format("coeff %s %f,", name.c_str(), coeffs()[i]);
   }
   ss << ";";
+  if (!std::isnan(value()))
+    ss << impl::string_format("let %s:=%f;", name().c_str(), value());
   return ss.str();
 }
 
@@ -221,8 +232,6 @@ namespace impl {
     return res;
   }
 
-
-
   std::map<std::string, int>& BaseCallback::getVarMap() {
     model_->getVarMapsInternal();
     return model_->varMap_;
@@ -236,7 +245,7 @@ namespace impl {
   ampls::Constraint BaseCallback::callDoAddCut(int length, const int* indices,
     const double* coeffs, CutDirection::Direction direction, double rhs,
     int type) {
-    ampls::Constraint c(NULL, length, indices, coeffs, direction, rhs);
+    ampls::Constraint c(model_, NULL, length, indices, coeffs, direction, rhs);
     int status = doAddCut(c, type);
     if (status)
       throw ampls::AMPLSolverException::format("Error while adding cut!");
@@ -259,7 +268,7 @@ namespace impl {
         indices.push_back(map[vars[i]]);
     }
     if (cutDebug_)
-      printCut(ampls::Constraint(NULL, (int)length, &indices[0], coeffs, direction, rhs),
+      printCut(ampls::Constraint(model_, NULL, (int)length, &indices[0], coeffs, direction, rhs),
         cutDebugIntCoefficients_, cutDebugPrintVarNames_);
    
     return callDoAddCut((int)length, indices.data(), coeffs, direction, rhs, lazy);
@@ -278,9 +287,14 @@ namespace impl {
     return model_->addVariable(nnz, cons, coefficients, lb, ub, objCoefficient, type, name);
   }
 
+} // namespace impl
 
-
+void Constraint::assignName() {
+  name_ = impl::string_format("ampls_con_%d", parent_->numConsAdded());
 }
 
+void Variable::assignName() {
+  name_ = impl::string_format("ampls_var_%d", parent_->numVarsAdded());
+}
 
-} // namespace
+} // namespace ampls

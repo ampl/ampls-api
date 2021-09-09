@@ -9,6 +9,11 @@ int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* 
   GurobiCallback* cb = (GurobiCallback*)usrdata;
   cb->cbdata_ = cbdata;
   cb->where_ = where;
+  if (cb->getAMPLWhere() == ampls::Where::MIPNODE)
+    cb->currentCapabilities_ = ampls::CanDo::IMPORT_SOLUTION;
+  else
+    cb->currentCapabilities_ = 0;
+
   int res = cb->run();
   if (res == -1)
   {
@@ -101,5 +106,20 @@ std::string GurobiModel::error(int code)
 {
   return std::string(GRBgeterrormsg(getGRBenv()));
 }
+
+
+std::vector<double>  GurobiModel::getConstraintsValueImpl(int offset, int length) {
+  std::vector<double> cons(length);
+  int status = getDoubleAttrArray(GRB_DBL_ATTR_PI, offset, length, cons.data());
+  AMPLSGRBERRORCHECK(status);
+  return cons;
+}
+std::vector<double> GurobiModel::getVarsValueImpl(int offset, int length) {
+  std::vector<double> vars(length);
+  int status = getDoubleAttrArray(GRB_DBL_ATTR_X, offset, length, vars.data());
+  AMPLSGRBERRORCHECK(status);
+  return vars;
+}
+
 
 } // namespace

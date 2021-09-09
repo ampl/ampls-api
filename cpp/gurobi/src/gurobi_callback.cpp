@@ -191,4 +191,14 @@ Variant  GurobiCallback::getValue(Value::CBValue v) {
     throw AMPLSolverException("Specified value unknown.");
   }
 }
+
+int GurobiCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
+  std::vector<double> vals(model_->getNumVars(), GRB_UNDEFINED);
+  for (int i = 0; i < nvars; i++)
+    vals[indices[i]] = values[i]; 
+    double objective;
+  return GRBcbsolution(cbdata_, vals.data(), &objective);
+}
+
+
 } // namespace

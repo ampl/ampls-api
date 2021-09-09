@@ -6,21 +6,21 @@
 namespace ampls
 {
 CPLEXCallback* cpx::impl::CBWrap::setDefaultCB(CPXCENVptr env, void* cbdata,
-  int wherefrom, void* userhandle)
+  int wherefrom, void* userhandle, int capabilities)
 {
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(userhandle);
   cb->where_ = wherefrom;
   cb->env_ = env;
   cb->cbdata_ = cbdata;
+  cb->currentCapabilities_ = capabilities;
   return cb;
 }
 
 int CPXPUBLIC cpx::impl::CBWrap::incumbent_callback_wrapper(CPXCENVptr env, void* cbdata,
   int wherefrom, void* userhandle,
-  double objval, double* x, int* isfeas_p,
-  int* useraction_p) {
+  double objval, double* x, int* isfeas_p, int* useraction_p) {
 
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
+  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, 0);
 
   *isfeas_p = 1; // use new solution by default
   cb->objval_ = objval;
@@ -32,18 +32,37 @@ int CPXPUBLIC cpx::impl::CBWrap::incumbent_callback_wrapper(CPXCENVptr env, void
   return 0;
 }
 
+int CPXPUBLIC cpx::impl::CBWrap::heuristiccallbackfunc_wrapper(CPXCENVptr env,
+  void* cbdata, int wherefrom, void* userhandle, 
+  double* objval_p, double* x, int* checkfeas_p, int* useraction_p) {
+  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, ampls::CanDo::IMPORT_SOLUTION);
+  cb->objval_ = *objval_p;
+  cb->x_ = x;
+  cb->heurUserAction_ = CPX_CALLBACK_DEFAULT;
+  cb->run();
+  // This is set by the setHeuristic solution function
+  if (cb->heurUserAction_ == CPX_CALLBACK_SET)
+  {
+    *objval_p = cb->objval_;
+    *checkfeas_p = cb->heurCheckFeas_;
+    *useraction_p = cb->heurUserAction_;
+  }
+  else
+    *useraction_p = CPX_CALLBACK_DEFAULT;
+  return 0;
+}
 
 int CPXPUBLIC cpx::impl::CBWrap::lp_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
     void* userhandle)
 {
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
+  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, 0);
   return cb->run();
 }
 
 int CPXPUBLIC  cpx::impl::CBWrap::cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
   void* userhandle, int* useraction_p)
 {
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle);
+  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, 0);
   int res = cb->run();
   if (res)
     *useraction_p = CPX_CALLBACK_FAIL;
@@ -162,6 +181,11 @@ int CPLEXModel::setCallbackDerived(impl::BaseCallback* callback) {
   status = CPXsetincumbentcallbackfunc(p, cpx::impl::CBWrap::incumbent_callback_wrapper, callback);
   if (status)
     return status;
+
+  status = CPXsetheuristiccallbackfunc(p, cpx::impl::CBWrap::heuristiccallbackfunc_wrapper, callback);
+  if (status)
+    return status;
+
   return setMsgCallback(callback, p);
 }
 
@@ -223,4 +247,19 @@ std::string CPLEXModel::error(int code) {
     return "Error code not found.";
   }
 }
+
+
+std::vector<double>  CPLEXModel::getConstraintsValueImpl(int offset, int length) {
+  std::vector<double> c(length);
+  int status = CPXgetpi(getCPXENV(), getCPXLP(), c.data(), offset, offset + length);
+  AMPLSCPXERRORCHECK("CPXgetx");
+  return c;
+}
+std::vector<double> CPLEXModel::getVarsValueImpl(int offset, int length) {
+  std::vector<double> c(length);
+  int status = CPXgetx(getCPXENV(), getCPXLP(), c.data(), offset, offset + (length-1));
+  AMPLSCPXERRORCHECK("CPXgetx");
+  return c;
+}
+
 } // namespace

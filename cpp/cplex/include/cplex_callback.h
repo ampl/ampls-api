@@ -45,14 +45,21 @@ class CPLEXCallback : public impl::BaseCallback {
   double objval_;
   double* x_;
 
+  // For importing heuristic solution
+  int heurUserAction_;
+  int heurCheckFeas_;
+
+
   static char toCPLEXSense(ampls::CutDirection::Direction direction);
-  
+
+
 protected:
   // Interface
   int doAddCut(const ampls::Constraint& c,
     int type);
   CPXCENVptr getCPXENV() { return env_; }
   void* getCBData() { return cbdata_; }
+  
 public:
 
   virtual int run() = 0;
@@ -102,7 +109,7 @@ public:
   double getDouble(int what);
 
   virtual Variant getValue(Value::CBValue v);
-
+  int setHeuristicSolution(int nvars, const int* indices, const double* values);
 
 
 };

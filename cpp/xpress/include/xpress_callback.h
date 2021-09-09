@@ -117,6 +117,8 @@ public:
     XPRSprob getXPRSprob() {
     return prob_;
   }
+
+    int setHeuristicSolution(int nvars, const int* indices, const double* values);
 };
 
 } // namespace

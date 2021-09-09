@@ -94,6 +94,19 @@ int XPRESSModel::optimize() {
     return XPRSmipoptimize(prob_, NULL);
   else
     return XPRSlpoptimize(prob_, NULL);
+}
 
+std::vector<double> XPRESSModel::getConstraintsValueImpl(int offset, int length) {
+  std::vector<double> cons(getNumCons());
+  int status = XPRSgetsol(prob_, NULL, NULL, cons.data(), NULL);
+  AMPLSXPRSERRORCHECK("XPRSgetsol")
+  std::vector<double> toRet(cons.begin() + offset, cons.begin() + offset + length);
+  return toRet;
+}
+std::vector<double> XPRESSModel::getVarsValueImpl(int offset, int length) {
+  
+  auto vars = getSolutionVector();
+  std::vector<double> toRet(vars.begin() + offset, vars.begin() + offset + length);
+  return toRet;
 }
 } // namespace

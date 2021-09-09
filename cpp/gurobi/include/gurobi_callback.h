@@ -45,6 +45,7 @@ class GurobiCallback : public impl::BaseCallback {
   }
 
 
+
 protected:
   // Interface
   int doAddCut(const ampls::Constraint& c, int type);
@@ -134,6 +135,8 @@ public:
   Variant get(int what);
   
   virtual Variant getValue(Value::CBValue v);
+
+  int setHeuristicSolution(int nvars, const int* indices, const double* values);
 };
 
 } // namespace

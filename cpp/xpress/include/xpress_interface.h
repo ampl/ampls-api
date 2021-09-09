@@ -25,7 +25,7 @@ namespace xpress
     /* Define a macro to do our error checking */
     #define AMPLSXPRSERRORCHECK(name)  \
     if (status)  \
-      throw ampls::AMPLSolverException::format("Error executing #name: %s", error(status).c_str());
+      throw ampls::AMPLSolverException::format("Error executing " #name":\n%s", error(status).c_str());
 
 
     struct XPressDriverState;
@@ -407,6 +407,7 @@ public:
     // TODO Handle Infinity
     int status =  XPRSaddrows(prob_,1, numnz, sensed, 
       rhsd, NULL, rowbegin, vars, coefficients);
+    AMPLSXPRSERRORCHECK("XPRSaddrows")
     return getNumCons() - 1;
   }
   const char toXPRESSType[3] = { 'C', 'B', 'I'};
@@ -417,12 +418,14 @@ public:
     double lbd[] = { lb };
     char* named[] = { const_cast<char*>(name) };
     int status = XPRSaddcols(prob_, 1, numnz, objd, 0, cons, coefficients, lbd, ubd);
+    AMPLSXPRSERRORCHECK("XPRSaddcols")
     char varType[] = { toXPRESSType[(int)type] };
     int indices[] = { getNumVars() - 1 };
     XPRSchgcoltype(prob_, 1, indices, varType);
     return indices[0];
   }
-
+  std::vector<double> getConstraintsValueImpl(int offset, int length);
+  std::vector<double> getVarsValueImpl(int offset, int length);
 
 };
 
