@@ -224,12 +224,11 @@ public:
   }
   virtual int run()
   {
-    if (getAMPLWhere() == ampls::Where::MSG)
-      std::cout << getMessage() << std::endl;
+//    if (getAMPLWhere() == ampls::Where::MSG)
+//      std::cout << getMessage() << std::endl;
     // Get the generic mapping
     if (getAMPLWhere() == ampls::Where::MIPSOL)
     {
-      printf("Obj = %d\n", this->getValue(ampls::Value::OBJ).dbl);
       nrun++;
       // Add the the cut!
       auto arcs = solutionToArcs(getSolutionVector());
@@ -280,7 +279,7 @@ public:
 
 };
 
-double doStuff(ampls::AMPLModel& m, const char *name) 
+double doStuff(ampls::AMPLModel& m) 
 {
   // Set a (generic) callback
   MyGenericCallbackCut cb;
@@ -293,7 +292,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
 
   // Get the objective value
   double obj = m.getObj();
-  printf("\nObjective with callback (%s)=%f\n", name, obj);
+  printf("\nObjective with callback (%s)=%f\n", m.driver(), obj);
 
   // Get the solution vector
   auto a = cb.solutionToArcs(m.getSolutionVector());
@@ -305,24 +304,17 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   for (auto st : sts)
     std::cout << "SUBTOUR " << i++ << " (" << st.numNodes() << " nodes): " << st << "\n";
   std::stringstream ss;
-  ss << "d:/tspcpp-" << name << ".sol";
+  ss << "d:/tspcpp-" << m.driver() << ".sol";
   m.writeSol(ss.str().c_str());
   return obj;
 }
+
+
 int main(int argc, char** argv) {
 
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "tspg96.nl");
-
-#ifdef USE_xpress
-  // Load a model using CPLEX driver
-  ampls::XPRESSDrv xpress;
-  ampls::XPRESSModel x = xpress.loadModel(buffer);
-  // Use it as generic model
-  doStuff(x, "xpress");
-#endif
-
 
 #ifdef USE_cplex
   // Load a model using CPLEX driver
@@ -330,7 +322,7 @@ int main(int argc, char** argv) {
   cplex.setOptions({ "mipgap=1e-9" });
   ampls::CPLEXModel c = cplex.loadModel(buffer);
   // Use it as generic model
-  doStuff(c, "cplex");
+  doStuff(c);
 #endif
 
 #ifdef USE_gurobi
@@ -340,12 +332,7 @@ int main(int argc, char** argv) {
  ampls::GurobiModel g = gurobi.loadModel(buffer);
   g.enableLazyConstraints();
   // Use it as generic model
-  doStuff(g, "gurobi");
+  doStuff(g);
 #endif
-  
-
-  
-
- 
 }
 ;

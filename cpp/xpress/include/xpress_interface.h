@@ -59,7 +59,10 @@ namespace xpress
       // Declares a user integer solution callback function, 
       // called every time an integer solution is found by heuristics or during the Branch and Bound 
       static void XPRS_CC  intsol_callback_wrapper(XPRSprob prob, void* object);
-
+      // Declares an optimal node callback function, called after an optimal solution for the current 
+      // node has been found during the Branch and Bound search.
+      // feas: The feasibility status.If set to a nonzero value by the user, the current node will be declared infeasible.
+      static void XPRS_CC optnode_callback_wrapper(XPRSprob my_prob, void* my_object, int* feas);
       // Declares a node selection callback function. 
       // This is called every time the code backtracks to select a new node during the MIP search.
       // nodnum 
@@ -93,10 +96,7 @@ namespace xpress
       // will be declared infeasible by the optimizer.
       // static void XPRS_CC prenode_callback_wrapper(XPRSprob prob, void* data, int* feas);
 
-      // Declares an optimal node callback function, called after an optimal solution for the current 
-      // node has been found during the Branch and Bound search.
-      // feas: The feasibility status.If set to a nonzero value by the user, the current node will be declared infeasible.
-      static void XPRS_CC optnode_callback_wrapper(XPRSprob my_prob, void* my_object, int* feas);
+
     };
   }
 }

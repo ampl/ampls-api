@@ -20,7 +20,8 @@ void  CBWrap::message_callback_wrapper(XPRSprob prob, void* object, const char* 
 {
   XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::message);
   cb->msg_ = msg;
-  cb->run();
+  if(msg != NULL)
+    cb->run();
 }
 void XPRS_CC CBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
 {
@@ -33,8 +34,6 @@ void XPRS_CC CBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, int* 
   XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::optnode);
   cb->run();
 }
-
-
 
 } // impl
 } // xpress
@@ -69,12 +68,13 @@ int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
   // Add the callbacks
   int status = XPRSsetcbintsol(prob_, xpress::impl::CBWrap::intsol_callback_wrapper, 
     callback);
-  if (status)
-    return status;
-
-
+  AMPLSXPRSERRORCHECK("XPRSsetcbintsol")
   status = XPRSsetcbmessage(prob_, xpress::impl::CBWrap::message_callback_wrapper,
     callback);
+  AMPLSXPRSERRORCHECK("XPRSsetcbmessage")
+  status = XPRSsetcboptnode(prob_, xpress::impl::CBWrap::optnode_callback_wrapper,
+    callback);
+   AMPLSXPRSERRORCHECK("XPRSsetcboptnode")
   return status;
   // TODO Finish!
 }

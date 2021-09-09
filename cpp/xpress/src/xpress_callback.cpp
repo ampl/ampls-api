@@ -14,7 +14,7 @@ int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
   int cutType[1] = { 1 };
   char sense[1] = { toXPRESSRowType[(int)c.sense()] };
   double rhs[1] = { c.rhs() };
-  int start[2] = { 0, c.indices().size() };
+  int start[2] = { 0, (int)c.indices().size() };
 
   printf("I have %d vars and %d cons\n", model_->getNumVars(), model_->getNumCons());
   return XPRSaddcuts(prob_, 1, cutType, sense, rhs, start,
