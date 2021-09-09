@@ -86,7 +86,7 @@ public:
       return Where::MSG;
     case xpress::impl::XPRESSWhere::intsol:
       return Where::MIPSOL;
-    case xpress::impl::XPRESSWhere::chgnode:
+    case xpress::impl::XPRESSWhere::optnode:
       return Where::MIPNODE;
     default:
       return Where::NOTMAPPED;

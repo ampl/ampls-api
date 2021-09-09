@@ -1,5 +1,5 @@
 #ifdef USE_cplex
-//#include "cplex_interface.h"
+#include "cplex_interface.h"
 #endif
 #ifdef USE_gurobi
 #include "gurobi_interface.h"
@@ -15,74 +15,100 @@
 
 #include "ampl/ampl.h"
 
-const char* MODELNAME = "testmodel.nl";
 
-
-double doStuff(ampls::AMPLModel& m, const char *name) 
+class AMPLAPIInterface
 {
-  int n = m.getNumVars();
-  std::vector<int> indices(n);
-  std::vector<double> values(n);
-  for (int i = 0; i < n; i++)
-  {
-    indices[i] = i;
-    values[i] = i % 2 == 0 ? 1.0 : -1.0;
+  static void doExport(ampl::AMPL& a) {
+    a.eval("option auxfiles cr;");
+    a.eval("write g___modelexport___;");
   }
-  m.addConstraint(indices.size(), indices.data(), values.data(),
-    ampls::CutDirection::LE, 1, "additional");
-  // Start the optimization process
-  m.optimize();
-  std::cout << m.getRecordedEntities(false) << "\n";
+public:
 
-  // Get the objective value
-  double obj = m.getObj();
-  printf("\nSolution with %s=%f\n", name, obj);
 
-  ampls::Status::SolStatus s = m.getStatus();
-  switch (s)
-  {
-    case ampls::Status::OPTIMAL:
-      printf("Optimal.\n");
-      break;
-    case ampls::Status::INFEASIBLE:
-      printf("Infeasible.\n");
-      break;
-    case ampls::Status::UNBOUNDED:
-      printf("Unbounded.\n");
-      break;
-    default:
-      printf("Status: %d\n", s);
+  template <class T> static T exportModel(ampl::AMPL& a);
+
+#ifdef USE_gurobi
+  template<> static ampls::GurobiModel exportModel<ampls::GurobiModel>(ampl::AMPL& a) {
+    doExport(a);
+    ampls::GurobiDrv gurobi;
+    return gurobi.loadModel("___modelexport___.nl");
   }
-  // Get the solution vector
-  std::vector<double> solution = m.getSolutionVector();
-  int nnz = 0;
-  for (int i = 0; i < solution.size(); i++)
-    if (solution[i] != 0) nnz++;
-  printf("\nNumber of non zeroes = %d\n", nnz);
+#endif
 
-  // Write the AMPL sol file
-  m.writeSol();
-  return obj;
+#ifdef USE_cplex
+  template<> static ampls::CPLEXModel exportModel<ampls::CPLEXModel>(ampl::AMPL& a) {
+    doExport(a);
+    ampls::CPLEXDrv cplex;
+    return cplex.loadModel("___modelexport___.nl");
+  }
+#endif
+
+#ifdef USE_xpress
+  template<> static ampls::XPRESSModel exportModel<ampls::XPRESSModel>(ampl::AMPL& a) {
+    doExport(a);
+    ampls::XPRESSDrv xpress;
+    return xpress.loadModel("___modelexport___.nl");
+  }
+#endif
+
+  static void importModel(ampl::AMPL& a, ampls::AMPLModel& g) {
+    g.writeSol();
+    a.eval("solution ___modelexport___.sol;");
+    a.eval(g.getRecordedEntities());
+  }
+
+};
+
+
+void declareModel(ampl::AMPL &a) {
+  a.eval("option version;");
+  a.eval("param nPatterns integer > 0;"
+    "set PATTERNS = 1..nPatterns;  "
+    "set WIDTHS;                   # finished widths"
+    "param order{ WIDTHS } >= 0;    # rolls of width j ordered"
+    "param overrun;                # permitted overrun on any width"
+    "param rawWidth;               # width of raw rolls to be cut"
+    "param rolls{ WIDTHS,PATTERNS } >= 0, default 0;"
+   
+    "var Cut{ PATTERNS } integer >= 0;  # raw rolls to cut in each pattern"
+    "minimize TotalRawRolls : sum{ p in PATTERNS } Cut[p];"
+    "subject to OrderLimits{ w in WIDTHS }:"
+    "order[w] <= sum{ p in PATTERNS } rolls[w, p] * Cut[p] <= order[w] + overrun; ");
+  a.eval("show Cut;");
+  int overrun = 0;
+  int nPatterns = 5;
+  double roll_width = 110;
+  double ordersWidths[] = { 20, 45, 50, 55, 75 };
+  double ordersAmount[] = { 48, 35, 24, 10, 8 };
+/*  int nPatterns = 49;
+  double ordersWidths[] = { 1630, 1625, 1620, 1617, 1540, 1529, 1528, 1505, 1504, 1484, 1466,
+    1450, 1283, 1017, 970, 930, 916, 898, 894, 881, 855, 844, 805, 787, 786, 780, 754,
+    746, 707, 698, 651, 644, 638, 605, 477, 473, 471, 468, 460, 458, 453, 447, 441,
+    422, 421, 419, 396, 309, 266 };
+  double ordersAmount[] = { 172, 714, 110, 262, 32, 100, 76, 110,20, 58, 15, 10, 40, 50, 70, 8, 210, 395,
+      49, 17, 20, 10, 718, 17, 710, 150, 34, 15, 122, 7, 10, 15, 10, 10, 4, 34, 25, 10, 908,
+      161, 765, 21, 20, 318, 22, 382, 22, 123, 35 };
+      */
+  a.getParameter("nPatterns").set(nPatterns); 
+  a.getParameter("overrun").set(overrun);
+  a.getParameter("rawWidth").set(roll_width);
+  ampl::DataFrame df(1, { "WIDTHS", "order" });
+  df.setColumn("WIDTHS", ordersWidths, nPatterns);
+  df.setColumn("order", ordersAmount, nPatterns);
+
+}
+
+template <class T> void doStuff()
+{
+  ampl::AMPL a;
+  declareModel(a);
+  auto m=  AMPLAPIInterface::exportModel<T>(a);
+
+
 }
 int main(int argc, char** argv) {
-
-  char buffer[255];
-  strcpy(buffer, MODELS_DIR);
-  strcat(buffer, MODELNAME);
-  
-
-  ampl::AMPL a;
-  a.eval("option version;");
 #ifdef USE_gurobi
-  // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
-  ampls::GurobiModel g = gurobi.loadModel(buffer);
-  printf("I Have %d constraints\n", g.getIntAttr(GRB_INT_ATTR_NUMCONSTRS));
-  // Use it as generic model
-  doStuff(g, "gurobi");
-  double mipgap = g.getDoubleAttr(GRB_DBL_ATTR_MIPGAP);
-  printf("\nFINAL MIP GAP=%f\n", mipgap);
-  printf("I Have %d constraints\n", g.getIntAttr(GRB_INT_ATTR_NUMCONSTRS));
+  doStuff<ampls::GurobiModel>();
 #endif
   /*
 #ifdef USE_cplex

@@ -767,6 +767,11 @@ public:
   {
     return impl_->getSolution(len, sol);
   }
+
+  int setHeuristicSolution(int nvars, const int* indices, const double* values)
+  {
+    return impl_->setHeuristicSolution(nvars, indices, values);
+  }
   /** Get the current objective value */
   double getObj()
   {

@@ -28,6 +28,12 @@ void XPRS_CC CBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
   cb->run();
 }
 
+void XPRS_CC CBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, int* feas)
+{
+  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::optnode);
+  cb->run();
+}
+
 
 
 } // impl

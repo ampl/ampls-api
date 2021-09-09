@@ -66,32 +66,32 @@ namespace xpress
       // node: a pointer to the number of the node, nodnum, selected by the Optimizer.
       // By changing the value pointed to by this argument, the selected node may be changed with 
       // this function.
-      static void XPRS_CC chgnode_callback_wrapper(XPRSprob prob, void* object,
-        int* node);
+      // static void XPRS_CC chgnode_callback_wrapper(XPRSprob prob, void* object,
+      //   int* node);
 
       // Declares a user infeasible node callback function, 
       // called after the current node has been found to be infeasible during the Branch and Bound search.
-      static void XPRS_CC infnode_callback_wrapper(XPRSprob prob, void* object);
+      // static void XPRS_CC infnode_callback_wrapper(XPRSprob prob, void* object);
 
       // Declares a user node cutoff callback function, 
       // called every time a node is cut off as a result of an improved integer solution being found 
       // during the Branch and Bound search.
       // node The number of the node that is cut off.
-      static void XPRS_CC nodecutoff_callback_wrapper(XPRSprob prob, void* object, int node);
+      // static void XPRS_CC nodecutoff_callback_wrapper(XPRSprob prob, void* object, int node);
 
       // Declares a branching variable callback function, called every time a new branching variable 
       // is set or selected during the MIP search.
       // entity: A pointer to the variable or set on which to branch.Ordinary global variables are identified by their column index, i.e. 0, 1, ...(COLS - 1) and by their set index, i.e. 0, 1, ..., (SETS - 1).
       // up: If entity is a variable, this is 1 if the upward branch is to be made first, or 0 otherwise.If entity is a set, this is 3 if the upward branch is to be made first, or 2 otherwise.
       // estdeg: The estimated degradation at the node.
-      static void XPRS_CC chgbranch_callback_wrapper(XPRSprob prob, void* vdata,
-        int* entity, int* up, double* estdeg);
+      // static void XPRS_CC chgbranch_callback_wrapper(XPRSprob prob, void* vdata,
+        // int* entity, int* up, double* estdeg);
 
       // Declares a preprocess node callback function, called before the node has been optimized,
       // so the solution at the node will not be available.
       // feas: the feasibility status, if set to a nonzero value by the user, the current node 
       // will be declared infeasible by the optimizer.
-      static void XPRS_CC prenode_callback_wrapper(XPRSprob prob, void* data, int* feas);
+      // static void XPRS_CC prenode_callback_wrapper(XPRSprob prob, void* data, int* feas);
 
       // Declares an optimal node callback function, called after an optimal solution for the current 
       // node has been found during the Branch and Bound search.
@@ -109,7 +109,7 @@ Encapsulates the main environment of the xpress driver; the environment is then
 associated with the model being instantiated and deleted with it
 */
 class XPRESSDrv : public impl::SolverDriver<XPRESSModel> {
-  bool owning_;
+  mutable bool owning_;
   void freeXPRESSEnv();
   XPRESSModel loadModelImpl(char** args);
 public:
@@ -127,7 +127,7 @@ public:
   XPRESSDrv(XPRESSDrv& other) : owning_(other.owning_){
     other.owning_ = false;
   }
-  XPRESSDrv& operator=(XPRESSDrv& other) {
+  XPRESSDrv& operator=(const XPRESSDrv& other) {
     owning_ = other.owning_;
     other.owning_ = false;
     return *this;
@@ -188,9 +188,29 @@ class XPRESSModel : public AMPLModel {
  
 public:
 
-  XPRESSModel(XPRESSModel const&) = delete;
-  XPRESSModel& operator=(XPRESSModel const&) = delete;
+  XPRESSModel(const XPRESSModel &other) : copied_(false), prob_(NULL),
+    tStart_(0), state_(NULL) {
+    prob_ = other.prob_;
+    tStart_ = other.tStart_;
+    state_ = other.state_;
+    fileName_ = other.fileName_;
+    driver_ = other.driver_;
+    other.copied_ = true;
+  }
+  XPRESSModel& operator=(XPRESSModel &other) {
+    if (this != &other)
+    {
+      prob_ = other.prob_;
+      copied_ = false;
+      tStart_ = other.tStart_;
 
+      state_ = std::move(other.state_);
+      fileName_ = other.fileName_;
+      driver_ = std::move(other.driver_);
+    }
+    other.copied_ = true;
+    return *this;
+  }
 
   XPRESSModel& operator=(XPRESSModel&& other) noexcept {
     if (this != &other)
