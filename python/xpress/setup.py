@@ -131,7 +131,7 @@ setup(
             os.path.join('amplpy_xpress', 'cpp', 'xpress', 'include'),
             os.path.join('amplpy_xpress', 'cpp', 'ampls', 'include'),
         ],
-        libraries=['xprs', 'xprl' 'xpress-lib'],
+        libraries=['xprs', 'xprl', 'xpress-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[
