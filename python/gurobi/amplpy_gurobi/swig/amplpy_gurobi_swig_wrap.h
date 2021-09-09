@@ -25,6 +25,7 @@ public:
     }
     virtual int run();
     virtual ~SwigDirector_GenericCallback();
+    virtual int setHeuristicSolution(int nvars, int const *indices, double const *values);
     virtual int getSolution(int len, double *sol);
     virtual double getObj();
     virtual int getWhere();
@@ -62,7 +63,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[7];
+    mutable swig::SwigVar_PyObject vtable[8];
 #endif
 
 };
@@ -78,6 +79,7 @@ public:
     }
     virtual int run();
     virtual ~SwigDirector_GurobiCallback();
+    virtual int setHeuristicSolution(int nvars, int const *indices, double const *values);
     virtual int getSolution(int len, double *sol);
     virtual double getObj();
     virtual int getWhere();
@@ -115,7 +117,7 @@ private:
       return method;
     }
 private:
-    mutable swig::SwigVar_PyObject vtable[7];
+    mutable swig::SwigVar_PyObject vtable[8];
 #endif
 
 };
