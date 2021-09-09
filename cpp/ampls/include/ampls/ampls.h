@@ -651,6 +651,7 @@ public:
     // and https://github.com/renvieir/ioc/blob/master/cplex/examples/src/c/admipex2.c
     // Xpress: https://www.fico.com/fico-xpress-optimization/docs/latest/solver/optimizer/HTML/XPRSaddmipsol.html
 
+  
   /** Get the current solution vector */
   std::vector<double> getSolutionVector();
   /** Get the current solution */
@@ -991,6 +992,12 @@ public:
   Get all the variables of the current problem
   */
   std::vector<double> getSolutionVector();
+  /**
+  Get all the dual values of the current problem
+  */
+  std::vector<double> getDualVector() {
+    return getConstraintsValueImpl(0, getNumCons());
+  }
   /**
   Get the number of variables
   */

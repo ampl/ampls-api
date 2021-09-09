@@ -95,8 +95,7 @@ std::map<int, std::string> AMPLModel::getConsMapInverse() {
 
 std::vector<double> AMPLModel::getSolutionVector() {
   int len = getNumVars();
-  std::vector<double> res;
-  res.resize(len);
+  std::vector<double> res(len);
   getSolution(0, len, res.data());
   return res;
 }
@@ -217,10 +216,8 @@ namespace impl {
 
 
   std::vector<double> BaseCallback::getSolutionVector() {
-
     int len = model_->getNumVars();
-    std::vector<double> res;
-    res.resize(len);
+    std::vector<double> res(len);
     int s;
     try {
       s = getSolution(len, res.data());

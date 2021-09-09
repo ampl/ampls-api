@@ -79,7 +79,6 @@ template <class T> void doStuff(const char* name)
 {
   ampl::AMPL ampl;
   
-  
   ampl.eval("var x >=0 integer; var y>=0 integer;");
   ampl.eval("maximize z: x+y + to_come;");
   ampl.eval("constraint: x+2*y+ to_come<=4;");

@@ -59,7 +59,6 @@ namespace AMPLAPIInterface
     a.eval("solution ___modelexport___.sol;");
     a.eval(g.getRecordedEntities());
   }
-
 };
 
 void declareModel(ampl::AMPL &a) {

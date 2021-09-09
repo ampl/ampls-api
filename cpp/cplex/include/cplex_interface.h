@@ -232,6 +232,8 @@ public:
     AMPLSCPXERRORCHECK("CPXgetx");
     return status;
   }
+
+
   std::string error(int code);
 
   void enableLazyConstraints() {
