@@ -20,6 +20,8 @@
 
 #include <exception>
 
+const double INTTOLERANCE = 1e-4;
+
 std::vector<std::string> split(const std::string str, const std::string regex_str)
 {
   const std::regex regex(regex_str);
@@ -45,8 +47,6 @@ struct Arc {
     this->from = from;
     this->to = to;
   }
-  
-
   static Arc fromVar(const std::string& var)
   {
     auto s = split(var, "[A-Za-z0-9]*\\['([A-Za-z0-9]*)','([A-Za-z0-9]*)'\\]");
@@ -217,15 +217,14 @@ public:
     std::list<Arc> res;
     for (int i = 0; i < sol.size(); i++)
     {
-      if (sol[i] != 0)
+      if (sol[i] > INTTOLERANCE)
         res.push_back(xvar[i]);
     }
     return res;
   }
+
   virtual int run()
   {
-//    if (getAMPLWhere() == ampls::Where::MSG)
-//      std::cout << getMessage() << std::endl;
     // Get the generic mapping
     if (getAMPLWhere() == ampls::Where::MIPSOL)
     {
@@ -264,11 +263,6 @@ public:
           ampls::Constraint c= addLazyIndices(varsIndexToAdd.size(),
             varsIndexToAdd.data(), coeffs.data(),
             ampls::CutDirection::GE, 2);
-          record(c);
-          //if (sts.size() == 2)
-          //  break;
-          std::cout << "# n constraints: " << model_->getNumCons() << "\n";
-          
         }
         std::cout << "Added cuts. ";
       }
@@ -285,7 +279,7 @@ double doStuff(ampls::AMPLModel& m)
   // Set a (generic) callback
   MyGenericCallbackCut cb;
   cb.setMap(m.getVarMap(), m.getVarMapInverse());
-//  cb.setDebugCuts(true, true, true);
+
   m.setCallback(&cb);
   
   // Start the optimization process
@@ -305,7 +299,6 @@ double doStuff(ampls::AMPLModel& m)
   for (auto st : sts)
     std::cout << "SUBTOUR " << i++ << " (" << st.numNodes() << " nodes): " << st << "\n";
   std::stringstream ss;
-  ss << "d:/tspcpp-" << m.driver() << ".sol";
   m.writeSol(ss.str().c_str());
   return obj;
 }
@@ -317,6 +310,16 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "tspg96.nl");
 
+#ifdef USE_gurobi
+  // Load a model using gurobi driver
+  ampls::GurobiDrv gurobi;
+  gurobi.setOptions({ "mipgap=1e-9" });
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
+  g.enableLazyConstraints();
+  // Use it as generic model
+  doStuff(g);
+#endif
+
 #ifdef USE_cplex
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
@@ -324,16 +327,6 @@ int main(int argc, char** argv) {
   ampls::CPLEXModel c = cplex.loadModel(buffer);
   // Use it as generic model
   doStuff(c);
-#endif
-
-#ifdef USE_gurobi
-  // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
-  gurobi.setOptions({ "mipgap=1e-9" });
- ampls::GurobiModel g = gurobi.loadModel(buffer);
-  g.enableLazyConstraints();
-  // Use it as generic model
-  doStuff(g);
 #endif
 }
 ;

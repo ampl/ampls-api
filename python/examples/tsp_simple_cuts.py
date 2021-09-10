@@ -25,6 +25,7 @@ subject to Visit_All {i in NODES}:
 
 # Set execution parameters
 PLOTSUBTOURS = False
+INTTOL = 1e-4
 solver = "gurobi"
 tspFile = "tsp/gr96.tsp"
 # Load model in AMPL
@@ -208,7 +209,7 @@ class MyCallback(ampls.GenericCallback):
           self.iteration += 1
           print(f"\nIteration {self.iteration}: Finding subtours")
           sol = self.getSolutionVector()
-          arcs = [xvars[i] for i,value in enumerate(sol) if value > 0]
+          arcs = [xvars[i] for i,value in enumerate(sol) if value > INTTOL]
           subTours = findSubTours(set(arcs), set(vertices))
           if len(subTours) ==1:
             print("No subtours detected.")
