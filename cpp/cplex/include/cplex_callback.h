@@ -88,6 +88,7 @@ public:
       // For user cuts
     case CPX_CALLBACK_MIP_CUT_LOOP:
     case CPX_CALLBACK_MIP_CUT_LAST:
+    case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
       return Where::MIPNODE;
     //case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
     //case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
@@ -111,7 +112,7 @@ public:
   virtual Variant getValue(Value::CBValue v);
   int setHeuristicSolution(int nvars, const int* indices, const double* values);
 
-
+  std::vector<double> getValueArray(Value::CBValue v);
 };
 
 } // namespace

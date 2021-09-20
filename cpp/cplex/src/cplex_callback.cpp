@@ -59,6 +59,8 @@ Variant CPLEXCallback::getValue(Value::CBValue v) {
     return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
   case Value::MIP_RELATIVEGAP:
     return get(CPX_CALLBACK_INFO_MIP_REL_GAP);
+  case Value::MIP_OBJBOUND:
+    return get(CPX_CALLBACK_INFO_MIP_FEAS); // TODO
   case Value::RUNTIME:
   {
     double time;
@@ -136,6 +138,7 @@ double CPLEXCallback::getObj() {
       return getDouble(CPX_CALLBACK_INFO_PRIMAL_OBJ);
     break;
   case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
+  case CPX_CALLBACK_MIP_CUT_FEAS:
   case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
   case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
   case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART:
@@ -319,6 +322,19 @@ int CPLEXCallback::setHeuristicSolution(int nvars, const int* indices, const dou
   for (int i = 0; i < nvars; i++)
     x_[indices[i]] = values[i];
   return 0;
+}
+
+std::vector<double> CPLEXCallback::getValueArray(Value::CBValue v) {
+  switch (v)
+  {
+  case Value::MIP_SOL_RELAXED:
+    if (where_ == CPX_CALLBACK_MIP_HEURISTIC)
+    {
+      std::vector<double> c(x_, x_+model_->getNumVars());
+      return c;
+    }
+  }
+  return std::vector<double>();
 }
 
 } // namespace

@@ -78,6 +78,9 @@ Variant XPRESSCallback::get(int what)
     r.integer= getInt(what);
     return r;
   }
+
+
+
   throw AMPLSolverException("Invalid parameter");
 }
 
@@ -93,10 +96,12 @@ Variant XPRESSCallback::getValue(Value::CBValue v) {
   case Value::ITERATIONS:
     return Variant(getInt(XPRS_BARITER));
   case Value::OBJ:
-    return Variant(getDouble(XPRS_MIPBESTOBJVAL));
+    return Variant(getDouble(XPRS_MIPOBJVAL));
     //return Variant(getDouble(XPRS_LPOBJVAL));
   case Value::RUNTIME:
     return Variant(((double)clock() - ((XPRESSModel*)model_)->tStart_) / CLOCKS_PER_SEC);
+  case Value::MIP_OBJBOUND:
+    return Variant(getDouble(XPRS_BESTBOUND));
   }
   throw std::runtime_error("Not supported yet");
   return Variant(); // silence gcc warning
@@ -104,7 +109,14 @@ Variant XPRESSCallback::getValue(Value::CBValue v) {
 
 int XPRESSCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
   return XPRSaddmipsol(prob_, nvars, values, indices, NULL);
-
 }
 
-} // namespace
+std::vector<double> XPRESSCallback::getValueArray(Value::CBValue v) {
+  switch (v)
+  {
+    case Value::MIP_SOL_RELAXED:
+        return getSolutionVector();
+  }
+}
+
+} // 

@@ -35,7 +35,8 @@ int CPXPUBLIC cpx::impl::CBWrap::incumbent_callback_wrapper(CPXCENVptr env, void
 int CPXPUBLIC cpx::impl::CBWrap::heuristiccallbackfunc_wrapper(CPXCENVptr env,
   void* cbdata, int wherefrom, void* userhandle, 
   double* objval_p, double* x, int* checkfeas_p, int* useraction_p) {
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, ampls::CanDo::IMPORT_SOLUTION);
+  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, ampls::CanDo::IMPORT_SOLUTION |
+  ampls::CanDo::GET_LP_SOLUTION);
   cb->objval_ = *objval_p;
   cb->x_ = x;
   cb->heurUserAction_ = CPX_CALLBACK_DEFAULT;
@@ -75,10 +76,13 @@ bool cpx::impl::CBWrap::skipMsgCallback = false;
 void CPXPUBLIC
 cpx::impl::CBWrap::msg_callback_wrapper(void* handle, const char* msg)
 {
+
   if (cpx::impl::CBWrap::skipMsgCallback)
     return;
+
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(handle);
   cb->where_ = -1;
+  cb->currentCapabilities_ = 0;
   cb->msg_ = msg;
   cb->run();
 }
@@ -100,7 +104,13 @@ CPLEXModel CPLEXDrv::loadModelImpl(char** args) {
   cpx::impl::CPLEXDriverState* state = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
     &aslptr);
   if (state == NULL)
-    throw AMPLSolverException::format("Trouble when loading model %s, most likely license-related.", args[1]);
+  {
+    const char* error = cpx::impl::getUinfo(m.asl_);
+    if (error)
+      throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
+    else
+      throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
+  }
   m.state_ = state;
   m.model_ = modelptr;
   m.asl_ = aslptr;

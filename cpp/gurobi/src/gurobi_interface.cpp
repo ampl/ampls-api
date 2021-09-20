@@ -10,7 +10,7 @@ int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* 
   cb->cbdata_ = cbdata;
   cb->where_ = where;
   if (cb->getAMPLWhere() == ampls::Where::MIPNODE)
-    cb->currentCapabilities_ = ampls::CanDo::IMPORT_SOLUTION;
+    cb->currentCapabilities_ = ampls::CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION;
   else
     cb->currentCapabilities_ = 0;
 
@@ -35,8 +35,13 @@ GurobiModel GurobiDrv::loadModelImpl(char** args) {
   GurobiModel m;
   GRBmodel* inner= grb::impl::AMPLloadmodel(3, args, &m.asl_);
   if (inner == NULL)
-    throw AMPLSolverException::format("Trouble when loading model %s, most likely license-related.", args[1]);
-  
+  {
+    const char* error = grb::impl::getUinfo(m.asl_);
+    if (error)
+      throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
+    else
+      throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
+  }
   m.GRBModel_ = inner;
   m.lastErrorCode_ = -1;
   m.fileName_ = args[1];

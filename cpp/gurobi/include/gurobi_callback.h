@@ -137,6 +137,22 @@ public:
   virtual Variant getValue(Value::CBValue v);
 
   int setHeuristicSolution(int nvars, const int* indices, const double* values);
+
+
+  std::vector<double> getValueArray(Value::CBValue v)
+  {
+    switch (v)
+    {
+    case Value::MIP_SOL_RELAXED:
+      if (where_ == GRB_CB_MIPNODE)
+      {
+        std::vector<double> res(model_->getNumVars());
+        GRBcbget(cbdata_, where_, GRB_CB_MIPNODE_REL, res.data());
+        return res;
+      }
+    }
+    return std::vector<double>();
+  }
 };
 
 } // namespace

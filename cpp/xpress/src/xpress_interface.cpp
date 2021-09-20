@@ -8,11 +8,12 @@ namespace ampls
 namespace xpress {
 namespace impl {
 XPRESSCallback* CBWrap::setDefaultCB(XPRSprob prob, void* data,
-  XPRESSWhere wherefrom)
+  XPRESSWhere wherefrom, int capabilities)
 {
   XPRESSCallback* cb = static_cast<XPRESSCallback*>(data);
   cb->where_ = (int)wherefrom;
   cb->prob_ = prob;
+  cb->currentCapabilities_ = capabilities;
   return cb;
 }
 
@@ -25,7 +26,7 @@ void  CBWrap::message_callback_wrapper(XPRSprob prob, void* object, const char* 
 }
 void XPRS_CC CBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
 {
-  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::intsol);
+  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::intsol, CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION);
   cb->run();
 }
 

@@ -53,6 +53,9 @@ namespace cpx
       ENTRYPOINT CPXENVptr AMPLCPLEXgetInternalEnv();
 
       ENTRYPOINT void AMPLCPLEXfreeASL(ASL** aslPtr);
+
+      ENTRYPOINT const char* getUinfo(ASL* asl);
+
     }
     
     class CBWrap {

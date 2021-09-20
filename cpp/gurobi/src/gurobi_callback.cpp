@@ -147,10 +147,10 @@ double GurobiCallback::getObj()
     flag = GRB_CB_MIP_OBJBST;
     break;
   case GRB_CB_MIPSOL:
-    flag = GRB_CB_MIPSOL_OBJBST;
+    flag = GRB_CB_MIPSOL_OBJ;
     break;
   case GRB_CB_MIPNODE:
-    flag = GRB_CB_MIPNODE_OBJBST;
+    flag = GRB_CB_MIP_OBJBST;
     break;
   case GRB_CB_BARRIER:
     flag = GRB_CB_BARRIER_PRIMOBJ;
@@ -170,7 +170,10 @@ Variant  GurobiCallback::getValue(Value::CBValue v) {
   case Value::OBJ:
     return Variant(getObj());
   case Value::MIP_RELATIVEGAP:
-    return ((GurobiModel*)model_)->getDoubleAttr(GRB_DBL_ATTR_MIPGAP);
+    return impl::calculateRelMIPGAP(getDouble(GRB_CB_MIPSOL_OBJ),
+      getDouble(GRB_CB_MIPSOL_OBJBND));
+  case Value::MIP_OBJBOUND:
+    return getDouble(GRB_CB_MIPSOL_OBJBND);
   case Value::PRE_DELCOLS:
     return get(GRB_CB_PRE_COLDEL);
   case Value::PRE_DELROWS:

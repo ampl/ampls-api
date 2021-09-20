@@ -44,7 +44,7 @@ namespace xpress
     class CBWrap
     {
     public:
-      static XPRESSCallback* setDefaultCB(XPRSprob prob, void* object, XPRESSWhere whereFrom);
+      static XPRESSCallback* setDefaultCB(XPRSprob prob, void* object, XPRESSWhere whereFrom, int capabilities=0);
 
       // Declares an output callback function, called every time a text line is output by the Optimizer.
       // msg: A null terminated character array(string) containing the message, which may simply be a new line.

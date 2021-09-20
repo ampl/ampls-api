@@ -72,6 +72,28 @@ struct Variant
   accessible via .dbl */
   Variant(double v) : str(NULL), integer(0), dbl(v), type(2) {}
 
+  friend std::ostream& operator<<(std::ostream& out, const Variant& v)
+  {
+    switch (v.type)
+    {
+    case 2:
+      out << v.dbl;
+      break;
+    case 1:
+      out << v.integer;
+      break;
+    case 0:
+      out << v.str;
+      break;
+    case -1:
+      out << "NULL";
+      break;
+    default:
+      throw std::runtime_error("Wrong variant");
+    }
+    return out;
+  }
+
 };
 
 // Forward declarations
@@ -173,7 +195,9 @@ struct CanDo
   enum Functionality
   {
     /** Can a solution be imported at this stage */
-    IMPORT_SOLUTION = 0
+    IMPORT_SOLUTION = 0,
+    /** Can get current value of relaxation solution */
+    GET_LP_SOLUTION = 1
   };
 };
 
@@ -199,7 +223,13 @@ struct Value
     /** Time since solution start*/
     RUNTIME = 5,
     /** Current relative MIP gap*/
-    MIP_RELATIVEGAP = 6
+    MIP_RELATIVEGAP = 6,
+    
+
+    MIP_OBJBOUND=7,
+    /* Relaxed soluition - only in MIP node */
+    MIP_SOL_RELAXED
+
   };
 };
 
@@ -566,7 +596,7 @@ protected:
 public:
   
   // Check if the specified functionality is available at this stage
-  bool checkCanDo(CanDo::Functionality f) {
+  virtual bool checkCanDo(CanDo::Functionality f) {
     return currentCapabilities_ && (int)f;
   }
 
@@ -676,6 +706,8 @@ public:
   virtual Where::CBWhere getAMPLWhere() = 0;
   /** Get a (generic) value */
   virtual Variant getValue(Value::CBValue v) = 0;
+  /** Get a (generic) array */
+  virtual std::vector<double> getValueArray(Value::CBValue v) = 0;
 };
 
 /**
@@ -770,7 +802,10 @@ public:
   {
     return impl_->getSolution(len, sol);
   }
-
+  std::vector<double>  getValueArray(Value::CBValue v)
+  {
+    return impl_->getValueArray(v);
+  }
   int setHeuristicSolution(int nvars, const int* indices, const double* values)
   {
     return impl_->setHeuristicSolution(nvars, indices, values);
@@ -807,6 +842,10 @@ public:
   {
     return impl_->getValue(v);
   }
+  bool checkCanDo(CanDo::Functionality f) {
+    return impl_->checkCanDo(f);
+  }
+
 };
   
 /**

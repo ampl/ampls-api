@@ -119,6 +119,8 @@ public:
   }
 
     int setHeuristicSolution(int nvars, const int* indices, const double* values);
+
+    std::vector<double> getValueArray(Value::CBValue v);
 };
 
 } // namespace

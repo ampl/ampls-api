@@ -225,10 +225,20 @@ public:
 
   virtual int run()
   {
+    if(checkCanDo(ampls::CanDo::GET_LP_SOLUTION))
+    {
+      int nnz = 0;
+      auto s = getValueArray(ampls::Value::MIP_SOL_RELAXED);
+      for (auto d : s)
+        if(d != 0)
+          nnz++;
+      std::cout << "Number of non zeros in node: " << nnz << "\n";
+    }
     // Get the generic mapping
     if (getAMPLWhere() == ampls::Where::MIPSOL)
     {
-      
+      std::cout << "Bound=" << getValue(ampls::Value::MIP_OBJBOUND) << "\n";
+      std::cout << "Obj="<< getValue(ampls::Value::OBJ) << "\n";
       nrun++;
       // Add the the cut!
       auto arcs = solutionToArcs(getSolutionVector());
@@ -298,8 +308,6 @@ double doStuff(ampls::AMPLModel& m)
   int i = 0;
   for (auto st : sts)
     std::cout << "SUBTOUR " << i++ << " (" << st.numNodes() << " nodes): " << st << "\n";
-  std::stringstream ss;
-  m.writeSol(ss.str().c_str());
   return obj;
 }
 
@@ -310,23 +318,35 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "tspg96.nl");
 
+#ifdef USE_xpress
+  // Load a model using CPLEX driver
+ // ampls::XPRESSDrv xpress;
+ // ampls::XPRESSModel x = xpress.loadModel(buffer);
+  // Use it as generic model
+//  doStuff(x);
+#endif
+
+#ifdef USE_cplex
+// Load a model using CPLEX driver
+  ampls::CPLEXDrv cplex;
+  cplex.setOptions({ "mipgap=1e-9 banana=1" });
+  ampls::CPLEXModel c = cplex.loadModel(buffer);
+  // Use it as generic model
+  doStuff(c);
+#endif
+
 #ifdef USE_gurobi
-  // Load a model using gurobi driver
+// Load a model using gurobi driver
   ampls::GurobiDrv gurobi;
-  gurobi.setOptions({ "mipgap=1e-9" });
+  gurobi.setOptions({ "mipgap=1e-9 banana=1" });
   ampls::GurobiModel g = gurobi.loadModel(buffer);
   g.enableLazyConstraints();
   // Use it as generic model
   doStuff(g);
 #endif
 
-#ifdef USE_cplex
-  // Load a model using CPLEX driver
-  ampls::CPLEXDrv cplex;
-  cplex.setOptions({ "mipgap=1e-9" });
-  ampls::CPLEXModel c = cplex.loadModel(buffer);
-  // Use it as generic model
-  doStuff(c);
-#endif
+
+
+
 }
 ;
