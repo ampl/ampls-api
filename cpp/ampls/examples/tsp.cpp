@@ -49,7 +49,11 @@ struct Arc {
   }
   static Arc fromVar(const std::string& var)
   {
+  #if __cplusplus >= 201103L
+    auto s = split(var, "[A-Za-z0-9]*\\['([A-Za-z0-9]*)','([A-Za-z0-9]*)']");
+  #else
     auto s = split(var, "[A-Za-z0-9]*\\['([A-Za-z0-9]*)','([A-Za-z0-9]*)'\\]");
+  #endif
     return Arc(std::stoi(s[1]), std::stoi(s[2]));
   }
 
@@ -79,6 +83,19 @@ struct Arc {
     }
     return false;
   }
+
+  static std::list<Arc> solutionToArcs(const std::vector<double>& sol,
+    std::map<int, Arc>& xvar)
+  {
+    std::list<Arc> res;
+    for (int i = 0; i < sol.size(); i++)
+    {
+      if (sol[i] > INTTOLERANCE)
+        res.push_back(xvar[i]);
+    }
+    return res;
+  }
+
 };
 
 inline bool operator<(const Arc& c1, const Arc& c2)
@@ -212,17 +229,6 @@ public:
      }
   }
 
-  std::list<Arc> solutionToArcs(const std::vector<double>& sol)
-  {
-    std::list<Arc> res;
-    for (int i = 0; i < sol.size(); i++)
-    {
-      if (sol[i] > INTTOLERANCE)
-        res.push_back(xvar[i]);
-    }
-    return res;
-  }
-
   virtual int run()
   {
     if(checkCanDo(ampls::CanDo::GET_LP_SOLUTION))
@@ -232,7 +238,7 @@ public:
       for (auto d : s)
         if(d != 0)
           nnz++;
-      std::cout << "Number of non zeros in node: " << nnz << "\n";
+      std::cout << "Number of non zeros in node solution: " << nnz << "\n";
     }
     // Get the generic mapping
     if (getAMPLWhere() == ampls::Where::MIPSOL)
@@ -241,7 +247,7 @@ public:
       std::cout << "Obj="<< getValue(ampls::Value::OBJ) << "\n";
       nrun++;
       // Add the the cut!
-      auto arcs = solutionToArcs(getSolutionVector());
+      auto arcs = Arc::solutionToArcs(getSolutionVector(), xvar);
       auto sts = Tour::findSubtours(arcs);
       std::cout << "Iteration " << nrun << ": Found " << sts.size() << " subtours. \n";
       int i = 0;
@@ -252,7 +258,6 @@ public:
         for (auto st : sts)
         {
           auto stn = st.getNodes();
-          
           auto nstn = setDiff(vertices, stn);
           std::vector<Arc> toAdd;
           for (int inside : stn) {
@@ -300,7 +305,13 @@ double doStuff(ampls::AMPLModel& m)
   printf("\nObjective with callback (%s)=%f\n", m.driver(), obj);
 
   // Get the solution vector
-  auto a = cb.solutionToArcs(m.getSolutionVector());
+  std::map<int, Arc> xvar;
+  for (auto it : m.getVarMap())
+  {
+    Arc cur = Arc::fromVar(it.first);
+    xvar[it.second] = cur;
+  }
+  auto a = Arc::solutionToArcs(m.getSolutionVector(), xvar);
   auto sts = Tour::findSubtours(a);
 
   // Print solution
@@ -325,25 +336,24 @@ int main(int argc, char** argv) {
   // Use it as generic model
 //  doStuff(x);
 #endif
+#ifdef USE_gurobi
+// Load a model using gurobi driver
+  ampls::GurobiDrv gurobi;
+  gurobi.setOptions({ "mipgap=1e-9" });
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
+  doStuff(g);
+#endif
 
 #ifdef USE_cplex
 // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
-  cplex.setOptions({ "mipgap=1e-9 banana=1" });
+  cplex.setOptions({ "mipgap=1e-9" });
   ampls::CPLEXModel c = cplex.loadModel(buffer);
   // Use it as generic model
   doStuff(c);
 #endif
 
-#ifdef USE_gurobi
-// Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
-  gurobi.setOptions({ "mipgap=1e-9 banana=1" });
-  ampls::GurobiModel g = gurobi.loadModel(buffer);
-  g.enableLazyConstraints();
-  // Use it as generic model
-  doStuff(g);
-#endif
+
 
 
 

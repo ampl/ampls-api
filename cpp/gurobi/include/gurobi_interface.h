@@ -37,7 +37,7 @@ namespace grb
       ENTRYPOINT void AMPLwritesol(GRBmodel* m, ASL* asl, int lastoptimizerun, const char* solFileName);
       ENTRYPOINT void freeEnvironment();
       ENTRYPOINT void freeASL(ASL** aslp);
-      ENTRYPOINT const char* getUinfo(ASL* asl);
+      ENTRYPOINT const char* AMPLGRBgetUinfo(ASL* asl);
     }
     // Forward declarations
     int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);

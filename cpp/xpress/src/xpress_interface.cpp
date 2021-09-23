@@ -50,6 +50,14 @@ XPRESSModel XPRESSDrv::loadModelImpl(char** args) {
   owning_ = true;
   XPRESSModel m;
   m.state_ = xpress::impl::AMPLXPRESSloadModel(3, args, &m.prob_);
+  if (m.state_ == NULL)
+  {
+    const char* error = xpress::impl::AMPLXPRESSgetUinfo();
+    if (error)
+      throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
+    else
+      throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
+  }
   m.fileName_ = args[1];
   m.driver_ = *this;
   return m;

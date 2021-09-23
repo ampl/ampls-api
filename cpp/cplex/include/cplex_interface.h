@@ -54,7 +54,7 @@ namespace cpx
 
       ENTRYPOINT void AMPLCPLEXfreeASL(ASL** aslPtr);
 
-      ENTRYPOINT const char* getUinfo(ASL* asl);
+      ENTRYPOINT const char* AMPLCPLEXgetUinfo(ASL* asl);
 
     }
     

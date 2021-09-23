@@ -7,6 +7,7 @@
 
 %feature("director") ampls::GurobiCallback;
 %ignore ampls::GurobiCallback::doAddCut;
+%ignore ampls::grb::impl;
 // The following is to avoid problem with director
 // that cannot properly map an out double[].
 // Not yet.

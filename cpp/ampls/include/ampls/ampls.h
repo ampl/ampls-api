@@ -743,6 +743,11 @@ protected:
       deleteParams(args);
       return mod;
     }
+    catch (const ampls::AMPLSolverException& e) {
+      loadMutex.Unlock();
+      deleteParams(args);
+      throw e;
+    }
     catch (const std::exception& e) {
       loadMutex.Unlock();
       deleteParams(args);

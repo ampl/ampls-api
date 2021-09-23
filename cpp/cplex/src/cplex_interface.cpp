@@ -103,14 +103,15 @@ CPLEXModel CPLEXDrv::loadModelImpl(char** args) {
   ASL* aslptr;
   cpx::impl::CPLEXDriverState* state = cpx::impl::AMPLCPLEXloadmodel(3, args, &modelptr,
     &aslptr);
-  if (state == NULL)
+  if (modelptr == NULL)
   {
-    const char* error = cpx::impl::getUinfo(m.asl_);
+    const char* error = cpx::impl::AMPLCPLEXgetUinfo(aslptr);
     if (error)
       throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
     else
       throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
   }
+  
   m.state_ = state;
   m.model_ = modelptr;
   m.asl_ = aslptr;

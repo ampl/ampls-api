@@ -30,6 +30,9 @@ namespace xpress
 
     struct XPressDriverState;
     extern "C" {
+
+      ENTRYPOINT const char* AMPLXPRESSgetUinfo();
+
       ENTRYPOINT void AMPLXPRESSfreeEnv();
 
       ENTRYPOINT XPressDriverState* AMPLXPRESSloadModel(int argc, char** argv,
