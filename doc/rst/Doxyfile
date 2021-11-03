@@ -1,19 +1,18 @@
-PROJECT_NAME     = "Solvers API"
+PROJECT_NAME     = ampls-api
 GENERATE_LATEX   = NO
 GENERATE_MAN     = NO
 GENERATE_RTF     = NO
 CASE_SENSE_NAMES = NO
 RECURSIVE              = YES
-INPUT            = @DOXYGEN_INPUT_DIR@
-OUTPUT_DIRECTORY = "@DOXYGEN_OUTPUT_DIR@"
+INPUT            = ../../cpp/ampls/include ../../cpp/gurobi/include ../../cpp/cplex/include ../../cpp/xpress/include
 QUIET            = NO
 JAVADOC_AUTOBRIEF = YES
 AUTOLINK_SUPPORT = YES
 INLINE_INHERITED_MEMB = YES
 INHERIT_DOCS = YES
-GENERATE_HTML = YES
+GENERATE_HTML = NO
 GENERATE_XML = YES
-XML_OUTPUT   = xml
+XML_OUTPUT   = doxyxml
 ALIASES = "rst=\verbatim embed:rst"
 ALIASES += "endrst=\endverbatim"
 ALIASES += "rststar=\verbatim embed:rst:leading-asterisk"

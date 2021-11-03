@@ -23679,6 +23679,123 @@ fail:
 
 SWIGPY_DESTRUCTOR_CLOSURE(_wrap_delete_BaseCallback) /* defines _wrap_delete_BaseCallback_destructor_closure */
 
+SWIGINTERN PyObject *_wrap_GenericCallback_setHeuristicSolution(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::GenericCallback *arg1 = (ampls::GenericCallback *) 0 ;
+  int arg2 ;
+  int *arg3 = (int *) 0 ;
+  double *arg4 = (double *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject *swig_obj[4] ;
+  Swig::Director *director = 0;
+  bool upcall = false;
+  int result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "GenericCallback_setHeuristicSolution", 3, 3, swig_obj)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GenericCallback, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GenericCallback_setHeuristicSolution" "', argument " "1"" of type '" "ampls::GenericCallback *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::GenericCallback * >(argp1);
+  ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GenericCallback_setHeuristicSolution" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[1])) {
+      int size = (int)PyList_Size(swig_obj[1]);
+      int i = 0;
+      arg3 = (int*)malloc(size * sizeof(int));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[1], i);
+        if (PyInt_Check(o)) {
+          arg3[i] = PyInt_AsLong(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain integer numbers");
+          free(arg3);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[1] == Py_None) {
+      arg3 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  {
+    /* Check if is a list  */
+    if (PyList_Check(swig_obj[2])) {
+      int size = (int)PyList_Size(swig_obj[2]);
+      int i = 0;
+      arg4 = (double*)malloc(size * sizeof(double));
+      for (i = 0; i < size; i++) {
+        PyObject* o = PyList_GetItem(swig_obj[2], i);
+        if (PyFloat_Check(o) || PyInt_Check(o)) {
+          arg4[i] = PyFloat_AsDouble(o);
+        }
+        else {
+          PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
+          free(arg4);
+          return NULL;
+        }
+      }
+    }
+    else if (swig_obj[2] == Py_None) {
+      arg4 = NULL;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "not a list");
+      return NULL;
+    }
+  }
+  director = SWIG_DIRECTOR_CAST(arg1);
+  upcall = (director && (director->swig_get_self()==self));
+  try {
+    {
+      try {
+        if (upcall) {
+          result = (int)(arg1)->ampls::GenericCallback::setHeuristicSolution(arg2,(int const *)arg3,(double const *)arg4);
+        } else {
+          result = (int)(arg1)->setHeuristicSolution(arg2,(int const *)arg3,(double const *)arg4);
+        }
+      } catch(const ampls::AMPLSolverException &e) {
+        SWIG_exception(SWIG_RuntimeError, e.what());
+      } 
+      catch(...) {
+        SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+      }
+    }
+  } catch (Swig::DirectorException&) {
+    SWIG_fail;
+  }
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  {
+    free(arg3);
+  }
+  {
+    free(arg4);
+  }
+  return resultobj;
+fail:
+  {
+    free(arg3);
+  }
+  {
+    free(arg4);
+  }
+  return NULL;
+}
+
+
 SWIGINTERN PyObject *_wrap_GenericCallback_getObj(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::GenericCallback *arg1 = (ampls::GenericCallback *) 0 ;
@@ -25571,6 +25688,37 @@ SWIGINTERN PyObject *_wrap_AMPLModel_getSolutionVector(PyObject *self, PyObject 
   {
     try {
       result = (arg1)->getSolutionVector();
+    } catch(const ampls::AMPLSolverException &e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    } 
+    catch(...) {
+      SWIG_exception(SWIG_RuntimeError, "Unknown exception");
+    }
+  }
+  resultobj = swig::from(static_cast< std::vector< double,std::allocator< double > > >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_AMPLModel_getDualVector(PyObject *self, PyObject *args) {
+  PyObject *resultobj = 0;
+  ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject *swig_obj[1] ;
+  std::vector< double,std::allocator< double > > result;
+  
+  if (!SWIG_Python_UnpackTuple(args, "AMPLModel_getDualVector", 0, 0, 0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getDualVector" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
+  }
+  arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
+  {
+    try {
+      result = (arg1)->getDualVector();
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -74320,6 +74468,7 @@ SwigPyBuiltin__ampls__GenericCallback_richcompare(PyObject *self, PyObject *othe
 }
 
 SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__GenericCallback_methods[] = {
+  { "setHeuristicSolution", _wrap_GenericCallback_setHeuristicSolution, METH_VARARGS, "" },
   { "getObj", _wrap_GenericCallback_getObj, METH_NOARGS, "" },
   { "getWhere", _wrap_GenericCallback_getWhere, METH_NOARGS, "" },
   { "getAMPLWhere", _wrap_GenericCallback_getAMPLWhere, METH_NOARGS, "" },
@@ -74550,6 +74699,7 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__AMPLModel_methods[] = {
   { "getConsMapFiltered", _wrap_AMPLModel_getConsMapFiltered, METH_O, "" },
   { "setCallback", _wrap_AMPLModel_setCallback, METH_VARARGS, "" },
   { "getSolutionVector", _wrap_AMPLModel_getSolutionVector, METH_NOARGS, "" },
+  { "getDualVector", _wrap_AMPLModel_getDualVector, METH_NOARGS, "" },
   { "getNumVars", _wrap_AMPLModel_getNumVars, METH_NOARGS, "" },
   { "getNumCons", _wrap_AMPLModel_getNumCons, METH_NOARGS, "" },
   { "getStatus", _wrap_AMPLModel_getStatus, METH_NOARGS, "" },
@@ -78551,7 +78701,8 @@ SWIG_init(void) {
   /* type 'ampls::SolverAttributes' */
   builtin_pytype = (PyTypeObject *)&SwigPyBuiltin__ampls__SolverAttributes_type;
   builtin_pytype->tp_dict = d = PyDict_New();
-  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DBL_RELMIPGap",SWIG_From_int(static_cast< int >(ampls::SolverAttributes::DBL_RELMIPGap)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DBL_RelMIPGap",SWIG_From_int(static_cast< int >(ampls::SolverAttributes::DBL_RelMIPGap)));
+  SWIG_Python_SetConstant(d, d == md ? public_interface : NULL, "DBL_CurrentObjBound",SWIG_From_int(static_cast< int >(ampls::SolverAttributes::DBL_CurrentObjBound)));
   SwigPyBuiltin_SetMetaType(builtin_pytype, metatype);
   builtin_pytype->tp_new = PyType_GenericNew;
   builtin_base_count = 0;

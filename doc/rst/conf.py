@@ -1,23 +1,8 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# -*- coding: utf-8 -*-
+import sys
+import subprocess
 
-# -- Path setup --------------------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
-
-
-# -- Project information -----------------------------------------------------
-
-project = 'ampls::'
+project = u'ampl::ampls-api'
 copyright = '2021, AMPL Inc'
 author = 'AMPL Inc'
 
@@ -33,9 +18,9 @@ release = '0.1'
 extensions = ["breathe", "sphinx.ext.graphviz"]
 # Breathe Configuration
 breathe_projects = {
-   "SolverAPI":"doxygen/xml"
+   "ampls-api":"doxyxml"
 }
-breathe_default_project = "SolverAPI"
+breathe_default_project = "ampls-api"
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -49,25 +34,44 @@ exclude_patterns = []
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'alabaster'
-html_sidebars = {
-    '**': [
-        'about.html',
-        'navigation.html',
-        'relations.html',
-        'searchbox.html',
-        'donate.html',
-    ]
-}
+html_theme = 'pydata_sphinx_theme'
 html_theme_options = {
-    'logo': 'logo.png',
-    "github_banner": "true",
-    "github_user" :"ampl",
-    "github_repo" : "ampls-api",
-    "logo_name" : "true"
-
-    }
+ "logo_link": "index",
+ "icon_links": [{
+            "name": "GitHub",
+            "url": "https://github.com/ampl/ampls-api",
+            "icon": "fab fa-github-square"}],
+"collapse_navigation": True,
+  "external_links": [
+      {"name": "Try AMPL", "url": "https://ampl.com"}
+      ]
+}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_logo = "_static/logo.png"
+html_show_sphinx = False
+html_show_sourcelink = False
+
+
+def run_doxygen(folder):
+    """Run the doxygen make command in the designated folder"""
+
+    try:
+        print("cd %s; doxygen" % folder)
+        retcode = subprocess.call("doxygen", cwd=folder, shell=True)
+        if retcode < 0:
+            sys.stderr.write("doxygen terminated by signal %s" % (-retcode))
+    except OSError as e:
+        sys.stderr.write("doxygen execution failed: %s" % e)
+
+def generate_doxygen_xml(app):
+    """Run the doxygen make commands if we're on the ReadTheDocs server"""
+    #read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+    # We always build doxygen documentation 
+    run_doxygen("./")
+
+def setup(app):
+    # Add hook for building doxygen xml
+    app.connect("builder-inited", generate_doxygen_xml)
