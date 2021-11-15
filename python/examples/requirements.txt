@@ -1,4 +1,4 @@
-pip==19.2
+pip==21.1
 setuptools==40.8.0
 amplpy
 amplpy_cplex
