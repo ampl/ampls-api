@@ -12,7 +12,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 set(AMPLS_BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Set solvers to build.
-set(SOLVER_NAMES cplex gurobi xpress)
+set(SOLVER_NAMES cplex gurobi xpress gurobidirect)
 set(BUILD "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
 if (BUILD)
   if (BUILD STREQUAL all)
@@ -83,7 +83,7 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/912)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/951)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2010)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/37.01.03)
 else()
@@ -98,8 +98,10 @@ foreach(s ${SOLVER_NAMES})
 endforeach()
 
 if(WIN32)
-    set(gurobi_LIBRARY "${gurobi_BASE_DIR}/lib/win64/gurobi91.lib"
-                       "${gurobi_BASE_DIR}/lib/win64/gurobi91.dll")
+    set(gurobi_LIBRARY "${gurobi_BASE_DIR}/lib/win64/gurobi95.lib"
+                       "${gurobi_BASE_DIR}/lib/win64/gurobi95.dll")
+   set(gurobidirect_LIBRARY "${gurobi_BASE_DIR}/lib/win64/gurobi95.lib"
+                       "${gurobi_BASE_DIR}/lib/win64/gurobi95.dll")
     set(cplex_LIBRARY "${cplex_BASE_DIR}/lib/win64/cplex2010.lib"
                       "${cplex_BASE_DIR}/lib/win64/cplex2010.dll")
     set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/win64/xprs.lib)

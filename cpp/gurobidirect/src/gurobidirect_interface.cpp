@@ -1,4 +1,4 @@
-#include "gurobi_interface.h"
+#include "gurobidirect_interface.h"
 #include "ampls/ampls.h"
 
 #include <memory> // for unique_ptr
@@ -29,22 +29,21 @@ GurobiDrv::~GurobiDrv() {
 
 void GurobiDrv::freeGurobiEnv()
 {
-  grb::impl::freeEnvironment();
+  //grb::impl::AMPLclosesolver(_solver);
 }
 GurobiModel GurobiDrv::loadModelImpl(char** args) {
   GurobiModel m;
-  ASL* a;
-
-  GRBmodel* inner= grb::impl::AMPLloadmodel(3, args, &a);
+  grb::impl::AMPLS_MP_Solver s;
+  GRBmodel* inner= grb::impl::AMPLloadmodel(3, args, &s);
   if (inner == NULL)
   {
-    const char* error = grb::impl::AMPLGRBgetUinfo(a);
-    if (error)
-      throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
-    else
-      throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
+   // const char* error = grb::impl::AMPLGRBgetUinfo(a);
+    //if (error)
+   //   throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
+   // else
+   //   throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
   }
-  m.asl_ = a;
+  m.solver_ = &s;
   m.GRBModel_ = inner;
   m.lastErrorCode_ = -1;
   m.fileName_ = args[1];
@@ -55,7 +54,7 @@ GurobiModel GurobiDrv::loadModel(const char* modelName) {
 }
 
 void GurobiModel::writeSolImpl(const char* solFileName) {
-  grb::impl::AMPLwritesol(GRBModel_, asl_, lastErrorCode_, solFileName);
+  grb::impl::AMPLwritesolution(solver_);
 }
 int GurobiModel::setCallbackDerived(impl::BaseCallback* callback) {
   return GRBsetcallbackfunc(GRBModel_, grb::impl::callback_wrapper, callback);
@@ -107,8 +106,6 @@ GurobiModel::~GurobiModel() {
     return;
   if (GRBModel_)
     GRBfreemodel(GRBModel_);
-  if (asl_)
-    grb::impl::freeASL(&asl_);
 }
 std::string GurobiModel::error(int code)
 {
