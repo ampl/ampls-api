@@ -63,13 +63,11 @@ Variant GurobiCallback::get(int what)
   case GRB_CB_MIP_NODCNT:
   case GRB_CB_MIP_NODLFT:
   case GRB_CB_MIP_ITRCNT:
-  case GRB_CB_MIP_OBJBNDC:
     // MIPSol double
   case GRB_CB_MIPSOL_OBJ:
   case GRB_CB_MIPSOL_OBJBST:
   case GRB_CB_MIPSOL_OBJBND:
   case GRB_CB_MIPSOL_NODCNT:
-  case GRB_CB_MIPSOL_OBJBNDC:
     // Mipnode double
   case GRB_CB_MIPNODE_OBJBST:
   case GRB_CB_MIPNODE_OBJBND:
