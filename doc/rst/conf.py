@@ -3,13 +3,12 @@ import sys
 import subprocess
 import datetime
 
-project = u'ampl::ampls-api'
-copyright = u'2020-{}, AMPL Optimization Inc'.format(
-    datetime.date.today().year)
-author = 'AMPL Inc'
+project = "ampl::ampls-api"
+copyright = "2020-{}, AMPL Optimization Inc".format(datetime.date.today().year)
+author = "AMPL Inc"
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = "0.1"
 
 
 # -- General configuration ---------------------------------------------------
@@ -19,12 +18,10 @@ release = '0.1'
 # ones.
 extensions = ["breathe", "sphinx.ext.graphviz"]
 # Breathe Configuration
-breathe_projects = {
-    "ampls-api": "doxyxml"
-}
+breathe_projects = {"ampls-api": "doxyxml"}
 breathe_default_project = "ampls-api"
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -36,19 +33,19 @@ exclude_patterns = []
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'pydata_sphinx_theme'
+html_theme = "ampl_sphinx_theme"
 html_theme_options = {
     "logo_link": "index",
     "icon_links": [
         {
             "name": "GitHub",
             "url": "https://github.com/ampl/ampls-api",
-            "icon": "fab fa-github"
+            "icon": "fab fa-github",
         },
         {
-            "name": "AMPL Projects",
-            "url": "https://ampl.github.io",
-            "icon": "fas fa-project-diagram fa-fw",
+            "name": "AMPL Resources",
+            "url": "https://developers.ampl.com",
+            "icon": "fas fa-book fa-fw",
             "target": "_self",
         },
         {
@@ -66,20 +63,18 @@ html_theme_options = {
     ],
     "collapse_navigation": True,
     "external_links": [
-        #{"name": "Try AMPL", "url": "https://ampl.com"}
-    ]
+        # {"name": "Try AMPL", "url": "https://ampl.com"}
+    ],
+    "logo_text": "Solver API",
 }
-html_context = {
-    "theme_logo_text": "Solver API",
-}
-html_css_files = [
-    'css/custom.css',
-]
+# html_css_files = [
+#     'css/custom.css',
+# ]
 html_favicon = "_static/cropped-favicon-raw-192x192.png"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 html_logo = "_static/logo-inline-web-v4.png"
 html_show_sphinx = False
 html_show_sourcelink = False
@@ -99,7 +94,7 @@ def run_doxygen(folder):
 
 def generate_doxygen_xml(app):
     """Run the doxygen make commands if we're on the ReadTheDocs server"""
-    #read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+    # read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
     # We always build doxygen documentation
     run_doxygen("./")
 
