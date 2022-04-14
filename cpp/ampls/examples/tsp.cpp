@@ -1,11 +1,14 @@
 #ifdef USE_cplex
 #include "cplex_interface.h"
 #endif
+#ifdef USE_xpress
+#include "xpress_interface.h"
+#endif
 #ifdef USE_gurobi
 #include "gurobi_interface.h"
 #endif
-#ifdef USE_xpress
-#include "xpress_interface.h"
+#ifdef USE_gurobidirect
+#include "gurobidirect_interface.h"
 #endif
 #include <list>
 #include <algorithm>
@@ -343,6 +346,13 @@ int main(int argc, char** argv) {
   ampls::GurobiModel g = gurobi.loadModel(buffer);
   doStuff(g);
 #endif
+#ifdef USE_gurobidirect
+  // Load a model using gurobi driver
+  ampls::GurobiDirectDrv gurobidirect;
+  gurobi.setOptions({ "mipgap=1e-9" });
+  ampls::GurobiDirectModel gd = gurobidirect.loadModel(buffer);
+  doStuff(gd);
+#endif
 
 #ifdef USE_cplex
 // Load a model using CPLEX driver
@@ -352,11 +362,5 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(c);
 #endif
-
-
-
-
-
-
 }
 ;

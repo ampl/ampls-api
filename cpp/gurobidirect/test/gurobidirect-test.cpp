@@ -1,5 +1,5 @@
-#include "gurobi_interface.h"
-#include "gurobi_callback.h"
+#include "gurobidirect_interface.h"
+#include "gurobidirect_callback.h"
 
 #include "test-config.h" // for MODELS_DIR
 #include <cstring>
@@ -9,7 +9,7 @@
 
 const char* MODELNAME = "tsp.nl";
 
-class MyGurobiCutCallback : public ampls::GurobiCallback
+class MyGurobiCutCallback : public ampls::GurobiDirectCallback
 {
   int run()
   {
@@ -34,7 +34,7 @@ class MyGurobiCutCallback : public ampls::GurobiCallback
     return 0;
   }
 };
-class MyGurobiCallback : public ampls::GurobiCallback
+class MyGurobiCallback : public ampls::GurobiDirectCallback
 {
   int lastIter = 0;
 public:
@@ -85,7 +85,7 @@ public:
       double objBnd = getDouble(GRB_CB_MIP_OBJBND);
       if (fabs(objBest - objBnd) < 0.1 * (1.0 + fabs(objBest))) {
         printf("Stop early - 10%% gap achieved\n");
-        GRBterminate(((ampls::GurobiModel*)this->model_)->getGRBmodel());
+        GRBterminate(((ampls::GurobiDirectModel*)this->model_)->getGRBmodel());
       }
     }
     printf("** End of callback handler **\n\n");
@@ -101,8 +101,8 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
 
-  ampls::GurobiDrv d;
-  ampls::GurobiModel m = d.loadModel(buffer);
+  ampls::GurobiDirectDrv d;
+  ampls::GurobiDirectModel m = d.loadModel(buffer);
   m.enableLazyConstraints();
   MyGurobiCallback cb;
   res = m.setCallback(&cb);

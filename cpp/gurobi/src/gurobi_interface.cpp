@@ -38,9 +38,14 @@ GurobiModel GurobiDrv::loadModelImpl(char** args) {
   GRBmodel* inner= grb::impl::AMPLloadmodel(3, args, &a);
   if (inner == NULL)
   {
-    const char* error = grb::impl::AMPLGRBgetUinfo(a);
-    if (error)
-      throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
+    if (a != NULL)
+    {
+      const char* error = grb::impl::AMPLGRBgetUinfo(a);
+      if (error)
+        throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
+      else
+        throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
+    }
     else
       throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
   }

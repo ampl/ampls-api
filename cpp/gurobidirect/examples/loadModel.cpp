@@ -21,8 +21,8 @@ int main(int argc, char** argv) {
   strcat(buffer, MODELNAME);
 
   // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
-  ampls::GurobiModel model = gurobi.loadModel(buffer);
+  ampls::GurobiDirectDrv gurobi;
+  ampls::GurobiDirectModel model = gurobi.loadModel(buffer);
 
   // Start the optimization process
   model.optimize();
