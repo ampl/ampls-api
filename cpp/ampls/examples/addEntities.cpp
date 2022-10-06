@@ -4,8 +4,8 @@
 #ifdef USE_gurobi
 #include "gurobi_interface.h"
 #endif
-#ifdef USE_gurobidirect
-#include "gurobidirect_interface.h"
+#ifdef USE_x-gurobi
+#include "x-gurobi_interface.h"
 #endif
 #ifdef USE_xpress
 #include "xpress_interface.h"
@@ -36,7 +36,7 @@ namespace AMPLAPIInterface
     }
 #endif
 
-#ifdef USE_gurobidirect
+#ifdef USE_x-gurobi
     template<> ampls::GurobiDirectModel exportModel<ampls::GurobiDirectModel>(ampl::AMPL& a) {
       doExport(a);
       ampls::GurobiDirectDrv gurobi;
@@ -132,7 +132,7 @@ int main(int argc, char** argv) {
 #ifdef USE_gurobi
   doStuff<ampls::GurobiModel>("gurobi");
 #endif
-#ifdef USE_gurobi
+#ifdef USE_x-gurobi
   doStuff<ampls::GurobiDirectModel>("gurobidirect");
 #endif
 #ifdef  USE_xpress

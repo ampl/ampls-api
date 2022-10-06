@@ -4,6 +4,9 @@
 #ifdef USE_gurobi
 #include "gurobi_interface.h"
 #endif
+#ifdef USE_xgurobi
+#include "x-gurobi_interface.h"
+#endif
 #ifdef USE_xpress
 #include "xpress_interface.h"
 #endif
@@ -26,6 +29,13 @@ template<> ampls::GurobiModel loadModel<ampls::GurobiModel>(const char* model, s
   grb.setOptions(options);
   return grb.loadModel(model);
 }
+#ifdef USE_xgurobi
+template<> ampls::GurobiDirectModel loadModel<ampls::GurobiDirectModel>(const char* model, std::vector<std::string> options)
+    ampls::GurobiDirectDrv grb;
+    grb.setOptions(options);
+    return grb.loadModel(model);
+}
+#endif
 #endif
 #ifdef USE_cplex
 template<> ampls::CPLEXModel loadModel< ampls::CPLEXModel>(const char* model, std::vector<std::string> options)
@@ -78,6 +88,10 @@ int main(int argc, char** argv) {
 
 #ifdef USE_gurobi
   doStuff<ampls::GurobiModel>(buffer);
+#endif
+
+#ifdef USE_xgurobi
+  doStuff<ampls::GurobiDirectModel>(buffer);
 #endif
 
 }

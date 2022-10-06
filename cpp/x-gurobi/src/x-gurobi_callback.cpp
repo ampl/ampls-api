@@ -1,5 +1,5 @@
-#include "gurobidirect_callback.h"
-#include "gurobidirect_interface.h"
+#include "x-gurobi_callback.h"
+#include "x-gurobi_interface.h"
 
 namespace ampls
 {

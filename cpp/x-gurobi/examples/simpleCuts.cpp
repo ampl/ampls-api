@@ -1,4 +1,4 @@
-#include "gurobidirect_interface.h"
+#include "x-gurobi_interface.h"
 
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR

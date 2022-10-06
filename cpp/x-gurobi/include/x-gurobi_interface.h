@@ -10,7 +10,7 @@
 #endif
 
 #include "ampls/ampls.h"
-#include "gurobidirect_callback.h"
+#include "x-gurobi_callback.h"
 #include "gurobi_c.h"
 
 #include <string>

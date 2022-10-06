@@ -12,16 +12,16 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 set(AMPLS_BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Set solvers to build.
-set(SOLVER_NAMES cplex gurobi xpress gurobidirect)
-set(BUILD "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
-if (BUILD)
-  if (BUILD STREQUAL all)
+set(SOLVER_NAMES cplex gurobi xpress x-gurobi cplexmp xpressmp)
+set(BUILD_AMPLS "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
+if (BUILD_AMPLS)
+  if (BUILD_AMPLS STREQUAL all)
     message(STATUS "Building all solvers")
     foreach(s ${SOLVER_NAMES})
       set(ENABLE_${s} on)
     endforeach()
   else()
-    string(REGEX MATCHALL "[^,]+" SOLVERS_TOBUILD "${BUILD}")
+    string(REGEX MATCHALL "[^,]+" SOLVERS_TOBUILD "${BUILD_AMPLS}")
     # Disable all
     foreach(s ${SOLVER_NAMES})
       set(ENABLE_${s} OFF)
@@ -36,7 +36,7 @@ if (BUILD)
     endforeach()
   endif()
 else()
-  message(WARNING "Specify the solvers to build with -DBUILD=solvername1,..,solvernamen or -DBUILD=all")
+  message(WARNING "Specify the solvers to build with -DBUILD_AMPLS=solvername1,..,solvernamen or -DBUILD=all")
 endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
@@ -83,9 +83,9 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/951)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/952)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2010)
-  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/37.01.03)
+  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/39.01.02)
 else()
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs)
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi)
@@ -99,8 +99,6 @@ endforeach()
 
 if(WIN32)
     set(gurobi_LIBRARY "${gurobi_BASE_DIR}/lib/win64/gurobi95.lib"
-                       "${gurobi_BASE_DIR}/lib/win64/gurobi95.dll")
-   set(gurobidirect_LIBRARY "${gurobi_BASE_DIR}/lib/win64/gurobi95.lib"
                        "${gurobi_BASE_DIR}/lib/win64/gurobi95.dll")
     set(cplex_LIBRARY "${cplex_BASE_DIR}/lib/win64/cplex2010.lib"
                       "${cplex_BASE_DIR}/lib/win64/cplex2010.dll")
@@ -135,20 +133,21 @@ endmacro()
 add_subdirectory(cpp/ampls)
 
 
-function(AddSolverStub solver includes libs)
-  set(TARGETNAME ${solver}-drv)
-  set(DIR_CPP ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver})
-  set(DIR_CPP_SRC ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver}/src)
-  set(DIR_CPP_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver}/include)
-  set(DIR_SWIG ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${solver}/swig)
-  set(DIR_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/python/${solver})
-  set(DIR_CSHARP ${CMAKE_CURRENT_SOURCE_DIR}/csharp/${solver})
+function(AddSolverStub solver targetbase libname includes libs)
+message("AddSolverStub ${solver} ${targetbase} ${libname} ${includes} ${libs}")
+  set(TARGETNAME ${LIBBASENAME}-drv)
+  set(DIR_CPP ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${LIBBASENAME})
+  set(DIR_CPP_SRC ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${LIBBASENAME}/src)
+  set(DIR_CPP_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${LIBBASENAME}/include)
+  set(DIR_SWIG ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${LIBBASENAME}/swig)
+  set(DIR_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/python/${LIBBASENAME})
+  set(DIR_CSHARP ${CMAKE_CURRENT_SOURCE_DIR}/csharp/${LIBBASENAME})
   # On windows I find both import lib and dll file on other systems
   # i'll need just one
 
-  set(IMPORTLIB ${solver}-lib)
+  set(IMPORTLIB ${targetbase}-lib)
   if(NOT TARGET ${IMPORTLIB})
-    set(LIBFILENAME ${solver}-lib)
+    set(LIBFILENAME ${libname}-lib)
     find_library(${solver}LIBFILE ${LIBFILENAME} PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
     if(NOT ${solver}LIBFILE)
       message(FATAL_ERROR "AMPL solver library ${solver}-lib not found in ${AMPLS_DIR}")
@@ -166,14 +165,14 @@ function(AddSolverStub solver includes libs)
   endif()
 
   add_prefix(
-    DRV_SOURCES ${DIR_CPP}/ include/${solver}_interface.h
-    src/${solver}_interface.cpp include/${solver}_callback.h
-    src/${solver}_callback.cpp)
+    DRV_SOURCES ${DIR_CPP}/ include/${LIBBASENAME}_interface.h
+    src/${LIBBASENAME}_interface.cpp include/${LIBBASENAME}_callback.h
+    src/${LIBBASENAME}_callback.cpp)
   add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
   target_link_libraries(${TARGETNAME} ampls ${libs} ${IMPORTLIB})
   target_include_directories(
     ${TARGETNAME} PUBLIC ${includes} ${DIR_CPP_INCLUDE} ${ampls_INCLUDE})
-  add_to_folder(${solver} ${TARGETNAME})
+  add_to_folder(${targetbase} ${TARGETNAME})
   if(NOT WIN32)
     target_compile_options(${TARGETNAME} PRIVATE -fPIC)
   endif()
@@ -182,27 +181,27 @@ function(AddSolverStub solver includes libs)
 
   set(EXAMPLES loadModel getInformation simpleCuts)
   foreach(exname ${EXAMPLES})
-      set(tar ${solver}-${exname}) 
+      set(tar ${LIBBASENAME}-${exname}) 
       set(src ${DIR_CPP}/examples/${exname}.cpp)
       if(EXISTS ${src})
         add_executable(${tar} ${src})
         target_include_directories(${tar} PRIVATE
           ${GENERATED_INCLUDE_DIR}) # for test-config
         target_link_libraries(${tar} ampls ${TARGETNAME})
-        add_to_folder(${solver}/examples ${tar})
+        add_to_folder(${targetbase}/examples ${tar})
       endif()
   endforeach()
 
 
   # Tests
-  add_prefix(TEST_SOURCES ${DIR_CPP}/test/ ${solver}-test.cpp)
+  add_prefix(TEST_SOURCES ${DIR_CPP}/test/ ${LIBBASENAME}-test.cpp)
   add_executable(${TARGETNAME}-test ${TEST_SOURCES})
   target_link_libraries(${TARGETNAME}-test ${libs} ${TARGETNAME})
   target_include_directories(
     ${TARGETNAME}-test
     PRIVATE ${GENERATED_INCLUDE_DIR} # for test-config
             ${DIR_CPP_INCLUDE} ${ampls_INCLUDE} ${includes})
-  add_to_folder(${solver} ${TARGETNAME}-test)
+  add_to_folder(${targetbase} ${TARGETNAME}-test)
   target_compile_definitions(${TARGETNAME}-test PRIVATE SWIG)
 
   # Copy runtime dependencies to binary directory
@@ -237,7 +236,17 @@ endfunction()
 # Add the enabled modules
 foreach(s ${SOLVER_NAMES})
 if(ENABLE_${s})
-  addsolverstub(${s} ${${s}_INCLUDE_DIR} ${${s}_LIBRARY})
+
+  if(${s} MATCHES "x-gurobi")
+  set(SOLVERNAME "gurobi")
+  set(LIBBASENAME "x-gurobi")
+  set(TARGETNAME "gurobi")
+  elseif(${s} MATCHES "gurobi")
+  set(SOLVERNAME "gurobi")
+  set(LIBBASENAME "gurobi")
+  set(TARGETNAME "gurobiasl")
+  endif()
+  addsolverstub(${SOLVERNAME} ${TARGETNAME} ${LIBBASENAME} ${${SOLVERNAME}_INCLUDE_DIR} ${${SOLVERNAME}_LIBRARY})
 endif()
 endforeach()
 

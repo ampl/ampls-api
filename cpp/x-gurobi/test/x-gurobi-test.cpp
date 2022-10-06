@@ -1,5 +1,5 @@
-#include "gurobidirect_interface.h"
-#include "gurobidirect_callback.h"
+#include "x-gurobi_interface.h"
+#include "x-gurobi_callback.h"
 
 #include "test-config.h" // for MODELS_DIR
 #include <cstring>

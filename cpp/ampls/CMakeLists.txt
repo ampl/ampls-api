@@ -40,7 +40,6 @@ foreach(s ${SOLVER_NAMES})
  endif()
  endforeach()
 
- 
  # Find amplapi, if present add combined examples
 if(WIN32)
   set(libdir win64)
