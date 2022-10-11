@@ -12,23 +12,42 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 set(AMPLS_BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Set solvers to build.
-set(SOLVER_NAMES cplex gurobi xpress x-gurobi cplexmp xpressmp)
+function(defSolver name solvername libtargetname)
+  list(APPEND AMPLS_SOLVER_NAMES ${name})
+  set(AMPLS_SOLVER_NAMES ${AMPLS_SOLVER_NAMES} PARENT_SCOPE)
+
+  set(${name}_SOLVER ${solvername} PARENT_SCOPE)
+  set(${name}_TARGET ${libtargetname} PARENT_SCOPE)
+endfunction()
+
+defSolver(x-gurobi gurobi gurobi)
+defSolver(gurobi gurobi gurobiasl)
+defSolver(cplex cplex cplex)
+defSolver(cplexmp cplex cplexmp)
+defSolver(xpress xpress xpress)
+defSolver(xpressmp xpress xpressmp)
+
+message("AMPLS_SOLVER_NAMES ${AMPLS_SOLVER_NAMES}")
+
+
+
+
 set(BUILD_AMPLS "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
 if (BUILD_AMPLS)
   if (BUILD_AMPLS STREQUAL all)
     message(STATUS "Building all solvers")
-    foreach(s ${SOLVER_NAMES})
+    foreach(s ${AMPLS_SOLVER_NAMES})
       set(ENABLE_${s} on)
     endforeach()
   else()
     string(REGEX MATCHALL "[^,]+" SOLVERS_TOBUILD "${BUILD_AMPLS}")
     # Disable all
-    foreach(s ${SOLVER_NAMES})
+    foreach(s ${AMPLS_SOLVER_NAMES})
       set(ENABLE_${s} OFF)
     endforeach()
     # Enable only the ones specified
     foreach(s ${SOLVERS_TOBUILD})
-      if (NOT ${s} IN_LIST SOLVER_NAMES)
+      if (NOT ${s} IN_LIST AMPLS_SOLVER_NAMES)
         message(WARNING "${s} is not a valid solver library name.")
       endif()
       set(ENABLE_${s} ON)
@@ -93,7 +112,7 @@ else()
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress)
 endif()
 
-foreach(s ${SOLVER_NAMES})
+foreach(s ${AMPLS_SOLVER_NAMES})
   set(${s}_INCLUDE_DIR ${${s}_BASE_DIR}/include)
 endforeach()
 
@@ -134,17 +153,15 @@ add_subdirectory(cpp/ampls)
 
 
 function(AddSolverStub solver targetbase libname includes libs)
-message("AddSolverStub ${solver} ${targetbase} ${libname} ${includes} ${libs}")
-  set(TARGETNAME ${LIBBASENAME}-drv)
-  set(DIR_CPP ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${LIBBASENAME})
-  set(DIR_CPP_SRC ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${LIBBASENAME}/src)
-  set(DIR_CPP_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${LIBBASENAME}/include)
-  set(DIR_SWIG ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${LIBBASENAME}/swig)
-  set(DIR_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/python/${LIBBASENAME})
-  set(DIR_CSHARP ${CMAKE_CURRENT_SOURCE_DIR}/csharp/${LIBBASENAME})
+  set(TARGETNAME ${libname}-drv)
+  set(DIR_CPP ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${libname})
+  set(DIR_CPP_SRC ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${libname}/src)
+  set(DIR_CPP_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${libname}/include)
+  set(DIR_SWIG ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${libname}/swig)
+  set(DIR_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/python/${libname})
+  set(DIR_CSHARP ${CMAKE_CURRENT_SOURCE_DIR}/csharp/${libname})
   # On windows I find both import lib and dll file on other systems
   # i'll need just one
-
   set(IMPORTLIB ${targetbase}-lib)
   if(NOT TARGET ${IMPORTLIB})
     set(LIBFILENAME ${libname}-lib)
@@ -165,9 +182,9 @@ message("AddSolverStub ${solver} ${targetbase} ${libname} ${includes} ${libs}")
   endif()
 
   add_prefix(
-    DRV_SOURCES ${DIR_CPP}/ include/${LIBBASENAME}_interface.h
-    src/${LIBBASENAME}_interface.cpp include/${LIBBASENAME}_callback.h
-    src/${LIBBASENAME}_callback.cpp)
+    DRV_SOURCES ${DIR_CPP}/ include/${libname}_interface.h
+    src/${libname}_interface.cpp include/${libname}_callback.h
+    src/${libname}_callback.cpp)
   add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
   target_link_libraries(${TARGETNAME} ampls ${libs} ${IMPORTLIB})
   target_include_directories(
@@ -177,12 +194,16 @@ message("AddSolverStub ${solver} ${targetbase} ${libname} ${includes} ${libs}")
     target_compile_options(${TARGETNAME} PRIVATE -fPIC)
   endif()
   
-  
+  message("DIR_SWIG ${DIR_SWIG}")
+  message("DIR_PYTHON ${DIR_PYTHON}")
+  message("DIR_CSHARP ${DIR_CSHARP}")
+
 
   set(EXAMPLES loadModel getInformation simpleCuts)
   foreach(exname ${EXAMPLES})
-      set(tar ${LIBBASENAME}-${exname}) 
+      set(tar ${libname}-${exname}) 
       set(src ${DIR_CPP}/examples/${exname}.cpp)
+      message("EXAMPLE: ${src}")
       if(EXISTS ${src})
         add_executable(${tar} ${src})
         target_include_directories(${tar} PRIVATE
@@ -194,7 +215,7 @@ message("AddSolverStub ${solver} ${targetbase} ${libname} ${includes} ${libs}")
 
 
   # Tests
-  add_prefix(TEST_SOURCES ${DIR_CPP}/test/ ${LIBBASENAME}-test.cpp)
+  add_prefix(TEST_SOURCES ${DIR_CPP}/test/ ${libname}-test.cpp)
   add_executable(${TARGETNAME}-test ${TEST_SOURCES})
   target_link_libraries(${TARGETNAME}-test ${libs} ${TARGETNAME})
   target_include_directories(
@@ -218,13 +239,13 @@ message("AddSolverStub ${solver} ${targetbase} ${libname} ${includes} ${libs}")
     if(SWIG_FOUND)
         # Add a custom target just to show  the following common sources in some IDEs
         add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/ampls/swig/ampls-common.i
-                                                   ${DIR_SWIG}/${solver}-common.i
+                                                   ${DIR_SWIG}/${libname}-common.i
                                                    ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python.i
                                                    ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python-extensions.i
                                                    ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
                                                    ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
                                                    )
-        add_to_folder(${solver}/swig ${solver}-common)
+        add_to_folder(${targetbase}/swig ${solver}-common)
         add_subdirectory(${DIR_PYTHON})
         if(WIN32)
           add_subdirectory(${DIR_CSHARP})
@@ -234,19 +255,12 @@ message("AddSolverStub ${solver} ${targetbase} ${libname} ${includes} ${libs}")
 endfunction()
 
 # Add the enabled modules
-foreach(s ${SOLVER_NAMES})
+foreach(s ${AMPLS_SOLVER_NAMES})
 if(ENABLE_${s})
-
-  if(${s} MATCHES "x-gurobi")
-  set(SOLVERNAME "gurobi")
-  set(LIBBASENAME "x-gurobi")
-  set(TARGETNAME "gurobi")
-  elseif(${s} MATCHES "gurobi")
-  set(SOLVERNAME "gurobi")
-  set(LIBBASENAME "gurobi")
-  set(TARGETNAME "gurobiasl")
-  endif()
-  addsolverstub(${SOLVERNAME} ${TARGETNAME} ${LIBBASENAME} ${${SOLVERNAME}_INCLUDE_DIR} ${${SOLVERNAME}_LIBRARY})
+  message("For solver ${s}")
+  set(SOLVERNAME ${${s}_SOLVER})
+  message("addsolverstub(${SOLVERNAME} ${${s}_TARGET} ${s} ${${SOLVERNAME}_INCLUDE_DIR} ${${SOLVERNAME}_LIBRARY})")
+  addsolverstub(${SOLVERNAME} ${${s}_TARGET} ${s} ${${SOLVERNAME}_INCLUDE_DIR} ${${SOLVERNAME}_LIBRARY})
 endif()
 endforeach()
 

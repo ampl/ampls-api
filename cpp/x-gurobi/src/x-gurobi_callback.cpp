@@ -3,7 +3,7 @@
 
 namespace ampls
 {
-const char* GurobiDirectCallback::getWhereString()
+const char* XGurobiCallback::getWhereString()
 {
   switch (where_)
   {
@@ -21,7 +21,7 @@ const char* GurobiDirectCallback::getWhereString()
   }
 }
 
-Variant GurobiDirectCallback::get(int what)
+Variant XGurobiCallback::get(int what)
 {
   Variant r = Variant();
   switch (what)
@@ -98,20 +98,20 @@ Variant GurobiDirectCallback::get(int what)
   // case GRB_CB_MIPNODE_OBJBNDC 5008
 }
 
-void GurobiDirectCallback::terminate() {
+void XGurobiCallback::terminate() {
   GRBterminate(getGRBModel());
 }
-   GRBmodel* GurobiDirectCallback::getGRBModel() {
-    return ((GurobiDirectModel*)model_)->getGRBmodel();
+   GRBmodel* XGurobiCallback::getGRBModel() {
+    return ((XGurobiModel*)model_)->getGRBmodel();
   };
-const char* GurobiDirectCallback::getMessage()
+const char* XGurobiCallback::getMessage()
 {
   char* msg;
   GRBcbget(cbdata_, where_, GRB_CB_MSG_STRING, &msg);
   return msg;
 }
 
-int GurobiDirectCallback::doAddCut(const ampls::Constraint& c, int lazy) {
+int XGurobiCallback::doAddCut(const ampls::Constraint& c, int lazy) {
   char sense = toGRBSense(c.sense());
   if (lazy)
   {
@@ -125,7 +125,7 @@ int GurobiDirectCallback::doAddCut(const ampls::Constraint& c, int lazy) {
   }
 }
 
-int GurobiDirectCallback::getSolution(int len, double* sol)
+int XGurobiCallback::getSolution(int len, double* sol)
 {
   if ((where_ != GRB_CB_MIPNODE) &&
     (where_ != GRB_CB_MIPSOL))
@@ -135,7 +135,7 @@ int GurobiDirectCallback::getSolution(int len, double* sol)
   return GRBcbget(cbdata_, where_, flag, sol);
 }
 
-double GurobiDirectCallback::getObj()
+double XGurobiCallback::getObj()
 {
   int flag;
   switch (where_)
@@ -164,7 +164,7 @@ double GurobiDirectCallback::getObj()
 }
 
 
-Variant  GurobiDirectCallback::getValue(Value::CBValue v) {
+Variant  XGurobiCallback::getValue(Value::CBValue v) {
   switch (v)
   {
   case Value::OBJ:
@@ -195,7 +195,7 @@ Variant  GurobiDirectCallback::getValue(Value::CBValue v) {
   }
 }
 
-int GurobiDirectCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
+int XGurobiCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
   std::vector<double> vals(model_->getNumVars(), GRB_UNDEFINED);
   for (int i = 0; i < nvars; i++)
     vals[indices[i]] = values[i]; 

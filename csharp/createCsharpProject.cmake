@@ -1,4 +1,4 @@
-macro(createCsharpProject solvername)
+macro(createCsharpProject solvername basesolvername targetlibname)
 # C# API Names and paths
 set(CSHARP_SWIG_API ${solvername}sharp_c) # name of swig generated wrapper
 
@@ -9,7 +9,7 @@ include(${CSHARP_USE_FILE})
 # ############ Create SWIG wrapper #############
 # Workaround to bypass licensing routines
 set(gurobi_INCLUDE_DIR ${gurobi_INCLUDE_DIR}/gurobi)
-set(includeDir ${${solvername}_INCLUDE_DIR})
+set(includeDir ${${basesolvername}_INCLUDE_DIR})
 
 include_directories(
   ${includeDir} # for solver headers
@@ -25,9 +25,9 @@ set(SWIG_DEPENDS ../../cpp/${solvername}/swig/${solvername}-common.i)
 list(APPEND CMAKE_SWIG_FLAGS "-namespace;ampls")
 add_swig_library(${CSHARP_SWIG_API} csharp ${SWIG_CSHARP_MODULE_NAME}.i)
 if(NOT ${solvername} STREQUAL "ampls")
-  target_link_libraries(${CSHARP_SWIG_API} ${solvername}-drv ${solvername}-lib)
+  target_link_libraries(${CSHARP_SWIG_API} ${solvername}-drv ${targetlibname}-lib)
 endif()
-add_to_folder(${solvername}/swig/csharp ${CSHARP_SWIG_API})
+add_to_folder(${targetlibname}/swig/csharp ${CSHARP_SWIG_API})
 
 # For multi-config builds (e.g. msvc)
 foreach(OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
@@ -55,7 +55,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/AssemblyInfo.cs.in
 csharp_add_library(${CSHARP_API} ${GSHARP_ADDITIONALFILES}
                    ${CMAKE_SWIG_OUTDIR}/*.cs)
 add_dependencies(${CSHARP_API} ${CSHARP_SWIG_API})
-add_to_folder(${solvername}/swig/csharp ${CSHARP_API})
+add_to_folder(${targetlibname}/swig/csharp ${CSHARP_API})
 
 # Library development
 if(MSVC)
@@ -83,7 +83,7 @@ if(MSVC)
   include_external_msproject(dev-${solvername}sharp-api ${CSHARP_PROJECT_DESTINATION}
                              dev_configure_${solvername}sharp_project)
   add_dependencies(dev-${solvername}sharp-api dev_configure_${solvername}sharp_project)
-  add_to_folder(${solvername}/swig/csharp dev_configure_${solvername}sharp_project
+  add_to_folder(${targetlibname}/swig/csharp dev_configure_${solvername}sharp_project
                 dev-${solvername}sharp-api)
 endif()
 
@@ -96,6 +96,6 @@ if(MSVC)
     ${solvername}sharp-examples
     ${CMAKE_CURRENT_SOURCE_DIR}/examples/${solvername}sharp-examples.csproj
     ${solvername}sharp-examples)
-  add_to_folder(${solvername}/swig/csharp ${solvername}sharp-test ${solvername}sharp-examples)
+  add_to_folder(${targetlibname}/swig/csharp ${solvername}sharp-test ${solvername}sharp-examples)
 endif()
 endmacro()

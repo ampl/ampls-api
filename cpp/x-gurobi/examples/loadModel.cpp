@@ -7,7 +7,7 @@
 
 #include <cstring> // for strcat 
 
-const char* MODELNAME = "tsp.nl";
+const char* MODELNAME = "testmodel.nl";
 
 /* Demonstrates how to load a model using ampls gurobi interface,
    and how to obtain basic information with ampls routines and
@@ -21,8 +21,8 @@ int main(int argc, char** argv) {
   strcat(buffer, MODELNAME);
 
   // Load a model using gurobi driver
-  ampls::GurobiDirectDrv gurobi;
-  ampls::GurobiDirectModel model = gurobi.loadModel(buffer);
+  ampls::XGurobiDrv gurobi;
+  ampls::XGurobiModel model = gurobi.loadModel(buffer);
 
   // Start the optimization process
   model.optimize();

@@ -1,24 +1,26 @@
-macro(createPythonWrapper solvername)
+macro(createPythonWrapper solvername basesolvername libstargetname modulename)
 # Names and paths
 find_package(PythonLibs REQUIRED)
 
-set(PYTHON_SWIG_API amplpy_${solvername}_swig) # name of swig generated wrapper
+set(PYTHON_SWIG_API amplpy_${modulename}_swig) # name of swig generated wrapper
 
 # ############ Create SWIG wrapper #############
 # Workaround to bypass licensing routines
 set(gurobi_INCLUDE_DIR ${gurobi_INCLUDE_DIR}/gurobi)
-set(includeDir ${${solvername}_INCLUDE_DIR})
+set(includeDir ${${basesolvername}_INCLUDE_DIR})
 
 include_directories(
   ${PYTHON_INCLUDE_PATH} ${includeDir} # for solver headers
   ${DIR_CPP_INCLUDE} # for solver_interface.h
   ${ampls_INCLUDE})
-
+  message("include_directories( ${PYTHON_INCLUDE_PATH} ${includeDir} # for solver headers "
+  "${DIR_CPP_INCLUDE} "# for solver_interface.h
+  "${ampls_INCLUDE})")
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
-set(SWIG_PYTHON_MODULE_NAME "amplpy_${solvername}/swig/amplpy_${solvername}_swig")
+set(SWIG_PYTHON_MODULE_NAME "amplpy_${solvername}/swig/amplpy_${modulename}_swig")
 
 set(SWIG_PYTHON_WRAPPER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}.py")
 set(SWIG_CPP_SOURCE "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.cxx")
@@ -65,13 +67,13 @@ add_custom_target(
   COMMAND ${CMAKE_COMMAND} -E copy ${SWIG_CPP_HEADER}
           ${wheel_dir}/${PYTHON_SWIG_API}_wrap.h)
 
-add_to_folder(${solvername}/swig/py ${PYTHON_SWIG_API} amplpy_${solvername}_updatewheel)
+add_to_folder(${libstargetname}/swig/py ${PYTHON_SWIG_API} amplpy_${solvername}_updatewheel)
 if(MSVC)
   include_external_msproject(
     amplpy_${solvername}_examples
     ${CMAKE_CURRENT_SOURCE_DIR}/../examples/amplpy_${solvername}_examples.pyproj
     amplpy_${solvername}_examples)
-  add_to_folder(${solvername}/swig/py amplpy_${solvername}_examples)
+  add_to_folder(${libstargetname}/swig/py amplpy_${solvername}_examples)
   add_custom_command(TARGET amplpy_${solvername}_updatewheel
     DEPENDS amplpy_${solvername}_updatewheel
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/amplpy_${solvername}
@@ -86,9 +88,9 @@ if(NOT ${solvername} STREQUAL "ampls")
 # Copy ampl solver libs, if defined
 add_custom_command(TARGET amplpy_${solvername}_updatewheel
 DEPENDS amplpy_${solvername}_updatewheel
-    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${solvername}-lib> ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
-     COMMENT "Copying $<TARGET_FILE:${solvername}-lib> to ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
-     foreach(lib ${${solvername}_LIBRARY})
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${libstargetname}-lib> ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+     COMMENT "Copying $<TARGET_FILE:${libstargetname}-lib> to ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+     foreach(lib ${${basesolvername}_LIBRARY}) # copy dependencies
     add_custom_command(TARGET amplpy_${solvername}_updatewheel
       DEPENDS amplpy_${solvername}_updatewheel
       COMMAND ${CMAKE_COMMAND} -E copy ${lib} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}

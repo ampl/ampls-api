@@ -4,9 +4,9 @@
 #include <memory> // for unique_ptr
 namespace ampls
 {
-int grbdirect::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
+int xgrb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
 {
-  GurobiDirectCallback* cb = (GurobiDirectCallback*)usrdata;
+  XGurobiCallback* cb = (XGurobiCallback*)usrdata;
   cb->cbdata_ = cbdata;
   cb->where_ = where;
   if (cb->getAMPLWhere() == ampls::Where::MIPNODE)
@@ -23,47 +23,36 @@ int grbdirect::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, 
   return res;
 }
 
-GurobiDirectDrv::~GurobiDirectDrv() {
-  freeGurobiEnv();
+XGurobiDrv::~XGurobiDrv() {
 }
 
-void GurobiDirectDrv::freeGurobiEnv()
-{
- 
-}
-GurobiDirectModel GurobiDirectDrv::loadModelImpl(char** args) {
-  GurobiDirectModel m;
-  void *s;
-  GRBmodel* inner= grbdirect::impl::AMPLdirectloadmodel(3, args, &s);
-  if (inner == NULL)
-  {
-   // const char* error = grb::impl::AMPLGRBgetUinfo(a);
-    //if (error)
-   //   throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
-   // else
-   //   throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
-  }
+XGurobiModel XGurobiDrv::loadModelImpl(char** args) {
+  XGurobiModel m;
+  void *s = xgrb::impl::AMPLloadmodel(3, args);
+  if (s == NULL)
+    throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
+  GRBmodel* inner = xgrb::impl::AMPLgetGRBModel(s);
   m.solver_ = s;
   m.GRBModel_ = inner;
   m.lastErrorCode_ = -1;
   m.fileName_ = args[1];
   return m;
 }
-GurobiDirectModel GurobiDirectDrv::loadModel(const char* modelName) {
+XGurobiModel XGurobiDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);
 }
 
-void GurobiDirectModel::writeSolImpl(const char* solFileName) {
-  grbdirect::impl::AMPLdirectwritesolution(solver_);
+void XGurobiModel::writeSolImpl(const char* solFileName) {
+  xgrb::impl::AMPLwritesolution(solver_);
 }
-int GurobiDirectModel::setCallbackDerived(impl::BaseCallback* callback) {
-  return GRBsetcallbackfunc(GRBModel_, grbdirect::impl::callback_wrapper, callback);
+int XGurobiModel::setCallbackDerived(impl::BaseCallback* callback) {
+  return GRBsetcallbackfunc(GRBModel_, xgrb::impl::callback_wrapper, callback);
 }
 
-class MyGurobiDirectCallbackBridge : public GurobiDirectCallback {
+class MyXGurobiCallbackBridge : public XGurobiCallback {
   GenericCallback* cb_;
 public:
-  MyGurobiDirectCallbackBridge(GenericCallback* cb) {
+  MyXGurobiCallbackBridge(GenericCallback* cb) {
     cb_ = cb;
   }
   virtual int run() {
@@ -71,22 +60,22 @@ public:
   }
 };
 
-impl::BaseCallback* GurobiDirectModel::createCallbackImplDerived(GenericCallback* callback) {
-  return new MyGurobiDirectCallbackBridge(callback);
+impl::BaseCallback* XGurobiModel::createCallbackImplDerived(GenericCallback* callback) {
+  return new MyXGurobiCallbackBridge(callback);
 }
 
-int GurobiDirectModel::optimize() {
+int XGurobiModel::optimize() {
   lastErrorCode_ = GRBoptimize(GRBModel_);
   resetVarMapInternal();
   return lastErrorCode_;
 }
 
-int GurobiDirectModel::getIntAttr(const char* name) {
+int XGurobiModel::getIntAttr(const char* name) {
   int v;
   int r = GRBgetintattr(GRBModel_, name, &v);
   return v;
 }
-double GurobiDirectModel::getDoubleAttr(const char* name) {
+double XGurobiModel::getDoubleAttr(const char* name) {
   double v;
   int r = GRBgetdblattr(GRBModel_, name, &v); 
   if (r != 0)
@@ -94,33 +83,31 @@ double GurobiDirectModel::getDoubleAttr(const char* name) {
   return v;
 }
 
-int GurobiDirectModel::getIntAttrArray(const char* name, int first, int length, int* arr) {
+int XGurobiModel::getIntAttrArray(const char* name, int first, int length, int* arr) {
   return GRBgetintattrarray(GRBModel_, name, first, length, arr);
 }
-int GurobiDirectModel::getDoubleAttrArray(const char* name, int first, int length, double* arr) {
+int XGurobiModel::getDoubleAttrArray(const char* name, int first, int length, double* arr) {
   return GRBgetdblattrarray(GRBModel_, name, first, length, arr);
 }
 
-GurobiDirectModel::~GurobiDirectModel() {
+XGurobiModel::~XGurobiModel() {
   if (copied_)
     return;
-  grbdirect::impl::AMPLdirectclosesolver(solver_);
-//  if (GRBModel_)
- //   GRBfreemodel(GRBModel_);
+  xgrb::impl::AMPLclosesolver(solver_);
 }
-std::string GurobiDirectModel::error(int code)
+std::string XGurobiModel::error(int code)
 {
   return std::string(GRBgeterrormsg(getGRBenv()));
 }
 
 
-std::vector<double>  GurobiDirectModel::getConstraintsValueImpl(int offset, int length) {
+std::vector<double>  XGurobiModel::getConstraintsValueImpl(int offset, int length) {
   std::vector<double> cons(length);
   int status = getDoubleAttrArray(GRB_DBL_ATTR_PI, offset, length, cons.data());
   AMPLSGRBERRORCHECK(status);
   return cons;
 }
-std::vector<double> GurobiDirectModel::getVarsValueImpl(int offset, int length) {
+std::vector<double> XGurobiModel::getVarsValueImpl(int offset, int length) {
   std::vector<double> vars(length);
   int status = getDoubleAttrArray(GRB_DBL_ATTR_X, offset, length, vars.data());
   AMPLSGRBERRORCHECK(status);

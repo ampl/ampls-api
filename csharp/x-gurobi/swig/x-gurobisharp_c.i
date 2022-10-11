@@ -12,4 +12,4 @@ CSHARP_ARRAYS(const int, int)
 %apply int INPUT[]{ const int* vars }
 
 %include "../../../cpp/ampls/swig/ampls-common.i"
-%include "../../../cpp/gurobi/swig/gurobi-common.i"
+%include "../../../cpp/x-gurobi/swig/x-gurobi-common.i"

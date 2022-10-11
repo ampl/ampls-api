@@ -10,8 +10,9 @@ namespace gurobisharp_test
 {
   class Program
   {
-    private class CB : GurobiCallback
+    private class CB : ampls.GenericCallback
     {
+      
       int count = 0;
       public override int run()
       {
@@ -48,7 +49,7 @@ namespace gurobisharp_test
       }
     }
 
-    private class GCB : GenericCallback
+    private class GCB : XGurobiCallback
     {
 
       public override int run()
@@ -79,7 +80,7 @@ namespace gurobisharp_test
 
       static void Main(string[] args)
     {
-      GurobiDrv g = new GurobiDrv();
+      XGurobiDrv g = new XGurobiDrv();
       
             try
             {

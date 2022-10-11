@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{70a86a47-99f8-408d-96f9-857616bb467f}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>tsp_simple_cuts_gurobi.py</StartupFile>
+    <SearchPath>..\..\..\solvers-private\build\vs64\bin</SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="requirements.txt" />
+    <Content Include="tsp_51_1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="load_model.py" />
+    <Compile Include="pattern_generation_generic.py" />
+    <Compile Include="progress_callback.py" />
+    <Compile Include="progress_callback_gurobi1.py" />
+    <Compile Include="progress_callback_gurobi2.py" />
+    <Compile Include="simple_callback_gurobi.py" />
+    <Compile Include="solver_parameters_generic.py" />
+    <Compile Include="tsp_callback.py" />
+    <Compile Include="tsp_callback_gurobi.py" />
+    <Compile Include="tsp_helpers.py" />
+    <Compile Include="tsp_simple_cuts.py" />
+    <Compile Include="tsp_simple_cuts_gurobi.py" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

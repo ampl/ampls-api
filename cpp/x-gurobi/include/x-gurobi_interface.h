@@ -1,5 +1,5 @@
-#ifndef GUROBIDIRECT_INTERFACE_H_INCLUDE_
-#define GUROBIDIRECT_INTERFACE_H_INCLUDE_
+#ifndef XGUROBI_INTERFACE_H_INCLUDE_
+#define XGUROBI_INTERFACE_H_INCLUDE_
 
 #ifdef _WIN32
   #define ENTRYPOINT __declspec(dllimport)
@@ -21,7 +21,7 @@
 
 namespace ampls
 {
-namespace grbdirect
+namespace xgrb
 {
   namespace impl
   {
@@ -41,12 +41,11 @@ namespace grbdirect
       throw ampls::AMPLSolverException::format("Error executing " #name":\n%s", error(status).c_str());
 
     extern "C" {
-      // Imported from the GUROBI direct driver
-      ENTRYPOINT GRBmodel* AMPLdirectloadmodel(int argc, char** argv, void** slvout);
-      ENTRYPOINT void AMPLdirectwritesolution(void* slv);
-      ENTRYPOINT void AMPLdirectclosesolver(void* slv);
-      //ENTRYPOINT void freeASL(ASL** aslp);
-     // ENTRYPOINT const char* AMPLGRBgetUinfo(ASL* asl);
+      // Imported from the x-gurobi driver library
+      ENTRYPOINT void* AMPLloadmodel(int argc, char** argv);
+      ENTRYPOINT void AMPLwritesolution(void* slv);
+      ENTRYPOINT void AMPLclosesolver(void* slv);
+      ENTRYPOINT GRBmodel* AMPLgetGRBModel(void* slv);
     }
     // Forward declarations
     int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
@@ -54,18 +53,18 @@ namespace grbdirect
 }
 
 
-class GurobiDirectModel;
+class XGurobiModel;
 class Callback;
 
 /**
 Encapsulates the main environment of the gurobi driver
 */
-class GurobiDirectDrv : public impl::SolverDriver<GurobiDirectModel>  {
+class XGurobiDrv : public impl::SolverDriver<XGurobiModel>  {
 
 
   void freeGurobiEnv();
 
-  GurobiDirectModel loadModelImpl(char** args);
+  XGurobiModel loadModelImpl(char** args);
 public:
   /**
   * Load a model from an NL file.
@@ -73,9 +72,9 @@ public:
   * available only if the row and col files have been generated as well,
   * by means of the ampl option `option auxfiles cr;` before writing the NL file.
   */
-  GurobiDirectModel loadModel(const char* modelName);
+  XGurobiModel loadModel(const char* modelName);
 
-  ~GurobiDirectDrv();
+  ~XGurobiDrv();
 };
 
 /**
@@ -88,8 +87,8 @@ Note that if we don't want to use the writesol function, we don't really
 need the ASL reference after creating the Gurobi model object, so
 we could use directly the C pointer to GRBmodel.
 */
-class GurobiDirectModel : public AMPLModel {
-  friend GurobiDirectDrv;
+class XGurobiModel : public AMPLModel {
+  friend XGurobiDrv;
 
   // Map for solver parameters
   std::map<int, const char*> parametersMap = {
@@ -125,7 +124,7 @@ class GurobiDirectModel : public AMPLModel {
   void* solver_;
   int lastErrorCode_;
 
-  GurobiDirectModel() : AMPLModel(), copied_(false), GRBModel_(NULL),
+  XGurobiModel() : AMPLModel(), copied_(false), GRBModel_(NULL),
     solver_(NULL), lastErrorCode_(0) {}
 
   // Interface implementation
@@ -137,7 +136,7 @@ public:
   {
     setParam(GRB_INT_PAR_LAZYCONSTRAINTS, 1);
   }
-  GurobiDirectModel(const GurobiDirectModel& other) :
+  XGurobiModel(const XGurobiModel& other) :
     AMPLModel(other), copied_(false), GRBModel_(other.GRBModel_), 
     solver_(other.solver_), lastErrorCode_(other.lastErrorCode_)
   {
@@ -250,7 +249,7 @@ public:
     return NULL;
   }
 
-  ~GurobiDirectModel();
+  ~XGurobiModel();
 
   /**Set an integer parameter using ampls aliases*/
   void setAMPLsParameter(SolverParams::SolverParameters param,
@@ -306,7 +305,7 @@ public:
 
   int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],
     ampls::CutDirection::Direction sense, double rhs) {
-    char grbsense = GurobiDirectCallback::toGRBSense(sense);
+    char grbsense = XGurobiCallback::toGRBSense(sense);
     int status = GRBaddconstr(getGRBmodel(), numnz, const_cast<int*>(vars),
       const_cast<double*>(coefficients), grbsense, rhs, name);
     status=  GRBupdatemodel(getGRBmodel());

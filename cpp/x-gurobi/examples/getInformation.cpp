@@ -10,7 +10,7 @@
 
 const char* MODELNAME = "tsp.nl";
 
-class MyGurobiCallback : public ampls::GurobiDirectCallback
+class MyGurobiCallback : public ampls::XGurobiCallback
 {
   public:
   int lastIter;
@@ -87,8 +87,8 @@ int main(int argc, char** argv) {
   strcat(buffer, MODELNAME);
 
   // Load a model using gurobi driver
-  ampls::GurobiDirectDrv gurobi;
-  ampls::GurobiDirectModel model = gurobi.loadModel(buffer);
+  ampls::XGurobiDrv gurobi;
+  ampls::XGurobiModel model = gurobi.loadModel(buffer);
   
   // Create gurobi callback and set it using ampls interface
   MyGurobiCallback cb;

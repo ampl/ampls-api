@@ -53,7 +53,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\api\dev_gurobisharp.csproj">
+    <ProjectReference Include="..\api\dev_x-gurobisharp.csproj">
       <Project>{2138a0c3-4c0f-436a-b5b0-da18ea56afe3}</Project>
       <Name>dev_gurobisharp</Name>
     </ProjectReference>

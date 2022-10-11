@@ -6,7 +6,7 @@
 #include "gurobi_c.h" // For gurobi routines
 #include <cstring> // for strcat 
 
-class MyGurobiCallback : public ampls::GurobiDirectCallback
+class MyGurobiCallback : public ampls::XGurobiCallback
 {
 public:
   MyGurobiCallback() {}
@@ -33,8 +33,8 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "queens18.nl");
   // Load a model using gurobi driver
-  ampls::GurobiDirectDrv gurobi;
-  ampls::GurobiDirectModel m = gurobi.loadModel(buffer);
+  ampls::XGurobiDrv gurobi;
+  ampls::XGurobiModel m = gurobi.loadModel(buffer);
 
     // Set a (generic) callback
   MyGurobiCallback cb;

@@ -1,5 +1,5 @@
-#ifndef GUROBIDIRECT_CALLBACK_H_INCLUDE_
-#define GUROBIDIRECT_CALLBACK_H_INCLUDE_
+#ifndef XGUROBI_CALLBACK_H_INCLUDE_
+#define XGUROBI_CALLBACK_H_INCLUDE_
 
 #include <string>
 #include <vector>
@@ -10,10 +10,10 @@
 #include "gurobi_c.h"
 
 namespace ampls {
-namespace grbdirect { namespace impl{
+namespace xgrb { namespace impl{
 int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata); 
 } }
-class GurobiDirectModel;
+class XGurobiModel;
 
 /**
 * Base class for Gurobi callbacks, inherit from this to declare a
@@ -26,9 +26,9 @@ class GurobiDirectModel;
 * information about the progress of the optimization and can modify the behaviour
 * of the solver.
 */
-class GurobiDirectCallback : public impl::BaseCallback {
-  friend int grbdirect::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
-  friend class GurobiDirectModel;
+class XGurobiCallback : public impl::BaseCallback {
+  friend int xgrb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
+  friend class XGurobiModel;
   void* cbdata_;
   static char toGRBSense(ampls::CutDirection::Direction dir)
   {
@@ -52,7 +52,7 @@ protected:
 
 public:
 
-  GurobiDirectCallback() : cbdata_(NULL) {}
+  XGurobiCallback() : cbdata_(NULL) {}
   
   virtual int run() = 0;
   /**

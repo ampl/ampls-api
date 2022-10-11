@@ -6,7 +6,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/../../cpp/cplex/include
 ${CMAKE_CURRENT_SOURCE_DIR}/../../cpp/gurobi/include
 )
 
-createPythonWrapper(ampls)
+createPythonWrapper(ampls ampls ampls ampls)
 target_link_libraries(amplpy_ampls_swig
 cplex-drv cplex-lib
 gurobi-drv gurobi-lib)
