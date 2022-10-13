@@ -6,7 +6,7 @@ AMPLS-API is an open source set of lightweight interfaces between AMPL and solve
 
 - Read in an AMPL model instance from an `NL` file
 - Write out the solution as a `sol` file, ready to be imported by AMPL
-- A choiche between:
+- A choice between:
    - Use of all the solver's capabilities, using its own C API functionalities
    - Use of a (provided) generic interface, that encapsulates the most common 
      functionalities of the solver interfaces, permitting hassle-free solver swap
