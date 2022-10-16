@@ -13,9 +13,6 @@ include_directories(
   ${PYTHON_INCLUDE_PATH} ${includeDir} # for solver headers
   ${DIR_CPP_INCLUDE} # for solver_interface.h
   ${ampls_INCLUDE})
-  message("include_directories( ${PYTHON_INCLUDE_PATH} ${includeDir} # for solver headers "
-  "${DIR_CPP_INCLUDE} "# for solver_interface.h
-  "${ampls_INCLUDE})")
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})

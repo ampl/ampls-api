@@ -95,7 +95,6 @@ public:
     vars.push_back("x[1]");
     vars.push_back("x[2]");
     double coefs[] = { 5.6, 7.8 };
-    int len;
     printf("OBJ = %f\n", getObj());
     /*
     // TODO MAP where from 
@@ -134,7 +133,7 @@ int main(int argc, char** argv) {
     ampls::CPLEXModel m = d.loadModel(buffer);
    
   
-    res = m.setCallback(&cb);
+   // res = m.setCallback(&cb);
     if (res != 0)
     {
       printf("ERROR!!! %i\n", res);
@@ -148,7 +147,7 @@ int main(int argc, char** argv) {
   }
   catch (const std::exception& e)
   {
-    printf(e.what());
+    printf("Error: %s\n", e.what());
   }
   
   

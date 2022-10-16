@@ -1,7 +1,7 @@
 %{
   #include "ilcplex/cplexx.h"
-  #include "cplex_callback.h"
-  #include "cplex_interface.h"
+  #include "cplexmp_callback.h"
+  #include "cplexmp_interface.h"
 %}
 
 %feature("director") ampls::CPLEXCallback;
@@ -19,5 +19,5 @@
 
 %include "ilcplex/cpxconst.h"
 %include "ilcplex/cplex.h"
-%include "cplex_interface.h"
-%include "cplex_callback.h"
+%include "cplexmp_interface.h"
+%include "cplexmp_callback.h"

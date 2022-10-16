@@ -43,7 +43,7 @@ namespace xgrb
     extern "C" {
       // Imported from the x-gurobi driver library
       ENTRYPOINT void* AMPLloadmodel(int argc, char** argv);
-      ENTRYPOINT void AMPLwritesolution(void* slv);
+      ENTRYPOINT void AMPLSReportResults(void* slv, const char* solFileName);
       ENTRYPOINT void AMPLclosesolver(void* slv);
       ENTRYPOINT GRBmodel* AMPLgetGRBModel(void* slv);
     }

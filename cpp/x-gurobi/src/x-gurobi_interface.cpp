@@ -43,7 +43,7 @@ XGurobiModel XGurobiDrv::loadModel(const char* modelName) {
 }
 
 void XGurobiModel::writeSolImpl(const char* solFileName) {
-  xgrb::impl::AMPLwritesolution(solver_);
+  xgrb::impl::AMPLSReportResults(solver_, solFileName);
 }
 int XGurobiModel::setCallbackDerived(impl::BaseCallback* callback) {
   return GRBsetcallbackfunc(GRBModel_, xgrb::impl::callback_wrapper, callback);

@@ -42,8 +42,8 @@ namespace cpx
       throw ampls::AMPLSolverException::format("Error executing " #name":\n%s", error(status).c_str());
 
     extern "C" {
-      ENTRYPOINT void* AMPLloadmodel(int argc, char** argv);
-      ENTRYPOINT void AMPLwritesolution(void* slv);
+      ENTRYPOINT void* AMPLloadCPLEXmodel(int argc, char** argv);
+      ENTRYPOINT void AMPLSReportResults(void* slv, const char* solfilename);
       ENTRYPOINT void AMPLclosesolver(void* slv);
 
       ENTRYPOINT CPXLPptr AMPLgetCPLEXModel(void* slv);

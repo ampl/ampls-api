@@ -40,7 +40,7 @@ namespace xpress
 
     extern "C" {
       // Imported from the xpressmp driver
-      ENTRYPOINT void* AMPLloadmodel(int argc, char** argv);
+      ENTRYPOINT void* AMPLloadXpressModel(int argc, char** argv);
       ENTRYPOINT void AMPLwritesolution(void* slv, const char* solFileName);
       ENTRYPOINT void AMPLclosesolver(void* slv);
       ENTRYPOINT XPRSprob AMPLgetXpressModel(void* slv);

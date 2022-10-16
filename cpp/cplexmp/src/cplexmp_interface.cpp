@@ -98,13 +98,11 @@ void CPLEXDrv::freeCPLEXEnv()
 
 CPLEXModel CPLEXDrv::loadModelImpl(char** args) {
   CPLEXModel m;
-  
-  void* s = cpx::impl::AMPLloadmodel(3, args);
-  if (s == NULL)
+  auto c = cpx::impl::AMPLloadCPLEXmodel(3, args);
+  m.solver_ = c;
+  if (m.solver_ == NULL)
     throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
-  CPXLPptr modelptr = cpx::impl::AMPLgetCPLEXModel(s);
-  
-  m.solver_= s;
+  CPXLPptr modelptr = cpx::impl::AMPLgetCPLEXModel(m.solver_);
   m.model_ = modelptr;
   m.lastErrorCode_ = -1;
   m.fileName_ = args[1];
@@ -118,7 +116,7 @@ void CPLEXModel::writeSolImpl(const char* solFileName) {
   // Disable msg callback while writing solution file
   // to avoid spurious messages due to the driver implementation
   cpx::impl::CBWrap::skipMsgCallback = true;
-  cpx::impl::AMPLwritesolution(solver_);
+  cpx::impl::AMPLSReportResults(solver_, solFileName);
   cpx::impl::CBWrap::skipMsgCallback = false;
 }
 

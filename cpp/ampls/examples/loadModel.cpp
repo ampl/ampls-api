@@ -1,11 +1,11 @@
-#ifdef USE_cplex 
-#include "cplex_interface.h"
+#ifdef USE_cplexmp
+#include "cplexmp_interface.h"
 #endif
-#ifdef USE_gurobi
-#include "gurobi_interface.h"
+#ifdef USE_xgurobi
+#include "x-gurobi_interface.h"
 #endif
-#ifdef USE_xpress
-#include "xpress_interface.h"
+#ifdef USE_xpressmp
+#include "xpressmp_interface.h"
 #endif
 
 #include "ampls/ampls.h"
@@ -65,8 +65,7 @@ int main(int argc, char** argv) {
   strcat(buffer, MODELNAME);
 
   std::vector<std::string>  options = { "return_mipgap=3"};
-
-#ifdef USE_gurobi
+#ifdef USE_xgurobi
   // Load a model using gurobi driver
   ampls::GurobiDrv gurobi;
   gurobi.setOptions(options);
@@ -74,17 +73,7 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(g);
 #endif
-
-#ifdef USE_cplex
-  // Load a model using CPLEX driver
-  ampls::CPLEXDrv cplex;
-  cplex.setOptions(options);
-  ampls::CPLEXModel c = cplex.loadModel(buffer);
-  // Use it as generic model
-  doStuff(c);
-#endif
-
-#ifdef USE_xpress
+#ifdef USE_xpressmp
   // Load a model using CPLEX driver
   ampls::XPRESSDrv xpress;
   //xpress.setOptions(options);
@@ -92,5 +81,18 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(x);
 #endif
+
+#ifdef USE_cplexmp
+  // Load a model using CPLEX driver
+  ampls::CPLEXDrv cplex;
+  cplex.setOptions(options);
+  ampls::CPLEXModel c = cplex.loadModel(buffer);
+  // Use it as generic model
+  doStuff(c);
+#endif
+  
+
+
+
   return 0;
 }

@@ -11,6 +11,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 
 set(AMPLS_BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
+option(BUILD_SWIG_WRAPPERS "Build swig wrappers" ON)
+option(BUILD_DOC "Build documentation" ON)
+
 # Set solvers to build.
 function(defSolver name solvername libtargetname)
   list(APPEND AMPLS_SOLVER_NAMES ${name})
@@ -27,17 +30,20 @@ defSolver(cplexmp cplex cplexmp)
 defSolver(xpress xpress xpress)
 defSolver(xpressmp xpress xpressmp)
 
-message("AMPLS_SOLVER_NAMES ${AMPLS_SOLVER_NAMES}")
-
-
-
-
 set(BUILD_AMPLS "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
+
+
+if (BUILD AND NOT BUILD_AMPLS)
+    set(BUILD_AMPLS ${BUILD})
+endif()
+
+set(ENABLED_SOLVERS "")
 if (BUILD_AMPLS)
   if (BUILD_AMPLS STREQUAL all)
     message(STATUS "Building all solvers")
     foreach(s ${AMPLS_SOLVER_NAMES})
       set(ENABLE_${s} on)
+      set(ENABLED_SOLVERS ${ENABLED_SOLVERS} ${s})
     endforeach()
   else()
     string(REGEX MATCHALL "[^,]+" SOLVERS_TOBUILD "${BUILD_AMPLS}")
@@ -51,6 +57,7 @@ if (BUILD_AMPLS)
         message(WARNING "${s} is not a valid solver library name.")
       endif()
       set(ENABLE_${s} ON)
+      set(ENABLED_SOLVERS ${ENABLED_SOLVERS} ${s})
       message(STATUS "Building library for solver ${s}")
     endforeach()
   endif()
@@ -81,19 +88,25 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 # Set paths
 set(BASESRCDIR ${CMAKE_CURRENT_SOURCE_DIR}/src/solvers) # Base dir for all
 # Swig
-find_package(SWIG 3.0)
-if(SWIG_FOUND)
-  if(POLICY CMP0078)
-    cmake_policy(SET CMP0078 NEW)
+if(BUILD_SWIG_WRAPPERS)
+  find_package(SWIG 3.0)
+  if(SWIG_FOUND)
+    if(POLICY CMP0078)
+      cmake_policy(SET CMP0078 NEW)
+    endif()
+    if(POLICY CMP0086)
+      cmake_policy(SET CMP0086 NEW)
+    endif()
+    if(POLICY CMP0122)
+      cmake_policy(SET CMP0122 NEW)
+    endif()
+    include(UseSWIG)
+  else()
+    message(WARNING "SWIG not found, Python and C# bindings will not be generated")
   endif()
-  if(POLICY CMP0086)
-    cmake_policy(SET CMP0086 NEW)
-  endif()
-  include(UseSWIG)
 else()
-  message(WARNING "SWIG not found, Python and C# bindings will not be generated")
+  message(WARNING "SWIG bindings not generated. Set option BUILD_SWIG_WRAPPERS to ON")
 endif()
-
 set(GENERATED_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include) # For generated files
 file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
      "const char MODELS_DIR[] = \"${PROJECT_SOURCE_DIR}/test/models/\";\n")
@@ -194,16 +207,10 @@ function(AddSolverStub solver targetbase libname includes libs)
     target_compile_options(${TARGETNAME} PRIVATE -fPIC)
   endif()
   
-  message("DIR_SWIG ${DIR_SWIG}")
-  message("DIR_PYTHON ${DIR_PYTHON}")
-  message("DIR_CSHARP ${DIR_CSHARP}")
-
-
   set(EXAMPLES loadModel getInformation simpleCuts)
   foreach(exname ${EXAMPLES})
       set(tar ${libname}-${exname}) 
       set(src ${DIR_CPP}/examples/${exname}.cpp)
-      message("EXAMPLE: ${src}")
       if(EXISTS ${src})
         add_executable(${tar} ${src})
         target_include_directories(${tar} PRIVATE
@@ -235,37 +242,35 @@ function(AddSolverStub solver targetbase libname includes libs)
             COMMENT "Copying ${solvername}-lib to python directory")
   endforeach()
 
-  if (EXISTS ${DIR_SWIG})
-    if(SWIG_FOUND)
-        # Add a custom target just to show  the following common sources in some IDEs
-        add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/ampls/swig/ampls-common.i
-                                                   ${DIR_SWIG}/${libname}-common.i
-                                                   ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python.i
-                                                   ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python-extensions.i
-                                                   ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
-                                                   ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
-                                                   )
-        add_to_folder(${targetbase}/swig ${solver}-common)
-        add_subdirectory(${DIR_PYTHON})
-        if(WIN32)
-          add_subdirectory(${DIR_CSHARP})
-        endif()
-    endif()
+  if(BUILD_SWIG_WRAPPERS AND SWIG_FOUND)
+    if (EXISTS ${DIR_SWIG})
+          # Add a custom target just to show  the following common sources in some IDEs
+          add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/ampls/swig/ampls-common.i
+                                                      ${DIR_SWIG}/${libname}-common.i
+                                                      ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python.i
+                                                      ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python-extensions.i
+                                                      ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
+                                                      ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
+                                                      )
+          add_to_folder(${targetbase}/swig ${solver}-common)
+          add_subdirectory(${DIR_PYTHON})
+          if(WIN32)
+            add_subdirectory(${DIR_CSHARP})
+          endif()
+      endif()
   endif()
 endfunction()
 
 # Add the enabled modules
 foreach(s ${AMPLS_SOLVER_NAMES})
 if(ENABLE_${s})
-  message("For solver ${s}")
   set(SOLVERNAME ${${s}_SOLVER})
-  message("addsolverstub(${SOLVERNAME} ${${s}_TARGET} ${s} ${${SOLVERNAME}_INCLUDE_DIR} ${${SOLVERNAME}_LIBRARY})")
   addsolverstub(${SOLVERNAME} ${${s}_TARGET} ${s} ${${SOLVERNAME}_INCLUDE_DIR} ${${SOLVERNAME}_LIBRARY})
 endif()
 endforeach()
 
 # Add ampls swig bindings (must do after the targets below, as )
-if(SWIG_FOUND)
+  if(BUILD_SWIG_WRAPPERS AND SWIG_FOUND)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/python/ampls)
   if(WIN32)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/csharp/ampls)
@@ -275,6 +280,7 @@ endif()
 
 # Add the documentation, check for the required programs is implemented
 # in the inner CMake file
-add_subdirectory("doc")
-
+if(BUILD_DOC)
+  add_subdirectory("doc")
+endif()
 

@@ -14,10 +14,11 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <cstring>
+#include <exception>
+
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
-
-#include <exception>
 
 
 template<class T> T loadModel(const char* model, std::vector<std::string> options);

@@ -33,13 +33,16 @@ add_to_folder(ampls ampls)
 # Check which libraries are being built and add only the relevant
 # examples and link libs
 set(PREPROCESSORDEFS "")
-foreach(s ${SOLVER_NAMES})
- if(${ENABLE_${s}})
-    set(LINKLIBS ${LINKLIBS} ${s}-drv)
-    set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_${s}=1)
- endif()
- endforeach()
 
+foreach(s ${ENABLED_SOLVERS})
+    set(LINKLIBS ${LINKLIBS} ${s}-drv)
+    if(${s} MATCHES "x-gurobi")
+        set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_xgurobi=1)
+    else()
+        set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_${s}=1)
+    endif()
+ endforeach()
+ message("ampls examples linked with ${ENABLED_SOLVERS}")
  # Find amplapi, if present add combined examples
 if(WIN32)
   set(libdir win64)

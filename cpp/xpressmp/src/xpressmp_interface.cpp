@@ -49,7 +49,7 @@ XPRESSDrv::~XPRESSDrv() {
 XPRESSModel XPRESSDrv::loadModelImpl(char** args) {
   owning_ = true;
   XPRESSModel m;
-  m.s_ = xpress::impl::AMPLloadmodel(3, args);
+  m.s_ = xpress::impl::AMPLloadXpressModel(3, args);
   m.prob_ = xpress::impl::AMPLgetXpressModel(m.s_);
   m.fileName_ = args[1];
   m.driver_ = *this;
