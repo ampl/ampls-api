@@ -1,13 +1,3 @@
-#ifdef USE_cplex
-#include "cplex_interface.h"
-#endif
-#ifdef USE_gurobi
-#include "gurobi_interface.h"
-#endif
-#ifdef USE_xpress
-#include "xpress_interface.h"
-#endif
-
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
@@ -115,7 +105,7 @@ int main(int argc, char** argv) {
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
-#ifdef USE_cplex
+#ifdef USE_cplexmp
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
   cplex.setOptions({ "outlev=1" });
@@ -123,15 +113,15 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(c, "cplex");
 #endif
-#ifdef USE_gurobi
+#ifdef USE_xgurobi
   // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
-  ampls::GurobiModel g = gurobi.loadModel(buffer);
+  ampls::XGurobiDrv gurobi;
+  ampls::XGurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
   doStuff(g, "gurobi");
 #endif
 
-#ifdef USE_xpress
+#ifdef USE_xpressmp
   // Load a model using CPLEX driver
   ampls::XPRESSDrv xpress;
   ampls::XPRESSModel x = xpress.loadModel(buffer);

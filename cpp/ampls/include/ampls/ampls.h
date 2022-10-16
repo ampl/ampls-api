@@ -1161,4 +1161,16 @@ public:
 };
 
 } // namespace
+
+// Convenience macro to use solver-specific libs
+#ifdef USE_cplexmp
+#include "cplexmp_interface.h"
+#endif
+#ifdef USE_xgurobi
+#include "x-gurobi_interface.h"
+#endif
+#ifdef USE_xpressmp
+#include "xpressmp_interface.h"
+#endif
+
 #endif // ampls_H_INCLUDE_

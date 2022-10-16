@@ -1,16 +1,3 @@
-#ifdef USE_cplex
-#include "cplex_interface.h"
-#endif
-#ifdef USE_gurobi
-#include "gurobi_interface.h"
-#endif
-#ifdef USE_x-gurobi
-#include "x-gurobi_interface.h"
-#endif
-#ifdef USE_xpress
-#include "xpress_interface.h"
-#endif
-
 #include <iostream>
 
 #include "ampls/ampls.h"
@@ -28,23 +15,16 @@ namespace AMPLAPIInterface
     }
 
     template <class T> T exportModel(ampl::AMPL& a);
-#ifdef USE_gurobi
-    template<> ampls::GurobiModel exportModel<ampls::GurobiModel>(ampl::AMPL& a) {
+
+#ifdef USE_xgurobi
+    template<> ampls::XGurobiModel exportModel<ampls::XGurobiModel>(ampl::AMPL& a) {
       doExport(a);
-      ampls::GurobiDrv gurobi;
+      ampls::XGurobiDrv gurobi;
       return gurobi.loadModel("___modelexport___.nl");
     }
 #endif
 
-#ifdef USE_x-gurobi
-    template<> ampls::GurobiDirectModel exportModel<ampls::GurobiDirectModel>(ampl::AMPL& a) {
-      doExport(a);
-      ampls::GurobiDirectDrv gurobi;
-      return gurobi.loadModel("___modelexport___.nl");
-    }
-#endif
-
-#ifdef USE_cplex
+#ifdef USE_cplexmp
     template<> ampls::CPLEXModel exportModel<ampls::CPLEXModel>(ampl::AMPL& a) {
       doExport(a);
       ampls::CPLEXDrv cplex;
@@ -52,7 +32,7 @@ namespace AMPLAPIInterface
     }
 #endif
 
-#ifdef USE_xpress
+#ifdef USE_xpressmp
     template<> ampls::XPRESSModel exportModel<ampls::XPRESSModel>(ampl::AMPL& a) {
       doExport(a);
       ampls::XPRESSDrv xpress;

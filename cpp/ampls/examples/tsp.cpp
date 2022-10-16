@@ -1,15 +1,3 @@
-#ifdef USE_cplex
-#include "cplex_interface.h"
-#endif
-#ifdef USE_xpress
-#include "xpress_interface.h"
-#endif
-#ifdef USE_gurobi
-#include "gurobi_interface.h"
-#endif
-#ifdef USE_gurobidirect
-#include "gurobidirect_interface.h"
-#endif
 #include <list>
 #include <algorithm>
 #include <map>
@@ -332,29 +320,21 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "tspg96.nl");
 
-#ifdef USE_xpress
-  // Load a model using CPLEX driver
+#ifdef USE_xpressmp
+  // Load a model using Xpress driver
  // ampls::XPRESSDrv xpress;
  // ampls::XPRESSModel x = xpress.loadModel(buffer);
   // Use it as generic model
 //  doStuff(x);
 #endif
-#ifdef USE_gurobi
+#ifdef USE_xgurobi
 // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
+  ampls::XGurobiDrv gurobi;
   gurobi.setOptions({ "mipgap=1e-9" });
-  ampls::GurobiModel g = gurobi.loadModel(buffer);
+  ampls::XGurobiModel g = gurobi.loadModel(buffer);
   doStuff(g);
 #endif
-#ifdef USE_gurobidirect
-  // Load a model using gurobi driver
-  ampls::GurobiDirectDrv gurobidirect;
-  gurobi.setOptions({ "mipgap=1e-9" });
-  ampls::GurobiDirectModel gd = gurobidirect.loadModel(buffer);
-  doStuff(gd);
-#endif
-
-#ifdef USE_cplex
+#ifdef USE_cplexmp
 // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
   cplex.setOptions({ "mipgap=1e-9" });

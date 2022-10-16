@@ -1,13 +1,3 @@
-#ifdef USE_cplexmp
-#include "cplexmp_interface.h"
-#endif
-#ifdef USE_xgurobi
-#include "x-gurobi_interface.h"
-#endif
-#ifdef USE_xpressmp
-#include "xpressmp_interface.h"
-#endif
-
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
@@ -67,9 +57,9 @@ int main(int argc, char** argv) {
   std::vector<std::string>  options = { "return_mipgap=3"};
 #ifdef USE_xgurobi
   // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
+  ampls::XGurobiDrv gurobi;
   gurobi.setOptions(options);
-  ampls::GurobiModel g = gurobi.loadModel(buffer);
+  ampls::XGurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
   doStuff(g);
 #endif
