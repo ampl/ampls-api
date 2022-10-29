@@ -395,6 +395,7 @@ namespace ampls{
     std::string toAMPLString(const std::map<int, std::string>& varMap, 
       const std::map<int, std::string>& consMap,
       const impl::Records& records) const;
+    std::string toString();
 
   };
   class Variable : public Entity

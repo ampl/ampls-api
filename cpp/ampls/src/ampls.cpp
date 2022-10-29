@@ -139,6 +139,26 @@ std::string impl::Records::getRecordedEntities(bool exportToAMPL) {
   return ss.str();
 }
 
+std::string  Constraint::toString() {
+  std::stringstream ss;
+  for (int i = 0; i < indices().size(); i++)
+  {
+    if (coeffs()[i] == 0)
+      continue;
+
+    int index = indices()[i];
+
+    std::string name = impl::string_format("X[%d]", index);
+
+    if (coeffs()[i] > 0)
+      ss << impl::string_format("+%f*%s", coeffs()[i], name.c_str());
+    else
+      ss << impl::string_format("%f*%s", coeffs()[i], name.c_str());
+  }
+  ss << impl::string_format("%s %f;", CutDirection::toString(sense()).c_str(), rhs());
+  return ss.str();
+
+}
 
 std::string Constraint::toAMPLString(const std::map<int, std::string>& varMap,
   const std::map<int, std::string>& consMap,

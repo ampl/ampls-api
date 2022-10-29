@@ -376,6 +376,11 @@ public:
     return value;
   }
 
+  void enableLazyConstraints() {
+    setParam(XPRS_PRESOLVE,0);
+    setParam(XPRS_MIPPRESOLVE, 0);
+    setParam(XPRS_SYMMETRY, 0); 
+  };
 
   /**Set an integer parameter using ampls aliases*/
   void setAMPLsParameter(SolverParams::SolverParameters param,
