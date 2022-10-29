@@ -6,10 +6,62 @@
 #include <sstream>
 #include <regex>
 #include <iostream>
+#include <exception>
+
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
-#include <exception>
+#ifdef USE_amplapi
+    #include "ampl/ampl.h"
+
+namespace AMPLAPIInterface
+{
+  namespace impl {
+
+    void doExport(ampl::AMPL& a) {
+      a.eval("option auxfiles cr;");
+      a.eval("write g___modelexport___;");
+    }
+
+    template <class T> T exportModel(ampl::AMPL& a);
+#ifdef USE_xgurobi
+    template<> ampls::XGurobiModel exportModel<ampls::XGurobiModel>(ampl::AMPL& a) {
+      doExport(a);
+      ampls::XGurobiDrv gurobi;
+      return gurobi.loadModel("___modelexport___.nl");
+    }
+#endif
+
+#ifdef USE_cplexmp
+    template<> ampls::CPLEXModel exportModel<ampls::CPLEXModel>(ampl::AMPL& a) {
+      doExport(a);
+      ampls::CPLEXDrv cplex;
+      return cplex.loadModel("___modelexport___.nl");
+    }
+#endif
+
+#ifdef USE_xpressmp
+    template<> ampls::XPRESSModel exportModel<ampls::XPRESSModel>(ampl::AMPL& a) {
+      doExport(a);
+      ampls::XPRESSDrv xpress;
+      return xpress.loadModel("___modelexport___.nl");
+    }
+#endif
+  }
+
+  template <class T> T exportModel(ampl::AMPL& a) {
+    return impl::exportModel<T>(a);
+  }
+
+  void importModel(ampl::AMPL& a, ampls::AMPLModel& g) {
+    g.writeSol();
+    a.eval("solution ___modelexport___.sol;");
+    a.eval(g.getRecordedEntities());
+  }
+}
+
+#endif
+
 
 const double INTTOLERANCE = 1e-4;
 
@@ -29,26 +81,26 @@ std::vector<std::string> split(const std::string str, const std::string regex_st
   return ret;
 }
 
-struct Arc {
+struct GraphArc {
   int from;
   int to;
-  Arc() : from(0), to(0) {}
-  Arc(int from, int to)
+  GraphArc() : from(0), to(0) {}
+  GraphArc(int from, int to)
   {
     this->from = from;
     this->to = to;
   }
-  static Arc fromVar(const std::string& var)
+  static GraphArc fromVar(const std::string& var)
   {
   #if __cplusplus >= 201103L
     auto s = split(var, "[A-Za-z0-9]*\\['([A-Za-z0-9]*)','([A-Za-z0-9]*)']");
   #else
-    auto s = split(var, "[A-Za-z0-9]*\\['([A-Za-z0-9]*)','([A-Za-z0-9]*)'\\]");
+    auto s = split(var, "[A-Za-z0-9]*\\[[']*([A-Za-z0-9]*)[']*,[']*([A-Za-z0-9]*)[']*\\]");
   #endif
-    return Arc(std::stoi(s[1]), std::stoi(s[2]));
+    return GraphArc(std::stoi(s[1]), std::stoi(s[2]));
   }
 
-  friend std::ostream& operator<<(std::ostream& out, const Arc& c)
+  friend std::ostream& operator<<(std::ostream& out, const GraphArc& c)
   {
     out << '(' << c.from << "->" << c.to << ')';
     return out;
@@ -59,7 +111,7 @@ struct Arc {
   * If it finds one, it changes the arc parameter to the next arc
   * in the sequence and returns true. Returns false otherwise.
   */
-  static bool findArcFromTo(const std::list<Arc>& arcs, Arc& arc)
+  static bool findArcFromTo(const std::list<GraphArc>& arcs, GraphArc& arc)
   {
     for (auto other : arcs) // Find next arc in the sequence
       // since they are not directed, any "from" can be connected
@@ -75,11 +127,11 @@ struct Arc {
     return false;
   }
 
-  static std::list<Arc> solutionToArcs(const std::vector<double>& sol,
-    std::map<int, Arc>& xvar)
+  static std::list<GraphArc> solutionToArcs(const std::vector<double>& sol,
+    std::map<int, GraphArc>& xvar, std::size_t startVar)
   {
-    std::list<Arc> res;
-    for (int i = 0; i < sol.size(); i++)
+    std::list<GraphArc> res;
+    for (int i = startVar; i < sol.size(); i++)
     {
       if (sol[i] > INTTOLERANCE)
         res.push_back(xvar[i]);
@@ -89,7 +141,7 @@ struct Arc {
 
 };
 
-inline bool operator<(const Arc& c1, const Arc& c2)
+inline bool operator<(const GraphArc& c1, const GraphArc& c2)
 {
   if (c1.from < c2.from)
     return true;
@@ -97,16 +149,16 @@ inline bool operator<(const Arc& c1, const Arc& c2)
     return false;
   return (c1.to < c2.to);
 }
-inline bool operator== (const Arc& c1, const Arc& c2)
+inline bool operator== (const GraphArc& c1, const GraphArc& c2)
 {
   return (c1.from == c2.from) && (c1.to == c2.to);
 }
 
 class Tour
 {
-  std::vector<Arc> arcs;
+  std::vector<GraphArc> arcs;
 public:
-  void add(const Arc& arc)
+  void add(const GraphArc& arc)
   {
     arcs.push_back(arc);
   }
@@ -129,8 +181,8 @@ public:
 
   friend std::ostream& operator<<(std::ostream& out, const Tour& t)
   {
-    std::set<Arc> toVisit(++t.arcs.begin(), t.arcs.end());
-    Arc current = *t.arcs.begin();
+    std::set<GraphArc> toVisit(++t.arcs.begin(), t.arcs.end());
+    GraphArc current = *t.arcs.begin();
     out << current.from << "-" << current.to;
     int lastTo = current.to;
     bool found = false;
@@ -168,17 +220,17 @@ public:
     return out;
   }
 
-  static std::vector<Tour> findSubtours(std::list<Arc> arcs)
+  static std::vector<Tour> findSubtours(std::list<GraphArc> arcs)
   {
     std::vector<Tour> subTours;
 
     while (arcs.size() > 0)
     {
       Tour t;
-      Arc start = arcs.front();
+      GraphArc start = arcs.front();
       t.add(start);
       arcs.remove(start);
-      while (Arc::findArcFromTo(arcs, start))
+      while (GraphArc::findArcFromTo(arcs, start))
       {
         t.add(start);
         arcs.remove(start);
@@ -199,8 +251,9 @@ std::set<int> setDiff(std::set<int> s1, std::set<int> s2)
 
 class MyGenericCallbackCut : public ampls::GenericCallback
 {
-  std::map<int, Arc> xvar;
-  std::map<Arc, int> xinverse;
+  std::size_t minXIndex;
+  std::map<int, GraphArc> xvar;
+  std::map<GraphArc, int> xinverse;
   std::set<int> vertices;
   int nrun;
   
@@ -208,13 +261,16 @@ class MyGenericCallbackCut : public ampls::GenericCallback
 public:
   MyGenericCallbackCut() : nrun(0) {}
 
-  void setMap(std::map<std::string, int> map, std::map<int, std::string> inversemap)
+  void setMap(std::map<std::string, int> map)
   {
+     minXIndex = map.size();
      for (auto it : map)
      {
-        Arc cur = Arc::fromVar(it.first);
+        GraphArc cur = GraphArc::fromVar(it.first);
         xvar[it.second] = cur;
         xinverse[cur] = it.second;
+        if (it.second < minXIndex)
+          minXIndex = it.second;
         vertices.insert(cur.from);
         vertices.insert(cur.to);
      }
@@ -229,8 +285,10 @@ public:
       for (auto d : s)
         if(d != 0)
           nnz++;
-      std::cout << "Number of non zeros in node solution: " << nnz << "\n";
+     // std::cout << "Number of non zeros in node solution: " << nnz << "\n";
     }
+    if (getAMPLWhere() == ampls::Where::MSG)
+      std::cout << getMessage() << "\n";
     // Get the generic mapping
     if (getAMPLWhere() == ampls::Where::MIPSOL)
     {
@@ -238,7 +296,7 @@ public:
       std::cout << "Obj="<< getValue(ampls::Value::OBJ) << "\n";
       nrun++;
       // Add the the cut!
-      auto arcs = Arc::solutionToArcs(getSolutionVector(), xvar);
+      auto arcs = GraphArc::solutionToArcs(getSolutionVector(), xvar, minXIndex);
       auto sts = Tour::findSubtours(arcs);
       std::cout << "Iteration " << nrun << ": Found " << sts.size() << " subtours. \n";
       int i = 0;
@@ -250,27 +308,27 @@ public:
         {
           auto stn = st.getNodes();
           auto nstn = setDiff(vertices, stn);
-          std::vector<Arc> toAdd;
+          std::vector<GraphArc> toAdd;
           for (int inside : stn) {
             for (int outside : nstn)
             {
               if (inside < outside)
-                toAdd.push_back(Arc(inside, outside));
+                toAdd.push_back(GraphArc(inside, outside));
               else
-                toAdd.push_back(Arc(outside, inside));
+                toAdd.push_back(GraphArc(outside, inside));
             }
           }
           std::vector<int> varsIndexToAdd;
-          std::vector<std::string> varsToAdd;
-          for (Arc a : toAdd)
+          for (GraphArc a : toAdd)
             varsIndexToAdd.push_back(xinverse[a]);
+          std::sort(varsIndexToAdd.begin(), varsIndexToAdd.end());
           std::vector<double> coeffs(varsIndexToAdd.size());
           std::fill(coeffs.begin(), coeffs.end(), 1);
           ampls::Constraint c= addLazyIndices(varsIndexToAdd.size(),
             varsIndexToAdd.data(), coeffs.data(),
             ampls::CutDirection::GE, 2);
         }
-        std::cout << "Added cuts. ";
+        std::cout << "Added cuts..";
       }
       std::cout << "Continue solving.\n";
       return 0;
@@ -284,8 +342,8 @@ double doStuff(ampls::AMPLModel& m)
 {
   // Set a (generic) callback
   MyGenericCallbackCut cb;
-  cb.setMap(m.getVarMap(), m.getVarMapInverse());
-
+  cb.setMap(m.getVarMapFiltered("X"));
+  m.enableLazyConstraints();
   m.setCallback(&cb);
   
   // Start the optimization process
@@ -296,13 +354,16 @@ double doStuff(ampls::AMPLModel& m)
   printf("\nObjective with callback (%s)=%f\n", m.driver(), obj);
 
   // Get the solution vector
-  std::map<int, Arc> xvar;
-  for (auto it : m.getVarMap())
+  std::map<int, GraphArc> xvar;
+  std::size_t minXIndex = INT_MAX;
+  for (auto it : m.getVarMapFiltered("X"))
   {
-    Arc cur = Arc::fromVar(it.first);
+    GraphArc cur = GraphArc::fromVar(it.first);
     xvar[it.second] = cur;
+    if (it.second < minXIndex)
+      minXIndex = it.second;
   }
-  auto a = Arc::solutionToArcs(m.getSolutionVector(), xvar);
+  auto a = GraphArc::solutionToArcs(m.getSolutionVector(), xvar, minXIndex);
   auto sts = Tour::findSubtours(a);
 
   // Print solution
@@ -314,11 +375,113 @@ double doStuff(ampls::AMPLModel& m)
 }
 
 
+
+#ifdef USE_amplapi
+
+void declareModel(ampl::AMPL& a) {
+
+  a.eval("set NODES ordered; param hpos{ NODES }; param vpos{NODES};");
+  a.eval("set PAIRS := {i in NODES, j in NODES : ord(i) < ord(j)};");
+  a.eval("param distance{ (i,j) in PAIRS }:= sqrt((hpos[j] - hpos[i]) **2 + (vpos[j] - vpos[i]) **2);");
+  a.eval("var X{ PAIRS } binary;");
+  a.eval("var Length;");
+  a.eval("minimize Tour_Length : Length;");
+  a.eval("subject to Visit_All{i in NODES } : sum{ (i, j) in PAIRS } X[i, j] + sum{ (j, i) in PAIRS } X[j, i] = 2;");
+  a.eval("c: Length = sum{ (i,j) in PAIRS } distance[i, j] * X[i, j];");
+}
+#include <sstream>
+#include <string>
+#include <fstream>
+
+std::string trim(const std::string& str)
+{
+  size_t first = str.find_first_not_of(' ');
+  if (std::string::npos == first)
+  {
+    return str;
+  }
+  size_t last = str.find_last_not_of(' ');
+  return str.substr(first, (last - first + 1));
+}
+#include <tuple>
+std::tuple<std::vector<double>,
+  std::vector<double>, std::vector<double>> readTSP(const char* path) {
+
+  std::ifstream infile(path);
+  std::string line;
+  int nitems = 0;
+  bool coords = false;
+  int node;
+  double x, y;
+  std::vector<double> nodes;
+  std::vector<double> xs, ys;
+  while (std::getline(infile, line))
+  {
+    if (nitems == 0) {
+      if (line.find("DIMENSION") != std::string::npos)
+      {
+        auto ss = trim(line.substr(line.find(":") + 1));
+        std::istringstream iss(ss);
+        if (!(iss >> nitems))
+          break; // errror
+      }
+      continue;
+    }
+    if (!coords)
+    {
+      if (line.find("NODE_COORD_SECTION") != std::string::npos)
+      {
+        coords = true;
+        continue;
+      }
+    }
+    if (coords) {
+      std::istringstream iss(trim(line));
+      if (iss >> node >> x >> y) {
+        nodes.push_back(node);
+        xs.push_back(x);
+        ys.push_back(y);
+      }
+    }
+  }
+  for (auto x : nodes)
+  {
+    printf("node: %d\n", x);
+  }
+  return std::make_tuple(nodes, xs, ys);
+}
+
+
+#endif
 int main(int argc, char** argv) {
 
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "tspg96.nl");
+
+#ifdef USE_amplapi
+  ampl::AMPL a;
+  try {
+    declareModel(a);
+  }
+  catch (const std::exception& e) {
+    std::cout << e.what();
+  }
+  auto t= readTSP("D:/Development/ampl/ampls-api/python/examples/tsp/gr96.tsp");
+  std::vector<double> nodes;
+  std::vector<double> xs, ys;
+  std::tie(nodes, xs, ys) = t;
+  auto df = ampl::DataFrame(1, { "NODES", "hpos", "vpos" });
+  df.setColumn("NODES", nodes.data(), nodes.size());
+  df.setColumn("hpos", xs.data(), nodes.size());
+  df.setColumn("vpos", ys.data(), nodes.size());
+  a.setData(df, "NODES");
+  a.eval("display NODES, hpos, vpos;");
+  auto m = AMPLAPIInterface::exportModel<ampls::XPRESSModel>(a);
+  doStuff(m);
+#else
+
+
 
 #ifdef USE_xpressmp
   // Load a model using Xpress driver
@@ -341,6 +504,7 @@ int main(int argc, char** argv) {
   ampls::CPLEXModel c = cplex.loadModel(buffer);
   // Use it as generic model
   doStuff(c);
+#endif
 #endif
 }
 ;

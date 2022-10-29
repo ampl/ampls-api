@@ -58,7 +58,7 @@ set(AMPLAPIDIR ${CMAKE_CURRENT_SOURCE_DIR}/../../libs/amplapi/${libdir})
 if(EXISTS ${AMPLAPIDIR}/lib)
   set(BUILD_AMPLAPI_EXAMPLES ON)
   add_library(amplapi SHARED IMPORTED)
-
+  set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_amplapi=1)
   
   if(WIN32)
   set_target_properties(
@@ -86,12 +86,12 @@ macro(addExample name category src)
 endmacro()
 
 if(PREPROCESSORDEFS)
-    set(EXAMPLES loadModel getInformation tsp errorDetection)
+    set(EXAMPLES loadModel getInformation errorDetection)
     foreach(e ${EXAMPLES})
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
     endforeach()
     if(BUILD_AMPLAPI_EXAMPLES)
-      foreach(e cuttingStock addEntities)
+      foreach(e cuttingStock addEntities tsp)
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
         target_link_libraries(ampls-${e} PRIVATE amplapi)
         add_custom_command ( TARGET ampls-${e} POST_BUILD
