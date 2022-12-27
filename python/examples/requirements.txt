@@ -1,5 +1,5 @@
 pip==21.1
-setuptools==40.8.0
+setuptools==65.5.1
 amplpy
 amplpy_cplex
 amplpy_gurobi
