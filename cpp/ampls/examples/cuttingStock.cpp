@@ -5,51 +5,6 @@
 
 #include "ampl/ampl.h"
 
-namespace AMPLAPIInterface
-{
-  namespace impl {
-
-    void doExport(ampl::AMPL& a) {
-      a.eval("option auxfiles cr;");
-      a.eval("write g___modelexport___;");
-    }
-
-    template <class T> T exportModel(ampl::AMPL& a);
-#ifdef USE_xgurobi
-    template<> ampls::XGurobiModel exportModel<ampls::XGurobiModel>(ampl::AMPL& a) {
-      doExport(a);
-      ampls::XGurobiDrv gurobi;
-      return gurobi.loadModel("___modelexport___.nl");
-    }
-#endif
-
-#ifdef USE_cplexmp
-    template<> ampls::CPLEXModel exportModel<ampls::CPLEXModel>(ampl::AMPL& a) {
-      doExport(a);
-      ampls::CPLEXDrv cplex;
-      return cplex.loadModel("___modelexport___.nl");
-    }
-#endif
-
-#ifdef USE_xpressmp
-    template<> ampls::XPRESSModel exportModel<ampls::XPRESSModel>(ampl::AMPL& a) {
-      doExport(a);
-      ampls::XPRESSDrv xpress;
-      return xpress.loadModel("___modelexport___.nl");
-    }
-#endif
-  }
-
-  template <class T> T exportModel(ampl::AMPL& a) {
-    return impl::exportModel<T>(a);
-  }
-
-  void importModel(ampl::AMPL& a, ampls::AMPLModel& g) {
-    g.writeSol();
-    a.eval("solution ___modelexport___.sol;");
-    a.eval(g.getRecordedEntities());
-  }
-};
 
 void declareModel(ampl::AMPL &a) {
   a.eval("option version;");
@@ -93,7 +48,7 @@ template <class T> void doStuff()
 {
   ampl::AMPL a;
   declareModel(a);
-  auto m= AMPLAPIInterface::exportModel<T>(a);
+  auto m= ampls::AMPLAPIInterface::exportModel<T>(a);
 
 
 }

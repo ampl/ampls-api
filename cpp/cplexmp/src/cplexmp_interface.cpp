@@ -5,7 +5,7 @@
 
 namespace ampls
 {
-CPLEXCallback* cpx::impl::CBWrap::setDefaultCB(CPXCENVptr env, void* cbdata,
+CPLEXCallback* impl::cpx::CBWrap::setDefaultCB(CPXCENVptr env, void* cbdata,
   int wherefrom, void* userhandle, int capabilities)
 {
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(userhandle);
@@ -16,7 +16,7 @@ CPLEXCallback* cpx::impl::CBWrap::setDefaultCB(CPXCENVptr env, void* cbdata,
   return cb;
 }
 
-int CPXPUBLIC cpx::impl::CBWrap::incumbent_callback_wrapper(CPXCENVptr env, void* cbdata,
+int CPXPUBLIC impl::cpx::CBWrap::incumbent_callback_wrapper(CPXCENVptr env, void* cbdata,
   int wherefrom, void* userhandle,
   double objval, double* x, int* isfeas_p, int* useraction_p) {
 
@@ -32,7 +32,7 @@ int CPXPUBLIC cpx::impl::CBWrap::incumbent_callback_wrapper(CPXCENVptr env, void
   return 0;
 }
 
-int CPXPUBLIC cpx::impl::CBWrap::heuristiccallbackfunc_wrapper(CPXCENVptr env,
+int CPXPUBLIC impl::cpx::CBWrap::heuristiccallbackfunc_wrapper(CPXCENVptr env,
   void* cbdata, int wherefrom, void* userhandle, 
   double* objval_p, double* x, int* checkfeas_p, int* useraction_p) {
   CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, ampls::CanDo::IMPORT_SOLUTION |
@@ -53,14 +53,14 @@ int CPXPUBLIC cpx::impl::CBWrap::heuristiccallbackfunc_wrapper(CPXCENVptr env,
   return 0;
 }
 
-int CPXPUBLIC cpx::impl::CBWrap::lp_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
+int CPXPUBLIC impl::cpx::CBWrap::lp_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
     void* userhandle)
 {
   CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, 0);
   return cb->run();
 }
 
-int CPXPUBLIC  cpx::impl::CBWrap::cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
+int CPXPUBLIC  impl::cpx::CBWrap::cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
   void* userhandle, int* useraction_p)
 {
   CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, 0);
@@ -72,12 +72,12 @@ int CPXPUBLIC  cpx::impl::CBWrap::cut_callback_wrapper(CPXCENVptr env, void* cbd
   return 0;
 }
 
-bool cpx::impl::CBWrap::skipMsgCallback = false;
+bool impl::cpx::CBWrap::skipMsgCallback = false;
 void CPXPUBLIC
-cpx::impl::CBWrap::msg_callback_wrapper(void* handle, const char* msg)
+impl::cpx::CBWrap::msg_callback_wrapper(void* handle, const char* msg)
 {
 
-  if (cpx::impl::CBWrap::skipMsgCallback)
+  if (impl::cpx::CBWrap::skipMsgCallback)
     return;
 
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(handle);
@@ -97,31 +97,13 @@ void CPLEXDrv::freeCPLEXEnv()
 }
 
 CPLEXModel CPLEXDrv::loadModelImpl(char** args) {
-  CPLEXModel m;
-  auto c = cpx::impl::AMPLloadCPLEXmodel(3, args);
-  m.solver_ = c;
-  if (m.solver_ == NULL)
-    throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
-  CPXLPptr modelptr = cpx::impl::AMPLgetCPLEXModel(m.solver_);
-  m.model_ = modelptr;
-  m.lastErrorCode_ = -1;
-  m.fileName_ = args[1];
-  return m;
+  return CPLEXModel(impl::cpx::AMPLSOpen_cplexmp(3, args), args[1]);
 }
 CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);
 }
-
-void CPLEXModel::writeSolImpl(const char* solFileName) {
-  // Disable msg callback while writing solution file
-  // to avoid spurious messages due to the driver implementation
-  cpx::impl::CBWrap::skipMsgCallback = true;
-  cpx::impl::AMPLSReportResults(solver_, solFileName);
-  cpx::impl::CBWrap::skipMsgCallback = false;
-}
-
 int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
-  cpx::impl::CBWrap::skipMsgCallback = false;
+  impl::cpx::CBWrap::skipMsgCallback = false;
   /* Now get the standard channels.  If an error, just call our
       message function directly. */
   CPXCHANNELptr cpxresults, cpxwarning, cpxerror, cpxlog;
@@ -136,7 +118,7 @@ int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
 
   /* Now set up the error channel first.  The label will be "cpxerror" */
 
-  status = CPXaddfuncdest(env, cpxerror, callback, cpx::impl::CBWrap::msg_callback_wrapper);
+  status = CPXaddfuncdest(env, cpxerror, callback, impl::cpx::CBWrap::msg_callback_wrapper);
   if (status) {
     fprintf(stderr, "Could not set up error message handler.\n");
     CPXgeterrorstring(env, status, errmsg);
@@ -147,15 +129,15 @@ int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
       generated errors will go through ourmsgfunc.  So we don't have
       to use CPXgeterrorstring to determine the text of the message. */
 
-  status = CPXaddfuncdest(env, cpxwarning, callback, cpx::impl::CBWrap::msg_callback_wrapper);
+  status = CPXaddfuncdest(env, cpxwarning, callback, impl::cpx::CBWrap::msg_callback_wrapper);
   if (status) {
-    cpx::impl::CBWrap::msg_callback_wrapper(callback, "Failed to set up handler for cpxwarning.\n");
+    impl::cpx::CBWrap::msg_callback_wrapper(callback, "Failed to set up handler for cpxwarning.\n");
     return 1;
   }
 
-  status = CPXaddfuncdest(env, cpxresults, callback, cpx::impl::CBWrap::msg_callback_wrapper);
+  status = CPXaddfuncdest(env, cpxresults, callback, impl::cpx::CBWrap::msg_callback_wrapper);
   if (status) {
-    cpx::impl::CBWrap::msg_callback_wrapper(callback, "Failed to set up handler for cpxresults.\n");
+    impl::cpx::CBWrap::msg_callback_wrapper(callback, "Failed to set up handler for cpxresults.\n");
     return 1;
   }
   return 0;
@@ -164,25 +146,25 @@ int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
 int CPLEXModel::setCallbackDerived(impl::BaseCallback* callback) {
   CPXENVptr p = getCPXENV();
   // Add the callback 
-  int status = CPXsetlazyconstraintcallbackfunc(p, cpx::impl::CBWrap::cut_callback_wrapper,
+  int status = CPXsetlazyconstraintcallbackfunc(p, impl::cpx::CBWrap::cut_callback_wrapper,
     callback);
   if (status)
     return status;
-  status = CPXsetusercutcallbackfunc(p, cpx::impl::CBWrap::cut_callback_wrapper,
+  status = CPXsetusercutcallbackfunc(p, impl::cpx::CBWrap::cut_callback_wrapper,
     callback);
   if (status)
     return status;
-  status = CPXsetmipcallbackfunc(p, cpx::impl::CBWrap::lp_callback_wrapper, callback);
+  status = CPXsetmipcallbackfunc(p, impl::cpx::CBWrap::lp_callback_wrapper, callback);
   if (status)
     return status;
-  status = CPXsetlpcallbackfunc(p, cpx::impl::CBWrap::lp_callback_wrapper, callback);
+  status = CPXsetlpcallbackfunc(p, impl::cpx::CBWrap::lp_callback_wrapper, callback);
   if (status)
     return status;
-  status = CPXsetincumbentcallbackfunc(p, cpx::impl::CBWrap::incumbent_callback_wrapper, callback);
+  status = CPXsetincumbentcallbackfunc(p, impl::cpx::CBWrap::incumbent_callback_wrapper, callback);
   if (status)
     return status;
 
-  status = CPXsetheuristiccallbackfunc(p, cpx::impl::CBWrap::heuristiccallbackfunc_wrapper, callback);
+  status = CPXsetheuristiccallbackfunc(p, impl::cpx::CBWrap::heuristiccallbackfunc_wrapper, callback);
   if (status)
     return status;
 

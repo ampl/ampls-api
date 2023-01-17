@@ -12,8 +12,9 @@
 namespace ampls
 {
 class XPRESSModel;
-namespace xpress {
+
 namespace impl {
+  namespace xpress {
 class CBWrap;
 enum class XPRESSWhere
 {
@@ -44,7 +45,7 @@ class XPRESSCallback : public impl::BaseCallback {
   char BUFFER[256];
 
   friend class XPRESSModel;
-  friend xpress::impl::CBWrap;
+  friend impl::xpress::CBWrap;
   // Stores the pointer to the XPRESS model being used, as passed from the callback
   XPRSprob prob_;
   // Stores the pointer to the data passed from XPRESS to the callback
@@ -80,13 +81,13 @@ public:
   const char* getMessage();
 
   Where::CBWhere getAMPLWhere() {
-    switch (static_cast<xpress::impl::XPRESSWhere>(where_))
+    switch (static_cast<impl::xpress::XPRESSWhere>(where_))
     {
-    case xpress::impl::XPRESSWhere::message:
+    case impl::xpress::XPRESSWhere::message:
       return Where::MSG;
-    case xpress::impl::XPRESSWhere::intsol:
+    case impl::xpress::XPRESSWhere::intsol:
       return Where::MIPSOL;
-    case xpress::impl::XPRESSWhere::optnode:
+    case impl::xpress::XPRESSWhere::optnode:
       return Where::MIPNODE;
     default:
       return Where::NOTMAPPED;

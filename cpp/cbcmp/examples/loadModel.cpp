@@ -1,7 +1,11 @@
-#include "gurobi_interface.h"
+#include "cbcmp_interface.h"
 #include "ampls/ampls.h"
 
-#include "gurobi_c.h" 
+
+#define CBC_EXTERN_C
+#include "CbcModel.hpp"
+#include "CbcSolver.hpp"
+#include "Cbc_C_Interface.h"
 
 #include "test-config.h" // for MODELS_DIR
 
@@ -9,9 +13,9 @@
 
 const char* MODELNAME = "testmodel.nl";
 
-/* Demonstrates how to load a model using ampls gurobi interface,
+/* Demonstrates how to load a model using ampls cbc interface,
    and how to obtain basic information with ampls routines and
-   via gurobi c library.
+   via cbc c library.
 */
 
 
@@ -20,26 +24,26 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
 
-  // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
-  ampls::GurobiModel model = gurobi.loadModel(buffer);
+  // Load a model using cbc driver
+  ampls::CbcDrv cbcdrv;
+  ampls::CbcModel model = cbcdrv.loadModel(buffer);
 
   // Start the optimization process
   model.optimize();
   // Get the pointer to the native model pointer, used with 
-  // the gurobi C library functions below
-  GRBmodel* grb = model.getGRBmodel();
+  // the cbc C library functions below
+  Cbc_Model* cbc = model.getCBCmodel();
 
    // Access objective value in various ways
   // 1 via ampls interface
   double obj = model.getObj();
   printf("Objective via ampls generic interface: %f\n", obj);
-  // 2 Access gurobi attribute with shortcut function getDoubleAttr
-  obj = model.getDoubleAttr(GRB_DBL_ATTR_OBJVAL);
+  // 2 Access 
+ // obj = model.getDoubleAttr(GRB_DBL_ATTR_OBJVAL);
   printf("Objective via shortcut: %f\n", obj);
-  // 3 Use Gurobi C API directly
-  GRBgetdblattr(grb, GRB_DBL_ATTR_OBJ, &obj);
-  printf("Objective from gurobi: %f\n", obj);
+  // 3 Use Cbc C API directly
+  obj = Cbc_getObjValue(cbc);
+  printf("Objective from cbc: %f\n", obj);
 
   // Get solution vector via generic interface
   std::vector<double> vars = model.getSolutionVector();
@@ -54,11 +58,9 @@ int main(int argc, char** argv) {
       printf("Index: %i AMPL: %s=%f\n", r.second, r.first.data(), value);
   }
   
-  // Get solution vector via Gurobi C API
+  // Get solution vector via Cbc C API
   int nc;
-  GRBgetintattr(grb, GRB_INT_ATTR_NUMVARS, &nc);
-  double* varsFromGurobi = new double[nc];
-  GRBgetdblattrarray(grb, GRB_DBL_ATTR_X, 0, nc, varsFromGurobi);
+  const double* varsFromCbc = Cbc_getColSolution(cbc);
 
   // Get inverse map and display the variables with solver ordering
   auto gf = model.getVarMapInverse();
@@ -68,9 +70,5 @@ int main(int argc, char** argv) {
     if (vars[i] != 0)
       printf("Index: %i AMPL: %s=%f\n", i, gf[i].c_str(), vars[i]);
   }
-  delete[] varsFromGurobi;
-
-
-
   return 0;
 }

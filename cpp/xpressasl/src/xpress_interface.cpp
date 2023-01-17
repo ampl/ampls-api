@@ -5,9 +5,8 @@
 
 namespace ampls
 {
-
+namespace xpress {
 namespace impl {
-  namespace xpress {
 XPRESSCallback* CBWrap::setDefaultCB(XPRSprob prob, void* data,
   XPRESSWhere wherefrom, int capabilities)
 {
@@ -42,28 +41,47 @@ void XPRS_CC CBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, int* 
 
 
 XPRESSDrv::~XPRESSDrv() {
-  //if (owning_)
-    //impl::xpress::AMPLXPRESSfreeEnv();
+  if (owning_)
+    xpress::impl::AMPLXPRESSfreeEnv();
 }
 
 
 XPRESSModel XPRESSDrv::loadModelImpl(char** args) {
-  return XPRESSModel(impl::xpress::AMPLSOpen_xpress(3, args), args[1]);
+  owning_ = true;
+  XPRESSModel m;
+  m.state_ = xpress::impl::AMPLXPRESSloadModel(3, args, &m.prob_);
+  if (m.state_ == NULL)
+  {
+    const char* error = xpress::impl::AMPLXPRESSgetUinfo();
+    if (error)
+      throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
+    else
+      throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
+  }
+  m.fileName_ = args[1];
+  m.driver_ = *this;
+  return m;
 }
 XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);
 }
 
+
+void XPRESSModel::writeSolImpl(const char* solFileName) {
+  xpress::impl::AMPLXPRESSwriteSolution(state_, prob_, solFileName);
+}
+
+
 int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
    
   // Add the callbacks
-  int status = XPRSsetcbintsol(prob_, impl::xpress::CBWrap::intsol_callback_wrapper, 
+  int status = XPRSsetcbintsol(prob_, xpress::impl::CBWrap::intsol_callback_wrapper, 
     callback);
   AMPLSXPRSERRORCHECK("XPRSsetcbintsol")
-  status = XPRSsetcbmessage(prob_, impl::xpress::CBWrap::message_callback_wrapper,
+  status = XPRSsetcbmessage(prob_, xpress::impl::CBWrap::message_callback_wrapper,
     callback);
   AMPLSXPRSERRORCHECK("XPRSsetcbmessage")
-  status = XPRSsetcboptnode(prob_, impl::xpress::CBWrap::optnode_callback_wrapper,
+  status = XPRSsetcboptnode(prob_, xpress::impl::CBWrap::optnode_callback_wrapper,
     callback);
    AMPLSXPRSERRORCHECK("XPRSsetcboptnode")
   return status;

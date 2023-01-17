@@ -12,23 +12,23 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 set(AMPLS_BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 option(BUILD_SWIG_WRAPPERS "Build swig wrappers" ON)
-option(BUILD_DOC "Build documentation" ON)
+option(BUILD_AMPLS_DOC "Build AMPLS documentation" OFF)
 
 # Set solvers to build.
 function(defSolver name solvername libtargetname)
+  cmake_parse_arguments(DEFSOLVER "" "" "ADDITIONALINCLUDES" ${ARGN})
   list(APPEND AMPLS_SOLVER_NAMES ${name})
   set(AMPLS_SOLVER_NAMES ${AMPLS_SOLVER_NAMES} PARENT_SCOPE)
-
   set(${name}_SOLVER ${solvername} PARENT_SCOPE)
   set(${name}_TARGET ${libtargetname} PARENT_SCOPE)
+  set(${name}_ADDITIONALINCLUDES ${DEFSOLVER_ADDITIONALINCLUDES} PARENT_SCOPE)
 endfunction()
 
-defSolver(x-gurobi gurobi gurobi)
-defSolver(gurobi gurobi gurobiasl)
-defSolver(cplex cplex cplex)
-defSolver(cplexmp cplex cplexmp)
-defSolver(xpress xpress xpress)
-defSolver(xpressmp xpress xpressmp)
+defSolver(gurobi gurobi gurobi "")
+defSolver(cplex cplex cplex "")
+defSolver(cplexmp cplex cplexmp "")
+defSolver(xpress xpress xpress "")
+defSolver(cbcmp cbc cbcmp "")#ADDITIONALINCLUDES "${CMAKE_BINARY_DIR}/_deps/cbc-src/Cbc/src" "${CMAKE_BINARY_DIR}/_deps/coinutils-src/CoinUtils/src")
 
 set(BUILD_AMPLS "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
 
@@ -65,7 +65,7 @@ else()
   message(WARNING "Specify the solvers to build with -DBUILD_AMPLS=solvername1,..,solvernamen or -DBUILD=all")
 endif()
 
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 include(addPrefix) # for add_prefix and add_to_folder
 
 # Set global compiler settings
@@ -115,9 +115,9 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/952)
-  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2010)
-  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/39.01.02)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1000)
+  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2210)
+  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/41.01.01)
 else()
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs)
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi)
@@ -125,28 +125,74 @@ else()
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress)
 endif()
 
-foreach(s ${AMPLS_SOLVER_NAMES})
-  set(${s}_INCLUDE_DIR ${${s}_BASE_DIR}/include)
-endforeach()
+macro(CreateSolverLib name includedirs lib importlib)
+     add_library(${name} SHARED IMPORTED)
+    if(WIN32)
+      set_property(TARGET ${name} PROPERTY IMPORTED_LOCATION ${lib})
+      set_property(TARGET ${name} PROPERTY IMPORTED_IMPLIB ${importlib})
+    else()
+      set_property(TARGET ${name} PROPERTY IMPORTED_LOCATION ${lib})
+    endif()
+    set_target_properties(${name}  PROPERTIES INTERFACE_INCLUDE_DIRECTORIES ${includedirs})
+endmacro()
 
+
+
+macro(FindSolverLib OUTPUTTARGETNAME BASELIBFILENAME)
+    if(WIN32)
+        string(TOLOWER ${BASELIBFILENAME} LIBFILENAME)
+        string(REPLACE ".dll" ".lib" DLLFILENAME ${LIBFILENAME})
+    else()
+        set(LIBFILENAME ${BASELIBFILENAME})
+    endif()
+    find_library(LIB_LIBFILE ${LIBFILENAME} PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
+    if(NOT LIB_LIBFILE)
+      message(FATAL_ERROR "Library ${LIBFILENAME} not found in ${AMPLS_DIR}")
+    endif()
+
+    if(WIN32)
+      find_file(LIB_DLLFILE ${solver}-lib.dll PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
+    endif()
+    add_library(${OUTPUTTARGETNAME} SHARED IMPORTED)
+    if(WIN32)
+      set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_LOCATION ${LIB_DLLFILE})
+      set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_IMPLIB ${LIB_LIBFILE})
+    else()
+      set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_LOCATION ${LIB_LIBFILE})
+    endif()
+endmacro()
 if(WIN32)
-    set(gurobi_LIBRARY "${gurobi_BASE_DIR}/lib/win64/gurobi95.lib"
-                       "${gurobi_BASE_DIR}/lib/win64/gurobi95.dll")
-    set(cplex_LIBRARY "${cplex_BASE_DIR}/lib/win64/cplex2010.lib"
-                      "${cplex_BASE_DIR}/lib/win64/cplex2010.dll")
-    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/win64/xprs.lib)
+    message("Here")
+    set(sys "/lib/win64")
+    CreateSolverLib(gurobi-solverlib ${gurobi_BASE_DIR}/include 
+    ${gurobi_BASE_DIR}/${sys}/gurobi100.dll ${gurobi_BASE_DIR}/${sys}/gurobi100.lib)
+    set(gurobi-solver-deps gurobi-solverlib)
+    
+    CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
+      ${cplex_BASE_DIR}/${sys}/cplex2210.dll
+      ${cplex_BASE_DIR}/${sys}/cplex2210.lib)
+    set(cplex-solver-deps cplex-solverlib)
+    
+    CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
+      ${xpress_BASE_DIR}/${sys}/xprs.dll
+      ${xpress_BASE_DIR}/${sys}/xprs.lib)
+    set(xpress-solver-deps xpress-solverlib)
+    set(cbc-solver-deps Coin::CbcSolver)
+
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/win64) # AMPL base driver library locations
 elseif(APPLE)
+    set(sys "/lib/osx64")
     set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/osx64/libgurobi91.dylib)
     set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/osx64/libcplex2010.dylib)
-    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/osx64/libxprs.dylib
-                      ${xpress_BASE_DIR}/lib/osx64/libxprl.dylib)
+    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/osx64/libxprs.dylib)
+                     # ${xpress_BASE_DIR}/lib/osx64/libxprl.dylib)
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/osx64) # AMPL base driver library locations
 else()
+    set(sys "/lib/linux64")
     set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/linux64/libgurobi91.so)
     set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/linux64/libcplex2010.so)
-    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/linux64/libxprs.so.37.01
-                        ${xpress_BASE_DIR}/lib/linux64/libxprl.so.x8.11 )
+    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/linux64/libxprs.so.37.01)
+                        #${xpress_BASE_DIR}/lib/linux64/libxprl.so.x8.11 )
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()
 
@@ -165,7 +211,9 @@ endmacro()
 add_subdirectory(cpp/ampls)
 
 
-function(AddSolverStub solver targetbase libname includes libs)
+function(AddSolverStub solver targetbase libname)
+  cmake_parse_arguments(ADDSOLVER "" "LIBS" "ADDITIONALINCLUDES" ${ARGN})
+
   set(TARGETNAME ${libname}-drv)
   set(DIR_CPP ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${libname})
   set(DIR_CPP_SRC ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${libname}/src)
@@ -173,35 +221,24 @@ function(AddSolverStub solver targetbase libname includes libs)
   set(DIR_SWIG ${CMAKE_CURRENT_SOURCE_DIR}/cpp/${libname}/swig)
   set(DIR_PYTHON ${CMAKE_CURRENT_SOURCE_DIR}/python/${libname})
   set(DIR_CSHARP ${CMAKE_CURRENT_SOURCE_DIR}/csharp/${libname})
+  
   # On windows I find both import lib and dll file on other systems
   # i'll need just one
   set(IMPORTLIB ${targetbase}-lib)
   if(NOT TARGET ${IMPORTLIB})
-    set(LIBFILENAME ${libname}-lib)
-    find_library(${solver}LIBFILE ${LIBFILENAME} PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
-    if(NOT ${solver}LIBFILE)
-      message(FATAL_ERROR "AMPL solver library ${solver}-lib not found in ${AMPLS_DIR}")
-    endif()
-    if(WIN32)
-      find_file(${solver}DLLFILE ${solver}-lib.dll PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
-    endif()
-    add_library(${IMPORTLIB} SHARED IMPORTED)
-    if(WIN32)
-      set_property(TARGET  ${IMPORTLIB} PROPERTY IMPORTED_LOCATION ${${solver}DLLFILE})
-      set_property(TARGET  ${IMPORTLIB} PROPERTY IMPORTED_IMPLIB ${${solver}LIBFILE})
-    else()
-      set_property(TARGET ${IMPORTLIB} PROPERTY IMPORTED_LOCATION ${${solver}LIBFILE})
-    endif()
+      FindSolverLib(${IMPORTLIB} ${libname}-lib)
   endif()
 
   add_prefix(
     DRV_SOURCES ${DIR_CPP}/ include/${libname}_interface.h
     src/${libname}_interface.cpp include/${libname}_callback.h
     src/${libname}_callback.cpp)
+  set(libs ${ADDSOLVER_LIBS})
+  set(additionalincludes ${ADDSOLVER_ADDITIONALINCLUDES})
   add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
-  target_link_libraries(${TARGETNAME} ampls ${libs} ${IMPORTLIB})
+  target_link_libraries(${TARGETNAME} PUBLIC ampls ${libs} ${IMPORTLIB})
   target_include_directories(
-    ${TARGETNAME} PUBLIC ${includes} ${DIR_CPP_INCLUDE} ${ampls_INCLUDE})
+    ${TARGETNAME} PUBLIC ${DIR_CPP_INCLUDE} ${ampls_INCLUDE} ${additionalincludes})
   add_to_folder(${targetbase} ${TARGETNAME})
   if(NOT WIN32)
     target_compile_options(${TARGETNAME} PRIVATE -fPIC)
@@ -224,7 +261,7 @@ function(AddSolverStub solver targetbase libname includes libs)
   # Tests
   add_prefix(TEST_SOURCES ${DIR_CPP}/test/ ${libname}-test.cpp)
   add_executable(${TARGETNAME}-test ${TEST_SOURCES})
-  target_link_libraries(${TARGETNAME}-test ${libs} ${TARGETNAME})
+  target_link_libraries(${TARGETNAME}-test ${TARGETNAME})
   target_include_directories(
     ${TARGETNAME}-test
     PRIVATE ${GENERATED_INCLUDE_DIR} # for test-config
@@ -265,7 +302,8 @@ endfunction()
 foreach(s ${AMPLS_SOLVER_NAMES})
 if(ENABLE_${s})
   set(SOLVERNAME ${${s}_SOLVER})
-  addsolverstub(${SOLVERNAME} ${${s}_TARGET} ${s} ${${SOLVERNAME}_INCLUDE_DIR} ${${SOLVERNAME}_LIBRARY})
+  addsolverstub(${SOLVERNAME} ${${s}_TARGET} ${s} LIBS ${${SOLVERNAME}-solver-deps}
+                ADDITIONALINCLUDES ${${s}_ADDITIONALINCLUDES})
 endif()
 endforeach()
 
@@ -280,7 +318,7 @@ endif()
 
 # Add the documentation, check for the required programs is implemented
 # in the inner CMake file
-if(BUILD_DOC)
+if(BUILD_AMPLS_DOC)
   add_subdirectory("doc")
 endif()
 

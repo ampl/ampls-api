@@ -1,2 +1,2 @@
 include("../createCsharpProject.cmake")
-createCsharpProject(gurobi)
+createCsharpProject(gurobi gurobi gurobi)

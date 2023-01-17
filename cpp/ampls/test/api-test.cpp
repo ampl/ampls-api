@@ -1,7 +1,8 @@
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
-#include <cstring>
+#include<iostream>
+#include<string>
 
 const char* MODELNAME = "tsp.nl";
 /*
@@ -93,39 +94,65 @@ class CCB : public ampls::GenericCallback
 
 double doStuff(ampls::AMPLModel& m, const char *name)
 {
+  
+  int i = 5;
+  for (auto o : m.getOptions())
+  {
+    std::cout << o.toString() << std::endl;
+    i--;
+    if (i == 0)
+      break;
+  }
+
   CCB b;
   m.setCallback(&b);
   m.optimize();
-  m.getVarMap();
+
   double obj = m.getObj();
   printf("Solution with optimizer %s=%f\n", name, obj);
   return obj;
 }
+
+
 int main(int argc, char** argv) {
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
+
 #ifdef USE_cplexmp
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
-  cplex.setOptions({ "outlev=1" });
   ampls::CPLEXModel c = cplex.loadModel(buffer);
   // Use it as generic model
   doStuff(c, "cplex");
 #endif
-#ifdef USE_xgurobi
+
+
+#ifdef USE_gurobi
   // Load a model using gurobi driver
-  ampls::XGurobiDrv gurobi;
-  ampls::XGurobiModel g = gurobi.loadModel(buffer);
+  ampls::GurobiDrv gurobi;
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
   doStuff(g, "gurobi");
 #endif
 
-#ifdef USE_xpressmp
+#ifdef USE_xpress
   // Load a model using CPLEX driver
   ampls::XPRESSDrv xpress;
   ampls::XPRESSModel x = xpress.loadModel(buffer);
+  for (auto o : x.getOptions())
+    printf("%s\n", o.toString().c_str());
   // Use it as generic model
   doStuff(x, "xpress");
 #endif
+  
+
+#ifdef USE_cbcmp
+  // Load a model using gurobi driver
+  ampls::CbcDrv cbc;
+  ampls::CbcModel cbcmodel = cbc.loadModel(buffer);
+  // Use it as generic model
+  doStuff(cbcmodel, "cbc");
+#endif
+
 }

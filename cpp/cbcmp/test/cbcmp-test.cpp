@@ -1,5 +1,5 @@
-#include "gurobi_interface.h"
-#include "gurobi_callback.h"
+#include "cbcmp_interface.h"
+#include "cbcmp_callback.h"
 
 #include "test-config.h" // for MODELS_DIR
 #include <cstring>
@@ -8,12 +8,13 @@
 #include <cmath>
 
 const char* MODELNAME = "testmodel.nl";
-
-class MyGurobiCutCallback : public ampls::GurobiCallback
+/*
+class MyCbcCutCallback : public ampls::CbcCallback
 {
   int run()
   {
     int ret = 0;
+    /*
     if (getWhere() == GRB_CB_MESSAGE)
     {
       printf("%s", getMessage());
@@ -34,7 +35,7 @@ class MyGurobiCutCallback : public ampls::GurobiCallback
     return 0;
   }
 };
-class MyGurobiCallback : public ampls::GurobiCallback
+class MyCbcCallback : public ampls::CbcCallback
 {
   int lastIter = 0;
 public:
@@ -61,7 +62,7 @@ public:
     }
     else if (getWhere() == GRB_CB_SIMPLEX)
     {
-      /* Simplex callback */
+      // Simplex callback 
       double itcnt, obj, pinf, dinf;
       int    ispert;
       char   ch;
@@ -85,14 +86,14 @@ public:
       double objBnd = getDouble(GRB_CB_MIP_OBJBND);
       if (fabs(objBest - objBnd) < 0.1 * (1.0 + fabs(objBest))) {
         printf("Stop early - 10%% gap achieved\n");
-        GRBterminate(((ampls::GurobiModel*)this->model_)->getGRBmodel());
+        GRBterminate(((ampls::CbcModel*)this->model_)->getGRBmodel());
       }
     }
     printf("** End of callback handler **\n\n");
     return 0;
   }
 };
-
+*/
 int main(int argc, char** argv) {
 
   int res = 0;
@@ -101,18 +102,16 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
 
-  ampls::GurobiDrv d;
-  ampls::GurobiModel m = d.loadModel(buffer);
-  
-  auto options = m.getOptions();
-  for (auto o : options)
-    printf("%s\n", o.toString().c_str());
+  ampls::CbcDrv d;
+  ampls::CbcModel m = d.loadModel(buffer);
 
-  m.setOption("mip:return_gap", 1);
-  printf("Option=%d\n", m.getOption("mip:return_gap"));
+  int i = 0;
+  //const char*const* option = m.getOptions();
+  //for (; *option != nullptr; option++)
+  //      printf("%d-%s\n", i++, *option);
   m.enableLazyConstraints();
-  MyGurobiCallback cb;
-  res = m.setCallback(&cb);
+  //MyCbcCallback cb;
+  //res = m.setCallback(&cb);
   if (res != 0)
   {
     printf("ERROR!!! %i\n", res);
@@ -125,15 +124,11 @@ int main(int argc, char** argv) {
   double obj = m.getObj();
   printf("Objective: %f\n", obj);
 
-  // Access gurobi attribute with shortcut function getDoubleAttr
-  obj = m.getDoubleAttr(GRB_DBL_ATTR_OBJVAL);
-  printf("Objective from shortcut: %f\n", obj);
+  // Use Cbc C API to access attributes
+  Cbc_Model* mm = m.getCBCmodel();
+  obj = Cbc_getObjValue(mm);
+  printf("Objective from cbc: %f\n", obj);
 
-  // Use Gurobi C API to access attributes
-  GRBmodel* grbm = m.getGRBmodel();
-  GRBgetdblattr(grbm, GRB_DBL_ATTR_OBJ, &obj);
-  printf("Objective from gurobi: %f\n", obj);
-  m.writeSol();
   // Get solution vector via generic interface
   std::vector<double> vars = m.getSolutionVector();
   // Get map and display the variables ordered as AMPL stores them
@@ -146,12 +141,13 @@ int main(int argc, char** argv) {
     if (value != 0)
       printf("Index: %i AMPL: %s=%f\n", r.second, r.first.data(), value);
   }
+
   
-  // Get solution vector via Gurobi C API
-  int nc;
+  // Get solution vector via Cbc C API
+  /*int nc;
   GRBgetintattr(grbm, GRB_INT_ATTR_NUMVARS, &nc);
-  double* varsFromGurobi = new double[nc];
-  GRBgetdblattrarray(grbm, GRB_DBL_ATTR_X, 0, nc, varsFromGurobi);
+  double* varsFromCbc = new double[nc];
+  GRBgetdblattrarray(grbm, GRB_DBL_ATTR_X, 0, nc, varsFromCbc);
 
   // Get inverse map and display the variables with solver ordering
   auto gf = m.getVarMapInverse();
@@ -161,5 +157,5 @@ int main(int argc, char** argv) {
     if (vars[i] != 0)
       printf("Index: %i AMPL: %s=%f\n", i, gf[i].c_str(), vars[i]);
   }
-  delete[] varsFromGurobi;
+  delete[] varsFromCbc;*/
 }

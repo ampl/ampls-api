@@ -14,7 +14,9 @@ int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
   int cutType[1] = { 1 };
   char sense[1] = { toXPRESSRowType[(int)c.sense()] };
   double rhs[1] = { c.rhs() };
-  int start[2] = { 0, (int)c.indices().size()};
+  int start[2] = { 0, (int)c.indices().size() };
+
+  printf("I have %d vars and %d cons\n", model_->getNumVars(), model_->getNumCons());
   return XPRSaddcuts(prob_, 1, cutType, sense, rhs, start,
     c.indices().data(), c.coeffs().data());
 }
@@ -23,20 +25,20 @@ int XPRESSCallback::getSolution(int len, double* sol) {
   int nvars = model_->getNumVars();
   if (len < nvars)
     throw AMPLSolverException::format("Must allocate an array of at least %d elements.", nvars);
-  if (where_ == (int)impl::xpress::XPRESSWhere::prenode)
+  if (where_ == (int)xpress::impl::XPRESSWhere::prenode)
     return XPRSgetpresolvesol(prob_, sol, NULL, NULL, NULL);
-  if ((where_ == (int)impl::xpress::XPRESSWhere::optnode) ||
-    (where_ == (int)impl::xpress::XPRESSWhere::intsol))
+  if ((where_ == (int)xpress::impl::XPRESSWhere::optnode) ||
+    (where_ == (int)xpress::impl::XPRESSWhere::intsol))
     return XPRSgetlpsol(prob_, sol, NULL, NULL, NULL);
 
   throw ampls::AMPLSolverException("Cannot get the solution vector in this stage.");
 }
 
-using impl::xpress::XPRESSWhere;
+using xpress::impl::XPRESSWhere;
 
 const char* XPRESSCallback::getWhereString()
 {
-  impl::xpress::XPRESSWhere proxy = (impl::xpress::XPRESSWhere)where_;
+  xpress::impl::XPRESSWhere proxy = (xpress::impl::XPRESSWhere)where_;
   switch (proxy)
   {
   case XPRESSWhere::message: return "message";

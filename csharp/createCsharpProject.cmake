@@ -1,4 +1,5 @@
 macro(createCsharpProject solvername basesolvername targetlibname)
+message("createCsharpProject ${solvername} ${basesolvername} ${targetlibname})")
 # C# API Names and paths
 set(CSHARP_SWIG_API ${solvername}sharp_c) # name of swig generated wrapper
 

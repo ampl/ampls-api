@@ -1,5 +1,5 @@
-#ifndef GUROBI_CALLBACK_H_INCLUDE_
-#define GUROBI_CALLBACK_H_INCLUDE_
+#ifndef CBC_CALLBACK_H_INCLUDE_
+#define CBC_CALLBACK_H_INCLUDE_
 
 #include <string>
 #include <vector>
@@ -7,16 +7,17 @@
 
 #include "ampls/ampls.h"
 
-#include "gurobi_c.h"
+
+#include "Cbc_C_Interface.h"
 
 namespace ampls {
-namespace impl{ namespace grb {
-int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata); 
+namespace cbcmp { namespace impl{
+int callback_wrapper(void* model, void* cbdata, int where, void* usrdata); 
 } }
-class GurobiModel;
+class CbcModel;
 
 /**
-* Base class for Gurobi callbacks, inherit from this to declare a
+* Base class for Cbc callbacks, inherit from this to declare a
 * callback to be called at various stages of the solution process.
 * Provides all mapping between solver-specific and generic values.
 * To implement a callback, you should implement the run() method and
@@ -26,12 +27,13 @@ class GurobiModel;
 * information about the progress of the optimization and can modify the behaviour
 * of the solver.
 */
-class GurobiCallback : public impl::BaseCallback {
-  friend int impl::grb::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
-  friend class GurobiModel;
+class CbcCallback : public impl::BaseCallback {
+  friend int cbcmp::impl::callback_wrapper(void* model, void* cbdata, int where, void* usrdata);
+  friend class CbcModel;
   void* cbdata_;
   static char toGRBSense(ampls::CutDirection::Direction dir)
   {
+    /*
     switch (dir)
     {
     case CutDirection::EQ:
@@ -40,7 +42,7 @@ class GurobiCallback : public impl::BaseCallback {
       return GRB_GREATER_EQUAL;
     case CutDirection::LE:
       return GRB_LESS_EQUAL;
-    }
+    }*/
     throw std::runtime_error("Unexpected CutDirection value");
   }
 
@@ -52,7 +54,7 @@ protected:
 
 public:
 
-  GurobiCallback() : cbdata_(NULL) {}
+  CbcCallback() : cbdata_(NULL) {}
   
   virtual int run() = 0;
   /**
@@ -60,7 +62,7 @@ public:
   */
   const char* getWhereString();
   /**
-  To get the gurobi log message
+  To get the cbc log message
   */
   const char* getMessage();
 
@@ -69,51 +71,53 @@ public:
   int getSolution(int len, double* sol);
   double getObj();
 
-  // ************** Gurobi specific **************
-  /** Get CBdata, useful for calling gurobi c library functions */
+  // ************** Cbc specific **************
+  /** Get CBdata, useful for calling cbc c library functions */
   void* getCBData() { return cbdata_; }
-  /** * Get the underlying gurobi model pointer */
-  GRBmodel* getGRBModel();
+  /** * Get the underlying cbc model pointer */
+  CbcModel* getCBCModel();
   /** Terminate the solution */
   void terminate();
-  /** Get an integer attribute (using gurobi C library enumeration to specify what)*/
+  /** Get an integer attribute (using cbc C library enumeration to specify what)*/
   int getInt(int what) {
     int res;
-    int status = GRBcbget(cbdata_, where_, what, &res);
-    if (status)
-      throw ampls::AMPLSolverException::format("Error while getting int attribute, code: %d", status);
-    return res;
+    //TODO
+  //  int status = GRBcbget(cbdata_, where_, what, &res);
+  //  if (status)
+   //   throw ampls::AMPLSolverException::format("Error while getting int attribute, code: %d", status);
+    return 0;
   }
-  /** Get a double attribute (using gurobi C library enumeration to specify what)*/
+  /** Get a double attribute (using cbc C library enumeration to specify what)*/
   double getDouble(int what) {
     double res;
-    int status = GRBcbget(cbdata_, where_, what, &res);
-    if (status)
-      throw ampls::AMPLSolverException::format("Error while getting double, code: %d", status);
-    return res;
+    //TODO
+      //  int status = GRBcbget(cbdata_, where_, what, &res);
+      //  if (status)
+       //   throw ampls::AMPLSolverException::format("Error while getting int attribute, code: %d", status);
+    return 0;
   }
-  /** Get a double array attribute (using gurobi C library enumeration to specify what)*/
+  /** Get a double array attribute (using cbc C library enumeration to specify what)*/
   std::vector<double> getDoubleArray(int what) {
     int len = model_->getNumVars();
-    std::vector<double> res;
-    res.resize(len);
-    int status = GRBcbget(cbdata_, where_, what, res.data());
-    if (status)
-      throw ampls::AMPLSolverException::format("Error while getting double attribute, code: %d", status);
-    return res;
+    //TODO
+      //  int status = GRBcbget(cbdata_, where_, what, &res);
+      //  if (status)
+    //throw ampls::AMPLSolverException::format("Error while getting int attribute, code: %d", status);
+    return std::vector<double>();
   }
   /** Set the current solution */
   double setSolution(double* x)
   {
     double obj;
-    int status = GRBcbsolution(cbdata_, x, &obj);
-    if (status)
-      throw ampls::AMPLSolverException::format("Error while setting solution, code: %d", status);
-    return obj;
+    //TODO
+      //  int status = GRBcbget(cbdata_, where_, what, &res);
+      //  if (status)
+       //   throw ampls::AMPLSolverException::format("Error while getting int attribute, code: %d", status);
+    return 0;
   }
 
   virtual Where::CBWhere getAMPLWhere() {
-    switch (where_)
+  /* switch (where_)
     {
     case GRB_CB_MESSAGE:
       return Where::MSG;
@@ -130,8 +134,10 @@ public:
     default:
       return Where::NOTMAPPED;
     }
+    */
+    return Where::NOTMAPPED;
   }
-  /** Get a value (using gurobi C library enumeration to specify what)*/
+  /** Get a value (using cbc C library enumeration to specify what)*/
   Variant get(int what);
   
   virtual Variant getValue(Value::CBValue v);
@@ -141,7 +147,7 @@ public:
 
   std::vector<double> getValueArray(Value::CBValue v)
   {
-    switch (v)
+   /* switch (v)
     {
     case Value::MIP_SOL_RELAXED:
       if (where_ == GRB_CB_MIPNODE)
@@ -150,10 +156,10 @@ public:
         GRBcbget(cbdata_, where_, GRB_CB_MIPNODE_REL, res.data());
         return res;
       }
-    }
+    }*/
     return std::vector<double>();
   }
 };
 
 } // namespace
-#endif // GUROBI_CALLBACK_H_INCLUDE_
+#endif // CBC_CALLBACK_H_INCLUDE_

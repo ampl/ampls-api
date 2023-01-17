@@ -4,7 +4,7 @@
 #include <memory> // for unique_ptr
 namespace ampls
 {
-int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
+int impl::grb::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata)
 {
   GurobiCallback* cb = (GurobiCallback*)usrdata;
   cb->cbdata_ = cbdata;
@@ -24,46 +24,18 @@ int grb::impl::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* 
 }
 
 GurobiDrv::~GurobiDrv() {
-  freeGurobiEnv();
 }
 
-void GurobiDrv::freeGurobiEnv()
-{
-  grb::impl::freeEnvironment();
-}
 GurobiModel GurobiDrv::loadModelImpl(char** args) {
-  GurobiModel m;
-  ASL* a;
-
-  GRBmodel* inner= grb::impl::AMPLloadmodel(3, args, &a);
-  if (inner == NULL)
-  {
-    if (a != NULL)
-    {
-      const char* error = grb::impl::AMPLGRBgetUinfo(a);
-      if (error)
-        throw AMPLSolverException::format("Trouble when loading model %s:\n%s", args[1], error);
-      else
-        throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
-    }
-    else
-      throw AMPLSolverException::format("Trouble when loading model %s.", args[1]);
-  }
-  m.asl_ = a;
-  m.GRBModel_ = inner;
-  m.lastErrorCode_ = -1;
-  m.fileName_ = args[1];
-  return m;
+  return GurobiModel(impl::grb::AMPLSOpen_gurobi(3, args), args[1]);
 }
 GurobiModel GurobiDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);
 }
 
-void GurobiModel::writeSolImpl(const char* solFileName) {
-  grb::impl::AMPLwritesol(GRBModel_, asl_, lastErrorCode_, solFileName);
-}
+
 int GurobiModel::setCallbackDerived(impl::BaseCallback* callback) {
-  return GRBsetcallbackfunc(GRBModel_, grb::impl::callback_wrapper, callback);
+  return GRBsetcallbackfunc(GRBModel_, impl::grb::callback_wrapper, callback);
 }
 
 class MyGurobiCallbackBridge : public GurobiCallback {
@@ -110,10 +82,7 @@ int GurobiModel::getDoubleAttrArray(const char* name, int first, int length, dou
 GurobiModel::~GurobiModel() {
   if (copied_)
     return;
-  if (GRBModel_)
-    GRBfreemodel(GRBModel_);
-  if (asl_)
-    grb::impl::freeASL(&asl_);
+  impl::grb::AMPLSClose_gurobi(solver_);
 }
 std::string GurobiModel::error(int code)
 {

@@ -18,23 +18,29 @@ struct ASL;
 namespace ampls
 {
 
-
+namespace xpress
+{
   namespace impl
   {
-    namespace xpress
-    {
-
     /* Define a macro to do our error checking */
     #define AMPLSXPRSERRORCHECK(name)  \
     if (status)  \
       throw ampls::AMPLSolverException::format("Error executing " #name":\n%s", error(status).c_str());
 
 
+    struct XPressDriverState;
     extern "C" {
-      // Imported from the xpress driver
-      ENTRYPOINT void AMPLSClose_xpress(void* slv);
-      ENTRYPOINT XPRSprob AMPLSGetModel_xpress(void* slv);
-      ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_xpress(int, char**);
+
+      ENTRYPOINT const char* AMPLXPRESSgetUinfo();
+
+      ENTRYPOINT void AMPLXPRESSfreeEnv();
+
+      ENTRYPOINT XPressDriverState* AMPLXPRESSloadModel(int argc, char** argv,
+        XPRSprob* modelPtr);
+
+      ENTRYPOINT void AMPLXPRESSwriteSolution(XPressDriverState* state,
+        XPRSprob modelPtr, const char* solFileName);
+
     }
     
   
@@ -139,22 +145,21 @@ It can not be created any other way than by reading an nl file,
 and any assignment moves actual ownership.
 At the end of its life, it deletes the relative structures.
 */
-class XPRESSModel : public AMPLMPModel {
+class XPRESSModel : public AMPLModel {
   friend XPRESSDrv;
   friend XPRESSCallback;
 
-
+  mutable bool copied_;
   XPRSprob prob_;
   clock_t tStart_;
+  xpress::impl::XPressDriverState* state_;
+
   XPRESSDrv  driver_;
   
 
-  XPRESSModel() : AMPLMPModel(),
-    prob_(NULL), tStart_(0) {}
-  XPRESSModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile) : AMPLMPModel(s,nlfile) {
-    prob_ = impl::xpress::AMPLSGetModel_xpress(s);
-  }
-
+  XPRESSModel() :  copied_(false),
+    prob_(NULL), tStart_(0), state_(NULL) {}
+  
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 
@@ -186,40 +191,52 @@ class XPRESSModel : public AMPLMPModel {
  
 public:
 
-  XPRESSModel(const XPRESSModel &other) : AMPLMPModel(other), 
-    prob_(other.prob_), tStart_(other.tStart_) {
+  XPRESSModel(const XPRESSModel &other) : copied_(false), prob_(NULL),
+    tStart_(0), state_(NULL) {
+    prob_ = other.prob_;
+    tStart_ = other.tStart_;
+    state_ = other.state_;
+    fileName_ = other.fileName_;
     driver_ = other.driver_;
+    other.copied_ = true;
   }
-  XPRESSModel(XPRESSModel&& other) noexcept :
-    AMPLMPModel(std::move(other)), prob_(std::move(other.prob_)),
-    tStart_(std::move(other.tStart_)), driver_(std::move(other.driver_)) { 
-    other.prob_ = nullptr;
-  }
-  
   XPRESSModel& operator=(XPRESSModel &other) {
     if (this != &other)
     {
-      AMPLMPModel::operator=(other);
       prob_ = other.prob_;
+      copied_ = false;
       tStart_ = other.tStart_;
-      driver_ = other.driver_;
+
+      state_ = std::move(other.state_);
+      fileName_ = other.fileName_;
+      driver_ = std::move(other.driver_);
     }
+    other.copied_ = true;
     return *this;
   }
 
   XPRESSModel& operator=(XPRESSModel&& other) noexcept {
-    if (this != &other) {
-      AMPLMPModel::operator=(std::move(other));
-      prob_ = std::move(other.prob_);
-      other.prob_ = nullptr;
+    if (this != &other)
+    {
+      prob_ = other.prob_;
+      copied_ = false;
       tStart_ = other.tStart_;
+
+      state_ = std::move(other.state_);
+      fileName_ = other.fileName_;
       driver_ = std::move(other.driver_);
     }
     return *this;
+    }
+
+  XPRESSModel(XPRESSModel && other) noexcept : copied_(false), prob_(NULL),
+    tStart_(0), state_(NULL) {
+    *this = std::move(other);
+    other.copied_ = true;
   }
-
-
   const char* driver() { return "Xpress"; }
+
+  void writeSolImpl(const char* solFileName);
 
   Status::SolStatus getStatus() {
     if (!isMIP())
@@ -357,11 +374,6 @@ public:
     return value;
   }
 
-  void enableLazyConstraints() {
-    setParam(XPRS_PRESOLVE,0);
-    setParam(XPRS_MIPPRESOLVE, 0);
-    setParam(XPRS_SYMMETRY, 0); 
-  };
 
   /**Set an integer parameter using ampls aliases*/
   void setAMPLsParameter(SolverParams::SolverParameters param,

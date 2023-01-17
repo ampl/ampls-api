@@ -19,7 +19,6 @@
 #define ENTRYPOINT
 #endif
 
-
 namespace ampls
 {
 /**
@@ -312,6 +311,39 @@ typedef std::mutex MUTEXIMPL;
 
 namespace ampls{
   namespace impl {
+    namespace mp {
+      // *********** For MP-solvers, taken from ampls-c-api.h **********
+      /// An AMPLS solver instance
+      typedef struct AMPLS_MP_Solver_T {
+        /// AMPLS internal info
+        void* internal_info_;
+        /// Extra info, managed by the specific solver
+        void* solver_info_;
+        /// User info, free to assign
+        void* user_info_;
+      } AMPLS_MP_Solver;
+
+      typedef struct AMPLSCOption_T {
+        const char* name;
+        const char* description;
+        int type; // 0=int, 1=double, 2=string
+      } AMPLS_C_Option;
+
+      extern "C" {
+        // Imported from the ampls driver library, declared in ampls-c-api.h
+        ENTRYPOINT void AMPLSReportResults(void* slv, const char* solFileName);
+        ENTRYPOINT const AMPLS_C_Option* AMPLSGetOptions(void* slv);
+        ENTRYPOINT int AMPLSSetIntOption(void* slv, const char* name, int value);
+        ENTRYPOINT int AMPLSGetIntOption(void* slv, const char* name, int* value);
+        ENTRYPOINT int AMPLSSetDblOption(void* slv, const char* name, double value);
+        ENTRYPOINT int AMPLSGetDblOption(void* slv, const char* name, double* value);
+        ENTRYPOINT int AMPLSSetStrOption(void* slv, const char* name, const char* value);
+        ENTRYPOINT int AMPLSGetStrOption(void* slv, const char* name, const char* const* value);
+        ENTRYPOINT int AMPLSLoadNLModel(AMPLS_MP_Solver* slv, const char* nl_filename);
+      }
+    } // namespace mp
+    // ******* end MP ******* 
+
     class Records; // forward for toAMPLString
     template<typename ... Args>
     std::string string_format(const std::string& format, Args ... args)
@@ -324,6 +356,8 @@ namespace ampls{
       return std::string(buf.data(), buf.data() + size - 1); // We don't want the '\0' inside
     }
     double calculateRelMIPGAP(double obj, double bbound);
+
+
   }
 
   class Entity
@@ -398,6 +432,7 @@ namespace ampls{
     std::string toString();
 
   };
+  
   class Variable : public Entity
   {
     friend class AMPLModel;
@@ -432,15 +467,51 @@ namespace impl
 {
   class Records
   {
-    AMPLModel* parent;
-  public:
-    Records(AMPLModel &a) {
-      parent = &a;
-    }
+    friend class AMPLModel;
+    friend class Constraint;
+    friend class Variable;
 
+    AMPLModel* parent_;
     std::vector<Variable> vars_;
     std::vector<Constraint> cons_;
     std::vector<Entity*> entities_;
+
+    Records() : parent_(nullptr) { }
+  public:
+    Records(AMPLModel &a) : parent_(&a) {
+    }
+
+    Records(Records&& r) noexcept : 
+      parent_(r.parent_), vars_(std::move(r.vars_)),  
+    cons_(std::move(r.cons_)), entities_(std::move(r.entities_)) {
+    }
+
+    Records(AMPLModel& a, const Records& other): parent_(&a),
+      vars_(other.vars_), cons_(other.cons_),
+      entities_(other.entities_) { }
+
+    Records& Records::operator=(const Records& other)
+    {
+      if (this != &other) {
+        parent_ = other.parent_;
+        vars_ = other.vars_;
+        cons_ = other.cons_;
+        entities_ = other.entities_;
+      }
+      return *this;
+    }
+    Records& Records::operator=(Records&& other)
+    {
+      if (this != &other) {
+        parent_ = std::move(other.parent_);
+        vars_ = std::move(other.vars_);
+        cons_ = std::move(other.cons_);
+        entities_ = std::move(other.entities_);
+        other.parent_ = nullptr;
+      }
+      return *this;
+    }
+
 
     std::string getRecordedEntities(bool exportToAMPL = false);
 
@@ -853,7 +924,51 @@ public:
   }
 
 };
-  
+
+// Non owning struct conveying option descriptions
+struct Option {
+  const char* name_;
+  const char* description_;
+
+  enum Type {
+    INT,
+    BOOL,
+    DOUBLE,
+    STRING,
+    UNKNOWN
+  };
+  Type type_;
+  Option(const char* name, const char* description, int type) {
+    name_ = name;
+    description_ = description;
+    type_ = (Type)type;
+  }
+  const char* name() { return name_; }
+  const char* description() { return description_; }
+  Type type() { return type_; }
+  const char* typeStr() { 
+    switch (type())
+    {
+    case INT:
+      return "int";
+    case BOOL:
+      return "bool";
+    case DOUBLE:
+      return "double";
+    case STRING:
+      return "string";
+    case UNKNOWN:
+      return "unknown";
+    default:
+      throw std::runtime_error("Should not see this");
+    }
+  }
+  std::string toString() {
+    return impl::string_format("%s (%s)\n%s", name(), typeStr(), description());
+  }
+};
+
+
 /**
 * Store an in-memory representation of an AMPL model, which 
 * can be constructed by loading it from an NL file using the `loadModel` function
@@ -886,22 +1001,63 @@ class AMPLModel
   }
 
   int numConsAdded() {
-    return records_.cons_.size()+1;
+    return static_cast<int>(records_.cons_.size()+1);
   }
   int numVarsAdded() {
-    return records_.vars_.size()+1;
+    return static_cast<int>(records_.vars_.size()+1);
   }
 
 
 protected:
   std::string fileName_;
-  AMPLModel() : records_(*this){}
+  impl::Records records_;
+
+  AMPLModel() : records_(*this) {}
+
+  AMPLModel(const AMPLModel& other) : fileName_(other.fileName_),
+    records_(*this, other.records_),
+    varMap_ (other.varMap_),
+    varMapInverse_(other.varMapInverse_) {
+  }
+
+  AMPLModel(AMPLModel&& other) noexcept:
+    fileName_(std::move(other.fileName_)),
+    records_(std::move(other.records_)),
+    varMap_(std::move(other.varMap_)),
+    varMapInverse_(std::move(other.varMapInverse_)) {
+    records_.parent_ = this;
+    ;
+  }
+
+  AMPLModel& operator=(AMPLModel& other) {
+    if (this != &other)
+    {
+      fileName_ = other.fileName_;
+      varMap_ = other.varMap_;
+      varMapInverse_ = other.varMapInverse_;
+      records_ = impl::Records(*this, other.records_);
+    }
+    return *this;
+  }
+
+  AMPLModel& operator=(AMPLModel&& other) noexcept {
+    if (this != &other)
+    {
+      std::swap(fileName_, other.fileName_);
+      std::swap(varMap_, other.varMap_);
+      std::swap(varMapInverse_, other.varMapInverse_);
+      std::swap(records_, other.records_);
+      records_.parent_ = this;
+    }
+    return *this;
+  }
   void resetVarMapInternal()
   {
     // Clear the internally cached maps
     varMap_.clear();
     varMapInverse_.clear();
   }
+
   virtual int setCallbackDerived(impl::BaseCallback* callback) {
     throw AMPLSolverException("Not implemented in base class!");
   }
@@ -911,8 +1067,7 @@ protected:
   virtual void writeSolImpl(const char* solFileName) {
     throw AMPLSolverException("Not implemented in base class!");
   }
-
-  impl::Records records_;
+ 
   virtual std::vector<double> getConstraintsValueImpl(int offset, int length) {
     throw AMPLSolverException("Not implemented in base class!");
   }
@@ -969,11 +1124,6 @@ public:
   std::string getFileName() {
     return fileName_;
   }
-  /**
-  Copy constructor
-  */
-  AMPLModel(const AMPLModel &other) : records_(*this), fileName_(other.fileName_) {}
-
   /**
   Get the map from variable index in the solver interface to AMPL variable instance name
   */
@@ -1159,6 +1309,88 @@ public:
     throw AMPLSolverException("Not implemented in base class!");
   }
 
+  virtual std::vector<Option>& getOptions() { 
+    throw AMPLSolverException("Not implemented in base class!");
+  };
+
+  void setOption(const char* name, int value) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+};
+
+class AMPLMPModel : public AMPLModel {
+  
+  std::vector<Option> options_;
+   
+protected:
+  AMPLMPModel() :AMPLModel(), solver_(NULL), copied_(false) {}
+  
+  AMPLMPModel(const AMPLMPModel& other) : 
+    AMPLModel(other), solver_(other.solver_),
+    copied_(false) {
+    other.copied_ = true;
+  }
+  AMPLMPModel(AMPLMPModel&& other) noexcept:
+    AMPLModel(other), solver_(other.solver_),
+    copied_(false) {
+    other.copied_ = true;
+  }
+  
+  AMPLMPModel& operator=(AMPLMPModel& other) {
+    if (this != &other)
+    {
+      AMPLModel::operator=(other);
+      solver_ = other.solver_;
+    }
+    other.copied_ = true;
+    return *this;
+  }
+  AMPLMPModel& operator=(AMPLMPModel&& other) noexcept {
+    if (this != &other)
+    {
+      AMPLModel::operator=(std::move(other));
+      std::swap(solver_, other.solver_);
+      other.solver_ = nullptr;
+    }
+    other.copied_ = true;
+    return *this;
+  }
+
+
+  impl::mp::AMPLS_MP_Solver* solver_; // common across all mp-solvers
+  mutable bool copied_;
+
+  AMPLMPModel(impl::mp::AMPLS_MP_Solver* mp, const char* nlfile) {
+    if(impl::mp::AMPLSLoadNLModel(mp, nlfile))
+      throw std::runtime_error("Problem loading the model");
+    solver_ = mp;
+    fileName_ = nlfile;
+  }
+  void writeSolImpl(const char* solFileName) {
+    impl::mp::AMPLSReportResults(solver_, solFileName);
+  }
+public:
+  std::vector<Option>& getOptions() {
+    if (options_.size() == 0)
+    {
+      auto opt = impl::mp::AMPLSGetOptions(solver_);
+      int i;
+      impl::mp::AMPLS_C_Option o;
+      for (i = 0, o = opt[0]; o.name != NULL; o=opt[++i])
+        options_.push_back(Option (o.name, o.description, o.type)); // TODO
+    }
+    return options_;
+  };
+
+  void setOption(const char* name, int value) {
+    impl::mp::AMPLSSetIntOption(solver_, name, value);
+  }
+
+  int getOption(const char* name) {
+    int v;
+    impl::mp::AMPLSGetIntOption(solver_, name, &v);
+    return v;
+  }
 };
 
 } // namespace
@@ -1167,11 +1399,78 @@ public:
 #ifdef USE_cplexmp
 #include "cplexmp_interface.h"
 #endif
-#ifdef USE_xgurobi
-#include "x-gurobi_interface.h"
+#ifdef USE_gurobi
+#include "gurobi_interface.h"
 #endif
-#ifdef USE_xpressmp
-#include "xpressmp_interface.h"
+#ifdef USE_xpress
+#include "xpress_interface.h"
 #endif
+#ifdef USE_cbcmp
+#include "cbcmp_interface.h"
+#endif
+
+#ifdef USE_amplapi
+// Functions to link ampls and amplapi
+// Binaries linked with this flag need to be linked 
+// with the AMPLAPI library
+#include "ampl/ampl.h"
+
+namespace ampls {
+  namespace AMPLAPIInterface
+  {
+    namespace impl {
+
+      void doExport(ampl::AMPL& a) {
+        a.eval("option auxfiles cr;");
+        a.eval("write g___modelexport___;");
+      }
+
+      template <class T> T exportModel(ampl::AMPL& a);
+
+
+#ifdef USE_gurobi
+      template<> GurobiModel exportModel<GurobiModel>(ampl::AMPL& a) {
+        doExport(a);
+        GurobiDrv gurobi;
+        return gurobi.loadModel("___modelexport___.nl");
+      }
+#endif
+
+#ifdef USE_cbcmp
+      template<> CbcModel exportModel<CbcModel>(ampl::AMPL& a) {
+        doExport(a);
+        CbcDrv cbc;
+        return cbc.loadModel("___modelexport___.nl");
+      }
+#endif
+#ifdef USE_cplexmp
+      template<> CPLEXModel exportModel<CPLEXModel>(ampl::AMPL& a) {
+        doExport(a);
+        CPLEXDrv cplex;
+        return cplex.loadModel("___modelexport___.nl");
+      }
+#endif
+
+#ifdef USE_xpress
+      template<> XPRESSModel exportModel<XPRESSModel>(ampl::AMPL& a) {
+        doExport(a);
+        XPRESSDrv xpress;
+        return xpress.loadModel("___modelexport___.nl");
+      }
+#endif
+    } // namespace impl
+
+    template <class T> T exportModel(ampl::AMPL& a) {
+      return impl::exportModel<T>(a);
+    }
+
+    void importModel(ampl::AMPL& a, AMPLModel& g) {
+      g.writeSol();
+      a.eval("solution ___modelexport___.sol;");
+      a.eval(g.getRecordedEntities());
+    }
+  } // namespace AMPLAPIInterface
+} // namespace ampls
+#endif // USE_amplapi
 
 #endif // ampls_H_INCLUDE_

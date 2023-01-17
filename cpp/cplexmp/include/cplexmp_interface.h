@@ -32,22 +32,22 @@ namespace ampls
 class CPLEXCallback;
 class CPLEXModel;
 
-namespace cpx
-{
+
   namespace impl
   {
+    namespace cpx
+    {
   /* Define a macro to do our error checking */
     #define AMPLSCPXERRORCHECK(name)  \
     if (status)  \
       throw ampls::AMPLSolverException::format("Error executing " #name":\n%s", error(status).c_str());
 
     extern "C" {
-      ENTRYPOINT void* AMPLloadCPLEXmodel(int argc, char** argv);
-      ENTRYPOINT void AMPLSReportResults(void* slv, const char* solfilename);
-      ENTRYPOINT void AMPLclosesolver(void* slv);
-
-      ENTRYPOINT CPXLPptr AMPLgetCPLEXModel(void* slv);
-      ENTRYPOINT CPXENVptr  AMPLgetCPLEXEnv(void* slv);
+      // Imported from the gurobi driver library
+      ENTRYPOINT void AMPLSClose_cplexmp(void* slv);
+      ENTRYPOINT CPXLPptr AMPLSGetModel_cplexmp(void* slv);
+      ENTRYPOINT CPXENVptr AMPLSGetEnv_cplexmp(void* slv);
+      ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_cplexmp(int, char**);
     }
     
     class CBWrap {
@@ -103,7 +103,7 @@ It can not be created any other way than by reading an nl file,
 and any assignment moves actual ownership.
 At the end of its life, it deletes the relative structures.
 */
-class CPLEXModel : public AMPLModel {
+class CPLEXModel : public AMPLMPModel {
   friend CPLEXDrv;
 
   // Map from ampls solverparams to CPLEX parameters
@@ -123,35 +123,57 @@ class CPLEXModel : public AMPLModel {
     throw AMPLSolverException("Not implemented!");
   }
 
-  mutable bool copied_;
-  void* solver_;
   int status_;
   CPXLPptr model_;
-  ASL* asl_;
   int lastErrorCode_;
-  CPLEXModel() : copied_(false), solver_(NULL), status_(0),
-    model_(NULL), asl_(NULL), lastErrorCode_(0) {}
+
+  CPLEXModel() : AMPLMPModel(), model_(nullptr), lastErrorCode_(0) {}
+
+  CPLEXModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile) : AMPLMPModel(s, nlfile),
+    lastErrorCode_(0) {
+    model_ = impl::cpx::AMPLSGetModel_cplexmp(s);
+  }
+
 
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
-  void writeSolImpl(const char* solFileName);
 
 
  // std::vector<double> getConstraintsValueImpl(int offset, int length);
  // std::vector<double> getVarsValueImpl(int offset, int length);
 
 public:
-  CPLEXModel(const CPLEXModel& other) :
-    AMPLModel(other),
-    copied_(false),
-    solver_(other.solver_),
+  CPLEXModel(const CPLEXModel& other) : AMPLMPModel(other),
     status_(other.status_),
     model_(other.model_),
-    asl_(other.asl_),
-    lastErrorCode_(other.lastErrorCode_)
+    lastErrorCode_(other.lastErrorCode_) { }
+
+  CPLEXModel(CPLEXModel&& other) noexcept :
+    AMPLMPModel(std::move(other)), status_(std::move(other.status_)),
+    model_(std::move(other.model_)), lastErrorCode_(std::move(other.lastErrorCode_))
   {
-    fileName_ = other.fileName_;
-    other.copied_ = true;
+    other.model_ = nullptr;
+  }
+  CPLEXModel& operator=(CPLEXModel& other) {
+    if (this != &other)
+    {
+      AMPLMPModel::operator=(other);
+      status_ = other.status_;
+      model_ = other.model_;
+      lastErrorCode_ = other.lastErrorCode_;
+    }
+
+    return *this;
+  }
+
+  CPLEXModel& operator=(CPLEXModel&& other) noexcept {
+    if (this != &other) {
+      AMPLMPModel::operator=(std::move(other));
+      std::swap(status_, other.status_);
+      std::swap(model_, other.model_);
+      std::swap(lastErrorCode_, other.lastErrorCode_);
+    }
+    return *this;
   }
 
   const char* driver() { return "CPLEX"; }
@@ -239,7 +261,7 @@ public:
   }
   /** Get the pointer to the native CPLEX environment object */
   CPXENVptr getCPXENV() {
-    return cpx::impl::AMPLgetCPLEXEnv(solver_);
+    return impl::cpx::AMPLSGetEnv_cplexmp(solver_);
   }
 
   /** Set an integer CPLEX control parameter */

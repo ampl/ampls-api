@@ -8,5 +8,5 @@ ${CMAKE_CURRENT_SOURCE_DIR}/../../cpp/gurobi/include
 
 createCsharpProject(ampls ampls ampls)
 target_link_libraries(amplssharp_c
-cplex-drv cplex-lib
+#cplex-drv cplex-lib
 gurobi-drv gurobi-lib)

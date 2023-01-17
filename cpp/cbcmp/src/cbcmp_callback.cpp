@@ -1,10 +1,12 @@
-#include "gurobi_callback.h"
-#include "gurobi_interface.h"
+#include "cbcmp_callback.h"
+#include "cbcmp_interface.h"
 
 namespace ampls
 {
-const char* GurobiCallback::getWhereString()
+const char* CbcCallback::getWhereString()
 {
+  //TODO
+  /*
   switch (where_)
   {
   case GRB_CB_POLLING: return "GRB_CB_POLLING";
@@ -18,11 +20,13 @@ const char* GurobiCallback::getWhereString()
   case GRB_CB_MULTIOBJ: return "GRB_CB_MULTIOBJ";
   default:
     return "Where code not found";
-  }
+  }*/
+  return "";
 }
 
-Variant GurobiCallback::get(int what)
+Variant CbcCallback::get(int what)
 {
+  /*
   Variant r = Variant();
   switch (what)
   {
@@ -96,23 +100,27 @@ Variant GurobiCallback::get(int what)
   // Not documented
   //  case GRB_CB_MIPNODE_BRVAR   5007
   // case GRB_CB_MIPNODE_OBJBNDC 5008
+  */
+  return Variant(0);
 }
 
-void GurobiCallback::terminate() {
-  GRBterminate(getGRBModel());
+void CbcCallback::terminate() {
+  //GRBterminate(getGRBModel());
+  //TODO
 }
-   GRBmodel* GurobiCallback::getGRBModel() {
-    return ((GurobiModel*)model_)->getGRBmodel();
+CbcModel* CbcCallback::getCBCModel() {
+    return ((CbcModel*)model_);
   };
-const char* GurobiCallback::getMessage()
+const char* CbcCallback::getMessage()
 {
   char* msg;
-  GRBcbget(cbdata_, where_, GRB_CB_MSG_STRING, &msg);
+  //GRBcbget(cbdata_, where_, GRB_CB_MSG_STRING, &msg);
   return msg;
 }
 
-int GurobiCallback::doAddCut(const ampls::Constraint& c, int lazy) {
+int CbcCallback::doAddCut(const ampls::Constraint& c, int lazy) {
   char sense = toGRBSense(c.sense());
+  /*
   if (lazy)
   {
     return GRBcblazy(cbdata_, c.indices().size(), c.indices().data(),
@@ -123,20 +131,25 @@ int GurobiCallback::doAddCut(const ampls::Constraint& c, int lazy) {
     return GRBcbcut(cbdata_, c.indices().size(), c.indices().data(),
       c.coeffs().data(), sense, c.rhs());
   }
+  */
+  return 0;
 }
 
-int GurobiCallback::getSolution(int len, double* sol)
+int CbcCallback::getSolution(int len, double* sol)
 {
+  /*
   if ((where_ != GRB_CB_MIPNODE) &&
     (where_ != GRB_CB_MIPSOL))
     throw ampls::AMPLSolverException("The solution vector can be obtained in a callback only from a MIP node or MIP solution callback");
   int flag = where_ == GRB_CB_MIPSOL ? GRB_CB_MIPSOL_SOL :
     GRB_CB_MIPNODE_REL;
   return GRBcbget(cbdata_, where_, flag, sol);
+  */
+  return 0;
 }
 
-double GurobiCallback::getObj()
-{
+double CbcCallback::getObj()
+{/*
   int flag;
   switch (where_)
   {
@@ -161,10 +174,13 @@ double GurobiCallback::getObj()
   double obj;
   GRBcbget(cbdata_, where_, flag, &obj);
   return obj;
+  */
+  return 0;
 }
 
 
-Variant  GurobiCallback::getValue(Value::CBValue v) {
+Variant  CbcCallback::getValue(Value::CBValue v) {
+  /*
   switch (v)
   {
   case Value::OBJ:
@@ -193,15 +209,21 @@ Variant  GurobiCallback::getValue(Value::CBValue v) {
   default:
     throw AMPLSolverException("Specified value unknown.");
   }
+  */
+  return Variant(0);
 }
 
-int GurobiCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
+int CbcCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
+  /*
   std::vector<double> vals(model_->getNumVars(), GRB_UNDEFINED);
   for (int i = 0; i < nvars; i++)
     vals[indices[i]] = values[i]; 
     double objective;
   return GRBcbsolution(cbdata_, vals.data(), &objective);
+  */
+  return 0;
 }
 
 
 } // namespace
+

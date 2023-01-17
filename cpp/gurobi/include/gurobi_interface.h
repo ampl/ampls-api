@@ -18,32 +18,27 @@
 #include <mutex>
 #include <climits>  // for INT_MAX
 
-struct ASL;
+
 namespace ampls
-{
-namespace grb
 {
   namespace impl
   {
-
-    /* Define a macro to do our error checking */
-    #define AMPLSGRBERRORCHECK(name)  \
+    namespace grb {
+      /* Define a macro to do our error checking */
+#define AMPLSGRBERRORCHECK(name)  \
     if (status)  \
       throw ampls::AMPLSolverException::format("Error executing " #name":\n%s", error(status).c_str());
 
-    extern "C" {
-      // Imported from the GUROBI driver
-      ENTRYPOINT GRBmodel* AMPLloadmodel(int argc, char** argv, ASL** asl);
-      ENTRYPOINT void AMPLwritesol(GRBmodel* m, ASL* asl, int lastoptimizerun, const char* solFileName);
-      ENTRYPOINT void freeEnvironment();
-      ENTRYPOINT void freeASL(ASL** aslp);
-      ENTRYPOINT const char* AMPLGRBgetUinfo(ASL* asl);
-    }
-    // Forward declarations
-    int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
-  }
-}
-
+      extern "C" {
+        // Imported from the gurobi driver library
+        ENTRYPOINT void AMPLSClose_gurobi(void* slv);
+        ENTRYPOINT GRBmodel* AMPLSGetModel_gurobi(void* slv);
+        ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_gurobi(int, char**);
+      }
+      // Forward declarations
+      int callback_wrapper(GRBmodel* model, void* cbdata, int where, void* usrdata);
+    } // namespace grb
+  } // namespace impl
 
 class GurobiModel;
 class Callback;
@@ -52,10 +47,6 @@ class Callback;
 Encapsulates the main environment of the gurobi driver
 */
 class GurobiDrv : public impl::SolverDriver<GurobiModel>  {
-
-
-  void freeGurobiEnv();
-
   GurobiModel loadModelImpl(char** args);
 public:
   /**
@@ -65,21 +56,17 @@ public:
   * by means of the ampl option `option auxfiles cr;` before writing the NL file.
   */
   GurobiModel loadModel(const char* modelName);
-
   ~GurobiDrv();
 };
 
 /**
 Encapsulates all the instance level information for a gurobi model,
-namely the GRBmodel object and the relative ASL.
+namely the GRBmodel object and the relative MP library.
 It can not be created any other way than by reading an nl file,
 and any assignment moves actual ownership.
-At the end of its life, it deletes the GRBmodel and the ASL structures.
-Note that if we don't want to use the writesol function, we don't really
-need the ASL reference after creating the Gurobi model object, so
-we could use directly the C pointer to GRBmodel.
+At the end of its life, it deletes the GRBmodel and the MP structures.
 */
-class GurobiModel : public AMPLModel {
+class GurobiModel : public AMPLMPModel {
   friend GurobiDrv;
 
   // Map for solver parameters
@@ -111,29 +98,56 @@ class GurobiModel : public AMPLModel {
     throw AMPLSolverException("Not implemented!");
   }
 
-  mutable bool copied_;
   GRBmodel* GRBModel_;
-  ASL* asl_;
   int lastErrorCode_;
 
-  GurobiModel() : AMPLModel(), copied_(false), GRBModel_(NULL),
-    asl_(NULL), lastErrorCode_(0) {}
-
+  GurobiModel() : AMPLMPModel(), GRBModel_(NULL), lastErrorCode_(0) {}
+  GurobiModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile) : AMPLMPModel(s, nlfile),
+    lastErrorCode_(0) {
+    GRBModel_ = impl::grb::AMPLSGetModel_gurobi(s);
+  }
   // Interface implementation
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
-  void writeSolImpl(const char* solFileName);
+
 public:
   void enableLazyConstraints()
   {
     setParam(GRB_INT_PAR_LAZYCONSTRAINTS, 1);
   }
-  GurobiModel(const GurobiModel& other) :
-    AMPLModel(other), copied_(false), GRBModel_(other.GRBModel_), 
-    asl_(other.asl_), lastErrorCode_(other.lastErrorCode_)
+  GurobiModel(const GurobiModel& other) : AMPLMPModel(other),  
+    GRBModel_(other.GRBModel_), 
+    lastErrorCode_(other.lastErrorCode_) { }
+
+  GurobiModel(GurobiModel&& other) noexcept:
+    AMPLMPModel(std::move(other)), GRBModel_(std::move(other.GRBModel_)),
+    lastErrorCode_(std::move(other.lastErrorCode_))
   {
-    other.copied_ = true;
+    other.GRBModel_ = nullptr;
   }
+
+  GurobiModel& operator=(GurobiModel& other) {
+    if (this != &other)
+    {
+      AMPLMPModel::operator=(other);
+      GRBModel_ = other.GRBModel_;
+      lastErrorCode_ = other.lastErrorCode_;
+    }
+    
+    return *this;
+  }
+
+  GurobiModel& operator=(GurobiModel&& other) noexcept {
+    if (this != &other) {
+      AMPLMPModel::operator=(std::move(other));
+      std::swap(GRBModel_, other.GRBModel_);
+      std::swap(lastErrorCode_, other.lastErrorCode_);
+    }
+    return *this;
+  }
+
+
+  
   using AMPLModel::getSolutionVector;
 
   const char* driver() { return "Gurobi"; }

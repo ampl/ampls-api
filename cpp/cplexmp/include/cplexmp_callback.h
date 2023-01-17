@@ -14,7 +14,7 @@
 
 namespace ampls
 {
-namespace cpx { namespace impl { class CBWrap; } }
+namespace impl { namespace cpx { class CBWrap; } }
 class CPLEXModel;
 
 /**
@@ -31,7 +31,7 @@ class CPLEXModel;
 class CPLEXCallback : public impl::BaseCallback {
   char CODE[60];
   friend class CPLEXModel;
-  friend class  cpx::impl::CBWrap;
+  friend class  impl::cpx::CBWrap;
   // Callback data
   CPXCENVptr env_;
   // Stores the pointer to the CPLEX model being used, as passed from the callback

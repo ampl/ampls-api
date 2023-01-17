@@ -110,13 +110,13 @@ void AMPLModel::printModelVars(bool onlyNonZero) {
 
 std::string impl::Records::getRecordedEntities(bool exportToAMPL) {
   std::stringstream ss;
-  auto vmap = parent->getVarMapInverse();
-  auto cmap = parent->getConsMapInverse();
+  auto vmap = parent_->getVarMapInverse();
+  auto cmap = parent_->getConsMapInverse();
   int begin, end;
   if (vars_.size() > 0)
   {
     getVarIndices(begin, end);
-    auto values = parent->getVarsValueImpl(begin, end - begin+1);
+    auto values = parent_->getVarsValueImpl(begin, end - begin+1);
     for (int i = 0; i < values.size(); i++)
       vars_[i].value(values[i]);
   }
@@ -226,6 +226,7 @@ std::string Variable::toAMPLString(const std::map<int, std::string>& varMap,
 }
 
 namespace impl {
+
 
   double calculateRelMIPGAP(double obj, double bbound)
   {

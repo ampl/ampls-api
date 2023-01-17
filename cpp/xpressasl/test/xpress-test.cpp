@@ -4,7 +4,7 @@
 
 #include <cstring>
 
-const char* MODELNAME = "testmodel.nl";
+const char* MODELNAME = "tsp.nl";
 
 
 int main(int argc, char** argv) {
@@ -16,13 +16,9 @@ int main(int argc, char** argv) {
   ampls::XPRESSDrv d;
   try {
     ampls::XPRESSModel m = d.loadModel(buffer);
-    for (auto o : m.getOptions())
-      printf("%s\n", o.toString().c_str());
     m.optimize();
     double obj = m.getObj();
     m.writeSol();
-    m.writeSol("d:/banana.personalized"); 
-    m.writeSol("bananarelative.relative");
     m.printModelVars(true);
   }
   catch (const std::exception& e)

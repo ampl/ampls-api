@@ -36,11 +36,7 @@ set(PREPROCESSORDEFS "")
 
 foreach(s ${ENABLED_SOLVERS})
     set(LINKLIBS ${LINKLIBS} ${s}-drv)
-    if(${s} MATCHES "x-gurobi")
-        set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_xgurobi=1)
-    else()
-        set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_${s}=1)
-    endif()
+    set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_${s}=1)
  endforeach()
  message("ampls examples linked with ${ENABLED_SOLVERS}")
  # Find amplapi, if present add combined examples
@@ -58,8 +54,6 @@ set(AMPLAPIDIR ${CMAKE_CURRENT_SOURCE_DIR}/../../libs/amplapi/${libdir})
 if(EXISTS ${AMPLAPIDIR}/lib)
   set(BUILD_AMPLAPI_EXAMPLES ON)
   add_library(amplapi SHARED IMPORTED)
-  set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_amplapi=1)
-  
   if(WIN32)
   set_target_properties(
   amplapi PROPERTIES
@@ -94,6 +88,7 @@ if(PREPROCESSORDEFS)
       foreach(e cuttingStock addEntities tsp)
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
         target_link_libraries(ampls-${e} PRIVATE amplapi)
+        target_compile_definitions(ampls-${e} PRIVATE USE_amplapi)
         add_custom_command ( TARGET ampls-${e} POST_BUILD
           COMMAND ${CMAKE_COMMAND} -E copy_if_different
           $<TARGET_FILE:amplapi> $<TARGET_FILE_DIR:ampls-${e}>

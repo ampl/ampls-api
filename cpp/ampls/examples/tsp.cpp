@@ -11,6 +11,9 @@
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
+#ifdef USE_gurobi
+  #include "gurobi_interface.h"
+#endif
 #ifdef USE_amplapi
     #include "ampl/ampl.h"
 
@@ -24,10 +27,10 @@ namespace AMPLAPIInterface
     }
 
     template <class T> T exportModel(ampl::AMPL& a);
-#ifdef USE_xgurobi
-    template<> ampls::XGurobiModel exportModel<ampls::XGurobiModel>(ampl::AMPL& a) {
+#ifdef USE_gurobi
+    template<> ampls::GurobiModel exportModel<ampls::GurobiModel>(ampl::AMPL& a) {
       doExport(a);
-      ampls::XGurobiDrv gurobi;
+      ampls::GurobiDrv gurobi;
       return gurobi.loadModel("___modelexport___.nl");
     }
 #endif
@@ -477,7 +480,7 @@ int main(int argc, char** argv) {
   df.setColumn("vpos", ys.data(), nodes.size());
   a.setData(df, "NODES");
   a.eval("display NODES, hpos, vpos;");
-  auto m = AMPLAPIInterface::exportModel<ampls::XPRESSModel>(a);
+  auto m = AMPLAPIInterface::exportModel<ampls::GurobiModel>(a);
   doStuff(m);
 #else
 
