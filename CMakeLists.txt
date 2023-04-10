@@ -28,7 +28,8 @@ defSolver(gurobi gurobi gurobi "")
 defSolver(cplex cplex cplex "")
 defSolver(cplexmp cplex cplexmp "")
 defSolver(xpress xpress xpress "")
-defSolver(cbcmp cbc cbcmp "")#ADDITIONALINCLUDES "${CMAKE_BINARY_DIR}/_deps/cbc-src/Cbc/src" "${CMAKE_BINARY_DIR}/_deps/coinutils-src/CoinUtils/src")
+defSolver(cbcmp cbc cbcmp "")
+defSolver(copt copt copt "")#ADDITIONALINCLUDES "${CMAKE_BINARY_DIR}/_deps/cbc-src/Cbc/src" "${CMAKE_BINARY_DIR}/_deps/coinutils-src/CoinUtils/src")
 
 set(BUILD_AMPLS "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
 
@@ -115,13 +116,15 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1000)
-  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2210)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1001)
+  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2211)
+  set(copt_BASE_DIR ${SOLVERLIBS}/copt/6.5.0)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/41.01.01)
 else()
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs)
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex)
+  set(copt_BASE_DIR ${SOLVERLIBS}/copt)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress)
 endif()
 
@@ -162,16 +165,20 @@ macro(FindSolverLib OUTPUTTARGETNAME BASELIBFILENAME)
     endif()
 endmacro()
 if(WIN32)
-    message("Here")
     set(sys "/lib/win64")
     CreateSolverLib(gurobi-solverlib ${gurobi_BASE_DIR}/include 
     ${gurobi_BASE_DIR}/${sys}/gurobi100.dll ${gurobi_BASE_DIR}/${sys}/gurobi100.lib)
     set(gurobi-solver-deps gurobi-solverlib)
     
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
-      ${cplex_BASE_DIR}/${sys}/cplex2210.dll
-      ${cplex_BASE_DIR}/${sys}/cplex2210.lib)
+      ${cplex_BASE_DIR}/${sys}/cplex2211.dll
+      ${cplex_BASE_DIR}/${sys}/cplex2211.lib)
     set(cplex-solver-deps cplex-solverlib)
+
+     CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
+      ${copt_BASE_DIR}/${sys}/copt.dll
+      ${copt_BASE_DIR}/${sys}/copt.lib)
+    set(copt-solver-deps copt-solverlib)
     
     CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
       ${xpress_BASE_DIR}/${sys}/xprs.dll

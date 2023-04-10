@@ -1313,7 +1313,7 @@ public:
     throw AMPLSolverException("Not implemented in base class!");
   };
 
-  void setOption(const char* name, int value) {
+  virtual void setOption(const char* name, int value) {
     throw AMPLSolverException("Not implemented in base class!");
   }
 };
@@ -1323,6 +1323,9 @@ class AMPLMPModel : public AMPLModel {
   std::vector<Option> options_;
    
 protected:
+  impl::mp::AMPLS_MP_Solver* solver_; // common across all MP-solvers
+  mutable bool copied_;
+
   AMPLMPModel() :AMPLModel(), solver_(NULL), copied_(false) {}
   
   AMPLMPModel(const AMPLMPModel& other) : 
@@ -1356,10 +1359,6 @@ protected:
     return *this;
   }
 
-
-  impl::mp::AMPLS_MP_Solver* solver_; // common across all mp-solvers
-  mutable bool copied_;
-
   AMPLMPModel(impl::mp::AMPLS_MP_Solver* mp, const char* nlfile) {
     if(impl::mp::AMPLSLoadNLModel(mp, nlfile))
       throw std::runtime_error("Problem loading the model");
@@ -1369,7 +1368,13 @@ protected:
   void writeSolImpl(const char* solFileName) {
     impl::mp::AMPLSReportResults(solver_, solFileName);
   }
+
 public:
+  /// <summary>
+  /// Get a list of the options supported by the solver, as seen from the -= output
+  /// of the solver driver
+  /// </summary>
+  /// <returns>A vector of option descriptions</returns>
   std::vector<Option>& getOptions() {
     if (options_.size() == 0)
     {
@@ -1381,12 +1386,22 @@ public:
     }
     return options_;
   };
-
+  /// <summary>
+  /// Set an option to the specified value
+  /// </summary>
   void setOption(const char* name, int value) {
     impl::mp::AMPLSSetIntOption(solver_, name, value);
   }
-
-  int getOption(const char* name) {
+  /// <summary>
+  /// Set an option to the specified value
+  /// </summary>
+  void setOption(const char* name, double value) {
+    impl::mp::AMPLSSetDblOption(solver_, name, value);
+  }
+  /// <summary>
+  /// Get the current value of the option 'name'
+  /// </summary>
+  int getOptionValue(const char* name) {
     int v;
     impl::mp::AMPLSGetIntOption(solver_, name, &v);
     return v;
@@ -1407,6 +1422,9 @@ public:
 #endif
 #ifdef USE_cbcmp
 #include "cbcmp_interface.h"
+#endif
+#ifdef USE_copt
+#include "copt_interface.h"
 #endif
 
 #ifdef USE_amplapi
@@ -1443,6 +1461,15 @@ namespace ampls {
         return cbc.loadModel("___modelexport___.nl");
       }
 #endif
+
+#ifdef USE_copt
+      template<> CoptModel exportModel<CoptModel>(ampl::AMPL& a) {
+        doExport(a);
+        CoptDrv copt;
+        return copt.loadModel("___modelexport___.nl");
+      }
+#endif
+
 #ifdef USE_cplexmp
       template<> CPLEXModel exportModel<CPLEXModel>(ampl::AMPL& a) {
         doExport(a);

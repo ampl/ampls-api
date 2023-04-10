@@ -56,23 +56,18 @@ int main(int argc, char** argv) {
 #ifdef USE_gurobi
   doStuff<ampls::GurobiModel>();
 #endif
-  /*
-#ifdef USE_cplex
-  // Load a model using CPLEX driver
-  ampls::CPLEXDrv cplex;
-  ampls::CPLEXModel c = cplex.loadModel(buffer);
-  // Use it as generic model
-  doStuff(c, "cplex");
+#ifdef USE_copt
+  doStuff<ampls::CoptModel>();
 #endif
-
+#ifdef USE_cplexmp
+  doStuff<ampls::CPLEXModel>();
+#endif
+#ifdef USE_cbcmp
+  doStuff<ampls::CbcModel>();
+#endif
 #ifdef USE_xpress
-  // Load a model using CPLEX driver
-  ampls::XPRESSDrv xpress;
-  ampls::XPRESSModel x = xpress.loadModel(buffer);
-  // Use it as generic model
-  doStuff(x, "xpress");
+  doStuff<ampls::XPRESSModel>();
 #endif
-*/
   return 0;
  
 }

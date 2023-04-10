@@ -3,7 +3,7 @@
 
 #include <cstring> // for strcat 
 
-const char* MODELNAME = "___modelexport___.nl";
+const char* MODELNAME = "tsp.nl";
 
 class MyGenericCallback : public ampls::GenericCallback
 {
@@ -105,14 +105,22 @@ int main(int argc, char** argv) {
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
-#ifdef USE_xgurobi
+#ifdef USE_gurobi
   // Load a model using gurobi driver
-  ampls::XGurobiDrv gurobi;
-  ampls::XGurobiModel g = gurobi.loadModel(buffer);
+  ampls::GurobiDrv gurobi;
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
   doStuff(g, "gurobi");
 #endif
-  
+
+#ifdef USE_copt
+  // Load a model using CPLEX driver
+  ampls::CoptDrv copt;
+  ampls::CoptModel coptmodel = copt.loadModel(buffer);
+  // Use it as generic model
+  doStuff(coptmodel, "copt");
+#endif
+
 #ifdef USE_cplexmp
   // Load a model using CPLEX driver
   ampls::CPLEXDrv cplex;
@@ -120,13 +128,23 @@ int main(int argc, char** argv) {
   // Use it as generic model
   doStuff(c, "cplex");
 #endif
-#ifdef USE_xpressmp
+
+#ifdef USE_xpress
   // Load a model using Xpress driver
   ampls::XPRESSDrv xpress;
   ampls::XPRESSModel x = xpress.loadModel(buffer);
   // Use it as generic model
   doStuff(x, "xpress");
 #endif
+
+#ifdef USE_cbcmp
+  // Load a model using CPLEX driver
+  ampls::CbcDrv cbc;
+  ampls::CbcModel cbcmodel = cbc.loadModel(buffer);
+  // Use it as generic model
+  doStuff(cbcmodel, "cbc");
+#endif
+
 
   return 0;
  

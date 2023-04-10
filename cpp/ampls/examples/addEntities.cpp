@@ -58,17 +58,20 @@ template <class T> void doStuff(const char* name)
 
 
 int main(int argc, char** argv) {
-#ifdef USE_cplex
+#ifdef USE_cplexmp
   doStuff<ampls::CPLEXModel>("cplex");
 #endif
 #ifdef USE_gurobi
   doStuff<ampls::GurobiModel>("gurobi");
 #endif
-#ifdef USE_x-gurobi
-  doStuff<ampls::GurobiDirectModel>("gurobidirect");
-#endif
-#ifdef  USE_xpress
+#ifdef USE_xpress
   doStuff<ampls::XPRESSModel>("xpress");
+#endif 
+#ifdef USE_cbcmp
+  doStuff<ampls::CbcModel>("cbc");
+#endif 
+#ifdef USE_copt
+  doStuff<ampls::CoptModel>("copt");
 #endif 
   return 0;
  

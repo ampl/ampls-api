@@ -10,10 +10,10 @@
 
 template<class T> T loadModel(const char* model, std::vector<std::string> options);
 
-#ifdef USE_xgurobi
-template<> ampls::XGurobiModel loadModel<ampls::XGurobiModel>(const char* model, std::vector<std::string> options)
+#ifdef USE_gurobi
+template<> ampls::GurobiModel loadModel<ampls::GurobiModel>(const char* model, std::vector<std::string> options)
 {
-  ampls::XGurobiDrv grb;
+  ampls::GurobiDrv grb;
   grb.setOptions(options);
   return grb.loadModel(model);
 }
@@ -26,7 +26,7 @@ template<> ampls::CPLEXModel loadModel< ampls::CPLEXModel>(const char* model, st
   return cplex.loadModel(model);
 }
 #endif
-#ifdef USE_xpressmp
+#ifdef USE_xpress
 template<> ampls::XPRESSModel loadModel<ampls::XPRESSModel>(const char* model, std::vector<std::string> options)
 {
   ampls::XPRESSDrv xpress;
@@ -35,6 +35,23 @@ template<> ampls::XPRESSModel loadModel<ampls::XPRESSModel>(const char* model, s
 }
 #endif
 
+#ifdef USE_cbcmp
+template<> ampls::CbcModel loadModel<ampls::CbcModel>(const char* model, std::vector<std::string> options)
+{
+  ampls::CbcDrv cbc;
+  cbc.setOptions(options);
+  return cbc.loadModel(model);
+}
+#endif
+
+#ifdef USE_copt
+template<> ampls::CoptModel loadModel<ampls::CoptModel >(const char* model, std::vector<std::string> options)
+{
+  ampls::CoptDrv copt;
+  copt.setOptions(options);
+  return copt.loadModel(model);
+}
+#endif
 template <class T> double doStuff(const char* model)
 {
   try {

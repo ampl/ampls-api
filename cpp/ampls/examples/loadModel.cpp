@@ -55,15 +55,16 @@ int main(int argc, char** argv) {
   strcat(buffer, MODELNAME);
 
   std::vector<std::string>  options = { "return_mipgap=3"};
-#ifdef USE_xgurobi
+#ifdef USE_gurobi
   // Load a model using gurobi driver
-  ampls::XGurobiDrv gurobi;
+  ampls::GurobiDrv gurobi;
   gurobi.setOptions(options);
-  ampls::XGurobiModel g = gurobi.loadModel(buffer);
+  ampls::GurobiModel g = gurobi.loadModel(buffer);
   // Use it as generic model
   doStuff(g);
 #endif
-#ifdef USE_xpressmp
+
+#ifdef USE_xpress
   // Load a model using CPLEX driver
   ampls::XPRESSDrv xpress;
   //xpress.setOptions(options);
@@ -81,8 +82,23 @@ int main(int argc, char** argv) {
   doStuff(c);
 #endif
   
+#ifdef USE_copt
+  // Load a model using CPLEX driver
+  ampls::CoptDrv copt;
+  copt.setOptions(options);
+  ampls::CoptModel coptmodel = copt.loadModel(buffer);
+  // Use it as generic model
+  doStuff(coptmodel);
+#endif
 
-
+#ifdef USE_cbcmp
+  // Load a model using CPLEX driver
+  ampls::CbcDrv cbc;
+  cbc.setOptions(options);
+  ampls::CbcModel cbcmodel = cbc.loadModel(buffer);
+  // Use it as generic model
+  doStuff(cbcmodel);
+#endif
 
   return 0;
 }

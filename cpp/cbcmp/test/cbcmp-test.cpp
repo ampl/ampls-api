@@ -94,6 +94,7 @@ public:
   }
 };
 */
+
 int main(int argc, char** argv) {
 
   int res = 0;
@@ -110,6 +111,7 @@ int main(int argc, char** argv) {
   //for (; *option != nullptr; option++)
   //      printf("%d-%s\n", i++, *option);
   m.enableLazyConstraints();
+  
   //MyCbcCallback cb;
   //res = m.setCallback(&cb);
   if (res != 0)
@@ -119,6 +121,9 @@ int main(int argc, char** argv) {
   }
   
   m.optimize();
+  auto point = m.getCBCmodel();
+  
+
 
   // Access objective function through generic API
   double obj = m.getObj();
@@ -126,6 +131,7 @@ int main(int argc, char** argv) {
 
   // Use Cbc C API to access attributes
   Cbc_Model* mm = m.getCBCmodel();
+  
   obj = Cbc_getObjValue(mm);
   printf("Objective from cbc: %f\n", obj);
 

@@ -7,7 +7,6 @@
 
 #include "ampls/ampls.h"
 
-
 #include "Cbc_C_Interface.h"
 
 namespace ampls {
