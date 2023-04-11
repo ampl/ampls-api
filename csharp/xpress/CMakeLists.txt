@@ -1,2 +1,2 @@
 include("../createCsharpProject.cmake")
-createCsharpProject(xpress)
+createCsharpProject(xpress xpress xpress)

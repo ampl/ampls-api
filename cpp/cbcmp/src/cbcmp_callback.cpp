@@ -3,6 +3,8 @@
 
 namespace ampls
 {
+
+
 const char* CbcCallback::getWhereString()
 {
   //TODO
@@ -113,103 +115,47 @@ CbcModel* CbcCallback::getCBCModel() {
   };
 const char* CbcCallback::getMessage()
 {
-  char* msg;
-  //GRBcbget(cbdata_, where_, GRB_CB_MSG_STRING, &msg);
-  return msg;
+  return msg_.data();
 }
 
 int CbcCallback::doAddCut(const ampls::Constraint& c, int lazy) {
-  char sense = toGRBSense(c.sense());
-  /*
-  if (lazy)
-  {
-    return GRBcblazy(cbdata_, c.indices().size(), c.indices().data(),
-      c.coeffs().data(), sense, c.rhs());
-  }
-  else
-  {
-    return GRBcbcut(cbdata_, c.indices().size(), c.indices().data(),
-      c.coeffs().data(), sense, c.rhs());
-  }
-  */
+  char sense = toCBCSense(c.sense());
+    
+  OsiCuts_addRowCut(osicuts_, c.coeffs().size(), c.indices().data(),
+        c.coeffs().data(), sense, c.rhs());
   return 0;
 }
 
 int CbcCallback::getSolution(int len, double* sol)
-{
-  /*
-  if ((where_ != GRB_CB_MIPNODE) &&
-    (where_ != GRB_CB_MIPSOL))
-    throw ampls::AMPLSolverException("The solution vector can be obtained in a callback only from a MIP node or MIP solution callback");
-  int flag = where_ == GRB_CB_MIPSOL ? GRB_CB_MIPSOL_SOL :
-    GRB_CB_MIPNODE_REL;
-  return GRBcbget(cbdata_, where_, flag, sol);
-  */
+{ 
+  int ncc = Osi_getNumCols(osisolver_);
+  auto osiSol = Osi_getColSolution(osisolver_);
+  for (int i = 0; i < len; i++)
+    sol[i] = osiSol[i];
   return 0;
 }
 
 double CbcCallback::getObj()
-{/*
-  int flag;
-  switch (where_)
-  {
-  case GRB_CB_SIMPLEX:
-    flag = GRB_CB_SPX_OBJVAL;
-    break;
-  case GRB_CB_MIP:
-    flag = GRB_CB_MIP_OBJBST;
-    break;
-  case GRB_CB_MIPSOL:
-    flag = GRB_CB_MIPSOL_OBJ;
-    break;
-  case GRB_CB_MIPNODE:
-    flag = GRB_CB_MIP_OBJBST;
-    break;
-  case GRB_CB_BARRIER:
-    flag = GRB_CB_BARRIER_PRIMOBJ;
-    break;
-  default:
-    throw ampls::AMPLSolverException("Cannot get objective value from here!");
-  }
-  double obj;
-  GRBcbget(cbdata_, where_, flag, &obj);
-  return obj;
-  */
-  return 0;
+{
+  return Cbc_getObjValue(getCBCModel()->getCBCmodel());
 }
 
 
 Variant  CbcCallback::getValue(Value::CBValue v) {
-  /*
+  
+  
   switch (v)
   {
   case Value::OBJ:
     return Variant(getObj());
   case Value::MIP_RELATIVEGAP:
-    return impl::calculateRelMIPGAP(getDouble(GRB_CB_MIPSOL_OBJ),
-      getDouble(GRB_CB_MIPSOL_OBJBND));
+    return impl::calculateRelMIPGAP(getObj(),
+      getValue(Value::MIP_OBJBOUND).dbl);
   case Value::MIP_OBJBOUND:
-    return getDouble(GRB_CB_MIPSOL_OBJBND);
-  case Value::PRE_DELCOLS:
-    return get(GRB_CB_PRE_COLDEL);
-  case Value::PRE_DELROWS:
-    return get(GRB_CB_PRE_ROWDEL);
-  case Value::PRE_COEFFCHANGED:
-    return get(GRB_CB_PRE_COECHG);
-  case Value::ITERATIONS:
-    if (where_ == GRB_CB_SIMPLEX)
-      return get(GRB_CB_SPX_ITRCNT);
-    if ((where_ >= GRB_CB_MIP) &&
-      (where_ >= GRB_CB_MIPNODE))
-      return get(GRB_CB_MIP_ITRCNT);
-    if (where_ == GRB_CB_BARRIER)
-      return get(GRB_CB_BARRIER_ITRCNT);
-  case Value::RUNTIME:
-    return get(GRB_CB_RUNTIME);
+    return Cbc_getBestPossibleObjValue(getCBCModel()->getCBCmodel());
   default:
     throw AMPLSolverException("Specified value unknown.");
   }
-  */
   return Variant(0);
 }
 

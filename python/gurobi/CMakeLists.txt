@@ -1,3 +1,3 @@
 include("../createPythonWrapper.cmake")
 
-createPythonWrapper(gurobi)
+createPythonWrapper(gurobi gurobi gurobi gurobi)

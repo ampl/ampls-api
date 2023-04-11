@@ -7,6 +7,7 @@ const char* CoptCallback::getWhereString()
 {
   switch (where_)
   {
+  case ampls::Where::MSG: return "ampls::Where::MSG";
   case COPT_CBCONTEXT_MIPRELAX: return "COPT_CBCONTEXT_MIPRELAX";
   case COPT_CBCONTEXT_MIPSOL: return "COPT_CBCONTEXT_MIPSOL";
   default:
@@ -51,12 +52,12 @@ int CoptCallback::doAddCut(const ampls::Constraint& c, int lazy) {
 
 int CoptCallback::getSolution(int len, double* sol)
 {
-  /*if ((where_ != GRB_CB_MIPNODE) &&
-    (where_ != GRB_CB_MIPSOL))
-    throw ampls::AMPLSolverException("The solution vector can be obtained in a callback only from a MIP node or MIP solution callback");
-  int flag = where_ == GRB_CB_MIPSOL ? GRB_CB_MIPSOL_SOL :
-    GRB_CB_MIPNODE_REL;
-  return GRBcbget(cbdata_, where_, flag, sol);*/
+  if (len != model_->getNumVars())
+    throw ampls::AMPLSolverException("COPT only supports full solution vectors retrieval.");
+  if (where_ == COPT_CBCONTEXT_MIPRELAX)
+    COPT_GetCallbackInfo(cbdata_, COPT_CBINFO_RELAXSOLUTION, sol);
+  if (where_ == COPT_CBCONTEXT_MIPSOL)
+    COPT_GetCallbackInfo(cbdata_, COPT_CBINFO_MIPCANDIDATE, sol);
   return 0;
 }
 
@@ -88,40 +89,22 @@ Variant  CoptCallback::getValue(Value::CBValue v) {
       getDouble(COPT_CBINFO_BESTBND));
   case Value::MIP_OBJBOUND:
     return getDouble(COPT_CBINFO_BESTBND);
-  /*case Value::ITERATIONS:
-    if (where_ == GRB_CB_SIMPLEX)
-      return get(GRB_CB_SPX_ITRCNT);
-    if ((where_ >= GRB_CB_MIP) &&
-      (where_ >= GRB_CB_MIPNODE))
-      return get(GRB_CB_MIP_ITRCNT);
-    if (where_ == GRB_CB_BARRIER)
-      return get(GRB_CB_BARRIER_ITRCNT);
-  case Value::RUNTIME:
-    return get(GRB_CB_RUNTIME);*/
   default:
     throw AMPLSolverException("Specified value unknown.");
   }
 }
 int CoptCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
- /* heurUserAction_ = CPX_CALLBACK_SET;
-  for (int i = 0; i < nvars; i++)
-    x_[indices[i]] = values[i];
-  return 0;
-*/ // TODO
-  return 1;
+  throw ampls::AMPLSolverException("COPT does not support this functionality yet.");
 }
 
 std::vector<double> CoptCallback::getValueArray(Value::CBValue v) {
-/*  switch (v)
+  switch (v)
   {
   case Value::MIP_SOL_RELAXED:
-    if (where_ == CPX_CALLBACK_MIP_HEURISTIC)
-    {
-      std::vector<double> c(x_, x_ + model_->getNumVars());
-      return c;
-    }
-  } TODO
-  */
+    std::vector<double> d(model_->getNumVars());
+    COPT_GetCallbackInfo(cbdata_, COPT_CBINFO_RELAXSOLUTION, d.data());
+    return d;
+  }
   return std::vector<double>();
 }
 

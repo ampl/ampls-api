@@ -1,33 +1,29 @@
-#include "cbcmp_interface.h"
+#include <functional>
+#include <memory> // for unique_ptr
 
+#include "cbcmp_interface.h"
 #include "ampls/ampls.h"
 
-#include <memory> // for unique_ptr
 namespace ampls
 {
+ 
 
 
-void impl::cbcmp::callback_wrapper(void* osisolver, void* osicuts, void* appdata)
+void impl::cbcmp::cut_callback_wrapper(void* osisolver, void* osicuts, void* appdata, int level, int pass)
 {
-  printf("I am here");
-  
-  //CbcCallback* cb = (CbcCallback*)usrdata;
-  /*
-  cb->cbdata_ = cbdata;
-  cb->where_ = where;
-  if (cb->getAMPLWhere() == ampls::Where::MIPNODE)
-    cb->currentCapabilities_ = ampls::CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION;
-  else
-    cb->currentCapabilities_ = 0;
-
-  int res = cb->run();
-  if (res == -1)
-  {
-    GRBterminate(model);
-    return 0;
-  }
-  return res;*/
+  CbcCallback* cb = (CbcCallback*)appdata;
+  cb->where_ = ampls::Where::MIPSOL;
+  cb->osisolver_ = osisolver;
+  cb->osicuts_ = osicuts;
+  cb->run();
 }
+
+void impl::cbcmp::callback_wrapper(Cbc_Model* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,
+  int nchar, char** cvec) {
+  //cb->where_ = ampls::Where::MSG;
+
+}
+
 
 CbcDrv::~CbcDrv() {
 }
@@ -42,8 +38,32 @@ CbcModel CbcDrv::loadModel(const char* modelName) {
 void CbcModel::writeSolImpl(const char* solFileName) {
   impl::mp::AMPLSReportResults(solver_, solFileName);
 }
+
+
+template <typename T>
+struct MsgCallback;
+
+template <typename Ret, typename... Params>
+struct MsgCallback<Ret(Params...)> {
+  template <typename... Args>
+  static Ret callback(Args... args) {
+    return func(args...);
+  }
+  static std::function<Ret(Params...)> func;
+};
+
+template <typename Ret, typename... Params>
+std::function<Ret(Params...)> MsgCallback<Ret(Params...)>::func;
+
 int CbcModel::setCallbackDerived(impl::BaseCallback* callback) {
-  Cbc_addCutCallback(model_, (cbc_cut_callback)impl::cbcmp::callback_wrapper, "amplscallback", callback);
+  Cbc_addCutCallback(model_, (cbc_cut_callback)impl::cbcmp::cut_callback_wrapper, "amplscallback", callback);
+  CbcCallback* cbcc = dynamic_cast<CbcCallback*>(callback);
+  MsgCallback<void(Cbc_Model*,int,int,const double*,int,const int*,int,char**)>::func = 
+    std::bind(&CbcCallback::call_msg_callback, cbcc, std::placeholders::_1, std::placeholders::_2,
+      std::placeholders::_3, std::placeholders::_4, std::placeholders::_5, std::placeholders::_6, std::placeholders::_7,
+      std::placeholders::_8);
+  cbc_callback func = static_cast<cbc_callback>(MsgCallback<void(Cbc_Model*, int, int, const double*, int, const int*, int, char**)>::callback);
+  Cbc_registerCallBack(model_, func);
   return 0;
 }
 

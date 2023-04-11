@@ -7,6 +7,8 @@ set(CSHARP_SWIG_API ${solvername}sharp_c) # name of swig generated wrapper
 find_package(CSharp)
 include(${CSHARP_USE_FILE})
 
+
+
 # ############ Create SWIG wrapper #############
 # Workaround to bypass licensing routines
 set(gurobi_INCLUDE_DIR ${gurobi_INCLUDE_DIR}/gurobi)

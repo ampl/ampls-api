@@ -34,12 +34,12 @@ class CCB : public ampls::GenericCallback
 void doStuff(ampls::AMPLModel& m, const char *name)
 {
   int nOptions = 3;
-  for (auto o : m.getOptions())
+  /*for (auto o : m.getOptions())
   {
     std::cout << o.toString() << std::endl;
     if (nOptions-- == 0)
       break;
-  }
+  }*/
   CCB b;
   // Set the generic function above as callback
   m.setCallback(&b);
@@ -57,6 +57,16 @@ int main(int argc, char** argv) {
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
+
+
+#ifdef USE_copt
+  // Load a model using copt
+  ampls::CoptDrv copt;
+  ampls::CoptModel cm = copt.loadModel(buffer);
+  // Use it as generic model
+  doStuff(cm, "copt");
+#endif
+
 
 #ifdef USE_gurobi
   // Load a model using gurobi driver

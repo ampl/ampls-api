@@ -51,12 +51,17 @@ public:
     if (getWhere() == COPT_CBCONTEXT_MIPRELAX)
       printf("COPT_CBINFO_RELAXSOLOBJ %f\n", get(COPT_CBINFO_RELAXSOLOBJ).dbl);
     else if (getWhere() == COPT_CBCONTEXT_MIPSOL) {
-      printf("COPT_CBINFO_BESTOBJ %f\n", get(COPT_CBINFO_BESTOBJ).dbl);
+
       double objBest = getDouble(COPT_CBINFO_BESTOBJ);
       double objBnd = getDouble(COPT_CBINFO_BESTBND);
+      printf("COPT_CBINFO_BESTOBJ %f\n", objBest);
+      printf("COPT_CBINFO_BESTBND %f\n", objBnd);
+
+      
+      printf("REL GAP=%f%%\n", 100*getValue(ampls::Value::MIP_RELATIVEGAP).dbl);
       if (fabs(objBest - objBnd) < 0.1 * (1.0 + fabs(objBest))) {
         printf("Stop early - 10%% gap achieved\n");
-        COPT_Interrupt(_prob);
+        return -1;
       }
     }
     printf("** End of callback handler **\n\n");

@@ -226,7 +226,7 @@ struct Value
     
 
     MIP_OBJBOUND=7,
-    /* Relaxed soluition - only in MIP node */
+    /* Relaxed solution - only in MIP node */
     MIP_SOL_RELAXED
 
   };
@@ -328,7 +328,6 @@ namespace ampls{
         const char* description;
         int type; // 0=int, 1=double, 2=string
       } AMPLS_C_Option;
-
       extern "C" {
         // Imported from the ampls driver library, declared in ampls-c-api.h
         ENTRYPOINT void AMPLSReportResults(void* slv, const char* solFileName);
@@ -1389,15 +1388,11 @@ public:
   /// <summary>
   /// Set an option to the specified value
   /// </summary>
-  void setOption(const char* name, int value) {
-    impl::mp::AMPLSSetIntOption(solver_, name, value);
-  }
+  void setOption(const char* name, int value);
   /// <summary>
   /// Set an option to the specified value
   /// </summary>
-  void setOption(const char* name, double value) {
-    impl::mp::AMPLSSetDblOption(solver_, name, value);
-  }
+  void setOption(const char* name, double value);
   /// <summary>
   /// Get the current value of the option 'name'
   /// </summary>

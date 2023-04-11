@@ -97,7 +97,7 @@ void CPLEXDrv::freeCPLEXEnv()
 }
 
 CPLEXModel CPLEXDrv::loadModelImpl(char** args) {
-  return CPLEXModel(impl::cpx::AMPLSOpen_cplexmp(3, args), args[1]);
+  return CPLEXModel(static_cast<impl::mp::AMPLS_MP_Solver*>(impl::cpx::AMPLSOpen_cplexmp(3, args)), args[1]);
 }
 CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);

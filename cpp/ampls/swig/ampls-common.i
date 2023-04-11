@@ -32,6 +32,10 @@ namespace std {
 %ignore ampls::BaseCallback::doAddCut;
 %ignore ampls::GenericCallback::doAddCut;
 %ignore ampls::GenericCallback::getSolution;
-
+%ignore ampls::impl::mp;
+%ignore ampls::impl::mp::AMPLSSetDblOption;
+%ignore ampls::impl::mp::AMPLSSetStrOption;
+%ignore ampls::impl::mp::AMPLSGetDblOption;
+%ignore ampls::impl::mp::AMPLSGetStrOption;
 
 %include "ampls/ampls.h"

@@ -11,58 +11,8 @@
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
-#ifdef USE_gurobi
-  #include "gurobi_interface.h"
-#endif
 #ifdef USE_amplapi
     #include "ampl/ampl.h"
-
-namespace AMPLAPIInterface
-{
-  namespace impl {
-
-    void doExport(ampl::AMPL& a) {
-      a.eval("option auxfiles cr;");
-      a.eval("write g___modelexport___;");
-    }
-
-    template <class T> T exportModel(ampl::AMPL& a);
-#ifdef USE_gurobi
-    template<> ampls::GurobiModel exportModel<ampls::GurobiModel>(ampl::AMPL& a) {
-      doExport(a);
-      ampls::GurobiDrv gurobi;
-      return gurobi.loadModel("___modelexport___.nl");
-    }
-#endif
-
-#ifdef USE_cplexmp
-    template<> ampls::CPLEXModel exportModel<ampls::CPLEXModel>(ampl::AMPL& a) {
-      doExport(a);
-      ampls::CPLEXDrv cplex;
-      return cplex.loadModel("___modelexport___.nl");
-    }
-#endif
-
-#ifdef USE_xpressmp
-    template<> ampls::XPRESSModel exportModel<ampls::XPRESSModel>(ampl::AMPL& a) {
-      doExport(a);
-      ampls::XPRESSDrv xpress;
-      return xpress.loadModel("___modelexport___.nl");
-    }
-#endif
-  }
-
-  template <class T> T exportModel(ampl::AMPL& a) {
-    return impl::exportModel<T>(a);
-  }
-
-  void importModel(ampl::AMPL& a, ampls::AMPLModel& g) {
-    g.writeSol();
-    a.eval("solution ___modelexport___.sol;");
-    a.eval(g.getRecordedEntities());
-  }
-}
-
 #endif
 
 
@@ -281,7 +231,7 @@ public:
 
   virtual int run()
   {
-    if(checkCanDo(ampls::CanDo::GET_LP_SOLUTION))
+   /* if (checkCanDo(ampls::CanDo::GET_LP_SOLUTION))
     {
       int nnz = 0;
       auto s = getValueArray(ampls::Value::MIP_SOL_RELAXED);
@@ -289,7 +239,7 @@ public:
         if(d != 0)
           nnz++;
      // std::cout << "Number of non zeros in node solution: " << nnz << "\n";
-    }
+    }*/
     if (getAMPLWhere() == ampls::Where::MSG)
       std::cout << getMessage() << "\n";
     // Get the generic mapping
@@ -480,33 +430,26 @@ int main(int argc, char** argv) {
   df.setColumn("vpos", ys.data(), nodes.size());
   a.setData(df, "NODES");
   a.eval("display NODES, hpos, vpos;");
-  auto m = AMPLAPIInterface::exportModel<ampls::GurobiModel>(a);
-  doStuff(m);
-#else
 
-
-
-#ifdef USE_xpressmp
-  // Load a model using Xpress driver
- // ampls::XPRESSDrv xpress;
- // ampls::XPRESSModel x = xpress.loadModel(buffer);
-  // Use it as generic model
-//  doStuff(x);
+#ifdef USE_cbcmp
+  auto cbcmodel = ampls::AMPLAPIInterface::exportModel<ampls::CbcModel>(a);
+  doStuff(cbcmodel);
 #endif
-#ifdef USE_xgurobi
-// Load a model using gurobi driver
-  ampls::XGurobiDrv gurobi;
-  gurobi.setOptions({ "mipgap=1e-9" });
-  ampls::XGurobiModel g = gurobi.loadModel(buffer);
-  doStuff(g);
+#ifdef USE_copt
+  auto coptmodel = ampls::AMPLAPIInterface::exportModel<ampls::CoptModel>(a);
+  doStuff(coptmodel);
+#endif
+#ifdef USE_xpress
+  auto xpressmodel = ampls::AMPLAPIInterface::exportModel<ampls::XpressModel>(a);
+  doStuff(xpressmodel);
+#endif
+#ifdef USE_gurobi
+  auto gurobimodel = ampls::AMPLAPIInterface::exportModel<ampls::GurobiModel>(a);
+  doStuff(gurobimodel);
 #endif
 #ifdef USE_cplexmp
-// Load a model using CPLEX driver
-  ampls::CPLEXDrv cplex;
-  cplex.setOptions({ "mipgap=1e-9" });
-  ampls::CPLEXModel c = cplex.loadModel(buffer);
-  // Use it as generic model
-  doStuff(c);
+  auto cplexmodel = ampls::AMPLAPIInterface::exportModel<ampls::CPLEXModel>(a);
+  doStuff(cplexmodel);
 #endif
 #endif
 }

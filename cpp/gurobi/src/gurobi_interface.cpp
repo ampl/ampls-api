@@ -27,7 +27,7 @@ GurobiDrv::~GurobiDrv() {
 }
 
 GurobiModel GurobiDrv::loadModelImpl(char** args) {
-  return GurobiModel(impl::grb::AMPLSOpen_gurobi(3, args), args[1]);
+  return GurobiModel((ampls::impl::mp::AMPLS_MP_Solver*)impl::grb::AMPLSOpen_gurobi(3, args), args[1]);
 }
 GurobiModel GurobiDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);

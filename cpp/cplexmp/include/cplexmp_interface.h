@@ -47,7 +47,7 @@ class CPLEXModel;
       ENTRYPOINT void AMPLSClose_cplexmp(void* slv);
       ENTRYPOINT CPXLPptr AMPLSGetModel_cplexmp(void* slv);
       ENTRYPOINT CPXENVptr AMPLSGetEnv_cplexmp(void* slv);
-      ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_cplexmp(int, char**);
+      ENTRYPOINT void* AMPLSOpen_cplexmp(int, char**);
     }
     
     class CBWrap {

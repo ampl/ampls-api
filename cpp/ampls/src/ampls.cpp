@@ -225,6 +225,13 @@ std::string Variable::toAMPLString(const std::map<int, std::string>& varMap,
   return ss.str();
 }
 
+void AMPLMPModel::setOption(const char* name, int value) {
+  impl::mp::AMPLSSetIntOption(solver_, name, value);
+}
+void AMPLMPModel::setOption(const char* name, double value) {
+  //impl::mp::AMPLSSetDblOption(solver_, name, value);
+}
+
 namespace impl {
 
 
@@ -259,6 +266,7 @@ namespace impl {
     model_->getVarMapsInternal();
     return model_->varMapInverse_;
   }
+
 
   ampls::Constraint BaseCallback::callDoAddCut(int length, const int* indices,
     const double* coeffs, CutDirection::Direction direction, double rhs,

@@ -49,13 +49,13 @@ namespace gurobisharp_test
       }
     }
 
-    private class GCB : XGurobiCallback
+    private class GCB : GurobiCallback
     {
 
       public override int run()
       {
         var f = getAMPLWhere();
-        System.Console.WriteLine($"Elapsed time {getValue(Value.CBValue.RUNTIME)}");
+        System.Console.WriteLine($"Elapsed time {getValue(Value.CBValue.RUNTIME).dbl}");
         switch(f)
         {
           case Where.LPSOLVE:
@@ -78,13 +78,13 @@ namespace gurobisharp_test
       }
     }
 
-      static void Main(string[] args)
+    static void Main(string[] args)
     {
-      XGurobiDrv g = new XGurobiDrv();
+      GurobiDrv g = new GurobiDrv();
       
             try
             {
-                var m = g.loadModel(@"D:\Development\AMPL\solvers-public\test\models\tsp.nl");
+                var m = g.loadModel(@"D:\Development\AMPL\ampls-api\test\models\tsp.nl");
 
                 int nvars = m.getNumVars();
                 //CB cb = new CB();

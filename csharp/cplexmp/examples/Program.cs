@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using gsharp;
+using ampls;
 
-namespace gsharp_test
+namespace cpx_test
 {
   class Program
   {
-    private class CB : gsharp.GRBCallback
+    private class CB : CPLEXCallback
     {
       int count = 0;
-      public override int run(int whereFrom)
+      public override int run()
       {
         var map = getVarMap();
        // foreach (var m in map)
@@ -49,9 +49,11 @@ namespace gsharp_test
 
     static void Main(string[] args)
     {
-      GurobiDrv g = new GurobiDrv();
-      
-      var m = g.loadModel(@"D:\Development\AMPL\escrow-ampls\solvers_dist\test\models\tsp.nl");
+      string modelFile = ((args != null) && (args.Length > 0)) ? args[0]
+           : "../../../../../ampls-api/test/models/tsp.nl";
+
+      CplexDrv g = new CplexDrv();
+            
       int nvars = m.getNumVars();
       CB b = new CB();
       m.setCallback(b);

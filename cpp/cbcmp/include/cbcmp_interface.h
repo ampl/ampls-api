@@ -36,7 +36,9 @@ namespace ampls
       ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_cbcmp(int, char**);
     }
     // Forward declarations
-    void callback_wrapper(void* osisolver, void* osicuts, void* appdata);
+    void cut_callback_wrapper(void* osisolver, void* osicuts, void* appdata, int level, int pass);
+    void callback_wrapper(Cbc_Model* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,
+      int nchar, char** cvec);
   }
 }
 
@@ -119,7 +121,9 @@ class CbcModel : public AMPLMPModel {
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
   void writeSolImpl(const char* solFileName);
 public:
-  void enableLazyConstraints()  {}
+  void enableLazyConstraints()  {
+    Cbc_setParameter(model_, "preprocess", "off");
+  }
 
   CbcModel(const CbcModel& other) :
     AMPLMPModel(other), model_(other.model_)
@@ -303,7 +307,7 @@ public:
 
   int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],
     ampls::CutDirection::Direction sense, double rhs) {
-    char grbsense = CbcCallback::toGRBSense(sense);
+    char grbsense = CbcCallback::toCBCSense(sense);
     //TODO
     //int status = GRBaddconstr(getGRBmodel(), numnz, const_cast<int*>(vars),
     //  const_cast<double*>(coefficients), grbsense, rhs, name);

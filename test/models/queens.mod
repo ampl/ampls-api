@@ -95,7 +95,8 @@ s.t. att{i in S,j in S}:
         sum{m in S : m <> i} x[m,j] + 
         sum{n in S : n <> j} x[i,n] 
           <= 99*a[i,j];
-
+option auxfiles cr;
+write gqueens18;
 #option solver cplex;
 option solver gurobi;
 # option solver cbc;

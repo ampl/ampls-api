@@ -9,11 +9,12 @@ namespace ampls_examples
 {
   class LoadModelGeneric
   {
-    public void run() { 
+    public void run(string path) { 
 
     GurobiDrv g = new GurobiDrv();
-    var m = g.loadModel(@"D:\Development\AMPL\escrow-ampls\solvers_dist\test\models\tsp.nl");
-    DoStuff(m, "gurobi");
+     string modelFile = path != null ? path
+             : "../../../../../ampls-api/test/models/tsp.nl";
+      DoStuff(m, "gurobi");
     }
 
     private void DoStuff(AMPLModel m, string name)

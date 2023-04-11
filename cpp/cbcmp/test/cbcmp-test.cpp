@@ -7,34 +7,38 @@
 
 #include <cmath>
 
-const char* MODELNAME = "testmodel.nl";
-/*
-class MyCbcCutCallback : public ampls::CbcCallback
+const char* MODELNAME = "queens18.nl";
+
+class MyCbcCallback : public ampls::CbcCallback
 {
+  int count = 0;
   int run()
   {
     int ret = 0;
-    /*
-    if (getWhere() == GRB_CB_MESSAGE)
+    printf("Called callback %d\n", ++count);
+
+    if (getWhere() == ampls::Where::MSG)
     {
       printf("%s", getMessage());
       return 0;
     }
-    if (getWhere() == GRB_CB_MIPSOL)
-    {
       std::vector<std::string> vars;
       vars.push_back("x[1,2]");
       vars.push_back("x[1,4]");
       double coefs[] = { 1,1};
+      
       std::vector<double> sol = getSolutionVector();
-      for (int i = 0; i < sol.size(); i++)
-        if(sol[i]!=0)
-          printf("x[%d] = %f\n", i, sol[i]);
-      auto c= addLazy(vars, coefs, ampls::CutDirection::GE, 2);
-    }
+
+      int nnz = 0;
+      for (auto s : sol)
+        if (s) nnz++;
+      printf("Nonzeroes=%d\n",nnz);
+      auto c= addCut(vars, coefs, ampls::CutDirection::GE, 2);
+   
     return 0;
   }
 };
+/*
 class MyCbcCallback : public ampls::CbcCallback
 {
   int lastIter = 0;
@@ -105,23 +109,24 @@ int main(int argc, char** argv) {
 
   ampls::CbcDrv d;
   ampls::CbcModel m = d.loadModel(buffer);
-
+  auto cbcmodel= m.getCBCmodel();
+  
   int i = 0;
   //const char*const* option = m.getOptions();
   //for (; *option != nullptr; option++)
   //      printf("%d-%s\n", i++, *option);
   m.enableLazyConstraints();
   
-  //MyCbcCallback cb;
-  //res = m.setCallback(&cb);
+  MyCbcCallback cb;
+  res = m.setCallback(&cb);
   if (res != 0)
   {
     printf("ERROR!!! %i\n", res);
     return res;
   }
-  
+  m.setOption("presolve", 0);
   m.optimize();
-  auto point = m.getCBCmodel();
+  
   
 
 

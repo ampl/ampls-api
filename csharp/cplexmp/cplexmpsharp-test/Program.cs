@@ -56,13 +56,12 @@ namespace cpxsharp_test
         
       static void Main(string[] args)
     {
-      const string nodelFile = @"D:\Development\AMPL\solvers-public\test\models\tsp.nl";
-           // const string nodelFile = @"D:\\model.nl";
+      string modelFile = ((args != null) && (args.Length > 0)) ? args[0]
+           : "../../../../../ampls-api/test/models/tsp.nl";
             CPLEXDrv g = new CPLEXDrv();
             try
             {
-        
-                var m = g.loadModel(nodelFile);
+                var m = g.loadModel(modelFile);
 
                 int nvars = m.getNumVars();
                 // CB cb = new CB();

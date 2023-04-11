@@ -1,3 +1,3 @@
 include("../createPythonWrapper.cmake")
 
-createPythonWrapper(xpress)
+createPythonWrapper(xpress xpress xpress xpress)

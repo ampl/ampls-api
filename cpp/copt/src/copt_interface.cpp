@@ -16,10 +16,10 @@ int impl::copt::callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void*
     cb->currentCapabilities_ = 0;
 
   int res = cb->run();
-  if (res == -1)
+  if (res!=0)
   {
     COPT_Interrupt(prob);
-    return 0;
+    return res;
   }
   return res;
 }

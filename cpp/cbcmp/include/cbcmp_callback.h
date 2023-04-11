@@ -10,8 +10,10 @@
 #include "Cbc_C_Interface.h"
 
 namespace ampls {
-namespace cbcmp { namespace impl{
-int callback_wrapper(void* model, void* cbdata, int where, void* usrdata); 
+namespace impl { namespace cbcmp{
+void cut_callback_wrapper(void* osisolver, void* osicuts, void* appdata, int level, int pass);
+void callback_wrapper(Cbc_Model* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,
+  int nchar, char** cvec);
 } }
 class CbcModel;
 
@@ -27,21 +29,24 @@ class CbcModel;
 * of the solver.
 */
 class CbcCallback : public impl::BaseCallback {
-  friend int cbcmp::impl::callback_wrapper(void* model, void* cbdata, int where, void* usrdata);
+  friend void impl::cbcmp::cut_callback_wrapper(void* osisolver, void* osicuts, void* appdata, int level, int pass);
+  friend void impl::cbcmp::callback_wrapper(Cbc_Model* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,
+    int nchar, char** cvec);
   friend class CbcModel;
-  void* cbdata_;
-  static char toGRBSense(ampls::CutDirection::Direction dir)
+  void* osisolver_;
+  void* osicuts_;
+  std::string msg_;
+  static char toCBCSense(ampls::CutDirection::Direction dir)
   {
-    /*
     switch (dir)
     {
     case CutDirection::EQ:
-      return GRB_EQUAL;
+      return 'E';
     case CutDirection::GE:
-      return GRB_GREATER_EQUAL;
+      return 'G';
     case CutDirection::LE:
-      return GRB_LESS_EQUAL;
-    }*/
+      return 'L';
+    }
     throw std::runtime_error("Unexpected CutDirection value");
   }
 
@@ -52,8 +57,17 @@ protected:
   int doAddCut(const ampls::Constraint& c, int type);
 
 public:
+  void call_msg_callback(Cbc_Model* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,
+    int nchar, char** cvec) {
+    where_ = ampls::Where::MSG;
+    if (nchar > 0)
+      msg_ = std::string(cvec[0])+ '\n';
+    for (int i = 1; i < nchar; i++)
+      msg_ += std::string(cvec[1]) + '\n';
+    run();
+  }
 
-  CbcCallback() : cbdata_(NULL) {}
+  CbcCallback() : osisolver_(NULL), osicuts_(NULL) {}
   
   virtual int run() = 0;
   /**
@@ -71,8 +85,10 @@ public:
   double getObj();
 
   // ************** Cbc specific **************
-  /** Get CBdata, useful for calling cbc c library functions */
-  void* getCBData() { return cbdata_; }
+  /** Get osisolver, useful for calling cbc c library functions */
+  void* getOSISolver() { return osisolver_; }
+  /** Get osicuts, useful for calling cbc c library functions */
+  void* getOSICuts() { return osicuts_; }
   /** * Get the underlying cbc model pointer */
   CbcModel* getCBCModel();
   /** Terminate the solution */
@@ -116,25 +132,7 @@ public:
   }
 
   virtual Where::CBWhere getAMPLWhere() {
-  /* switch (where_)
-    {
-    case GRB_CB_MESSAGE:
-      return Where::MSG;
-    case GRB_CB_PRESOLVE:
-      return Where::PRESOLVE;
-    case GRB_CB_SIMPLEX:
-      return Where::LPSOLVE;
-    case GRB_CB_MIPNODE:
-      return Where::MIPNODE;
-    case GRB_CB_MIPSOL:
-      return Where::MIPSOL;
-    case GRB_CB_MIP:
-      return Where::MIP;
-    default:
-      return Where::NOTMAPPED;
-    }
-    */
-    return Where::NOTMAPPED;
+    return (ampls::Where::CBWhere)where_;
   }
   /** Get a value (using cbc C library enumeration to specify what)*/
   Variant get(int what);
