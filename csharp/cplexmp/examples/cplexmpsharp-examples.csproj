@@ -53,9 +53,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\api\dev_cplexsharp.csproj">
-      <Project>{38cbf080-82b4-4702-8ae0-04850fa4b83e}</Project>
-      <Name>dev_cplexsharp</Name>
+    <ProjectReference Include="..\api\dev_cplexmpsharp.csproj">
+      <Project>{305c4091-5634-3913-b469-4b4c55b96f17}</Project>
+      <Name>dev_cplexmpsharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

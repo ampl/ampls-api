@@ -23,7 +23,7 @@ namespace ampls
 {
   namespace impl
   {
-    namespace grb {
+    namespace copt {
       /* Define a macro to do our error checking */
 #define AMPLSCOPTERRORCHECK(name)  \
     if (status)  \
@@ -36,8 +36,9 @@ namespace ampls
         ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_copt(int, char**);
       }
       // Forward declarations
-      int callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata);
-    } // namespace grb
+      int copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata);
+      void copt_log_callback_wrapper(char* msg, void* userdata);
+    } // namespace copt
   } // namespace impl
 
 class CoptModel;
@@ -61,10 +62,10 @@ public:
 
 /**
 Encapsulates all the instance level information for a copt model,
-namely the GRBmodel object and the relative MP library.
+namely the copt_prob object and the relative MP library.
 It can not be created any other way than by reading an nl file,
 and any assignment moves actual ownership.
-At the end of its life, it deletes the GRBmodel and the MP structures.
+At the end of its life, it deletes the copt_prob and the MP structures.
 */
 class CoptModel : public AMPLMPModel {
   friend CoptDrv;
@@ -102,7 +103,7 @@ class CoptModel : public AMPLMPModel {
   CoptModel() : AMPLMPModel(), COPTModel_(NULL), lastErrorCode_(0) {}
   CoptModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile) : AMPLMPModel(s, nlfile),
     lastErrorCode_(0) {
-    COPTModel_ = impl::grb::AMPLSGetModel_copt(s);
+    COPTModel_ = impl::copt::AMPLSGetModel_copt(s);
   }
   // Interface implementation
   int setCallbackDerived(impl::BaseCallback* callback);
@@ -220,10 +221,6 @@ public:
   int getIntAttr(const char* name);
   /** Get a double model attribute (using copt C library name) */
   double getDoubleAttr(const char* name);
-  /** Get an integer array model attribute (using copt C library name) */
-  int getIntAttrArray(const char* name, int first, int length, int* arr);
-  /** Get a double array model attribute (using copt C library name) */
-  int getDoubleAttrArray(const char* name, int first, int length, double* arr);
 
   /** Get an integer parameter (using copt C library name) */
   int getIntParam(const char* name) {
@@ -236,21 +233,21 @@ public:
   double getDoubleParam(const char* name) {
     double v;
     int status = COPT_GetDblParam(COPTModel_, name, &v);
-    AMPLSCOPTERRORCHECK("GRBgetdblparam")
+    AMPLSCOPTERRORCHECK("COPT_GetDblParam")
     return v;
   }
   /** Set an integer parameter (using copt C library name) */
   void setParam(const char* name, int value) {
     int status = COPT_SetIntParam(COPTModel_, name, value);
-    AMPLSCOPTERRORCHECK("GRBsetintparam")
+    AMPLSCOPTERRORCHECK("COPT_SetIntParam")
   }
   /** Set a double parameter (using copt C library name) */
   void setParam(const char* name, double value) {
     int status = COPT_SetDblParam(COPTModel_, name, value);
-    AMPLSCOPTERRORCHECK("GRBsetdblparam")
+    AMPLSCOPTERRORCHECK("COPT_SetDblParam")
   }
 
-  /** Get the pointer to the native C GRBmodel structure */
+  /** Get the pointer to the native C COPT problem structure */
   copt_prob* getCOPTmodel() {
     return COPTModel_;
   }

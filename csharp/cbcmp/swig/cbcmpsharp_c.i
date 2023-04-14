@@ -1,4 +1,4 @@
-%module(directors = "1") gdsharp_c
+%module(directors = "1") cbcmpsharp_c
 
 %include <arrays_csharp.i>
 CSHARP_ARRAYS(char*, string)
@@ -12,4 +12,4 @@ CSHARP_ARRAYS(const int, int)
 %apply int INPUT[]{ const int* vars }
 
 %include "../../../cpp/ampls/swig/ampls-common.i"
-%include "../../../cpp/x-gurobi/swig/x-gurobi-common.i"
+%include "../../../cpp/cbcmp/swig/cbcmp-common.i"

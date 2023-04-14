@@ -11,8 +11,8 @@
 
 namespace ampls {
 namespace impl{ namespace copt {
-  int callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata);
-  void log_callback_wrapper(char* msg, void* userdata);
+  int copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata);
+  void copt_log_callback_wrapper(char* msg, void* userdata);
 } }
 class CoptModel;
 
@@ -28,8 +28,8 @@ class CoptModel;
 * of the solver.
 */
 class CoptCallback : public impl::BaseCallback {
-  friend int impl::copt::callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata);
-  friend void impl::copt::log_callback_wrapper(char* msg, void* userdata);
+  friend int impl::copt::copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata);
+  friend void impl::copt::copt_log_callback_wrapper(char* msg, void* userdata);
   friend class CoptModel;
   void* cbdata_;
   static char toCOPTSense(ampls::CutDirection::Direction dir)
@@ -99,8 +99,6 @@ public:
   virtual Where::CBWhere getAMPLWhere() {
     switch (where_)
     {
-    //case GRB_CB_MESSAGE:
-    //  return Where::MSG;
     case COPT_CBCONTEXT_MIPRELAX:
       return Where::MIPNODE;
     case COPT_CBCONTEXT_MIPSOL:

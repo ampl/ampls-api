@@ -15,7 +15,7 @@ class XPRESSModel;
 
 namespace impl {
   namespace xpress {
-class CBWrap;
+class XPRSCBWrap;
 enum class XPRESSWhere
 {
   message,
@@ -45,7 +45,7 @@ class XPRESSCallback : public impl::BaseCallback {
   char BUFFER[256];
 
   friend class XPRESSModel;
-  friend impl::xpress::CBWrap;
+  friend impl::xpress::XPRSCBWrap;
   // Stores the pointer to the XPRESS model being used, as passed from the callback
   XPRSprob prob_;
   // Stores the pointer to the data passed from XPRESS to the callback

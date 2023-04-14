@@ -1,8 +1,8 @@
 
 %{
-  #include "cbc_c.h"
-  #include "cbc_callback.h"
-  #include "cbc_interface.h"
+  #include "Cbc_C_Interface.h"
+  #include "cbcmp_callback.h"
+  #include "cbcmp_interface.h"
 %}
 
 %feature("director") ampls::CbcCallback;
@@ -15,6 +15,6 @@
 %template(SolverDriverXGrb) ampls::impl::SolverDriver<ampls::CbcModel>;
 
 
-%include "cbc_c.h"
-%include "cbc_callback.h"
-%include "cbc_interface.h"
+%include "Cbc_C_Interface.h"
+%include "cbcmp_callback.h"
+%include "cbcmp_interface.h"

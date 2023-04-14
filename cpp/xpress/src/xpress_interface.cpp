@@ -8,7 +8,7 @@ namespace ampls
 
 namespace impl {
   namespace xpress {
-XPRESSCallback* CBWrap::setDefaultCB(XPRSprob prob, void* data,
+XPRESSCallback* XPRSCBWrap::setDefaultCB(XPRSprob prob, void* data,
   XPRESSWhere wherefrom, int capabilities)
 {
   XPRESSCallback* cb = static_cast<XPRESSCallback*>(data);
@@ -18,20 +18,20 @@ XPRESSCallback* CBWrap::setDefaultCB(XPRSprob prob, void* data,
   return cb;
 }
 
-void  CBWrap::message_callback_wrapper(XPRSprob prob, void* object, const char* msg, int len, int msgtype)
+void  XPRSCBWrap::message_callback_wrapper(XPRSprob prob, void* object, const char* msg, int len, int msgtype)
 {
   XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::message);
   cb->msg_ = msg;
   if(msg != NULL)
     cb->run();
 }
-void XPRS_CC CBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
+void XPRS_CC XPRSCBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
 {
   XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::intsol, CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION);
   cb->run();
 }
 
-void XPRS_CC CBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, int* feas)
+void XPRS_CC XPRSCBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, int* feas)
 {
   XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::optnode);
   cb->run();
@@ -48,7 +48,8 @@ XPRESSDrv::~XPRESSDrv() {
 
 
 XPRESSModel XPRESSDrv::loadModelImpl(char** args) {
-  return XPRESSModel(impl::xpress::AMPLSOpen_xpress(3, args), args[1]);
+  return XPRESSModel(static_cast<impl::mp::AMPLS_MP_Solver*>(impl::xpress::AMPLSOpen_xpress(3, args)),
+    args[1]);
 }
 XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);
@@ -57,13 +58,13 @@ XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
 int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
    
   // Add the callbacks
-  int status = XPRSsetcbintsol(prob_, impl::xpress::CBWrap::intsol_callback_wrapper, 
+  int status = XPRSsetcbintsol(prob_, impl::xpress::XPRSCBWrap::intsol_callback_wrapper,
     callback);
   AMPLSXPRSERRORCHECK("XPRSsetcbintsol")
-  status = XPRSsetcbmessage(prob_, impl::xpress::CBWrap::message_callback_wrapper,
+  status = XPRSsetcbmessage(prob_, impl::xpress::XPRSCBWrap::message_callback_wrapper,
     callback);
   AMPLSXPRSERRORCHECK("XPRSsetcbmessage")
-  status = XPRSsetcboptnode(prob_, impl::xpress::CBWrap::optnode_callback_wrapper,
+  status = XPRSsetcboptnode(prob_, impl::xpress::XPRSCBWrap::optnode_callback_wrapper,
     callback);
    AMPLSXPRSERRORCHECK("XPRSsetcboptnode")
   return status;

@@ -34,11 +34,11 @@ namespace ampls
       // Imported from the xpress driver
       ENTRYPOINT void AMPLSClose_xpress(void* slv);
       ENTRYPOINT XPRSprob AMPLSGetModel_xpress(void* slv);
-      ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_xpress(int, char**);
+      ENTRYPOINT void* AMPLSOpen_xpress(int, char**);
     }
     
   
-    class CBWrap
+    class XPRSCBWrap
     {
     public:
       static XPRESSCallback* setDefaultCB(XPRSprob prob, void* object, XPRESSWhere whereFrom, int capabilities=0);

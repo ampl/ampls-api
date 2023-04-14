@@ -5,7 +5,7 @@
 namespace ampls
 {
 
-int impl::copt::callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata)
+int impl::copt::copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata)
 {
   CoptCallback* cb = (CoptCallback*)userdata;
   cb->cbdata_ = cbdata;
@@ -23,7 +23,7 @@ int impl::copt::callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void*
   }
   return res;
 }
-void impl::copt::log_callback_wrapper(char* msg, void* userdata) {
+void impl::copt::copt_log_callback_wrapper(char* msg, void* userdata) {
   CoptCallback* cb = (CoptCallback*)userdata;
   cb->where_ = ampls::Where::MSG; 
   cb->cbdata_ = (void*)msg;
@@ -34,7 +34,7 @@ CoptDrv::~CoptDrv() {
 }
 
 CoptModel CoptDrv::loadModelImpl(char** args) {
-  return CoptModel(impl::grb::AMPLSOpen_copt(3, args), args[1]);
+  return CoptModel(impl::copt::AMPLSOpen_copt(3, args), args[1]);
 }
 CoptModel CoptDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);
@@ -42,9 +42,9 @@ CoptModel CoptDrv::loadModel(const char* modelName) {
 
 
 int CoptModel::setCallbackDerived(impl::BaseCallback* callback) {
-  COPT_SetCallback(COPTModel_, impl::copt::callback_wrapper, COPT_CBCONTEXT_MIPRELAX, callback);
-  COPT_SetCallback(COPTModel_, impl::copt::callback_wrapper, COPT_CBCONTEXT_MIPSOL, callback);
-  COPT_SetLogCallback(COPTModel_, impl::copt::log_callback_wrapper, callback);
+  COPT_SetCallback(COPTModel_, impl::copt::copt_callback_wrapper, COPT_CBCONTEXT_MIPRELAX, callback);
+  COPT_SetCallback(COPTModel_, impl::copt::copt_callback_wrapper, COPT_CBCONTEXT_MIPSOL, callback);
+  COPT_SetLogCallback(COPTModel_, impl::copt::copt_log_callback_wrapper, callback);
   return 0;
 }
 
@@ -86,7 +86,7 @@ double CoptModel::getDoubleAttr(const char* name) {
 CoptModel::~CoptModel() {
   if (copied_)
     return;
-  impl::grb::AMPLSClose_copt(solver_);
+  impl::copt::AMPLSClose_copt(solver_);
 }
 std::string CoptModel::error(int code)
 {

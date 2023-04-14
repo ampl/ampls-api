@@ -33,6 +33,7 @@
 %ignore XPRSloadqcqpglobal64;
 
 %feature("director") ampls::XPRESSCallback;
+%ignore ampls::impl::xpress;
 %ignore ampls::XPRESSCallback::doAddCut;
 // The following is to avoid problem with director
 // that cannot properly map an out double[].

@@ -440,7 +440,7 @@ int main(int argc, char** argv) {
   doStuff(coptmodel);
 #endif
 #ifdef USE_xpress
-  auto xpressmodel = ampls::AMPLAPIInterface::exportModel<ampls::XpressModel>(a);
+  auto xpressmodel = ampls::AMPLAPIInterface::exportModel<ampls::XPRESSModel>(a);
   doStuff(xpressmodel);
 #endif
 #ifdef USE_gurobi
