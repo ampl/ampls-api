@@ -4,7 +4,7 @@ node[shape=record,style=filled,fillcolor=white]
 edge[dir=back, arrowtail=empty]
 
 
-BaseCallback[label = "{BaseCallback|...|+ run()\l+ addCut()\l+ addLazy()\l+ getAMPLWhere()\l+ getVarMap()\l+ getVarMapInverse()\l+ getSolutionVector()\l+ getObjective()\l+ getMessage()\l|+ getValue(AMPLS_CONSTANT)\l}"]
+BaseCallback[label = "{BaseCallback|...|+ run()\l+ addCut()\l+ addLazy()\l+ getAMPLSWhere()\l+ getVarMap()\l+ getVarMapInverse()\l+ getSolutionVector()\l+ getObjective()\l+ getMessage()\l|+ getValue(AMPLS_CONSTANT)\l}"]
 GenericCallback[label = "{GenericCallback|...|\l...}"]
 CPLEXCallback[label = "{CPLEXCallback|...|\l+ where()\l+ getCBData()\l+ getInt(CPX_CONSTANT)\l+ getDouble(CPX_CONSTANT)\l}"]
 GurobiCallback[label = "{GurobiCallback|...|\l+ where()\l+ getCPXENV()\l+ getCBData()\l+ getGRBModel()\l+ getInt(GRB_CONSTANT c)\l+ getDouble(GRB_CONSTANT c)\l+ getDoubleArray(GRB_CONSTANT c)\l+ setSolution(double*)\l}"]

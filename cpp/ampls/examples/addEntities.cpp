@@ -58,6 +58,9 @@ template <class T> void doStuff(const char* name)
 
 
 int main(int argc, char** argv) {
+#ifdef USE_copt
+  doStuff<ampls::CoptModel>("copt");
+#endif 
 #ifdef USE_cplexmp
   doStuff<ampls::CPLEXModel>("cplex");
 #endif
@@ -69,9 +72,6 @@ int main(int argc, char** argv) {
 #endif 
 #ifdef USE_cbcmp
   doStuff<ampls::CbcModel>("cbc");
-#endif 
-#ifdef USE_copt
-  doStuff<ampls::CoptModel>("copt");
 #endif 
   return 0;
  

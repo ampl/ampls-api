@@ -29,7 +29,7 @@ namespace cpxsharp_test
 
       public override int run()
       {
-        var f = getAMPLWhere();
+        var f = getAMPLSWhere();
         Console.WriteLine((int)f);
         switch (f)
         {

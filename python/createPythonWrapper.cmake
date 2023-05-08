@@ -23,7 +23,7 @@ set(SWIG_PYTHON_WRAPPER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}.py")
 set(SWIG_CPP_SOURCE "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.cxx")
 set(SWIG_CPP_HEADER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.h")
 
-set(CMAKE_SWIG_FLAGS "-builtin")
+#set(CMAKE_SWIG_FLAGS "-builtin")
 set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES CPLUSPLUS
                                                                     ON)
 add_swig_library(${PYTHON_SWIG_API} python ${SWIG_PYTHON_MODULE_NAME}.i)

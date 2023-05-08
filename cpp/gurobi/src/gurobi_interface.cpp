@@ -9,7 +9,7 @@ int impl::grb::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* 
   GurobiCallback* cb = (GurobiCallback*)usrdata;
   cb->cbdata_ = cbdata;
   cb->where_ = where;
-  if (cb->getAMPLWhere() == ampls::Where::MIPNODE)
+  if (cb->getAMPLSWhere() == ampls::Where::MIPNODE)
     cb->currentCapabilities_ = ampls::CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION;
   else
     cb->currentCapabilities_ = 0;

@@ -86,10 +86,10 @@ std::map<std::string, int> AMPLModel::getVarMapFiltered(const char* beginWith) {
 std::map<int, std::string> AMPLModel::getVarMapInverse() {
   return getMapInverse(fileName_, "col");
 }
-std::map<std::string, int> AMPLModel::getConsMapFiltered(const char* beginWith) {
+std::map<std::string, int> AMPLModel::getConMapFiltered(const char* beginWith) {
   return getMapFiltered(fileName_, "row", beginWith);
 }
-std::map<int, std::string> AMPLModel::getConsMapInverse() {
+std::map<int, std::string> AMPLModel::getConMapInverse() {
   return getMapInverse(fileName_, "row");
 }
 
@@ -111,7 +111,7 @@ void AMPLModel::printModelVars(bool onlyNonZero) {
 std::string impl::Records::getRecordedEntities(bool exportToAMPL) {
   std::stringstream ss;
   auto vmap = parent_->getVarMapInverse();
-  auto cmap = parent_->getConsMapInverse();
+  auto cmap = parent_->getConMapInverse();
   int begin, end;
   if (vars_.size() > 0)
   {
@@ -229,7 +229,7 @@ void AMPLMPModel::setOption(const char* name, int value) {
   impl::mp::AMPLSSetIntOption(solver_, name, value);
 }
 void AMPLMPModel::setOption(const char* name, double value) {
-  //impl::mp::AMPLSSetDblOption(solver_, name, value);
+  impl::mp::AMPLSSetDblOption(solver_, name, value);
 }
 
 namespace impl {

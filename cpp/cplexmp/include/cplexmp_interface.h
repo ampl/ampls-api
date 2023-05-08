@@ -304,23 +304,23 @@ public:
   }
 
   /**Get an integer parameter using ampls aliases*/
-  int getAMPLsIntParameter(SolverParams::SolverParameters param) {
+  int getAMPLSIntParameter(SolverParams::SolverParameters param) {
     return getIntParam(getCPXParamAlias(param));
   }
   /**Get a double parameter using ampls aliases*/
-  double getAMPLsDoubleParameter(SolverParams::SolverParameters param) {
+  double getAMPLSDoubleParameter(SolverParams::SolverParameters param) {
     return getDoubleParam(getCPXParamAlias(param));
   }
 
   /**Set an integer parameter using ampls aliases*/
-  void setAMPLsParameter(SolverParams::SolverParameters param,
+  void setAMPLSParameter(SolverParams::SolverParameters param,
     int value) {
     if (param == SolverParams::INT_LP_Algorithm)
       value = LPalgorithmMap[value];
     setParam(getCPXParamAlias(param), value);
   }
   /**Set a double parameter using ampls aliases*/
-  void setAMPLsParameter(SolverParams::SolverParameters param,
+  void setAMPLSParameter(SolverParams::SolverParameters param,
     double value) {
     setParam(getCPXParamAlias(param), value);
   }
@@ -328,11 +328,11 @@ public:
 
 
   /** Get an integer attribute using ampls aliases */
-  int getAMPLsIntAttribute(SolverAttributes::Attribs attrib) {
+  int getAMPLSIntAttribute(SolverAttributes::Attribs attrib) {
     throw ampls::AMPLSolverException("Not supported");
   }
   /** Get a double attribute using ampls aliases */
-  double getAMPLsDoubleAttribute(SolverAttributes::Attribs attrib) {
+  double getAMPLSDoubleAttribute(SolverAttributes::Attribs attrib) {
     double val;
     int status;
     switch (attrib)

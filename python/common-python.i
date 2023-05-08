@@ -142,4 +142,3 @@
 %ignore "getVarMap";
 %ignore "getVarMapInverse";
 %ignore "getVarMapFiltered";
-

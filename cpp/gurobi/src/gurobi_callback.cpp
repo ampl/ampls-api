@@ -115,12 +115,12 @@ int GurobiCallback::doAddCut(const ampls::Constraint& c, int lazy) {
   char sense = toGRBSense(c.sense());
   if (lazy)
   {
-    return GRBcblazy(cbdata_, c.indices().size(), c.indices().data(),
-      c.coeffs().data(), sense, c.rhs());
+    return GRBcblazy(cbdata_, static_cast<int>(c.indices().size()), 
+      c.indices().data(), c.coeffs().data(), sense, c.rhs());
   }
   else
   {
-    return GRBcbcut(cbdata_, c.indices().size(), c.indices().data(),
+    return GRBcbcut(cbdata_, static_cast<int>(c.indices().size()), c.indices().data(),
       c.coeffs().data(), sense, c.rhs());
   }
 }

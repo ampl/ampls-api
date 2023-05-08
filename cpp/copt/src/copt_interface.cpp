@@ -10,7 +10,7 @@ int impl::copt::copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, 
   CoptCallback* cb = (CoptCallback*)userdata;
   cb->cbdata_ = cbdata;
   cb->where_ = cbctx;
-  if (cb->getAMPLWhere() == ampls::Where::MIPNODE)
+  if (cb->getAMPLSWhere() == ampls::Where::MIPNODE)
     cb->currentCapabilities_ = ampls::CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION;
   else
     cb->currentCapabilities_ = 0;

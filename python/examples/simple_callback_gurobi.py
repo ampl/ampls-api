@@ -18,7 +18,7 @@ CALL_COUNT_MIPSOL = 0
 class MyCallback(ampls.GurobiCallback):
     def run(self):
         try:
-            where = self.getAMPLWhere()
+            where = self.getAMPLSWhere()
             global CALL_COUNT_MIP, CALL_COUNT_MIPSOL
             if where == ampls.GRB_CB_MIPSOL:
                 CALL_COUNT_MIPSOL += 1

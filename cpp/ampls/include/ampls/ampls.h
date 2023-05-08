@@ -473,6 +473,8 @@ namespace impl
     AMPLModel* parent_;
     std::vector<Variable> vars_;
     std::vector<Constraint> cons_;
+    // The following is to retain the order in which the entities are added,
+    // to be replicated when adding them to the AMPL model
     std::vector<Entity*> entities_;
 
     Records() : parent_(nullptr) { }
@@ -620,13 +622,13 @@ protected:
     default:
       throw AMPLSolverException("Unexpected cut direction");
     }
-    int nvars = c.indices().size();
+    std::size_t nvars = c.indices().size();
     if (varNames)
     {
       std::map<int, std::string> imap = getVarMapInverse();
       if (intCoeffs)
       {
-        for (int i = 0; i < nvars; ++i) {
+        for (std::size_t i = 0; i < nvars; ++i) {
           printf("%d*%s", (int)c.coeffs()[i], imap[c.indices()[i]].c_str());
           if (i < nvars - 1)
             printf(" + ");
@@ -634,7 +636,7 @@ protected:
       }
       else
       { 
-        for (int i = 0; i < nvars; ++i) {
+        for (std::size_t i = 0; i < nvars; ++i) {
           printf("%f*%s", c.coeffs()[i], imap[c.indices()[i]].c_str());
           if (i < nvars - 1)
             printf(" + ");
@@ -667,7 +669,7 @@ protected:
 public:
   
   // Check if the specified functionality is available at this stage
-  virtual bool checkCanDo(CanDo::Functionality f) {
+  virtual bool canDo(CanDo::Functionality f) {
     return currentCapabilities_ && (int)f;
   }
 
@@ -730,7 +732,7 @@ public:
   * @param direction Direction of the constraint ampls::CBDirection::Direction
   * @param rhs Right hand side value
   */
-  ampls::Constraint addCutsIndices(int nvars, const int* vars,
+  ampls::Constraint addCutIndices(int nvars, const int* vars,
     const double* coeffs, CutDirection::Direction direction, double rhs)
   {
     return callDoAddCut(nvars, vars, coeffs, direction, rhs, 0);
@@ -774,7 +776,7 @@ public:
   virtual const char* getMessage() = 0;
 
   /** Get where in the solution process the callback has been called (generic) */
-  virtual Where::CBWhere getAMPLWhere() = 0;
+  virtual Where::CBWhere getAMPLSWhere() = 0;
   /** Get a (generic) value */
   virtual Variant getValue(Value::CBValue v) = 0;
   /** Get a (generic) array */
@@ -899,9 +901,9 @@ public:
     return impl_->getWhere();
   }
   /** Get where in the solution process the callback has been called (generic) */
-  Where::CBWhere getAMPLWhere()
+  Where::CBWhere getAMPLSWhere()
   {
-    return impl_->getAMPLWhere();
+    return impl_->getAMPLSWhere();
   }
   /** Get a textual representation of the current solver status*/
   const char *getWhereString()
@@ -919,7 +921,7 @@ public:
     return impl_->getValue(v);
   }
   bool checkCanDo(CanDo::Functionality f) {
-    return impl_->checkCanDo(f);
+    return impl_->canDo(f);
   }
 
 };
@@ -1130,7 +1132,7 @@ public:
   /**
   Get the map from constraint index in the solver interface to AMPL variable instance name
   */
-  std::map<int, std::string> getConsMapInverse();
+  std::map<int, std::string> getConMapInverse();
 
   /**
   Get the map from variable name to index in the solver interface
@@ -1143,9 +1145,9 @@ public:
   /**
   Get the map from constraint name to index in the solver interface
   */
-  std::map<std::string, int> getConsMap()
+  std::map<std::string, int> getConMap()
   {
-    return getConsMapFiltered(NULL);
+    return getConMapFiltered(NULL);
   }
 
   /**
@@ -1160,7 +1162,7 @@ public:
   getting the whole (possibly large) map
   @param beginWith Prefix to be matched
   */
-  std::map<std::string, int> getConsMapFiltered(const char* beginWith);
+  std::map<std::string, int> getConMapFiltered(const char* beginWith);
 
   /**
   Set a generic callback to be called during optimization. This function is
@@ -1271,7 +1273,7 @@ public:
   @param param The parameter to be set
   @param value The integer value to set
   */
-  virtual void setAMPLsParameter(SolverParams::SolverParameters param,
+  virtual void setAMPLSParameter(SolverParams::SolverParameters param,
     int value) {
     throw AMPLSolverException("Not implemented in base class!");
   }
@@ -1280,7 +1282,7 @@ public:
   @param param The parameter to be set
   @param value The double value to set
   */
-  virtual void setAMPLsParameter(SolverParams::SolverParameters params,
+  virtual void setAMPLSParameter(SolverParams::SolverParameters params,
     double value) {
     throw AMPLSolverException("Not implemented in base class!");
   }
@@ -1289,22 +1291,22 @@ public:
   Get the value of an integer parameter (solver control) using ampls generic aliases
   @param param The parameter to get
   */
-  virtual int getAMPLsIntParameter(SolverParams::SolverParameters params)  {
+  virtual int getAMPLSIntParameter(SolverParams::SolverParameters params)  {
     throw AMPLSolverException("Not implemented in base class!");
   }
   /**
   Get the value of a double parameter (solver control) using ampls generic aliases
   @param param The parameter to get
   */
-  virtual double getAMPLsDoubleParameter(SolverParams::SolverParameters param) {
+  virtual double getAMPLSDoubleParameter(SolverParams::SolverParameters param) {
     throw AMPLSolverException("Not implemented in base class!");
   }
 
-  virtual int getAMPLsIntAttribute(SolverAttributes::Attribs)  {
+  virtual int getAMPLSIntAttribute(SolverAttributes::Attribs)  {
     throw AMPLSolverException("Not implemented in base class!");
   }
 
-  virtual double getAMPLsDoubleAttribute(SolverAttributes::Attribs) {
+  virtual double getAMPLSDoubleAttribute(SolverAttributes::Attribs) {
     throw AMPLSolverException("Not implemented in base class!");
   }
 

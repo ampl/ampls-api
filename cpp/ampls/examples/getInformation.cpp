@@ -16,7 +16,7 @@ class MyGenericCallback : public ampls::GenericCallback
     //printf("\nCalled from %s\n", getWhere());
     double obj;
     // Get the generic mapping
-     ampls::Where::CBWhere where = getAMPLWhere();
+     ampls::Where::CBWhere where = getAMPLSWhere();
      //printf("Where: %i\n", where);
     
     char BUFFER[100];
@@ -64,7 +64,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   // Set a (generic) callback
   MyGenericCallback cb;
   m.setCallback(&cb);
-  m.setAMPLsParameter(ampls::SolverParams::DBL_MIPGap, 0.001);
+  m.setAMPLSParameter(ampls::SolverParams::DBL_MIPGap, 0.001);
   // Start the optimization process
   m.optimize();
   // Get the objective value
@@ -93,7 +93,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
     if (solution[i] != 0) nnz++;
   printf("\nNumber of non zeroes = %d\n", nnz);
 
-  double mipgap = m.getAMPLsDoubleAttribute(ampls::SolverAttributes::DBL_RelMIPGap);
+  double mipgap = m.getAMPLSDoubleAttribute(ampls::SolverAttributes::DBL_RelMIPGap);
   printf("\nSolution MIP gap=%f\n", mipgap);
 
   // Write the AMPL sol file

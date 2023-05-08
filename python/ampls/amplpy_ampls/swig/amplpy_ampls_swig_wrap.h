@@ -30,7 +30,7 @@ public:
     virtual int getWhere();
     virtual char const *getWhereString();
     virtual char const *getMessage();
-    virtual ampls::Where::CBWhere getAMPLWhere();
+    virtual ampls::Where::CBWhere getAMPLSWhere();
     virtual ampls::Variant getValue(ampls::Value::CBValue v);
 
 /* Internal director utilities */
@@ -83,7 +83,7 @@ public:
     virtual int getWhere();
     virtual char const *getWhereString();
     virtual char const *getMessage();
-    virtual ampls::Where::CBWhere getAMPLWhere();
+    virtual ampls::Where::CBWhere getAMPLSWhere();
     virtual ampls::Variant getValue(ampls::Value::CBValue v);
 
 /* Internal director utilities */
@@ -136,7 +136,7 @@ public:
     virtual int getWhere();
     virtual char const *getWhereString();
     virtual char const *getMessage();
-    virtual ampls::Where::CBWhere getAMPLWhere();
+    virtual ampls::Where::CBWhere getAMPLSWhere();
     virtual ampls::Variant getValue(ampls::Value::CBValue v);
 
 /* Internal director utilities */

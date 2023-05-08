@@ -53,7 +53,7 @@ namespace xpresssharp_test
 
       public override int run()
       {
-        var f = getAMPLWhere();
+        var f = getAMPLSWhere();
         System.Console.WriteLine($"Elapsed time {getValue(Value.CBValue.RUNTIME)}");
         switch(f)
         {

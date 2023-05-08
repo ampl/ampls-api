@@ -96,7 +96,7 @@ public:
     return obj;
   }
 
-  virtual Where::CBWhere getAMPLWhere() {
+  virtual Where::CBWhere getAMPLSWhere() {
     switch (where_)
     {
     case COPT_CBCONTEXT_MIPRELAX:

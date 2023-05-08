@@ -255,38 +255,38 @@ public:
   ~CoptModel();
 
   /**Set an integer parameter using ampls aliases*/
-  void setAMPLsParameter(SolverParams::SolverParameters param,
+  void setAMPLSParameter(SolverParams::SolverParameters param,
     int value) {
     if (param == SolverParams::INT_LP_Algorithm)
       value = LPalgorithmMap[value];
     setParam(getParamAlias(param), value);
   }
   /**Set a double parameter using ampls aliases*/
-  void setAMPLsParameter(SolverParams::SolverParameters param,
+  void setAMPLSParameter(SolverParams::SolverParameters param,
     double value) {    
     setParam(getParamAlias(param), value);
   }
 
   /**Get an integer parameter using ampls aliases*/
-  int getAMPLsIntParameter(SolverParams::SolverParameters params) {
+  int getAMPLSIntParameter(SolverParams::SolverParameters params) {
     return getIntParam(getParamAlias(params));
   }
   /**Get a double parameter using ampls aliases*/
-  double getAMPLsDoubleParameter(SolverParams::SolverParameters params) {
+  double getAMPLSDoubleParameter(SolverParams::SolverParameters params) {
     return getDoubleParam(getParamAlias(params));
   }
 
   /** Get an integer attribute using ampls aliases */
-  int getAMPLsIntAttribute(SolverAttributes::Attribs attrib) {
+  int getAMPLSIntAttribute(SolverAttributes::Attribs attrib) {
     return getIntAttr(getAttribAlias(attrib));
   }
   /** Get a double attribute using ampls aliases */
-  double getAMPLsDoubleAttribute(SolverAttributes::Attribs attrib) {
+  double getAMPLSDoubleAttribute(SolverAttributes::Attribs attrib) {
     switch (attrib)
     {
     case SolverAttributes::DBL_RelMIPGap:
       return impl::calculateRelMIPGAP(getObj(),
-        getAMPLsDoubleAttribute(SolverAttributes::DBL_CurrentObjBound));
+        getAMPLSDoubleAttribute(SolverAttributes::DBL_CurrentObjBound));
     default:
       return getDoubleAttr(getAttribAlias(attrib));
     }
@@ -342,12 +342,16 @@ public:
   {
     std::vector<double> values(getNumVars());
     COPT_GetLpSolution(COPTModel_, NULL, NULL, NULL, values.data());
-    return values;
+    auto first = values.begin() + offset;
+    auto last = values.end();
+    return std::vector<double>(first, last);
   }
   std::vector<double> getVarsValueImpl(int offset, int length) {
     std::vector<double> values(getNumVars());
     COPT_GetLpSolution(COPTModel_,values.data(), NULL, NULL, NULL);
-    return values;
+    auto first = values.begin() + offset;
+    auto last = values.end();
+    return std::vector<double>(first, last);
   }
 
 

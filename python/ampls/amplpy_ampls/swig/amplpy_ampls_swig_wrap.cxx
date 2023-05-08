@@ -7492,7 +7492,7 @@ char const *SwigDirector_GenericCallback::getMessage() {
 }
 
 
-ampls::Where::CBWhere SwigDirector_GenericCallback::getAMPLWhere() {
+ampls::Where::CBWhere SwigDirector_GenericCallback::getAMPLSWhere() {
   ampls::Where::CBWhere c_result = SwigValueInit< ampls::Where::CBWhere >() ;
   
   PyObject *self = NULL;
@@ -7502,18 +7502,18 @@ ampls::Where::CBWhere SwigDirector_GenericCallback::getAMPLWhere() {
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
   const size_t swig_method_index = 5;
-  const char *const swig_method_name = "getAMPLWhere";
+  const char *const swig_method_name = "getAMPLSWhere";
   PyObject *method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject args = PyTuple_New(0);
   swig::SwigVar_PyObject result = PyObject_Call(method, (PyObject *) args, NULL);
 #else
-  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getAMPLWhere");
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getAMPLSWhere");
   swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name, NULL);
 #endif
   if (!result) {
     PyObject *error = PyErr_Occurred();
     if (error) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'GenericCallback.getAMPLWhere'");
+      Swig::DirectorMethodException::raise("Error detected when calling 'GenericCallback.getAMPLSWhere'");
     }
   }
   int swig_val;
@@ -7767,7 +7767,7 @@ char const *SwigDirector_GurobiCallback::getMessage() {
 }
 
 
-ampls::Where::CBWhere SwigDirector_GurobiCallback::getAMPLWhere() {
+ampls::Where::CBWhere SwigDirector_GurobiCallback::getAMPLSWhere() {
   ampls::Where::CBWhere c_result = SwigValueInit< ampls::Where::CBWhere >() ;
   
   PyObject *self = NULL;
@@ -7777,18 +7777,18 @@ ampls::Where::CBWhere SwigDirector_GurobiCallback::getAMPLWhere() {
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
   const size_t swig_method_index = 5;
-  const char *const swig_method_name = "getAMPLWhere";
+  const char *const swig_method_name = "getAMPLSWhere";
   PyObject *method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject args = PyTuple_New(0);
   swig::SwigVar_PyObject result = PyObject_Call(method, (PyObject *) args, NULL);
 #else
-  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getAMPLWhere");
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getAMPLSWhere");
   swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name, NULL);
 #endif
   if (!result) {
     PyObject *error = PyErr_Occurred();
     if (error) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'GurobiCallback.getAMPLWhere'");
+      Swig::DirectorMethodException::raise("Error detected when calling 'GurobiCallback.getAMPLSWhere'");
     }
   }
   int swig_val;
@@ -8042,7 +8042,7 @@ char const *SwigDirector_CPLEXCallback::getMessage() {
 }
 
 
-ampls::Where::CBWhere SwigDirector_CPLEXCallback::getAMPLWhere() {
+ampls::Where::CBWhere SwigDirector_CPLEXCallback::getAMPLSWhere() {
   ampls::Where::CBWhere c_result = SwigValueInit< ampls::Where::CBWhere >() ;
   
   PyObject *self = NULL;
@@ -8052,18 +8052,18 @@ ampls::Where::CBWhere SwigDirector_CPLEXCallback::getAMPLWhere() {
   }
 #if defined(SWIG_PYTHON_DIRECTOR_VTABLE)
   const size_t swig_method_index = 5;
-  const char *const swig_method_name = "getAMPLWhere";
+  const char *const swig_method_name = "getAMPLSWhere";
   PyObject *method = swig_get_method(swig_method_index, swig_method_name);
   swig::SwigVar_PyObject args = PyTuple_New(0);
   swig::SwigVar_PyObject result = PyObject_Call(method, (PyObject *) args, NULL);
 #else
-  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getAMPLWhere");
+  swig::SwigVar_PyObject swig_method_name = SWIG_Python_str_FromChar("getAMPLSWhere");
   swig::SwigVar_PyObject result = PyObject_CallMethodObjArgs(swig_get_self(), (PyObject *) swig_method_name, NULL);
 #endif
   if (!result) {
     PyObject *error = PyErr_Occurred();
     if (error) {
-      Swig::DirectorMethodException::raise("Error detected when calling 'CPLEXCallback.getAMPLWhere'");
+      Swig::DirectorMethodException::raise("Error detected when calling 'CPLEXCallback.getAMPLSWhere'");
     }
   }
   int swig_val;
@@ -23331,7 +23331,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_BaseCallback_getAMPLWhere(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_BaseCallback_getAMPLSWhere(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::impl::BaseCallback *arg1 = (ampls::impl::BaseCallback *) 0 ;
   void *argp1 = 0 ;
@@ -23339,15 +23339,15 @@ SWIGINTERN PyObject *_wrap_BaseCallback_getAMPLWhere(PyObject *self, PyObject *a
   PyObject *swig_obj[1] ;
   ampls::Where::CBWhere result;
   
-  if (!SWIG_Python_UnpackTuple(args, "BaseCallback_getAMPLWhere", 0, 0, 0)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "BaseCallback_getAMPLSWhere", 0, 0, 0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__impl__BaseCallback, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseCallback_getAMPLWhere" "', argument " "1"" of type '" "ampls::impl::BaseCallback *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "BaseCallback_getAMPLSWhere" "', argument " "1"" of type '" "ampls::impl::BaseCallback *""'"); 
   }
   arg1 = reinterpret_cast< ampls::impl::BaseCallback * >(argp1);
   {
     try {
-      result = (ampls::Where::CBWhere)(arg1)->getAMPLWhere();
+      result = (ampls::Where::CBWhere)(arg1)->getAMPLSWhere();
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -23490,7 +23490,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_GenericCallback_getAMPLWhere(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_GenericCallback_getAMPLSWhere(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::GenericCallback *arg1 = (ampls::GenericCallback *) 0 ;
   void *argp1 = 0 ;
@@ -23500,10 +23500,10 @@ SWIGINTERN PyObject *_wrap_GenericCallback_getAMPLWhere(PyObject *self, PyObject
   bool upcall = false;
   ampls::Where::CBWhere result;
   
-  if (!SWIG_Python_UnpackTuple(args, "GenericCallback_getAMPLWhere", 0, 0, 0)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "GenericCallback_getAMPLSWhere", 0, 0, 0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GenericCallback, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GenericCallback_getAMPLWhere" "', argument " "1"" of type '" "ampls::GenericCallback *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GenericCallback_getAMPLSWhere" "', argument " "1"" of type '" "ampls::GenericCallback *""'"); 
   }
   arg1 = reinterpret_cast< ampls::GenericCallback * >(argp1);
   director = SWIG_DIRECTOR_CAST(arg1);
@@ -23512,9 +23512,9 @@ SWIGINTERN PyObject *_wrap_GenericCallback_getAMPLWhere(PyObject *self, PyObject
     {
       try {
         if (upcall) {
-          result = (ampls::Where::CBWhere)(arg1)->ampls::GenericCallback::getAMPLWhere();
+          result = (ampls::Where::CBWhere)(arg1)->ampls::GenericCallback::getAMPLSWhere();
         } else {
-          result = (ampls::Where::CBWhere)(arg1)->getAMPLWhere();
+          result = (ampls::Where::CBWhere)(arg1)->getAMPLSWhere();
         }
       } catch(const ampls::AMPLSolverException &e) {
         SWIG_exception(SWIG_RuntimeError, e.what());
@@ -25707,7 +25707,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLsParameter__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLSParameter__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
   ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -25722,22 +25722,22 @@ SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLsParameter__SWIG_0(PyObject *self, P
   if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_setAMPLsParameter" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_setAMPLSParameter" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AMPLModel_setAMPLsParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AMPLModel_setAMPLSParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AMPLModel_setAMPLsParameter" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AMPLModel_setAMPLSParameter" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
   {
     try {
-      (arg1)->setAMPLsParameter(arg2,arg3);
+      (arg1)->setAMPLSParameter(arg2,arg3);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -25752,7 +25752,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLsParameter__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLSParameter__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
   ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -25767,22 +25767,22 @@ SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLsParameter__SWIG_1(PyObject *self, P
   if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_setAMPLsParameter" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_setAMPLSParameter" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AMPLModel_setAMPLsParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AMPLModel_setAMPLSParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AMPLModel_setAMPLsParameter" "', argument " "3"" of type '" "double""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "AMPLModel_setAMPLSParameter" "', argument " "3"" of type '" "double""'");
   } 
   arg3 = static_cast< double >(val3);
   {
     try {
-      (arg1)->setAMPLsParameter(arg2,arg3);
+      (arg1)->setAMPLSParameter(arg2,arg3);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -25797,13 +25797,13 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLsParameter(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLSParameter(PyObject *self, PyObject *args) {
   Py_ssize_t argc;
   PyObject *argv[4] = {
     0
   };
   
-  if (!(argc = SWIG_Python_UnpackTuple(args, "AMPLModel_setAMPLsParameter", 0, 3, argv+1))) SWIG_fail;
+  if (!(argc = SWIG_Python_UnpackTuple(args, "AMPLModel_setAMPLSParameter", 0, 3, argv+1))) SWIG_fail;
   argv[0] = self;
   if (argc == 3) {
     int _v;
@@ -25821,7 +25821,7 @@ SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLsParameter(PyObject *self, PyObject 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_AMPLModel_setAMPLsParameter__SWIG_0(self, argc, argv);
+          return _wrap_AMPLModel_setAMPLSParameter__SWIG_0(self, argc, argv);
         }
       }
     }
@@ -25842,22 +25842,22 @@ SWIGINTERN PyObject *_wrap_AMPLModel_setAMPLsParameter(PyObject *self, PyObject 
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_AMPLModel_setAMPLsParameter__SWIG_1(self, argc, argv);
+          return _wrap_AMPLModel_setAMPLSParameter__SWIG_1(self, argc, argv);
         }
       }
     }
   }
   
 fail:
-  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'AMPLModel_setAMPLsParameter'.\n"
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'AMPLModel_setAMPLSParameter'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    ampls::AMPLModel::setAMPLsParameter(ampls::SolverParams::SolverParameters,int)\n"
-    "    ampls::AMPLModel::setAMPLsParameter(ampls::SolverParams::SolverParameters,double)\n");
+    "    ampls::AMPLModel::setAMPLSParameter(ampls::SolverParams::SolverParameters,int)\n"
+    "    ampls::AMPLModel::setAMPLSParameter(ampls::SolverParams::SolverParameters,double)\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_AMPLModel_getAMPLsIntParameter(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_AMPLModel_getAMPLSIntParameter(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -25872,17 +25872,17 @@ SWIGINTERN PyObject *_wrap_AMPLModel_getAMPLsIntParameter(PyObject *self, PyObje
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getAMPLsIntParameter" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getAMPLSIntParameter" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AMPLModel_getAMPLsIntParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AMPLModel_getAMPLSIntParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   {
     try {
-      result = (int)(arg1)->getAMPLsIntParameter(arg2);
+      result = (int)(arg1)->getAMPLSIntParameter(arg2);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -25897,7 +25897,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_AMPLModel_getAMPLsDoubleParameter(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_AMPLModel_getAMPLSDoubleParameter(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::AMPLModel *arg1 = (ampls::AMPLModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -25912,17 +25912,17 @@ SWIGINTERN PyObject *_wrap_AMPLModel_getAMPLsDoubleParameter(PyObject *self, PyO
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__AMPLModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getAMPLsDoubleParameter" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "AMPLModel_getAMPLSDoubleParameter" "', argument " "1"" of type '" "ampls::AMPLModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::AMPLModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AMPLModel_getAMPLsDoubleParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "AMPLModel_getAMPLSDoubleParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   {
     try {
-      result = (double)(arg1)->getAMPLsDoubleParameter(arg2);
+      result = (double)(arg1)->getAMPLSDoubleParameter(arg2);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -40407,7 +40407,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_GurobiCallback_getAMPLWhere(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_GurobiCallback_getAMPLSWhere(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::GurobiCallback *arg1 = (ampls::GurobiCallback *) 0 ;
   void *argp1 = 0 ;
@@ -40417,10 +40417,10 @@ SWIGINTERN PyObject *_wrap_GurobiCallback_getAMPLWhere(PyObject *self, PyObject 
   bool upcall = false;
   ampls::Where::CBWhere result;
   
-  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_getAMPLWhere", 0, 0, 0)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "GurobiCallback_getAMPLSWhere", 0, 0, 0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiCallback, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getAMPLWhere" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiCallback_getAMPLSWhere" "', argument " "1"" of type '" "ampls::GurobiCallback *""'"); 
   }
   arg1 = reinterpret_cast< ampls::GurobiCallback * >(argp1);
   director = SWIG_DIRECTOR_CAST(arg1);
@@ -40429,9 +40429,9 @@ SWIGINTERN PyObject *_wrap_GurobiCallback_getAMPLWhere(PyObject *self, PyObject 
     {
       try {
         if (upcall) {
-          result = (ampls::Where::CBWhere)(arg1)->ampls::GurobiCallback::getAMPLWhere();
+          result = (ampls::Where::CBWhere)(arg1)->ampls::GurobiCallback::getAMPLSWhere();
         } else {
-          result = (ampls::Where::CBWhere)(arg1)->getAMPLWhere();
+          result = (ampls::Where::CBWhere)(arg1)->getAMPLSWhere();
         }
       } catch(const ampls::AMPLSolverException &e) {
         SWIG_exception(SWIG_RuntimeError, e.what());
@@ -41860,7 +41860,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLsParameter__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLSParameter__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
   ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -41875,22 +41875,22 @@ SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLsParameter__SWIG_0(PyObject *self,
   if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_setAMPLsParameter" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_setAMPLSParameter" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_setAMPLsParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_setAMPLSParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GurobiModel_setAMPLsParameter" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GurobiModel_setAMPLSParameter" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
   {
     try {
-      (arg1)->setAMPLsParameter(arg2,arg3);
+      (arg1)->setAMPLSParameter(arg2,arg3);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -41905,7 +41905,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLsParameter__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLSParameter__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
   ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -41920,22 +41920,22 @@ SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLsParameter__SWIG_1(PyObject *self,
   if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_setAMPLsParameter" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_setAMPLSParameter" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_setAMPLsParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_setAMPLSParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GurobiModel_setAMPLsParameter" "', argument " "3"" of type '" "double""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "GurobiModel_setAMPLSParameter" "', argument " "3"" of type '" "double""'");
   } 
   arg3 = static_cast< double >(val3);
   {
     try {
-      (arg1)->setAMPLsParameter(arg2,arg3);
+      (arg1)->setAMPLSParameter(arg2,arg3);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -41950,13 +41950,13 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLsParameter(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLSParameter(PyObject *self, PyObject *args) {
   Py_ssize_t argc;
   PyObject *argv[4] = {
     0
   };
   
-  if (!(argc = SWIG_Python_UnpackTuple(args, "GurobiModel_setAMPLsParameter", 0, 3, argv+1))) SWIG_fail;
+  if (!(argc = SWIG_Python_UnpackTuple(args, "GurobiModel_setAMPLSParameter", 0, 3, argv+1))) SWIG_fail;
   argv[0] = self;
   if (argc == 3) {
     int _v;
@@ -41974,7 +41974,7 @@ SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLsParameter(PyObject *self, PyObjec
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_GurobiModel_setAMPLsParameter__SWIG_0(self, argc, argv);
+          return _wrap_GurobiModel_setAMPLSParameter__SWIG_0(self, argc, argv);
         }
       }
     }
@@ -41995,22 +41995,22 @@ SWIGINTERN PyObject *_wrap_GurobiModel_setAMPLsParameter(PyObject *self, PyObjec
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_GurobiModel_setAMPLsParameter__SWIG_1(self, argc, argv);
+          return _wrap_GurobiModel_setAMPLSParameter__SWIG_1(self, argc, argv);
         }
       }
     }
   }
   
 fail:
-  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'GurobiModel_setAMPLsParameter'.\n"
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'GurobiModel_setAMPLSParameter'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    ampls::GurobiModel::setAMPLsParameter(ampls::SolverParams::SolverParameters,int)\n"
-    "    ampls::GurobiModel::setAMPLsParameter(ampls::SolverParams::SolverParameters,double)\n");
+    "    ampls::GurobiModel::setAMPLSParameter(ampls::SolverParams::SolverParameters,int)\n"
+    "    ampls::GurobiModel::setAMPLSParameter(ampls::SolverParams::SolverParameters,double)\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_GurobiModel_getAMPLsIntParameter(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_GurobiModel_getAMPLSIntParameter(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -42025,17 +42025,17 @@ SWIGINTERN PyObject *_wrap_GurobiModel_getAMPLsIntParameter(PyObject *self, PyOb
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getAMPLsIntParameter" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getAMPLSIntParameter" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_getAMPLsIntParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_getAMPLSIntParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   {
     try {
-      result = (int)(arg1)->getAMPLsIntParameter(arg2);
+      result = (int)(arg1)->getAMPLSIntParameter(arg2);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -42050,7 +42050,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_GurobiModel_getAMPLsDoubleParameter(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_GurobiModel_getAMPLSDoubleParameter(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::GurobiModel *arg1 = (ampls::GurobiModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -42065,17 +42065,17 @@ SWIGINTERN PyObject *_wrap_GurobiModel_getAMPLsDoubleParameter(PyObject *self, P
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__GurobiModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getAMPLsDoubleParameter" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "GurobiModel_getAMPLSDoubleParameter" "', argument " "1"" of type '" "ampls::GurobiModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::GurobiModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_getAMPLsDoubleParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "GurobiModel_getAMPLSDoubleParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   {
     try {
-      result = (double)(arg1)->getAMPLsDoubleParameter(arg2);
+      result = (double)(arg1)->getAMPLSDoubleParameter(arg2);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -82650,7 +82650,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_CPLEXModel_getAMPLsIntParameter(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_CPLEXModel_getAMPLSIntParameter(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::CPLEXModel *arg1 = (ampls::CPLEXModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -82665,17 +82665,17 @@ SWIGINTERN PyObject *_wrap_CPLEXModel_getAMPLsIntParameter(PyObject *self, PyObj
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__CPLEXModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXModel_getAMPLsIntParameter" "', argument " "1"" of type '" "ampls::CPLEXModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXModel_getAMPLSIntParameter" "', argument " "1"" of type '" "ampls::CPLEXModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::CPLEXModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "CPLEXModel_getAMPLsIntParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "CPLEXModel_getAMPLSIntParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   {
     try {
-      result = (int)(arg1)->getAMPLsIntParameter(arg2);
+      result = (int)(arg1)->getAMPLSIntParameter(arg2);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -82690,7 +82690,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_CPLEXModel_getAMPLsDoubleParameter(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_CPLEXModel_getAMPLSDoubleParameter(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::CPLEXModel *arg1 = (ampls::CPLEXModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -82705,17 +82705,17 @@ SWIGINTERN PyObject *_wrap_CPLEXModel_getAMPLsDoubleParameter(PyObject *self, Py
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__CPLEXModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXModel_getAMPLsDoubleParameter" "', argument " "1"" of type '" "ampls::CPLEXModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXModel_getAMPLSDoubleParameter" "', argument " "1"" of type '" "ampls::CPLEXModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::CPLEXModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[0], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "CPLEXModel_getAMPLsDoubleParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "CPLEXModel_getAMPLSDoubleParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   {
     try {
-      result = (double)(arg1)->getAMPLsDoubleParameter(arg2);
+      result = (double)(arg1)->getAMPLSDoubleParameter(arg2);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -82730,7 +82730,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLsParameter__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLSParameter__SWIG_0(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
   ampls::CPLEXModel *arg1 = (ampls::CPLEXModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -82745,22 +82745,22 @@ SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLsParameter__SWIG_0(PyObject *self, 
   if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__CPLEXModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXModel_setAMPLsParameter" "', argument " "1"" of type '" "ampls::CPLEXModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXModel_setAMPLSParameter" "', argument " "1"" of type '" "ampls::CPLEXModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::CPLEXModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "CPLEXModel_setAMPLsParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "CPLEXModel_setAMPLSParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   ecode3 = SWIG_AsVal_int(swig_obj[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "CPLEXModel_setAMPLsParameter" "', argument " "3"" of type '" "int""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "CPLEXModel_setAMPLSParameter" "', argument " "3"" of type '" "int""'");
   } 
   arg3 = static_cast< int >(val3);
   {
     try {
-      (arg1)->setAMPLsParameter(arg2,arg3);
+      (arg1)->setAMPLSParameter(arg2,arg3);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -82775,7 +82775,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLsParameter__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
+SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLSParameter__SWIG_1(PyObject *self, Py_ssize_t nobjs, PyObject **swig_obj) {
   PyObject *resultobj = 0;
   ampls::CPLEXModel *arg1 = (ampls::CPLEXModel *) 0 ;
   ampls::SolverParams::SolverParameters arg2 ;
@@ -82790,22 +82790,22 @@ SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLsParameter__SWIG_1(PyObject *self, 
   if ((nobjs < 3) || (nobjs > 3)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__CPLEXModel, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXModel_setAMPLsParameter" "', argument " "1"" of type '" "ampls::CPLEXModel *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXModel_setAMPLSParameter" "', argument " "1"" of type '" "ampls::CPLEXModel *""'"); 
   }
   arg1 = reinterpret_cast< ampls::CPLEXModel * >(argp1);
   ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "CPLEXModel_setAMPLsParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "CPLEXModel_setAMPLSParameter" "', argument " "2"" of type '" "ampls::SolverParams::SolverParameters""'");
   } 
   arg2 = static_cast< ampls::SolverParams::SolverParameters >(val2);
   ecode3 = SWIG_AsVal_double(swig_obj[2], &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "CPLEXModel_setAMPLsParameter" "', argument " "3"" of type '" "double""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "CPLEXModel_setAMPLSParameter" "', argument " "3"" of type '" "double""'");
   } 
   arg3 = static_cast< double >(val3);
   {
     try {
-      (arg1)->setAMPLsParameter(arg2,arg3);
+      (arg1)->setAMPLSParameter(arg2,arg3);
     } catch(const ampls::AMPLSolverException &e) {
       SWIG_exception(SWIG_RuntimeError, e.what());
     } 
@@ -82820,13 +82820,13 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLsParameter(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLSParameter(PyObject *self, PyObject *args) {
   Py_ssize_t argc;
   PyObject *argv[4] = {
     0
   };
   
-  if (!(argc = SWIG_Python_UnpackTuple(args, "CPLEXModel_setAMPLsParameter", 0, 3, argv+1))) SWIG_fail;
+  if (!(argc = SWIG_Python_UnpackTuple(args, "CPLEXModel_setAMPLSParameter", 0, 3, argv+1))) SWIG_fail;
   argv[0] = self;
   if (argc == 3) {
     int _v;
@@ -82844,7 +82844,7 @@ SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLsParameter(PyObject *self, PyObject
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_CPLEXModel_setAMPLsParameter__SWIG_0(self, argc, argv);
+          return _wrap_CPLEXModel_setAMPLSParameter__SWIG_0(self, argc, argv);
         }
       }
     }
@@ -82865,17 +82865,17 @@ SWIGINTERN PyObject *_wrap_CPLEXModel_setAMPLsParameter(PyObject *self, PyObject
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_CPLEXModel_setAMPLsParameter__SWIG_1(self, argc, argv);
+          return _wrap_CPLEXModel_setAMPLSParameter__SWIG_1(self, argc, argv);
         }
       }
     }
   }
   
 fail:
-  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'CPLEXModel_setAMPLsParameter'.\n"
+  SWIG_Python_RaiseOrModifyTypeError("Wrong number or type of arguments for overloaded function 'CPLEXModel_setAMPLSParameter'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    ampls::CPLEXModel::setAMPLsParameter(ampls::SolverParams::SolverParameters,int)\n"
-    "    ampls::CPLEXModel::setAMPLsParameter(ampls::SolverParams::SolverParameters,double)\n");
+    "    ampls::CPLEXModel::setAMPLSParameter(ampls::SolverParams::SolverParameters,int)\n"
+    "    ampls::CPLEXModel::setAMPLSParameter(ampls::SolverParams::SolverParameters,double)\n");
   return 0;
 }
 
@@ -83298,7 +83298,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_CPLEXCallback_getAMPLWhere(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_CPLEXCallback_getAMPLSWhere(PyObject *self, PyObject *args) {
   PyObject *resultobj = 0;
   ampls::CPLEXCallback *arg1 = (ampls::CPLEXCallback *) 0 ;
   void *argp1 = 0 ;
@@ -83308,10 +83308,10 @@ SWIGINTERN PyObject *_wrap_CPLEXCallback_getAMPLWhere(PyObject *self, PyObject *
   bool upcall = false;
   ampls::Where::CBWhere result;
   
-  if (!SWIG_Python_UnpackTuple(args, "CPLEXCallback_getAMPLWhere", 0, 0, 0)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "CPLEXCallback_getAMPLSWhere", 0, 0, 0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(self, &argp1,SWIGTYPE_p_ampls__CPLEXCallback, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXCallback_getAMPLWhere" "', argument " "1"" of type '" "ampls::CPLEXCallback *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "CPLEXCallback_getAMPLSWhere" "', argument " "1"" of type '" "ampls::CPLEXCallback *""'"); 
   }
   arg1 = reinterpret_cast< ampls::CPLEXCallback * >(argp1);
   director = SWIG_DIRECTOR_CAST(arg1);
@@ -83320,9 +83320,9 @@ SWIGINTERN PyObject *_wrap_CPLEXCallback_getAMPLWhere(PyObject *self, PyObject *
     {
       try {
         if (upcall) {
-          result = (ampls::Where::CBWhere)(arg1)->ampls::CPLEXCallback::getAMPLWhere();
+          result = (ampls::Where::CBWhere)(arg1)->ampls::CPLEXCallback::getAMPLSWhere();
         } else {
-          result = (ampls::Where::CBWhere)(arg1)->getAMPLWhere();
+          result = (ampls::Where::CBWhere)(arg1)->getAMPLSWhere();
         }
       } catch(const ampls::AMPLSolverException &e) {
         SWIG_exception(SWIG_RuntimeError, e.what());
@@ -89285,7 +89285,7 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__impl__BaseCallback_methods[] = {
   { "getWhere", _wrap_BaseCallback_getWhere, METH_NOARGS, "" },
   { "getWhereString", _wrap_BaseCallback_getWhereString, METH_NOARGS, "" },
   { "getMessage", _wrap_BaseCallback_getMessage, METH_NOARGS, "" },
-  { "getAMPLWhere", _wrap_BaseCallback_getAMPLWhere, METH_NOARGS, "" },
+  { "getAMPLSWhere", _wrap_BaseCallback_getAMPLSWhere, METH_NOARGS, "" },
   { "getValue", _wrap_BaseCallback_getValue, METH_O, "" },
   { NULL, NULL, 0, NULL } /* Sentinel */
 };
@@ -89501,7 +89501,7 @@ SwigPyBuiltin__ampls__GenericCallback_richcompare(PyObject *self, PyObject *othe
 SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__GenericCallback_methods[] = {
   { "getObj", _wrap_GenericCallback_getObj, METH_NOARGS, "" },
   { "getWhere", _wrap_GenericCallback_getWhere, METH_NOARGS, "" },
-  { "getAMPLWhere", _wrap_GenericCallback_getAMPLWhere, METH_NOARGS, "" },
+  { "getAMPLSWhere", _wrap_GenericCallback_getAMPLSWhere, METH_NOARGS, "" },
   { "getWhereString", _wrap_GenericCallback_getWhereString, METH_NOARGS, "" },
   { "getMessage", _wrap_GenericCallback_getMessage, METH_NOARGS, "" },
   { "getValue", _wrap_GenericCallback_getValue, METH_O, "" },
@@ -89738,9 +89738,9 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__AMPLModel_methods[] = {
   { "error", _wrap_AMPLModel_error, METH_O, "" },
   { "enableLazyConstraints", _wrap_AMPLModel_enableLazyConstraints, METH_NOARGS, "" },
   { "printModelVars", _wrap_AMPLModel_printModelVars, METH_O, "" },
-  { "setAMPLsParameter", _wrap_AMPLModel_setAMPLsParameter, METH_VARARGS, "" },
-  { "getAMPLsIntParameter", _wrap_AMPLModel_getAMPLsIntParameter, METH_O, "" },
-  { "getAMPLsDoubleParameter", _wrap_AMPLModel_getAMPLsDoubleParameter, METH_O, "" },
+  { "setAMPLSParameter", _wrap_AMPLModel_setAMPLSParameter, METH_VARARGS, "" },
+  { "getAMPLSIntParameter", _wrap_AMPLModel_getAMPLSIntParameter, METH_O, "" },
+  { "getAMPLSDoubleParameter", _wrap_AMPLModel_getAMPLSDoubleParameter, METH_O, "" },
   { NULL, NULL, 0, NULL } /* Sentinel */
 };
 
@@ -90395,7 +90395,7 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__GurobiCallback_methods[] = {
   { "getDouble", _wrap_GurobiCallback_getDouble, METH_O, "" },
   { "getDoubleArray", _wrap_GurobiCallback_getDoubleArray, METH_O, "" },
   { "setSolution", _wrap_GurobiCallback_setSolution, METH_O, "" },
-  { "getAMPLWhere", _wrap_GurobiCallback_getAMPLWhere, METH_NOARGS, "" },
+  { "getAMPLSWhere", _wrap_GurobiCallback_getAMPLSWhere, METH_NOARGS, "" },
   { "get", _wrap_GurobiCallback_get, METH_O, "" },
   { "getValue", _wrap_GurobiCallback_getValue, METH_O, "" },
   { "__disown__", Swig::Director::swig_pyobj_disown< ampls::GurobiCallback >, METH_NOARGS, "" },
@@ -90843,9 +90843,9 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__GurobiModel_methods[] = {
   { "setParam", _wrap_GurobiModel_setParam, METH_VARARGS, "" },
   { "getGRBmodel", _wrap_GurobiModel_getGRBmodel, METH_NOARGS, "" },
   { "getGRBenv", _wrap_GurobiModel_getGRBenv, METH_NOARGS, "" },
-  { "setAMPLsParameter", _wrap_GurobiModel_setAMPLsParameter, METH_VARARGS, "" },
-  { "getAMPLsIntParameter", _wrap_GurobiModel_getAMPLsIntParameter, METH_O, "" },
-  { "getAMPLsDoubleParameter", _wrap_GurobiModel_getAMPLsDoubleParameter, METH_O, "" },
+  { "setAMPLSParameter", _wrap_GurobiModel_setAMPLSParameter, METH_VARARGS, "" },
+  { "getAMPLSIntParameter", _wrap_GurobiModel_getAMPLSIntParameter, METH_O, "" },
+  { "getAMPLSDoubleParameter", _wrap_GurobiModel_getAMPLSDoubleParameter, METH_O, "" },
   { "getConstraintsValueImpl", _wrap_GurobiModel_getConstraintsValueImpl, METH_O, "" },
   { "addConstraintImpl", _wrap_GurobiModel_addConstraintImpl, METH_VARARGS, "" },
   { "addVariableImpl", _wrap_GurobiModel_addVariableImpl, METH_VARARGS, "" },
@@ -92422,9 +92422,9 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__CPLEXModel_methods[] = {
   { "setParam", _wrap_CPLEXModel_setParam, METH_VARARGS, "" },
   { "getIntParam", _wrap_CPLEXModel_getIntParam, METH_O, "" },
   { "getDoubleParam", _wrap_CPLEXModel_getDoubleParam, METH_O, "" },
-  { "getAMPLsIntParameter", _wrap_CPLEXModel_getAMPLsIntParameter, METH_O, "" },
-  { "getAMPLsDoubleParameter", _wrap_CPLEXModel_getAMPLsDoubleParameter, METH_O, "" },
-  { "setAMPLsParameter", _wrap_CPLEXModel_setAMPLsParameter, METH_VARARGS, "" },
+  { "getAMPLSIntParameter", _wrap_CPLEXModel_getAMPLSIntParameter, METH_O, "" },
+  { "getAMPLSDoubleParameter", _wrap_CPLEXModel_getAMPLSDoubleParameter, METH_O, "" },
+  { "setAMPLSParameter", _wrap_CPLEXModel_setAMPLSParameter, METH_VARARGS, "" },
   { "addConstraintImpl", _wrap_CPLEXModel_addConstraintImpl, METH_VARARGS, "" },
   { "addVariableImpl", _wrap_CPLEXModel_addVariableImpl, METH_VARARGS, "" },
   { NULL, NULL, 0, NULL } /* Sentinel */
@@ -92643,7 +92643,7 @@ SWIGINTERN PyMethodDef SwigPyBuiltin__ampls__CPLEXCallback_methods[] = {
   { "getObj", _wrap_CPLEXCallback_getObj, METH_NOARGS, "" },
   { "getWhereString", _wrap_CPLEXCallback_getWhereString, METH_NOARGS, "" },
   { "getMessage", _wrap_CPLEXCallback_getMessage, METH_NOARGS, "" },
-  { "getAMPLWhere", _wrap_CPLEXCallback_getAMPLWhere, METH_NOARGS, "" },
+  { "getAMPLSWhere", _wrap_CPLEXCallback_getAMPLSWhere, METH_NOARGS, "" },
   { "get", _wrap_CPLEXCallback_get, METH_O, "" },
   { "getInt", _wrap_CPLEXCallback_getInt, METH_O, "" },
   { "getDouble", _wrap_CPLEXCallback_getDouble, METH_O, "" },

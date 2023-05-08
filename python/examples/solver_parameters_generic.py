@@ -20,14 +20,14 @@ statuses = {
 def setParamsAndOptimize(model):
   print(f"\nSolving a {type(model).__name__}")
   # Set relative MIP gap tolerance
-  model.setAMPLsParameter(ampls.SolverParams.DBL_MIPGap, 0.01)
+  model.setAMPLSParameter(ampls.SolverParams.DBL_MIPGap, 0.01)
   # Set time limit
-  model.setAMPLsParameter(ampls.SolverParams.DBL_TimeLimit, 3.0)
+  model.setAMPLSParameter(ampls.SolverParams.DBL_TimeLimit, 3.0)
   # Set number of solutions limit
-  model.setAMPLsParameter(ampls.SolverParams.INT_SolutionLimit, 15)
+  model.setAMPLSParameter(ampls.SolverParams.INT_SolutionLimit, 15)
 
   # Check the time limit value that we set above
-  print(f"Timelimit set to {model.getAMPLsDoubleParameter(ampls.SolverParams.DBL_TimeLimit)}")
+  print(f"Timelimit set to {model.getAMPLSDoubleParameter(ampls.SolverParams.DBL_TimeLimit)}")
   # Optimize
   model.optimize()
   # Display status

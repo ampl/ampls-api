@@ -9,7 +9,7 @@ const char* MODELNAME = "tsp.nl";
 double doStuff(ampls::AMPLModel& m) 
 {
   // Set parameter with common mapping
-  m.setAMPLsParameter(ampls::SolverParams::DBL_MIPGap, 0.1);
+  m.setAMPLSParameter(ampls::SolverParams::DBL_MIPGap, 0.1);
 
   // Start the optimization process
   m.optimize();
@@ -33,7 +33,7 @@ double doStuff(ampls::AMPLModel& m)
   // Get the objective value
   double obj = m.getObj();
   printf("%s: Objective=%f\n", m.driver(), obj);
-  printf("%s: Relative MIP gap=%f\n", m.driver(), m.getAMPLsDoubleAttribute(ampls::SolverAttributes::DBL_RelMIPGap));
+  printf("%s: Relative MIP gap=%f\n", m.driver(), m.getAMPLSDoubleAttribute(ampls::SolverAttributes::DBL_RelMIPGap));
 
   // Get the solution vector and count the non-zeros
   std::vector<double> solution = m.getSolutionVector();

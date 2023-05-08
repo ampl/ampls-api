@@ -116,11 +116,11 @@ class MyCallback(ampls.GenericCallback):
     def setCurrentGap(self):
       print("Increasing gap tolerance to %.2f%%" % \
                     (100*self._stoprule['gaptol'][self._current]))
-      ampls_model.setAMPLsParameter(ampls.SolverParams.DBL_MIPGap,
+      ampls_model.setAMPLSParameter(ampls.SolverParams.DBL_MIPGap,
                              self._stoprule['gaptol'][self._current])
       self._current += 1
     def run(self):
-        where = self.getAMPLWhere()
+        where = self.getAMPLSWhere()
         if where == ampls.Where.MIPNODE:
             runtime = self.getValue(ampls.Value.RUNTIME).dbl
             if runtime >= self._stoprule['time'][self._current]:

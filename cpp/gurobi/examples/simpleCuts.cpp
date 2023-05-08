@@ -20,7 +20,7 @@ public:
       double nodecount;
       int error = GRBcbget(cbdata, where, GRB_CB_MIP_NODCNT, (void *) &nodecount);
       if (error) return 0;
-      printf("MIP node count is %d\n", nodecount);
+      printf("MIP node count is %d\n", (int)nodecount);
     }
     return 0;
   }

@@ -206,7 +206,7 @@ class MyCallback(ampls.GenericCallback):
    def run(self):
      try:
         # For each solution
-        if self.getAMPLWhere() == ampls.Where.MIPSOL:
+        if self.getAMPLSWhere() == ampls.Where.MIPSOL:
           self.iteration += 1
           print(f"\nIteration {self.iteration}: Finding subtours")
           sol = self.getSolutionVector()
