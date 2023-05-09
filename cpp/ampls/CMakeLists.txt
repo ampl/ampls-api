@@ -33,7 +33,6 @@ add_to_folder(ampls ampls)
 # Check which libraries are being built and add only the relevant
 # examples and link libs
 set(PREPROCESSORDEFS "")
-
 foreach(s ${ENABLED_SOLVERS})
     set(LINKLIBS ${LINKLIBS} ${s}-drv)
     set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_${s}=1)

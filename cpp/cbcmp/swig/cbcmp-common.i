@@ -14,7 +14,7 @@
 %ignore ampls::CbcCallback::getSolution;
 %template(SolverDriverXGrb) ampls::impl::SolverDriver<ampls::CbcModel>;
 
-
-%include "Cbc_C_Interface.h"
 %include "cbcmp_callback.h"
 %include "cbcmp_interface.h"
+%include "Cbc_C_Interface.h"
+

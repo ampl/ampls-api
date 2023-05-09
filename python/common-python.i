@@ -144,46 +144,6 @@
 %ignore "getVarMapFiltered";
 
 
-%pythoncode %{
-from enum import Enum
-def to_enum(enumclasses : list):
-    skip = ['acquire', 'append', 'disown', 'next', 'own', 'this', 'thisown']
-    for enumclass in enumclasses:
-        env = {name : value for name,value in vars(enumclass).items() 
-               if name not in skip and not name.startswith('__')}
-        globals()[enumclass.__name__]=Enum(enumclass.__name__, env)
-
-to_enum([Status, SolverAttributes, SolverParams, LPAlgorithms, Where, CanDo, Value, CutDirection])
-
-# clean up the namespace
-del to_enum  
-
-
-def __e_to_v(v):
-  if isinstance(v, Enum): return v.value
-  return v
-
-def __get_ampls_parameter(self, param):
-    if param.name.startswith('DBL'):
-        return self.getAMPLSDoubleParameter(__e_to_v(param))
-    v = self.getAMPLSIntParameter(__e_to_v(param))
-    if param == SolverParams.INT_LP_Algorithm:
-        return LPAlgorithms(v)
-    return v
-
-def __get_ampls_attribute(self, param):
-    if param.name.startswith('DBL'):
-        return self.getAMPLSDoubleAttribute(__e_to_v(param))
-    return self.getAMPLSIntAttribute(__e_to_v(param))
-
-AMPLModel.get_status=lambda self : Status(self.getStatus())
-BaseCallback.get_ampls_where=lambda self : Where(self.getAMPLSWhere())
-AMPLModel.set_ampls_parameter=lambda self,what,value : self.setAMPLSParameter(what.value, __e_to_v(value))
-AMPLModel.get_ampls_parameter=__get_ampls_parameter
-AMPLModel.get_ampls_attribute=__get_ampls_attribute
-
-%}
-
 
 %extend ampls::AMPLModel {
 

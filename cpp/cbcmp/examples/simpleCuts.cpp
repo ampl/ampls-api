@@ -55,8 +55,5 @@ int main(int argc, char** argv) {
 
   // Write the solution back to AMPL
   m.writeSol();
-  return obj;
-
-
- 
+  return 0;
 }

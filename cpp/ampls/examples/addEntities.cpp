@@ -20,7 +20,7 @@ void printStatistics(ampls::AMPLModel& m, const char* name)
   printf("%s: objective=%f\n", name, m.getObj());
 }
 
-template <class T> void doStuff(const char* name)
+template <class T> void doStuff()
 {
   ampl::AMPL ampl;
   
@@ -32,7 +32,7 @@ template <class T> void doStuff(const char* name)
 
   T model = ampls::AMPLAPIInterface::exportModel<T>(ampl);
   model.optimize();
-  printStatistics(model, name);
+  printStatistics(model, model.driver());
 
   // Create a new constraint using the solver interface
   int n = model.getNumVars();
@@ -44,13 +44,13 @@ template <class T> void doStuff(const char* name)
   // Add it to the solver and records it for AMPL
   model.record(model.addConstraint(n, indices.data(), coeff.data(), ampls::CutDirection::LE, n));
   model.optimize();
-  printStatistics(model, name);
+  printStatistics(model, model.driver());
 
   // Add a variable that does not appear in the constraints matrix
   // but with a coefficient of 100 in the objective
   model.record(model.addVariable(0, NULL, NULL, 0, 10, 100, ampls::VarType::Integer));
   model.optimize();
-  printStatistics(model, name);
+  printStatistics(model, model.driver());
 
   ampls::AMPLAPIInterface::importModel(ampl, model);
   printStatistics(ampl);
@@ -59,19 +59,19 @@ template <class T> void doStuff(const char* name)
 
 int main(int argc, char** argv) {
 #ifdef USE_copt
-  doStuff<ampls::CoptModel>("copt");
+  doStuff<ampls::CoptModel>();
 #endif 
 #ifdef USE_cplexmp
-  doStuff<ampls::CPLEXModel>("cplex");
+  doStuff<ampls::CPLEXModel>();
 #endif
 #ifdef USE_gurobi
-  doStuff<ampls::GurobiModel>("gurobi");
+  doStuff<ampls::GurobiModel>();
 #endif
 #ifdef USE_xpress
-  doStuff<ampls::XPRESSModel>("xpress");
+  doStuff<ampls::XPRESSModel>();
 #endif 
 #ifdef USE_cbcmp
-  doStuff<ampls::CbcModel>("cbc");
+  doStuff<ampls::CbcModel>();
 #endif 
   return 0;
  

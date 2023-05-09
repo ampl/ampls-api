@@ -143,6 +143,8 @@ class CPLEXModel : public AMPLMPModel {
  // std::vector<double> getVarsValueImpl(int offset, int length);
 
 public:
+  using Driver = ampls::CPLEXDrv;
+
   CPLEXModel(const CPLEXModel& other) : AMPLMPModel(other),
     status_(other.status_),
     model_(other.model_),

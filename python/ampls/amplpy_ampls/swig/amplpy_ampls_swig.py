@@ -8,11 +8,11 @@ from sys import version_info as _swig_python_version_info
 if _swig_python_version_info < (2, 7, 0):
     raise RuntimeError("Python 2.7 or later required")
 
-# Pull in all the attributes from the low-level C/C++ module
+# Import the low-level C/C++ module
 if __package__ or "." in __name__:
-    from ._amplpy_ampls_swig import *
+    from . import _amplpy_ampls_swig
 else:
-    from _amplpy_ampls_swig import *
+    import _amplpy_ampls_swig
 
 try:
     import builtins as __builtin__
@@ -63,43 +63,9407 @@ class _SwigNonDynamicMeta(type):
 
 import weakref
 
+class dblArray(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, nelements):
+        _amplpy_ampls_swig.dblArray_swiginit(self, _amplpy_ampls_swig.new_dblArray(nelements))
+    __swig_destroy__ = _amplpy_ampls_swig.delete_dblArray
+
+    def __getitem__(self, index):
+        return _amplpy_ampls_swig.dblArray___getitem__(self, index)
+
+    def __setitem__(self, index, value):
+        return _amplpy_ampls_swig.dblArray___setitem__(self, index, value)
+
+    def cast(self):
+        return _amplpy_ampls_swig.dblArray_cast(self)
+
+    @staticmethod
+    def frompointer(t):
+        return _amplpy_ampls_swig.dblArray_frompointer(t)
+
+# Register dblArray in _amplpy_ampls_swig:
+_amplpy_ampls_swig.dblArray_swigregister(dblArray)
+
+def dblArray_frompointer(t):
+    return _amplpy_ampls_swig.dblArray_frompointer(t)
+
+class intArray(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, nelements):
+        _amplpy_ampls_swig.intArray_swiginit(self, _amplpy_ampls_swig.new_intArray(nelements))
+    __swig_destroy__ = _amplpy_ampls_swig.delete_intArray
+
+    def __getitem__(self, index):
+        return _amplpy_ampls_swig.intArray___getitem__(self, index)
+
+    def __setitem__(self, index, value):
+        return _amplpy_ampls_swig.intArray___setitem__(self, index, value)
+
+    def cast(self):
+        return _amplpy_ampls_swig.intArray_cast(self)
+
+    @staticmethod
+    def frompointer(t):
+        return _amplpy_ampls_swig.intArray_frompointer(t)
+
+# Register intArray in _amplpy_ampls_swig:
+_amplpy_ampls_swig.intArray_swigregister(intArray)
+
+def intArray_frompointer(t):
+    return _amplpy_ampls_swig.intArray_frompointer(t)
 
 
+from enum import Enum
+def to_enum(enumclasses : list):
+    skip = ['acquire', 'append', 'disown', 'next', 'own', 'this', 'thisown']
+    for enumclass in enumclasses:
+        env = {name : value for name,value in vars(enumclass).items() 
+               if name not in skip and not name.startswith('__')}
+        globals()[enumclass.__name__]=Enum(enumclass.__name__, env)
+
+to_enum([Status, SolverAttributes, SolverParams, LPAlgorithms, Where, CanDo, Value, CutDirection])
+
+# clean up the namespace
+del to_enum  
 
 
+def __e_to_v(v):
+  if isinstance(v, Enum): return v.value
+  return v
+
+def __get_ampls_parameter(self, param):
+    if param.name.startswith('DBL'):
+        return self.getAMPLSDoubleParameter(__e_to_v(param))
+    v = self.getAMPLSIntParameter(__e_to_v(param))
+    if param == SolverParams.INT_LP_Algorithm:
+        return LPAlgorithms(v)
+    return v
+
+def __get_ampls_attribute(self, param):
+    if param.name.startswith('DBL'):
+        return self.getAMPLSDoubleAttribute(__e_to_v(param))
+    return self.getAMPLSIntAttribute(__e_to_v(param))
+
+AMPLModel.get_status=lambda self : Status(self.getStatus())
+BaseCallback.get_ampls_where=lambda self : Where(self.getAMPLSWhere())
+AMPLModel.set_ampls_parameter=lambda self,what,value : self.setAMPLSParameter(what.value, __e_to_v(value))
+AMPLModel.get_ampls_parameter=__get_ampls_parameter
+AMPLModel.get_ampls_attribute=__get_ampls_attribute
 
 
+class SwigPyIterator(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _amplpy_ampls_swig.delete_SwigPyIterator
+
+    def value(self):
+        return _amplpy_ampls_swig.SwigPyIterator_value(self)
+
+    def incr(self, n=1):
+        return _amplpy_ampls_swig.SwigPyIterator_incr(self, n)
+
+    def decr(self, n=1):
+        return _amplpy_ampls_swig.SwigPyIterator_decr(self, n)
+
+    def distance(self, x):
+        return _amplpy_ampls_swig.SwigPyIterator_distance(self, x)
+
+    def equal(self, x):
+        return _amplpy_ampls_swig.SwigPyIterator_equal(self, x)
+
+    def copy(self):
+        return _amplpy_ampls_swig.SwigPyIterator_copy(self)
+
+    def next(self):
+        return _amplpy_ampls_swig.SwigPyIterator_next(self)
+
+    def __next__(self):
+        return _amplpy_ampls_swig.SwigPyIterator___next__(self)
+
+    def previous(self):
+        return _amplpy_ampls_swig.SwigPyIterator_previous(self)
+
+    def advance(self, n):
+        return _amplpy_ampls_swig.SwigPyIterator_advance(self, n)
+
+    def __eq__(self, x):
+        return _amplpy_ampls_swig.SwigPyIterator___eq__(self, x)
+
+    def __ne__(self, x):
+        return _amplpy_ampls_swig.SwigPyIterator___ne__(self, x)
+
+    def __iadd__(self, n):
+        return _amplpy_ampls_swig.SwigPyIterator___iadd__(self, n)
+
+    def __isub__(self, n):
+        return _amplpy_ampls_swig.SwigPyIterator___isub__(self, n)
+
+    def __add__(self, n):
+        return _amplpy_ampls_swig.SwigPyIterator___add__(self, n)
+
+    def __sub__(self, *args):
+        return _amplpy_ampls_swig.SwigPyIterator___sub__(self, *args)
+    def __iter__(self):
+        return self
+
+# Register SwigPyIterator in _amplpy_ampls_swig:
+_amplpy_ampls_swig.SwigPyIterator_swigregister(SwigPyIterator)
+
+class map_string_int(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def iterator(self):
+        return _amplpy_ampls_swig.map_string_int_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self):
+        return _amplpy_ampls_swig.map_string_int___nonzero__(self)
+
+    def __bool__(self):
+        return _amplpy_ampls_swig.map_string_int___bool__(self)
+
+    def __len__(self):
+        return _amplpy_ampls_swig.map_string_int___len__(self)
+    def __iter__(self):
+        return self.key_iterator()
+    def iterkeys(self):
+        return self.key_iterator()
+    def itervalues(self):
+        return self.value_iterator()
+    def iteritems(self):
+        return self.iterator()
+
+    def __getitem__(self, key):
+        return _amplpy_ampls_swig.map_string_int___getitem__(self, key)
+
+    def __delitem__(self, key):
+        return _amplpy_ampls_swig.map_string_int___delitem__(self, key)
+
+    def has_key(self, key):
+        return _amplpy_ampls_swig.map_string_int_has_key(self, key)
+
+    def keys(self):
+        return _amplpy_ampls_swig.map_string_int_keys(self)
+
+    def values(self):
+        return _amplpy_ampls_swig.map_string_int_values(self)
+
+    def items(self):
+        return _amplpy_ampls_swig.map_string_int_items(self)
+
+    def __contains__(self, key):
+        return _amplpy_ampls_swig.map_string_int___contains__(self, key)
+
+    def key_iterator(self):
+        return _amplpy_ampls_swig.map_string_int_key_iterator(self)
+
+    def value_iterator(self):
+        return _amplpy_ampls_swig.map_string_int_value_iterator(self)
+
+    def __setitem__(self, *args):
+        return _amplpy_ampls_swig.map_string_int___setitem__(self, *args)
+
+    def asdict(self):
+        return _amplpy_ampls_swig.map_string_int_asdict(self)
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.map_string_int_swiginit(self, _amplpy_ampls_swig.new_map_string_int(*args))
+
+    def empty(self):
+        return _amplpy_ampls_swig.map_string_int_empty(self)
+
+    def size(self):
+        return _amplpy_ampls_swig.map_string_int_size(self)
+
+    def swap(self, v):
+        return _amplpy_ampls_swig.map_string_int_swap(self, v)
+
+    def begin(self):
+        return _amplpy_ampls_swig.map_string_int_begin(self)
+
+    def end(self):
+        return _amplpy_ampls_swig.map_string_int_end(self)
+
+    def rbegin(self):
+        return _amplpy_ampls_swig.map_string_int_rbegin(self)
+
+    def rend(self):
+        return _amplpy_ampls_swig.map_string_int_rend(self)
+
+    def clear(self):
+        return _amplpy_ampls_swig.map_string_int_clear(self)
+
+    def get_allocator(self):
+        return _amplpy_ampls_swig.map_string_int_get_allocator(self)
+
+    def count(self, x):
+        return _amplpy_ampls_swig.map_string_int_count(self, x)
+
+    def erase(self, *args):
+        return _amplpy_ampls_swig.map_string_int_erase(self, *args)
+
+    def find(self, x):
+        return _amplpy_ampls_swig.map_string_int_find(self, x)
+
+    def lower_bound(self, x):
+        return _amplpy_ampls_swig.map_string_int_lower_bound(self, x)
+
+    def upper_bound(self, x):
+        return _amplpy_ampls_swig.map_string_int_upper_bound(self, x)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_map_string_int
+
+# Register map_string_int in _amplpy_ampls_swig:
+_amplpy_ampls_swig.map_string_int_swigregister(map_string_int)
+
+class map_int_string(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def iterator(self):
+        return _amplpy_ampls_swig.map_int_string_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self):
+        return _amplpy_ampls_swig.map_int_string___nonzero__(self)
+
+    def __bool__(self):
+        return _amplpy_ampls_swig.map_int_string___bool__(self)
+
+    def __len__(self):
+        return _amplpy_ampls_swig.map_int_string___len__(self)
+    def __iter__(self):
+        return self.key_iterator()
+    def iterkeys(self):
+        return self.key_iterator()
+    def itervalues(self):
+        return self.value_iterator()
+    def iteritems(self):
+        return self.iterator()
+
+    def __getitem__(self, key):
+        return _amplpy_ampls_swig.map_int_string___getitem__(self, key)
+
+    def __delitem__(self, key):
+        return _amplpy_ampls_swig.map_int_string___delitem__(self, key)
+
+    def has_key(self, key):
+        return _amplpy_ampls_swig.map_int_string_has_key(self, key)
+
+    def keys(self):
+        return _amplpy_ampls_swig.map_int_string_keys(self)
+
+    def values(self):
+        return _amplpy_ampls_swig.map_int_string_values(self)
+
+    def items(self):
+        return _amplpy_ampls_swig.map_int_string_items(self)
+
+    def __contains__(self, key):
+        return _amplpy_ampls_swig.map_int_string___contains__(self, key)
+
+    def key_iterator(self):
+        return _amplpy_ampls_swig.map_int_string_key_iterator(self)
+
+    def value_iterator(self):
+        return _amplpy_ampls_swig.map_int_string_value_iterator(self)
+
+    def __setitem__(self, *args):
+        return _amplpy_ampls_swig.map_int_string___setitem__(self, *args)
+
+    def asdict(self):
+        return _amplpy_ampls_swig.map_int_string_asdict(self)
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.map_int_string_swiginit(self, _amplpy_ampls_swig.new_map_int_string(*args))
+
+    def empty(self):
+        return _amplpy_ampls_swig.map_int_string_empty(self)
+
+    def size(self):
+        return _amplpy_ampls_swig.map_int_string_size(self)
+
+    def swap(self, v):
+        return _amplpy_ampls_swig.map_int_string_swap(self, v)
+
+    def begin(self):
+        return _amplpy_ampls_swig.map_int_string_begin(self)
+
+    def end(self):
+        return _amplpy_ampls_swig.map_int_string_end(self)
+
+    def rbegin(self):
+        return _amplpy_ampls_swig.map_int_string_rbegin(self)
+
+    def rend(self):
+        return _amplpy_ampls_swig.map_int_string_rend(self)
+
+    def clear(self):
+        return _amplpy_ampls_swig.map_int_string_clear(self)
+
+    def get_allocator(self):
+        return _amplpy_ampls_swig.map_int_string_get_allocator(self)
+
+    def count(self, x):
+        return _amplpy_ampls_swig.map_int_string_count(self, x)
+
+    def erase(self, *args):
+        return _amplpy_ampls_swig.map_int_string_erase(self, *args)
+
+    def find(self, x):
+        return _amplpy_ampls_swig.map_int_string_find(self, x)
+
+    def lower_bound(self, x):
+        return _amplpy_ampls_swig.map_int_string_lower_bound(self, x)
+
+    def upper_bound(self, x):
+        return _amplpy_ampls_swig.map_int_string_upper_bound(self, x)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_map_int_string
+
+# Register map_int_string in _amplpy_ampls_swig:
+_amplpy_ampls_swig.map_int_string_swigregister(map_int_string)
+
+class map_string_double(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def iterator(self):
+        return _amplpy_ampls_swig.map_string_double_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self):
+        return _amplpy_ampls_swig.map_string_double___nonzero__(self)
+
+    def __bool__(self):
+        return _amplpy_ampls_swig.map_string_double___bool__(self)
+
+    def __len__(self):
+        return _amplpy_ampls_swig.map_string_double___len__(self)
+    def __iter__(self):
+        return self.key_iterator()
+    def iterkeys(self):
+        return self.key_iterator()
+    def itervalues(self):
+        return self.value_iterator()
+    def iteritems(self):
+        return self.iterator()
+
+    def __getitem__(self, key):
+        return _amplpy_ampls_swig.map_string_double___getitem__(self, key)
+
+    def __delitem__(self, key):
+        return _amplpy_ampls_swig.map_string_double___delitem__(self, key)
+
+    def has_key(self, key):
+        return _amplpy_ampls_swig.map_string_double_has_key(self, key)
+
+    def keys(self):
+        return _amplpy_ampls_swig.map_string_double_keys(self)
+
+    def values(self):
+        return _amplpy_ampls_swig.map_string_double_values(self)
+
+    def items(self):
+        return _amplpy_ampls_swig.map_string_double_items(self)
+
+    def __contains__(self, key):
+        return _amplpy_ampls_swig.map_string_double___contains__(self, key)
+
+    def key_iterator(self):
+        return _amplpy_ampls_swig.map_string_double_key_iterator(self)
+
+    def value_iterator(self):
+        return _amplpy_ampls_swig.map_string_double_value_iterator(self)
+
+    def __setitem__(self, *args):
+        return _amplpy_ampls_swig.map_string_double___setitem__(self, *args)
+
+    def asdict(self):
+        return _amplpy_ampls_swig.map_string_double_asdict(self)
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.map_string_double_swiginit(self, _amplpy_ampls_swig.new_map_string_double(*args))
+
+    def empty(self):
+        return _amplpy_ampls_swig.map_string_double_empty(self)
+
+    def size(self):
+        return _amplpy_ampls_swig.map_string_double_size(self)
+
+    def swap(self, v):
+        return _amplpy_ampls_swig.map_string_double_swap(self, v)
+
+    def begin(self):
+        return _amplpy_ampls_swig.map_string_double_begin(self)
+
+    def end(self):
+        return _amplpy_ampls_swig.map_string_double_end(self)
+
+    def rbegin(self):
+        return _amplpy_ampls_swig.map_string_double_rbegin(self)
+
+    def rend(self):
+        return _amplpy_ampls_swig.map_string_double_rend(self)
+
+    def clear(self):
+        return _amplpy_ampls_swig.map_string_double_clear(self)
+
+    def get_allocator(self):
+        return _amplpy_ampls_swig.map_string_double_get_allocator(self)
+
+    def count(self, x):
+        return _amplpy_ampls_swig.map_string_double_count(self, x)
+
+    def erase(self, *args):
+        return _amplpy_ampls_swig.map_string_double_erase(self, *args)
+
+    def find(self, x):
+        return _amplpy_ampls_swig.map_string_double_find(self, x)
+
+    def lower_bound(self, x):
+        return _amplpy_ampls_swig.map_string_double_lower_bound(self, x)
+
+    def upper_bound(self, x):
+        return _amplpy_ampls_swig.map_string_double_upper_bound(self, x)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_map_string_double
+
+# Register map_string_double in _amplpy_ampls_swig:
+_amplpy_ampls_swig.map_string_double_swigregister(map_string_double)
+
+class vector_string(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def iterator(self):
+        return _amplpy_ampls_swig.vector_string_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self):
+        return _amplpy_ampls_swig.vector_string___nonzero__(self)
+
+    def __bool__(self):
+        return _amplpy_ampls_swig.vector_string___bool__(self)
+
+    def __len__(self):
+        return _amplpy_ampls_swig.vector_string___len__(self)
+
+    def __getslice__(self, i, j):
+        return _amplpy_ampls_swig.vector_string___getslice__(self, i, j)
+
+    def __setslice__(self, *args):
+        return _amplpy_ampls_swig.vector_string___setslice__(self, *args)
+
+    def __delslice__(self, i, j):
+        return _amplpy_ampls_swig.vector_string___delslice__(self, i, j)
+
+    def __delitem__(self, *args):
+        return _amplpy_ampls_swig.vector_string___delitem__(self, *args)
+
+    def __getitem__(self, *args):
+        return _amplpy_ampls_swig.vector_string___getitem__(self, *args)
+
+    def __setitem__(self, *args):
+        return _amplpy_ampls_swig.vector_string___setitem__(self, *args)
+
+    def pop(self):
+        return _amplpy_ampls_swig.vector_string_pop(self)
+
+    def append(self, x):
+        return _amplpy_ampls_swig.vector_string_append(self, x)
+
+    def empty(self):
+        return _amplpy_ampls_swig.vector_string_empty(self)
+
+    def size(self):
+        return _amplpy_ampls_swig.vector_string_size(self)
+
+    def swap(self, v):
+        return _amplpy_ampls_swig.vector_string_swap(self, v)
+
+    def begin(self):
+        return _amplpy_ampls_swig.vector_string_begin(self)
+
+    def end(self):
+        return _amplpy_ampls_swig.vector_string_end(self)
+
+    def rbegin(self):
+        return _amplpy_ampls_swig.vector_string_rbegin(self)
+
+    def rend(self):
+        return _amplpy_ampls_swig.vector_string_rend(self)
+
+    def clear(self):
+        return _amplpy_ampls_swig.vector_string_clear(self)
+
+    def get_allocator(self):
+        return _amplpy_ampls_swig.vector_string_get_allocator(self)
+
+    def pop_back(self):
+        return _amplpy_ampls_swig.vector_string_pop_back(self)
+
+    def erase(self, *args):
+        return _amplpy_ampls_swig.vector_string_erase(self, *args)
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.vector_string_swiginit(self, _amplpy_ampls_swig.new_vector_string(*args))
+
+    def push_back(self, x):
+        return _amplpy_ampls_swig.vector_string_push_back(self, x)
+
+    def front(self):
+        return _amplpy_ampls_swig.vector_string_front(self)
+
+    def back(self):
+        return _amplpy_ampls_swig.vector_string_back(self)
+
+    def assign(self, n, x):
+        return _amplpy_ampls_swig.vector_string_assign(self, n, x)
+
+    def resize(self, *args):
+        return _amplpy_ampls_swig.vector_string_resize(self, *args)
+
+    def insert(self, *args):
+        return _amplpy_ampls_swig.vector_string_insert(self, *args)
+
+    def reserve(self, n):
+        return _amplpy_ampls_swig.vector_string_reserve(self, n)
+
+    def capacity(self):
+        return _amplpy_ampls_swig.vector_string_capacity(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_vector_string
+
+# Register vector_string in _amplpy_ampls_swig:
+_amplpy_ampls_swig.vector_string_swigregister(vector_string)
+
+class vector_double(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def iterator(self):
+        return _amplpy_ampls_swig.vector_double_iterator(self)
+    def __iter__(self):
+        return self.iterator()
+
+    def __nonzero__(self):
+        return _amplpy_ampls_swig.vector_double___nonzero__(self)
+
+    def __bool__(self):
+        return _amplpy_ampls_swig.vector_double___bool__(self)
+
+    def __len__(self):
+        return _amplpy_ampls_swig.vector_double___len__(self)
+
+    def __getslice__(self, i, j):
+        return _amplpy_ampls_swig.vector_double___getslice__(self, i, j)
+
+    def __setslice__(self, *args):
+        return _amplpy_ampls_swig.vector_double___setslice__(self, *args)
+
+    def __delslice__(self, i, j):
+        return _amplpy_ampls_swig.vector_double___delslice__(self, i, j)
+
+    def __delitem__(self, *args):
+        return _amplpy_ampls_swig.vector_double___delitem__(self, *args)
+
+    def __getitem__(self, *args):
+        return _amplpy_ampls_swig.vector_double___getitem__(self, *args)
+
+    def __setitem__(self, *args):
+        return _amplpy_ampls_swig.vector_double___setitem__(self, *args)
+
+    def pop(self):
+        return _amplpy_ampls_swig.vector_double_pop(self)
+
+    def append(self, x):
+        return _amplpy_ampls_swig.vector_double_append(self, x)
+
+    def empty(self):
+        return _amplpy_ampls_swig.vector_double_empty(self)
+
+    def size(self):
+        return _amplpy_ampls_swig.vector_double_size(self)
+
+    def swap(self, v):
+        return _amplpy_ampls_swig.vector_double_swap(self, v)
+
+    def begin(self):
+        return _amplpy_ampls_swig.vector_double_begin(self)
+
+    def end(self):
+        return _amplpy_ampls_swig.vector_double_end(self)
+
+    def rbegin(self):
+        return _amplpy_ampls_swig.vector_double_rbegin(self)
+
+    def rend(self):
+        return _amplpy_ampls_swig.vector_double_rend(self)
+
+    def clear(self):
+        return _amplpy_ampls_swig.vector_double_clear(self)
+
+    def get_allocator(self):
+        return _amplpy_ampls_swig.vector_double_get_allocator(self)
+
+    def pop_back(self):
+        return _amplpy_ampls_swig.vector_double_pop_back(self)
+
+    def erase(self, *args):
+        return _amplpy_ampls_swig.vector_double_erase(self, *args)
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.vector_double_swiginit(self, _amplpy_ampls_swig.new_vector_double(*args))
+
+    def push_back(self, x):
+        return _amplpy_ampls_swig.vector_double_push_back(self, x)
+
+    def front(self):
+        return _amplpy_ampls_swig.vector_double_front(self)
+
+    def back(self):
+        return _amplpy_ampls_swig.vector_double_back(self)
+
+    def assign(self, n, x):
+        return _amplpy_ampls_swig.vector_double_assign(self, n, x)
+
+    def resize(self, *args):
+        return _amplpy_ampls_swig.vector_double_resize(self, *args)
+
+    def insert(self, *args):
+        return _amplpy_ampls_swig.vector_double_insert(self, *args)
+
+    def reserve(self, n):
+        return _amplpy_ampls_swig.vector_double_reserve(self, n)
+
+    def capacity(self):
+        return _amplpy_ampls_swig.vector_double_capacity(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_vector_double
+
+# Register vector_double in _amplpy_ampls_swig:
+_amplpy_ampls_swig.vector_double_swigregister(vector_double)
+
+class AMPLSolverException(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.AMPLSolverException_swiginit(self, _amplpy_ampls_swig.new_AMPLSolverException(*args))
+
+    @staticmethod
+    def format(*args):
+        return _amplpy_ampls_swig.AMPLSolverException_format(*args)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_AMPLSolverException
+
+# Register AMPLSolverException in _amplpy_ampls_swig:
+_amplpy_ampls_swig.AMPLSolverException_swigregister(AMPLSolverException)
+
+def AMPLSolverException_format(*args):
+    return _amplpy_ampls_swig.AMPLSolverException_format(*args)
+
+class Variant(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    str = property(_amplpy_ampls_swig.Variant_str_get, _amplpy_ampls_swig.Variant_str_set)
+    integer = property(_amplpy_ampls_swig.Variant_integer_get, _amplpy_ampls_swig.Variant_integer_set)
+    dbl = property(_amplpy_ampls_swig.Variant_dbl_get, _amplpy_ampls_swig.Variant_dbl_set)
+    type = property(_amplpy_ampls_swig.Variant_type_get, _amplpy_ampls_swig.Variant_type_set)
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.Variant_swiginit(self, _amplpy_ampls_swig.new_Variant(*args))
+    __swig_destroy__ = _amplpy_ampls_swig.delete_Variant
+
+# Register Variant in _amplpy_ampls_swig:
+_amplpy_ampls_swig.Variant_swigregister(Variant)
 
 
+def generateArguments(modelName, options):
+    return _amplpy_ampls_swig.generateArguments(modelName, options)
+
+def deleteParams(params):
+    return _amplpy_ampls_swig.deleteParams(params)
+class VarType(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    Continuous = _amplpy_ampls_swig.VarType_Continuous
+    Binary = _amplpy_ampls_swig.VarType_Binary
+    Integer = _amplpy_ampls_swig.VarType_Integer
+
+    def __init__(self):
+        _amplpy_ampls_swig.VarType_swiginit(self, _amplpy_ampls_swig.new_VarType())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_VarType
+
+# Register VarType in _amplpy_ampls_swig:
+_amplpy_ampls_swig.VarType_swigregister(VarType)
+
+class SolverAttributes(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    DBL_RelMIPGap = _amplpy_ampls_swig.SolverAttributes_DBL_RelMIPGap
+    DBL_CurrentObjBound = _amplpy_ampls_swig.SolverAttributes_DBL_CurrentObjBound
+
+    def __init__(self):
+        _amplpy_ampls_swig.SolverAttributes_swiginit(self, _amplpy_ampls_swig.new_SolverAttributes())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_SolverAttributes
+
+# Register SolverAttributes in _amplpy_ampls_swig:
+_amplpy_ampls_swig.SolverAttributes_swigregister(SolverAttributes)
+
+class SolverParams(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    DBL_MIPGap = _amplpy_ampls_swig.SolverParams_DBL_MIPGap
+    DBL_TimeLimit = _amplpy_ampls_swig.SolverParams_DBL_TimeLimit
+    INT_SolutionLimit = _amplpy_ampls_swig.SolverParams_INT_SolutionLimit
+    INT_LP_Algorithm = _amplpy_ampls_swig.SolverParams_INT_LP_Algorithm
+
+    def __init__(self):
+        _amplpy_ampls_swig.SolverParams_swiginit(self, _amplpy_ampls_swig.new_SolverParams())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_SolverParams
+
+# Register SolverParams in _amplpy_ampls_swig:
+_amplpy_ampls_swig.SolverParams_swigregister(SolverParams)
+
+class LPAlgorithms(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    Auto = _amplpy_ampls_swig.LPAlgorithms_Auto
+    PrimalSimplex = _amplpy_ampls_swig.LPAlgorithms_PrimalSimplex
+    DualSimplex = _amplpy_ampls_swig.LPAlgorithms_DualSimplex
+    Barrier = _amplpy_ampls_swig.LPAlgorithms_Barrier
+
+    def __init__(self):
+        _amplpy_ampls_swig.LPAlgorithms_swiginit(self, _amplpy_ampls_swig.new_LPAlgorithms())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_LPAlgorithms
+
+# Register LPAlgorithms in _amplpy_ampls_swig:
+_amplpy_ampls_swig.LPAlgorithms_swigregister(LPAlgorithms)
+
+class Where(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    MSG = _amplpy_ampls_swig.Where_MSG
+    PRESOLVE = _amplpy_ampls_swig.Where_PRESOLVE
+    LPSOLVE = _amplpy_ampls_swig.Where_LPSOLVE
+    MIPNODE = _amplpy_ampls_swig.Where_MIPNODE
+    MIPSOL = _amplpy_ampls_swig.Where_MIPSOL
+    MIP = _amplpy_ampls_swig.Where_MIP
+    NOTMAPPED = _amplpy_ampls_swig.Where_NOTMAPPED
+
+    def __init__(self):
+        _amplpy_ampls_swig.Where_swiginit(self, _amplpy_ampls_swig.new_Where())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_Where
+
+# Register Where in _amplpy_ampls_swig:
+_amplpy_ampls_swig.Where_swigregister(Where)
+
+class CanDo(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    IMPORT_SOLUTION = _amplpy_ampls_swig.CanDo_IMPORT_SOLUTION
+    GET_LP_SOLUTION = _amplpy_ampls_swig.CanDo_GET_LP_SOLUTION
+
+    def __init__(self):
+        _amplpy_ampls_swig.CanDo_swiginit(self, _amplpy_ampls_swig.new_CanDo())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_CanDo
+
+# Register CanDo in _amplpy_ampls_swig:
+_amplpy_ampls_swig.CanDo_swigregister(CanDo)
+
+class Value(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    OBJ = _amplpy_ampls_swig.Value_OBJ
+    PRE_DELCOLS = _amplpy_ampls_swig.Value_PRE_DELCOLS
+    PRE_DELROWS = _amplpy_ampls_swig.Value_PRE_DELROWS
+    PRE_COEFFCHANGED = _amplpy_ampls_swig.Value_PRE_COEFFCHANGED
+    ITERATIONS = _amplpy_ampls_swig.Value_ITERATIONS
+    RUNTIME = _amplpy_ampls_swig.Value_RUNTIME
+    MIP_RELATIVEGAP = _amplpy_ampls_swig.Value_MIP_RELATIVEGAP
+    MIP_OBJBOUND = _amplpy_ampls_swig.Value_MIP_OBJBOUND
+    MIP_SOL_RELAXED = _amplpy_ampls_swig.Value_MIP_SOL_RELAXED
+
+    def __init__(self):
+        _amplpy_ampls_swig.Value_swiginit(self, _amplpy_ampls_swig.new_Value())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_Value
+
+# Register Value in _amplpy_ampls_swig:
+_amplpy_ampls_swig.Value_swigregister(Value)
+
+class CutDirection(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    EQ = _amplpy_ampls_swig.CutDirection_EQ
+    GE = _amplpy_ampls_swig.CutDirection_GE
+    LE = _amplpy_ampls_swig.CutDirection_LE
+
+    @staticmethod
+    def toString(dir):
+        return _amplpy_ampls_swig.CutDirection_toString(dir)
+
+    def __init__(self):
+        _amplpy_ampls_swig.CutDirection_swiginit(self, _amplpy_ampls_swig.new_CutDirection())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_CutDirection
+
+# Register CutDirection in _amplpy_ampls_swig:
+_amplpy_ampls_swig.CutDirection_swigregister(CutDirection)
+
+def CutDirection_toString(dir):
+    return _amplpy_ampls_swig.CutDirection_toString(dir)
+
+class Status(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    UNKNOWN = _amplpy_ampls_swig.Status_UNKNOWN
+    OPTIMAL = _amplpy_ampls_swig.Status_OPTIMAL
+    INFEASIBLE = _amplpy_ampls_swig.Status_INFEASIBLE
+    UNBOUNDED = _amplpy_ampls_swig.Status_UNBOUNDED
+    LIMIT_ITERATION = _amplpy_ampls_swig.Status_LIMIT_ITERATION
+    LIMIT_NODE = _amplpy_ampls_swig.Status_LIMIT_NODE
+    LIMIT_TIME = _amplpy_ampls_swig.Status_LIMIT_TIME
+    LIMIT_SOLUTION = _amplpy_ampls_swig.Status_LIMIT_SOLUTION
+    INTERRUPTED = _amplpy_ampls_swig.Status_INTERRUPTED
+    NOTMAPPED = _amplpy_ampls_swig.Status_NOTMAPPED
+
+    def __init__(self):
+        _amplpy_ampls_swig.Status_swiginit(self, _amplpy_ampls_swig.new_Status())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_Status
+
+# Register Status in _amplpy_ampls_swig:
+_amplpy_ampls_swig.Status_swigregister(Status)
 
 
+def calculateRelMIPGAP(obj, bbound):
+    return _amplpy_ampls_swig.calculateRelMIPGAP(obj, bbound)
+class Entity(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+
+    def name(self):
+        return _amplpy_ampls_swig.Entity_name(self)
+
+    def indices(self):
+        return _amplpy_ampls_swig.Entity_indices(self)
+
+    def coeffs(self):
+        return _amplpy_ampls_swig.Entity_coeffs(self)
+
+    def solverIndex(self, *args):
+        return _amplpy_ampls_swig.Entity_solverIndex(self, *args)
+
+    def value(self, *args):
+        return _amplpy_ampls_swig.Entity_value(self, *args)
+
+    def toAMPLString(self, varMap, consMap, records):
+        return _amplpy_ampls_swig.Entity_toAMPLString(self, varMap, consMap, records)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_Entity
+
+# Register Entity in _amplpy_ampls_swig:
+_amplpy_ampls_swig.Entity_swigregister(Entity)
+
+class Constraint(Entity):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.Constraint_swiginit(self, _amplpy_ampls_swig.new_Constraint(*args))
+
+    def sense(self):
+        return _amplpy_ampls_swig.Constraint_sense(self)
+
+    def rhs(self):
+        return _amplpy_ampls_swig.Constraint_rhs(self)
+
+    def toAMPLString(self, varMap, consMap, records):
+        return _amplpy_ampls_swig.Constraint_toAMPLString(self, varMap, consMap, records)
+
+    def toString(self):
+        return _amplpy_ampls_swig.Constraint_toString(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_Constraint
+
+# Register Constraint in _amplpy_ampls_swig:
+_amplpy_ampls_swig.Constraint_swigregister(Constraint)
+
+class Variable(Entity):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.Variable_swiginit(self, _amplpy_ampls_swig.new_Variable(*args))
+    ub_ = property(_amplpy_ampls_swig.Variable_ub__get, _amplpy_ampls_swig.Variable_ub__set)
+    lb_ = property(_amplpy_ampls_swig.Variable_lb__get, _amplpy_ampls_swig.Variable_lb__set)
+    obj_ = property(_amplpy_ampls_swig.Variable_obj__get, _amplpy_ampls_swig.Variable_obj__set)
+    type_ = property(_amplpy_ampls_swig.Variable_type__get, _amplpy_ampls_swig.Variable_type__set)
+
+    def toAMPLString(self, map, consMap, records):
+        return _amplpy_ampls_swig.Variable_toAMPLString(self, map, consMap, records)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_Variable
+
+# Register Variable in _amplpy_ampls_swig:
+_amplpy_ampls_swig.Variable_swigregister(Variable)
+
+class Records(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.Records_swiginit(self, _amplpy_ampls_swig.new_Records(*args))
+
+    def getRecordedEntities(self, exportToAMPL=False):
+        return _amplpy_ampls_swig.Records_getRecordedEntities(self, exportToAMPL)
+
+    def addVariable(self, v):
+        return _amplpy_ampls_swig.Records_addVariable(self, v)
+
+    def addConstraint(self, c):
+        return _amplpy_ampls_swig.Records_addConstraint(self, c)
+
+    def getVarIndices(self, min, max):
+        return _amplpy_ampls_swig.Records_getVarIndices(self, min, max)
+
+    def getConsIndices(self, min, max):
+        return _amplpy_ampls_swig.Records_getConsIndices(self, min, max)
+
+    def getNumConstraints(self):
+        return _amplpy_ampls_swig.Records_getNumConstraints(self)
+
+    def getNumVariables(self):
+        return _amplpy_ampls_swig.Records_getNumVariables(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_Records
+
+# Register Records in _amplpy_ampls_swig:
+_amplpy_ampls_swig.Records_swigregister(Records)
+
+class AMPLMutex(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self):
+        _amplpy_ampls_swig.AMPLMutex_swiginit(self, _amplpy_ampls_swig.new_AMPLMutex())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_AMPLMutex
+
+    def Lock(self):
+        return _amplpy_ampls_swig.AMPLMutex_Lock(self)
+
+    def Unlock(self):
+        return _amplpy_ampls_swig.AMPLMutex_Unlock(self)
+
+# Register AMPLMutex in _amplpy_ampls_swig:
+_amplpy_ampls_swig.AMPLMutex_swigregister(AMPLMutex)
+
+class BaseCallback(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+
+    def canDo(self, f):
+        return _amplpy_ampls_swig.BaseCallback_canDo(self, f)
+
+    def record(self, *args):
+        return _amplpy_ampls_swig.BaseCallback_record(self, *args)
+
+    def addVariable(self, *args):
+        return _amplpy_ampls_swig.BaseCallback_addVariable(self, *args)
+
+    def setDebugCuts(self, cutDebug, cutDebugIntCoefficients, cutDebugPrintVarNames):
+        return _amplpy_ampls_swig.BaseCallback_setDebugCuts(self, cutDebug, cutDebugIntCoefficients, cutDebugPrintVarNames)
+
+    def run(self):
+        return _amplpy_ampls_swig.BaseCallback_run(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_BaseCallback
+
+    def addCut(self, vars, coeffs, direction, rhs):
+        return _amplpy_ampls_swig.BaseCallback_addCut(self, vars, coeffs, direction, rhs)
+
+    def addLazy(self, vars, coeffs, direction, rhs):
+        return _amplpy_ampls_swig.BaseCallback_addLazy(self, vars, coeffs, direction, rhs)
+
+    def addCutIndices(self, nvars, coeffs, direction, rhs):
+        return _amplpy_ampls_swig.BaseCallback_addCutIndices(self, nvars, coeffs, direction, rhs)
+
+    def addLazyIndices(self, nvars, coeffs, direction, rhs):
+        return _amplpy_ampls_swig.BaseCallback_addLazyIndices(self, nvars, coeffs, direction, rhs)
+
+    def setHeuristicSolution(self, nvars, indices, values):
+        return _amplpy_ampls_swig.BaseCallback_setHeuristicSolution(self, nvars, indices, values)
+
+    def getSolutionVector(self):
+        return _amplpy_ampls_swig.BaseCallback_getSolutionVector(self)
+
+    def getSolution(self, len, sol):
+        return _amplpy_ampls_swig.BaseCallback_getSolution(self, len, sol)
+
+    def getObj(self):
+        return _amplpy_ampls_swig.BaseCallback_getObj(self)
+
+    def getWhere(self):
+        return _amplpy_ampls_swig.BaseCallback_getWhere(self)
+
+    def getWhereString(self):
+        return _amplpy_ampls_swig.BaseCallback_getWhereString(self)
+
+    def getMessage(self):
+        return _amplpy_ampls_swig.BaseCallback_getMessage(self)
+
+    def getAMPLSWhere(self):
+        return _amplpy_ampls_swig.BaseCallback_getAMPLSWhere(self)
+
+    def getValue(self, v):
+        return _amplpy_ampls_swig.BaseCallback_getValue(self, v)
+
+    def getValueArray(self, v):
+        return _amplpy_ampls_swig.BaseCallback_getValueArray(self, v)
+
+    def get_solution_vector(self):
+        return _amplpy_ampls_swig.BaseCallback_get_solution_vector(self)
+
+    def can_do(self, f):
+        return _amplpy_ampls_swig.BaseCallback_can_do(self, f)
+
+    def add_variable(self, *args):
+        return _amplpy_ampls_swig.BaseCallback_add_variable(self, *args)
+
+    def set_debug_cuts(self, cutDebug, cutDebugIntCoefficients, cutDebugPrintVarNames):
+        return _amplpy_ampls_swig.BaseCallback_set_debug_cuts(self, cutDebug, cutDebugIntCoefficients, cutDebugPrintVarNames)
+
+    def get_var_map(self):
+        return _amplpy_ampls_swig.BaseCallback_get_var_map(self)
+
+    def get_var_map_inverse(self):
+        return _amplpy_ampls_swig.BaseCallback_get_var_map_inverse(self)
+
+    def add_cut(self, vars, coeffs, direction, rhs):
+        return _amplpy_ampls_swig.BaseCallback_add_cut(self, vars, coeffs, direction, rhs)
+
+    def add_lazy(self, vars, coeffs, direction, rhs):
+        return _amplpy_ampls_swig.BaseCallback_add_lazy(self, vars, coeffs, direction, rhs)
+
+    def add_cut_indices(self, nvars, coeffs, direction, rhs):
+        return _amplpy_ampls_swig.BaseCallback_add_cut_indices(self, nvars, coeffs, direction, rhs)
+
+    def add_lazy_indices(self, nvars, coeffs, direction, rhs):
+        return _amplpy_ampls_swig.BaseCallback_add_lazy_indices(self, nvars, coeffs, direction, rhs)
+
+    def set_heuristic_solution(self, nvars, indices, values):
+        return _amplpy_ampls_swig.BaseCallback_set_heuristic_solution(self, nvars, indices, values)
+
+    def get_obj(self):
+        return _amplpy_ampls_swig.BaseCallback_get_obj(self)
+
+    def get_where(self):
+        return _amplpy_ampls_swig.BaseCallback_get_where(self)
+
+    def get_where_string(self):
+        return _amplpy_ampls_swig.BaseCallback_get_where_string(self)
+
+    def get_message(self):
+        return _amplpy_ampls_swig.BaseCallback_get_message(self)
+
+    def get_ampls_where(self):
+        return _amplpy_ampls_swig.BaseCallback_get_ampls_where(self)
+
+    def get_value(self, v):
+        return _amplpy_ampls_swig.BaseCallback_get_value(self, v)
+
+    def get_value_array(self, v):
+        return _amplpy_ampls_swig.BaseCallback_get_value_array(self, v)
+
+# Register BaseCallback in _amplpy_ampls_swig:
+_amplpy_ampls_swig.BaseCallback_swigregister(BaseCallback)
+
+class GenericCallback(BaseCallback):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def getValueArray(self, v):
+        return _amplpy_ampls_swig.GenericCallback_getValueArray(self, v)
+
+    def setHeuristicSolution(self, nvars, indices, values):
+        return _amplpy_ampls_swig.GenericCallback_setHeuristicSolution(self, nvars, indices, values)
+
+    def getObj(self):
+        return _amplpy_ampls_swig.GenericCallback_getObj(self)
+
+    def getWhere(self):
+        return _amplpy_ampls_swig.GenericCallback_getWhere(self)
+
+    def getAMPLSWhere(self):
+        return _amplpy_ampls_swig.GenericCallback_getAMPLSWhere(self)
+
+    def getWhereString(self):
+        return _amplpy_ampls_swig.GenericCallback_getWhereString(self)
+
+    def getMessage(self):
+        return _amplpy_ampls_swig.GenericCallback_getMessage(self)
+
+    def getValue(self, v):
+        return _amplpy_ampls_swig.GenericCallback_getValue(self, v)
+
+    def checkCanDo(self, f):
+        return _amplpy_ampls_swig.GenericCallback_checkCanDo(self, f)
+
+    def __init__(self):
+        if self.__class__ == GenericCallback:
+            _self = None
+        else:
+            _self = self
+        _amplpy_ampls_swig.GenericCallback_swiginit(self, _amplpy_ampls_swig.new_GenericCallback(_self, ))
+    __swig_destroy__ = _amplpy_ampls_swig.delete_GenericCallback
+    def __disown__(self):
+        self.this.disown()
+        _amplpy_ampls_swig.disown_GenericCallback(self)
+        return weakref.proxy(self)
+
+# Register GenericCallback in _amplpy_ampls_swig:
+_amplpy_ampls_swig.GenericCallback_swigregister(GenericCallback)
+
+class Option(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    name_ = property(_amplpy_ampls_swig.Option_name__get, _amplpy_ampls_swig.Option_name__set)
+    description_ = property(_amplpy_ampls_swig.Option_description__get, _amplpy_ampls_swig.Option_description__set)
+    INT = _amplpy_ampls_swig.Option_INT
+    BOOL = _amplpy_ampls_swig.Option_BOOL
+    DOUBLE = _amplpy_ampls_swig.Option_DOUBLE
+    STRING = _amplpy_ampls_swig.Option_STRING
+    UNKNOWN = _amplpy_ampls_swig.Option_UNKNOWN
+    type_ = property(_amplpy_ampls_swig.Option_type__get, _amplpy_ampls_swig.Option_type__set)
+
+    def __init__(self, name, description, type):
+        _amplpy_ampls_swig.Option_swiginit(self, _amplpy_ampls_swig.new_Option(name, description, type))
+
+    def name(self):
+        return _amplpy_ampls_swig.Option_name(self)
+
+    def description(self):
+        return _amplpy_ampls_swig.Option_description(self)
+
+    def type(self):
+        return _amplpy_ampls_swig.Option_type(self)
+
+    def typeStr(self):
+        return _amplpy_ampls_swig.Option_typeStr(self)
+
+    def toString(self):
+        return _amplpy_ampls_swig.Option_toString(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_Option
+
+# Register Option in _amplpy_ampls_swig:
+_amplpy_ampls_swig.Option_swigregister(Option)
+
+class AMPLModel(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def driver(self):
+        return _amplpy_ampls_swig.AMPLModel_driver(self)
+
+    def getRecordedEntities(self, exportToAMPL=True):
+        return _amplpy_ampls_swig.AMPLModel_getRecordedEntities(self, exportToAMPL)
+
+    def addConstraint(self, nnz, vars, coefficients, sense, rhs, name=None):
+        return _amplpy_ampls_swig.AMPLModel_addConstraint(self, nnz, vars, coefficients, sense, rhs, name)
+
+    def record(self, *args):
+        return _amplpy_ampls_swig.AMPLModel_record(self, *args)
+
+    def addVariable(self, *args):
+        return _amplpy_ampls_swig.AMPLModel_addVariable(self, *args)
+
+    def getFileName(self):
+        return _amplpy_ampls_swig.AMPLModel_getFileName(self)
+
+    def getConMapInverse(self):
+        return _amplpy_ampls_swig.AMPLModel_getConMapInverse(self)
+
+    def getConMap(self):
+        return _amplpy_ampls_swig.AMPLModel_getConMap(self)
+
+    def getConMapFiltered(self, beginWith):
+        return _amplpy_ampls_swig.AMPLModel_getConMapFiltered(self, beginWith)
+
+    def setCallback(self, *args):
+        return _amplpy_ampls_swig.AMPLModel_setCallback(self, *args)
+
+    def getSolutionVector(self):
+        return _amplpy_ampls_swig.AMPLModel_getSolutionVector(self)
+
+    def getDualVector(self):
+        return _amplpy_ampls_swig.AMPLModel_getDualVector(self)
+
+    def getNumVars(self):
+        return _amplpy_ampls_swig.AMPLModel_getNumVars(self)
+
+    def getNumCons(self):
+        return _amplpy_ampls_swig.AMPLModel_getNumCons(self)
+
+    def getStatus(self):
+        return _amplpy_ampls_swig.AMPLModel_getStatus(self)
+
+    def optimize(self):
+        return _amplpy_ampls_swig.AMPLModel_optimize(self)
+
+    def writeSol(self, *args):
+        return _amplpy_ampls_swig.AMPLModel_writeSol(self, *args)
+
+    def getSolution(self, first, length, sol):
+        return _amplpy_ampls_swig.AMPLModel_getSolution(self, first, length, sol)
+
+    def getObj(self):
+        return _amplpy_ampls_swig.AMPLModel_getObj(self)
+
+    def error(self, code):
+        return _amplpy_ampls_swig.AMPLModel_error(self, code)
+
+    def enableLazyConstraints(self):
+        return _amplpy_ampls_swig.AMPLModel_enableLazyConstraints(self)
+
+    def printModelVars(self, onlyNonZero):
+        return _amplpy_ampls_swig.AMPLModel_printModelVars(self, onlyNonZero)
+
+    def setAMPLSParameter(self, *args):
+        return _amplpy_ampls_swig.AMPLModel_setAMPLSParameter(self, *args)
+
+    def getAMPLSIntParameter(self, params):
+        return _amplpy_ampls_swig.AMPLModel_getAMPLSIntParameter(self, params)
+
+    def getAMPLSDoubleParameter(self, param):
+        return _amplpy_ampls_swig.AMPLModel_getAMPLSDoubleParameter(self, param)
+
+    def getAMPLSIntAttribute(self, arg2):
+        return _amplpy_ampls_swig.AMPLModel_getAMPLSIntAttribute(self, arg2)
+
+    def getAMPLSDoubleAttribute(self, arg2):
+        return _amplpy_ampls_swig.AMPLModel_getAMPLSDoubleAttribute(self, arg2)
+
+    def getOptionValue(self, name):
+        return _amplpy_ampls_swig.AMPLModel_getOptionValue(self, name)
+
+    def get_recorded_entities(self, exportToAMPL=True):
+        return _amplpy_ampls_swig.AMPLModel_get_recorded_entities(self, exportToAMPL)
+
+    def add_constraint(self, nnz, vars, coefficients, sense, rhs, name=None):
+        return _amplpy_ampls_swig.AMPLModel_add_constraint(self, nnz, vars, coefficients, sense, rhs, name)
+
+    def add_variable(self, *args):
+        return _amplpy_ampls_swig.AMPLModel_add_variable(self, *args)
+
+    def get_file_name(self):
+        return _amplpy_ampls_swig.AMPLModel_get_file_name(self)
+
+    def get_var_map_inverse(self):
+        return _amplpy_ampls_swig.AMPLModel_get_var_map_inverse(self)
+
+    def get_con_map_inverse(self):
+        return _amplpy_ampls_swig.AMPLModel_get_con_map_inverse(self)
+
+    def get_var_map(self):
+        return _amplpy_ampls_swig.AMPLModel_get_var_map(self)
+
+    def get_con_map(self):
+        return _amplpy_ampls_swig.AMPLModel_get_con_map(self)
+
+    def get_var_map_filtered(self, beginWith):
+        return _amplpy_ampls_swig.AMPLModel_get_var_map_filtered(self, beginWith)
+
+    def get_con_map_filtered(self, beginWith):
+        return _amplpy_ampls_swig.AMPLModel_get_con_map_filtered(self, beginWith)
+
+    def set_callback(self, *args):
+        return _amplpy_ampls_swig.AMPLModel_set_callback(self, *args)
+
+    def get_solution_vector(self):
+        return _amplpy_ampls_swig.AMPLModel_get_solution_vector(self)
+
+    def get_dual_vector(self):
+        return _amplpy_ampls_swig.AMPLModel_get_dual_vector(self)
+
+    def get_num_vars(self):
+        return _amplpy_ampls_swig.AMPLModel_get_num_vars(self)
+
+    def get_num_cons(self):
+        return _amplpy_ampls_swig.AMPLModel_get_num_cons(self)
+
+    def write_sol(self, *args):
+        return _amplpy_ampls_swig.AMPLModel_write_sol(self, *args)
+
+    def get_obj(self):
+        return _amplpy_ampls_swig.AMPLModel_get_obj(self)
+
+    def enable_lazy_constraints(self):
+        return _amplpy_ampls_swig.AMPLModel_enable_lazy_constraints(self)
+
+    def print_model_vars(self, onlyNonZero):
+        return _amplpy_ampls_swig.AMPLModel_print_model_vars(self, onlyNonZero)
+
+    def getOptions(self):
+        return _amplpy_ampls_swig.AMPLModel_getOptions(self)
+
+    def setOption(self, *args):
+        return _amplpy_ampls_swig.AMPLModel_setOption(self, *args)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_AMPLModel
+
+# Register AMPLModel in _amplpy_ampls_swig:
+_amplpy_ampls_swig.AMPLModel_swigregister(AMPLModel)
+
+class AMPLMPModel(AMPLModel):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined")
+    __repr__ = _swig_repr
+
+    def getOptions(self):
+        return _amplpy_ampls_swig.AMPLMPModel_getOptions(self)
+
+    def setOption(self, *args):
+        return _amplpy_ampls_swig.AMPLMPModel_setOption(self, *args)
+
+    def getOptionValue(self, name):
+        return _amplpy_ampls_swig.AMPLMPModel_getOptionValue(self, name)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_AMPLMPModel
+
+# Register AMPLMPModel in _amplpy_ampls_swig:
+_amplpy_ampls_swig.AMPLMPModel_swigregister(AMPLMPModel)
+
+class SolverDriverGrb(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _amplpy_ampls_swig.delete_SolverDriverGrb
+
+    def setOptions(self, options):
+        return _amplpy_ampls_swig.SolverDriverGrb_setOptions(self, options)
+
+# Register SolverDriverGrb in _amplpy_ampls_swig:
+_amplpy_ampls_swig.SolverDriverGrb_swigregister(SolverDriverGrb)
+
+GRB_VERSION_MAJOR = _amplpy_ampls_swig.GRB_VERSION_MAJOR
+GRB_VERSION_MINOR = _amplpy_ampls_swig.GRB_VERSION_MINOR
+GRB_VERSION_TECHNICAL = _amplpy_ampls_swig.GRB_VERSION_TECHNICAL
+DEFAULT_CS_PRIORITY = _amplpy_ampls_swig.DEFAULT_CS_PRIORITY
+MAX_CS_PRIORITY = _amplpy_ampls_swig.MAX_CS_PRIORITY
+DEFAULT_CS_PORT = _amplpy_ampls_swig.DEFAULT_CS_PORT
+DEFAULT_CS_HANGUP = _amplpy_ampls_swig.DEFAULT_CS_HANGUP
+GRB_ERROR_OUT_OF_MEMORY = _amplpy_ampls_swig.GRB_ERROR_OUT_OF_MEMORY
+GRB_ERROR_NULL_ARGUMENT = _amplpy_ampls_swig.GRB_ERROR_NULL_ARGUMENT
+GRB_ERROR_INVALID_ARGUMENT = _amplpy_ampls_swig.GRB_ERROR_INVALID_ARGUMENT
+GRB_ERROR_UNKNOWN_ATTRIBUTE = _amplpy_ampls_swig.GRB_ERROR_UNKNOWN_ATTRIBUTE
+GRB_ERROR_DATA_NOT_AVAILABLE = _amplpy_ampls_swig.GRB_ERROR_DATA_NOT_AVAILABLE
+GRB_ERROR_INDEX_OUT_OF_RANGE = _amplpy_ampls_swig.GRB_ERROR_INDEX_OUT_OF_RANGE
+GRB_ERROR_UNKNOWN_PARAMETER = _amplpy_ampls_swig.GRB_ERROR_UNKNOWN_PARAMETER
+GRB_ERROR_VALUE_OUT_OF_RANGE = _amplpy_ampls_swig.GRB_ERROR_VALUE_OUT_OF_RANGE
+GRB_ERROR_NO_LICENSE = _amplpy_ampls_swig.GRB_ERROR_NO_LICENSE
+GRB_ERROR_SIZE_LIMIT_EXCEEDED = _amplpy_ampls_swig.GRB_ERROR_SIZE_LIMIT_EXCEEDED
+GRB_ERROR_CALLBACK = _amplpy_ampls_swig.GRB_ERROR_CALLBACK
+GRB_ERROR_FILE_READ = _amplpy_ampls_swig.GRB_ERROR_FILE_READ
+GRB_ERROR_FILE_WRITE = _amplpy_ampls_swig.GRB_ERROR_FILE_WRITE
+GRB_ERROR_NUMERIC = _amplpy_ampls_swig.GRB_ERROR_NUMERIC
+GRB_ERROR_IIS_NOT_INFEASIBLE = _amplpy_ampls_swig.GRB_ERROR_IIS_NOT_INFEASIBLE
+GRB_ERROR_NOT_FOR_MIP = _amplpy_ampls_swig.GRB_ERROR_NOT_FOR_MIP
+GRB_ERROR_OPTIMIZATION_IN_PROGRESS = _amplpy_ampls_swig.GRB_ERROR_OPTIMIZATION_IN_PROGRESS
+GRB_ERROR_DUPLICATES = _amplpy_ampls_swig.GRB_ERROR_DUPLICATES
+GRB_ERROR_NODEFILE = _amplpy_ampls_swig.GRB_ERROR_NODEFILE
+GRB_ERROR_Q_NOT_PSD = _amplpy_ampls_swig.GRB_ERROR_Q_NOT_PSD
+GRB_ERROR_QCP_EQUALITY_CONSTRAINT = _amplpy_ampls_swig.GRB_ERROR_QCP_EQUALITY_CONSTRAINT
+GRB_ERROR_NETWORK = _amplpy_ampls_swig.GRB_ERROR_NETWORK
+GRB_ERROR_JOB_REJECTED = _amplpy_ampls_swig.GRB_ERROR_JOB_REJECTED
+GRB_ERROR_NOT_SUPPORTED = _amplpy_ampls_swig.GRB_ERROR_NOT_SUPPORTED
+GRB_ERROR_EXCEED_2B_NONZEROS = _amplpy_ampls_swig.GRB_ERROR_EXCEED_2B_NONZEROS
+GRB_ERROR_INVALID_PIECEWISE_OBJ = _amplpy_ampls_swig.GRB_ERROR_INVALID_PIECEWISE_OBJ
+GRB_ERROR_UPDATEMODE_CHANGE = _amplpy_ampls_swig.GRB_ERROR_UPDATEMODE_CHANGE
+GRB_ERROR_CLOUD = _amplpy_ampls_swig.GRB_ERROR_CLOUD
+GRB_ERROR_MODEL_MODIFICATION = _amplpy_ampls_swig.GRB_ERROR_MODEL_MODIFICATION
+GRB_ERROR_CSWORKER = _amplpy_ampls_swig.GRB_ERROR_CSWORKER
+GRB_ERROR_TUNE_MODEL_TYPES = _amplpy_ampls_swig.GRB_ERROR_TUNE_MODEL_TYPES
+GRB_ERROR_SECURITY = _amplpy_ampls_swig.GRB_ERROR_SECURITY
+GRB_LESS_EQUAL = _amplpy_ampls_swig.GRB_LESS_EQUAL
+GRB_GREATER_EQUAL = _amplpy_ampls_swig.GRB_GREATER_EQUAL
+GRB_EQUAL = _amplpy_ampls_swig.GRB_EQUAL
+GRB_CONTINUOUS = _amplpy_ampls_swig.GRB_CONTINUOUS
+GRB_BINARY = _amplpy_ampls_swig.GRB_BINARY
+GRB_INTEGER = _amplpy_ampls_swig.GRB_INTEGER
+GRB_SEMICONT = _amplpy_ampls_swig.GRB_SEMICONT
+GRB_SEMIINT = _amplpy_ampls_swig.GRB_SEMIINT
+GRB_MINIMIZE = _amplpy_ampls_swig.GRB_MINIMIZE
+GRB_MAXIMIZE = _amplpy_ampls_swig.GRB_MAXIMIZE
+GRB_SOS_TYPE1 = _amplpy_ampls_swig.GRB_SOS_TYPE1
+GRB_SOS_TYPE2 = _amplpy_ampls_swig.GRB_SOS_TYPE2
+GRB_INFINITY = _amplpy_ampls_swig.GRB_INFINITY
+GRB_UNDEFINED = _amplpy_ampls_swig.GRB_UNDEFINED
+GRB_MAXINT = _amplpy_ampls_swig.GRB_MAXINT
+GRB_MAX_NAMELEN = _amplpy_ampls_swig.GRB_MAX_NAMELEN
+GRB_MAX_STRLEN = _amplpy_ampls_swig.GRB_MAX_STRLEN
+GRB_MAX_TAGLEN = _amplpy_ampls_swig.GRB_MAX_TAGLEN
+GRB_MAX_CONCURRENT = _amplpy_ampls_swig.GRB_MAX_CONCURRENT
+
+def GRBgetattrinfo(model, attrname, datatypeP, attrtypeP, settableP):
+    return _amplpy_ampls_swig.GRBgetattrinfo(model, attrname, datatypeP, attrtypeP, settableP)
+
+def GRBisattravailable(model, attrname):
+    return _amplpy_ampls_swig.GRBisattravailable(model, attrname)
+
+def GRBgetintattr(model, attrname, valueP):
+    return _amplpy_ampls_swig.GRBgetintattr(model, attrname, valueP)
+
+def GRBsetintattr(model, attrname, newvalue):
+    return _amplpy_ampls_swig.GRBsetintattr(model, attrname, newvalue)
+
+def GRBgetintattrelement(model, attrname, element, valueP):
+    return _amplpy_ampls_swig.GRBgetintattrelement(model, attrname, element, valueP)
+
+def GRBsetintattrelement(model, attrname, element, newvalue):
+    return _amplpy_ampls_swig.GRBsetintattrelement(model, attrname, element, newvalue)
+
+def GRBgetintattrarray(model, attrname, first, len, values):
+    return _amplpy_ampls_swig.GRBgetintattrarray(model, attrname, first, len, values)
+
+def GRBsetintattrarray(model, attrname, first, len, newvalues):
+    return _amplpy_ampls_swig.GRBsetintattrarray(model, attrname, first, len, newvalues)
+
+def GRBgetintattrlist(model, attrname, len, ind, values):
+    return _amplpy_ampls_swig.GRBgetintattrlist(model, attrname, len, ind, values)
+
+def GRBsetintattrlist(model, attrname, len, ind, newvalues):
+    return _amplpy_ampls_swig.GRBsetintattrlist(model, attrname, len, ind, newvalues)
+
+def GRBgetcharattrelement(model, attrname, element, valueP):
+    return _amplpy_ampls_swig.GRBgetcharattrelement(model, attrname, element, valueP)
+
+def GRBsetcharattrelement(model, attrname, element, newvalue):
+    return _amplpy_ampls_swig.GRBsetcharattrelement(model, attrname, element, newvalue)
+
+def GRBgetcharattrarray(model, attrname, first, len, values):
+    return _amplpy_ampls_swig.GRBgetcharattrarray(model, attrname, first, len, values)
+
+def GRBsetcharattrarray(model, attrname, first, len, newvalues):
+    return _amplpy_ampls_swig.GRBsetcharattrarray(model, attrname, first, len, newvalues)
+
+def GRBgetcharattrlist(model, attrname, len, ind, values):
+    return _amplpy_ampls_swig.GRBgetcharattrlist(model, attrname, len, ind, values)
+
+def GRBsetcharattrlist(model, attrname, len, ind, newvalues):
+    return _amplpy_ampls_swig.GRBsetcharattrlist(model, attrname, len, ind, newvalues)
+
+def GRBgetdblattr(model, attrname, valueP):
+    return _amplpy_ampls_swig.GRBgetdblattr(model, attrname, valueP)
+
+def GRBsetdblattr(model, attrname, newvalue):
+    return _amplpy_ampls_swig.GRBsetdblattr(model, attrname, newvalue)
+
+def GRBgetdblattrelement(model, attrname, element, valueP):
+    return _amplpy_ampls_swig.GRBgetdblattrelement(model, attrname, element, valueP)
+
+def GRBsetdblattrelement(model, attrname, element, newvalue):
+    return _amplpy_ampls_swig.GRBsetdblattrelement(model, attrname, element, newvalue)
+
+def GRBgetdblattrarray(model, attrname, first, len, values):
+    return _amplpy_ampls_swig.GRBgetdblattrarray(model, attrname, first, len, values)
+
+def GRBsetdblattrarray(model, attrname, first, len, newvalues):
+    return _amplpy_ampls_swig.GRBsetdblattrarray(model, attrname, first, len, newvalues)
+
+def GRBgetdblattrlist(model, attrname, len, ind, values):
+    return _amplpy_ampls_swig.GRBgetdblattrlist(model, attrname, len, ind, values)
+
+def GRBsetdblattrlist(model, attrname, len, ind, newvalues):
+    return _amplpy_ampls_swig.GRBsetdblattrlist(model, attrname, len, ind, newvalues)
+
+def GRBgetstrattr(model, attrname, valueP):
+    return _amplpy_ampls_swig.GRBgetstrattr(model, attrname, valueP)
+
+def GRBsetstrattr(model, attrname, newvalue):
+    return _amplpy_ampls_swig.GRBsetstrattr(model, attrname, newvalue)
+
+def GRBgetstrattrelement(model, attrname, element, valueP):
+    return _amplpy_ampls_swig.GRBgetstrattrelement(model, attrname, element, valueP)
+
+def GRBsetstrattrelement(model, attrname, element, newvalue):
+    return _amplpy_ampls_swig.GRBsetstrattrelement(model, attrname, element, newvalue)
+
+def GRBgetstrattrarray(model, attrname, first, len, values):
+    return _amplpy_ampls_swig.GRBgetstrattrarray(model, attrname, first, len, values)
+
+def GRBsetstrattrarray(model, attrname, first, len, newvalues):
+    return _amplpy_ampls_swig.GRBsetstrattrarray(model, attrname, first, len, newvalues)
+
+def GRBgetstrattrlist(model, attrname, len, ind, values):
+    return _amplpy_ampls_swig.GRBgetstrattrlist(model, attrname, len, ind, values)
+
+def GRBsetstrattrlist(model, attrname, len, ind, newvalues):
+    return _amplpy_ampls_swig.GRBsetstrattrlist(model, attrname, len, ind, newvalues)
+
+def GRBsetcallbackfunc(model, cb, usrdata):
+    return _amplpy_ampls_swig.GRBsetcallbackfunc(model, cb, usrdata)
+
+def GRBgetcallbackfuncenv(env, cbP):
+    return _amplpy_ampls_swig.GRBgetcallbackfuncenv(env, cbP)
+
+def GRBsetcallbackfuncenv(env, cb, usrdata):
+    return _amplpy_ampls_swig.GRBsetcallbackfuncenv(env, cb, usrdata)
+
+def GRBgetcallbackfunc(model, cbP):
+    return _amplpy_ampls_swig.GRBgetcallbackfunc(model, cbP)
+
+def GRBsetlogcallbackfunc(model, cb, logdata):
+    return _amplpy_ampls_swig.GRBsetlogcallbackfunc(model, cb, logdata)
+
+def GRBsetlogcallbackfuncenv(env, cb, logdata):
+    return _amplpy_ampls_swig.GRBsetlogcallbackfuncenv(env, cb, logdata)
+
+def GRBgetlogcallbackfuncenv(env, cbP, logdataP):
+    return _amplpy_ampls_swig.GRBgetlogcallbackfuncenv(env, cbP, logdataP)
+
+def GRBcbproceed(cbdata_in):
+    return _amplpy_ampls_swig.GRBcbproceed(cbdata_in)
+
+def GRBcbget(cbdata, where, what, resultP):
+    return _amplpy_ampls_swig.GRBcbget(cbdata, where, what, resultP)
+
+def GRBcbsetparam(cbdata, paramname, newvalue):
+    return _amplpy_ampls_swig.GRBcbsetparam(cbdata, paramname, newvalue)
+
+def GRBcbsolution(cbdata, solution, objvalP):
+    return _amplpy_ampls_swig.GRBcbsolution(cbdata, solution, objvalP)
+
+def GRBcbcut(cbdata, cutlen, cutind, cutval, cutsense, cutrhs):
+    return _amplpy_ampls_swig.GRBcbcut(cbdata, cutlen, cutind, cutval, cutsense, cutrhs)
+
+def GRBcblazy(cbdata, lazylen, lazyind, lazyval, lazysense, lazyrhs):
+    return _amplpy_ampls_swig.GRBcblazy(cbdata, lazylen, lazyind, lazyval, lazysense, lazyrhs)
+GRB_INT_ATTR_NUMCONSTRS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMCONSTRS
+GRB_INT_ATTR_NUMVARS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMVARS
+GRB_INT_ATTR_NUMSOS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMSOS
+GRB_INT_ATTR_NUMQCONSTRS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMQCONSTRS
+GRB_INT_ATTR_NUMGENCONSTRS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMGENCONSTRS
+GRB_INT_ATTR_NUMNZS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMNZS
+GRB_DBL_ATTR_DNUMNZS = _amplpy_ampls_swig.GRB_DBL_ATTR_DNUMNZS
+GRB_INT_ATTR_NUMQNZS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMQNZS
+GRB_INT_ATTR_NUMQCNZS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMQCNZS
+GRB_INT_ATTR_NUMINTVARS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMINTVARS
+GRB_INT_ATTR_NUMBINVARS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMBINVARS
+GRB_INT_ATTR_NUMPWLOBJVARS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMPWLOBJVARS
+GRB_STR_ATTR_MODELNAME = _amplpy_ampls_swig.GRB_STR_ATTR_MODELNAME
+GRB_INT_ATTR_MODELSENSE = _amplpy_ampls_swig.GRB_INT_ATTR_MODELSENSE
+GRB_DBL_ATTR_OBJCON = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJCON
+GRB_INT_ATTR_IS_MIP = _amplpy_ampls_swig.GRB_INT_ATTR_IS_MIP
+GRB_INT_ATTR_IS_QP = _amplpy_ampls_swig.GRB_INT_ATTR_IS_QP
+GRB_INT_ATTR_IS_QCP = _amplpy_ampls_swig.GRB_INT_ATTR_IS_QCP
+GRB_INT_ATTR_IS_MULTIOBJ = _amplpy_ampls_swig.GRB_INT_ATTR_IS_MULTIOBJ
+GRB_INT_ATTR_LICENSE_EXPIRATION = _amplpy_ampls_swig.GRB_INT_ATTR_LICENSE_EXPIRATION
+GRB_INT_ATTR_NUMTAGGED = _amplpy_ampls_swig.GRB_INT_ATTR_NUMTAGGED
+GRB_INT_ATTR_FINGERPRINT = _amplpy_ampls_swig.GRB_INT_ATTR_FINGERPRINT
+GRB_INT_ATTR_BATCHERRORCODE = _amplpy_ampls_swig.GRB_INT_ATTR_BATCHERRORCODE
+GRB_STR_ATTR_BATCHERRORMESSAGE = _amplpy_ampls_swig.GRB_STR_ATTR_BATCHERRORMESSAGE
+GRB_STR_ATTR_BATCHID = _amplpy_ampls_swig.GRB_STR_ATTR_BATCHID
+GRB_INT_ATTR_BATCHSTATUS = _amplpy_ampls_swig.GRB_INT_ATTR_BATCHSTATUS
+GRB_DBL_ATTR_LB = _amplpy_ampls_swig.GRB_DBL_ATTR_LB
+GRB_DBL_ATTR_UB = _amplpy_ampls_swig.GRB_DBL_ATTR_UB
+GRB_DBL_ATTR_OBJ = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJ
+GRB_CHAR_ATTR_VTYPE = _amplpy_ampls_swig.GRB_CHAR_ATTR_VTYPE
+GRB_DBL_ATTR_START = _amplpy_ampls_swig.GRB_DBL_ATTR_START
+GRB_DBL_ATTR_PSTART = _amplpy_ampls_swig.GRB_DBL_ATTR_PSTART
+GRB_INT_ATTR_BRANCHPRIORITY = _amplpy_ampls_swig.GRB_INT_ATTR_BRANCHPRIORITY
+GRB_STR_ATTR_VARNAME = _amplpy_ampls_swig.GRB_STR_ATTR_VARNAME
+GRB_INT_ATTR_PWLOBJCVX = _amplpy_ampls_swig.GRB_INT_ATTR_PWLOBJCVX
+GRB_DBL_ATTR_VARHINTVAL = _amplpy_ampls_swig.GRB_DBL_ATTR_VARHINTVAL
+GRB_INT_ATTR_VARHINTPRI = _amplpy_ampls_swig.GRB_INT_ATTR_VARHINTPRI
+GRB_INT_ATTR_PARTITION = _amplpy_ampls_swig.GRB_INT_ATTR_PARTITION
+GRB_INT_ATTR_POOLIGNORE = _amplpy_ampls_swig.GRB_INT_ATTR_POOLIGNORE
+GRB_STR_ATTR_VTAG = _amplpy_ampls_swig.GRB_STR_ATTR_VTAG
+GRB_STR_ATTR_CTAG = _amplpy_ampls_swig.GRB_STR_ATTR_CTAG
+GRB_DBL_ATTR_RHS = _amplpy_ampls_swig.GRB_DBL_ATTR_RHS
+GRB_DBL_ATTR_DSTART = _amplpy_ampls_swig.GRB_DBL_ATTR_DSTART
+GRB_CHAR_ATTR_SENSE = _amplpy_ampls_swig.GRB_CHAR_ATTR_SENSE
+GRB_STR_ATTR_CONSTRNAME = _amplpy_ampls_swig.GRB_STR_ATTR_CONSTRNAME
+GRB_INT_ATTR_LAZY = _amplpy_ampls_swig.GRB_INT_ATTR_LAZY
+GRB_STR_ATTR_QCTAG = _amplpy_ampls_swig.GRB_STR_ATTR_QCTAG
+GRB_DBL_ATTR_QCRHS = _amplpy_ampls_swig.GRB_DBL_ATTR_QCRHS
+GRB_CHAR_ATTR_QCSENSE = _amplpy_ampls_swig.GRB_CHAR_ATTR_QCSENSE
+GRB_STR_ATTR_QCNAME = _amplpy_ampls_swig.GRB_STR_ATTR_QCNAME
+GRB_INT_ATTR_GENCONSTRTYPE = _amplpy_ampls_swig.GRB_INT_ATTR_GENCONSTRTYPE
+GRB_STR_ATTR_GENCONSTRNAME = _amplpy_ampls_swig.GRB_STR_ATTR_GENCONSTRNAME
+GRB_INT_ATTR_FUNCPIECES = _amplpy_ampls_swig.GRB_INT_ATTR_FUNCPIECES
+GRB_DBL_ATTR_FUNCPIECEERROR = _amplpy_ampls_swig.GRB_DBL_ATTR_FUNCPIECEERROR
+GRB_DBL_ATTR_FUNCPIECELENGTH = _amplpy_ampls_swig.GRB_DBL_ATTR_FUNCPIECELENGTH
+GRB_DBL_ATTR_FUNCPIECERATIO = _amplpy_ampls_swig.GRB_DBL_ATTR_FUNCPIECERATIO
+GRB_DBL_ATTR_MAX_COEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MAX_COEFF
+GRB_DBL_ATTR_MIN_COEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MIN_COEFF
+GRB_DBL_ATTR_MAX_BOUND = _amplpy_ampls_swig.GRB_DBL_ATTR_MAX_BOUND
+GRB_DBL_ATTR_MIN_BOUND = _amplpy_ampls_swig.GRB_DBL_ATTR_MIN_BOUND
+GRB_DBL_ATTR_MAX_OBJ_COEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MAX_OBJ_COEFF
+GRB_DBL_ATTR_MIN_OBJ_COEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MIN_OBJ_COEFF
+GRB_DBL_ATTR_MAX_RHS = _amplpy_ampls_swig.GRB_DBL_ATTR_MAX_RHS
+GRB_DBL_ATTR_MIN_RHS = _amplpy_ampls_swig.GRB_DBL_ATTR_MIN_RHS
+GRB_DBL_ATTR_MAX_QCCOEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MAX_QCCOEFF
+GRB_DBL_ATTR_MIN_QCCOEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MIN_QCCOEFF
+GRB_DBL_ATTR_MAX_QOBJ_COEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MAX_QOBJ_COEFF
+GRB_DBL_ATTR_MIN_QOBJ_COEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MIN_QOBJ_COEFF
+GRB_DBL_ATTR_MAX_QCLCOEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MAX_QCLCOEFF
+GRB_DBL_ATTR_MIN_QCLCOEFF = _amplpy_ampls_swig.GRB_DBL_ATTR_MIN_QCLCOEFF
+GRB_DBL_ATTR_MAX_QCRHS = _amplpy_ampls_swig.GRB_DBL_ATTR_MAX_QCRHS
+GRB_DBL_ATTR_MIN_QCRHS = _amplpy_ampls_swig.GRB_DBL_ATTR_MIN_QCRHS
+GRB_DBL_ATTR_RUNTIME = _amplpy_ampls_swig.GRB_DBL_ATTR_RUNTIME
+GRB_DBL_ATTR_WORK = _amplpy_ampls_swig.GRB_DBL_ATTR_WORK
+GRB_INT_ATTR_STATUS = _amplpy_ampls_swig.GRB_INT_ATTR_STATUS
+GRB_DBL_ATTR_OBJVAL = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJVAL
+GRB_DBL_ATTR_OBJBOUND = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJBOUND
+GRB_DBL_ATTR_OBJBOUNDC = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJBOUNDC
+GRB_DBL_ATTR_POOLOBJBOUND = _amplpy_ampls_swig.GRB_DBL_ATTR_POOLOBJBOUND
+GRB_DBL_ATTR_POOLOBJVAL = _amplpy_ampls_swig.GRB_DBL_ATTR_POOLOBJVAL
+GRB_DBL_ATTR_MIPGAP = _amplpy_ampls_swig.GRB_DBL_ATTR_MIPGAP
+GRB_INT_ATTR_SOLCOUNT = _amplpy_ampls_swig.GRB_INT_ATTR_SOLCOUNT
+GRB_DBL_ATTR_ITERCOUNT = _amplpy_ampls_swig.GRB_DBL_ATTR_ITERCOUNT
+GRB_INT_ATTR_BARITERCOUNT = _amplpy_ampls_swig.GRB_INT_ATTR_BARITERCOUNT
+GRB_DBL_ATTR_NODECOUNT = _amplpy_ampls_swig.GRB_DBL_ATTR_NODECOUNT
+GRB_DBL_ATTR_OPENNODECOUNT = _amplpy_ampls_swig.GRB_DBL_ATTR_OPENNODECOUNT
+GRB_INT_ATTR_HASDUALNORM = _amplpy_ampls_swig.GRB_INT_ATTR_HASDUALNORM
+GRB_INT_ATTR_CONCURRENTWINMETHOD = _amplpy_ampls_swig.GRB_INT_ATTR_CONCURRENTWINMETHOD
+GRB_DBL_ATTR_X = _amplpy_ampls_swig.GRB_DBL_ATTR_X
+GRB_DBL_ATTR_XN = _amplpy_ampls_swig.GRB_DBL_ATTR_XN
+GRB_DBL_ATTR_BARX = _amplpy_ampls_swig.GRB_DBL_ATTR_BARX
+GRB_DBL_ATTR_RC = _amplpy_ampls_swig.GRB_DBL_ATTR_RC
+GRB_DBL_ATTR_VDUALNORM = _amplpy_ampls_swig.GRB_DBL_ATTR_VDUALNORM
+GRB_INT_ATTR_VBASIS = _amplpy_ampls_swig.GRB_INT_ATTR_VBASIS
+GRB_DBL_ATTR_PI = _amplpy_ampls_swig.GRB_DBL_ATTR_PI
+GRB_DBL_ATTR_QCPI = _amplpy_ampls_swig.GRB_DBL_ATTR_QCPI
+GRB_DBL_ATTR_SLACK = _amplpy_ampls_swig.GRB_DBL_ATTR_SLACK
+GRB_DBL_ATTR_QCSLACK = _amplpy_ampls_swig.GRB_DBL_ATTR_QCSLACK
+GRB_DBL_ATTR_CDUALNORM = _amplpy_ampls_swig.GRB_DBL_ATTR_CDUALNORM
+GRB_INT_ATTR_CBASIS = _amplpy_ampls_swig.GRB_INT_ATTR_CBASIS
+GRB_DBL_ATTR_MAX_VIO = _amplpy_ampls_swig.GRB_DBL_ATTR_MAX_VIO
+GRB_DBL_ATTR_BOUND_VIO = _amplpy_ampls_swig.GRB_DBL_ATTR_BOUND_VIO
+GRB_DBL_ATTR_BOUND_SVIO = _amplpy_ampls_swig.GRB_DBL_ATTR_BOUND_SVIO
+GRB_INT_ATTR_BOUND_VIO_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_BOUND_VIO_INDEX
+GRB_INT_ATTR_BOUND_SVIO_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_BOUND_SVIO_INDEX
+GRB_DBL_ATTR_BOUND_VIO_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_BOUND_VIO_SUM
+GRB_DBL_ATTR_BOUND_SVIO_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_BOUND_SVIO_SUM
+GRB_DBL_ATTR_CONSTR_VIO = _amplpy_ampls_swig.GRB_DBL_ATTR_CONSTR_VIO
+GRB_DBL_ATTR_CONSTR_SVIO = _amplpy_ampls_swig.GRB_DBL_ATTR_CONSTR_SVIO
+GRB_INT_ATTR_CONSTR_VIO_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_CONSTR_VIO_INDEX
+GRB_INT_ATTR_CONSTR_SVIO_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_CONSTR_SVIO_INDEX
+GRB_DBL_ATTR_CONSTR_VIO_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_CONSTR_VIO_SUM
+GRB_DBL_ATTR_CONSTR_SVIO_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_CONSTR_SVIO_SUM
+GRB_DBL_ATTR_CONSTR_RESIDUAL = _amplpy_ampls_swig.GRB_DBL_ATTR_CONSTR_RESIDUAL
+GRB_DBL_ATTR_CONSTR_SRESIDUAL = _amplpy_ampls_swig.GRB_DBL_ATTR_CONSTR_SRESIDUAL
+GRB_INT_ATTR_CONSTR_RESIDUAL_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_CONSTR_RESIDUAL_INDEX
+GRB_INT_ATTR_CONSTR_SRESIDUAL_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_CONSTR_SRESIDUAL_INDEX
+GRB_DBL_ATTR_CONSTR_RESIDUAL_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_CONSTR_RESIDUAL_SUM
+GRB_DBL_ATTR_CONSTR_SRESIDUAL_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_CONSTR_SRESIDUAL_SUM
+GRB_DBL_ATTR_DUAL_VIO = _amplpy_ampls_swig.GRB_DBL_ATTR_DUAL_VIO
+GRB_DBL_ATTR_DUAL_SVIO = _amplpy_ampls_swig.GRB_DBL_ATTR_DUAL_SVIO
+GRB_INT_ATTR_DUAL_VIO_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_DUAL_VIO_INDEX
+GRB_INT_ATTR_DUAL_SVIO_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_DUAL_SVIO_INDEX
+GRB_DBL_ATTR_DUAL_VIO_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_DUAL_VIO_SUM
+GRB_DBL_ATTR_DUAL_SVIO_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_DUAL_SVIO_SUM
+GRB_DBL_ATTR_DUAL_RESIDUAL = _amplpy_ampls_swig.GRB_DBL_ATTR_DUAL_RESIDUAL
+GRB_DBL_ATTR_DUAL_SRESIDUAL = _amplpy_ampls_swig.GRB_DBL_ATTR_DUAL_SRESIDUAL
+GRB_INT_ATTR_DUAL_RESIDUAL_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_DUAL_RESIDUAL_INDEX
+GRB_INT_ATTR_DUAL_SRESIDUAL_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_DUAL_SRESIDUAL_INDEX
+GRB_DBL_ATTR_DUAL_RESIDUAL_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_DUAL_RESIDUAL_SUM
+GRB_DBL_ATTR_DUAL_SRESIDUAL_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_DUAL_SRESIDUAL_SUM
+GRB_DBL_ATTR_INT_VIO = _amplpy_ampls_swig.GRB_DBL_ATTR_INT_VIO
+GRB_INT_ATTR_INT_VIO_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_INT_VIO_INDEX
+GRB_DBL_ATTR_INT_VIO_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_INT_VIO_SUM
+GRB_DBL_ATTR_COMPL_VIO = _amplpy_ampls_swig.GRB_DBL_ATTR_COMPL_VIO
+GRB_INT_ATTR_COMPL_VIO_INDEX = _amplpy_ampls_swig.GRB_INT_ATTR_COMPL_VIO_INDEX
+GRB_DBL_ATTR_COMPL_VIO_SUM = _amplpy_ampls_swig.GRB_DBL_ATTR_COMPL_VIO_SUM
+GRB_DBL_ATTR_KAPPA = _amplpy_ampls_swig.GRB_DBL_ATTR_KAPPA
+GRB_DBL_ATTR_KAPPA_EXACT = _amplpy_ampls_swig.GRB_DBL_ATTR_KAPPA_EXACT
+GRB_DBL_ATTR_N2KAPPA = _amplpy_ampls_swig.GRB_DBL_ATTR_N2KAPPA
+GRB_DBL_ATTR_SA_OBJLOW = _amplpy_ampls_swig.GRB_DBL_ATTR_SA_OBJLOW
+GRB_DBL_ATTR_SA_OBJUP = _amplpy_ampls_swig.GRB_DBL_ATTR_SA_OBJUP
+GRB_DBL_ATTR_SA_LBLOW = _amplpy_ampls_swig.GRB_DBL_ATTR_SA_LBLOW
+GRB_DBL_ATTR_SA_LBUP = _amplpy_ampls_swig.GRB_DBL_ATTR_SA_LBUP
+GRB_DBL_ATTR_SA_UBLOW = _amplpy_ampls_swig.GRB_DBL_ATTR_SA_UBLOW
+GRB_DBL_ATTR_SA_UBUP = _amplpy_ampls_swig.GRB_DBL_ATTR_SA_UBUP
+GRB_DBL_ATTR_SA_RHSLOW = _amplpy_ampls_swig.GRB_DBL_ATTR_SA_RHSLOW
+GRB_DBL_ATTR_SA_RHSUP = _amplpy_ampls_swig.GRB_DBL_ATTR_SA_RHSUP
+GRB_INT_ATTR_IIS_MINIMAL = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_MINIMAL
+GRB_INT_ATTR_IIS_LB = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_LB
+GRB_INT_ATTR_IIS_UB = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_UB
+GRB_INT_ATTR_IIS_CONSTR = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_CONSTR
+GRB_INT_ATTR_IIS_SOS = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_SOS
+GRB_INT_ATTR_IIS_QCONSTR = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_QCONSTR
+GRB_INT_ATTR_IIS_GENCONSTR = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_GENCONSTR
+GRB_INT_ATTR_IIS_LBFORCE = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_LBFORCE
+GRB_INT_ATTR_IIS_UBFORCE = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_UBFORCE
+GRB_INT_ATTR_IIS_CONSTRFORCE = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_CONSTRFORCE
+GRB_INT_ATTR_IIS_SOSFORCE = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_SOSFORCE
+GRB_INT_ATTR_IIS_QCONSTRFORCE = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_QCONSTRFORCE
+GRB_INT_ATTR_IIS_GENCONSTRFORCE = _amplpy_ampls_swig.GRB_INT_ATTR_IIS_GENCONSTRFORCE
+GRB_INT_ATTR_TUNE_RESULTCOUNT = _amplpy_ampls_swig.GRB_INT_ATTR_TUNE_RESULTCOUNT
+GRB_DBL_ATTR_FARKASDUAL = _amplpy_ampls_swig.GRB_DBL_ATTR_FARKASDUAL
+GRB_DBL_ATTR_FARKASPROOF = _amplpy_ampls_swig.GRB_DBL_ATTR_FARKASPROOF
+GRB_DBL_ATTR_UNBDRAY = _amplpy_ampls_swig.GRB_DBL_ATTR_UNBDRAY
+GRB_INT_ATTR_INFEASVAR = _amplpy_ampls_swig.GRB_INT_ATTR_INFEASVAR
+GRB_INT_ATTR_UNBDVAR = _amplpy_ampls_swig.GRB_INT_ATTR_UNBDVAR
+GRB_INT_ATTR_VARPRESTAT = _amplpy_ampls_swig.GRB_INT_ATTR_VARPRESTAT
+GRB_DBL_ATTR_PREFIXVAL = _amplpy_ampls_swig.GRB_DBL_ATTR_PREFIXVAL
+GRB_DBL_ATTR_OBJN = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJN
+GRB_DBL_ATTR_OBJNVAL = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJNVAL
+GRB_DBL_ATTR_OBJNCON = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJNCON
+GRB_DBL_ATTR_OBJNWEIGHT = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJNWEIGHT
+GRB_INT_ATTR_OBJNPRIORITY = _amplpy_ampls_swig.GRB_INT_ATTR_OBJNPRIORITY
+GRB_DBL_ATTR_OBJNRELTOL = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJNRELTOL
+GRB_DBL_ATTR_OBJNABSTOL = _amplpy_ampls_swig.GRB_DBL_ATTR_OBJNABSTOL
+GRB_STR_ATTR_OBJNNAME = _amplpy_ampls_swig.GRB_STR_ATTR_OBJNNAME
+GRB_DBL_ATTR_SCENNLB = _amplpy_ampls_swig.GRB_DBL_ATTR_SCENNLB
+GRB_DBL_ATTR_SCENNUB = _amplpy_ampls_swig.GRB_DBL_ATTR_SCENNUB
+GRB_DBL_ATTR_SCENNOBJ = _amplpy_ampls_swig.GRB_DBL_ATTR_SCENNOBJ
+GRB_DBL_ATTR_SCENNRHS = _amplpy_ampls_swig.GRB_DBL_ATTR_SCENNRHS
+GRB_STR_ATTR_SCENNNAME = _amplpy_ampls_swig.GRB_STR_ATTR_SCENNNAME
+GRB_DBL_ATTR_SCENNX = _amplpy_ampls_swig.GRB_DBL_ATTR_SCENNX
+GRB_DBL_ATTR_SCENNOBJBOUND = _amplpy_ampls_swig.GRB_DBL_ATTR_SCENNOBJBOUND
+GRB_DBL_ATTR_SCENNOBJVAL = _amplpy_ampls_swig.GRB_DBL_ATTR_SCENNOBJVAL
+GRB_INT_ATTR_NUMOBJ = _amplpy_ampls_swig.GRB_INT_ATTR_NUMOBJ
+GRB_INT_ATTR_NUMSCENARIOS = _amplpy_ampls_swig.GRB_INT_ATTR_NUMSCENARIOS
+GRB_INT_ATTR_NUMSTART = _amplpy_ampls_swig.GRB_INT_ATTR_NUMSTART
+GRB_DBL_ATTR_Xn = _amplpy_ampls_swig.GRB_DBL_ATTR_Xn
+GRB_GENCONSTR_MAX = _amplpy_ampls_swig.GRB_GENCONSTR_MAX
+GRB_GENCONSTR_MIN = _amplpy_ampls_swig.GRB_GENCONSTR_MIN
+GRB_GENCONSTR_ABS = _amplpy_ampls_swig.GRB_GENCONSTR_ABS
+GRB_GENCONSTR_AND = _amplpy_ampls_swig.GRB_GENCONSTR_AND
+GRB_GENCONSTR_OR = _amplpy_ampls_swig.GRB_GENCONSTR_OR
+GRB_GENCONSTR_NORM = _amplpy_ampls_swig.GRB_GENCONSTR_NORM
+GRB_GENCONSTR_INDICATOR = _amplpy_ampls_swig.GRB_GENCONSTR_INDICATOR
+GRB_GENCONSTR_PWL = _amplpy_ampls_swig.GRB_GENCONSTR_PWL
+GRB_GENCONSTR_POLY = _amplpy_ampls_swig.GRB_GENCONSTR_POLY
+GRB_GENCONSTR_EXP = _amplpy_ampls_swig.GRB_GENCONSTR_EXP
+GRB_GENCONSTR_EXPA = _amplpy_ampls_swig.GRB_GENCONSTR_EXPA
+GRB_GENCONSTR_LOG = _amplpy_ampls_swig.GRB_GENCONSTR_LOG
+GRB_GENCONSTR_LOGA = _amplpy_ampls_swig.GRB_GENCONSTR_LOGA
+GRB_GENCONSTR_POW = _amplpy_ampls_swig.GRB_GENCONSTR_POW
+GRB_GENCONSTR_SIN = _amplpy_ampls_swig.GRB_GENCONSTR_SIN
+GRB_GENCONSTR_COS = _amplpy_ampls_swig.GRB_GENCONSTR_COS
+GRB_GENCONSTR_TAN = _amplpy_ampls_swig.GRB_GENCONSTR_TAN
+GRB_GENCONSTR_LOGISTIC = _amplpy_ampls_swig.GRB_GENCONSTR_LOGISTIC
+GRB_CB_POLLING = _amplpy_ampls_swig.GRB_CB_POLLING
+GRB_CB_PRESOLVE = _amplpy_ampls_swig.GRB_CB_PRESOLVE
+GRB_CB_SIMPLEX = _amplpy_ampls_swig.GRB_CB_SIMPLEX
+GRB_CB_MIP = _amplpy_ampls_swig.GRB_CB_MIP
+GRB_CB_MIPSOL = _amplpy_ampls_swig.GRB_CB_MIPSOL
+GRB_CB_MIPNODE = _amplpy_ampls_swig.GRB_CB_MIPNODE
+GRB_CB_MESSAGE = _amplpy_ampls_swig.GRB_CB_MESSAGE
+GRB_CB_BARRIER = _amplpy_ampls_swig.GRB_CB_BARRIER
+GRB_CB_MULTIOBJ = _amplpy_ampls_swig.GRB_CB_MULTIOBJ
+GRB_CB_IIS = _amplpy_ampls_swig.GRB_CB_IIS
+GRB_CB_PRE_COLDEL = _amplpy_ampls_swig.GRB_CB_PRE_COLDEL
+GRB_CB_PRE_ROWDEL = _amplpy_ampls_swig.GRB_CB_PRE_ROWDEL
+GRB_CB_PRE_SENCHG = _amplpy_ampls_swig.GRB_CB_PRE_SENCHG
+GRB_CB_PRE_BNDCHG = _amplpy_ampls_swig.GRB_CB_PRE_BNDCHG
+GRB_CB_PRE_COECHG = _amplpy_ampls_swig.GRB_CB_PRE_COECHG
+GRB_CB_SPX_ITRCNT = _amplpy_ampls_swig.GRB_CB_SPX_ITRCNT
+GRB_CB_SPX_OBJVAL = _amplpy_ampls_swig.GRB_CB_SPX_OBJVAL
+GRB_CB_SPX_PRIMINF = _amplpy_ampls_swig.GRB_CB_SPX_PRIMINF
+GRB_CB_SPX_DUALINF = _amplpy_ampls_swig.GRB_CB_SPX_DUALINF
+GRB_CB_SPX_ISPERT = _amplpy_ampls_swig.GRB_CB_SPX_ISPERT
+GRB_CB_MIP_OBJBST = _amplpy_ampls_swig.GRB_CB_MIP_OBJBST
+GRB_CB_MIP_OBJBND = _amplpy_ampls_swig.GRB_CB_MIP_OBJBND
+GRB_CB_MIP_NODCNT = _amplpy_ampls_swig.GRB_CB_MIP_NODCNT
+GRB_CB_MIP_SOLCNT = _amplpy_ampls_swig.GRB_CB_MIP_SOLCNT
+GRB_CB_MIP_CUTCNT = _amplpy_ampls_swig.GRB_CB_MIP_CUTCNT
+GRB_CB_MIP_NODLFT = _amplpy_ampls_swig.GRB_CB_MIP_NODLFT
+GRB_CB_MIP_ITRCNT = _amplpy_ampls_swig.GRB_CB_MIP_ITRCNT
+GRB_CB_MIP_OPENSCENARIOS = _amplpy_ampls_swig.GRB_CB_MIP_OPENSCENARIOS
+GRB_CB_MIP_PHASE = _amplpy_ampls_swig.GRB_CB_MIP_PHASE
+GRB_CB_MIPSOL_SOL = _amplpy_ampls_swig.GRB_CB_MIPSOL_SOL
+GRB_CB_MIPSOL_OBJ = _amplpy_ampls_swig.GRB_CB_MIPSOL_OBJ
+GRB_CB_MIPSOL_OBJBST = _amplpy_ampls_swig.GRB_CB_MIPSOL_OBJBST
+GRB_CB_MIPSOL_OBJBND = _amplpy_ampls_swig.GRB_CB_MIPSOL_OBJBND
+GRB_CB_MIPSOL_NODCNT = _amplpy_ampls_swig.GRB_CB_MIPSOL_NODCNT
+GRB_CB_MIPSOL_SOLCNT = _amplpy_ampls_swig.GRB_CB_MIPSOL_SOLCNT
+GRB_CB_MIPSOL_OPENSCENARIOS = _amplpy_ampls_swig.GRB_CB_MIPSOL_OPENSCENARIOS
+GRB_CB_MIPSOL_PHASE = _amplpy_ampls_swig.GRB_CB_MIPSOL_PHASE
+GRB_CB_MIPNODE_STATUS = _amplpy_ampls_swig.GRB_CB_MIPNODE_STATUS
+GRB_CB_MIPNODE_REL = _amplpy_ampls_swig.GRB_CB_MIPNODE_REL
+GRB_CB_MIPNODE_OBJBST = _amplpy_ampls_swig.GRB_CB_MIPNODE_OBJBST
+GRB_CB_MIPNODE_OBJBND = _amplpy_ampls_swig.GRB_CB_MIPNODE_OBJBND
+GRB_CB_MIPNODE_NODCNT = _amplpy_ampls_swig.GRB_CB_MIPNODE_NODCNT
+GRB_CB_MIPNODE_SOLCNT = _amplpy_ampls_swig.GRB_CB_MIPNODE_SOLCNT
+GRB_CB_MIPNODE_BRVAR = _amplpy_ampls_swig.GRB_CB_MIPNODE_BRVAR
+GRB_CB_MIPNODE_OPENSCENARIOS = _amplpy_ampls_swig.GRB_CB_MIPNODE_OPENSCENARIOS
+GRB_CB_MIPNODE_PHASE = _amplpy_ampls_swig.GRB_CB_MIPNODE_PHASE
+GRB_CB_MSG_STRING = _amplpy_ampls_swig.GRB_CB_MSG_STRING
+GRB_CB_RUNTIME = _amplpy_ampls_swig.GRB_CB_RUNTIME
+GRB_CB_WORK = _amplpy_ampls_swig.GRB_CB_WORK
+GRB_CB_BARRIER_ITRCNT = _amplpy_ampls_swig.GRB_CB_BARRIER_ITRCNT
+GRB_CB_BARRIER_PRIMOBJ = _amplpy_ampls_swig.GRB_CB_BARRIER_PRIMOBJ
+GRB_CB_BARRIER_DUALOBJ = _amplpy_ampls_swig.GRB_CB_BARRIER_DUALOBJ
+GRB_CB_BARRIER_PRIMINF = _amplpy_ampls_swig.GRB_CB_BARRIER_PRIMINF
+GRB_CB_BARRIER_DUALINF = _amplpy_ampls_swig.GRB_CB_BARRIER_DUALINF
+GRB_CB_BARRIER_COMPL = _amplpy_ampls_swig.GRB_CB_BARRIER_COMPL
+GRB_CB_MULTIOBJ_OBJCNT = _amplpy_ampls_swig.GRB_CB_MULTIOBJ_OBJCNT
+GRB_CB_MULTIOBJ_SOLCNT = _amplpy_ampls_swig.GRB_CB_MULTIOBJ_SOLCNT
+GRB_CB_MULTIOBJ_SOL = _amplpy_ampls_swig.GRB_CB_MULTIOBJ_SOL
+GRB_CB_IIS_CONSTRMIN = _amplpy_ampls_swig.GRB_CB_IIS_CONSTRMIN
+GRB_CB_IIS_CONSTRMAX = _amplpy_ampls_swig.GRB_CB_IIS_CONSTRMAX
+GRB_CB_IIS_CONSTRGUESS = _amplpy_ampls_swig.GRB_CB_IIS_CONSTRGUESS
+GRB_CB_IIS_BOUNDMIN = _amplpy_ampls_swig.GRB_CB_IIS_BOUNDMIN
+GRB_CB_IIS_BOUNDMAX = _amplpy_ampls_swig.GRB_CB_IIS_BOUNDMAX
+GRB_CB_IIS_BOUNDGUESS = _amplpy_ampls_swig.GRB_CB_IIS_BOUNDGUESS
+GRB_FEASRELAX_LINEAR = _amplpy_ampls_swig.GRB_FEASRELAX_LINEAR
+GRB_FEASRELAX_QUADRATIC = _amplpy_ampls_swig.GRB_FEASRELAX_QUADRATIC
+GRB_FEASRELAX_CARDINALITY = _amplpy_ampls_swig.GRB_FEASRELAX_CARDINALITY
+
+def GRBgetcoeff(model, constr, var, valP):
+    return _amplpy_ampls_swig.GRBgetcoeff(model, constr, var, valP)
+
+def GRBgetconstrs(model, numnzP, cbeg, cind, cval, start, len):
+    return _amplpy_ampls_swig.GRBgetconstrs(model, numnzP, cbeg, cind, cval, start, len)
+
+def GRBXgetconstrs(model, numnzP, cbeg, cind, cval, start, len):
+    return _amplpy_ampls_swig.GRBXgetconstrs(model, numnzP, cbeg, cind, cval, start, len)
+
+def GRBgetvars(model, numnzP, vbeg, vind, vval, start, len):
+    return _amplpy_ampls_swig.GRBgetvars(model, numnzP, vbeg, vind, vval, start, len)
+
+def GRBXgetvars(model, numnzP, vbeg, vind, vval, start, len):
+    return _amplpy_ampls_swig.GRBXgetvars(model, numnzP, vbeg, vind, vval, start, len)
+
+def GRBgetsos(model, nummembersP, sostype, beg, ind, weight, start, len):
+    return _amplpy_ampls_swig.GRBgetsos(model, nummembersP, sostype, beg, ind, weight, start, len)
+
+def GRBgetgenconstrMax(model, genconstr, resvarP, nvarsP, vars, constantP):
+    return _amplpy_ampls_swig.GRBgetgenconstrMax(model, genconstr, resvarP, nvarsP, vars, constantP)
+
+def GRBgetgenconstrMin(model, genconstr, resvarP, nvarsP, vars, constantP):
+    return _amplpy_ampls_swig.GRBgetgenconstrMin(model, genconstr, resvarP, nvarsP, vars, constantP)
+
+def GRBgetgenconstrAbs(model, genconstr, resvarP, argvarP):
+    return _amplpy_ampls_swig.GRBgetgenconstrAbs(model, genconstr, resvarP, argvarP)
+
+def GRBgetgenconstrAnd(model, genconstr, resvarP, nvarsP, vars):
+    return _amplpy_ampls_swig.GRBgetgenconstrAnd(model, genconstr, resvarP, nvarsP, vars)
+
+def GRBgetgenconstrOr(model, genconstr, resvarP, nvarsP, vars):
+    return _amplpy_ampls_swig.GRBgetgenconstrOr(model, genconstr, resvarP, nvarsP, vars)
+
+def GRBgetgenconstrNorm(model, genconstr, resvarP, nvarsP, vars, whichP):
+    return _amplpy_ampls_swig.GRBgetgenconstrNorm(model, genconstr, resvarP, nvarsP, vars, whichP)
+
+def GRBgetgenconstrIndicator(model, genconstr, binvarP, binvalP, nvarsP, vars, vals, senseP, rhsP):
+    return _amplpy_ampls_swig.GRBgetgenconstrIndicator(model, genconstr, binvarP, binvalP, nvarsP, vars, vals, senseP, rhsP)
+
+def GRBgetgenconstrPWL(model, genconstr, xvarP, yvarP, nptsP, xpts, ypts):
+    return _amplpy_ampls_swig.GRBgetgenconstrPWL(model, genconstr, xvarP, yvarP, nptsP, xpts, ypts)
+
+def GRBgetgenconstrPoly(model, genconstr, xvarP, yvarP, plenP, p):
+    return _amplpy_ampls_swig.GRBgetgenconstrPoly(model, genconstr, xvarP, yvarP, plenP, p)
+
+def GRBgetgenconstrExpA(model, genconstr, xvarP, yvarP, aP):
+    return _amplpy_ampls_swig.GRBgetgenconstrExpA(model, genconstr, xvarP, yvarP, aP)
+
+def GRBgetgenconstrLogA(model, genconstr, xvarP, yvarP, aP):
+    return _amplpy_ampls_swig.GRBgetgenconstrLogA(model, genconstr, xvarP, yvarP, aP)
+
+def GRBgetgenconstrPow(model, genconstr, xvarP, yvarP, aP):
+    return _amplpy_ampls_swig.GRBgetgenconstrPow(model, genconstr, xvarP, yvarP, aP)
+
+def GRBgetgenconstrExp(model, genconstr, xvarP, yvarP):
+    return _amplpy_ampls_swig.GRBgetgenconstrExp(model, genconstr, xvarP, yvarP)
+
+def GRBgetgenconstrLog(model, genconstr, xvarP, yvarP):
+    return _amplpy_ampls_swig.GRBgetgenconstrLog(model, genconstr, xvarP, yvarP)
+
+def GRBgetgenconstrLogistic(model, genconstr, xvarP, yvarP):
+    return _amplpy_ampls_swig.GRBgetgenconstrLogistic(model, genconstr, xvarP, yvarP)
+
+def GRBgetgenconstrSin(model, genconstr, xvarP, yvarP):
+    return _amplpy_ampls_swig.GRBgetgenconstrSin(model, genconstr, xvarP, yvarP)
+
+def GRBgetgenconstrCos(model, genconstr, xvarP, yvarP):
+    return _amplpy_ampls_swig.GRBgetgenconstrCos(model, genconstr, xvarP, yvarP)
+
+def GRBgetgenconstrTan(model, genconstr, xvarP, yvarP):
+    return _amplpy_ampls_swig.GRBgetgenconstrTan(model, genconstr, xvarP, yvarP)
+
+def GRBgetq(model, numqnzP, qrow, qcol, qval):
+    return _amplpy_ampls_swig.GRBgetq(model, numqnzP, qrow, qcol, qval)
+
+def GRBgetqconstr(model, qconstr, numlnzP, lind, lval, numqnzP, qrow, qcol, qval):
+    return _amplpy_ampls_swig.GRBgetqconstr(model, qconstr, numlnzP, lind, lval, numqnzP, qrow, qcol, qval)
+
+def GRBgetvarbyname(model, name, indexP):
+    return _amplpy_ampls_swig.GRBgetvarbyname(model, name, indexP)
+
+def GRBgetconstrbyname(model, name, indexP):
+    return _amplpy_ampls_swig.GRBgetconstrbyname(model, name, indexP)
+
+def GRBgetqconstrbyname(model, name, indexP):
+    return _amplpy_ampls_swig.GRBgetqconstrbyname(model, name, indexP)
+
+def GRBgetpwlobj(model, var, pointsP, x, y):
+    return _amplpy_ampls_swig.GRBgetpwlobj(model, var, pointsP, x, y)
+
+def GRBoptimize(model):
+    return _amplpy_ampls_swig.GRBoptimize(model)
+
+def GRBoptimizeasync(model):
+    return _amplpy_ampls_swig.GRBoptimizeasync(model)
+
+def GRBoptimizebatch(model, batchid):
+    return _amplpy_ampls_swig.GRBoptimizebatch(model, batchid)
+
+def GRBcopymodel(model):
+    return _amplpy_ampls_swig.GRBcopymodel(model)
+
+def GRBfixmodel(model, fixedP):
+    return _amplpy_ampls_swig.GRBfixmodel(model, fixedP)
+
+def GRBfeasrelax(model, relaxobjtype, minrelax, lbpen, ubpen, rhspen, feasobjP):
+    return _amplpy_ampls_swig.GRBfeasrelax(model, relaxobjtype, minrelax, lbpen, ubpen, rhspen, feasobjP)
+
+def GRBsinglescenariomodel(model, singlescenarioP):
+    return _amplpy_ampls_swig.GRBsinglescenariomodel(model, singlescenarioP)
+
+def GRBgetcbwhatinfo(cbdata, what, typeP, sizeP):
+    return _amplpy_ampls_swig.GRBgetcbwhatinfo(cbdata, what, typeP, sizeP)
+
+def GRBrelaxmodel(model, relaxedP):
+    return _amplpy_ampls_swig.GRBrelaxmodel(model, relaxedP)
+
+def GRBconverttofixed(model):
+    return _amplpy_ampls_swig.GRBconverttofixed(model)
+
+def GRBpresolvemodel(model, presolvedP):
+    return _amplpy_ampls_swig.GRBpresolvemodel(model, presolvedP)
+
+def GRBiismodel(model, iisP):
+    return _amplpy_ampls_swig.GRBiismodel(model, iisP)
+
+def GRBfeasibility(model, feasP):
+    return _amplpy_ampls_swig.GRBfeasibility(model, feasP)
+
+def GRBlinearizemodel(model, linearizedP):
+    return _amplpy_ampls_swig.GRBlinearizemodel(model, linearizedP)
+
+def GRBresultmodel(model, type, resultP):
+    return _amplpy_ampls_swig.GRBresultmodel(model, type, resultP)
+
+def GRBfixedmodel(model):
+    return _amplpy_ampls_swig.GRBfixedmodel(model)
+
+def GRBdualmodel(model, dualP):
+    return _amplpy_ampls_swig.GRBdualmodel(model, dualP)
+
+def GRBemptyenvadv(envP, malloccb, calloccb, realloccb, freecb, threadcreatecb, threadjoincb, syscbusrdata):
+    return _amplpy_ampls_swig.GRBemptyenvadv(envP, malloccb, calloccb, realloccb, freecb, threadcreatecb, threadjoincb, syscbusrdata)
+
+def GRBemptyenvadvinternal(envP, apitype, major, minor, tech, malloccb, calloccb, realloccb, freecb, threadcreatecb, threadjoincb, syscbusrdata):
+    return _amplpy_ampls_swig.GRBemptyenvadvinternal(envP, apitype, major, minor, tech, malloccb, calloccb, realloccb, freecb, threadcreatecb, threadjoincb, syscbusrdata)
+
+def GRBreadmodel(env, filename, modelP):
+    return _amplpy_ampls_swig.GRBreadmodel(env, filename, modelP)
+
+def GRBread(model, filename):
+    return _amplpy_ampls_swig.GRBread(model, filename)
+
+def GRBwrite(model, filename):
+    return _amplpy_ampls_swig.GRBwrite(model, filename)
+
+def GRBismodelfile(filename):
+    return _amplpy_ampls_swig.GRBismodelfile(filename)
+
+def GRBisattrfile(filename):
+    return _amplpy_ampls_swig.GRBisattrfile(filename)
+
+def GRBfiletype(filename):
+    return _amplpy_ampls_swig.GRBfiletype(filename)
+
+def GRBisrecordfile(filename):
+    return _amplpy_ampls_swig.GRBisrecordfile(filename)
+
+def GRBgetjsonsolution(model, buffP):
+    return _amplpy_ampls_swig.GRBgetjsonsolution(model, buffP)
+
+def GRBloadjson(env, fname, buffP):
+    return _amplpy_ampls_swig.GRBloadjson(env, fname, buffP)
+
+def GRBnewmodel(env, modelP, Pname, numvars, obj, lb, ub, vtype, varnames):
+    return _amplpy_ampls_swig.GRBnewmodel(env, modelP, Pname, numvars, obj, lb, ub, vtype, varnames)
+
+def GRBloadmodel(env, modelP, Pname, numvars, numconstrs, objsense, objcon, obj, sense, rhs, vbeg, vlen, vind, vval, lb, ub, vtype, varnames, constrnames):
+    return _amplpy_ampls_swig.GRBloadmodel(env, modelP, Pname, numvars, numconstrs, objsense, objcon, obj, sense, rhs, vbeg, vlen, vind, vval, lb, ub, vtype, varnames, constrnames)
+
+def GRBXloadmodel(env, modelP, Pname, numvars, numconstrs, objsense, objcon, obj, sense, rhs, vbeg, vlen, vind, vval, lb, ub, vtype, varnames, constrnames):
+    return _amplpy_ampls_swig.GRBXloadmodel(env, modelP, Pname, numvars, numconstrs, objsense, objcon, obj, sense, rhs, vbeg, vlen, vind, vval, lb, ub, vtype, varnames, constrnames)
+
+def GRBaddvar(model, numnz, vind, vval, obj, lb, ub, vtype, varname):
+    return _amplpy_ampls_swig.GRBaddvar(model, numnz, vind, vval, obj, lb, ub, vtype, varname)
+
+def GRBaddvars(model, numvars, numnz, vbeg, vind, vval, obj, lb, ub, vtype, varnames):
+    return _amplpy_ampls_swig.GRBaddvars(model, numvars, numnz, vbeg, vind, vval, obj, lb, ub, vtype, varnames)
+
+def GRBXaddvars(model, numvars, numnz, vbeg, vind, vval, obj, lb, ub, vtype, varnames):
+    return _amplpy_ampls_swig.GRBXaddvars(model, numvars, numnz, vbeg, vind, vval, obj, lb, ub, vtype, varnames)
+
+def GRBaddconstr(model, numnz, cind, cval, sense, rhs, constrname):
+    return _amplpy_ampls_swig.GRBaddconstr(model, numnz, cind, cval, sense, rhs, constrname)
+
+def GRBaddconstrs(model, numconstrs, numnz, cbeg, cind, cval, sense, rhs, constrnames):
+    return _amplpy_ampls_swig.GRBaddconstrs(model, numconstrs, numnz, cbeg, cind, cval, sense, rhs, constrnames)
+
+def GRBXaddconstrs(model, numconstrs, numnz, cbeg, cind, cval, sense, rhs, constrnames):
+    return _amplpy_ampls_swig.GRBXaddconstrs(model, numconstrs, numnz, cbeg, cind, cval, sense, rhs, constrnames)
+
+def GRBaddrangeconstr(model, numnz, cind, cval, lower, upper, constrname):
+    return _amplpy_ampls_swig.GRBaddrangeconstr(model, numnz, cind, cval, lower, upper, constrname)
+
+def GRBaddrangeconstrs(model, numconstrs, numnz, cbeg, cind, cval, lower, upper, constrnames):
+    return _amplpy_ampls_swig.GRBaddrangeconstrs(model, numconstrs, numnz, cbeg, cind, cval, lower, upper, constrnames)
+
+def GRBXaddrangeconstrs(model, numconstrs, numnz, cbeg, cind, cval, lower, upper, constrnames):
+    return _amplpy_ampls_swig.GRBXaddrangeconstrs(model, numconstrs, numnz, cbeg, cind, cval, lower, upper, constrnames)
+
+def GRBaddsos(model, numsos, nummembers, types, beg, ind, weight):
+    return _amplpy_ampls_swig.GRBaddsos(model, numsos, nummembers, types, beg, ind, weight)
+
+def GRBaddgenconstrMax(model, name, resvar, nvars, constant):
+    return _amplpy_ampls_swig.GRBaddgenconstrMax(model, name, resvar, nvars, constant)
+
+def GRBaddgenconstrMin(model, name, resvar, nvars, constant):
+    return _amplpy_ampls_swig.GRBaddgenconstrMin(model, name, resvar, nvars, constant)
+
+def GRBaddgenconstrAbs(model, name, resvar, argvar):
+    return _amplpy_ampls_swig.GRBaddgenconstrAbs(model, name, resvar, argvar)
+
+def GRBaddgenconstrAnd(model, name, resvar, nvars):
+    return _amplpy_ampls_swig.GRBaddgenconstrAnd(model, name, resvar, nvars)
+
+def GRBaddgenconstrOr(model, name, resvar, nvars):
+    return _amplpy_ampls_swig.GRBaddgenconstrOr(model, name, resvar, nvars)
+
+def GRBaddgenconstrNorm(model, name, resvar, nvars, which):
+    return _amplpy_ampls_swig.GRBaddgenconstrNorm(model, name, resvar, nvars, which)
+
+def GRBaddgenconstrIndicator(model, name, binvar, binval, nvars, vals, sense, rhs):
+    return _amplpy_ampls_swig.GRBaddgenconstrIndicator(model, name, binvar, binval, nvars, vals, sense, rhs)
+
+def GRBaddgenconstrPWL(model, name, xvar, yvar, npts, xpts, ypts):
+    return _amplpy_ampls_swig.GRBaddgenconstrPWL(model, name, xvar, yvar, npts, xpts, ypts)
+
+def GRBaddgenconstrPoly(model, name, xvar, yvar, plen, p, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrPoly(model, name, xvar, yvar, plen, p, options)
+
+def GRBaddgenconstrExpA(model, name, xvar, yvar, a, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrExpA(model, name, xvar, yvar, a, options)
+
+def GRBaddgenconstrLogA(model, name, xvar, yvar, a, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrLogA(model, name, xvar, yvar, a, options)
+
+def GRBaddgenconstrPow(model, name, xvar, yvar, a, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrPow(model, name, xvar, yvar, a, options)
+
+def GRBaddgenconstrExp(model, name, xvar, yvar, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrExp(model, name, xvar, yvar, options)
+
+def GRBaddgenconstrLog(model, name, xvar, yvar, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrLog(model, name, xvar, yvar, options)
+
+def GRBaddgenconstrSin(model, name, xvar, yvar, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrSin(model, name, xvar, yvar, options)
+
+def GRBaddgenconstrCos(model, name, xvar, yvar, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrCos(model, name, xvar, yvar, options)
+
+def GRBaddgenconstrTan(model, name, xvar, yvar, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrTan(model, name, xvar, yvar, options)
+
+def GRBaddgenconstrLogistic(model, name, xvar, yvar, options):
+    return _amplpy_ampls_swig.GRBaddgenconstrLogistic(model, name, xvar, yvar, options)
+
+def GRBaddqconstr(model, numlnz, lind, lval, numqnz, qrow, qcol, qval, sense, rhs, QCname):
+    return _amplpy_ampls_swig.GRBaddqconstr(model, numlnz, lind, lval, numqnz, qrow, qcol, qval, sense, rhs, QCname)
+
+def GRBaddcone(model, nummembers, members):
+    return _amplpy_ampls_swig.GRBaddcone(model, nummembers, members)
+
+def GRBaddqpterms(model, numqnz, qrow, qcol, qval):
+    return _amplpy_ampls_swig.GRBaddqpterms(model, numqnz, qrow, qcol, qval)
+
+def GRBdelvars(model, len, ind):
+    return _amplpy_ampls_swig.GRBdelvars(model, len, ind)
+
+def GRBdelconstrs(model, len, ind):
+    return _amplpy_ampls_swig.GRBdelconstrs(model, len, ind)
+
+def GRBdelsos(model, len, ind):
+    return _amplpy_ampls_swig.GRBdelsos(model, len, ind)
+
+def GRBdelgenconstrs(model, len, ind):
+    return _amplpy_ampls_swig.GRBdelgenconstrs(model, len, ind)
+
+def GRBdelqconstrs(model, len, ind):
+    return _amplpy_ampls_swig.GRBdelqconstrs(model, len, ind)
+
+def GRBdelq(model):
+    return _amplpy_ampls_swig.GRBdelq(model)
+
+def GRBchgcoeffs(model, cnt, cind, vind, val):
+    return _amplpy_ampls_swig.GRBchgcoeffs(model, cnt, cind, vind, val)
+
+def GRBXchgcoeffs(model, cnt, cind, vind, val):
+    return _amplpy_ampls_swig.GRBXchgcoeffs(model, cnt, cind, vind, val)
+
+def GRBsetpwlobj(model, var, points, x, y):
+    return _amplpy_ampls_swig.GRBsetpwlobj(model, var, points, x, y)
+
+def GRBupdatemodel(model):
+    return _amplpy_ampls_swig.GRBupdatemodel(model)
+
+def GRBreset(model, clearall):
+    return _amplpy_ampls_swig.GRBreset(model, clearall)
+
+def GRBresetmodel(model):
+    return _amplpy_ampls_swig.GRBresetmodel(model)
+
+def GRBfreemodel(model):
+    return _amplpy_ampls_swig.GRBfreemodel(model)
+
+def GRBcomputeIIS(model):
+    return _amplpy_ampls_swig.GRBcomputeIIS(model)
+class GRBsvec(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    len = property(_amplpy_ampls_swig.GRBsvec_len_get, _amplpy_ampls_swig.GRBsvec_len_set)
+    ind = property(_amplpy_ampls_swig.GRBsvec_ind_get, _amplpy_ampls_swig.GRBsvec_ind_set)
+    val = property(_amplpy_ampls_swig.GRBsvec_val_get, _amplpy_ampls_swig.GRBsvec_val_set)
+
+    def __init__(self):
+        _amplpy_ampls_swig.GRBsvec_swiginit(self, _amplpy_ampls_swig.new_GRBsvec())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_GRBsvec
+
+# Register GRBsvec in _amplpy_ampls_swig:
+_amplpy_ampls_swig.GRBsvec_swigregister(GRBsvec)
 
 
+def GRBFSolve(model, b, x):
+    return _amplpy_ampls_swig.GRBFSolve(model, b, x)
+
+def GRBBinvColj(model, j, x):
+    return _amplpy_ampls_swig.GRBBinvColj(model, j, x)
+
+def GRBBinvj(model, j, x):
+    return _amplpy_ampls_swig.GRBBinvj(model, j, x)
+
+def GRBBSolve(model, b, x):
+    return _amplpy_ampls_swig.GRBBSolve(model, b, x)
+
+def GRBBinvi(model, i, x):
+    return _amplpy_ampls_swig.GRBBinvi(model, i, x)
+
+def GRBBinvRowi(model, i, x):
+    return _amplpy_ampls_swig.GRBBinvRowi(model, i, x)
+
+def GRBgetBasisHead(model, bhead):
+    return _amplpy_ampls_swig.GRBgetBasisHead(model, bhead)
+
+def GRBcbstoponemultiobj(model, cbdata, objnum):
+    return _amplpy_ampls_swig.GRBcbstoponemultiobj(model, cbdata, objnum)
+GRB_LOADED = _amplpy_ampls_swig.GRB_LOADED
+GRB_OPTIMAL = _amplpy_ampls_swig.GRB_OPTIMAL
+GRB_INFEASIBLE = _amplpy_ampls_swig.GRB_INFEASIBLE
+GRB_INF_OR_UNBD = _amplpy_ampls_swig.GRB_INF_OR_UNBD
+GRB_UNBOUNDED = _amplpy_ampls_swig.GRB_UNBOUNDED
+GRB_CUTOFF = _amplpy_ampls_swig.GRB_CUTOFF
+GRB_ITERATION_LIMIT = _amplpy_ampls_swig.GRB_ITERATION_LIMIT
+GRB_NODE_LIMIT = _amplpy_ampls_swig.GRB_NODE_LIMIT
+GRB_TIME_LIMIT = _amplpy_ampls_swig.GRB_TIME_LIMIT
+GRB_SOLUTION_LIMIT = _amplpy_ampls_swig.GRB_SOLUTION_LIMIT
+GRB_INTERRUPTED = _amplpy_ampls_swig.GRB_INTERRUPTED
+GRB_NUMERIC = _amplpy_ampls_swig.GRB_NUMERIC
+GRB_SUBOPTIMAL = _amplpy_ampls_swig.GRB_SUBOPTIMAL
+GRB_INPROGRESS = _amplpy_ampls_swig.GRB_INPROGRESS
+GRB_USER_OBJ_LIMIT = _amplpy_ampls_swig.GRB_USER_OBJ_LIMIT
+GRB_WORK_LIMIT = _amplpy_ampls_swig.GRB_WORK_LIMIT
+GRB_MEM_LIMIT = _amplpy_ampls_swig.GRB_MEM_LIMIT
+GRB_BASIC = _amplpy_ampls_swig.GRB_BASIC
+GRB_NONBASIC_LOWER = _amplpy_ampls_swig.GRB_NONBASIC_LOWER
+GRB_NONBASIC_UPPER = _amplpy_ampls_swig.GRB_NONBASIC_UPPER
+GRB_SUPERBASIC = _amplpy_ampls_swig.GRB_SUPERBASIC
+
+def GRBstrongbranch(model, num, cand, downobjbd, upobjbd, statusP):
+    return _amplpy_ampls_swig.GRBstrongbranch(model, num, cand, downobjbd, upobjbd, statusP)
+GRB_INT_PAR_BARITERLIMIT = _amplpy_ampls_swig.GRB_INT_PAR_BARITERLIMIT
+GRB_DBL_PAR_CUTOFF = _amplpy_ampls_swig.GRB_DBL_PAR_CUTOFF
+GRB_DBL_PAR_ITERATIONLIMIT = _amplpy_ampls_swig.GRB_DBL_PAR_ITERATIONLIMIT
+GRB_DBL_PAR_NODELIMIT = _amplpy_ampls_swig.GRB_DBL_PAR_NODELIMIT
+GRB_INT_PAR_SOLUTIONLIMIT = _amplpy_ampls_swig.GRB_INT_PAR_SOLUTIONLIMIT
+GRB_DBL_PAR_TIMELIMIT = _amplpy_ampls_swig.GRB_DBL_PAR_TIMELIMIT
+GRB_DBL_PAR_WORKLIMIT = _amplpy_ampls_swig.GRB_DBL_PAR_WORKLIMIT
+GRB_DBL_PAR_MEMLIMIT = _amplpy_ampls_swig.GRB_DBL_PAR_MEMLIMIT
+GRB_DBL_PAR_SOFTMEMLIMIT = _amplpy_ampls_swig.GRB_DBL_PAR_SOFTMEMLIMIT
+GRB_DBL_PAR_BESTOBJSTOP = _amplpy_ampls_swig.GRB_DBL_PAR_BESTOBJSTOP
+GRB_DBL_PAR_BESTBDSTOP = _amplpy_ampls_swig.GRB_DBL_PAR_BESTBDSTOP
+GRB_DBL_PAR_FEASIBILITYTOL = _amplpy_ampls_swig.GRB_DBL_PAR_FEASIBILITYTOL
+GRB_DBL_PAR_INTFEASTOL = _amplpy_ampls_swig.GRB_DBL_PAR_INTFEASTOL
+GRB_DBL_PAR_MARKOWITZTOL = _amplpy_ampls_swig.GRB_DBL_PAR_MARKOWITZTOL
+GRB_DBL_PAR_MIPGAP = _amplpy_ampls_swig.GRB_DBL_PAR_MIPGAP
+GRB_DBL_PAR_MIPGAPABS = _amplpy_ampls_swig.GRB_DBL_PAR_MIPGAPABS
+GRB_DBL_PAR_OPTIMALITYTOL = _amplpy_ampls_swig.GRB_DBL_PAR_OPTIMALITYTOL
+GRB_DBL_PAR_PSDTOL = _amplpy_ampls_swig.GRB_DBL_PAR_PSDTOL
+GRB_INT_PAR_METHOD = _amplpy_ampls_swig.GRB_INT_PAR_METHOD
+GRB_DBL_PAR_PERTURBVALUE = _amplpy_ampls_swig.GRB_DBL_PAR_PERTURBVALUE
+GRB_DBL_PAR_OBJSCALE = _amplpy_ampls_swig.GRB_DBL_PAR_OBJSCALE
+GRB_INT_PAR_SCALEFLAG = _amplpy_ampls_swig.GRB_INT_PAR_SCALEFLAG
+GRB_INT_PAR_SIMPLEXPRICING = _amplpy_ampls_swig.GRB_INT_PAR_SIMPLEXPRICING
+GRB_INT_PAR_QUAD = _amplpy_ampls_swig.GRB_INT_PAR_QUAD
+GRB_INT_PAR_NORMADJUST = _amplpy_ampls_swig.GRB_INT_PAR_NORMADJUST
+GRB_INT_PAR_SIFTING = _amplpy_ampls_swig.GRB_INT_PAR_SIFTING
+GRB_INT_PAR_SIFTMETHOD = _amplpy_ampls_swig.GRB_INT_PAR_SIFTMETHOD
+GRB_INT_PAR_LPWARMSTART = _amplpy_ampls_swig.GRB_INT_PAR_LPWARMSTART
+GRB_INT_PAR_NETWORKALG = _amplpy_ampls_swig.GRB_INT_PAR_NETWORKALG
+GRB_DBL_PAR_BARCONVTOL = _amplpy_ampls_swig.GRB_DBL_PAR_BARCONVTOL
+GRB_INT_PAR_BARCORRECTORS = _amplpy_ampls_swig.GRB_INT_PAR_BARCORRECTORS
+GRB_INT_PAR_BARHOMOGENEOUS = _amplpy_ampls_swig.GRB_INT_PAR_BARHOMOGENEOUS
+GRB_INT_PAR_BARORDER = _amplpy_ampls_swig.GRB_INT_PAR_BARORDER
+GRB_DBL_PAR_BARQCPCONVTOL = _amplpy_ampls_swig.GRB_DBL_PAR_BARQCPCONVTOL
+GRB_INT_PAR_CROSSOVER = _amplpy_ampls_swig.GRB_INT_PAR_CROSSOVER
+GRB_INT_PAR_CROSSOVERBASIS = _amplpy_ampls_swig.GRB_INT_PAR_CROSSOVERBASIS
+GRB_INT_PAR_BRANCHDIR = _amplpy_ampls_swig.GRB_INT_PAR_BRANCHDIR
+GRB_INT_PAR_DEGENMOVES = _amplpy_ampls_swig.GRB_INT_PAR_DEGENMOVES
+GRB_INT_PAR_DISCONNECTED = _amplpy_ampls_swig.GRB_INT_PAR_DISCONNECTED
+GRB_DBL_PAR_HEURISTICS = _amplpy_ampls_swig.GRB_DBL_PAR_HEURISTICS
+GRB_DBL_PAR_IMPROVESTARTGAP = _amplpy_ampls_swig.GRB_DBL_PAR_IMPROVESTARTGAP
+GRB_DBL_PAR_IMPROVESTARTTIME = _amplpy_ampls_swig.GRB_DBL_PAR_IMPROVESTARTTIME
+GRB_DBL_PAR_IMPROVESTARTNODES = _amplpy_ampls_swig.GRB_DBL_PAR_IMPROVESTARTNODES
+GRB_INT_PAR_INTEGRALITYFOCUS = _amplpy_ampls_swig.GRB_INT_PAR_INTEGRALITYFOCUS
+GRB_INT_PAR_MINRELNODES = _amplpy_ampls_swig.GRB_INT_PAR_MINRELNODES
+GRB_INT_PAR_MIPFOCUS = _amplpy_ampls_swig.GRB_INT_PAR_MIPFOCUS
+GRB_INT_PAR_NLPHEUR = _amplpy_ampls_swig.GRB_INT_PAR_NLPHEUR
+GRB_STR_PAR_NODEFILEDIR = _amplpy_ampls_swig.GRB_STR_PAR_NODEFILEDIR
+GRB_DBL_PAR_NODEFILESTART = _amplpy_ampls_swig.GRB_DBL_PAR_NODEFILESTART
+GRB_INT_PAR_NODEMETHOD = _amplpy_ampls_swig.GRB_INT_PAR_NODEMETHOD
+GRB_DBL_PAR_NORELHEURTIME = _amplpy_ampls_swig.GRB_DBL_PAR_NORELHEURTIME
+GRB_DBL_PAR_NORELHEURWORK = _amplpy_ampls_swig.GRB_DBL_PAR_NORELHEURWORK
+GRB_INT_PAR_OBBT = _amplpy_ampls_swig.GRB_INT_PAR_OBBT
+GRB_INT_PAR_PUMPPASSES = _amplpy_ampls_swig.GRB_INT_PAR_PUMPPASSES
+GRB_INT_PAR_RINS = _amplpy_ampls_swig.GRB_INT_PAR_RINS
+GRB_STR_PAR_SOLFILES = _amplpy_ampls_swig.GRB_STR_PAR_SOLFILES
+GRB_INT_PAR_STARTNODELIMIT = _amplpy_ampls_swig.GRB_INT_PAR_STARTNODELIMIT
+GRB_INT_PAR_SUBMIPNODES = _amplpy_ampls_swig.GRB_INT_PAR_SUBMIPNODES
+GRB_INT_PAR_SYMMETRY = _amplpy_ampls_swig.GRB_INT_PAR_SYMMETRY
+GRB_INT_PAR_VARBRANCH = _amplpy_ampls_swig.GRB_INT_PAR_VARBRANCH
+GRB_INT_PAR_SOLUTIONNUMBER = _amplpy_ampls_swig.GRB_INT_PAR_SOLUTIONNUMBER
+GRB_INT_PAR_ZEROOBJNODES = _amplpy_ampls_swig.GRB_INT_PAR_ZEROOBJNODES
+GRB_INT_PAR_CUTS = _amplpy_ampls_swig.GRB_INT_PAR_CUTS
+GRB_INT_PAR_CLIQUECUTS = _amplpy_ampls_swig.GRB_INT_PAR_CLIQUECUTS
+GRB_INT_PAR_COVERCUTS = _amplpy_ampls_swig.GRB_INT_PAR_COVERCUTS
+GRB_INT_PAR_FLOWCOVERCUTS = _amplpy_ampls_swig.GRB_INT_PAR_FLOWCOVERCUTS
+GRB_INT_PAR_FLOWPATHCUTS = _amplpy_ampls_swig.GRB_INT_PAR_FLOWPATHCUTS
+GRB_INT_PAR_GUBCOVERCUTS = _amplpy_ampls_swig.GRB_INT_PAR_GUBCOVERCUTS
+GRB_INT_PAR_IMPLIEDCUTS = _amplpy_ampls_swig.GRB_INT_PAR_IMPLIEDCUTS
+GRB_INT_PAR_PROJIMPLIEDCUTS = _amplpy_ampls_swig.GRB_INT_PAR_PROJIMPLIEDCUTS
+GRB_INT_PAR_MIPSEPCUTS = _amplpy_ampls_swig.GRB_INT_PAR_MIPSEPCUTS
+GRB_INT_PAR_MIRCUTS = _amplpy_ampls_swig.GRB_INT_PAR_MIRCUTS
+GRB_INT_PAR_STRONGCGCUTS = _amplpy_ampls_swig.GRB_INT_PAR_STRONGCGCUTS
+GRB_INT_PAR_MODKCUTS = _amplpy_ampls_swig.GRB_INT_PAR_MODKCUTS
+GRB_INT_PAR_ZEROHALFCUTS = _amplpy_ampls_swig.GRB_INT_PAR_ZEROHALFCUTS
+GRB_INT_PAR_NETWORKCUTS = _amplpy_ampls_swig.GRB_INT_PAR_NETWORKCUTS
+GRB_INT_PAR_SUBMIPCUTS = _amplpy_ampls_swig.GRB_INT_PAR_SUBMIPCUTS
+GRB_INT_PAR_INFPROOFCUTS = _amplpy_ampls_swig.GRB_INT_PAR_INFPROOFCUTS
+GRB_INT_PAR_RLTCUTS = _amplpy_ampls_swig.GRB_INT_PAR_RLTCUTS
+GRB_INT_PAR_RELAXLIFTCUTS = _amplpy_ampls_swig.GRB_INT_PAR_RELAXLIFTCUTS
+GRB_INT_PAR_BQPCUTS = _amplpy_ampls_swig.GRB_INT_PAR_BQPCUTS
+GRB_INT_PAR_PSDCUTS = _amplpy_ampls_swig.GRB_INT_PAR_PSDCUTS
+GRB_INT_PAR_LIFTPROJECTCUTS = _amplpy_ampls_swig.GRB_INT_PAR_LIFTPROJECTCUTS
+GRB_INT_PAR_CUTAGGPASSES = _amplpy_ampls_swig.GRB_INT_PAR_CUTAGGPASSES
+GRB_INT_PAR_CUTPASSES = _amplpy_ampls_swig.GRB_INT_PAR_CUTPASSES
+GRB_INT_PAR_GOMORYPASSES = _amplpy_ampls_swig.GRB_INT_PAR_GOMORYPASSES
+GRB_STR_PAR_WORKERPOOL = _amplpy_ampls_swig.GRB_STR_PAR_WORKERPOOL
+GRB_STR_PAR_WORKERPASSWORD = _amplpy_ampls_swig.GRB_STR_PAR_WORKERPASSWORD
+GRB_STR_PAR_COMPUTESERVER = _amplpy_ampls_swig.GRB_STR_PAR_COMPUTESERVER
+GRB_STR_PAR_TOKENSERVER = _amplpy_ampls_swig.GRB_STR_PAR_TOKENSERVER
+GRB_STR_PAR_SERVERPASSWORD = _amplpy_ampls_swig.GRB_STR_PAR_SERVERPASSWORD
+GRB_INT_PAR_SERVERTIMEOUT = _amplpy_ampls_swig.GRB_INT_PAR_SERVERTIMEOUT
+GRB_STR_PAR_CSROUTER = _amplpy_ampls_swig.GRB_STR_PAR_CSROUTER
+GRB_STR_PAR_CSGROUP = _amplpy_ampls_swig.GRB_STR_PAR_CSGROUP
+GRB_DBL_PAR_CSQUEUETIMEOUT = _amplpy_ampls_swig.GRB_DBL_PAR_CSQUEUETIMEOUT
+GRB_INT_PAR_CSPRIORITY = _amplpy_ampls_swig.GRB_INT_PAR_CSPRIORITY
+GRB_INT_PAR_CSIDLETIMEOUT = _amplpy_ampls_swig.GRB_INT_PAR_CSIDLETIMEOUT
+GRB_INT_PAR_CSTLSINSECURE = _amplpy_ampls_swig.GRB_INT_PAR_CSTLSINSECURE
+GRB_INT_PAR_TSPORT = _amplpy_ampls_swig.GRB_INT_PAR_TSPORT
+GRB_STR_PAR_CLOUDACCESSID = _amplpy_ampls_swig.GRB_STR_PAR_CLOUDACCESSID
+GRB_STR_PAR_CLOUDSECRETKEY = _amplpy_ampls_swig.GRB_STR_PAR_CLOUDSECRETKEY
+GRB_STR_PAR_CLOUDPOOL = _amplpy_ampls_swig.GRB_STR_PAR_CLOUDPOOL
+GRB_STR_PAR_CLOUDHOST = _amplpy_ampls_swig.GRB_STR_PAR_CLOUDHOST
+GRB_STR_PAR_CSMANAGER = _amplpy_ampls_swig.GRB_STR_PAR_CSMANAGER
+GRB_STR_PAR_CSAUTHTOKEN = _amplpy_ampls_swig.GRB_STR_PAR_CSAUTHTOKEN
+GRB_STR_PAR_CSAPIACCESSID = _amplpy_ampls_swig.GRB_STR_PAR_CSAPIACCESSID
+GRB_STR_PAR_CSAPISECRET = _amplpy_ampls_swig.GRB_STR_PAR_CSAPISECRET
+GRB_INT_PAR_CSBATCHMODE = _amplpy_ampls_swig.GRB_INT_PAR_CSBATCHMODE
+GRB_STR_PAR_USERNAME = _amplpy_ampls_swig.GRB_STR_PAR_USERNAME
+GRB_STR_PAR_CSAPPNAME = _amplpy_ampls_swig.GRB_STR_PAR_CSAPPNAME
+GRB_INT_PAR_CSCLIENTLOG = _amplpy_ampls_swig.GRB_INT_PAR_CSCLIENTLOG
+GRB_STR_PAR_WLSACCESSID = _amplpy_ampls_swig.GRB_STR_PAR_WLSACCESSID
+GRB_STR_PAR_WLSSECRET = _amplpy_ampls_swig.GRB_STR_PAR_WLSSECRET
+GRB_INT_PAR_WLSTOKENDURATION = _amplpy_ampls_swig.GRB_INT_PAR_WLSTOKENDURATION
+GRB_DBL_PAR_WLSTOKENREFRESH = _amplpy_ampls_swig.GRB_DBL_PAR_WLSTOKENREFRESH
+GRB_STR_PAR_WLSTOKEN = _amplpy_ampls_swig.GRB_STR_PAR_WLSTOKEN
+GRB_INT_PAR_LICENSEID = _amplpy_ampls_swig.GRB_INT_PAR_LICENSEID
+GRB_INT_PAR_AGGREGATE = _amplpy_ampls_swig.GRB_INT_PAR_AGGREGATE
+GRB_INT_PAR_AGGFILL = _amplpy_ampls_swig.GRB_INT_PAR_AGGFILL
+GRB_INT_PAR_CONCURRENTMIP = _amplpy_ampls_swig.GRB_INT_PAR_CONCURRENTMIP
+GRB_INT_PAR_CONCURRENTJOBS = _amplpy_ampls_swig.GRB_INT_PAR_CONCURRENTJOBS
+GRB_INT_PAR_DISPLAYINTERVAL = _amplpy_ampls_swig.GRB_INT_PAR_DISPLAYINTERVAL
+GRB_INT_PAR_DISTRIBUTEDMIPJOBS = _amplpy_ampls_swig.GRB_INT_PAR_DISTRIBUTEDMIPJOBS
+GRB_INT_PAR_DUALREDUCTIONS = _amplpy_ampls_swig.GRB_INT_PAR_DUALREDUCTIONS
+GRB_DBL_PAR_FEASRELAXBIGM = _amplpy_ampls_swig.GRB_DBL_PAR_FEASRELAXBIGM
+GRB_INT_PAR_IISMETHOD = _amplpy_ampls_swig.GRB_INT_PAR_IISMETHOD
+GRB_INT_PAR_INFUNBDINFO = _amplpy_ampls_swig.GRB_INT_PAR_INFUNBDINFO
+GRB_INT_PAR_JSONSOLDETAIL = _amplpy_ampls_swig.GRB_INT_PAR_JSONSOLDETAIL
+GRB_INT_PAR_LAZYCONSTRAINTS = _amplpy_ampls_swig.GRB_INT_PAR_LAZYCONSTRAINTS
+GRB_STR_PAR_LOGFILE = _amplpy_ampls_swig.GRB_STR_PAR_LOGFILE
+GRB_INT_PAR_LOGTOCONSOLE = _amplpy_ampls_swig.GRB_INT_PAR_LOGTOCONSOLE
+GRB_INT_PAR_MIQCPMETHOD = _amplpy_ampls_swig.GRB_INT_PAR_MIQCPMETHOD
+GRB_INT_PAR_NONCONVEX = _amplpy_ampls_swig.GRB_INT_PAR_NONCONVEX
+GRB_INT_PAR_NUMERICFOCUS = _amplpy_ampls_swig.GRB_INT_PAR_NUMERICFOCUS
+GRB_INT_PAR_OUTPUTFLAG = _amplpy_ampls_swig.GRB_INT_PAR_OUTPUTFLAG
+GRB_INT_PAR_PRECRUSH = _amplpy_ampls_swig.GRB_INT_PAR_PRECRUSH
+GRB_INT_PAR_PREDEPROW = _amplpy_ampls_swig.GRB_INT_PAR_PREDEPROW
+GRB_INT_PAR_PREDUAL = _amplpy_ampls_swig.GRB_INT_PAR_PREDUAL
+GRB_INT_PAR_PREPASSES = _amplpy_ampls_swig.GRB_INT_PAR_PREPASSES
+GRB_INT_PAR_PREQLINEARIZE = _amplpy_ampls_swig.GRB_INT_PAR_PREQLINEARIZE
+GRB_INT_PAR_PRESOLVE = _amplpy_ampls_swig.GRB_INT_PAR_PRESOLVE
+GRB_DBL_PAR_PRESOS1BIGM = _amplpy_ampls_swig.GRB_DBL_PAR_PRESOS1BIGM
+GRB_DBL_PAR_PRESOS2BIGM = _amplpy_ampls_swig.GRB_DBL_PAR_PRESOS2BIGM
+GRB_INT_PAR_PRESOS1ENCODING = _amplpy_ampls_swig.GRB_INT_PAR_PRESOS1ENCODING
+GRB_INT_PAR_PRESOS2ENCODING = _amplpy_ampls_swig.GRB_INT_PAR_PRESOS2ENCODING
+GRB_INT_PAR_PRESPARSIFY = _amplpy_ampls_swig.GRB_INT_PAR_PRESPARSIFY
+GRB_INT_PAR_PREMIQCPFORM = _amplpy_ampls_swig.GRB_INT_PAR_PREMIQCPFORM
+GRB_INT_PAR_QCPDUAL = _amplpy_ampls_swig.GRB_INT_PAR_QCPDUAL
+GRB_INT_PAR_RECORD = _amplpy_ampls_swig.GRB_INT_PAR_RECORD
+GRB_STR_PAR_RESULTFILE = _amplpy_ampls_swig.GRB_STR_PAR_RESULTFILE
+GRB_INT_PAR_SEED = _amplpy_ampls_swig.GRB_INT_PAR_SEED
+GRB_INT_PAR_SOLUTIONTARGET = _amplpy_ampls_swig.GRB_INT_PAR_SOLUTIONTARGET
+GRB_INT_PAR_THREADS = _amplpy_ampls_swig.GRB_INT_PAR_THREADS
+GRB_DBL_PAR_TUNETIMELIMIT = _amplpy_ampls_swig.GRB_DBL_PAR_TUNETIMELIMIT
+GRB_INT_PAR_TUNERESULTS = _amplpy_ampls_swig.GRB_INT_PAR_TUNERESULTS
+GRB_INT_PAR_TUNECRITERION = _amplpy_ampls_swig.GRB_INT_PAR_TUNECRITERION
+GRB_INT_PAR_TUNETRIALS = _amplpy_ampls_swig.GRB_INT_PAR_TUNETRIALS
+GRB_INT_PAR_TUNEOUTPUT = _amplpy_ampls_swig.GRB_INT_PAR_TUNEOUTPUT
+GRB_INT_PAR_TUNEJOBS = _amplpy_ampls_swig.GRB_INT_PAR_TUNEJOBS
+GRB_DBL_PAR_TUNECLEANUP = _amplpy_ampls_swig.GRB_DBL_PAR_TUNECLEANUP
+GRB_DBL_PAR_TUNETARGETMIPGAP = _amplpy_ampls_swig.GRB_DBL_PAR_TUNETARGETMIPGAP
+GRB_DBL_PAR_TUNETARGETTIME = _amplpy_ampls_swig.GRB_DBL_PAR_TUNETARGETTIME
+GRB_INT_PAR_TUNEMETRIC = _amplpy_ampls_swig.GRB_INT_PAR_TUNEMETRIC
+GRB_INT_PAR_UPDATEMODE = _amplpy_ampls_swig.GRB_INT_PAR_UPDATEMODE
+GRB_INT_PAR_OBJNUMBER = _amplpy_ampls_swig.GRB_INT_PAR_OBJNUMBER
+GRB_INT_PAR_MULTIOBJMETHOD = _amplpy_ampls_swig.GRB_INT_PAR_MULTIOBJMETHOD
+GRB_INT_PAR_MULTIOBJPRE = _amplpy_ampls_swig.GRB_INT_PAR_MULTIOBJPRE
+GRB_INT_PAR_SCENARIONUMBER = _amplpy_ampls_swig.GRB_INT_PAR_SCENARIONUMBER
+GRB_INT_PAR_POOLSOLUTIONS = _amplpy_ampls_swig.GRB_INT_PAR_POOLSOLUTIONS
+GRB_DBL_PAR_POOLGAP = _amplpy_ampls_swig.GRB_DBL_PAR_POOLGAP
+GRB_DBL_PAR_POOLGAPABS = _amplpy_ampls_swig.GRB_DBL_PAR_POOLGAPABS
+GRB_INT_PAR_POOLSEARCHMODE = _amplpy_ampls_swig.GRB_INT_PAR_POOLSEARCHMODE
+GRB_INT_PAR_IGNORENAMES = _amplpy_ampls_swig.GRB_INT_PAR_IGNORENAMES
+GRB_INT_PAR_STARTNUMBER = _amplpy_ampls_swig.GRB_INT_PAR_STARTNUMBER
+GRB_INT_PAR_PARTITIONPLACE = _amplpy_ampls_swig.GRB_INT_PAR_PARTITIONPLACE
+GRB_INT_PAR_FUNCPIECES = _amplpy_ampls_swig.GRB_INT_PAR_FUNCPIECES
+GRB_DBL_PAR_FUNCPIECELENGTH = _amplpy_ampls_swig.GRB_DBL_PAR_FUNCPIECELENGTH
+GRB_DBL_PAR_FUNCPIECEERROR = _amplpy_ampls_swig.GRB_DBL_PAR_FUNCPIECEERROR
+GRB_DBL_PAR_FUNCPIECERATIO = _amplpy_ampls_swig.GRB_DBL_PAR_FUNCPIECERATIO
+GRB_DBL_PAR_FUNCMAXVAL = _amplpy_ampls_swig.GRB_DBL_PAR_FUNCMAXVAL
+GRB_STR_PAR_DUMMY = _amplpy_ampls_swig.GRB_STR_PAR_DUMMY
+GRB_STR_PAR_JOBID = _amplpy_ampls_swig.GRB_STR_PAR_JOBID
+GRB_CUTS_AUTO = _amplpy_ampls_swig.GRB_CUTS_AUTO
+GRB_CUTS_OFF = _amplpy_ampls_swig.GRB_CUTS_OFF
+GRB_CUTS_CONSERVATIVE = _amplpy_ampls_swig.GRB_CUTS_CONSERVATIVE
+GRB_CUTS_AGGRESSIVE = _amplpy_ampls_swig.GRB_CUTS_AGGRESSIVE
+GRB_CUTS_VERYAGGRESSIVE = _amplpy_ampls_swig.GRB_CUTS_VERYAGGRESSIVE
+GRB_PRESOLVE_AUTO = _amplpy_ampls_swig.GRB_PRESOLVE_AUTO
+GRB_PRESOLVE_OFF = _amplpy_ampls_swig.GRB_PRESOLVE_OFF
+GRB_PRESOLVE_CONSERVATIVE = _amplpy_ampls_swig.GRB_PRESOLVE_CONSERVATIVE
+GRB_PRESOLVE_AGGRESSIVE = _amplpy_ampls_swig.GRB_PRESOLVE_AGGRESSIVE
+GRB_METHOD_NONE = _amplpy_ampls_swig.GRB_METHOD_NONE
+GRB_METHOD_AUTO = _amplpy_ampls_swig.GRB_METHOD_AUTO
+GRB_METHOD_PRIMAL = _amplpy_ampls_swig.GRB_METHOD_PRIMAL
+GRB_METHOD_DUAL = _amplpy_ampls_swig.GRB_METHOD_DUAL
+GRB_METHOD_BARRIER = _amplpy_ampls_swig.GRB_METHOD_BARRIER
+GRB_METHOD_CONCURRENT = _amplpy_ampls_swig.GRB_METHOD_CONCURRENT
+GRB_METHOD_DETERMINISTIC_CONCURRENT = _amplpy_ampls_swig.GRB_METHOD_DETERMINISTIC_CONCURRENT
+GRB_METHOD_DETERMINISTIC_CONCURRENT_SIMPLEX = _amplpy_ampls_swig.GRB_METHOD_DETERMINISTIC_CONCURRENT_SIMPLEX
+GRB_BARHOMOGENEOUS_AUTO = _amplpy_ampls_swig.GRB_BARHOMOGENEOUS_AUTO
+GRB_BARHOMOGENEOUS_OFF = _amplpy_ampls_swig.GRB_BARHOMOGENEOUS_OFF
+GRB_BARHOMOGENEOUS_ON = _amplpy_ampls_swig.GRB_BARHOMOGENEOUS_ON
+GRB_MIPFOCUS_BALANCED = _amplpy_ampls_swig.GRB_MIPFOCUS_BALANCED
+GRB_MIPFOCUS_FEASIBILITY = _amplpy_ampls_swig.GRB_MIPFOCUS_FEASIBILITY
+GRB_MIPFOCUS_OPTIMALITY = _amplpy_ampls_swig.GRB_MIPFOCUS_OPTIMALITY
+GRB_MIPFOCUS_BESTBOUND = _amplpy_ampls_swig.GRB_MIPFOCUS_BESTBOUND
+GRB_BARORDER_AUTOMATIC = _amplpy_ampls_swig.GRB_BARORDER_AUTOMATIC
+GRB_BARORDER_AMD = _amplpy_ampls_swig.GRB_BARORDER_AMD
+GRB_BARORDER_NESTEDDISSECTION = _amplpy_ampls_swig.GRB_BARORDER_NESTEDDISSECTION
+GRB_SIMPLEXPRICING_AUTO = _amplpy_ampls_swig.GRB_SIMPLEXPRICING_AUTO
+GRB_SIMPLEXPRICING_PARTIAL = _amplpy_ampls_swig.GRB_SIMPLEXPRICING_PARTIAL
+GRB_SIMPLEXPRICING_STEEPEST_EDGE = _amplpy_ampls_swig.GRB_SIMPLEXPRICING_STEEPEST_EDGE
+GRB_SIMPLEXPRICING_DEVEX = _amplpy_ampls_swig.GRB_SIMPLEXPRICING_DEVEX
+GRB_SIMPLEXPRICING_STEEPEST_QUICK = _amplpy_ampls_swig.GRB_SIMPLEXPRICING_STEEPEST_QUICK
+GRB_VARBRANCH_AUTO = _amplpy_ampls_swig.GRB_VARBRANCH_AUTO
+GRB_VARBRANCH_PSEUDO_REDUCED = _amplpy_ampls_swig.GRB_VARBRANCH_PSEUDO_REDUCED
+GRB_VARBRANCH_PSEUDO_SHADOW = _amplpy_ampls_swig.GRB_VARBRANCH_PSEUDO_SHADOW
+GRB_VARBRANCH_MAX_INFEAS = _amplpy_ampls_swig.GRB_VARBRANCH_MAX_INFEAS
+GRB_VARBRANCH_STRONG = _amplpy_ampls_swig.GRB_VARBRANCH_STRONG
+GRB_PARTITION_EARLY = _amplpy_ampls_swig.GRB_PARTITION_EARLY
+GRB_PARTITION_ROOTSTART = _amplpy_ampls_swig.GRB_PARTITION_ROOTSTART
+GRB_PARTITION_ROOTEND = _amplpy_ampls_swig.GRB_PARTITION_ROOTEND
+GRB_PARTITION_NODES = _amplpy_ampls_swig.GRB_PARTITION_NODES
+GRB_PARTITION_CLEANUP = _amplpy_ampls_swig.GRB_PARTITION_CLEANUP
+GRB_PHASE_MIP_NOREL = _amplpy_ampls_swig.GRB_PHASE_MIP_NOREL
+GRB_PHASE_MIP_SEARCH = _amplpy_ampls_swig.GRB_PHASE_MIP_SEARCH
+GRB_PHASE_MIP_IMPROVE = _amplpy_ampls_swig.GRB_PHASE_MIP_IMPROVE
+
+def GRBcheckmodel(model):
+    return _amplpy_ampls_swig.GRBcheckmodel(model)
+
+def GRBsetsignal(model):
+    return _amplpy_ampls_swig.GRBsetsignal(model)
+
+def GRBterminate(model):
+    return _amplpy_ampls_swig.GRBterminate(model)
+
+def GRBreplay(filename):
+    return _amplpy_ampls_swig.GRBreplay(filename)
+
+def GRBsetobjective(model, sense, constant, lnz, lind, lval, qnz, qrow, qcol, qval):
+    return _amplpy_ampls_swig.GRBsetobjective(model, sense, constant, lnz, lind, lval, qnz, qrow, qcol, qval)
+
+def GRBsetobjectiven(model, index, priority, weight, abstol, reltol, name, constant, lnz, lind, lval):
+    return _amplpy_ampls_swig.GRBsetobjectiven(model, index, priority, weight, abstol, reltol, name, constant, lnz, lind, lval)
+
+def GRBclean2(lenP, ind, val):
+    return _amplpy_ampls_swig.GRBclean2(lenP, ind, val)
+
+def GRBclean3(lenP, ind0, ind1, val):
+    return _amplpy_ampls_swig.GRBclean3(lenP, ind0, ind1, val)
+
+def GRBmsg(env, message):
+    return _amplpy_ampls_swig.GRBmsg(env, message)
+
+def GRBfixtuneparam(env, paramname):
+    return _amplpy_ampls_swig.GRBfixtuneparam(env, paramname)
+
+def GRBgetintparam(env, paramname, valueP):
+    return _amplpy_ampls_swig.GRBgetintparam(env, paramname, valueP)
+
+def GRBgetdblparam(env, paramname, valueP):
+    return _amplpy_ampls_swig.GRBgetdblparam(env, paramname, valueP)
+
+def GRBgetstrparam(env, paramname, valueP):
+    return _amplpy_ampls_swig.GRBgetstrparam(env, paramname, valueP)
+
+def GRBgetlongstrparam(env, paramname, valueP, size, requiredlenP):
+    return _amplpy_ampls_swig.GRBgetlongstrparam(env, paramname, valueP, size, requiredlenP)
+
+def GRBgetintparaminfo(env, paramname, valueP, minP, maxP, defP):
+    return _amplpy_ampls_swig.GRBgetintparaminfo(env, paramname, valueP, minP, maxP, defP)
+
+def GRBgetdblparaminfo(env, paramname, valueP, minP, maxP, defP):
+    return _amplpy_ampls_swig.GRBgetdblparaminfo(env, paramname, valueP, minP, maxP, defP)
+
+def GRBgetstrparaminfo(env, paramname, valueP, defP):
+    return _amplpy_ampls_swig.GRBgetstrparaminfo(env, paramname, valueP, defP)
+
+def GRBgetparamflags(env, parname, valueP):
+    return _amplpy_ampls_swig.GRBgetparamflags(env, parname, valueP)
+
+def GRBsetparam(env, paramname, value):
+    return _amplpy_ampls_swig.GRBsetparam(env, paramname, value)
+
+def GRBsetintparam(env, paramname, value):
+    return _amplpy_ampls_swig.GRBsetintparam(env, paramname, value)
+
+def GRBsetdblparam(env, paramname, value):
+    return _amplpy_ampls_swig.GRBsetdblparam(env, paramname, value)
+
+def GRBsetstrparam(env, paramname, value):
+    return _amplpy_ampls_swig.GRBsetstrparam(env, paramname, value)
+
+def GRBgetparamtype(env, paramname):
+    return _amplpy_ampls_swig.GRBgetparamtype(env, paramname)
+
+def GRBresetparams(env):
+    return _amplpy_ampls_swig.GRBresetparams(env)
+
+def GRBcopyparams(dest, src):
+    return _amplpy_ampls_swig.GRBcopyparams(dest, src)
+
+def GRBwriteparams(env, filename):
+    return _amplpy_ampls_swig.GRBwriteparams(env, filename)
+
+def GRBreadparams(env, filename):
+    return _amplpy_ampls_swig.GRBreadparams(env, filename)
+
+def GRBgetnumparams(env):
+    return _amplpy_ampls_swig.GRBgetnumparams(env)
+
+def GRBgetparamname(env, parnum, paramnameP):
+    return _amplpy_ampls_swig.GRBgetparamname(env, parnum, paramnameP)
+
+def GRBgetnumattributes(model):
+    return _amplpy_ampls_swig.GRBgetnumattributes(model)
+
+def GRBgetattrname(model, i, attrnameP):
+    return _amplpy_ampls_swig.GRBgetattrname(model, i, attrnameP)
+
+def GRBloadenv(envP, logfilename):
+    return _amplpy_ampls_swig.GRBloadenv(envP, logfilename)
+
+def GRBemptyenv(envP):
+    return _amplpy_ampls_swig.GRBemptyenv(envP)
+
+def GRBstartenv(env):
+    return _amplpy_ampls_swig.GRBstartenv(env)
+
+def GRBloadenvadv(envP, logfilename, apitype, major, minor, tech, server, router, password, group, priority, idletimeout, accessid, secretkey, cb, usrdata, logcb, logdata):
+    return _amplpy_ampls_swig.GRBloadenvadv(envP, logfilename, apitype, major, minor, tech, server, router, password, group, priority, idletimeout, accessid, secretkey, cb, usrdata, logcb, logdata)
+
+def GRBgetenv(model):
+    return _amplpy_ampls_swig.GRBgetenv(model)
+
+def GRBgetconcurrentenv(model, num):
+    return _amplpy_ampls_swig.GRBgetconcurrentenv(model, num)
+
+def GRBdiscardconcurrentenvs(model):
+    return _amplpy_ampls_swig.GRBdiscardconcurrentenvs(model)
+
+def GRBgetmultiobjenv(model, num):
+    return _amplpy_ampls_swig.GRBgetmultiobjenv(model, num)
+
+def GRBdiscardmultiobjenvs(model):
+    return _amplpy_ampls_swig.GRBdiscardmultiobjenvs(model)
+
+def GRBgettuneenv(env, num):
+    return _amplpy_ampls_swig.GRBgettuneenv(env, num)
+
+def GRBdiscardtuneenvs(env):
+    return _amplpy_ampls_swig.GRBdiscardtuneenvs(env)
+
+def GRBreleaselicense(env):
+    return _amplpy_ampls_swig.GRBreleaselicense(env)
+
+def GRBfreeenv(env):
+    return _amplpy_ampls_swig.GRBfreeenv(env)
+
+def GRBgeterrormsg(env):
+    return _amplpy_ampls_swig.GRBgeterrormsg(env)
+
+def GRBgetmerrormsg(model):
+    return _amplpy_ampls_swig.GRBgetmerrormsg(model)
+
+def GRBgetcommstats(env, recvtimeP, recvbytesP, recvmsgsP, sendtimeP, sendbytesP, sendmsgsP):
+    return _amplpy_ampls_swig.GRBgetcommstats(env, recvtimeP, recvbytesP, recvmsgsP, sendtimeP, sendbytesP, sendmsgsP)
+
+def GRBversion(majorP, minorP, technicalP):
+    return _amplpy_ampls_swig.GRBversion(majorP, minorP, technicalP)
+
+def GRBplatform():
+    return _amplpy_ampls_swig.GRBplatform()
+
+def GRBplatformext():
+    return _amplpy_ampls_swig.GRBplatformext()
+
+def GRBlisttokens():
+    return _amplpy_ampls_swig.GRBlisttokens()
+
+def GRBgetwlstokenlifespan(env, lifespanP):
+    return _amplpy_ampls_swig.GRBgetwlstokenlifespan(env, lifespanP)
+
+def GRBprinttuneparams():
+    return _amplpy_ampls_swig.GRBprinttuneparams()
+
+def GRBtunemodel(model):
+    return _amplpy_ampls_swig.GRBtunemodel(model)
+
+def GRBtunemodels(env, nummodels, models):
+    return _amplpy_ampls_swig.GRBtunemodels(env, nummodels, models)
+
+def GRBgettuneresult(model, i):
+    return _amplpy_ampls_swig.GRBgettuneresult(model, i)
+
+def GRBgettunelog(model, i, logP):
+    return _amplpy_ampls_swig.GRBgettunelog(model, i, logP)
+
+def GRBsortIDi(len, ind, val):
+    return _amplpy_ampls_swig.GRBsortIDi(len, ind, val)
+
+def GRBabortbatch(batch):
+    return _amplpy_ampls_swig.GRBabortbatch(batch)
+
+def GRBdiscardbatch(batch):
+    return _amplpy_ampls_swig.GRBdiscardbatch(batch)
+
+def GRBretrybatch(batch):
+    return _amplpy_ampls_swig.GRBretrybatch(batch)
+
+def GRBfreebatch(batch):
+    return _amplpy_ampls_swig.GRBfreebatch(batch)
+
+def GRBgetbatch(env, batchID, batchP):
+    return _amplpy_ampls_swig.GRBgetbatch(env, batchID, batchP)
+
+def GRBgetbatchjsonsolution(batch, jsonsolP):
+    return _amplpy_ampls_swig.GRBgetbatchjsonsolution(batch, jsonsolP)
+
+def GRBgetbatchintattr(batch, attrname, valueP):
+    return _amplpy_ampls_swig.GRBgetbatchintattr(batch, attrname, valueP)
+
+def GRBgetbatchstrattr(batch, attrname, valueP):
+    return _amplpy_ampls_swig.GRBgetbatchstrattr(batch, attrname, valueP)
+
+def GRBgetbatchattrname(env, n, attrnameP):
+    return _amplpy_ampls_swig.GRBgetbatchattrname(env, n, attrnameP)
+
+def GRBgetbatchattrflags(batch, attrname, flagsP):
+    return _amplpy_ampls_swig.GRBgetbatchattrflags(batch, attrname, flagsP)
+
+def GRBgetbatchattrinfo(batch, attrname, datatypeP, settableP):
+    return _amplpy_ampls_swig.GRBgetbatchattrinfo(batch, attrname, datatypeP, settableP)
+
+def GRBupdatebatch(batch):
+    return _amplpy_ampls_swig.GRBupdatebatch(batch)
+
+def GRBwritebatchjsonsolution(batch, filename):
+    return _amplpy_ampls_swig.GRBwritebatchjsonsolution(batch, filename)
+
+def GRBgetnumbatchattributes(env):
+    return _amplpy_ampls_swig.GRBgetnumbatchattributes(env)
+
+def GRBgetbatchenv(batch):
+    return _amplpy_ampls_swig.GRBgetbatchenv(batch)
+
+def GRBfree(ptr):
+    return _amplpy_ampls_swig.GRBfree(ptr)
+GRB_BATCH_STATUS_UNKNOWN = _amplpy_ampls_swig.GRB_BATCH_STATUS_UNKNOWN
+GRB_BATCH_CREATED = _amplpy_ampls_swig.GRB_BATCH_CREATED
+GRB_BATCH_SUBMITTED = _amplpy_ampls_swig.GRB_BATCH_SUBMITTED
+GRB_BATCH_ABORTED = _amplpy_ampls_swig.GRB_BATCH_ABORTED
+GRB_BATCH_FAILED = _amplpy_ampls_swig.GRB_BATCH_FAILED
+GRB_BATCH_COMPLETED = _amplpy_ampls_swig.GRB_BATCH_COMPLETED
+
+def GRBsync(model):
+    return _amplpy_ampls_swig.GRBsync(model)
+
+def GRBpingserver(server, password):
+    return _amplpy_ampls_swig.GRBpingserver(server, password)
+
+def GRBprefetchattr(model, attrname):
+    return _amplpy_ampls_swig.GRBprefetchattr(model, attrname)
+
+def callback_wrapper(model, cbdata, where, usrdata):
+    return _amplpy_ampls_swig.callback_wrapper(model, cbdata, where, usrdata)
+class GurobiCallback(BaseCallback):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self):
+        if self.__class__ == GurobiCallback:
+            _self = None
+        else:
+            _self = self
+        _amplpy_ampls_swig.GurobiCallback_swiginit(self, _amplpy_ampls_swig.new_GurobiCallback(_self, ))
+
+    def run(self):
+        return _amplpy_ampls_swig.GurobiCallback_run(self)
+
+    def getWhereString(self):
+        return _amplpy_ampls_swig.GurobiCallback_getWhereString(self)
+
+    def getMessage(self):
+        return _amplpy_ampls_swig.GurobiCallback_getMessage(self)
+
+    def getObj(self):
+        return _amplpy_ampls_swig.GurobiCallback_getObj(self)
+
+    def getCBData(self):
+        return _amplpy_ampls_swig.GurobiCallback_getCBData(self)
+
+    def getGRBModel(self):
+        return _amplpy_ampls_swig.GurobiCallback_getGRBModel(self)
+
+    def terminate(self):
+        return _amplpy_ampls_swig.GurobiCallback_terminate(self)
+
+    def getInt(self, what):
+        return _amplpy_ampls_swig.GurobiCallback_getInt(self, what)
+
+    def getDouble(self, what):
+        return _amplpy_ampls_swig.GurobiCallback_getDouble(self, what)
+
+    def getDoubleArray(self, what):
+        return _amplpy_ampls_swig.GurobiCallback_getDoubleArray(self, what)
+
+    def setSolution(self, x):
+        return _amplpy_ampls_swig.GurobiCallback_setSolution(self, x)
+
+    def getAMPLSWhere(self):
+        return _amplpy_ampls_swig.GurobiCallback_getAMPLSWhere(self)
+
+    def get(self, what):
+        return _amplpy_ampls_swig.GurobiCallback_get(self, what)
+
+    def getValue(self, v):
+        return _amplpy_ampls_swig.GurobiCallback_getValue(self, v)
+
+    def setHeuristicSolution(self, nvars, indices, values):
+        return _amplpy_ampls_swig.GurobiCallback_setHeuristicSolution(self, nvars, indices, values)
+
+    def getValueArray(self, v):
+        return _amplpy_ampls_swig.GurobiCallback_getValueArray(self, v)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_GurobiCallback
+    def __disown__(self):
+        self.this.disown()
+        _amplpy_ampls_swig.disown_GurobiCallback(self)
+        return weakref.proxy(self)
+
+# Register GurobiCallback in _amplpy_ampls_swig:
+_amplpy_ampls_swig.GurobiCallback_swigregister(GurobiCallback)
 
 
+def AMPLSClose_gurobi(slv):
+    return _amplpy_ampls_swig.AMPLSClose_gurobi(slv)
 
+def AMPLSGetModel_gurobi(slv):
+    return _amplpy_ampls_swig.AMPLSGetModel_gurobi(slv)
 
+def AMPLSOpen_gurobi(arg1, arg2):
+    return _amplpy_ampls_swig.AMPLSOpen_gurobi(arg1, arg2)
+class GurobiDrv(SolverDriverGrb):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
 
+    def loadModel(self, modelName):
+        return _amplpy_ampls_swig.GurobiDrv_loadModel(self, modelName)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_GurobiDrv
 
+    def __init__(self):
+        _amplpy_ampls_swig.GurobiDrv_swiginit(self, _amplpy_ampls_swig.new_GurobiDrv())
 
+# Register GurobiDrv in _amplpy_ampls_swig:
+_amplpy_ampls_swig.GurobiDrv_swigregister(GurobiDrv)
 
+class GurobiModel(AMPLMPModel):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
 
+    def enableLazyConstraints(self):
+        return _amplpy_ampls_swig.GurobiModel_enableLazyConstraints(self)
 
+    def __init__(self, *args):
+        _amplpy_ampls_swig.GurobiModel_swiginit(self, _amplpy_ampls_swig.new_GurobiModel(*args))
 
+    def getSolutionVector(self):
+        return _amplpy_ampls_swig.GurobiModel_getSolutionVector(self)
 
+    def driver(self):
+        return _amplpy_ampls_swig.GurobiModel_driver(self)
 
+    def optimize(self):
+        return _amplpy_ampls_swig.GurobiModel_optimize(self)
 
+    def getStatus(self):
+        return _amplpy_ampls_swig.GurobiModel_getStatus(self)
 
+    def getNumVars(self):
+        return _amplpy_ampls_swig.GurobiModel_getNumVars(self)
 
+    def getNumCons(self):
+        return _amplpy_ampls_swig.GurobiModel_getNumCons(self)
 
+    def getObj(self):
+        return _amplpy_ampls_swig.GurobiModel_getObj(self)
 
+    def getSolution(self, first, length, sol):
+        return _amplpy_ampls_swig.GurobiModel_getSolution(self, first, length, sol)
 
+    def error(self, code):
+        return _amplpy_ampls_swig.GurobiModel_error(self, code)
 
+    def getIntAttr(self, name):
+        return _amplpy_ampls_swig.GurobiModel_getIntAttr(self, name)
 
+    def getDoubleAttr(self, name):
+        return _amplpy_ampls_swig.GurobiModel_getDoubleAttr(self, name)
 
+    def getIntAttrArray(self, name, first, length, arr):
+        return _amplpy_ampls_swig.GurobiModel_getIntAttrArray(self, name, first, length, arr)
 
+    def getDoubleAttrArray(self, name, first, length, arr):
+        return _amplpy_ampls_swig.GurobiModel_getDoubleAttrArray(self, name, first, length, arr)
 
+    def getIntParam(self, name):
+        return _amplpy_ampls_swig.GurobiModel_getIntParam(self, name)
 
+    def getDoubleParam(self, name):
+        return _amplpy_ampls_swig.GurobiModel_getDoubleParam(self, name)
+
+    def getStrParam(self, name):
+        return _amplpy_ampls_swig.GurobiModel_getStrParam(self, name)
+
+    def setParam(self, *args):
+        return _amplpy_ampls_swig.GurobiModel_setParam(self, *args)
+
+    def getGRBmodel(self):
+        return _amplpy_ampls_swig.GurobiModel_getGRBmodel(self)
+
+    def getGRBenv(self):
+        return _amplpy_ampls_swig.GurobiModel_getGRBenv(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_GurobiModel
+
+    def setAMPLSParameter(self, *args):
+        return _amplpy_ampls_swig.GurobiModel_setAMPLSParameter(self, *args)
+
+    def getAMPLSIntParameter(self, param):
+        return _amplpy_ampls_swig.GurobiModel_getAMPLSIntParameter(self, param)
+
+    def getAMPLSDoubleParameter(self, params):
+        return _amplpy_ampls_swig.GurobiModel_getAMPLSDoubleParameter(self, params)
+
+    def getAMPLSIntAttribute(self, attrib):
+        return _amplpy_ampls_swig.GurobiModel_getAMPLSIntAttribute(self, attrib)
+
+    def getAMPLSDoubleAttribute(self, attrib):
+        return _amplpy_ampls_swig.GurobiModel_getAMPLSDoubleAttribute(self, attrib)
+
+    def addConstraintImpl(self, name, numnz, vars, coefficients, sense, rhs):
+        return _amplpy_ampls_swig.GurobiModel_addConstraintImpl(self, name, numnz, vars, coefficients, sense, rhs)
+
+    def addVariableImpl(self, name, numnz, cons, coefficients, lb, ub, objcoeff, type):
+        return _amplpy_ampls_swig.GurobiModel_addVariableImpl(self, name, numnz, cons, coefficients, lb, ub, objcoeff, type)
+
+    def getConstraintsValueImpl(self, *args):
+        return _amplpy_ampls_swig.GurobiModel_getConstraintsValueImpl(self, *args)
+
+    def getVarsValueImpl(self, offset, length):
+        return _amplpy_ampls_swig.GurobiModel_getVarsValueImpl(self, offset, length)
+
+# Register GurobiModel in _amplpy_ampls_swig:
+_amplpy_ampls_swig.GurobiModel_swigregister(GurobiModel)
+
+class SolverDriverCPLEX(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _amplpy_ampls_swig.delete_SolverDriverCPLEX
+
+    def setOptions(self, options):
+        return _amplpy_ampls_swig.SolverDriverCPLEX_setOptions(self, options)
+
+# Register SolverDriverCPLEX in _amplpy_ampls_swig:
+_amplpy_ampls_swig.SolverDriverCPLEX_swigregister(SolverDriverCPLEX)
+
+CPXSIZE_BITS = _amplpy_ampls_swig.CPXSIZE_BITS
+CPX_FEATURES_H = _amplpy_ampls_swig.CPX_FEATURES_H
+CPX_CPXAUTOINTTYPES_H_H = _amplpy_ampls_swig.CPX_CPXAUTOINTTYPES_H_H
+CPXBYTE_DEFINED = _amplpy_ampls_swig.CPXBYTE_DEFINED
+CPXINT_DEFINED = _amplpy_ampls_swig.CPXINT_DEFINED
+CPXLONG_DEFINED = _amplpy_ampls_swig.CPXLONG_DEFINED
+CPXSHORT_DEFINED = _amplpy_ampls_swig.CPXSHORT_DEFINED
+CPXULONG_DEFINED = _amplpy_ampls_swig.CPXULONG_DEFINED
+CPX_STR_PARAM_MAX = _amplpy_ampls_swig.CPX_STR_PARAM_MAX
+class cpxiodevice(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    cpxiodev_eof = property(_amplpy_ampls_swig.cpxiodevice_cpxiodev_eof_get, _amplpy_ampls_swig.cpxiodevice_cpxiodev_eof_set)
+    cpxiodev_error = property(_amplpy_ampls_swig.cpxiodevice_cpxiodev_error_get, _amplpy_ampls_swig.cpxiodevice_cpxiodev_error_set)
+    cpxiodev_rewind = property(_amplpy_ampls_swig.cpxiodevice_cpxiodev_rewind_get, _amplpy_ampls_swig.cpxiodevice_cpxiodev_rewind_set)
+    cpxiodev_flush = property(_amplpy_ampls_swig.cpxiodevice_cpxiodev_flush_get, _amplpy_ampls_swig.cpxiodevice_cpxiodev_flush_set)
+    cpxiodev_close = property(_amplpy_ampls_swig.cpxiodevice_cpxiodev_close_get, _amplpy_ampls_swig.cpxiodevice_cpxiodev_close_set)
+    cpxiodev_putc = property(_amplpy_ampls_swig.cpxiodevice_cpxiodev_putc_get, _amplpy_ampls_swig.cpxiodevice_cpxiodev_putc_set)
+    cpxiodev_puts = property(_amplpy_ampls_swig.cpxiodevice_cpxiodev_puts_get, _amplpy_ampls_swig.cpxiodevice_cpxiodev_puts_set)
+    cpxiodev_read = property(_amplpy_ampls_swig.cpxiodevice_cpxiodev_read_get, _amplpy_ampls_swig.cpxiodevice_cpxiodev_read_set)
+    cpxiodev_write = property(_amplpy_ampls_swig.cpxiodevice_cpxiodev_write_get, _amplpy_ampls_swig.cpxiodevice_cpxiodev_write_set)
+
+    def __init__(self):
+        _amplpy_ampls_swig.cpxiodevice_swiginit(self, _amplpy_ampls_swig.new_cpxiodevice())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_cpxiodevice
+
+# Register cpxiodevice in _amplpy_ampls_swig:
+_amplpy_ampls_swig.cpxiodevice_swigregister(cpxiodevice)
+
+CPX_VERSION = _amplpy_ampls_swig.CPX_VERSION
+CPX_VERSION_VERSION = _amplpy_ampls_swig.CPX_VERSION_VERSION
+CPX_VERSION_RELEASE = _amplpy_ampls_swig.CPX_VERSION_RELEASE
+CPX_VERSION_MODIFICATION = _amplpy_ampls_swig.CPX_VERSION_MODIFICATION
+CPX_VERSION_FIX = _amplpy_ampls_swig.CPX_VERSION_FIX
+CPX_INFBOUND = _amplpy_ampls_swig.CPX_INFBOUND
+CPX_MINBOUND = _amplpy_ampls_swig.CPX_MINBOUND
+CPX_PWL_MAXSLOPE = _amplpy_ampls_swig.CPX_PWL_MAXSLOPE
+CPX_PWL_MINSLOPE = _amplpy_ampls_swig.CPX_PWL_MINSLOPE
+CPX_PARAMTYPE_NONE = _amplpy_ampls_swig.CPX_PARAMTYPE_NONE
+CPX_PARAMTYPE_INT = _amplpy_ampls_swig.CPX_PARAMTYPE_INT
+CPX_PARAMTYPE_DOUBLE = _amplpy_ampls_swig.CPX_PARAMTYPE_DOUBLE
+CPX_PARAMTYPE_STRING = _amplpy_ampls_swig.CPX_PARAMTYPE_STRING
+CPX_PARAMTYPE_LONG = _amplpy_ampls_swig.CPX_PARAMTYPE_LONG
+CPX_NO_SOLN = _amplpy_ampls_swig.CPX_NO_SOLN
+CPX_AUTO_SOLN = _amplpy_ampls_swig.CPX_AUTO_SOLN
+CPX_BASIC_SOLN = _amplpy_ampls_swig.CPX_BASIC_SOLN
+CPX_NONBASIC_SOLN = _amplpy_ampls_swig.CPX_NONBASIC_SOLN
+CPX_PRIMAL_SOLN = _amplpy_ampls_swig.CPX_PRIMAL_SOLN
+CPX_PRECOL_LOW = _amplpy_ampls_swig.CPX_PRECOL_LOW
+CPX_PRECOL_UP = _amplpy_ampls_swig.CPX_PRECOL_UP
+CPX_PRECOL_FIX = _amplpy_ampls_swig.CPX_PRECOL_FIX
+CPX_PRECOL_AGG = _amplpy_ampls_swig.CPX_PRECOL_AGG
+CPX_PRECOL_OTHER = _amplpy_ampls_swig.CPX_PRECOL_OTHER
+CPX_PREROW_RED = _amplpy_ampls_swig.CPX_PREROW_RED
+CPX_PREROW_AGG = _amplpy_ampls_swig.CPX_PREROW_AGG
+CPX_PREROW_OTHER = _amplpy_ampls_swig.CPX_PREROW_OTHER
+CPX_AUTO = _amplpy_ampls_swig.CPX_AUTO
+CPX_ON = _amplpy_ampls_swig.CPX_ON
+CPX_OFF = _amplpy_ampls_swig.CPX_OFF
+CPX_MAX = _amplpy_ampls_swig.CPX_MAX
+CPX_MIN = _amplpy_ampls_swig.CPX_MIN
+CPX_DATACHECK_OFF = _amplpy_ampls_swig.CPX_DATACHECK_OFF
+CPX_DATACHECK_WARN = _amplpy_ampls_swig.CPX_DATACHECK_WARN
+CPX_DATACHECK_ASSIST = _amplpy_ampls_swig.CPX_DATACHECK_ASSIST
+CPX_PPRIIND_PARTIAL = _amplpy_ampls_swig.CPX_PPRIIND_PARTIAL
+CPX_PPRIIND_AUTO = _amplpy_ampls_swig.CPX_PPRIIND_AUTO
+CPX_PPRIIND_DEVEX = _amplpy_ampls_swig.CPX_PPRIIND_DEVEX
+CPX_PPRIIND_STEEP = _amplpy_ampls_swig.CPX_PPRIIND_STEEP
+CPX_PPRIIND_STEEPQSTART = _amplpy_ampls_swig.CPX_PPRIIND_STEEPQSTART
+CPX_PPRIIND_FULL = _amplpy_ampls_swig.CPX_PPRIIND_FULL
+CPX_DPRIIND_AUTO = _amplpy_ampls_swig.CPX_DPRIIND_AUTO
+CPX_DPRIIND_FULL = _amplpy_ampls_swig.CPX_DPRIIND_FULL
+CPX_DPRIIND_STEEP = _amplpy_ampls_swig.CPX_DPRIIND_STEEP
+CPX_DPRIIND_FULLSTEEP = _amplpy_ampls_swig.CPX_DPRIIND_FULLSTEEP
+CPX_DPRIIND_STEEPQSTART = _amplpy_ampls_swig.CPX_DPRIIND_STEEPQSTART
+CPX_DPRIIND_DEVEX = _amplpy_ampls_swig.CPX_DPRIIND_DEVEX
+CPX_PARALLEL_DETERMINISTIC = _amplpy_ampls_swig.CPX_PARALLEL_DETERMINISTIC
+CPX_PARALLEL_AUTO = _amplpy_ampls_swig.CPX_PARALLEL_AUTO
+CPX_PARALLEL_OPPORTUNISTIC = _amplpy_ampls_swig.CPX_PARALLEL_OPPORTUNISTIC
+CPX_WRITELEVEL_AUTO = _amplpy_ampls_swig.CPX_WRITELEVEL_AUTO
+CPX_WRITELEVEL_ALLVARS = _amplpy_ampls_swig.CPX_WRITELEVEL_ALLVARS
+CPX_WRITELEVEL_DISCRETEVARS = _amplpy_ampls_swig.CPX_WRITELEVEL_DISCRETEVARS
+CPX_WRITELEVEL_NONZEROVARS = _amplpy_ampls_swig.CPX_WRITELEVEL_NONZEROVARS
+CPX_WRITELEVEL_NONZERODISCRETEVARS = _amplpy_ampls_swig.CPX_WRITELEVEL_NONZERODISCRETEVARS
+CPX_OPTIMALITYTARGET_AUTO = _amplpy_ampls_swig.CPX_OPTIMALITYTARGET_AUTO
+CPX_OPTIMALITYTARGET_OPTIMALCONVEX = _amplpy_ampls_swig.CPX_OPTIMALITYTARGET_OPTIMALCONVEX
+CPX_OPTIMALITYTARGET_FIRSTORDER = _amplpy_ampls_swig.CPX_OPTIMALITYTARGET_FIRSTORDER
+CPX_OPTIMALITYTARGET_OPTIMALGLOBAL = _amplpy_ampls_swig.CPX_OPTIMALITYTARGET_OPTIMALGLOBAL
+CPX_ALG_NONE = _amplpy_ampls_swig.CPX_ALG_NONE
+CPX_ALG_AUTOMATIC = _amplpy_ampls_swig.CPX_ALG_AUTOMATIC
+CPX_ALG_PRIMAL = _amplpy_ampls_swig.CPX_ALG_PRIMAL
+CPX_ALG_DUAL = _amplpy_ampls_swig.CPX_ALG_DUAL
+CPX_ALG_NET = _amplpy_ampls_swig.CPX_ALG_NET
+CPX_ALG_BARRIER = _amplpy_ampls_swig.CPX_ALG_BARRIER
+CPX_ALG_SIFTING = _amplpy_ampls_swig.CPX_ALG_SIFTING
+CPX_ALG_CONCURRENT = _amplpy_ampls_swig.CPX_ALG_CONCURRENT
+CPX_ALG_BAROPT = _amplpy_ampls_swig.CPX_ALG_BAROPT
+CPX_ALG_PIVOTIN = _amplpy_ampls_swig.CPX_ALG_PIVOTIN
+CPX_ALG_PIVOTOUT = _amplpy_ampls_swig.CPX_ALG_PIVOTOUT
+CPX_ALG_PIVOT = _amplpy_ampls_swig.CPX_ALG_PIVOT
+CPX_ALG_FEASOPT = _amplpy_ampls_swig.CPX_ALG_FEASOPT
+CPX_ALG_MIP = _amplpy_ampls_swig.CPX_ALG_MIP
+CPX_ALG_BENDERS = _amplpy_ampls_swig.CPX_ALG_BENDERS
+CPX_ALG_MULTIOBJ = _amplpy_ampls_swig.CPX_ALG_MULTIOBJ
+CPX_ALG_ROBUST = _amplpy_ampls_swig.CPX_ALG_ROBUST
+CPX_AT_LOWER = _amplpy_ampls_swig.CPX_AT_LOWER
+CPX_BASIC = _amplpy_ampls_swig.CPX_BASIC
+CPX_AT_UPPER = _amplpy_ampls_swig.CPX_AT_UPPER
+CPX_FREE_SUPER = _amplpy_ampls_swig.CPX_FREE_SUPER
+CPX_NO_VARIABLE = _amplpy_ampls_swig.CPX_NO_VARIABLE
+CPX_CONTINUOUS = _amplpy_ampls_swig.CPX_CONTINUOUS
+CPX_BINARY = _amplpy_ampls_swig.CPX_BINARY
+CPX_INTEGER = _amplpy_ampls_swig.CPX_INTEGER
+CPX_SEMICONT = _amplpy_ampls_swig.CPX_SEMICONT
+CPX_SEMIINT = _amplpy_ampls_swig.CPX_SEMIINT
+CPX_PREREDUCE_PRIMALANDDUAL = _amplpy_ampls_swig.CPX_PREREDUCE_PRIMALANDDUAL
+CPX_PREREDUCE_DUALONLY = _amplpy_ampls_swig.CPX_PREREDUCE_DUALONLY
+CPX_PREREDUCE_PRIMALONLY = _amplpy_ampls_swig.CPX_PREREDUCE_PRIMALONLY
+CPX_PREREDUCE_NOPRIMALORDUAL = _amplpy_ampls_swig.CPX_PREREDUCE_NOPRIMALORDUAL
+CPX_PREREFORM_ALL = _amplpy_ampls_swig.CPX_PREREFORM_ALL
+CPX_PREREFORM_INTERFERE_CRUSH = _amplpy_ampls_swig.CPX_PREREFORM_INTERFERE_CRUSH
+CPX_PREREFORM_INTERFERE_UNCRUSH = _amplpy_ampls_swig.CPX_PREREFORM_INTERFERE_UNCRUSH
+CPX_PREREFORM_NONE = _amplpy_ampls_swig.CPX_PREREFORM_NONE
+CPX_CONFLICT_EXCLUDED = _amplpy_ampls_swig.CPX_CONFLICT_EXCLUDED
+CPX_CONFLICT_POSSIBLE_MEMBER = _amplpy_ampls_swig.CPX_CONFLICT_POSSIBLE_MEMBER
+CPX_CONFLICT_POSSIBLE_LB = _amplpy_ampls_swig.CPX_CONFLICT_POSSIBLE_LB
+CPX_CONFLICT_POSSIBLE_UB = _amplpy_ampls_swig.CPX_CONFLICT_POSSIBLE_UB
+CPX_CONFLICT_MEMBER = _amplpy_ampls_swig.CPX_CONFLICT_MEMBER
+CPX_CONFLICT_LB = _amplpy_ampls_swig.CPX_CONFLICT_LB
+CPX_CONFLICT_UB = _amplpy_ampls_swig.CPX_CONFLICT_UB
+CPX_CONFLICTALG_AUTO = _amplpy_ampls_swig.CPX_CONFLICTALG_AUTO
+CPX_CONFLICTALG_FAST = _amplpy_ampls_swig.CPX_CONFLICTALG_FAST
+CPX_CONFLICTALG_PROPAGATE = _amplpy_ampls_swig.CPX_CONFLICTALG_PROPAGATE
+CPX_CONFLICTALG_PRESOLVE = _amplpy_ampls_swig.CPX_CONFLICTALG_PRESOLVE
+CPX_CONFLICTALG_IIS = _amplpy_ampls_swig.CPX_CONFLICTALG_IIS
+CPX_CONFLICTALG_LIMITSOLVE = _amplpy_ampls_swig.CPX_CONFLICTALG_LIMITSOLVE
+CPX_CONFLICTALG_SOLVE = _amplpy_ampls_swig.CPX_CONFLICTALG_SOLVE
+CPXPROB_LP = _amplpy_ampls_swig.CPXPROB_LP
+CPXPROB_MILP = _amplpy_ampls_swig.CPXPROB_MILP
+CPXPROB_FIXEDMILP = _amplpy_ampls_swig.CPXPROB_FIXEDMILP
+CPXPROB_NODELP = _amplpy_ampls_swig.CPXPROB_NODELP
+CPXPROB_QP = _amplpy_ampls_swig.CPXPROB_QP
+CPXPROB_MIQP = _amplpy_ampls_swig.CPXPROB_MIQP
+CPXPROB_FIXEDMIQP = _amplpy_ampls_swig.CPXPROB_FIXEDMIQP
+CPXPROB_NODEQP = _amplpy_ampls_swig.CPXPROB_NODEQP
+CPXPROB_QCP = _amplpy_ampls_swig.CPXPROB_QCP
+CPXPROB_MIQCP = _amplpy_ampls_swig.CPXPROB_MIQCP
+CPXPROB_NODEQCP = _amplpy_ampls_swig.CPXPROB_NODEQCP
+CPX_LPREADER_LEGACY = _amplpy_ampls_swig.CPX_LPREADER_LEGACY
+CPX_LPREADER_NEW = _amplpy_ampls_swig.CPX_LPREADER_NEW
+CPX_PARAM_ALL_MIN = _amplpy_ampls_swig.CPX_PARAM_ALL_MIN
+CPX_PARAM_ALL_MAX = _amplpy_ampls_swig.CPX_PARAM_ALL_MAX
+CPX_CALLBACK_PRIMAL = _amplpy_ampls_swig.CPX_CALLBACK_PRIMAL
+CPX_CALLBACK_DUAL = _amplpy_ampls_swig.CPX_CALLBACK_DUAL
+CPX_CALLBACK_NETWORK = _amplpy_ampls_swig.CPX_CALLBACK_NETWORK
+CPX_CALLBACK_PRIMAL_CROSSOVER = _amplpy_ampls_swig.CPX_CALLBACK_PRIMAL_CROSSOVER
+CPX_CALLBACK_DUAL_CROSSOVER = _amplpy_ampls_swig.CPX_CALLBACK_DUAL_CROSSOVER
+CPX_CALLBACK_BARRIER = _amplpy_ampls_swig.CPX_CALLBACK_BARRIER
+CPX_CALLBACK_PRESOLVE = _amplpy_ampls_swig.CPX_CALLBACK_PRESOLVE
+CPX_CALLBACK_QPBARRIER = _amplpy_ampls_swig.CPX_CALLBACK_QPBARRIER
+CPX_CALLBACK_QPSIMPLEX = _amplpy_ampls_swig.CPX_CALLBACK_QPSIMPLEX
+CPX_CALLBACK_TUNING = _amplpy_ampls_swig.CPX_CALLBACK_TUNING
+CPX_CALLBACK_INFO_PRIMAL_OBJ = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PRIMAL_OBJ
+CPX_CALLBACK_INFO_DUAL_OBJ = _amplpy_ampls_swig.CPX_CALLBACK_INFO_DUAL_OBJ
+CPX_CALLBACK_INFO_PRIMAL_INFMEAS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PRIMAL_INFMEAS
+CPX_CALLBACK_INFO_DUAL_INFMEAS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_DUAL_INFMEAS
+CPX_CALLBACK_INFO_PRIMAL_FEAS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PRIMAL_FEAS
+CPX_CALLBACK_INFO_DUAL_FEAS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_DUAL_FEAS
+CPX_CALLBACK_INFO_ITCOUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_ITCOUNT
+CPX_CALLBACK_INFO_CROSSOVER_PPUSH = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CROSSOVER_PPUSH
+CPX_CALLBACK_INFO_CROSSOVER_PEXCH = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CROSSOVER_PEXCH
+CPX_CALLBACK_INFO_CROSSOVER_DPUSH = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CROSSOVER_DPUSH
+CPX_CALLBACK_INFO_CROSSOVER_DEXCH = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CROSSOVER_DEXCH
+CPX_CALLBACK_INFO_CROSSOVER_SBCNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CROSSOVER_SBCNT
+CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE
+CPX_CALLBACK_INFO_PRESOLVE_COLSGONE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PRESOLVE_COLSGONE
+CPX_CALLBACK_INFO_PRESOLVE_AGGSUBST = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PRESOLVE_AGGSUBST
+CPX_CALLBACK_INFO_PRESOLVE_COEFFS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PRESOLVE_COEFFS
+CPX_CALLBACK_INFO_USER_PROBLEM = _amplpy_ampls_swig.CPX_CALLBACK_INFO_USER_PROBLEM
+CPX_CALLBACK_INFO_TUNING_PROGRESS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_TUNING_PROGRESS
+CPX_CALLBACK_INFO_ENDTIME = _amplpy_ampls_swig.CPX_CALLBACK_INFO_ENDTIME
+CPX_CALLBACK_INFO_ITCOUNT_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_ITCOUNT_LONG
+CPX_CALLBACK_INFO_CROSSOVER_PPUSH_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CROSSOVER_PPUSH_LONG
+CPX_CALLBACK_INFO_CROSSOVER_PEXCH_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CROSSOVER_PEXCH_LONG
+CPX_CALLBACK_INFO_CROSSOVER_DPUSH_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CROSSOVER_DPUSH_LONG
+CPX_CALLBACK_INFO_CROSSOVER_DEXCH_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CROSSOVER_DEXCH_LONG
+CPX_CALLBACK_INFO_PRESOLVE_AGGSUBST_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PRESOLVE_AGGSUBST_LONG
+CPX_CALLBACK_INFO_PRESOLVE_COEFFS_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PRESOLVE_COEFFS_LONG
+CPX_CALLBACK_INFO_ENDDETTIME = _amplpy_ampls_swig.CPX_CALLBACK_INFO_ENDDETTIME
+CPX_CALLBACK_INFO_STARTTIME = _amplpy_ampls_swig.CPX_CALLBACK_INFO_STARTTIME
+CPX_CALLBACK_INFO_STARTDETTIME = _amplpy_ampls_swig.CPX_CALLBACK_INFO_STARTDETTIME
+CPX_TUNE_AVERAGE = _amplpy_ampls_swig.CPX_TUNE_AVERAGE
+CPX_TUNE_MINMAX = _amplpy_ampls_swig.CPX_TUNE_MINMAX
+CPX_TUNE_ABORT = _amplpy_ampls_swig.CPX_TUNE_ABORT
+CPX_TUNE_TILIM = _amplpy_ampls_swig.CPX_TUNE_TILIM
+CPX_TUNE_DETTILIM = _amplpy_ampls_swig.CPX_TUNE_DETTILIM
+CPX_FEASOPT_MIN_SUM = _amplpy_ampls_swig.CPX_FEASOPT_MIN_SUM
+CPX_FEASOPT_OPT_SUM = _amplpy_ampls_swig.CPX_FEASOPT_OPT_SUM
+CPX_FEASOPT_MIN_INF = _amplpy_ampls_swig.CPX_FEASOPT_MIN_INF
+CPX_FEASOPT_OPT_INF = _amplpy_ampls_swig.CPX_FEASOPT_OPT_INF
+CPX_FEASOPT_MIN_QUAD = _amplpy_ampls_swig.CPX_FEASOPT_MIN_QUAD
+CPX_FEASOPT_OPT_QUAD = _amplpy_ampls_swig.CPX_FEASOPT_OPT_QUAD
+CPX_BENDERSSTRATEGY_OFF = _amplpy_ampls_swig.CPX_BENDERSSTRATEGY_OFF
+CPX_BENDERSSTRATEGY_AUTO = _amplpy_ampls_swig.CPX_BENDERSSTRATEGY_AUTO
+CPX_BENDERSSTRATEGY_USER = _amplpy_ampls_swig.CPX_BENDERSSTRATEGY_USER
+CPX_BENDERSSTRATEGY_WORKERS = _amplpy_ampls_swig.CPX_BENDERSSTRATEGY_WORKERS
+CPX_BENDERSSTRATEGY_FULL = _amplpy_ampls_swig.CPX_BENDERSSTRATEGY_FULL
+CPX_ANNOTATIONDATA_LONG = _amplpy_ampls_swig.CPX_ANNOTATIONDATA_LONG
+CPX_ANNOTATIONDATA_DOUBLE = _amplpy_ampls_swig.CPX_ANNOTATIONDATA_DOUBLE
+CPX_ANNOTATIONOBJ_OBJ = _amplpy_ampls_swig.CPX_ANNOTATIONOBJ_OBJ
+CPX_ANNOTATIONOBJ_COL = _amplpy_ampls_swig.CPX_ANNOTATIONOBJ_COL
+CPX_ANNOTATIONOBJ_ROW = _amplpy_ampls_swig.CPX_ANNOTATIONOBJ_ROW
+CPX_ANNOTATIONOBJ_SOS = _amplpy_ampls_swig.CPX_ANNOTATIONOBJ_SOS
+CPX_ANNOTATIONOBJ_IND = _amplpy_ampls_swig.CPX_ANNOTATIONOBJ_IND
+CPX_ANNOTATIONOBJ_QC = _amplpy_ampls_swig.CPX_ANNOTATIONOBJ_QC
+CPX_ANNOTATIONOBJ_LAST = _amplpy_ampls_swig.CPX_ANNOTATIONOBJ_LAST
+CPXIIS_COMPLETE = _amplpy_ampls_swig.CPXIIS_COMPLETE
+CPXIIS_PARTIAL = _amplpy_ampls_swig.CPXIIS_PARTIAL
+CPXIIS_AT_LOWER = _amplpy_ampls_swig.CPXIIS_AT_LOWER
+CPXIIS_FIXED = _amplpy_ampls_swig.CPXIIS_FIXED
+CPXIIS_AT_UPPER = _amplpy_ampls_swig.CPXIIS_AT_UPPER
+CPX_BARORDER_AUTO = _amplpy_ampls_swig.CPX_BARORDER_AUTO
+CPX_BARORDER_AMD = _amplpy_ampls_swig.CPX_BARORDER_AMD
+CPX_BARORDER_AMF = _amplpy_ampls_swig.CPX_BARORDER_AMF
+CPX_BARORDER_ND = _amplpy_ampls_swig.CPX_BARORDER_ND
+CPX_MIPEMPHASIS_BALANCED = _amplpy_ampls_swig.CPX_MIPEMPHASIS_BALANCED
+CPX_MIPEMPHASIS_FEASIBILITY = _amplpy_ampls_swig.CPX_MIPEMPHASIS_FEASIBILITY
+CPX_MIPEMPHASIS_OPTIMALITY = _amplpy_ampls_swig.CPX_MIPEMPHASIS_OPTIMALITY
+CPX_MIPEMPHASIS_BESTBOUND = _amplpy_ampls_swig.CPX_MIPEMPHASIS_BESTBOUND
+CPX_MIPEMPHASIS_HIDDENFEAS = _amplpy_ampls_swig.CPX_MIPEMPHASIS_HIDDENFEAS
+CPX_MIPEMPHASIS_HEURISTIC = _amplpy_ampls_swig.CPX_MIPEMPHASIS_HEURISTIC
+CPX_TYPE_VAR = _amplpy_ampls_swig.CPX_TYPE_VAR
+CPX_TYPE_SOS1 = _amplpy_ampls_swig.CPX_TYPE_SOS1
+CPX_TYPE_SOS2 = _amplpy_ampls_swig.CPX_TYPE_SOS2
+CPX_TYPE_USER = _amplpy_ampls_swig.CPX_TYPE_USER
+CPX_TYPE_ANY = _amplpy_ampls_swig.CPX_TYPE_ANY
+CPX_VARSEL_MININFEAS = _amplpy_ampls_swig.CPX_VARSEL_MININFEAS
+CPX_VARSEL_DEFAULT = _amplpy_ampls_swig.CPX_VARSEL_DEFAULT
+CPX_VARSEL_MAXINFEAS = _amplpy_ampls_swig.CPX_VARSEL_MAXINFEAS
+CPX_VARSEL_PSEUDO = _amplpy_ampls_swig.CPX_VARSEL_PSEUDO
+CPX_VARSEL_STRONG = _amplpy_ampls_swig.CPX_VARSEL_STRONG
+CPX_VARSEL_PSEUDOREDUCED = _amplpy_ampls_swig.CPX_VARSEL_PSEUDOREDUCED
+CPX_NODESEL_DFS = _amplpy_ampls_swig.CPX_NODESEL_DFS
+CPX_NODESEL_BESTBOUND = _amplpy_ampls_swig.CPX_NODESEL_BESTBOUND
+CPX_NODESEL_BESTEST = _amplpy_ampls_swig.CPX_NODESEL_BESTEST
+CPX_NODESEL_BESTEST_ALT = _amplpy_ampls_swig.CPX_NODESEL_BESTEST_ALT
+CPX_MIPORDER_COST = _amplpy_ampls_swig.CPX_MIPORDER_COST
+CPX_MIPORDER_BOUNDS = _amplpy_ampls_swig.CPX_MIPORDER_BOUNDS
+CPX_MIPORDER_SCALEDCOST = _amplpy_ampls_swig.CPX_MIPORDER_SCALEDCOST
+CPX_BRANCH_GLOBAL = _amplpy_ampls_swig.CPX_BRANCH_GLOBAL
+CPX_BRANCH_DOWN = _amplpy_ampls_swig.CPX_BRANCH_DOWN
+CPX_BRANCH_UP = _amplpy_ampls_swig.CPX_BRANCH_UP
+CPX_BRDIR_DOWN = _amplpy_ampls_swig.CPX_BRDIR_DOWN
+CPX_BRDIR_AUTO = _amplpy_ampls_swig.CPX_BRDIR_AUTO
+CPX_BRDIR_UP = _amplpy_ampls_swig.CPX_BRDIR_UP
+CPX_CUT_COVER = _amplpy_ampls_swig.CPX_CUT_COVER
+CPX_CUT_GUBCOVER = _amplpy_ampls_swig.CPX_CUT_GUBCOVER
+CPX_CUT_FLOWCOVER = _amplpy_ampls_swig.CPX_CUT_FLOWCOVER
+CPX_CUT_CLIQUE = _amplpy_ampls_swig.CPX_CUT_CLIQUE
+CPX_CUT_FRAC = _amplpy_ampls_swig.CPX_CUT_FRAC
+CPX_CUT_MIR = _amplpy_ampls_swig.CPX_CUT_MIR
+CPX_CUT_FLOWPATH = _amplpy_ampls_swig.CPX_CUT_FLOWPATH
+CPX_CUT_DISJ = _amplpy_ampls_swig.CPX_CUT_DISJ
+CPX_CUT_IMPLBD = _amplpy_ampls_swig.CPX_CUT_IMPLBD
+CPX_CUT_ZEROHALF = _amplpy_ampls_swig.CPX_CUT_ZEROHALF
+CPX_CUT_MCF = _amplpy_ampls_swig.CPX_CUT_MCF
+CPX_CUT_LOCALCOVER = _amplpy_ampls_swig.CPX_CUT_LOCALCOVER
+CPX_CUT_TIGHTEN = _amplpy_ampls_swig.CPX_CUT_TIGHTEN
+CPX_CUT_OBJDISJ = _amplpy_ampls_swig.CPX_CUT_OBJDISJ
+CPX_CUT_LANDP = _amplpy_ampls_swig.CPX_CUT_LANDP
+CPX_CUT_USER = _amplpy_ampls_swig.CPX_CUT_USER
+CPX_CUT_TABLE = _amplpy_ampls_swig.CPX_CUT_TABLE
+CPX_CUT_SOLNPOOL = _amplpy_ampls_swig.CPX_CUT_SOLNPOOL
+CPX_CUT_LOCALIMPLBD = _amplpy_ampls_swig.CPX_CUT_LOCALIMPLBD
+CPX_CUT_BQP = _amplpy_ampls_swig.CPX_CUT_BQP
+CPX_CUT_RLT = _amplpy_ampls_swig.CPX_CUT_RLT
+CPX_CUT_BENDERS = _amplpy_ampls_swig.CPX_CUT_BENDERS
+CPX_CUT_NUM_TYPES = _amplpy_ampls_swig.CPX_CUT_NUM_TYPES
+CPX_MIPSEARCH_AUTO = _amplpy_ampls_swig.CPX_MIPSEARCH_AUTO
+CPX_MIPSEARCH_TRADITIONAL = _amplpy_ampls_swig.CPX_MIPSEARCH_TRADITIONAL
+CPX_MIPSEARCH_DYNAMIC = _amplpy_ampls_swig.CPX_MIPSEARCH_DYNAMIC
+CPX_MIPKAPPA_OFF = _amplpy_ampls_swig.CPX_MIPKAPPA_OFF
+CPX_MIPKAPPA_AUTO = _amplpy_ampls_swig.CPX_MIPKAPPA_AUTO
+CPX_MIPKAPPA_SAMPLE = _amplpy_ampls_swig.CPX_MIPKAPPA_SAMPLE
+CPX_MIPKAPPA_FULL = _amplpy_ampls_swig.CPX_MIPKAPPA_FULL
+CPX_MIPSTART_AUTO = _amplpy_ampls_swig.CPX_MIPSTART_AUTO
+CPX_MIPSTART_CHECKFEAS = _amplpy_ampls_swig.CPX_MIPSTART_CHECKFEAS
+CPX_MIPSTART_SOLVEFIXED = _amplpy_ampls_swig.CPX_MIPSTART_SOLVEFIXED
+CPX_MIPSTART_SOLVEMIP = _amplpy_ampls_swig.CPX_MIPSTART_SOLVEMIP
+CPX_MIPSTART_REPAIR = _amplpy_ampls_swig.CPX_MIPSTART_REPAIR
+CPX_MIPSTART_NOCHECK = _amplpy_ampls_swig.CPX_MIPSTART_NOCHECK
+CPX_CALLBACK_MIP = _amplpy_ampls_swig.CPX_CALLBACK_MIP
+CPX_CALLBACK_MIP_BRANCH = _amplpy_ampls_swig.CPX_CALLBACK_MIP_BRANCH
+CPX_CALLBACK_MIP_NODE = _amplpy_ampls_swig.CPX_CALLBACK_MIP_NODE
+CPX_CALLBACK_MIP_HEURISTIC = _amplpy_ampls_swig.CPX_CALLBACK_MIP_HEURISTIC
+CPX_CALLBACK_MIP_SOLVE = _amplpy_ampls_swig.CPX_CALLBACK_MIP_SOLVE
+CPX_CALLBACK_MIP_CUT_LOOP = _amplpy_ampls_swig.CPX_CALLBACK_MIP_CUT_LOOP
+CPX_CALLBACK_MIP_PROBE = _amplpy_ampls_swig.CPX_CALLBACK_MIP_PROBE
+CPX_CALLBACK_MIP_FRACCUT = _amplpy_ampls_swig.CPX_CALLBACK_MIP_FRACCUT
+CPX_CALLBACK_MIP_DISJCUT = _amplpy_ampls_swig.CPX_CALLBACK_MIP_DISJCUT
+CPX_CALLBACK_MIP_FLOWMIR = _amplpy_ampls_swig.CPX_CALLBACK_MIP_FLOWMIR
+CPX_CALLBACK_MIP_INCUMBENT_NODESOLN = _amplpy_ampls_swig.CPX_CALLBACK_MIP_INCUMBENT_NODESOLN
+CPX_CALLBACK_MIP_DELETENODE = _amplpy_ampls_swig.CPX_CALLBACK_MIP_DELETENODE
+CPX_CALLBACK_MIP_BRANCH_NOSOLN = _amplpy_ampls_swig.CPX_CALLBACK_MIP_BRANCH_NOSOLN
+CPX_CALLBACK_MIP_CUT_LAST = _amplpy_ampls_swig.CPX_CALLBACK_MIP_CUT_LAST
+CPX_CALLBACK_MIP_CUT_FEAS = _amplpy_ampls_swig.CPX_CALLBACK_MIP_CUT_FEAS
+CPX_CALLBACK_MIP_CUT_UNBD = _amplpy_ampls_swig.CPX_CALLBACK_MIP_CUT_UNBD
+CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN = _amplpy_ampls_swig.CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN
+CPX_CALLBACK_MIP_INCUMBENT_USERSOLN = _amplpy_ampls_swig.CPX_CALLBACK_MIP_INCUMBENT_USERSOLN
+CPX_CALLBACK_MIP_INCUMBENT_MIPSTART = _amplpy_ampls_swig.CPX_CALLBACK_MIP_INCUMBENT_MIPSTART
+CPX_CALLBACK_INFO_BEST_INTEGER = _amplpy_ampls_swig.CPX_CALLBACK_INFO_BEST_INTEGER
+CPX_CALLBACK_INFO_BEST_REMAINING = _amplpy_ampls_swig.CPX_CALLBACK_INFO_BEST_REMAINING
+CPX_CALLBACK_INFO_NODE_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_COUNT
+CPX_CALLBACK_INFO_NODES_LEFT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODES_LEFT
+CPX_CALLBACK_INFO_MIP_ITERATIONS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_MIP_ITERATIONS
+CPX_CALLBACK_INFO_CUTOFF = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CUTOFF
+CPX_CALLBACK_INFO_CLIQUE_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_CLIQUE_COUNT
+CPX_CALLBACK_INFO_COVER_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_COVER_COUNT
+CPX_CALLBACK_INFO_MIP_FEAS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_MIP_FEAS
+CPX_CALLBACK_INFO_FLOWCOVER_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_FLOWCOVER_COUNT
+CPX_CALLBACK_INFO_GUBCOVER_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_GUBCOVER_COUNT
+CPX_CALLBACK_INFO_IMPLBD_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_IMPLBD_COUNT
+CPX_CALLBACK_INFO_PROBE_PHASE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PROBE_PHASE
+CPX_CALLBACK_INFO_PROBE_PROGRESS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_PROBE_PROGRESS
+CPX_CALLBACK_INFO_FRACCUT_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_FRACCUT_COUNT
+CPX_CALLBACK_INFO_FRACCUT_PROGRESS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_FRACCUT_PROGRESS
+CPX_CALLBACK_INFO_DISJCUT_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_DISJCUT_COUNT
+CPX_CALLBACK_INFO_DISJCUT_PROGRESS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_DISJCUT_PROGRESS
+CPX_CALLBACK_INFO_FLOWPATH_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_FLOWPATH_COUNT
+CPX_CALLBACK_INFO_MIRCUT_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_MIRCUT_COUNT
+CPX_CALLBACK_INFO_FLOWMIR_PROGRESS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_FLOWMIR_PROGRESS
+CPX_CALLBACK_INFO_ZEROHALFCUT_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_ZEROHALFCUT_COUNT
+CPX_CALLBACK_INFO_MY_THREAD_NUM = _amplpy_ampls_swig.CPX_CALLBACK_INFO_MY_THREAD_NUM
+CPX_CALLBACK_INFO_USER_THREADS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_USER_THREADS
+CPX_CALLBACK_INFO_MIP_REL_GAP = _amplpy_ampls_swig.CPX_CALLBACK_INFO_MIP_REL_GAP
+CPX_CALLBACK_INFO_MCFCUT_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_MCFCUT_COUNT
+CPX_CALLBACK_INFO_KAPPA_STABLE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_KAPPA_STABLE
+CPX_CALLBACK_INFO_KAPPA_SUSPICIOUS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_KAPPA_SUSPICIOUS
+CPX_CALLBACK_INFO_KAPPA_UNSTABLE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_KAPPA_UNSTABLE
+CPX_CALLBACK_INFO_KAPPA_ILLPOSED = _amplpy_ampls_swig.CPX_CALLBACK_INFO_KAPPA_ILLPOSED
+CPX_CALLBACK_INFO_KAPPA_MAX = _amplpy_ampls_swig.CPX_CALLBACK_INFO_KAPPA_MAX
+CPX_CALLBACK_INFO_KAPPA_ATTENTION = _amplpy_ampls_swig.CPX_CALLBACK_INFO_KAPPA_ATTENTION
+CPX_CALLBACK_INFO_LANDPCUT_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_LANDPCUT_COUNT
+CPX_CALLBACK_INFO_USERCUT_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_USERCUT_COUNT
+CPX_CALLBACK_INFO_TABLECUT_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_TABLECUT_COUNT
+CPX_CALLBACK_INFO_SOLNPOOLCUT_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_SOLNPOOLCUT_COUNT
+CPX_CALLBACK_INFO_BENDERS_COUNT = _amplpy_ampls_swig.CPX_CALLBACK_INFO_BENDERS_COUNT
+CPX_CALLBACK_INFO_NODE_COUNT_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_COUNT_LONG
+CPX_CALLBACK_INFO_NODES_LEFT_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODES_LEFT_LONG
+CPX_CALLBACK_INFO_MIP_ITERATIONS_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_MIP_ITERATIONS_LONG
+CPX_CALLBACK_INFO_LAZY_SOURCE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_LAZY_SOURCE
+CPX_CALLBACK_INFO_NODE_SIINF = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_SIINF
+CPX_CALLBACK_INFO_NODE_NIINF = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_NIINF
+CPX_CALLBACK_INFO_NODE_ESTIMATE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_ESTIMATE
+CPX_CALLBACK_INFO_NODE_DEPTH = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_DEPTH
+CPX_CALLBACK_INFO_NODE_OBJVAL = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_OBJVAL
+CPX_CALLBACK_INFO_NODE_TYPE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_TYPE
+CPX_CALLBACK_INFO_NODE_VAR = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_VAR
+CPX_CALLBACK_INFO_NODE_SOS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_SOS
+CPX_CALLBACK_INFO_NODE_SEQNUM = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_SEQNUM
+CPX_CALLBACK_INFO_NODE_USERHANDLE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_USERHANDLE
+CPX_CALLBACK_INFO_NODE_NODENUM = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_NODENUM
+CPX_CALLBACK_INFO_NODE_SEQNUM_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_SEQNUM_LONG
+CPX_CALLBACK_INFO_NODE_NODENUM_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_NODENUM_LONG
+CPX_CALLBACK_INFO_NODE_DEPTH_LONG = _amplpy_ampls_swig.CPX_CALLBACK_INFO_NODE_DEPTH_LONG
+CPX_CALLBACK_INFO_SOS_TYPE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_SOS_TYPE
+CPX_CALLBACK_INFO_SOS_SIZE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_SOS_SIZE
+CPX_CALLBACK_INFO_SOS_IS_FEASIBLE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_SOS_IS_FEASIBLE
+CPX_CALLBACK_INFO_SOS_MEMBER_INDEX = _amplpy_ampls_swig.CPX_CALLBACK_INFO_SOS_MEMBER_INDEX
+CPX_CALLBACK_INFO_SOS_MEMBER_REFVAL = _amplpy_ampls_swig.CPX_CALLBACK_INFO_SOS_MEMBER_REFVAL
+CPX_CALLBACK_INFO_SOS_NUM = _amplpy_ampls_swig.CPX_CALLBACK_INFO_SOS_NUM
+CPX_CALLBACK_INFO_IC_NUM = _amplpy_ampls_swig.CPX_CALLBACK_INFO_IC_NUM
+CPX_CALLBACK_INFO_IC_IMPLYING_VAR = _amplpy_ampls_swig.CPX_CALLBACK_INFO_IC_IMPLYING_VAR
+CPX_CALLBACK_INFO_IC_IMPLIED_VAR = _amplpy_ampls_swig.CPX_CALLBACK_INFO_IC_IMPLIED_VAR
+CPX_CALLBACK_INFO_IC_SENSE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_IC_SENSE
+CPX_CALLBACK_INFO_IC_COMPL = _amplpy_ampls_swig.CPX_CALLBACK_INFO_IC_COMPL
+CPX_CALLBACK_INFO_IC_RHS = _amplpy_ampls_swig.CPX_CALLBACK_INFO_IC_RHS
+CPX_CALLBACK_INFO_IC_IS_FEASIBLE = _amplpy_ampls_swig.CPX_CALLBACK_INFO_IC_IS_FEASIBLE
+CPX_INCUMBENT_ID = _amplpy_ampls_swig.CPX_INCUMBENT_ID
+CPX_CALLBACK_DEFAULT = _amplpy_ampls_swig.CPX_CALLBACK_DEFAULT
+CPX_CALLBACK_FAIL = _amplpy_ampls_swig.CPX_CALLBACK_FAIL
+CPX_CALLBACK_SET = _amplpy_ampls_swig.CPX_CALLBACK_SET
+CPX_CALLBACK_ABORT_CUT_LOOP = _amplpy_ampls_swig.CPX_CALLBACK_ABORT_CUT_LOOP
+CPX_USECUT_FORCE = _amplpy_ampls_swig.CPX_USECUT_FORCE
+CPX_USECUT_PURGE = _amplpy_ampls_swig.CPX_USECUT_PURGE
+CPX_USECUT_FILTER = _amplpy_ampls_swig.CPX_USECUT_FILTER
+CPX_INTEGER_FEASIBLE = _amplpy_ampls_swig.CPX_INTEGER_FEASIBLE
+CPX_INTEGER_INFEASIBLE = _amplpy_ampls_swig.CPX_INTEGER_INFEASIBLE
+CPX_IMPLIED_INTEGER_FEASIBLE = _amplpy_ampls_swig.CPX_IMPLIED_INTEGER_FEASIBLE
+CPX_CON_LOWER_BOUND = _amplpy_ampls_swig.CPX_CON_LOWER_BOUND
+CPX_CON_UPPER_BOUND = _amplpy_ampls_swig.CPX_CON_UPPER_BOUND
+CPX_CON_LINEAR = _amplpy_ampls_swig.CPX_CON_LINEAR
+CPX_CON_QUADRATIC = _amplpy_ampls_swig.CPX_CON_QUADRATIC
+CPX_CON_SOS = _amplpy_ampls_swig.CPX_CON_SOS
+CPX_CON_INDICATOR = _amplpy_ampls_swig.CPX_CON_INDICATOR
+CPX_CON_PWL = _amplpy_ampls_swig.CPX_CON_PWL
+CPX_CON_ABS = _amplpy_ampls_swig.CPX_CON_ABS
+CPX_CON_MINEXPR = _amplpy_ampls_swig.CPX_CON_MINEXPR
+CPX_CON_MAXEXPR = _amplpy_ampls_swig.CPX_CON_MAXEXPR
+CPX_CON_LAST_CONTYPE = _amplpy_ampls_swig.CPX_CON_LAST_CONTYPE
+CPX_INDICATOR_IF = _amplpy_ampls_swig.CPX_INDICATOR_IF
+CPX_INDICATOR_ONLYIF = _amplpy_ampls_swig.CPX_INDICATOR_ONLYIF
+CPX_INDICATOR_IFANDONLYIF = _amplpy_ampls_swig.CPX_INDICATOR_IFANDONLYIF
+CPXNET_NO_DISPLAY_OBJECTIVE = _amplpy_ampls_swig.CPXNET_NO_DISPLAY_OBJECTIVE
+CPXNET_TRUE_OBJECTIVE = _amplpy_ampls_swig.CPXNET_TRUE_OBJECTIVE
+CPXNET_PENALIZED_OBJECTIVE = _amplpy_ampls_swig.CPXNET_PENALIZED_OBJECTIVE
+CPXNET_PRICE_AUTO = _amplpy_ampls_swig.CPXNET_PRICE_AUTO
+CPXNET_PRICE_PARTIAL = _amplpy_ampls_swig.CPXNET_PRICE_PARTIAL
+CPXNET_PRICE_MULT_PART = _amplpy_ampls_swig.CPXNET_PRICE_MULT_PART
+CPXNET_PRICE_SORT_MULT_PART = _amplpy_ampls_swig.CPXNET_PRICE_SORT_MULT_PART
+CPX_NETFIND_PURE = _amplpy_ampls_swig.CPX_NETFIND_PURE
+CPX_NETFIND_REFLECT = _amplpy_ampls_swig.CPX_NETFIND_REFLECT
+CPX_NETFIND_SCALE = _amplpy_ampls_swig.CPX_NETFIND_SCALE
+CPX_QCPDUALS_NO = _amplpy_ampls_swig.CPX_QCPDUALS_NO
+CPX_QCPDUALS_IFPOSSIBLE = _amplpy_ampls_swig.CPX_QCPDUALS_IFPOSSIBLE
+CPX_QCPDUALS_FORCE = _amplpy_ampls_swig.CPX_QCPDUALS_FORCE
+CPX_CPXAUTOCONSTANTS_H_H = _amplpy_ampls_swig.CPX_CPXAUTOCONSTANTS_H_H
+CPX_BENDERS_ANNOTATION = _amplpy_ampls_swig.CPX_BENDERS_ANNOTATION
+CPX_BENDERS_MASTERVALUE = _amplpy_ampls_swig.CPX_BENDERS_MASTERVALUE
+CPX_BIGINT = _amplpy_ampls_swig.CPX_BIGINT
+CPX_BIGLONG = _amplpy_ampls_swig.CPX_BIGLONG
+CPX_CALLBACKCONTEXT_BRANCHING = _amplpy_ampls_swig.CPX_CALLBACKCONTEXT_BRANCHING
+CPX_CALLBACKCONTEXT_CANDIDATE = _amplpy_ampls_swig.CPX_CALLBACKCONTEXT_CANDIDATE
+CPX_CALLBACKCONTEXT_GLOBAL_PROGRESS = _amplpy_ampls_swig.CPX_CALLBACKCONTEXT_GLOBAL_PROGRESS
+CPX_CALLBACKCONTEXT_LOCAL_PROGRESS = _amplpy_ampls_swig.CPX_CALLBACKCONTEXT_LOCAL_PROGRESS
+CPX_CALLBACKCONTEXT_RELAXATION = _amplpy_ampls_swig.CPX_CALLBACKCONTEXT_RELAXATION
+CPX_CALLBACKCONTEXT_THREAD_DOWN = _amplpy_ampls_swig.CPX_CALLBACKCONTEXT_THREAD_DOWN
+CPX_CALLBACKCONTEXT_THREAD_UP = _amplpy_ampls_swig.CPX_CALLBACKCONTEXT_THREAD_UP
+CPX_DUAL_OBJ = _amplpy_ampls_swig.CPX_DUAL_OBJ
+CPX_EXACT_KAPPA = _amplpy_ampls_swig.CPX_EXACT_KAPPA
+CPX_KAPPA = _amplpy_ampls_swig.CPX_KAPPA
+CPX_KAPPA_ATTENTION = _amplpy_ampls_swig.CPX_KAPPA_ATTENTION
+CPX_KAPPA_ILLPOSED = _amplpy_ampls_swig.CPX_KAPPA_ILLPOSED
+CPX_KAPPA_MAX = _amplpy_ampls_swig.CPX_KAPPA_MAX
+CPX_KAPPA_STABLE = _amplpy_ampls_swig.CPX_KAPPA_STABLE
+CPX_KAPPA_SUSPICIOUS = _amplpy_ampls_swig.CPX_KAPPA_SUSPICIOUS
+CPX_KAPPA_UNSTABLE = _amplpy_ampls_swig.CPX_KAPPA_UNSTABLE
+CPX_LAZYCONSTRAINTCALLBACK_HEUR = _amplpy_ampls_swig.CPX_LAZYCONSTRAINTCALLBACK_HEUR
+CPX_LAZYCONSTRAINTCALLBACK_MIPSTART = _amplpy_ampls_swig.CPX_LAZYCONSTRAINTCALLBACK_MIPSTART
+CPX_LAZYCONSTRAINTCALLBACK_NODE = _amplpy_ampls_swig.CPX_LAZYCONSTRAINTCALLBACK_NODE
+CPX_LAZYCONSTRAINTCALLBACK_USER = _amplpy_ampls_swig.CPX_LAZYCONSTRAINTCALLBACK_USER
+CPX_MAX_COMP_SLACK = _amplpy_ampls_swig.CPX_MAX_COMP_SLACK
+CPX_MAX_DUAL_INFEAS = _amplpy_ampls_swig.CPX_MAX_DUAL_INFEAS
+CPX_MAX_DUAL_RESIDUAL = _amplpy_ampls_swig.CPX_MAX_DUAL_RESIDUAL
+CPX_MAX_INDSLACK_INFEAS = _amplpy_ampls_swig.CPX_MAX_INDSLACK_INFEAS
+CPX_MAX_INT_INFEAS = _amplpy_ampls_swig.CPX_MAX_INT_INFEAS
+CPX_MAX_PI = _amplpy_ampls_swig.CPX_MAX_PI
+CPX_MAX_PRIMAL_INFEAS = _amplpy_ampls_swig.CPX_MAX_PRIMAL_INFEAS
+CPX_MAX_PRIMAL_RESIDUAL = _amplpy_ampls_swig.CPX_MAX_PRIMAL_RESIDUAL
+CPX_MAX_PWLSLACK_INFEAS = _amplpy_ampls_swig.CPX_MAX_PWLSLACK_INFEAS
+CPX_MAX_QCPRIMAL_RESIDUAL = _amplpy_ampls_swig.CPX_MAX_QCPRIMAL_RESIDUAL
+CPX_MAX_QCSLACK = _amplpy_ampls_swig.CPX_MAX_QCSLACK
+CPX_MAX_QCSLACK_INFEAS = _amplpy_ampls_swig.CPX_MAX_QCSLACK_INFEAS
+CPX_MAX_RED_COST = _amplpy_ampls_swig.CPX_MAX_RED_COST
+CPX_MAX_SCALED_DUAL_INFEAS = _amplpy_ampls_swig.CPX_MAX_SCALED_DUAL_INFEAS
+CPX_MAX_SCALED_DUAL_RESIDUAL = _amplpy_ampls_swig.CPX_MAX_SCALED_DUAL_RESIDUAL
+CPX_MAX_SCALED_PI = _amplpy_ampls_swig.CPX_MAX_SCALED_PI
+CPX_MAX_SCALED_PRIMAL_INFEAS = _amplpy_ampls_swig.CPX_MAX_SCALED_PRIMAL_INFEAS
+CPX_MAX_SCALED_PRIMAL_RESIDUAL = _amplpy_ampls_swig.CPX_MAX_SCALED_PRIMAL_RESIDUAL
+CPX_MAX_SCALED_RED_COST = _amplpy_ampls_swig.CPX_MAX_SCALED_RED_COST
+CPX_MAX_SCALED_SLACK = _amplpy_ampls_swig.CPX_MAX_SCALED_SLACK
+CPX_MAX_SCALED_X = _amplpy_ampls_swig.CPX_MAX_SCALED_X
+CPX_MAX_SLACK = _amplpy_ampls_swig.CPX_MAX_SLACK
+CPX_MAX_X = _amplpy_ampls_swig.CPX_MAX_X
+CPX_MULTIOBJ_BARITCNT = _amplpy_ampls_swig.CPX_MULTIOBJ_BARITCNT
+CPX_MULTIOBJ_BESTOBJVAL = _amplpy_ampls_swig.CPX_MULTIOBJ_BESTOBJVAL
+CPX_MULTIOBJ_BLEND = _amplpy_ampls_swig.CPX_MULTIOBJ_BLEND
+CPX_MULTIOBJ_DEGCNT = _amplpy_ampls_swig.CPX_MULTIOBJ_DEGCNT
+CPX_MULTIOBJ_DETTIME = _amplpy_ampls_swig.CPX_MULTIOBJ_DETTIME
+CPX_MULTIOBJ_DEXCH = _amplpy_ampls_swig.CPX_MULTIOBJ_DEXCH
+CPX_MULTIOBJ_DFEAS = _amplpy_ampls_swig.CPX_MULTIOBJ_DFEAS
+CPX_MULTIOBJ_DPUSH = _amplpy_ampls_swig.CPX_MULTIOBJ_DPUSH
+CPX_MULTIOBJ_ERROR = _amplpy_ampls_swig.CPX_MULTIOBJ_ERROR
+CPX_MULTIOBJ_ITCNT = _amplpy_ampls_swig.CPX_MULTIOBJ_ITCNT
+CPX_MULTIOBJ_METHOD = _amplpy_ampls_swig.CPX_MULTIOBJ_METHOD
+CPX_MULTIOBJ_NODECNT = _amplpy_ampls_swig.CPX_MULTIOBJ_NODECNT
+CPX_MULTIOBJ_NODELEFTCNT = _amplpy_ampls_swig.CPX_MULTIOBJ_NODELEFTCNT
+CPX_MULTIOBJ_OBJVAL = _amplpy_ampls_swig.CPX_MULTIOBJ_OBJVAL
+CPX_MULTIOBJ_PEXCH = _amplpy_ampls_swig.CPX_MULTIOBJ_PEXCH
+CPX_MULTIOBJ_PFEAS = _amplpy_ampls_swig.CPX_MULTIOBJ_PFEAS
+CPX_MULTIOBJ_PHASE1CNT = _amplpy_ampls_swig.CPX_MULTIOBJ_PHASE1CNT
+CPX_MULTIOBJ_PPUSH = _amplpy_ampls_swig.CPX_MULTIOBJ_PPUSH
+CPX_MULTIOBJ_PRIORITY = _amplpy_ampls_swig.CPX_MULTIOBJ_PRIORITY
+CPX_MULTIOBJ_SIFTITCNT = _amplpy_ampls_swig.CPX_MULTIOBJ_SIFTITCNT
+CPX_MULTIOBJ_SIFTPHASE1CNT = _amplpy_ampls_swig.CPX_MULTIOBJ_SIFTPHASE1CNT
+CPX_MULTIOBJ_STATUS = _amplpy_ampls_swig.CPX_MULTIOBJ_STATUS
+CPX_MULTIOBJ_TIME = _amplpy_ampls_swig.CPX_MULTIOBJ_TIME
+CPX_NO_PRIORITY_CHANGE = _amplpy_ampls_swig.CPX_NO_PRIORITY_CHANGE
+CPX_OBJ_GAP = _amplpy_ampls_swig.CPX_OBJ_GAP
+CPX_PRIMAL_OBJ = _amplpy_ampls_swig.CPX_PRIMAL_OBJ
+CPX_RELAXATION_FLAG_NOSOLVE = _amplpy_ampls_swig.CPX_RELAXATION_FLAG_NOSOLVE
+CPX_SOLNPOOL_DIV = _amplpy_ampls_swig.CPX_SOLNPOOL_DIV
+CPX_SOLNPOOL_FIFO = _amplpy_ampls_swig.CPX_SOLNPOOL_FIFO
+CPX_SOLNPOOL_FILTER_DIVERSITY = _amplpy_ampls_swig.CPX_SOLNPOOL_FILTER_DIVERSITY
+CPX_SOLNPOOL_FILTER_RANGE = _amplpy_ampls_swig.CPX_SOLNPOOL_FILTER_RANGE
+CPX_SOLNPOOL_OBJ = _amplpy_ampls_swig.CPX_SOLNPOOL_OBJ
+CPX_STAT_ABORT_DETTIME_LIM = _amplpy_ampls_swig.CPX_STAT_ABORT_DETTIME_LIM
+CPX_STAT_ABORT_DUAL_OBJ_LIM = _amplpy_ampls_swig.CPX_STAT_ABORT_DUAL_OBJ_LIM
+CPX_STAT_ABORT_IT_LIM = _amplpy_ampls_swig.CPX_STAT_ABORT_IT_LIM
+CPX_STAT_ABORT_OBJ_LIM = _amplpy_ampls_swig.CPX_STAT_ABORT_OBJ_LIM
+CPX_STAT_ABORT_PRIM_OBJ_LIM = _amplpy_ampls_swig.CPX_STAT_ABORT_PRIM_OBJ_LIM
+CPX_STAT_ABORT_TIME_LIM = _amplpy_ampls_swig.CPX_STAT_ABORT_TIME_LIM
+CPX_STAT_ABORT_USER = _amplpy_ampls_swig.CPX_STAT_ABORT_USER
+CPX_STAT_BENDERS_NUM_BEST = _amplpy_ampls_swig.CPX_STAT_BENDERS_NUM_BEST
+CPX_STAT_CONFLICT_ABORT_CONTRADICTION = _amplpy_ampls_swig.CPX_STAT_CONFLICT_ABORT_CONTRADICTION
+CPX_STAT_CONFLICT_ABORT_DETTIME_LIM = _amplpy_ampls_swig.CPX_STAT_CONFLICT_ABORT_DETTIME_LIM
+CPX_STAT_CONFLICT_ABORT_IT_LIM = _amplpy_ampls_swig.CPX_STAT_CONFLICT_ABORT_IT_LIM
+CPX_STAT_CONFLICT_ABORT_MEM_LIM = _amplpy_ampls_swig.CPX_STAT_CONFLICT_ABORT_MEM_LIM
+CPX_STAT_CONFLICT_ABORT_NODE_LIM = _amplpy_ampls_swig.CPX_STAT_CONFLICT_ABORT_NODE_LIM
+CPX_STAT_CONFLICT_ABORT_OBJ_LIM = _amplpy_ampls_swig.CPX_STAT_CONFLICT_ABORT_OBJ_LIM
+CPX_STAT_CONFLICT_ABORT_TIME_LIM = _amplpy_ampls_swig.CPX_STAT_CONFLICT_ABORT_TIME_LIM
+CPX_STAT_CONFLICT_ABORT_USER = _amplpy_ampls_swig.CPX_STAT_CONFLICT_ABORT_USER
+CPX_STAT_CONFLICT_FEASIBLE = _amplpy_ampls_swig.CPX_STAT_CONFLICT_FEASIBLE
+CPX_STAT_CONFLICT_MINIMAL = _amplpy_ampls_swig.CPX_STAT_CONFLICT_MINIMAL
+CPX_STAT_FEASIBLE = _amplpy_ampls_swig.CPX_STAT_FEASIBLE
+CPX_STAT_FEASIBLE_RELAXED_INF = _amplpy_ampls_swig.CPX_STAT_FEASIBLE_RELAXED_INF
+CPX_STAT_FEASIBLE_RELAXED_QUAD = _amplpy_ampls_swig.CPX_STAT_FEASIBLE_RELAXED_QUAD
+CPX_STAT_FEASIBLE_RELAXED_SUM = _amplpy_ampls_swig.CPX_STAT_FEASIBLE_RELAXED_SUM
+CPX_STAT_FIRSTORDER = _amplpy_ampls_swig.CPX_STAT_FIRSTORDER
+CPX_STAT_INFEASIBLE = _amplpy_ampls_swig.CPX_STAT_INFEASIBLE
+CPX_STAT_INForUNBD = _amplpy_ampls_swig.CPX_STAT_INForUNBD
+CPX_STAT_MULTIOBJ_INFEASIBLE = _amplpy_ampls_swig.CPX_STAT_MULTIOBJ_INFEASIBLE
+CPX_STAT_MULTIOBJ_INForUNBD = _amplpy_ampls_swig.CPX_STAT_MULTIOBJ_INForUNBD
+CPX_STAT_MULTIOBJ_NON_OPTIMAL = _amplpy_ampls_swig.CPX_STAT_MULTIOBJ_NON_OPTIMAL
+CPX_STAT_MULTIOBJ_OPTIMAL = _amplpy_ampls_swig.CPX_STAT_MULTIOBJ_OPTIMAL
+CPX_STAT_MULTIOBJ_STOPPED = _amplpy_ampls_swig.CPX_STAT_MULTIOBJ_STOPPED
+CPX_STAT_MULTIOBJ_UNBOUNDED = _amplpy_ampls_swig.CPX_STAT_MULTIOBJ_UNBOUNDED
+CPX_STAT_NUM_BEST = _amplpy_ampls_swig.CPX_STAT_NUM_BEST
+CPX_STAT_OPTIMAL = _amplpy_ampls_swig.CPX_STAT_OPTIMAL
+CPX_STAT_OPTIMAL_FACE_UNBOUNDED = _amplpy_ampls_swig.CPX_STAT_OPTIMAL_FACE_UNBOUNDED
+CPX_STAT_OPTIMAL_INFEAS = _amplpy_ampls_swig.CPX_STAT_OPTIMAL_INFEAS
+CPX_STAT_OPTIMAL_RELAXED_INF = _amplpy_ampls_swig.CPX_STAT_OPTIMAL_RELAXED_INF
+CPX_STAT_OPTIMAL_RELAXED_QUAD = _amplpy_ampls_swig.CPX_STAT_OPTIMAL_RELAXED_QUAD
+CPX_STAT_OPTIMAL_RELAXED_SUM = _amplpy_ampls_swig.CPX_STAT_OPTIMAL_RELAXED_SUM
+CPX_STAT_UNBOUNDED = _amplpy_ampls_swig.CPX_STAT_UNBOUNDED
+CPX_STAT_UNKNOWN = _amplpy_ampls_swig.CPX_STAT_UNKNOWN
+CPX_SUM_COMP_SLACK = _amplpy_ampls_swig.CPX_SUM_COMP_SLACK
+CPX_SUM_DUAL_INFEAS = _amplpy_ampls_swig.CPX_SUM_DUAL_INFEAS
+CPX_SUM_DUAL_RESIDUAL = _amplpy_ampls_swig.CPX_SUM_DUAL_RESIDUAL
+CPX_SUM_INDSLACK_INFEAS = _amplpy_ampls_swig.CPX_SUM_INDSLACK_INFEAS
+CPX_SUM_INT_INFEAS = _amplpy_ampls_swig.CPX_SUM_INT_INFEAS
+CPX_SUM_PI = _amplpy_ampls_swig.CPX_SUM_PI
+CPX_SUM_PRIMAL_INFEAS = _amplpy_ampls_swig.CPX_SUM_PRIMAL_INFEAS
+CPX_SUM_PRIMAL_RESIDUAL = _amplpy_ampls_swig.CPX_SUM_PRIMAL_RESIDUAL
+CPX_SUM_PWLSLACK_INFEAS = _amplpy_ampls_swig.CPX_SUM_PWLSLACK_INFEAS
+CPX_SUM_QCPRIMAL_RESIDUAL = _amplpy_ampls_swig.CPX_SUM_QCPRIMAL_RESIDUAL
+CPX_SUM_QCSLACK = _amplpy_ampls_swig.CPX_SUM_QCSLACK
+CPX_SUM_QCSLACK_INFEAS = _amplpy_ampls_swig.CPX_SUM_QCSLACK_INFEAS
+CPX_SUM_RED_COST = _amplpy_ampls_swig.CPX_SUM_RED_COST
+CPX_SUM_SCALED_DUAL_INFEAS = _amplpy_ampls_swig.CPX_SUM_SCALED_DUAL_INFEAS
+CPX_SUM_SCALED_DUAL_RESIDUAL = _amplpy_ampls_swig.CPX_SUM_SCALED_DUAL_RESIDUAL
+CPX_SUM_SCALED_PI = _amplpy_ampls_swig.CPX_SUM_SCALED_PI
+CPX_SUM_SCALED_PRIMAL_INFEAS = _amplpy_ampls_swig.CPX_SUM_SCALED_PRIMAL_INFEAS
+CPX_SUM_SCALED_PRIMAL_RESIDUAL = _amplpy_ampls_swig.CPX_SUM_SCALED_PRIMAL_RESIDUAL
+CPX_SUM_SCALED_RED_COST = _amplpy_ampls_swig.CPX_SUM_SCALED_RED_COST
+CPX_SUM_SCALED_SLACK = _amplpy_ampls_swig.CPX_SUM_SCALED_SLACK
+CPX_SUM_SCALED_X = _amplpy_ampls_swig.CPX_SUM_SCALED_X
+CPX_SUM_SLACK = _amplpy_ampls_swig.CPX_SUM_SLACK
+CPX_SUM_X = _amplpy_ampls_swig.CPX_SUM_X
+CPXERR_ABORT_STRONGBRANCH = _amplpy_ampls_swig.CPXERR_ABORT_STRONGBRANCH
+CPXERR_ADJ_SIGN_QUAD = _amplpy_ampls_swig.CPXERR_ADJ_SIGN_QUAD
+CPXERR_ADJ_SIGN_SENSE = _amplpy_ampls_swig.CPXERR_ADJ_SIGN_SENSE
+CPXERR_ADJ_SIGNS = _amplpy_ampls_swig.CPXERR_ADJ_SIGNS
+CPXERR_ARC_INDEX_RANGE = _amplpy_ampls_swig.CPXERR_ARC_INDEX_RANGE
+CPXERR_ARRAY_BAD_SOS_TYPE = _amplpy_ampls_swig.CPXERR_ARRAY_BAD_SOS_TYPE
+CPXERR_ARRAY_NOT_ASCENDING = _amplpy_ampls_swig.CPXERR_ARRAY_NOT_ASCENDING
+CPXERR_ARRAY_TOO_LONG = _amplpy_ampls_swig.CPXERR_ARRAY_TOO_LONG
+CPXERR_BAD_ARGUMENT = _amplpy_ampls_swig.CPXERR_BAD_ARGUMENT
+CPXERR_BAD_BOUND_SENSE = _amplpy_ampls_swig.CPXERR_BAD_BOUND_SENSE
+CPXERR_BAD_BOUND_TYPE = _amplpy_ampls_swig.CPXERR_BAD_BOUND_TYPE
+CPXERR_BAD_CHAR = _amplpy_ampls_swig.CPXERR_BAD_CHAR
+CPXERR_BAD_CTYPE = _amplpy_ampls_swig.CPXERR_BAD_CTYPE
+CPXERR_BAD_DECOMPOSITION = _amplpy_ampls_swig.CPXERR_BAD_DECOMPOSITION
+CPXERR_BAD_DIRECTION = _amplpy_ampls_swig.CPXERR_BAD_DIRECTION
+CPXERR_BAD_EXPO_RANGE = _amplpy_ampls_swig.CPXERR_BAD_EXPO_RANGE
+CPXERR_BAD_EXPONENT = _amplpy_ampls_swig.CPXERR_BAD_EXPONENT
+CPXERR_BAD_FILETYPE = _amplpy_ampls_swig.CPXERR_BAD_FILETYPE
+CPXERR_BAD_ID = _amplpy_ampls_swig.CPXERR_BAD_ID
+CPXERR_BAD_INDCONSTR = _amplpy_ampls_swig.CPXERR_BAD_INDCONSTR
+CPXERR_BAD_INDICATOR = _amplpy_ampls_swig.CPXERR_BAD_INDICATOR
+CPXERR_BAD_INDTYPE = _amplpy_ampls_swig.CPXERR_BAD_INDTYPE
+CPXERR_BAD_LAZY_UCUT = _amplpy_ampls_swig.CPXERR_BAD_LAZY_UCUT
+CPXERR_BAD_LUB = _amplpy_ampls_swig.CPXERR_BAD_LUB
+CPXERR_BAD_METHOD = _amplpy_ampls_swig.CPXERR_BAD_METHOD
+CPXERR_BAD_MULTIOBJ_ATTR = _amplpy_ampls_swig.CPXERR_BAD_MULTIOBJ_ATTR
+CPXERR_BAD_NAME = _amplpy_ampls_swig.CPXERR_BAD_NAME
+CPXERR_BAD_NUMBER = _amplpy_ampls_swig.CPXERR_BAD_NUMBER
+CPXERR_BAD_OBJ_SENSE = _amplpy_ampls_swig.CPXERR_BAD_OBJ_SENSE
+CPXERR_BAD_PARAM_NAME = _amplpy_ampls_swig.CPXERR_BAD_PARAM_NAME
+CPXERR_BAD_PARAM_NUM = _amplpy_ampls_swig.CPXERR_BAD_PARAM_NUM
+CPXERR_BAD_PIVOT = _amplpy_ampls_swig.CPXERR_BAD_PIVOT
+CPXERR_BAD_PRIORITY = _amplpy_ampls_swig.CPXERR_BAD_PRIORITY
+CPXERR_BAD_PROB_TYPE = _amplpy_ampls_swig.CPXERR_BAD_PROB_TYPE
+CPXERR_BAD_ROW_ID = _amplpy_ampls_swig.CPXERR_BAD_ROW_ID
+CPXERR_BAD_SECTION_BOUNDS = _amplpy_ampls_swig.CPXERR_BAD_SECTION_BOUNDS
+CPXERR_BAD_SECTION_ENDATA = _amplpy_ampls_swig.CPXERR_BAD_SECTION_ENDATA
+CPXERR_BAD_SECTION_QMATRIX = _amplpy_ampls_swig.CPXERR_BAD_SECTION_QMATRIX
+CPXERR_BAD_SENSE = _amplpy_ampls_swig.CPXERR_BAD_SENSE
+CPXERR_BAD_SOS_TYPE = _amplpy_ampls_swig.CPXERR_BAD_SOS_TYPE
+CPXERR_BAD_STATUS = _amplpy_ampls_swig.CPXERR_BAD_STATUS
+CPXERR_BAS_FILE_SHORT = _amplpy_ampls_swig.CPXERR_BAS_FILE_SHORT
+CPXERR_BAS_FILE_SIZE = _amplpy_ampls_swig.CPXERR_BAS_FILE_SIZE
+CPXERR_BENDERS_MASTER_SOLVE = _amplpy_ampls_swig.CPXERR_BENDERS_MASTER_SOLVE
+CPXERR_CALLBACK = _amplpy_ampls_swig.CPXERR_CALLBACK
+CPXERR_CALLBACK_INCONSISTENT = _amplpy_ampls_swig.CPXERR_CALLBACK_INCONSISTENT
+CPXERR_CAND_NOT_POINT = _amplpy_ampls_swig.CPXERR_CAND_NOT_POINT
+CPXERR_CAND_NOT_RAY = _amplpy_ampls_swig.CPXERR_CAND_NOT_RAY
+CPXERR_CNTRL_IN_NAME = _amplpy_ampls_swig.CPXERR_CNTRL_IN_NAME
+CPXERR_COL_INDEX_RANGE = _amplpy_ampls_swig.CPXERR_COL_INDEX_RANGE
+CPXERR_COL_REPEAT_PRINT = _amplpy_ampls_swig.CPXERR_COL_REPEAT_PRINT
+CPXERR_COL_REPEATS = _amplpy_ampls_swig.CPXERR_COL_REPEATS
+CPXERR_COL_ROW_REPEATS = _amplpy_ampls_swig.CPXERR_COL_ROW_REPEATS
+CPXERR_COL_UNKNOWN = _amplpy_ampls_swig.CPXERR_COL_UNKNOWN
+CPXERR_CONFLICT_UNSTABLE = _amplpy_ampls_swig.CPXERR_CONFLICT_UNSTABLE
+CPXERR_COUNT_OVERLAP = _amplpy_ampls_swig.CPXERR_COUNT_OVERLAP
+CPXERR_COUNT_RANGE = _amplpy_ampls_swig.CPXERR_COUNT_RANGE
+CPXERR_CPUBINDING_FAILURE = _amplpy_ampls_swig.CPXERR_CPUBINDING_FAILURE
+CPXERR_DBL_MAX = _amplpy_ampls_swig.CPXERR_DBL_MAX
+CPXERR_DECOMPRESSION = _amplpy_ampls_swig.CPXERR_DECOMPRESSION
+CPXERR_DETTILIM_STRONGBRANCH = _amplpy_ampls_swig.CPXERR_DETTILIM_STRONGBRANCH
+CPXERR_DUP_ENTRY = _amplpy_ampls_swig.CPXERR_DUP_ENTRY
+CPXERR_DYNFUNC = _amplpy_ampls_swig.CPXERR_DYNFUNC
+CPXERR_DYNLOAD = _amplpy_ampls_swig.CPXERR_DYNLOAD
+CPXERR_ENCODING_CONVERSION = _amplpy_ampls_swig.CPXERR_ENCODING_CONVERSION
+CPXERR_EXTRA_BV_BOUND = _amplpy_ampls_swig.CPXERR_EXTRA_BV_BOUND
+CPXERR_EXTRA_FR_BOUND = _amplpy_ampls_swig.CPXERR_EXTRA_FR_BOUND
+CPXERR_EXTRA_FX_BOUND = _amplpy_ampls_swig.CPXERR_EXTRA_FX_BOUND
+CPXERR_EXTRA_INTEND = _amplpy_ampls_swig.CPXERR_EXTRA_INTEND
+CPXERR_EXTRA_INTORG = _amplpy_ampls_swig.CPXERR_EXTRA_INTORG
+CPXERR_EXTRA_SOSEND = _amplpy_ampls_swig.CPXERR_EXTRA_SOSEND
+CPXERR_EXTRA_SOSORG = _amplpy_ampls_swig.CPXERR_EXTRA_SOSORG
+CPXERR_FAIL_OPEN_READ = _amplpy_ampls_swig.CPXERR_FAIL_OPEN_READ
+CPXERR_FAIL_OPEN_WRITE = _amplpy_ampls_swig.CPXERR_FAIL_OPEN_WRITE
+CPXERR_FILE_ENTRIES = _amplpy_ampls_swig.CPXERR_FILE_ENTRIES
+CPXERR_FILE_FORMAT = _amplpy_ampls_swig.CPXERR_FILE_FORMAT
+CPXERR_FILE_IO = _amplpy_ampls_swig.CPXERR_FILE_IO
+CPXERR_FILTER_VARIABLE_TYPE = _amplpy_ampls_swig.CPXERR_FILTER_VARIABLE_TYPE
+CPXERR_ILL_DEFINED_PWL = _amplpy_ampls_swig.CPXERR_ILL_DEFINED_PWL
+CPXERR_IN_INFOCALLBACK = _amplpy_ampls_swig.CPXERR_IN_INFOCALLBACK
+CPXERR_INDEX_NOT_BASIC = _amplpy_ampls_swig.CPXERR_INDEX_NOT_BASIC
+CPXERR_INDEX_RANGE = _amplpy_ampls_swig.CPXERR_INDEX_RANGE
+CPXERR_INDEX_RANGE_HIGH = _amplpy_ampls_swig.CPXERR_INDEX_RANGE_HIGH
+CPXERR_INDEX_RANGE_LOW = _amplpy_ampls_swig.CPXERR_INDEX_RANGE_LOW
+CPXERR_INT_TOO_BIG = _amplpy_ampls_swig.CPXERR_INT_TOO_BIG
+CPXERR_INT_TOO_BIG_INPUT = _amplpy_ampls_swig.CPXERR_INT_TOO_BIG_INPUT
+CPXERR_INVALID_NUMBER = _amplpy_ampls_swig.CPXERR_INVALID_NUMBER
+CPXERR_LIMITS_TOO_BIG = _amplpy_ampls_swig.CPXERR_LIMITS_TOO_BIG
+CPXERR_LINE_TOO_LONG = _amplpy_ampls_swig.CPXERR_LINE_TOO_LONG
+CPXERR_LO_BOUND_REPEATS = _amplpy_ampls_swig.CPXERR_LO_BOUND_REPEATS
+CPXERR_LOCK_CREATE = _amplpy_ampls_swig.CPXERR_LOCK_CREATE
+CPXERR_LP_NOT_IN_ENVIRONMENT = _amplpy_ampls_swig.CPXERR_LP_NOT_IN_ENVIRONMENT
+CPXERR_LP_PARSE = _amplpy_ampls_swig.CPXERR_LP_PARSE
+CPXERR_MASTER_SOLVE = _amplpy_ampls_swig.CPXERR_MASTER_SOLVE
+CPXERR_MIPSEARCH_WITH_CALLBACKS = _amplpy_ampls_swig.CPXERR_MIPSEARCH_WITH_CALLBACKS
+CPXERR_MISS_SOS_TYPE = _amplpy_ampls_swig.CPXERR_MISS_SOS_TYPE
+CPXERR_MSG_NO_CHANNEL = _amplpy_ampls_swig.CPXERR_MSG_NO_CHANNEL
+CPXERR_MSG_NO_FILEPTR = _amplpy_ampls_swig.CPXERR_MSG_NO_FILEPTR
+CPXERR_MSG_NO_FUNCTION = _amplpy_ampls_swig.CPXERR_MSG_NO_FUNCTION
+CPXERR_MULTIOBJ_SUBPROB_SOLVE = _amplpy_ampls_swig.CPXERR_MULTIOBJ_SUBPROB_SOLVE
+CPXERR_NAME_CREATION = _amplpy_ampls_swig.CPXERR_NAME_CREATION
+CPXERR_NAME_NOT_FOUND = _amplpy_ampls_swig.CPXERR_NAME_NOT_FOUND
+CPXERR_NAME_TOO_LONG = _amplpy_ampls_swig.CPXERR_NAME_TOO_LONG
+CPXERR_NAN = _amplpy_ampls_swig.CPXERR_NAN
+CPXERR_NEED_OPT_SOLN = _amplpy_ampls_swig.CPXERR_NEED_OPT_SOLN
+CPXERR_NEGATIVE_SURPLUS = _amplpy_ampls_swig.CPXERR_NEGATIVE_SURPLUS
+CPXERR_NET_DATA = _amplpy_ampls_swig.CPXERR_NET_DATA
+CPXERR_NET_FILE_SHORT = _amplpy_ampls_swig.CPXERR_NET_FILE_SHORT
+CPXERR_NO_BARRIER_SOLN = _amplpy_ampls_swig.CPXERR_NO_BARRIER_SOLN
+CPXERR_NO_BASIC_SOLN = _amplpy_ampls_swig.CPXERR_NO_BASIC_SOLN
+CPXERR_NO_BASIS = _amplpy_ampls_swig.CPXERR_NO_BASIS
+CPXERR_NO_BOUND_SENSE = _amplpy_ampls_swig.CPXERR_NO_BOUND_SENSE
+CPXERR_NO_BOUND_TYPE = _amplpy_ampls_swig.CPXERR_NO_BOUND_TYPE
+CPXERR_NO_COLUMNS_SECTION = _amplpy_ampls_swig.CPXERR_NO_COLUMNS_SECTION
+CPXERR_NO_CONFLICT = _amplpy_ampls_swig.CPXERR_NO_CONFLICT
+CPXERR_NO_DECOMPOSITION = _amplpy_ampls_swig.CPXERR_NO_DECOMPOSITION
+CPXERR_NO_DUAL_SOLN = _amplpy_ampls_swig.CPXERR_NO_DUAL_SOLN
+CPXERR_NO_ENDATA = _amplpy_ampls_swig.CPXERR_NO_ENDATA
+CPXERR_NO_ENVIRONMENT = _amplpy_ampls_swig.CPXERR_NO_ENVIRONMENT
+CPXERR_NO_FILENAME = _amplpy_ampls_swig.CPXERR_NO_FILENAME
+CPXERR_NO_ID = _amplpy_ampls_swig.CPXERR_NO_ID
+CPXERR_NO_ID_FIRST = _amplpy_ampls_swig.CPXERR_NO_ID_FIRST
+CPXERR_NO_INT_X = _amplpy_ampls_swig.CPXERR_NO_INT_X
+CPXERR_NO_KAPPASTATS = _amplpy_ampls_swig.CPXERR_NO_KAPPASTATS
+CPXERR_NO_LU_FACTOR = _amplpy_ampls_swig.CPXERR_NO_LU_FACTOR
+CPXERR_NO_MEMORY = _amplpy_ampls_swig.CPXERR_NO_MEMORY
+CPXERR_NO_MIPSTART = _amplpy_ampls_swig.CPXERR_NO_MIPSTART
+CPXERR_NO_NAME_SECTION = _amplpy_ampls_swig.CPXERR_NO_NAME_SECTION
+CPXERR_NO_NAMES = _amplpy_ampls_swig.CPXERR_NO_NAMES
+CPXERR_NO_NORMS = _amplpy_ampls_swig.CPXERR_NO_NORMS
+CPXERR_NO_NUMBER = _amplpy_ampls_swig.CPXERR_NO_NUMBER
+CPXERR_NO_NUMBER_BOUND = _amplpy_ampls_swig.CPXERR_NO_NUMBER_BOUND
+CPXERR_NO_NUMBER_FIRST = _amplpy_ampls_swig.CPXERR_NO_NUMBER_FIRST
+CPXERR_NO_OBJ_NAME = _amplpy_ampls_swig.CPXERR_NO_OBJ_NAME
+CPXERR_NO_OBJ_SENSE = _amplpy_ampls_swig.CPXERR_NO_OBJ_SENSE
+CPXERR_NO_OBJECTIVE = _amplpy_ampls_swig.CPXERR_NO_OBJECTIVE
+CPXERR_NO_OP_OR_SENSE = _amplpy_ampls_swig.CPXERR_NO_OP_OR_SENSE
+CPXERR_NO_OPERATOR = _amplpy_ampls_swig.CPXERR_NO_OPERATOR
+CPXERR_NO_ORDER = _amplpy_ampls_swig.CPXERR_NO_ORDER
+CPXERR_NO_PROBLEM = _amplpy_ampls_swig.CPXERR_NO_PROBLEM
+CPXERR_NO_QP_OPERATOR = _amplpy_ampls_swig.CPXERR_NO_QP_OPERATOR
+CPXERR_NO_QUAD_EXP = _amplpy_ampls_swig.CPXERR_NO_QUAD_EXP
+CPXERR_NO_RHS_COEFF = _amplpy_ampls_swig.CPXERR_NO_RHS_COEFF
+CPXERR_NO_RHS_IN_OBJ = _amplpy_ampls_swig.CPXERR_NO_RHS_IN_OBJ
+CPXERR_NO_ROW_NAME = _amplpy_ampls_swig.CPXERR_NO_ROW_NAME
+CPXERR_NO_ROW_SENSE = _amplpy_ampls_swig.CPXERR_NO_ROW_SENSE
+CPXERR_NO_ROWS_SECTION = _amplpy_ampls_swig.CPXERR_NO_ROWS_SECTION
+CPXERR_NO_SENSIT = _amplpy_ampls_swig.CPXERR_NO_SENSIT
+CPXERR_NO_SOLN = _amplpy_ampls_swig.CPXERR_NO_SOLN
+CPXERR_NO_SOLNPOOL = _amplpy_ampls_swig.CPXERR_NO_SOLNPOOL
+CPXERR_NO_SOS = _amplpy_ampls_swig.CPXERR_NO_SOS
+CPXERR_NO_TREE = _amplpy_ampls_swig.CPXERR_NO_TREE
+CPXERR_NO_VECTOR_SOLN = _amplpy_ampls_swig.CPXERR_NO_VECTOR_SOLN
+CPXERR_NODE_INDEX_RANGE = _amplpy_ampls_swig.CPXERR_NODE_INDEX_RANGE
+CPXERR_NODE_ON_DISK = _amplpy_ampls_swig.CPXERR_NODE_ON_DISK
+CPXERR_NOT_DUAL_UNBOUNDED = _amplpy_ampls_swig.CPXERR_NOT_DUAL_UNBOUNDED
+CPXERR_NOT_FIXED = _amplpy_ampls_swig.CPXERR_NOT_FIXED
+CPXERR_NOT_FOR_BENDERS = _amplpy_ampls_swig.CPXERR_NOT_FOR_BENDERS
+CPXERR_NOT_FOR_DISTMIP = _amplpy_ampls_swig.CPXERR_NOT_FOR_DISTMIP
+CPXERR_NOT_FOR_MIP = _amplpy_ampls_swig.CPXERR_NOT_FOR_MIP
+CPXERR_NOT_FOR_MULTIOBJ = _amplpy_ampls_swig.CPXERR_NOT_FOR_MULTIOBJ
+CPXERR_NOT_FOR_QCP = _amplpy_ampls_swig.CPXERR_NOT_FOR_QCP
+CPXERR_NOT_FOR_QP = _amplpy_ampls_swig.CPXERR_NOT_FOR_QP
+CPXERR_NOT_MILPCLASS = _amplpy_ampls_swig.CPXERR_NOT_MILPCLASS
+CPXERR_NOT_MIN_COST_FLOW = _amplpy_ampls_swig.CPXERR_NOT_MIN_COST_FLOW
+CPXERR_NOT_MIP = _amplpy_ampls_swig.CPXERR_NOT_MIP
+CPXERR_NOT_MIQPCLASS = _amplpy_ampls_swig.CPXERR_NOT_MIQPCLASS
+CPXERR_NOT_ONE_PROBLEM = _amplpy_ampls_swig.CPXERR_NOT_ONE_PROBLEM
+CPXERR_NOT_QP = _amplpy_ampls_swig.CPXERR_NOT_QP
+CPXERR_NOT_SAV_FILE = _amplpy_ampls_swig.CPXERR_NOT_SAV_FILE
+CPXERR_NOT_UNBOUNDED = _amplpy_ampls_swig.CPXERR_NOT_UNBOUNDED
+CPXERR_NULL_POINTER = _amplpy_ampls_swig.CPXERR_NULL_POINTER
+CPXERR_ORDER_BAD_DIRECTION = _amplpy_ampls_swig.CPXERR_ORDER_BAD_DIRECTION
+CPXERR_OVERFLOW = _amplpy_ampls_swig.CPXERR_OVERFLOW
+CPXERR_PARAM_INCOMPATIBLE = _amplpy_ampls_swig.CPXERR_PARAM_INCOMPATIBLE
+CPXERR_PARAM_TOO_BIG = _amplpy_ampls_swig.CPXERR_PARAM_TOO_BIG
+CPXERR_PARAM_TOO_SMALL = _amplpy_ampls_swig.CPXERR_PARAM_TOO_SMALL
+CPXERR_PRESLV_ABORT = _amplpy_ampls_swig.CPXERR_PRESLV_ABORT
+CPXERR_PRESLV_BASIS_MEM = _amplpy_ampls_swig.CPXERR_PRESLV_BASIS_MEM
+CPXERR_PRESLV_COPYORDER = _amplpy_ampls_swig.CPXERR_PRESLV_COPYORDER
+CPXERR_PRESLV_COPYSOS = _amplpy_ampls_swig.CPXERR_PRESLV_COPYSOS
+CPXERR_PRESLV_CRUSHFORM = _amplpy_ampls_swig.CPXERR_PRESLV_CRUSHFORM
+CPXERR_PRESLV_DETTIME_LIM = _amplpy_ampls_swig.CPXERR_PRESLV_DETTIME_LIM
+CPXERR_PRESLV_DUAL = _amplpy_ampls_swig.CPXERR_PRESLV_DUAL
+CPXERR_PRESLV_FAIL_BASIS = _amplpy_ampls_swig.CPXERR_PRESLV_FAIL_BASIS
+CPXERR_PRESLV_INF = _amplpy_ampls_swig.CPXERR_PRESLV_INF
+CPXERR_PRESLV_INForUNBD = _amplpy_ampls_swig.CPXERR_PRESLV_INForUNBD
+CPXERR_PRESLV_NO_BASIS = _amplpy_ampls_swig.CPXERR_PRESLV_NO_BASIS
+CPXERR_PRESLV_NO_PROB = _amplpy_ampls_swig.CPXERR_PRESLV_NO_PROB
+CPXERR_PRESLV_SOLN_MIP = _amplpy_ampls_swig.CPXERR_PRESLV_SOLN_MIP
+CPXERR_PRESLV_SOLN_QP = _amplpy_ampls_swig.CPXERR_PRESLV_SOLN_QP
+CPXERR_PRESLV_START_LP = _amplpy_ampls_swig.CPXERR_PRESLV_START_LP
+CPXERR_PRESLV_TIME_LIM = _amplpy_ampls_swig.CPXERR_PRESLV_TIME_LIM
+CPXERR_PRESLV_UNBD = _amplpy_ampls_swig.CPXERR_PRESLV_UNBD
+CPXERR_PRESLV_UNCRUSHFORM = _amplpy_ampls_swig.CPXERR_PRESLV_UNCRUSHFORM
+CPXERR_PRIIND = _amplpy_ampls_swig.CPXERR_PRIIND
+CPXERR_PRM_DATA = _amplpy_ampls_swig.CPXERR_PRM_DATA
+CPXERR_Q_DIVISOR = _amplpy_ampls_swig.CPXERR_Q_DIVISOR
+CPXERR_Q_DUP_ENTRY = _amplpy_ampls_swig.CPXERR_Q_DUP_ENTRY
+CPXERR_Q_NOT_INDEF = _amplpy_ampls_swig.CPXERR_Q_NOT_INDEF
+CPXERR_Q_NOT_POS_DEF = _amplpy_ampls_swig.CPXERR_Q_NOT_POS_DEF
+CPXERR_Q_NOT_SYMMETRIC = _amplpy_ampls_swig.CPXERR_Q_NOT_SYMMETRIC
+CPXERR_QCP_SENSE = _amplpy_ampls_swig.CPXERR_QCP_SENSE
+CPXERR_QCP_SENSE_FILE = _amplpy_ampls_swig.CPXERR_QCP_SENSE_FILE
+CPXERR_QUAD_EXP_NOT_2 = _amplpy_ampls_swig.CPXERR_QUAD_EXP_NOT_2
+CPXERR_QUAD_IN_ROW = _amplpy_ampls_swig.CPXERR_QUAD_IN_ROW
+CPXERR_RANGE_SECTION_ORDER = _amplpy_ampls_swig.CPXERR_RANGE_SECTION_ORDER
+CPXERR_RESTRICTED_VERSION = _amplpy_ampls_swig.CPXERR_RESTRICTED_VERSION
+CPXERR_RHS_IN_OBJ = _amplpy_ampls_swig.CPXERR_RHS_IN_OBJ
+CPXERR_RIM_REPEATS = _amplpy_ampls_swig.CPXERR_RIM_REPEATS
+CPXERR_RIM_ROW_REPEATS = _amplpy_ampls_swig.CPXERR_RIM_ROW_REPEATS
+CPXERR_RIMNZ_REPEATS = _amplpy_ampls_swig.CPXERR_RIMNZ_REPEATS
+CPXERR_ROW_INDEX_RANGE = _amplpy_ampls_swig.CPXERR_ROW_INDEX_RANGE
+CPXERR_ROW_REPEAT_PRINT = _amplpy_ampls_swig.CPXERR_ROW_REPEAT_PRINT
+CPXERR_ROW_REPEATS = _amplpy_ampls_swig.CPXERR_ROW_REPEATS
+CPXERR_ROW_UNKNOWN = _amplpy_ampls_swig.CPXERR_ROW_UNKNOWN
+CPXERR_SAV_FILE_DATA = _amplpy_ampls_swig.CPXERR_SAV_FILE_DATA
+CPXERR_SAV_FILE_VALUE = _amplpy_ampls_swig.CPXERR_SAV_FILE_VALUE
+CPXERR_SAV_FILE_WRITE = _amplpy_ampls_swig.CPXERR_SAV_FILE_WRITE
+CPXERR_SBASE_ILLEGAL = _amplpy_ampls_swig.CPXERR_SBASE_ILLEGAL
+CPXERR_SBASE_INCOMPAT = _amplpy_ampls_swig.CPXERR_SBASE_INCOMPAT
+CPXERR_SINGULAR = _amplpy_ampls_swig.CPXERR_SINGULAR
+CPXERR_STR_PARAM_TOO_LONG = _amplpy_ampls_swig.CPXERR_STR_PARAM_TOO_LONG
+CPXERR_SUBPROB_SOLVE = _amplpy_ampls_swig.CPXERR_SUBPROB_SOLVE
+CPXERR_SYNCPRIM_CREATE = _amplpy_ampls_swig.CPXERR_SYNCPRIM_CREATE
+CPXERR_SYSCALL = _amplpy_ampls_swig.CPXERR_SYSCALL
+CPXERR_THREAD_FAILED = _amplpy_ampls_swig.CPXERR_THREAD_FAILED
+CPXERR_TILIM_CONDITION_NO = _amplpy_ampls_swig.CPXERR_TILIM_CONDITION_NO
+CPXERR_TILIM_STRONGBRANCH = _amplpy_ampls_swig.CPXERR_TILIM_STRONGBRANCH
+CPXERR_TOO_MANY_COEFFS = _amplpy_ampls_swig.CPXERR_TOO_MANY_COEFFS
+CPXERR_TOO_MANY_COLS = _amplpy_ampls_swig.CPXERR_TOO_MANY_COLS
+CPXERR_TOO_MANY_RIMNZ = _amplpy_ampls_swig.CPXERR_TOO_MANY_RIMNZ
+CPXERR_TOO_MANY_RIMS = _amplpy_ampls_swig.CPXERR_TOO_MANY_RIMS
+CPXERR_TOO_MANY_ROWS = _amplpy_ampls_swig.CPXERR_TOO_MANY_ROWS
+CPXERR_TOO_MANY_THREADS = _amplpy_ampls_swig.CPXERR_TOO_MANY_THREADS
+CPXERR_TREE_MEMORY_LIMIT = _amplpy_ampls_swig.CPXERR_TREE_MEMORY_LIMIT
+CPXERR_TUNE_MIXED = _amplpy_ampls_swig.CPXERR_TUNE_MIXED
+CPXERR_UNIQUE_WEIGHTS = _amplpy_ampls_swig.CPXERR_UNIQUE_WEIGHTS
+CPXERR_UNSUPPORTED_CONSTRAINT_TYPE = _amplpy_ampls_swig.CPXERR_UNSUPPORTED_CONSTRAINT_TYPE
+CPXERR_UNSUPPORTED_OPERATION = _amplpy_ampls_swig.CPXERR_UNSUPPORTED_OPERATION
+CPXERR_UP_BOUND_REPEATS = _amplpy_ampls_swig.CPXERR_UP_BOUND_REPEATS
+CPXERR_WORK_FILE_OPEN = _amplpy_ampls_swig.CPXERR_WORK_FILE_OPEN
+CPXERR_WORK_FILE_READ = _amplpy_ampls_swig.CPXERR_WORK_FILE_READ
+CPXERR_WORK_FILE_WRITE = _amplpy_ampls_swig.CPXERR_WORK_FILE_WRITE
+CPXERR_XMLPARSE = _amplpy_ampls_swig.CPXERR_XMLPARSE
+CPXMESSAGEBUFSIZE = _amplpy_ampls_swig.CPXMESSAGEBUFSIZE
+CPXMI_BIGM_COEF = _amplpy_ampls_swig.CPXMI_BIGM_COEF
+CPXMI_BIGM_TO_IND = _amplpy_ampls_swig.CPXMI_BIGM_TO_IND
+CPXMI_BIGM_VARBOUND = _amplpy_ampls_swig.CPXMI_BIGM_VARBOUND
+CPXMI_CANCEL_TOL = _amplpy_ampls_swig.CPXMI_CANCEL_TOL
+CPXMI_EPGAP_LARGE = _amplpy_ampls_swig.CPXMI_EPGAP_LARGE
+CPXMI_EPGAP_OBJOFFSET = _amplpy_ampls_swig.CPXMI_EPGAP_OBJOFFSET
+CPXMI_FEAS_TOL = _amplpy_ampls_swig.CPXMI_FEAS_TOL
+CPXMI_FRACTION_SCALING = _amplpy_ampls_swig.CPXMI_FRACTION_SCALING
+CPXMI_IND_NZ_LARGE_NUM = _amplpy_ampls_swig.CPXMI_IND_NZ_LARGE_NUM
+CPXMI_IND_NZ_SMALL_NUM = _amplpy_ampls_swig.CPXMI_IND_NZ_SMALL_NUM
+CPXMI_IND_RHS_LARGE_NUM = _amplpy_ampls_swig.CPXMI_IND_RHS_LARGE_NUM
+CPXMI_IND_RHS_SMALL_NUM = _amplpy_ampls_swig.CPXMI_IND_RHS_SMALL_NUM
+CPXMI_KAPPA_ILLPOSED = _amplpy_ampls_swig.CPXMI_KAPPA_ILLPOSED
+CPXMI_KAPPA_SUSPICIOUS = _amplpy_ampls_swig.CPXMI_KAPPA_SUSPICIOUS
+CPXMI_KAPPA_UNSTABLE = _amplpy_ampls_swig.CPXMI_KAPPA_UNSTABLE
+CPXMI_LB_LARGE_NUM = _amplpy_ampls_swig.CPXMI_LB_LARGE_NUM
+CPXMI_LB_SMALL_NUM = _amplpy_ampls_swig.CPXMI_LB_SMALL_NUM
+CPXMI_LC_NZ_LARGE_NUM = _amplpy_ampls_swig.CPXMI_LC_NZ_LARGE_NUM
+CPXMI_LC_NZ_SMALL_NUM = _amplpy_ampls_swig.CPXMI_LC_NZ_SMALL_NUM
+CPXMI_LC_RHS_LARGE_NUM = _amplpy_ampls_swig.CPXMI_LC_RHS_LARGE_NUM
+CPXMI_LC_RHS_SMALL_NUM = _amplpy_ampls_swig.CPXMI_LC_RHS_SMALL_NUM
+CPXMI_MULTIOBJ_COEFFS = _amplpy_ampls_swig.CPXMI_MULTIOBJ_COEFFS
+CPXMI_MULTIOBJ_LARGE_NUM = _amplpy_ampls_swig.CPXMI_MULTIOBJ_LARGE_NUM
+CPXMI_MULTIOBJ_MIX = _amplpy_ampls_swig.CPXMI_MULTIOBJ_MIX
+CPXMI_MULTIOBJ_OPT_TOL = _amplpy_ampls_swig.CPXMI_MULTIOBJ_OPT_TOL
+CPXMI_MULTIOBJ_SMALL_NUM = _amplpy_ampls_swig.CPXMI_MULTIOBJ_SMALL_NUM
+CPXMI_NZ_LARGE_NUM = _amplpy_ampls_swig.CPXMI_NZ_LARGE_NUM
+CPXMI_NZ_SMALL_NUM = _amplpy_ampls_swig.CPXMI_NZ_SMALL_NUM
+CPXMI_OBJ_LARGE_NUM = _amplpy_ampls_swig.CPXMI_OBJ_LARGE_NUM
+CPXMI_OBJ_SMALL_NUM = _amplpy_ampls_swig.CPXMI_OBJ_SMALL_NUM
+CPXMI_OPT_TOL = _amplpy_ampls_swig.CPXMI_OPT_TOL
+CPXMI_PWL_SLOPE_LARGE_NUM = _amplpy_ampls_swig.CPXMI_PWL_SLOPE_LARGE_NUM
+CPXMI_PWL_SLOPE_SMALL_NUM = _amplpy_ampls_swig.CPXMI_PWL_SLOPE_SMALL_NUM
+CPXMI_QC_LINNZ_LARGE_NUM = _amplpy_ampls_swig.CPXMI_QC_LINNZ_LARGE_NUM
+CPXMI_QC_LINNZ_SMALL_NUM = _amplpy_ampls_swig.CPXMI_QC_LINNZ_SMALL_NUM
+CPXMI_QC_QNZ_LARGE_NUM = _amplpy_ampls_swig.CPXMI_QC_QNZ_LARGE_NUM
+CPXMI_QC_QNZ_SMALL_NUM = _amplpy_ampls_swig.CPXMI_QC_QNZ_SMALL_NUM
+CPXMI_QC_RHS_LARGE_NUM = _amplpy_ampls_swig.CPXMI_QC_RHS_LARGE_NUM
+CPXMI_QC_RHS_SMALL_NUM = _amplpy_ampls_swig.CPXMI_QC_RHS_SMALL_NUM
+CPXMI_QOBJ_LARGE_NUM = _amplpy_ampls_swig.CPXMI_QOBJ_LARGE_NUM
+CPXMI_QOBJ_SMALL_NUM = _amplpy_ampls_swig.CPXMI_QOBJ_SMALL_NUM
+CPXMI_QOPT_TOL = _amplpy_ampls_swig.CPXMI_QOPT_TOL
+CPXMI_RHS_LARGE_NUM = _amplpy_ampls_swig.CPXMI_RHS_LARGE_NUM
+CPXMI_RHS_SMALL_NUM = _amplpy_ampls_swig.CPXMI_RHS_SMALL_NUM
+CPXMI_SAMECOEFF_COL = _amplpy_ampls_swig.CPXMI_SAMECOEFF_COL
+CPXMI_SAMECOEFF_IND = _amplpy_ampls_swig.CPXMI_SAMECOEFF_IND
+CPXMI_SAMECOEFF_LAZY = _amplpy_ampls_swig.CPXMI_SAMECOEFF_LAZY
+CPXMI_SAMECOEFF_MULTIOBJ = _amplpy_ampls_swig.CPXMI_SAMECOEFF_MULTIOBJ
+CPXMI_SAMECOEFF_OBJ = _amplpy_ampls_swig.CPXMI_SAMECOEFF_OBJ
+CPXMI_SAMECOEFF_QLIN = _amplpy_ampls_swig.CPXMI_SAMECOEFF_QLIN
+CPXMI_SAMECOEFF_QUAD = _amplpy_ampls_swig.CPXMI_SAMECOEFF_QUAD
+CPXMI_SAMECOEFF_RHS = _amplpy_ampls_swig.CPXMI_SAMECOEFF_RHS
+CPXMI_SAMECOEFF_ROW = _amplpy_ampls_swig.CPXMI_SAMECOEFF_ROW
+CPXMI_SAMECOEFF_UCUT = _amplpy_ampls_swig.CPXMI_SAMECOEFF_UCUT
+CPXMI_SINGLE_PRECISION = _amplpy_ampls_swig.CPXMI_SINGLE_PRECISION
+CPXMI_SYMMETRY_BREAKING_INEQ = _amplpy_ampls_swig.CPXMI_SYMMETRY_BREAKING_INEQ
+CPXMI_UB_LARGE_NUM = _amplpy_ampls_swig.CPXMI_UB_LARGE_NUM
+CPXMI_UB_SMALL_NUM = _amplpy_ampls_swig.CPXMI_UB_SMALL_NUM
+CPXMI_UC_NZ_LARGE_NUM = _amplpy_ampls_swig.CPXMI_UC_NZ_LARGE_NUM
+CPXMI_UC_NZ_SMALL_NUM = _amplpy_ampls_swig.CPXMI_UC_NZ_SMALL_NUM
+CPXMI_UC_RHS_LARGE_NUM = _amplpy_ampls_swig.CPXMI_UC_RHS_LARGE_NUM
+CPXMI_UC_RHS_SMALL_NUM = _amplpy_ampls_swig.CPXMI_UC_RHS_SMALL_NUM
+CPXMI_WIDE_COEFF_RANGE = _amplpy_ampls_swig.CPXMI_WIDE_COEFF_RANGE
+CPXMIP_ABORT_FEAS = _amplpy_ampls_swig.CPXMIP_ABORT_FEAS
+CPXMIP_ABORT_INFEAS = _amplpy_ampls_swig.CPXMIP_ABORT_INFEAS
+CPXMIP_ABORT_RELAXATION_UNBOUNDED = _amplpy_ampls_swig.CPXMIP_ABORT_RELAXATION_UNBOUNDED
+CPXMIP_ABORT_RELAXED = _amplpy_ampls_swig.CPXMIP_ABORT_RELAXED
+CPXMIP_DETTIME_LIM_FEAS = _amplpy_ampls_swig.CPXMIP_DETTIME_LIM_FEAS
+CPXMIP_DETTIME_LIM_INFEAS = _amplpy_ampls_swig.CPXMIP_DETTIME_LIM_INFEAS
+CPXMIP_FAIL_FEAS = _amplpy_ampls_swig.CPXMIP_FAIL_FEAS
+CPXMIP_FAIL_FEAS_NO_TREE = _amplpy_ampls_swig.CPXMIP_FAIL_FEAS_NO_TREE
+CPXMIP_FAIL_INFEAS = _amplpy_ampls_swig.CPXMIP_FAIL_INFEAS
+CPXMIP_FAIL_INFEAS_NO_TREE = _amplpy_ampls_swig.CPXMIP_FAIL_INFEAS_NO_TREE
+CPXMIP_FEASIBLE = _amplpy_ampls_swig.CPXMIP_FEASIBLE
+CPXMIP_FEASIBLE_RELAXED_INF = _amplpy_ampls_swig.CPXMIP_FEASIBLE_RELAXED_INF
+CPXMIP_FEASIBLE_RELAXED_QUAD = _amplpy_ampls_swig.CPXMIP_FEASIBLE_RELAXED_QUAD
+CPXMIP_FEASIBLE_RELAXED_SUM = _amplpy_ampls_swig.CPXMIP_FEASIBLE_RELAXED_SUM
+CPXMIP_INFEASIBLE = _amplpy_ampls_swig.CPXMIP_INFEASIBLE
+CPXMIP_INForUNBD = _amplpy_ampls_swig.CPXMIP_INForUNBD
+CPXMIP_MEM_LIM_FEAS = _amplpy_ampls_swig.CPXMIP_MEM_LIM_FEAS
+CPXMIP_MEM_LIM_INFEAS = _amplpy_ampls_swig.CPXMIP_MEM_LIM_INFEAS
+CPXMIP_NODE_LIM_FEAS = _amplpy_ampls_swig.CPXMIP_NODE_LIM_FEAS
+CPXMIP_NODE_LIM_INFEAS = _amplpy_ampls_swig.CPXMIP_NODE_LIM_INFEAS
+CPXMIP_OPTIMAL = _amplpy_ampls_swig.CPXMIP_OPTIMAL
+CPXMIP_OPTIMAL_INFEAS = _amplpy_ampls_swig.CPXMIP_OPTIMAL_INFEAS
+CPXMIP_OPTIMAL_POPULATED = _amplpy_ampls_swig.CPXMIP_OPTIMAL_POPULATED
+CPXMIP_OPTIMAL_POPULATED_TOL = _amplpy_ampls_swig.CPXMIP_OPTIMAL_POPULATED_TOL
+CPXMIP_OPTIMAL_RELAXED_INF = _amplpy_ampls_swig.CPXMIP_OPTIMAL_RELAXED_INF
+CPXMIP_OPTIMAL_RELAXED_QUAD = _amplpy_ampls_swig.CPXMIP_OPTIMAL_RELAXED_QUAD
+CPXMIP_OPTIMAL_RELAXED_SUM = _amplpy_ampls_swig.CPXMIP_OPTIMAL_RELAXED_SUM
+CPXMIP_OPTIMAL_TOL = _amplpy_ampls_swig.CPXMIP_OPTIMAL_TOL
+CPXMIP_POPULATESOL_LIM = _amplpy_ampls_swig.CPXMIP_POPULATESOL_LIM
+CPXMIP_SOL_LIM = _amplpy_ampls_swig.CPXMIP_SOL_LIM
+CPXMIP_TIME_LIM_FEAS = _amplpy_ampls_swig.CPXMIP_TIME_LIM_FEAS
+CPXMIP_TIME_LIM_INFEAS = _amplpy_ampls_swig.CPXMIP_TIME_LIM_INFEAS
+CPXMIP_UNBOUNDED = _amplpy_ampls_swig.CPXMIP_UNBOUNDED
+CPX_CPXAUTOENUMS_H_H = _amplpy_ampls_swig.CPX_CPXAUTOENUMS_H_H
+CPXCALLBACKINFO_THREADID = _amplpy_ampls_swig.CPXCALLBACKINFO_THREADID
+CPXCALLBACKINFO_NODECOUNT = _amplpy_ampls_swig.CPXCALLBACKINFO_NODECOUNT
+CPXCALLBACKINFO_ITCOUNT = _amplpy_ampls_swig.CPXCALLBACKINFO_ITCOUNT
+CPXCALLBACKINFO_BEST_SOL = _amplpy_ampls_swig.CPXCALLBACKINFO_BEST_SOL
+CPXCALLBACKINFO_BEST_BND = _amplpy_ampls_swig.CPXCALLBACKINFO_BEST_BND
+CPXCALLBACKINFO_THREADS = _amplpy_ampls_swig.CPXCALLBACKINFO_THREADS
+CPXCALLBACKINFO_FEASIBLE = _amplpy_ampls_swig.CPXCALLBACKINFO_FEASIBLE
+CPXCALLBACKINFO_TIME = _amplpy_ampls_swig.CPXCALLBACKINFO_TIME
+CPXCALLBACKINFO_DETTIME = _amplpy_ampls_swig.CPXCALLBACKINFO_DETTIME
+CPXCALLBACKINFO_NODEUID = _amplpy_ampls_swig.CPXCALLBACKINFO_NODEUID
+CPXCALLBACKINFO_NODEDEPTH = _amplpy_ampls_swig.CPXCALLBACKINFO_NODEDEPTH
+CPXCALLBACKINFO_CANDIDATE_SOURCE = _amplpy_ampls_swig.CPXCALLBACKINFO_CANDIDATE_SOURCE
+CPXCALLBACKINFO_RESTARTS = _amplpy_ampls_swig.CPXCALLBACKINFO_RESTARTS
+CPXCALLBACKINFO_AFTERCUTLOOP = _amplpy_ampls_swig.CPXCALLBACKINFO_AFTERCUTLOOP
+CPXCALLBACKINFO_NODESLEFT = _amplpy_ampls_swig.CPXCALLBACKINFO_NODESLEFT
+CPXCALLBACKSOLUTION_NOCHECK = _amplpy_ampls_swig.CPXCALLBACKSOLUTION_NOCHECK
+CPXCALLBACKSOLUTION_CHECKFEAS = _amplpy_ampls_swig.CPXCALLBACKSOLUTION_CHECKFEAS
+CPXCALLBACKSOLUTION_PROPAGATE = _amplpy_ampls_swig.CPXCALLBACKSOLUTION_PROPAGATE
+CPXCALLBACKSOLUTION_SOLVE = _amplpy_ampls_swig.CPXCALLBACKSOLUTION_SOLVE
+CPXPARAM_H = _amplpy_ampls_swig.CPXPARAM_H
+CPXPARAM_Advance = _amplpy_ampls_swig.CPXPARAM_Advance
+CPXPARAM_Barrier_Algorithm = _amplpy_ampls_swig.CPXPARAM_Barrier_Algorithm
+CPXPARAM_Barrier_ColNonzeros = _amplpy_ampls_swig.CPXPARAM_Barrier_ColNonzeros
+CPXPARAM_Barrier_ConvergeTol = _amplpy_ampls_swig.CPXPARAM_Barrier_ConvergeTol
+CPXPARAM_Barrier_Crossover = _amplpy_ampls_swig.CPXPARAM_Barrier_Crossover
+CPXPARAM_Barrier_Display = _amplpy_ampls_swig.CPXPARAM_Barrier_Display
+CPXPARAM_Barrier_Limits_Corrections = _amplpy_ampls_swig.CPXPARAM_Barrier_Limits_Corrections
+CPXPARAM_Barrier_Limits_Growth = _amplpy_ampls_swig.CPXPARAM_Barrier_Limits_Growth
+CPXPARAM_Barrier_Limits_Iteration = _amplpy_ampls_swig.CPXPARAM_Barrier_Limits_Iteration
+CPXPARAM_Barrier_Limits_ObjRange = _amplpy_ampls_swig.CPXPARAM_Barrier_Limits_ObjRange
+CPXPARAM_Barrier_Ordering = _amplpy_ampls_swig.CPXPARAM_Barrier_Ordering
+CPXPARAM_Barrier_QCPConvergeTol = _amplpy_ampls_swig.CPXPARAM_Barrier_QCPConvergeTol
+CPXPARAM_Barrier_StartAlg = _amplpy_ampls_swig.CPXPARAM_Barrier_StartAlg
+CPXPARAM_Benders_Strategy = _amplpy_ampls_swig.CPXPARAM_Benders_Strategy
+CPXPARAM_Benders_Tolerances_feasibilitycut = _amplpy_ampls_swig.CPXPARAM_Benders_Tolerances_feasibilitycut
+CPXPARAM_Benders_Tolerances_FeasibilityCut = _amplpy_ampls_swig.CPXPARAM_Benders_Tolerances_FeasibilityCut
+CPXPARAM_Benders_Tolerances_optimalitycut = _amplpy_ampls_swig.CPXPARAM_Benders_Tolerances_optimalitycut
+CPXPARAM_Benders_Tolerances_OptimalityCut = _amplpy_ampls_swig.CPXPARAM_Benders_Tolerances_OptimalityCut
+CPXPARAM_Benders_WorkerAlgorithm = _amplpy_ampls_swig.CPXPARAM_Benders_WorkerAlgorithm
+CPXPARAM_ClockType = _amplpy_ampls_swig.CPXPARAM_ClockType
+CPXPARAM_Conflict_Algorithm = _amplpy_ampls_swig.CPXPARAM_Conflict_Algorithm
+CPXPARAM_Conflict_Display = _amplpy_ampls_swig.CPXPARAM_Conflict_Display
+CPXPARAM_CPUmask = _amplpy_ampls_swig.CPXPARAM_CPUmask
+CPXPARAM_DetTimeLimit = _amplpy_ampls_swig.CPXPARAM_DetTimeLimit
+CPXPARAM_Emphasis_Memory = _amplpy_ampls_swig.CPXPARAM_Emphasis_Memory
+CPXPARAM_Emphasis_MIP = _amplpy_ampls_swig.CPXPARAM_Emphasis_MIP
+CPXPARAM_Emphasis_Numerical = _amplpy_ampls_swig.CPXPARAM_Emphasis_Numerical
+CPXPARAM_Feasopt_Mode = _amplpy_ampls_swig.CPXPARAM_Feasopt_Mode
+CPXPARAM_Feasopt_Tolerance = _amplpy_ampls_swig.CPXPARAM_Feasopt_Tolerance
+CPXPARAM_LPMethod = _amplpy_ampls_swig.CPXPARAM_LPMethod
+CPXPARAM_MIP_Cuts_BQP = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_BQP
+CPXPARAM_MIP_Cuts_Cliques = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_Cliques
+CPXPARAM_MIP_Cuts_Covers = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_Covers
+CPXPARAM_MIP_Cuts_Disjunctive = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_Disjunctive
+CPXPARAM_MIP_Cuts_FlowCovers = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_FlowCovers
+CPXPARAM_MIP_Cuts_Gomory = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_Gomory
+CPXPARAM_MIP_Cuts_GUBCovers = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_GUBCovers
+CPXPARAM_MIP_Cuts_Implied = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_Implied
+CPXPARAM_MIP_Cuts_LiftProj = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_LiftProj
+CPXPARAM_MIP_Cuts_LocalImplied = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_LocalImplied
+CPXPARAM_MIP_Cuts_MCFCut = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_MCFCut
+CPXPARAM_MIP_Cuts_MIRCut = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_MIRCut
+CPXPARAM_MIP_Cuts_Nodecuts = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_Nodecuts
+CPXPARAM_MIP_Cuts_PathCut = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_PathCut
+CPXPARAM_MIP_Cuts_RLT = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_RLT
+CPXPARAM_MIP_Cuts_ZeroHalfCut = _amplpy_ampls_swig.CPXPARAM_MIP_Cuts_ZeroHalfCut
+CPXPARAM_MIP_Display = _amplpy_ampls_swig.CPXPARAM_MIP_Display
+CPXPARAM_MIP_Interval = _amplpy_ampls_swig.CPXPARAM_MIP_Interval
+CPXPARAM_MIP_Limits_AggForCut = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_AggForCut
+CPXPARAM_MIP_Limits_AuxRootThreads = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_AuxRootThreads
+CPXPARAM_MIP_Limits_CutPasses = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_CutPasses
+CPXPARAM_MIP_Limits_CutsFactor = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_CutsFactor
+CPXPARAM_MIP_Limits_EachCutLimit = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_EachCutLimit
+CPXPARAM_MIP_Limits_GomoryCand = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_GomoryCand
+CPXPARAM_MIP_Limits_GomoryPass = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_GomoryPass
+CPXPARAM_MIP_Limits_LowerObjStop = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_LowerObjStop
+CPXPARAM_MIP_Limits_Nodes = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_Nodes
+CPXPARAM_MIP_Limits_Populate = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_Populate
+CPXPARAM_MIP_Limits_ProbeDetTime = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_ProbeDetTime
+CPXPARAM_MIP_Limits_ProbeTime = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_ProbeTime
+CPXPARAM_MIP_Limits_RepairTries = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_RepairTries
+CPXPARAM_MIP_Limits_Solutions = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_Solutions
+CPXPARAM_MIP_Limits_StrongCand = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_StrongCand
+CPXPARAM_MIP_Limits_StrongIt = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_StrongIt
+CPXPARAM_MIP_Limits_TreeMemory = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_TreeMemory
+CPXPARAM_MIP_Limits_UpperObjStop = _amplpy_ampls_swig.CPXPARAM_MIP_Limits_UpperObjStop
+CPXPARAM_MIP_OrderType = _amplpy_ampls_swig.CPXPARAM_MIP_OrderType
+CPXPARAM_MIP_PolishAfter_AbsMIPGap = _amplpy_ampls_swig.CPXPARAM_MIP_PolishAfter_AbsMIPGap
+CPXPARAM_MIP_PolishAfter_DetTime = _amplpy_ampls_swig.CPXPARAM_MIP_PolishAfter_DetTime
+CPXPARAM_MIP_PolishAfter_MIPGap = _amplpy_ampls_swig.CPXPARAM_MIP_PolishAfter_MIPGap
+CPXPARAM_MIP_PolishAfter_Nodes = _amplpy_ampls_swig.CPXPARAM_MIP_PolishAfter_Nodes
+CPXPARAM_MIP_PolishAfter_Solutions = _amplpy_ampls_swig.CPXPARAM_MIP_PolishAfter_Solutions
+CPXPARAM_MIP_PolishAfter_Time = _amplpy_ampls_swig.CPXPARAM_MIP_PolishAfter_Time
+CPXPARAM_MIP_Pool_AbsGap = _amplpy_ampls_swig.CPXPARAM_MIP_Pool_AbsGap
+CPXPARAM_MIP_Pool_Capacity = _amplpy_ampls_swig.CPXPARAM_MIP_Pool_Capacity
+CPXPARAM_MIP_Pool_Intensity = _amplpy_ampls_swig.CPXPARAM_MIP_Pool_Intensity
+CPXPARAM_MIP_Pool_RelGap = _amplpy_ampls_swig.CPXPARAM_MIP_Pool_RelGap
+CPXPARAM_MIP_Pool_Replace = _amplpy_ampls_swig.CPXPARAM_MIP_Pool_Replace
+CPXPARAM_MIP_Strategy_Backtrack = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_Backtrack
+CPXPARAM_MIP_Strategy_BBInterval = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_BBInterval
+CPXPARAM_MIP_Strategy_Branch = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_Branch
+CPXPARAM_MIP_Strategy_CallbackReducedLP = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_CallbackReducedLP
+CPXPARAM_MIP_Strategy_CardLs = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_CardLs
+CPXPARAM_MIP_Strategy_Dive = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_Dive
+CPXPARAM_MIP_Strategy_File = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_File
+CPXPARAM_MIP_Strategy_FPHeur = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_FPHeur
+CPXPARAM_MIP_Strategy_HeuristicEffort = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_HeuristicEffort
+CPXPARAM_MIP_Strategy_HeuristicFreq = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_HeuristicFreq
+CPXPARAM_MIP_Strategy_KappaStats = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_KappaStats
+CPXPARAM_MIP_Strategy_LBHeur = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_LBHeur
+CPXPARAM_MIP_Strategy_MIQCPStrat = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_MIQCPStrat
+CPXPARAM_MIP_Strategy_NodeSelect = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_NodeSelect
+CPXPARAM_MIP_Strategy_Order = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_Order
+CPXPARAM_MIP_Strategy_PresolveNode = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_PresolveNode
+CPXPARAM_MIP_Strategy_Probe = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_Probe
+CPXPARAM_MIP_Strategy_RINSHeur = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_RINSHeur
+CPXPARAM_MIP_Strategy_Search = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_Search
+CPXPARAM_MIP_Strategy_StartAlgorithm = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_StartAlgorithm
+CPXPARAM_MIP_Strategy_SubAlgorithm = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_SubAlgorithm
+CPXPARAM_MIP_Strategy_VariableSelect = _amplpy_ampls_swig.CPXPARAM_MIP_Strategy_VariableSelect
+CPXPARAM_MIP_SubMIP_StartAlg = _amplpy_ampls_swig.CPXPARAM_MIP_SubMIP_StartAlg
+CPXPARAM_MIP_SubMIP_SubAlg = _amplpy_ampls_swig.CPXPARAM_MIP_SubMIP_SubAlg
+CPXPARAM_MIP_SubMIP_NodeLimit = _amplpy_ampls_swig.CPXPARAM_MIP_SubMIP_NodeLimit
+CPXPARAM_MIP_SubMIP_Scale = _amplpy_ampls_swig.CPXPARAM_MIP_SubMIP_Scale
+CPXPARAM_MIP_Tolerances_AbsMIPGap = _amplpy_ampls_swig.CPXPARAM_MIP_Tolerances_AbsMIPGap
+CPXPARAM_MIP_Tolerances_Linearization = _amplpy_ampls_swig.CPXPARAM_MIP_Tolerances_Linearization
+CPXPARAM_MIP_Tolerances_Integrality = _amplpy_ampls_swig.CPXPARAM_MIP_Tolerances_Integrality
+CPXPARAM_MIP_Tolerances_LowerCutoff = _amplpy_ampls_swig.CPXPARAM_MIP_Tolerances_LowerCutoff
+CPXPARAM_MIP_Tolerances_MIPGap = _amplpy_ampls_swig.CPXPARAM_MIP_Tolerances_MIPGap
+CPXPARAM_MIP_Tolerances_ObjDifference = _amplpy_ampls_swig.CPXPARAM_MIP_Tolerances_ObjDifference
+CPXPARAM_MIP_Tolerances_RelObjDifference = _amplpy_ampls_swig.CPXPARAM_MIP_Tolerances_RelObjDifference
+CPXPARAM_MIP_Tolerances_UpperCutoff = _amplpy_ampls_swig.CPXPARAM_MIP_Tolerances_UpperCutoff
+CPXPARAM_MultiObjective_Display = _amplpy_ampls_swig.CPXPARAM_MultiObjective_Display
+CPXPARAM_Network_Display = _amplpy_ampls_swig.CPXPARAM_Network_Display
+CPXPARAM_Network_Iterations = _amplpy_ampls_swig.CPXPARAM_Network_Iterations
+CPXPARAM_Network_NetFind = _amplpy_ampls_swig.CPXPARAM_Network_NetFind
+CPXPARAM_Network_Pricing = _amplpy_ampls_swig.CPXPARAM_Network_Pricing
+CPXPARAM_Network_Tolerances_Feasibility = _amplpy_ampls_swig.CPXPARAM_Network_Tolerances_Feasibility
+CPXPARAM_Network_Tolerances_Optimality = _amplpy_ampls_swig.CPXPARAM_Network_Tolerances_Optimality
+CPXPARAM_OptimalityTarget = _amplpy_ampls_swig.CPXPARAM_OptimalityTarget
+CPXPARAM_Output_CloneLog = _amplpy_ampls_swig.CPXPARAM_Output_CloneLog
+CPXPARAM_Output_IntSolFilePrefix = _amplpy_ampls_swig.CPXPARAM_Output_IntSolFilePrefix
+CPXPARAM_Output_MPSLong = _amplpy_ampls_swig.CPXPARAM_Output_MPSLong
+CPXPARAM_Output_WriteLevel = _amplpy_ampls_swig.CPXPARAM_Output_WriteLevel
+CPXPARAM_Parallel = _amplpy_ampls_swig.CPXPARAM_Parallel
+CPXPARAM_ParamDisplay = _amplpy_ampls_swig.CPXPARAM_ParamDisplay
+CPXPARAM_Preprocessing_Aggregator = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Aggregator
+CPXPARAM_Preprocessing_BoundStrength = _amplpy_ampls_swig.CPXPARAM_Preprocessing_BoundStrength
+CPXPARAM_Preprocessing_CoeffReduce = _amplpy_ampls_swig.CPXPARAM_Preprocessing_CoeffReduce
+CPXPARAM_Preprocessing_Dependency = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Dependency
+CPXPARAM_Preprocessing_Dual = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Dual
+CPXPARAM_Preprocessing_Fill = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Fill
+CPXPARAM_Preprocessing_Folding = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Folding
+CPXPARAM_Preprocessing_Linear = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Linear
+CPXPARAM_Preprocessing_NumPass = _amplpy_ampls_swig.CPXPARAM_Preprocessing_NumPass
+CPXPARAM_Preprocessing_Presolve = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Presolve
+CPXPARAM_Preprocessing_QCPDuals = _amplpy_ampls_swig.CPXPARAM_Preprocessing_QCPDuals
+CPXPARAM_Preprocessing_QPMakePSD = _amplpy_ampls_swig.CPXPARAM_Preprocessing_QPMakePSD
+CPXPARAM_Preprocessing_QToLin = _amplpy_ampls_swig.CPXPARAM_Preprocessing_QToLin
+CPXPARAM_Preprocessing_Reduce = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Reduce
+CPXPARAM_Preprocessing_Reformulations = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Reformulations
+CPXPARAM_Preprocessing_Relax = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Relax
+CPXPARAM_Preprocessing_RepeatPresolve = _amplpy_ampls_swig.CPXPARAM_Preprocessing_RepeatPresolve
+CPXPARAM_Preprocessing_SOS1Reform = _amplpy_ampls_swig.CPXPARAM_Preprocessing_SOS1Reform
+CPXPARAM_Preprocessing_SOS2Reform = _amplpy_ampls_swig.CPXPARAM_Preprocessing_SOS2Reform
+CPXPARAM_Preprocessing_Symmetry = _amplpy_ampls_swig.CPXPARAM_Preprocessing_Symmetry
+CPXPARAM_QPMethod = _amplpy_ampls_swig.CPXPARAM_QPMethod
+CPXPARAM_RandomSeed = _amplpy_ampls_swig.CPXPARAM_RandomSeed
+CPXPARAM_Read_APIEncoding = _amplpy_ampls_swig.CPXPARAM_Read_APIEncoding
+CPXPARAM_Read_Constraints = _amplpy_ampls_swig.CPXPARAM_Read_Constraints
+CPXPARAM_Read_DataCheck = _amplpy_ampls_swig.CPXPARAM_Read_DataCheck
+CPXPARAM_Read_FileEncoding = _amplpy_ampls_swig.CPXPARAM_Read_FileEncoding
+CPXPARAM_Read_Nonzeros = _amplpy_ampls_swig.CPXPARAM_Read_Nonzeros
+CPXPARAM_Read_QPNonzeros = _amplpy_ampls_swig.CPXPARAM_Read_QPNonzeros
+CPXPARAM_Read_Scale = _amplpy_ampls_swig.CPXPARAM_Read_Scale
+CPXPARAM_Read_Variables = _amplpy_ampls_swig.CPXPARAM_Read_Variables
+CPXPARAM_Read_WarningLimit = _amplpy_ampls_swig.CPXPARAM_Read_WarningLimit
+CPXPARAM_Record = _amplpy_ampls_swig.CPXPARAM_Record
+CPXPARAM_ScreenOutput = _amplpy_ampls_swig.CPXPARAM_ScreenOutput
+CPXPARAM_Sifting_Algorithm = _amplpy_ampls_swig.CPXPARAM_Sifting_Algorithm
+CPXPARAM_Sifting_Simplex = _amplpy_ampls_swig.CPXPARAM_Sifting_Simplex
+CPXPARAM_Sifting_Display = _amplpy_ampls_swig.CPXPARAM_Sifting_Display
+CPXPARAM_Sifting_Iterations = _amplpy_ampls_swig.CPXPARAM_Sifting_Iterations
+CPXPARAM_Simplex_Crash = _amplpy_ampls_swig.CPXPARAM_Simplex_Crash
+CPXPARAM_Simplex_DGradient = _amplpy_ampls_swig.CPXPARAM_Simplex_DGradient
+CPXPARAM_Simplex_Display = _amplpy_ampls_swig.CPXPARAM_Simplex_Display
+CPXPARAM_Simplex_DynamicRows = _amplpy_ampls_swig.CPXPARAM_Simplex_DynamicRows
+CPXPARAM_Simplex_Limits_Iterations = _amplpy_ampls_swig.CPXPARAM_Simplex_Limits_Iterations
+CPXPARAM_Simplex_Limits_LowerObj = _amplpy_ampls_swig.CPXPARAM_Simplex_Limits_LowerObj
+CPXPARAM_Simplex_Limits_Perturbation = _amplpy_ampls_swig.CPXPARAM_Simplex_Limits_Perturbation
+CPXPARAM_Simplex_Limits_Singularity = _amplpy_ampls_swig.CPXPARAM_Simplex_Limits_Singularity
+CPXPARAM_Simplex_Limits_UpperObj = _amplpy_ampls_swig.CPXPARAM_Simplex_Limits_UpperObj
+CPXPARAM_Simplex_Perturbation_Constant = _amplpy_ampls_swig.CPXPARAM_Simplex_Perturbation_Constant
+CPXPARAM_Simplex_Perturbation_Indicator = _amplpy_ampls_swig.CPXPARAM_Simplex_Perturbation_Indicator
+CPXPARAM_Simplex_PGradient = _amplpy_ampls_swig.CPXPARAM_Simplex_PGradient
+CPXPARAM_Simplex_Pricing = _amplpy_ampls_swig.CPXPARAM_Simplex_Pricing
+CPXPARAM_Simplex_Refactor = _amplpy_ampls_swig.CPXPARAM_Simplex_Refactor
+CPXPARAM_Simplex_Tolerances_Feasibility = _amplpy_ampls_swig.CPXPARAM_Simplex_Tolerances_Feasibility
+CPXPARAM_Simplex_Tolerances_Markowitz = _amplpy_ampls_swig.CPXPARAM_Simplex_Tolerances_Markowitz
+CPXPARAM_Simplex_Tolerances_Optimality = _amplpy_ampls_swig.CPXPARAM_Simplex_Tolerances_Optimality
+CPXPARAM_SolutionType = _amplpy_ampls_swig.CPXPARAM_SolutionType
+CPXPARAM_Threads = _amplpy_ampls_swig.CPXPARAM_Threads
+CPXPARAM_TimeLimit = _amplpy_ampls_swig.CPXPARAM_TimeLimit
+CPXPARAM_Tune_DetTimeLimit = _amplpy_ampls_swig.CPXPARAM_Tune_DetTimeLimit
+CPXPARAM_Tune_Display = _amplpy_ampls_swig.CPXPARAM_Tune_Display
+CPXPARAM_Tune_Measure = _amplpy_ampls_swig.CPXPARAM_Tune_Measure
+CPXPARAM_Tune_Repeat = _amplpy_ampls_swig.CPXPARAM_Tune_Repeat
+CPXPARAM_Tune_TimeLimit = _amplpy_ampls_swig.CPXPARAM_Tune_TimeLimit
+CPXPARAM_WorkDir = _amplpy_ampls_swig.CPXPARAM_WorkDir
+CPXPARAM_WorkMem = _amplpy_ampls_swig.CPXPARAM_WorkMem
+CPXPUBLICPARAMS_H = _amplpy_ampls_swig.CPXPUBLICPARAMS_H
+CPX_PARAM_ADVIND = _amplpy_ampls_swig.CPX_PARAM_ADVIND
+CPX_PARAM_AGGFILL = _amplpy_ampls_swig.CPX_PARAM_AGGFILL
+CPX_PARAM_AGGIND = _amplpy_ampls_swig.CPX_PARAM_AGGIND
+CPX_PARAM_CLOCKTYPE = _amplpy_ampls_swig.CPX_PARAM_CLOCKTYPE
+CPX_PARAM_CRAIND = _amplpy_ampls_swig.CPX_PARAM_CRAIND
+CPX_PARAM_DEPIND = _amplpy_ampls_swig.CPX_PARAM_DEPIND
+CPX_PARAM_DPRIIND = _amplpy_ampls_swig.CPX_PARAM_DPRIIND
+CPX_PARAM_PRICELIM = _amplpy_ampls_swig.CPX_PARAM_PRICELIM
+CPX_PARAM_EPMRK = _amplpy_ampls_swig.CPX_PARAM_EPMRK
+CPX_PARAM_EPOPT = _amplpy_ampls_swig.CPX_PARAM_EPOPT
+CPX_PARAM_EPPER = _amplpy_ampls_swig.CPX_PARAM_EPPER
+CPX_PARAM_EPRHS = _amplpy_ampls_swig.CPX_PARAM_EPRHS
+CPX_PARAM_SIMDISPLAY = _amplpy_ampls_swig.CPX_PARAM_SIMDISPLAY
+CPX_PARAM_ITLIM = _amplpy_ampls_swig.CPX_PARAM_ITLIM
+CPX_PARAM_ROWREADLIM = _amplpy_ampls_swig.CPX_PARAM_ROWREADLIM
+CPX_PARAM_NETFIND = _amplpy_ampls_swig.CPX_PARAM_NETFIND
+CPX_PARAM_COLREADLIM = _amplpy_ampls_swig.CPX_PARAM_COLREADLIM
+CPX_PARAM_NZREADLIM = _amplpy_ampls_swig.CPX_PARAM_NZREADLIM
+CPX_PARAM_OBJLLIM = _amplpy_ampls_swig.CPX_PARAM_OBJLLIM
+CPX_PARAM_OBJULIM = _amplpy_ampls_swig.CPX_PARAM_OBJULIM
+CPX_PARAM_PERIND = _amplpy_ampls_swig.CPX_PARAM_PERIND
+CPX_PARAM_PERLIM = _amplpy_ampls_swig.CPX_PARAM_PERLIM
+CPX_PARAM_PPRIIND = _amplpy_ampls_swig.CPX_PARAM_PPRIIND
+CPX_PARAM_PREIND = _amplpy_ampls_swig.CPX_PARAM_PREIND
+CPX_PARAM_REINV = _amplpy_ampls_swig.CPX_PARAM_REINV
+CPX_PARAM_SCAIND = _amplpy_ampls_swig.CPX_PARAM_SCAIND
+CPX_PARAM_SCRIND = _amplpy_ampls_swig.CPX_PARAM_SCRIND
+CPX_PARAM_SINGLIM = _amplpy_ampls_swig.CPX_PARAM_SINGLIM
+CPX_PARAM_TILIM = _amplpy_ampls_swig.CPX_PARAM_TILIM
+CPX_PARAM_PREDUAL = _amplpy_ampls_swig.CPX_PARAM_PREDUAL
+CPX_PARAM_PREPASS = _amplpy_ampls_swig.CPX_PARAM_PREPASS
+CPX_PARAM_DATACHECK = _amplpy_ampls_swig.CPX_PARAM_DATACHECK
+CPX_PARAM_REDUCE = _amplpy_ampls_swig.CPX_PARAM_REDUCE
+CPX_PARAM_PRELINEAR = _amplpy_ampls_swig.CPX_PARAM_PRELINEAR
+CPX_PARAM_LPMETHOD = _amplpy_ampls_swig.CPX_PARAM_LPMETHOD
+CPX_PARAM_QPMETHOD = _amplpy_ampls_swig.CPX_PARAM_QPMETHOD
+CPX_PARAM_WORKDIR = _amplpy_ampls_swig.CPX_PARAM_WORKDIR
+CPX_PARAM_WORKMEM = _amplpy_ampls_swig.CPX_PARAM_WORKMEM
+CPX_PARAM_THREADS = _amplpy_ampls_swig.CPX_PARAM_THREADS
+CPX_PARAM_CONFLICTALG = _amplpy_ampls_swig.CPX_PARAM_CONFLICTALG
+CPX_PARAM_CONFLICTDISPLAY = _amplpy_ampls_swig.CPX_PARAM_CONFLICTDISPLAY
+CPX_PARAM_SIFTDISPLAY = _amplpy_ampls_swig.CPX_PARAM_SIFTDISPLAY
+CPX_PARAM_SIFTALG = _amplpy_ampls_swig.CPX_PARAM_SIFTALG
+CPX_PARAM_SIFTITLIM = _amplpy_ampls_swig.CPX_PARAM_SIFTITLIM
+CPX_PARAM_MPSLONGNUM = _amplpy_ampls_swig.CPX_PARAM_MPSLONGNUM
+CPX_PARAM_MEMORYEMPHASIS = _amplpy_ampls_swig.CPX_PARAM_MEMORYEMPHASIS
+CPX_PARAM_NUMERICALEMPHASIS = _amplpy_ampls_swig.CPX_PARAM_NUMERICALEMPHASIS
+CPX_PARAM_FEASOPTMODE = _amplpy_ampls_swig.CPX_PARAM_FEASOPTMODE
+CPX_PARAM_PARALLELMODE = _amplpy_ampls_swig.CPX_PARAM_PARALLELMODE
+CPX_PARAM_TUNINGMEASURE = _amplpy_ampls_swig.CPX_PARAM_TUNINGMEASURE
+CPX_PARAM_TUNINGREPEAT = _amplpy_ampls_swig.CPX_PARAM_TUNINGREPEAT
+CPX_PARAM_TUNINGTILIM = _amplpy_ampls_swig.CPX_PARAM_TUNINGTILIM
+CPX_PARAM_TUNINGDISPLAY = _amplpy_ampls_swig.CPX_PARAM_TUNINGDISPLAY
+CPX_PARAM_WRITELEVEL = _amplpy_ampls_swig.CPX_PARAM_WRITELEVEL
+CPX_PARAM_RANDOMSEED = _amplpy_ampls_swig.CPX_PARAM_RANDOMSEED
+CPX_PARAM_DETTILIM = _amplpy_ampls_swig.CPX_PARAM_DETTILIM
+CPX_PARAM_FILEENCODING = _amplpy_ampls_swig.CPX_PARAM_FILEENCODING
+CPX_PARAM_APIENCODING = _amplpy_ampls_swig.CPX_PARAM_APIENCODING
+CPX_PARAM_OPTIMALITYTARGET = _amplpy_ampls_swig.CPX_PARAM_OPTIMALITYTARGET
+CPX_PARAM_CLONELOG = _amplpy_ampls_swig.CPX_PARAM_CLONELOG
+CPX_PARAM_TUNINGDETTILIM = _amplpy_ampls_swig.CPX_PARAM_TUNINGDETTILIM
+CPX_PARAM_CPUMASK = _amplpy_ampls_swig.CPX_PARAM_CPUMASK
+CPX_PARAM_SOLUTIONTYPE = _amplpy_ampls_swig.CPX_PARAM_SOLUTIONTYPE
+CPX_PARAM_WARNLIM = _amplpy_ampls_swig.CPX_PARAM_WARNLIM
+CPX_PARAM_SIFTSIM = _amplpy_ampls_swig.CPX_PARAM_SIFTSIM
+CPX_PARAM_DYNAMICROWS = _amplpy_ampls_swig.CPX_PARAM_DYNAMICROWS
+CPX_PARAM_RECORD = _amplpy_ampls_swig.CPX_PARAM_RECORD
+CPX_PARAM_PARAMDISPLAY = _amplpy_ampls_swig.CPX_PARAM_PARAMDISPLAY
+CPX_PARAM_FOLDING = _amplpy_ampls_swig.CPX_PARAM_FOLDING
+CPX_PARAM_PREREFORM = _amplpy_ampls_swig.CPX_PARAM_PREREFORM
+CPX_PARAM_WORKERALG = _amplpy_ampls_swig.CPX_PARAM_WORKERALG
+CPX_PARAM_BENDERSSTRATEGY = _amplpy_ampls_swig.CPX_PARAM_BENDERSSTRATEGY
+CPX_PARAM_BENDERSFEASCUTTOL = _amplpy_ampls_swig.CPX_PARAM_BENDERSFEASCUTTOL
+CPX_PARAM_BENDERSOPTCUTTOL = _amplpy_ampls_swig.CPX_PARAM_BENDERSOPTCUTTOL
+CPX_PARAM_MULTIOBJDISPLAY = _amplpy_ampls_swig.CPX_PARAM_MULTIOBJDISPLAY
+CPX_PARAM_BRDIR = _amplpy_ampls_swig.CPX_PARAM_BRDIR
+CPX_PARAM_BTTOL = _amplpy_ampls_swig.CPX_PARAM_BTTOL
+CPX_PARAM_CLIQUES = _amplpy_ampls_swig.CPX_PARAM_CLIQUES
+CPX_PARAM_COEREDIND = _amplpy_ampls_swig.CPX_PARAM_COEREDIND
+CPX_PARAM_COVERS = _amplpy_ampls_swig.CPX_PARAM_COVERS
+CPX_PARAM_CUTLO = _amplpy_ampls_swig.CPX_PARAM_CUTLO
+CPX_PARAM_CUTUP = _amplpy_ampls_swig.CPX_PARAM_CUTUP
+CPX_PARAM_EPAGAP = _amplpy_ampls_swig.CPX_PARAM_EPAGAP
+CPX_PARAM_EPGAP = _amplpy_ampls_swig.CPX_PARAM_EPGAP
+CPX_PARAM_EPINT = _amplpy_ampls_swig.CPX_PARAM_EPINT
+CPX_PARAM_MIPDISPLAY = _amplpy_ampls_swig.CPX_PARAM_MIPDISPLAY
+CPX_PARAM_MIPINTERVAL = _amplpy_ampls_swig.CPX_PARAM_MIPINTERVAL
+CPX_PARAM_INTSOLLIM = _amplpy_ampls_swig.CPX_PARAM_INTSOLLIM
+CPX_PARAM_NODEFILEIND = _amplpy_ampls_swig.CPX_PARAM_NODEFILEIND
+CPX_PARAM_NODELIM = _amplpy_ampls_swig.CPX_PARAM_NODELIM
+CPX_PARAM_NODESEL = _amplpy_ampls_swig.CPX_PARAM_NODESEL
+CPX_PARAM_OBJDIF = _amplpy_ampls_swig.CPX_PARAM_OBJDIF
+CPX_PARAM_MIPORDIND = _amplpy_ampls_swig.CPX_PARAM_MIPORDIND
+CPX_PARAM_RELOBJDIF = _amplpy_ampls_swig.CPX_PARAM_RELOBJDIF
+CPX_PARAM_STARTALG = _amplpy_ampls_swig.CPX_PARAM_STARTALG
+CPX_PARAM_SUBALG = _amplpy_ampls_swig.CPX_PARAM_SUBALG
+CPX_PARAM_TRELIM = _amplpy_ampls_swig.CPX_PARAM_TRELIM
+CPX_PARAM_VARSEL = _amplpy_ampls_swig.CPX_PARAM_VARSEL
+CPX_PARAM_BNDSTRENIND = _amplpy_ampls_swig.CPX_PARAM_BNDSTRENIND
+CPX_PARAM_HEURFREQ = _amplpy_ampls_swig.CPX_PARAM_HEURFREQ
+CPX_PARAM_MIPORDTYPE = _amplpy_ampls_swig.CPX_PARAM_MIPORDTYPE
+CPX_PARAM_CUTSFACTOR = _amplpy_ampls_swig.CPX_PARAM_CUTSFACTOR
+CPX_PARAM_RELAXPREIND = _amplpy_ampls_swig.CPX_PARAM_RELAXPREIND
+CPX_PARAM_PRESLVND = _amplpy_ampls_swig.CPX_PARAM_PRESLVND
+CPX_PARAM_BBINTERVAL = _amplpy_ampls_swig.CPX_PARAM_BBINTERVAL
+CPX_PARAM_FLOWCOVERS = _amplpy_ampls_swig.CPX_PARAM_FLOWCOVERS
+CPX_PARAM_IMPLBD = _amplpy_ampls_swig.CPX_PARAM_IMPLBD
+CPX_PARAM_PROBE = _amplpy_ampls_swig.CPX_PARAM_PROBE
+CPX_PARAM_GUBCOVERS = _amplpy_ampls_swig.CPX_PARAM_GUBCOVERS
+CPX_PARAM_STRONGCANDLIM = _amplpy_ampls_swig.CPX_PARAM_STRONGCANDLIM
+CPX_PARAM_STRONGITLIM = _amplpy_ampls_swig.CPX_PARAM_STRONGITLIM
+CPX_PARAM_FRACCAND = _amplpy_ampls_swig.CPX_PARAM_FRACCAND
+CPX_PARAM_FRACCUTS = _amplpy_ampls_swig.CPX_PARAM_FRACCUTS
+CPX_PARAM_FRACPASS = _amplpy_ampls_swig.CPX_PARAM_FRACPASS
+CPX_PARAM_FLOWPATHS = _amplpy_ampls_swig.CPX_PARAM_FLOWPATHS
+CPX_PARAM_MIRCUTS = _amplpy_ampls_swig.CPX_PARAM_MIRCUTS
+CPX_PARAM_DISJCUTS = _amplpy_ampls_swig.CPX_PARAM_DISJCUTS
+CPX_PARAM_AGGCUTLIM = _amplpy_ampls_swig.CPX_PARAM_AGGCUTLIM
+CPX_PARAM_MIPCBREDLP = _amplpy_ampls_swig.CPX_PARAM_MIPCBREDLP
+CPX_PARAM_CUTPASS = _amplpy_ampls_swig.CPX_PARAM_CUTPASS
+CPX_PARAM_MIPEMPHASIS = _amplpy_ampls_swig.CPX_PARAM_MIPEMPHASIS
+CPX_PARAM_SYMMETRY = _amplpy_ampls_swig.CPX_PARAM_SYMMETRY
+CPX_PARAM_DIVETYPE = _amplpy_ampls_swig.CPX_PARAM_DIVETYPE
+CPX_PARAM_RINSHEUR = _amplpy_ampls_swig.CPX_PARAM_RINSHEUR
+CPX_PARAM_LBHEUR = _amplpy_ampls_swig.CPX_PARAM_LBHEUR
+CPX_PARAM_REPEATPRESOLVE = _amplpy_ampls_swig.CPX_PARAM_REPEATPRESOLVE
+CPX_PARAM_PROBETIME = _amplpy_ampls_swig.CPX_PARAM_PROBETIME
+CPX_PARAM_REPAIRTRIES = _amplpy_ampls_swig.CPX_PARAM_REPAIRTRIES
+CPX_PARAM_EPLIN = _amplpy_ampls_swig.CPX_PARAM_EPLIN
+CPX_PARAM_EPRELAX = _amplpy_ampls_swig.CPX_PARAM_EPRELAX
+CPX_PARAM_FPHEUR = _amplpy_ampls_swig.CPX_PARAM_FPHEUR
+CPX_PARAM_EACHCUTLIM = _amplpy_ampls_swig.CPX_PARAM_EACHCUTLIM
+CPX_PARAM_SOLNPOOLCAPACITY = _amplpy_ampls_swig.CPX_PARAM_SOLNPOOLCAPACITY
+CPX_PARAM_SOLNPOOLREPLACE = _amplpy_ampls_swig.CPX_PARAM_SOLNPOOLREPLACE
+CPX_PARAM_SOLNPOOLGAP = _amplpy_ampls_swig.CPX_PARAM_SOLNPOOLGAP
+CPX_PARAM_SOLNPOOLAGAP = _amplpy_ampls_swig.CPX_PARAM_SOLNPOOLAGAP
+CPX_PARAM_SOLNPOOLINTENSITY = _amplpy_ampls_swig.CPX_PARAM_SOLNPOOLINTENSITY
+CPX_PARAM_POPULATELIM = _amplpy_ampls_swig.CPX_PARAM_POPULATELIM
+CPX_PARAM_MIPSEARCH = _amplpy_ampls_swig.CPX_PARAM_MIPSEARCH
+CPX_PARAM_MIQCPSTRAT = _amplpy_ampls_swig.CPX_PARAM_MIQCPSTRAT
+CPX_PARAM_ZEROHALFCUTS = _amplpy_ampls_swig.CPX_PARAM_ZEROHALFCUTS
+CPX_PARAM_HEUREFFORT = _amplpy_ampls_swig.CPX_PARAM_HEUREFFORT
+CPX_PARAM_POLISHAFTEREPAGAP = _amplpy_ampls_swig.CPX_PARAM_POLISHAFTEREPAGAP
+CPX_PARAM_POLISHAFTEREPGAP = _amplpy_ampls_swig.CPX_PARAM_POLISHAFTEREPGAP
+CPX_PARAM_POLISHAFTERNODE = _amplpy_ampls_swig.CPX_PARAM_POLISHAFTERNODE
+CPX_PARAM_POLISHAFTERINTSOL = _amplpy_ampls_swig.CPX_PARAM_POLISHAFTERINTSOL
+CPX_PARAM_POLISHAFTERTIME = _amplpy_ampls_swig.CPX_PARAM_POLISHAFTERTIME
+CPX_PARAM_MCFCUTS = _amplpy_ampls_swig.CPX_PARAM_MCFCUTS
+CPX_PARAM_MIPKAPPASTATS = _amplpy_ampls_swig.CPX_PARAM_MIPKAPPASTATS
+CPX_PARAM_AUXROOTTHREADS = _amplpy_ampls_swig.CPX_PARAM_AUXROOTTHREADS
+CPX_PARAM_INTSOLFILEPREFIX = _amplpy_ampls_swig.CPX_PARAM_INTSOLFILEPREFIX
+CPX_PARAM_PROBEDETTIME = _amplpy_ampls_swig.CPX_PARAM_PROBEDETTIME
+CPX_PARAM_POLISHAFTERDETTIME = _amplpy_ampls_swig.CPX_PARAM_POLISHAFTERDETTIME
+CPX_PARAM_LANDPCUTS = _amplpy_ampls_swig.CPX_PARAM_LANDPCUTS
+CPX_PARAM_NODECUTS = _amplpy_ampls_swig.CPX_PARAM_NODECUTS
+CPX_PARAM_LOCALIMPLBD = _amplpy_ampls_swig.CPX_PARAM_LOCALIMPLBD
+CPX_PARAM_BQPCUTS = _amplpy_ampls_swig.CPX_PARAM_BQPCUTS
+CPX_PARAM_RLTCUTS = _amplpy_ampls_swig.CPX_PARAM_RLTCUTS
+CPX_PARAM_SUBMIPSTARTALG = _amplpy_ampls_swig.CPX_PARAM_SUBMIPSTARTALG
+CPX_PARAM_SUBMIPSUBALG = _amplpy_ampls_swig.CPX_PARAM_SUBMIPSUBALG
+CPX_PARAM_SUBMIPSCAIND = _amplpy_ampls_swig.CPX_PARAM_SUBMIPSCAIND
+CPX_PARAM_SUBMIPNODELIMIT = _amplpy_ampls_swig.CPX_PARAM_SUBMIPNODELIMIT
+CPX_PARAM_SOS1REFORM = _amplpy_ampls_swig.CPX_PARAM_SOS1REFORM
+CPX_PARAM_SOS2REFORM = _amplpy_ampls_swig.CPX_PARAM_SOS2REFORM
+CPX_PARAM_LOWEROBJSTOP = _amplpy_ampls_swig.CPX_PARAM_LOWEROBJSTOP
+CPX_PARAM_UPPEROBJSTOP = _amplpy_ampls_swig.CPX_PARAM_UPPEROBJSTOP
+CPX_PARAM_CARDLS = _amplpy_ampls_swig.CPX_PARAM_CARDLS
+CPX_PARAM_BAREPCOMP = _amplpy_ampls_swig.CPX_PARAM_BAREPCOMP
+CPX_PARAM_BARGROWTH = _amplpy_ampls_swig.CPX_PARAM_BARGROWTH
+CPX_PARAM_BAROBJRNG = _amplpy_ampls_swig.CPX_PARAM_BAROBJRNG
+CPX_PARAM_BARALG = _amplpy_ampls_swig.CPX_PARAM_BARALG
+CPX_PARAM_BARCOLNZ = _amplpy_ampls_swig.CPX_PARAM_BARCOLNZ
+CPX_PARAM_BARDISPLAY = _amplpy_ampls_swig.CPX_PARAM_BARDISPLAY
+CPX_PARAM_BARITLIM = _amplpy_ampls_swig.CPX_PARAM_BARITLIM
+CPX_PARAM_BARMAXCOR = _amplpy_ampls_swig.CPX_PARAM_BARMAXCOR
+CPX_PARAM_BARORDER = _amplpy_ampls_swig.CPX_PARAM_BARORDER
+CPX_PARAM_BARSTARTALG = _amplpy_ampls_swig.CPX_PARAM_BARSTARTALG
+CPX_PARAM_BARCROSSALG = _amplpy_ampls_swig.CPX_PARAM_BARCROSSALG
+CPX_PARAM_BARQCPEPCOMP = _amplpy_ampls_swig.CPX_PARAM_BARQCPEPCOMP
+CPX_PARAM_QPNZREADLIM = _amplpy_ampls_swig.CPX_PARAM_QPNZREADLIM
+CPX_PARAM_CALCQCPDUALS = _amplpy_ampls_swig.CPX_PARAM_CALCQCPDUALS
+CPX_PARAM_QPMAKEPSDIND = _amplpy_ampls_swig.CPX_PARAM_QPMAKEPSDIND
+CPX_PARAM_QTOLININD = _amplpy_ampls_swig.CPX_PARAM_QTOLININD
+CPX_PARAM_NETITLIM = _amplpy_ampls_swig.CPX_PARAM_NETITLIM
+CPX_PARAM_NETEPOPT = _amplpy_ampls_swig.CPX_PARAM_NETEPOPT
+CPX_PARAM_NETEPRHS = _amplpy_ampls_swig.CPX_PARAM_NETEPRHS
+CPX_PARAM_NETPPRIIND = _amplpy_ampls_swig.CPX_PARAM_NETPPRIIND
+CPX_PARAM_NETDISPLAY = _amplpy_ampls_swig.CPX_PARAM_NETDISPLAY
+CPX_CPXAUTOTYPES_H_H = _amplpy_ampls_swig.CPX_CPXAUTOTYPES_H_H
+CPX_CPXAUTOSTRUCTS_H_H = _amplpy_ampls_swig.CPX_CPXAUTOSTRUCTS_H_H
+class cpxdeserializer(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    getbyte = property(_amplpy_ampls_swig.cpxdeserializer_getbyte_get, _amplpy_ampls_swig.cpxdeserializer_getbyte_set)
+    getshort = property(_amplpy_ampls_swig.cpxdeserializer_getshort_get, _amplpy_ampls_swig.cpxdeserializer_getshort_set)
+    getint = property(_amplpy_ampls_swig.cpxdeserializer_getint_get, _amplpy_ampls_swig.cpxdeserializer_getint_set)
+    getlong = property(_amplpy_ampls_swig.cpxdeserializer_getlong_get, _amplpy_ampls_swig.cpxdeserializer_getlong_set)
+    getfloat = property(_amplpy_ampls_swig.cpxdeserializer_getfloat_get, _amplpy_ampls_swig.cpxdeserializer_getfloat_set)
+    getdouble = property(_amplpy_ampls_swig.cpxdeserializer_getdouble_get, _amplpy_ampls_swig.cpxdeserializer_getdouble_set)
+    getbytes = property(_amplpy_ampls_swig.cpxdeserializer_getbytes_get, _amplpy_ampls_swig.cpxdeserializer_getbytes_set)
+    getshorts = property(_amplpy_ampls_swig.cpxdeserializer_getshorts_get, _amplpy_ampls_swig.cpxdeserializer_getshorts_set)
+    getints = property(_amplpy_ampls_swig.cpxdeserializer_getints_get, _amplpy_ampls_swig.cpxdeserializer_getints_set)
+    getlongs = property(_amplpy_ampls_swig.cpxdeserializer_getlongs_get, _amplpy_ampls_swig.cpxdeserializer_getlongs_set)
+    getfloats = property(_amplpy_ampls_swig.cpxdeserializer_getfloats_get, _amplpy_ampls_swig.cpxdeserializer_getfloats_set)
+    getdoubles = property(_amplpy_ampls_swig.cpxdeserializer_getdoubles_get, _amplpy_ampls_swig.cpxdeserializer_getdoubles_set)
+
+    def __init__(self):
+        _amplpy_ampls_swig.cpxdeserializer_swiginit(self, _amplpy_ampls_swig.new_cpxdeserializer())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_cpxdeserializer
+
+# Register cpxdeserializer in _amplpy_ampls_swig:
+_amplpy_ampls_swig.cpxdeserializer_swigregister(cpxdeserializer)
+
+class cpxserializer(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    addbyte = property(_amplpy_ampls_swig.cpxserializer_addbyte_get, _amplpy_ampls_swig.cpxserializer_addbyte_set)
+    addshort = property(_amplpy_ampls_swig.cpxserializer_addshort_get, _amplpy_ampls_swig.cpxserializer_addshort_set)
+    addint = property(_amplpy_ampls_swig.cpxserializer_addint_get, _amplpy_ampls_swig.cpxserializer_addint_set)
+    addlong = property(_amplpy_ampls_swig.cpxserializer_addlong_get, _amplpy_ampls_swig.cpxserializer_addlong_set)
+    addfloat = property(_amplpy_ampls_swig.cpxserializer_addfloat_get, _amplpy_ampls_swig.cpxserializer_addfloat_set)
+    adddouble = property(_amplpy_ampls_swig.cpxserializer_adddouble_get, _amplpy_ampls_swig.cpxserializer_adddouble_set)
+    addbytes = property(_amplpy_ampls_swig.cpxserializer_addbytes_get, _amplpy_ampls_swig.cpxserializer_addbytes_set)
+    addshorts = property(_amplpy_ampls_swig.cpxserializer_addshorts_get, _amplpy_ampls_swig.cpxserializer_addshorts_set)
+    addints = property(_amplpy_ampls_swig.cpxserializer_addints_get, _amplpy_ampls_swig.cpxserializer_addints_set)
+    addlongs = property(_amplpy_ampls_swig.cpxserializer_addlongs_get, _amplpy_ampls_swig.cpxserializer_addlongs_set)
+    addfloats = property(_amplpy_ampls_swig.cpxserializer_addfloats_get, _amplpy_ampls_swig.cpxserializer_addfloats_set)
+    adddoubles = property(_amplpy_ampls_swig.cpxserializer_adddoubles_get, _amplpy_ampls_swig.cpxserializer_adddoubles_set)
+
+    def __init__(self):
+        _amplpy_ampls_swig.cpxserializer_swiginit(self, _amplpy_ampls_swig.new_cpxserializer())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_cpxserializer
+
+# Register cpxserializer in _amplpy_ampls_swig:
+_amplpy_ampls_swig.cpxserializer_swigregister(cpxserializer)
+
+CPX_H = _amplpy_ampls_swig.CPX_H
+
+def CPXaddcols(env, lp, ccnt, nzcnt, obj, cmatbeg, cmatind, cmatval, lb, ub, colname):
+    return _amplpy_ampls_swig.CPXaddcols(env, lp, ccnt, nzcnt, obj, cmatbeg, cmatind, cmatval, lb, ub, colname)
+
+def CPXaddfuncdest(env, channel, handle, msgfunction):
+    return _amplpy_ampls_swig.CPXaddfuncdest(env, channel, handle, msgfunction)
+
+def CPXaddpwl(env, lp, vary, varx, preslope, postslope, nbreaks, breakx, breaky, pwlname):
+    return _amplpy_ampls_swig.CPXaddpwl(env, lp, vary, varx, preslope, postslope, nbreaks, breakx, breaky, pwlname)
+
+def CPXaddrows(env, lp, ccnt, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, colname, rowname):
+    return _amplpy_ampls_swig.CPXaddrows(env, lp, ccnt, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, colname, rowname)
+
+def CPXbasicpresolve(env, lp, redlb, redub, rstat):
+    return _amplpy_ampls_swig.CPXbasicpresolve(env, lp, redlb, redub, rstat)
+
+def CPXbinvacol(env, lp, j, x):
+    return _amplpy_ampls_swig.CPXbinvacol(env, lp, j, x)
+
+def CPXbinvarow(env, lp, i, z):
+    return _amplpy_ampls_swig.CPXbinvarow(env, lp, i, z)
+
+def CPXbinvcol(env, lp, j, x):
+    return _amplpy_ampls_swig.CPXbinvcol(env, lp, j, x)
+
+def CPXbinvrow(env, lp, i, y):
+    return _amplpy_ampls_swig.CPXbinvrow(env, lp, i, y)
+
+def CPXboundsa(env, lp, begin, end, lblower, lbupper, ublower, ubupper):
+    return _amplpy_ampls_swig.CPXboundsa(env, lp, begin, end, lblower, lbupper, ublower, ubupper)
+
+def CPXbtran(env, lp, y):
+    return _amplpy_ampls_swig.CPXbtran(env, lp, y)
+
+def CPXcallbackabort(context):
+    return _amplpy_ampls_swig.CPXcallbackabort(context)
+
+def CPXcallbackaddusercuts(context, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, purgeable, local):
+    return _amplpy_ampls_swig.CPXcallbackaddusercuts(context, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, purgeable, local)
+
+def CPXcallbackcandidateispoint(context, ispoint_p):
+    return _amplpy_ampls_swig.CPXcallbackcandidateispoint(context, ispoint_p)
+
+def CPXcallbackcandidateisray(context, isray_p):
+    return _amplpy_ampls_swig.CPXcallbackcandidateisray(context, isray_p)
+
+def CPXcallbackexitcutloop(context):
+    return _amplpy_ampls_swig.CPXcallbackexitcutloop(context)
+
+def CPXcallbackgetcandidatepoint(context, x, begin, end, obj_p):
+    return _amplpy_ampls_swig.CPXcallbackgetcandidatepoint(context, x, begin, end, obj_p)
+
+def CPXcallbackgetcandidateray(context, x, begin, end):
+    return _amplpy_ampls_swig.CPXcallbackgetcandidateray(context, x, begin, end)
+
+def CPXcallbackgetfunc(env, lp, contextmask_p, callback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXcallbackgetfunc(env, lp, contextmask_p, callback_p, cbhandle_p)
+
+def CPXcallbackgetincumbent(context, x, begin, end, obj_p):
+    return _amplpy_ampls_swig.CPXcallbackgetincumbent(context, x, begin, end, obj_p)
+
+def CPXcallbackgetinfodbl(context, what, data_p):
+    return _amplpy_ampls_swig.CPXcallbackgetinfodbl(context, what, data_p)
+
+def CPXcallbackgetinfoint(context, what, data_p):
+    return _amplpy_ampls_swig.CPXcallbackgetinfoint(context, what, data_p)
+
+def CPXcallbackgetinfolong(context, what, data_p):
+    return _amplpy_ampls_swig.CPXcallbackgetinfolong(context, what, data_p)
+
+def CPXcallbackgetrelaxationpi(context, lrpi, lrbeg, lrend, qrpi, qrpidef, qrbeg, qrend, qzerotol_p):
+    return _amplpy_ampls_swig.CPXcallbackgetrelaxationpi(context, lrpi, lrbeg, lrend, qrpi, qrpidef, qrbeg, qrend, qzerotol_p)
+
+def CPXcallbackgetrelaxationpoint(context, x, begin, end, obj_p):
+    return _amplpy_ampls_swig.CPXcallbackgetrelaxationpoint(context, x, begin, end, obj_p)
+
+def CPXcallbackgetrelaxationstatus(context, nodelpstat_p, flags):
+    return _amplpy_ampls_swig.CPXcallbackgetrelaxationstatus(context, nodelpstat_p, flags)
+
+def CPXcallbackmakebranch(context, varcnt, varind, varlu, varbd, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, nodeest, seqnum_p):
+    return _amplpy_ampls_swig.CPXcallbackmakebranch(context, varcnt, varind, varlu, varbd, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, nodeest, seqnum_p)
+
+def CPXcallbackpostheursoln(context, cnt, ind, val, obj, strat):
+    return _amplpy_ampls_swig.CPXcallbackpostheursoln(context, cnt, ind, val, obj, strat)
+
+def CPXcallbackprunenode(context):
+    return _amplpy_ampls_swig.CPXcallbackprunenode(context)
+
+def CPXcallbackrejectcandidate(context, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval):
+    return _amplpy_ampls_swig.CPXcallbackrejectcandidate(context, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval)
+
+def CPXcallbackrejectcandidatelocal(context, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval):
+    return _amplpy_ampls_swig.CPXcallbackrejectcandidatelocal(context, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval)
+
+def CPXcallbacksetfunc(env, lp, contextmask, callback, userhandle):
+    return _amplpy_ampls_swig.CPXcallbacksetfunc(env, lp, contextmask, callback, userhandle)
+
+def CPXcheckdfeas(env, lp, infeas_p):
+    return _amplpy_ampls_swig.CPXcheckdfeas(env, lp, infeas_p)
+
+def CPXcheckpfeas(env, lp, infeas_p):
+    return _amplpy_ampls_swig.CPXcheckpfeas(env, lp, infeas_p)
+
+def CPXchecksoln(env, lp, lpstatus_p):
+    return _amplpy_ampls_swig.CPXchecksoln(env, lp, lpstatus_p)
+
+def CPXchgbds(env, lp, cnt, indices, lu, bd):
+    return _amplpy_ampls_swig.CPXchgbds(env, lp, cnt, indices, lu, bd)
+
+def CPXchgcoef(env, lp, i, j, newvalue):
+    return _amplpy_ampls_swig.CPXchgcoef(env, lp, i, j, newvalue)
+
+def CPXchgcoeflist(env, lp, numcoefs, rowlist, collist, vallist):
+    return _amplpy_ampls_swig.CPXchgcoeflist(env, lp, numcoefs, rowlist, collist, vallist)
+
+def CPXchgcolname(env, lp, cnt, indices, newname):
+    return _amplpy_ampls_swig.CPXchgcolname(env, lp, cnt, indices, newname)
+
+def CPXchgname(env, lp, key, ij, newname_str):
+    return _amplpy_ampls_swig.CPXchgname(env, lp, key, ij, newname_str)
+
+def CPXchgobj(env, lp, cnt, indices, values):
+    return _amplpy_ampls_swig.CPXchgobj(env, lp, cnt, indices, values)
+
+def CPXchgobjoffset(env, lp, offset):
+    return _amplpy_ampls_swig.CPXchgobjoffset(env, lp, offset)
+
+def CPXchgobjsen(env, lp, maxormin):
+    return _amplpy_ampls_swig.CPXchgobjsen(env, lp, maxormin)
+
+def CPXchgprobname(env, lp, probname):
+    return _amplpy_ampls_swig.CPXchgprobname(env, lp, probname)
+
+def CPXchgprobtype(env, lp, type):
+    return _amplpy_ampls_swig.CPXchgprobtype(env, lp, type)
+
+def CPXchgprobtypesolnpool(env, lp, type, soln):
+    return _amplpy_ampls_swig.CPXchgprobtypesolnpool(env, lp, type, soln)
+
+def CPXchgrhs(env, lp, cnt, indices, values):
+    return _amplpy_ampls_swig.CPXchgrhs(env, lp, cnt, indices, values)
+
+def CPXchgrngval(env, lp, cnt, indices, values):
+    return _amplpy_ampls_swig.CPXchgrngval(env, lp, cnt, indices, values)
+
+def CPXchgrowname(env, lp, cnt, indices, newname):
+    return _amplpy_ampls_swig.CPXchgrowname(env, lp, cnt, indices, newname)
+
+def CPXchgsense(env, lp, cnt, indices, sense):
+    return _amplpy_ampls_swig.CPXchgsense(env, lp, cnt, indices, sense)
+
+def CPXcleanup(env, lp, eps):
+    return _amplpy_ampls_swig.CPXcleanup(env, lp, eps)
+
+def CPXcloneprob(env, lp, status_p):
+    return _amplpy_ampls_swig.CPXcloneprob(env, lp, status_p)
+
+def CPXcloseCPLEX(env_p):
+    return _amplpy_ampls_swig.CPXcloseCPLEX(env_p)
+
+def CPXclpwrite(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXclpwrite(env, lp, filename_str)
+
+def CPXcompletelp(env, lp):
+    return _amplpy_ampls_swig.CPXcompletelp(env, lp)
+
+def CPXcopybase(env, lp, cstat, rstat):
+    return _amplpy_ampls_swig.CPXcopybase(env, lp, cstat, rstat)
+
+def CPXcopybasednorms(env, lp, cstat, rstat, dnorm):
+    return _amplpy_ampls_swig.CPXcopybasednorms(env, lp, cstat, rstat, dnorm)
+
+def CPXcopydnorms(env, lp, norm, head, len):
+    return _amplpy_ampls_swig.CPXcopydnorms(env, lp, norm, head, len)
+
+def CPXcopylp(env, lp, numcols, numrows, objsense, objective, rhs, sense, matbeg, matcnt, matind, matval, lb, ub, rngval):
+    return _amplpy_ampls_swig.CPXcopylp(env, lp, numcols, numrows, objsense, objective, rhs, sense, matbeg, matcnt, matind, matval, lb, ub, rngval)
+
+def CPXcopylpwnames(env, lp, numcols, numrows, objsense, objective, rhs, sense, matbeg, matcnt, matind, matval, lb, ub, rngval, colname, rowname):
+    return _amplpy_ampls_swig.CPXcopylpwnames(env, lp, numcols, numrows, objsense, objective, rhs, sense, matbeg, matcnt, matind, matval, lb, ub, rngval, colname, rowname)
+
+def CPXcopynettolp(env, lp, net):
+    return _amplpy_ampls_swig.CPXcopynettolp(env, lp, net)
+
+def CPXcopyobjname(env, lp, objname_str):
+    return _amplpy_ampls_swig.CPXcopyobjname(env, lp, objname_str)
+
+def CPXcopypnorms(env, lp, cnorm, rnorm, len):
+    return _amplpy_ampls_swig.CPXcopypnorms(env, lp, cnorm, rnorm, len)
+
+def CPXcopyprotected(env, lp, cnt, indices):
+    return _amplpy_ampls_swig.CPXcopyprotected(env, lp, cnt, indices)
+
+def CPXcopystart(env, lp, cstat, rstat, cprim, rprim, cdual, rdual):
+    return _amplpy_ampls_swig.CPXcopystart(env, lp, cstat, rstat, cprim, rprim, cdual, rdual)
+
+def CPXcreateprob(env, status_p, probname_str):
+    return _amplpy_ampls_swig.CPXcreateprob(env, status_p, probname_str)
+
+def CPXcrushform(env, lp, len, ind, val, plen_p, poffset_p, pind, pval):
+    return _amplpy_ampls_swig.CPXcrushform(env, lp, len, ind, val, plen_p, poffset_p, pind, pval)
+
+def CPXcrushpi(env, lp, pi, prepi):
+    return _amplpy_ampls_swig.CPXcrushpi(env, lp, pi, prepi)
+
+def CPXcrushx(env, lp, x, prex):
+    return _amplpy_ampls_swig.CPXcrushx(env, lp, x, prex)
+
+def CPXdelcols(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdelcols(env, lp, begin, end)
+
+def CPXdeldblannotation(env, lp, idx):
+    return _amplpy_ampls_swig.CPXdeldblannotation(env, lp, idx)
+
+def CPXdeldblannotations(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdeldblannotations(env, lp, begin, end)
+
+def CPXdelfuncdest(env, channel, handle, msgfunction):
+    return _amplpy_ampls_swig.CPXdelfuncdest(env, channel, handle, msgfunction)
+
+def CPXdellongannotation(env, lp, idx):
+    return _amplpy_ampls_swig.CPXdellongannotation(env, lp, idx)
+
+def CPXdellongannotations(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdellongannotations(env, lp, begin, end)
+
+def CPXdelnames(env, lp):
+    return _amplpy_ampls_swig.CPXdelnames(env, lp)
+
+def CPXdelpwl(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdelpwl(env, lp, begin, end)
+
+def CPXdelrows(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdelrows(env, lp, begin, end)
+
+def CPXdelsetcols(env, lp, delstat):
+    return _amplpy_ampls_swig.CPXdelsetcols(env, lp, delstat)
+
+def CPXdelsetpwl(env, lp, delstat):
+    return _amplpy_ampls_swig.CPXdelsetpwl(env, lp, delstat)
+
+def CPXdelsetrows(env, lp, delstat):
+    return _amplpy_ampls_swig.CPXdelsetrows(env, lp, delstat)
+
+def CPXdeserializercreate(deser_p, size, buffer):
+    return _amplpy_ampls_swig.CPXdeserializercreate(deser_p, size, buffer)
+
+def CPXdeserializerdestroy(deser):
+    return _amplpy_ampls_swig.CPXdeserializerdestroy(deser)
+
+def CPXdeserializerleft(deser):
+    return _amplpy_ampls_swig.CPXdeserializerleft(deser)
+
+def CPXdisconnectchannel(env, channel):
+    return _amplpy_ampls_swig.CPXdisconnectchannel(env, channel)
+
+def CPXdjfrompi(env, lp, pi, dj):
+    return _amplpy_ampls_swig.CPXdjfrompi(env, lp, pi, dj)
+
+def CPXdperwrite(env, lp, filename_str, epsilon):
+    return _amplpy_ampls_swig.CPXdperwrite(env, lp, filename_str, epsilon)
+
+def CPXdratio(env, lp, indices, cnt, downratio, upratio, downenter, upenter, downstatus, upstatus):
+    return _amplpy_ampls_swig.CPXdratio(env, lp, indices, cnt, downratio, upratio, downenter, upenter, downstatus, upstatus)
+
+def CPXdualfarkas(env, lp, y, proof_p):
+    return _amplpy_ampls_swig.CPXdualfarkas(env, lp, y, proof_p)
+
+def CPXdualopt(env, lp):
+    return _amplpy_ampls_swig.CPXdualopt(env, lp)
+
+def CPXdualwrite(env, lp, filename_str, objshift_p):
+    return _amplpy_ampls_swig.CPXdualwrite(env, lp, filename_str, objshift_p)
+
+def CPXembwrite(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXembwrite(env, lp, filename_str)
+
+def CPXfeasopt(env, lp, rhs, rng, lb, ub):
+    return _amplpy_ampls_swig.CPXfeasopt(env, lp, rhs, rng, lb, ub)
+
+def CPXfeasoptext(env, lp, grpcnt, concnt, grppref, grpbeg, grpind, grptype):
+    return _amplpy_ampls_swig.CPXfeasoptext(env, lp, grpcnt, concnt, grppref, grpbeg, grpind, grptype)
+
+def CPXfinalize():
+    return _amplpy_ampls_swig.CPXfinalize()
+
+def CPXflushchannel(env, channel):
+    return _amplpy_ampls_swig.CPXflushchannel(env, channel)
+
+def CPXflushstdchannels(env):
+    return _amplpy_ampls_swig.CPXflushstdchannels(env)
+
+def CPXfreepresolve(env, lp):
+    return _amplpy_ampls_swig.CPXfreepresolve(env, lp)
+
+def CPXfreeprob(env, lp_p):
+    return _amplpy_ampls_swig.CPXfreeprob(env, lp_p)
+
+def CPXftran(env, lp, x):
+    return _amplpy_ampls_swig.CPXftran(env, lp, x)
+
+def CPXgetax(env, lp, x, begin, end):
+    return _amplpy_ampls_swig.CPXgetax(env, lp, x, begin, end)
+
+def CPXgetbaritcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetbaritcnt(env, lp)
+
+def CPXgetbase(env, lp, cstat, rstat):
+    return _amplpy_ampls_swig.CPXgetbase(env, lp, cstat, rstat)
+
+def CPXgetbasednorms(env, lp, cstat, rstat, dnorm):
+    return _amplpy_ampls_swig.CPXgetbasednorms(env, lp, cstat, rstat, dnorm)
+
+def CPXgetbhead(env, lp, head, x):
+    return _amplpy_ampls_swig.CPXgetbhead(env, lp, head, x)
+
+def CPXgetcallbackinfo(env, cbdata, wherefrom, whichinfo, result_p):
+    return _amplpy_ampls_swig.CPXgetcallbackinfo(env, cbdata, wherefrom, whichinfo, result_p)
+
+def CPXgetchannels(env, cpxresults_p, cpxwarning_p, cpxerror_p, cpxlog_p):
+    return _amplpy_ampls_swig.CPXgetchannels(env, cpxresults_p, cpxwarning_p, cpxerror_p, cpxlog_p)
+
+def CPXgetchgparam(env, cnt_p, paramnum, pspace, surplus_p):
+    return _amplpy_ampls_swig.CPXgetchgparam(env, cnt_p, paramnum, pspace, surplus_p)
+
+def CPXgetcoef(env, lp, i, j, coef_p):
+    return _amplpy_ampls_swig.CPXgetcoef(env, lp, i, j, coef_p)
+
+def CPXgetcolindex(env, lp, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetcolindex(env, lp, lname_str, index_p)
+
+def CPXgetcolinfeas(env, lp, x, infeasout, begin, end):
+    return _amplpy_ampls_swig.CPXgetcolinfeas(env, lp, x, infeasout, begin, end)
+
+def CPXgetcolname(env, lp, name, namestore, storespace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetcolname(env, lp, name, namestore, storespace, surplus_p, begin, end)
+
+def CPXgetcols(env, lp, nzcnt_p, cmatbeg, cmatind, cmatval, cmatspace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetcols(env, lp, nzcnt_p, cmatbeg, cmatind, cmatval, cmatspace, surplus_p, begin, end)
+
+def CPXgetconflict(env, lp, confstat_p, rowind, rowbdstat, confnumrows_p, colind, colbdstat, confnumcols_p):
+    return _amplpy_ampls_swig.CPXgetconflict(env, lp, confstat_p, rowind, rowbdstat, confnumrows_p, colind, colbdstat, confnumcols_p)
+
+def CPXgetconflictext(env, lp, grpstat, beg, end):
+    return _amplpy_ampls_swig.CPXgetconflictext(env, lp, grpstat, beg, end)
+
+def CPXgetconflictgroups(env, lp, concnt_p, grppref, grpbeg, grpind, grptype, grpspace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetconflictgroups(env, lp, concnt_p, grppref, grpbeg, grpind, grptype, grpspace, surplus_p, begin, end)
+
+def CPXgetconflictnumgroups(env, lp):
+    return _amplpy_ampls_swig.CPXgetconflictnumgroups(env, lp)
+
+def CPXgetconflictnumpasses(env, lp):
+    return _amplpy_ampls_swig.CPXgetconflictnumpasses(env, lp)
+
+def CPXgetcrossdexchcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetcrossdexchcnt(env, lp)
+
+def CPXgetcrossdpushcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetcrossdpushcnt(env, lp)
+
+def CPXgetcrosspexchcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetcrosspexchcnt(env, lp)
+
+def CPXgetcrossppushcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetcrossppushcnt(env, lp)
+
+def CPXgetdblannotationdefval(env, lp, idx, defval_p):
+    return _amplpy_ampls_swig.CPXgetdblannotationdefval(env, lp, idx, defval_p)
+
+def CPXgetdblannotationindex(env, lp, annotationname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetdblannotationindex(env, lp, annotationname_str, index_p)
+
+def CPXgetdblannotationname(env, lp, idx, buf_str, bufspace, surplus_p):
+    return _amplpy_ampls_swig.CPXgetdblannotationname(env, lp, idx, buf_str, bufspace, surplus_p)
+
+def CPXgetdblannotations(env, lp, idx, objtype, annotation, begin, end):
+    return _amplpy_ampls_swig.CPXgetdblannotations(env, lp, idx, objtype, annotation, begin, end)
+
+def CPXgetdblparam(env, whichparam, value_p):
+    return _amplpy_ampls_swig.CPXgetdblparam(env, whichparam, value_p)
+
+def CPXgetdblquality(env, lp, quality_p, what):
+    return _amplpy_ampls_swig.CPXgetdblquality(env, lp, quality_p, what)
+
+def CPXgetdettime(env, dettimestamp_p):
+    return _amplpy_ampls_swig.CPXgetdettime(env, dettimestamp_p)
+
+def CPXgetdj(env, lp, dj, begin, end):
+    return _amplpy_ampls_swig.CPXgetdj(env, lp, dj, begin, end)
+
+def CPXgetdnorms(env, lp, norm, head, len_p):
+    return _amplpy_ampls_swig.CPXgetdnorms(env, lp, norm, head, len_p)
+
+def CPXgetdsbcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetdsbcnt(env, lp)
+
+def CPXgeterrorstring(env, errcode, buffer_str):
+    return _amplpy_ampls_swig.CPXgeterrorstring(env, errcode, buffer_str)
+
+def CPXgetgrad(env, lp, j, head, y):
+    return _amplpy_ampls_swig.CPXgetgrad(env, lp, j, head, y)
+
+def CPXgetijdiv(env, lp, idiv_p, jdiv_p):
+    return _amplpy_ampls_swig.CPXgetijdiv(env, lp, idiv_p, jdiv_p)
+
+def CPXgetijrow(env, lp, i, j, row_p):
+    return _amplpy_ampls_swig.CPXgetijrow(env, lp, i, j, row_p)
+
+def CPXgetintparam(env, whichparam, value_p):
+    return _amplpy_ampls_swig.CPXgetintparam(env, whichparam, value_p)
+
+def CPXgetintquality(env, lp, quality_p, what):
+    return _amplpy_ampls_swig.CPXgetintquality(env, lp, quality_p, what)
+
+def CPXgetitcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetitcnt(env, lp)
+
+def CPXgetlb(env, lp, lb, begin, end):
+    return _amplpy_ampls_swig.CPXgetlb(env, lp, lb, begin, end)
+
+def CPXgetlogfilename(env, buf_str, bufspace, surplus_p):
+    return _amplpy_ampls_swig.CPXgetlogfilename(env, buf_str, bufspace, surplus_p)
+
+def CPXgetlongannotationdefval(env, lp, idx, defval_p):
+    return _amplpy_ampls_swig.CPXgetlongannotationdefval(env, lp, idx, defval_p)
+
+def CPXgetlongannotationindex(env, lp, annotationname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetlongannotationindex(env, lp, annotationname_str, index_p)
+
+def CPXgetlongannotationname(env, lp, idx, buf_str, bufspace, surplus_p):
+    return _amplpy_ampls_swig.CPXgetlongannotationname(env, lp, idx, buf_str, bufspace, surplus_p)
+
+def CPXgetlongannotations(env, lp, idx, objtype, annotation, begin, end):
+    return _amplpy_ampls_swig.CPXgetlongannotations(env, lp, idx, objtype, annotation, begin, end)
+
+def CPXgetlongparam(env, whichparam, value_p):
+    return _amplpy_ampls_swig.CPXgetlongparam(env, whichparam, value_p)
+
+def CPXgetlpcallbackfunc(env, callback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetlpcallbackfunc(env, callback_p, cbhandle_p)
+
+def CPXgetmethod(env, lp):
+    return _amplpy_ampls_swig.CPXgetmethod(env, lp)
+
+def CPXgetnetcallbackfunc(env, callback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetnetcallbackfunc(env, callback_p, cbhandle_p)
+
+def CPXgetnumcols(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumcols(env, lp)
+
+def CPXgetnumcores(env, numcores_p):
+    return _amplpy_ampls_swig.CPXgetnumcores(env, numcores_p)
+
+def CPXgetnumdblannotations(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumdblannotations(env, lp)
+
+def CPXgetnumlongannotations(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumlongannotations(env, lp)
+
+def CPXgetnumnz(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumnz(env, lp)
+
+def CPXgetnumobjs(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumobjs(env, lp)
+
+def CPXgetnumpwl(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumpwl(env, lp)
+
+def CPXgetnumrows(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumrows(env, lp)
+
+def CPXgetobj(env, lp, obj, begin, end):
+    return _amplpy_ampls_swig.CPXgetobj(env, lp, obj, begin, end)
+
+def CPXgetobjname(env, lp, buf_str, bufspace, surplus_p):
+    return _amplpy_ampls_swig.CPXgetobjname(env, lp, buf_str, bufspace, surplus_p)
+
+def CPXgetobjoffset(env, lp, objoffset_p):
+    return _amplpy_ampls_swig.CPXgetobjoffset(env, lp, objoffset_p)
+
+def CPXgetobjsen(env, lp):
+    return _amplpy_ampls_swig.CPXgetobjsen(env, lp)
+
+def CPXgetobjval(env, lp, objval_p):
+    return _amplpy_ampls_swig.CPXgetobjval(env, lp, objval_p)
+
+def CPXgetparamhiername(env, whichparam, name_str):
+    return _amplpy_ampls_swig.CPXgetparamhiername(env, whichparam, name_str)
+
+def CPXgetparamname(env, whichparam, name_str):
+    return _amplpy_ampls_swig.CPXgetparamname(env, whichparam, name_str)
+
+def CPXgetparamnum(env, name_str, whichparam_p):
+    return _amplpy_ampls_swig.CPXgetparamnum(env, name_str, whichparam_p)
+
+def CPXgetparamtype(env, whichparam, paramtype):
+    return _amplpy_ampls_swig.CPXgetparamtype(env, whichparam, paramtype)
+
+def CPXgetphase1cnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetphase1cnt(env, lp)
+
+def CPXgetpi(env, lp, pi, begin, end):
+    return _amplpy_ampls_swig.CPXgetpi(env, lp, pi, begin, end)
+
+def CPXgetpnorms(env, lp, cnorm, rnorm, len_p):
+    return _amplpy_ampls_swig.CPXgetpnorms(env, lp, cnorm, rnorm, len_p)
+
+def CPXgetprestat(env, lp, prestat_p, pcstat, prstat, ocstat, orstat):
+    return _amplpy_ampls_swig.CPXgetprestat(env, lp, prestat_p, pcstat, prstat, ocstat, orstat)
+
+def CPXgetprobname(env, lp, buf_str, bufspace, surplus_p):
+    return _amplpy_ampls_swig.CPXgetprobname(env, lp, buf_str, bufspace, surplus_p)
+
+def CPXgetprobtype(env, lp):
+    return _amplpy_ampls_swig.CPXgetprobtype(env, lp)
+
+def CPXgetprotected(env, lp, cnt_p, indices, pspace, surplus_p):
+    return _amplpy_ampls_swig.CPXgetprotected(env, lp, cnt_p, indices, pspace, surplus_p)
+
+def CPXgetpsbcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetpsbcnt(env, lp)
+
+def CPXgetpwl(env, lp, pwlindex, vary_p, varx_p, preslope_p, postslope_p, nbreaks_p, breakx, breaky, breakspace, surplus_p):
+    return _amplpy_ampls_swig.CPXgetpwl(env, lp, pwlindex, vary_p, varx_p, preslope_p, postslope_p, nbreaks_p, breakx, breaky, breakspace, surplus_p)
+
+def CPXgetpwlindex(env, lp, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetpwlindex(env, lp, lname_str, index_p)
+
+def CPXgetpwlname(env, lp, buf_str, bufspace, surplus_p, which):
+    return _amplpy_ampls_swig.CPXgetpwlname(env, lp, buf_str, bufspace, surplus_p, which)
+
+def CPXgetray(env, lp, z):
+    return _amplpy_ampls_swig.CPXgetray(env, lp, z)
+
+def CPXgetredlp(env, lp, redlp_p):
+    return _amplpy_ampls_swig.CPXgetredlp(env, lp, redlp_p)
+
+def CPXgetrhs(env, lp, rhs, begin, end):
+    return _amplpy_ampls_swig.CPXgetrhs(env, lp, rhs, begin, end)
+
+def CPXgetrngval(env, lp, rngval, begin, end):
+    return _amplpy_ampls_swig.CPXgetrngval(env, lp, rngval, begin, end)
+
+def CPXgetrowindex(env, lp, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetrowindex(env, lp, lname_str, index_p)
+
+def CPXgetrowinfeas(env, lp, x, infeasout, begin, end):
+    return _amplpy_ampls_swig.CPXgetrowinfeas(env, lp, x, infeasout, begin, end)
+
+def CPXgetrowname(env, lp, name, namestore, storespace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetrowname(env, lp, name, namestore, storespace, surplus_p, begin, end)
+
+def CPXgetrows(env, lp, nzcnt_p, rmatbeg, rmatind, rmatval, rmatspace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetrows(env, lp, nzcnt_p, rmatbeg, rmatind, rmatval, rmatspace, surplus_p, begin, end)
+
+def CPXgetsense(env, lp, sense, begin, end):
+    return _amplpy_ampls_swig.CPXgetsense(env, lp, sense, begin, end)
+
+def CPXgetsiftitcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetsiftitcnt(env, lp)
+
+def CPXgetsiftphase1cnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetsiftphase1cnt(env, lp)
+
+def CPXgetslack(env, lp, slack, begin, end):
+    return _amplpy_ampls_swig.CPXgetslack(env, lp, slack, begin, end)
+
+def CPXgetsolnpooldblquality(env, lp, soln, quality_p, what):
+    return _amplpy_ampls_swig.CPXgetsolnpooldblquality(env, lp, soln, quality_p, what)
+
+def CPXgetsolnpoolintquality(env, lp, soln, quality_p, what):
+    return _amplpy_ampls_swig.CPXgetsolnpoolintquality(env, lp, soln, quality_p, what)
+
+def CPXgetstat(env, lp):
+    return _amplpy_ampls_swig.CPXgetstat(env, lp)
+
+def CPXgetstatstring(env, statind, buffer_str):
+    return _amplpy_ampls_swig.CPXgetstatstring(env, statind, buffer_str)
+
+def CPXgetstrparam(env, whichparam, value_str):
+    return _amplpy_ampls_swig.CPXgetstrparam(env, whichparam, value_str)
+
+def CPXgettime(env, timestamp_p):
+    return _amplpy_ampls_swig.CPXgettime(env, timestamp_p)
+
+def CPXgettuningcallbackfunc(env, callback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgettuningcallbackfunc(env, callback_p, cbhandle_p)
+
+def CPXgetub(env, lp, ub, begin, end):
+    return _amplpy_ampls_swig.CPXgetub(env, lp, ub, begin, end)
+
+def CPXgetweight(env, lp, rcnt, rmatbeg, rmatind, rmatval, weight, dpriind):
+    return _amplpy_ampls_swig.CPXgetweight(env, lp, rcnt, rmatbeg, rmatind, rmatval, weight, dpriind)
+
+def CPXgetx(env, lp, x, begin, end):
+    return _amplpy_ampls_swig.CPXgetx(env, lp, x, begin, end)
+
+def CPXhybnetopt(env, lp, method):
+    return _amplpy_ampls_swig.CPXhybnetopt(env, lp, method)
+
+def CPXinfodblparam(env, whichparam, defvalue_p, minvalue_p, maxvalue_p):
+    return _amplpy_ampls_swig.CPXinfodblparam(env, whichparam, defvalue_p, minvalue_p, maxvalue_p)
+
+def CPXinfointparam(env, whichparam, defvalue_p, minvalue_p, maxvalue_p):
+    return _amplpy_ampls_swig.CPXinfointparam(env, whichparam, defvalue_p, minvalue_p, maxvalue_p)
+
+def CPXinfolongparam(env, whichparam, defvalue_p, minvalue_p, maxvalue_p):
+    return _amplpy_ampls_swig.CPXinfolongparam(env, whichparam, defvalue_p, minvalue_p, maxvalue_p)
+
+def CPXinfostrparam(env, whichparam, defvalue_str):
+    return _amplpy_ampls_swig.CPXinfostrparam(env, whichparam, defvalue_str)
+
+def CPXinitialize():
+    return _amplpy_ampls_swig.CPXinitialize()
+
+def CPXkilldnorms(lp):
+    return _amplpy_ampls_swig.CPXkilldnorms(lp)
+
+def CPXkillpnorms(lp):
+    return _amplpy_ampls_swig.CPXkillpnorms(lp)
+
+def CPXlpopt(env, lp):
+    return _amplpy_ampls_swig.CPXlpopt(env, lp)
+
+def CPXmbasewrite(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXmbasewrite(env, lp, filename_str)
+
+def CPXmdleave(env, lp, indices, cnt, downratio, upratio):
+    return _amplpy_ampls_swig.CPXmdleave(env, lp, indices, cnt, downratio, upratio)
+
+def CPXmodelasstcallbackgetfunc(env, lp, callback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXmodelasstcallbackgetfunc(env, lp, callback_p, cbhandle_p)
+
+def CPXmodelasstcallbacksetfunc(env, lp, callback, userhandle):
+    return _amplpy_ampls_swig.CPXmodelasstcallbacksetfunc(env, lp, callback, userhandle)
+
+def CPXmsgstr(channel, msg_str):
+    return _amplpy_ampls_swig.CPXmsgstr(channel, msg_str)
+
+def CPXmultiobjchgattribs(env, lp, objind, offset, weight, priority, abstol, reltol, name):
+    return _amplpy_ampls_swig.CPXmultiobjchgattribs(env, lp, objind, offset, weight, priority, abstol, reltol, name)
+
+def CPXmultiobjgetdblinfo(env, lp, subprob, info_p, what):
+    return _amplpy_ampls_swig.CPXmultiobjgetdblinfo(env, lp, subprob, info_p, what)
+
+def CPXmultiobjgetindex(env, lp, name, index_p):
+    return _amplpy_ampls_swig.CPXmultiobjgetindex(env, lp, name, index_p)
+
+def CPXmultiobjgetintinfo(env, lp, subprob, info_p, what):
+    return _amplpy_ampls_swig.CPXmultiobjgetintinfo(env, lp, subprob, info_p, what)
+
+def CPXmultiobjgetlonginfo(env, lp, subprob, info_p, what):
+    return _amplpy_ampls_swig.CPXmultiobjgetlonginfo(env, lp, subprob, info_p, what)
+
+def CPXmultiobjgetname(env, lp, objind, buf_str, bufspace, surplus_p):
+    return _amplpy_ampls_swig.CPXmultiobjgetname(env, lp, objind, buf_str, bufspace, surplus_p)
+
+def CPXmultiobjgetnumsolves(env, lp):
+    return _amplpy_ampls_swig.CPXmultiobjgetnumsolves(env, lp)
+
+def CPXmultiobjgetobj(env, lp, n, coeffs, begin, end, offset_p, weight_p, priority_p, abstol_p, reltol_p):
+    return _amplpy_ampls_swig.CPXmultiobjgetobj(env, lp, n, coeffs, begin, end, offset_p, weight_p, priority_p, abstol_p, reltol_p)
+
+def CPXmultiobjgetobjval(env, lp, n, objval_p):
+    return _amplpy_ampls_swig.CPXmultiobjgetobjval(env, lp, n, objval_p)
+
+def CPXmultiobjgetobjvalbypriority(env, lp, priority, objval_p):
+    return _amplpy_ampls_swig.CPXmultiobjgetobjvalbypriority(env, lp, priority, objval_p)
+
+def CPXmultiobjopt(env, lp, paramsets):
+    return _amplpy_ampls_swig.CPXmultiobjopt(env, lp, paramsets)
+
+def CPXmultiobjsetobj(env, lp, n, objnz, objind, objval, offset, weight, priority, abstol, reltol, objname):
+    return _amplpy_ampls_swig.CPXmultiobjsetobj(env, lp, n, objnz, objind, objval, offset, weight, priority, abstol, reltol, objname)
+
+def CPXNETextract(env, net, lp, colmap, rowmap):
+    return _amplpy_ampls_swig.CPXNETextract(env, net, lp, colmap, rowmap)
+
+def CPXnewcols(env, lp, ccnt, obj, lb, ub, xctype, colname):
+    return _amplpy_ampls_swig.CPXnewcols(env, lp, ccnt, obj, lb, ub, xctype, colname)
+
+def CPXnewdblannotation(env, lp, annotationname_str, defval):
+    return _amplpy_ampls_swig.CPXnewdblannotation(env, lp, annotationname_str, defval)
+
+def CPXnewlongannotation(env, lp, annotationname_str, defval):
+    return _amplpy_ampls_swig.CPXnewlongannotation(env, lp, annotationname_str, defval)
+
+def CPXnewrows(env, lp, rcnt, rhs, sense, rngval, rowname):
+    return _amplpy_ampls_swig.CPXnewrows(env, lp, rcnt, rhs, sense, rngval, rowname)
+
+def CPXobjsa(env, lp, begin, end, lower, upper):
+    return _amplpy_ampls_swig.CPXobjsa(env, lp, begin, end, lower, upper)
+
+def CPXopenCPLEX(status_p):
+    return _amplpy_ampls_swig.CPXopenCPLEX(status_p)
+
+def CPXparamsetadddbl(env, ps, whichparam, newvalue):
+    return _amplpy_ampls_swig.CPXparamsetadddbl(env, ps, whichparam, newvalue)
+
+def CPXparamsetaddint(env, ps, whichparam, newvalue):
+    return _amplpy_ampls_swig.CPXparamsetaddint(env, ps, whichparam, newvalue)
+
+def CPXparamsetaddlong(env, ps, whichparam, newvalue):
+    return _amplpy_ampls_swig.CPXparamsetaddlong(env, ps, whichparam, newvalue)
+
+def CPXparamsetaddstr(env, ps, whichparam, svalue):
+    return _amplpy_ampls_swig.CPXparamsetaddstr(env, ps, whichparam, svalue)
+
+def CPXparamsetapply(env, ps):
+    return _amplpy_ampls_swig.CPXparamsetapply(env, ps)
+
+def CPXparamsetcopy(targetenv, targetps, sourceps):
+    return _amplpy_ampls_swig.CPXparamsetcopy(targetenv, targetps, sourceps)
+
+def CPXparamsetcreate(env, status_p):
+    return _amplpy_ampls_swig.CPXparamsetcreate(env, status_p)
+
+def CPXparamsetdel(env, ps, whichparam):
+    return _amplpy_ampls_swig.CPXparamsetdel(env, ps, whichparam)
+
+def CPXparamsetfree(env, ps_p):
+    return _amplpy_ampls_swig.CPXparamsetfree(env, ps_p)
+
+def CPXparamsetgetdbl(env, ps, whichparam, dval_p):
+    return _amplpy_ampls_swig.CPXparamsetgetdbl(env, ps, whichparam, dval_p)
+
+def CPXparamsetgetids(env, ps, cnt_p, whichparams, pspace, surplus_p):
+    return _amplpy_ampls_swig.CPXparamsetgetids(env, ps, cnt_p, whichparams, pspace, surplus_p)
+
+def CPXparamsetgetint(env, ps, whichparam, ival_p):
+    return _amplpy_ampls_swig.CPXparamsetgetint(env, ps, whichparam, ival_p)
+
+def CPXparamsetgetlong(env, ps, whichparam, ival_p):
+    return _amplpy_ampls_swig.CPXparamsetgetlong(env, ps, whichparam, ival_p)
+
+def CPXparamsetgetstr(env, ps, whichparam, sval):
+    return _amplpy_ampls_swig.CPXparamsetgetstr(env, ps, whichparam, sval)
+
+def CPXparamsetreadcopy(env, ps, filename_str):
+    return _amplpy_ampls_swig.CPXparamsetreadcopy(env, ps, filename_str)
+
+def CPXparamsetwrite(env, ps, filename_str):
+    return _amplpy_ampls_swig.CPXparamsetwrite(env, ps, filename_str)
+
+def CPXpivot(env, lp, jenter, jleave, leavestat):
+    return _amplpy_ampls_swig.CPXpivot(env, lp, jenter, jleave, leavestat)
+
+def CPXpivotin(env, lp, rlist, rlen):
+    return _amplpy_ampls_swig.CPXpivotin(env, lp, rlist, rlen)
+
+def CPXpivotout(env, lp, clist, clen):
+    return _amplpy_ampls_swig.CPXpivotout(env, lp, clist, clen)
+
+def CPXpperwrite(env, lp, filename_str, epsilon):
+    return _amplpy_ampls_swig.CPXpperwrite(env, lp, filename_str, epsilon)
+
+def CPXpratio(env, lp, indices, cnt, downratio, upratio, downleave, upleave, downleavestatus, upleavestatus, downstatus, upstatus):
+    return _amplpy_ampls_swig.CPXpratio(env, lp, indices, cnt, downratio, upratio, downleave, upleave, downleavestatus, upleavestatus, downstatus, upstatus)
+
+def CPXpreaddrows(env, lp, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, rowname):
+    return _amplpy_ampls_swig.CPXpreaddrows(env, lp, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, rowname)
+
+def CPXprechgobj(env, lp, cnt, indices, values):
+    return _amplpy_ampls_swig.CPXprechgobj(env, lp, cnt, indices, values)
+
+def CPXpreslvwrite(env, lp, filename_str, objoff_p):
+    return _amplpy_ampls_swig.CPXpreslvwrite(env, lp, filename_str, objoff_p)
+
+def CPXpresolve(env, lp, method):
+    return _amplpy_ampls_swig.CPXpresolve(env, lp, method)
+
+def CPXprimopt(env, lp):
+    return _amplpy_ampls_swig.CPXprimopt(env, lp)
+
+def CPXqpdjfrompi(env, lp, pi, x, dj):
+    return _amplpy_ampls_swig.CPXqpdjfrompi(env, lp, pi, x, dj)
+
+def CPXqpuncrushpi(env, lp, pi, prepi, x):
+    return _amplpy_ampls_swig.CPXqpuncrushpi(env, lp, pi, prepi, x)
+
+def CPXreadcopyannotations(env, lp, filename):
+    return _amplpy_ampls_swig.CPXreadcopyannotations(env, lp, filename)
+
+def CPXreadcopybase(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXreadcopybase(env, lp, filename_str)
+
+def CPXreadcopyparam(env, filename_str):
+    return _amplpy_ampls_swig.CPXreadcopyparam(env, filename_str)
+
+def CPXreadcopyprob(env, lp, filename_str, filetype):
+    return _amplpy_ampls_swig.CPXreadcopyprob(env, lp, filename_str, filetype)
+
+def CPXreadcopysol(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXreadcopysol(env, lp, filename_str)
+
+def CPXreadcopystartinfo(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXreadcopystartinfo(env, lp, filename_str)
+
+def CPXrefineconflict(env, lp, confnumrows_p, confnumcols_p):
+    return _amplpy_ampls_swig.CPXrefineconflict(env, lp, confnumrows_p, confnumcols_p)
+
+def CPXrefineconflictext(env, lp, grpcnt, concnt, grppref, grpbeg, grpind, grptype):
+    return _amplpy_ampls_swig.CPXrefineconflictext(env, lp, grpcnt, concnt, grppref, grpbeg, grpind, grptype)
+
+def CPXrhssa(env, lp, begin, end, lower, upper):
+    return _amplpy_ampls_swig.CPXrhssa(env, lp, begin, end, lower, upper)
+
+def CPXrobustopt(env, lp, lblp, ublp, objchg, maxchg):
+    return _amplpy_ampls_swig.CPXrobustopt(env, lp, lblp, ublp, objchg, maxchg)
+
+def CPXserializercreate(ser_p):
+    return _amplpy_ampls_swig.CPXserializercreate(ser_p)
+
+def CPXserializerdestroy(ser):
+    return _amplpy_ampls_swig.CPXserializerdestroy(ser)
+
+def CPXserializerlength(ser):
+    return _amplpy_ampls_swig.CPXserializerlength(ser)
+
+def CPXserializerpayload(ser):
+    return _amplpy_ampls_swig.CPXserializerpayload(ser)
+
+def CPXsetdblannotations(env, lp, idx, objtype, cnt, indices, values):
+    return _amplpy_ampls_swig.CPXsetdblannotations(env, lp, idx, objtype, cnt, indices, values)
+
+def CPXsetdblparam(env, whichparam, newvalue):
+    return _amplpy_ampls_swig.CPXsetdblparam(env, whichparam, newvalue)
+
+def CPXsetdefaults(env):
+    return _amplpy_ampls_swig.CPXsetdefaults(env)
+
+def CPXsetintparam(env, whichparam, newvalue):
+    return _amplpy_ampls_swig.CPXsetintparam(env, whichparam, newvalue)
+
+def CPXsetlogfilename(env, filename, mode):
+    return _amplpy_ampls_swig.CPXsetlogfilename(env, filename, mode)
+
+def CPXsetlongannotations(env, lp, idx, objtype, cnt, indices, values):
+    return _amplpy_ampls_swig.CPXsetlongannotations(env, lp, idx, objtype, cnt, indices, values)
+
+def CPXsetlongparam(env, whichparam, newvalue):
+    return _amplpy_ampls_swig.CPXsetlongparam(env, whichparam, newvalue)
+
+def CPXsetlpcallbackfunc(env, callback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetlpcallbackfunc(env, callback, cbhandle)
+
+def CPXsetnetcallbackfunc(env, callback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetnetcallbackfunc(env, callback, cbhandle)
+
+def CPXsetnumobjs(env, lp, n):
+    return _amplpy_ampls_swig.CPXsetnumobjs(env, lp, n)
+
+def CPXsetphase2(env, lp):
+    return _amplpy_ampls_swig.CPXsetphase2(env, lp)
+
+def CPXsetprofcallbackfunc(env, callback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetprofcallbackfunc(env, callback, cbhandle)
+
+def CPXsetstrparam(env, whichparam, newvalue_str):
+    return _amplpy_ampls_swig.CPXsetstrparam(env, whichparam, newvalue_str)
+
+def CPXsetterminate(env, terminate_p):
+    return _amplpy_ampls_swig.CPXsetterminate(env, terminate_p)
+
+def CPXsettuningcallbackfunc(env, callback, cbhandle):
+    return _amplpy_ampls_swig.CPXsettuningcallbackfunc(env, callback, cbhandle)
+
+def CPXsiftopt(env, lp):
+    return _amplpy_ampls_swig.CPXsiftopt(env, lp)
+
+def CPXslackfromx(env, lp, x, slack):
+    return _amplpy_ampls_swig.CPXslackfromx(env, lp, x, slack)
+
+def CPXsolninfo(env, lp, solnmethod_p, solntype_p, pfeasind_p, dfeasind_p):
+    return _amplpy_ampls_swig.CPXsolninfo(env, lp, solnmethod_p, solntype_p, pfeasind_p, dfeasind_p)
+
+def CPXsolution(env, lp, lpstat_p, objval_p, x, pi, slack, dj):
+    return _amplpy_ampls_swig.CPXsolution(env, lp, lpstat_p, objval_p, x, pi, slack, dj)
+
+def CPXsolwrite(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXsolwrite(env, lp, filename_str)
+
+def CPXsolwritesolnpool(env, lp, soln, filename_str):
+    return _amplpy_ampls_swig.CPXsolwritesolnpool(env, lp, soln, filename_str)
+
+def CPXsolwritesolnpoolall(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXsolwritesolnpoolall(env, lp, filename_str)
+
+def CPXstrongbranch(env, lp, indices, cnt, downobj, upobj, itlim):
+    return _amplpy_ampls_swig.CPXstrongbranch(env, lp, indices, cnt, downobj, upobj, itlim)
+
+def CPXtightenbds(env, lp, cnt, indices, lu, bd):
+    return _amplpy_ampls_swig.CPXtightenbds(env, lp, cnt, indices, lu, bd)
+
+def CPXtuneparam(env, lp, intcnt, intnum, intval, dblcnt, dblnum, dblval, strcnt, strnum, strval, tunestat_p):
+    return _amplpy_ampls_swig.CPXtuneparam(env, lp, intcnt, intnum, intval, dblcnt, dblnum, dblval, strcnt, strnum, strval, tunestat_p)
+
+def CPXtuneparamprobset(env, filecnt, filename, filetype, intcnt, intnum, intval, dblcnt, dblnum, dblval, strcnt, strnum, strval, tunestat_p):
+    return _amplpy_ampls_swig.CPXtuneparamprobset(env, filecnt, filename, filetype, intcnt, intnum, intval, dblcnt, dblnum, dblval, strcnt, strnum, strval, tunestat_p)
+
+def CPXuncrushform(env, lp, plen, pind, pval, len_p, offset_p, ind, val):
+    return _amplpy_ampls_swig.CPXuncrushform(env, lp, plen, pind, pval, len_p, offset_p, ind, val)
+
+def CPXuncrushpi(env, lp, pi, prepi):
+    return _amplpy_ampls_swig.CPXuncrushpi(env, lp, pi, prepi)
+
+def CPXuncrushx(env, lp, x, prex):
+    return _amplpy_ampls_swig.CPXuncrushx(env, lp, x, prex)
+
+def CPXunscaleprob(env, lp):
+    return _amplpy_ampls_swig.CPXunscaleprob(env, lp)
+
+def CPXversion(env):
+    return _amplpy_ampls_swig.CPXversion(env)
+
+def CPXversionnumber(env, version_p):
+    return _amplpy_ampls_swig.CPXversionnumber(env, version_p)
+
+def CPXwriteannotations(env, lp, filename):
+    return _amplpy_ampls_swig.CPXwriteannotations(env, lp, filename)
+
+def CPXwritebendersannotation(env, lp, filename):
+    return _amplpy_ampls_swig.CPXwritebendersannotation(env, lp, filename)
+
+def CPXwriteparam(env, filename_str):
+    return _amplpy_ampls_swig.CPXwriteparam(env, filename_str)
+
+def CPXwriteprob(env, lp, filename_str, filetype):
+    return _amplpy_ampls_swig.CPXwriteprob(env, lp, filename_str, filetype)
+CPXBAR_H = _amplpy_ampls_swig.CPXBAR_H
+
+def CPXbaropt(env, lp):
+    return _amplpy_ampls_swig.CPXbaropt(env, lp)
+
+def CPXhybbaropt(env, lp, method):
+    return _amplpy_ampls_swig.CPXhybbaropt(env, lp, method)
+CPXMIP_H = _amplpy_ampls_swig.CPXMIP_H
+
+def CPXaddindconstraints(env, lp, indcnt, type, indvar, complemented, nzcnt, rhs, sense, linbeg, linind, linval, indname):
+    return _amplpy_ampls_swig.CPXaddindconstraints(env, lp, indcnt, type, indvar, complemented, nzcnt, rhs, sense, linbeg, linind, linval, indname)
+
+def CPXaddlazyconstraints(env, lp, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, rowname):
+    return _amplpy_ampls_swig.CPXaddlazyconstraints(env, lp, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, rowname)
+
+def CPXaddmipstarts(env, lp, mcnt, nzcnt, beg, varindices, values, effortlevel, mipstartname):
+    return _amplpy_ampls_swig.CPXaddmipstarts(env, lp, mcnt, nzcnt, beg, varindices, values, effortlevel, mipstartname)
+
+def CPXaddsolnpooldivfilter(env, lp, lower_bound, upper_bound, nzcnt, ind, weight, refval, lname_str):
+    return _amplpy_ampls_swig.CPXaddsolnpooldivfilter(env, lp, lower_bound, upper_bound, nzcnt, ind, weight, refval, lname_str)
+
+def CPXaddsolnpoolrngfilter(env, lp, lb, ub, nzcnt, ind, val, lname_str):
+    return _amplpy_ampls_swig.CPXaddsolnpoolrngfilter(env, lp, lb, ub, nzcnt, ind, val, lname_str)
+
+def CPXaddsos(env, lp, numsos, numsosnz, sostype, sosbeg, sosind, soswt, sosname):
+    return _amplpy_ampls_swig.CPXaddsos(env, lp, numsos, numsosnz, sostype, sosbeg, sosind, soswt, sosname)
+
+def CPXaddusercuts(env, lp, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, rowname):
+    return _amplpy_ampls_swig.CPXaddusercuts(env, lp, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, rowname)
+
+def CPXbendersopt(env, lp):
+    return _amplpy_ampls_swig.CPXbendersopt(env, lp)
+
+def CPXbranchcallbackbranchasCPLEX(env, cbdata, wherefrom, num, userhandle, seqnum_p):
+    return _amplpy_ampls_swig.CPXbranchcallbackbranchasCPLEX(env, cbdata, wherefrom, num, userhandle, seqnum_p)
+
+def CPXbranchcallbackbranchbds(env, cbdata, wherefrom, cnt, indices, lu, bd, nodeest, userhandle, seqnum_p):
+    return _amplpy_ampls_swig.CPXbranchcallbackbranchbds(env, cbdata, wherefrom, cnt, indices, lu, bd, nodeest, userhandle, seqnum_p)
+
+def CPXbranchcallbackbranchconstraints(env, cbdata, wherefrom, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, nodeest, userhandle, seqnum_p):
+    return _amplpy_ampls_swig.CPXbranchcallbackbranchconstraints(env, cbdata, wherefrom, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, nodeest, userhandle, seqnum_p)
+
+def CPXbranchcallbackbranchgeneral(env, cbdata, wherefrom, varcnt, varind, varlu, varbd, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, nodeest, userhandle, seqnum_p):
+    return _amplpy_ampls_swig.CPXbranchcallbackbranchgeneral(env, cbdata, wherefrom, varcnt, varind, varlu, varbd, rcnt, nzcnt, rhs, sense, rmatbeg, rmatind, rmatval, nodeest, userhandle, seqnum_p)
+
+def CPXcallbackgetgloballb(context, lb, begin, end):
+    return _amplpy_ampls_swig.CPXcallbackgetgloballb(context, lb, begin, end)
+
+def CPXcallbackgetglobalub(context, ub, begin, end):
+    return _amplpy_ampls_swig.CPXcallbackgetglobalub(context, ub, begin, end)
+
+def CPXcallbackgetlocallb(context, lb, begin, end):
+    return _amplpy_ampls_swig.CPXcallbackgetlocallb(context, lb, begin, end)
+
+def CPXcallbackgetlocalub(context, ub, begin, end):
+    return _amplpy_ampls_swig.CPXcallbackgetlocalub(context, ub, begin, end)
+
+def CPXcallbacksetnodeuserhandle(env, cbdata, wherefrom, nodeindex, userhandle, olduserhandle_p):
+    return _amplpy_ampls_swig.CPXcallbacksetnodeuserhandle(env, cbdata, wherefrom, nodeindex, userhandle, olduserhandle_p)
+
+def CPXcallbacksetuserhandle(env, cbdata, wherefrom, userhandle, olduserhandle_p):
+    return _amplpy_ampls_swig.CPXcallbacksetuserhandle(env, cbdata, wherefrom, userhandle, olduserhandle_p)
+
+def CPXchgctype(env, lp, cnt, indices, xctype):
+    return _amplpy_ampls_swig.CPXchgctype(env, lp, cnt, indices, xctype)
+
+def CPXchgmipstarts(env, lp, mcnt, mipstartindices, nzcnt, beg, varindices, values, effortlevel):
+    return _amplpy_ampls_swig.CPXchgmipstarts(env, lp, mcnt, mipstartindices, nzcnt, beg, varindices, values, effortlevel)
+
+def CPXcopyctype(env, lp, xctype):
+    return _amplpy_ampls_swig.CPXcopyctype(env, lp, xctype)
+
+def CPXcopyorder(env, lp, cnt, indices, priority, direction):
+    return _amplpy_ampls_swig.CPXcopyorder(env, lp, cnt, indices, priority, direction)
+
+def CPXcopysos(env, lp, numsos, numsosnz, sostype, sosbeg, sosind, soswt, sosname):
+    return _amplpy_ampls_swig.CPXcopysos(env, lp, numsos, numsosnz, sostype, sosbeg, sosind, soswt, sosname)
+
+def CPXcutcallbackadd(env, cbdata, wherefrom, nzcnt, rhs, sense, cutind, cutval, purgeable):
+    return _amplpy_ampls_swig.CPXcutcallbackadd(env, cbdata, wherefrom, nzcnt, rhs, sense, cutind, cutval, purgeable)
+
+def CPXcutcallbackaddlocal(env, cbdata, wherefrom, nzcnt, rhs, sense, cutind, cutval):
+    return _amplpy_ampls_swig.CPXcutcallbackaddlocal(env, cbdata, wherefrom, nzcnt, rhs, sense, cutind, cutval)
+
+def CPXdelindconstrs(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdelindconstrs(env, lp, begin, end)
+
+def CPXdelmipstarts(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdelmipstarts(env, lp, begin, end)
+
+def CPXdelsetmipstarts(env, lp, delstat):
+    return _amplpy_ampls_swig.CPXdelsetmipstarts(env, lp, delstat)
+
+def CPXdelsetsolnpoolfilters(env, lp, delstat):
+    return _amplpy_ampls_swig.CPXdelsetsolnpoolfilters(env, lp, delstat)
+
+def CPXdelsetsolnpoolsolns(env, lp, delstat):
+    return _amplpy_ampls_swig.CPXdelsetsolnpoolsolns(env, lp, delstat)
+
+def CPXdelsetsos(env, lp, delset):
+    return _amplpy_ampls_swig.CPXdelsetsos(env, lp, delset)
+
+def CPXdelsolnpoolfilters(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdelsolnpoolfilters(env, lp, begin, end)
+
+def CPXdelsolnpoolsolns(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdelsolnpoolsolns(env, lp, begin, end)
+
+def CPXdelsos(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdelsos(env, lp, begin, end)
+
+def CPXfltwrite(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXfltwrite(env, lp, filename_str)
+
+def CPXfreelazyconstraints(env, lp):
+    return _amplpy_ampls_swig.CPXfreelazyconstraints(env, lp)
+
+def CPXfreeusercuts(env, lp):
+    return _amplpy_ampls_swig.CPXfreeusercuts(env, lp)
+
+def CPXgetbestobjval(env, lp, objval_p):
+    return _amplpy_ampls_swig.CPXgetbestobjval(env, lp, objval_p)
+
+def CPXgetbranchcallbackfunc(env, branchcallback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetbranchcallbackfunc(env, branchcallback_p, cbhandle_p)
+
+def CPXgetbranchnosolncallbackfunc(env, branchnosolncallback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetbranchnosolncallbackfunc(env, branchnosolncallback_p, cbhandle_p)
+
+def CPXgetcallbackbranchconstraints(env, cbdata, wherefrom, which, cuts_p, nzcnt_p, rhs, sense, rmatbeg, rmatind, rmatval, rmatsz, surplus_p):
+    return _amplpy_ampls_swig.CPXgetcallbackbranchconstraints(env, cbdata, wherefrom, which, cuts_p, nzcnt_p, rhs, sense, rmatbeg, rmatind, rmatval, rmatsz, surplus_p)
+
+def CPXgetcallbackctype(env, cbdata, wherefrom, xctype, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbackctype(env, cbdata, wherefrom, xctype, begin, end)
+
+def CPXgetcallbackgloballb(env, cbdata, wherefrom, lb, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbackgloballb(env, cbdata, wherefrom, lb, begin, end)
+
+def CPXgetcallbackglobalub(env, cbdata, wherefrom, ub, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbackglobalub(env, cbdata, wherefrom, ub, begin, end)
+
+def CPXgetcallbackincumbent(env, cbdata, wherefrom, x, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbackincumbent(env, cbdata, wherefrom, x, begin, end)
+
+def CPXgetcallbackindicatorinfo(env, cbdata, wherefrom, iindex, whichinfo, result_p):
+    return _amplpy_ampls_swig.CPXgetcallbackindicatorinfo(env, cbdata, wherefrom, iindex, whichinfo, result_p)
+
+def CPXgetcallbacklp(env, cbdata, wherefrom, lp_p):
+    return _amplpy_ampls_swig.CPXgetcallbacklp(env, cbdata, wherefrom, lp_p)
+
+def CPXgetcallbacknodeinfo(env, cbdata, wherefrom, nodeindex, whichinfo, result_p):
+    return _amplpy_ampls_swig.CPXgetcallbacknodeinfo(env, cbdata, wherefrom, nodeindex, whichinfo, result_p)
+
+def CPXgetcallbacknodeintfeas(env, cbdata, wherefrom, feas, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbacknodeintfeas(env, cbdata, wherefrom, feas, begin, end)
+
+def CPXgetcallbacknodelb(env, cbdata, wherefrom, lb, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbacknodelb(env, cbdata, wherefrom, lb, begin, end)
+
+def CPXgetcallbacknodelp(env, cbdata, wherefrom, nodelp_p):
+    return _amplpy_ampls_swig.CPXgetcallbacknodelp(env, cbdata, wherefrom, nodelp_p)
+
+def CPXgetcallbacknodeobjval(env, cbdata, wherefrom, objval_p):
+    return _amplpy_ampls_swig.CPXgetcallbacknodeobjval(env, cbdata, wherefrom, objval_p)
+
+def CPXgetcallbacknodestat(env, cbdata, wherefrom, nodestat_p):
+    return _amplpy_ampls_swig.CPXgetcallbacknodestat(env, cbdata, wherefrom, nodestat_p)
+
+def CPXgetcallbacknodeub(env, cbdata, wherefrom, ub, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbacknodeub(env, cbdata, wherefrom, ub, begin, end)
+
+def CPXgetcallbacknodex(env, cbdata, wherefrom, x, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbacknodex(env, cbdata, wherefrom, x, begin, end)
+
+def CPXgetcallbackorder(env, cbdata, wherefrom, priority, direction, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbackorder(env, cbdata, wherefrom, priority, direction, begin, end)
+
+def CPXgetcallbackpseudocosts(env, cbdata, wherefrom, uppc, downpc, begin, end):
+    return _amplpy_ampls_swig.CPXgetcallbackpseudocosts(env, cbdata, wherefrom, uppc, downpc, begin, end)
+
+def CPXgetcallbackseqinfo(env, cbdata, wherefrom, seqid, whichinfo, result_p):
+    return _amplpy_ampls_swig.CPXgetcallbackseqinfo(env, cbdata, wherefrom, seqid, whichinfo, result_p)
+
+def CPXgetcallbacksosinfo(env, cbdata, wherefrom, sosindex, member, whichinfo, result_p):
+    return _amplpy_ampls_swig.CPXgetcallbacksosinfo(env, cbdata, wherefrom, sosindex, member, whichinfo, result_p)
+
+def CPXgetctype(env, lp, xctype, begin, end):
+    return _amplpy_ampls_swig.CPXgetctype(env, lp, xctype, begin, end)
+
+def CPXgetcutoff(env, lp, cutoff_p):
+    return _amplpy_ampls_swig.CPXgetcutoff(env, lp, cutoff_p)
+
+def CPXgetdeletenodecallbackfunc(env, deletecallback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetdeletenodecallbackfunc(env, deletecallback_p, cbhandle_p)
+
+def CPXgetheuristiccallbackfunc(env, heuristiccallback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetheuristiccallbackfunc(env, heuristiccallback_p, cbhandle_p)
+
+def CPXgetincumbentcallbackfunc(env, incumbentcallback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetincumbentcallbackfunc(env, incumbentcallback_p, cbhandle_p)
+
+def CPXgetindconstr(env, lp, indvar_p, complemented_p, nzcnt_p, rhs_p, sense_p, linind, linval, space, surplus_p, which):
+    return _amplpy_ampls_swig.CPXgetindconstr(env, lp, indvar_p, complemented_p, nzcnt_p, rhs_p, sense_p, linind, linval, space, surplus_p, which)
+
+def CPXgetindconstraints(env, lp, type, indvar, complemented, nzcnt_p, rhs, sense, linbeg, linind, linval, linspace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetindconstraints(env, lp, type, indvar, complemented, nzcnt_p, rhs, sense, linbeg, linind, linval, linspace, surplus_p, begin, end)
+
+def CPXgetindconstrindex(env, lp, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetindconstrindex(env, lp, lname_str, index_p)
+
+def CPXgetindconstrinfeas(env, lp, x, infeasout, begin, end):
+    return _amplpy_ampls_swig.CPXgetindconstrinfeas(env, lp, x, infeasout, begin, end)
+
+def CPXgetindconstrname(env, lp, buf_str, bufspace, surplus_p, which):
+    return _amplpy_ampls_swig.CPXgetindconstrname(env, lp, buf_str, bufspace, surplus_p, which)
+
+def CPXgetindconstrslack(env, lp, indslack, begin, end):
+    return _amplpy_ampls_swig.CPXgetindconstrslack(env, lp, indslack, begin, end)
+
+def CPXgetinfocallbackfunc(env, callback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetinfocallbackfunc(env, callback_p, cbhandle_p)
+
+def CPXgetlazyconstraintcallbackfunc(env, cutcallback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetlazyconstraintcallbackfunc(env, cutcallback_p, cbhandle_p)
+
+def CPXgetmipcallbackfunc(env, callback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetmipcallbackfunc(env, callback_p, cbhandle_p)
+
+def CPXgetmipitcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetmipitcnt(env, lp)
+
+def CPXgetmiprelgap(env, lp, gap_p):
+    return _amplpy_ampls_swig.CPXgetmiprelgap(env, lp, gap_p)
+
+def CPXgetmipstartindex(env, lp, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetmipstartindex(env, lp, lname_str, index_p)
+
+def CPXgetmipstartname(env, lp, name, store, storesz, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetmipstartname(env, lp, name, store, storesz, surplus_p, begin, end)
+
+def CPXgetmipstarts(env, lp, nzcnt_p, beg, varindices, values, effortlevel, startspace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetmipstarts(env, lp, nzcnt_p, beg, varindices, values, effortlevel, startspace, surplus_p, begin, end)
+
+def CPXgetnodecallbackfunc(env, nodecallback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetnodecallbackfunc(env, nodecallback_p, cbhandle_p)
+
+def CPXgetnodecnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetnodecnt(env, lp)
+
+def CPXgetnodeint(env, lp):
+    return _amplpy_ampls_swig.CPXgetnodeint(env, lp)
+
+def CPXgetnodeleftcnt(env, lp):
+    return _amplpy_ampls_swig.CPXgetnodeleftcnt(env, lp)
+
+def CPXgetnumbin(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumbin(env, lp)
+
+def CPXgetnumcuts(env, lp, cuttype, num_p):
+    return _amplpy_ampls_swig.CPXgetnumcuts(env, lp, cuttype, num_p)
+
+def CPXgetnumindconstrs(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumindconstrs(env, lp)
+
+def CPXgetnumint(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumint(env, lp)
+
+def CPXgetnumlazyconstraints(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumlazyconstraints(env, lp)
+
+def CPXgetnummipstarts(env, lp):
+    return _amplpy_ampls_swig.CPXgetnummipstarts(env, lp)
+
+def CPXgetnumsemicont(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumsemicont(env, lp)
+
+def CPXgetnumsemiint(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumsemiint(env, lp)
+
+def CPXgetnumsos(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumsos(env, lp)
+
+def CPXgetnumusercuts(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumusercuts(env, lp)
+
+def CPXgetorder(env, lp, cnt_p, indices, priority, direction, ordspace, surplus_p):
+    return _amplpy_ampls_swig.CPXgetorder(env, lp, cnt_p, indices, priority, direction, ordspace, surplus_p)
+
+def CPXgetsolnpooldivfilter(env, lp, lower_cutoff_p, upper_cutoff_p, nzcnt_p, ind, val, refval, space, surplus_p, which):
+    return _amplpy_ampls_swig.CPXgetsolnpooldivfilter(env, lp, lower_cutoff_p, upper_cutoff_p, nzcnt_p, ind, val, refval, space, surplus_p, which)
+
+def CPXgetsolnpoolfilterindex(env, lp, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetsolnpoolfilterindex(env, lp, lname_str, index_p)
+
+def CPXgetsolnpoolfiltername(env, lp, buf_str, bufspace, surplus_p, which):
+    return _amplpy_ampls_swig.CPXgetsolnpoolfiltername(env, lp, buf_str, bufspace, surplus_p, which)
+
+def CPXgetsolnpoolfiltertype(env, lp, ftype_p, which):
+    return _amplpy_ampls_swig.CPXgetsolnpoolfiltertype(env, lp, ftype_p, which)
+
+def CPXgetsolnpoolmeanobjval(env, lp, meanobjval_p):
+    return _amplpy_ampls_swig.CPXgetsolnpoolmeanobjval(env, lp, meanobjval_p)
+
+def CPXgetsolnpoolnumfilters(env, lp):
+    return _amplpy_ampls_swig.CPXgetsolnpoolnumfilters(env, lp)
+
+def CPXgetsolnpoolnumreplaced(env, lp):
+    return _amplpy_ampls_swig.CPXgetsolnpoolnumreplaced(env, lp)
+
+def CPXgetsolnpoolnumsolns(env, lp):
+    return _amplpy_ampls_swig.CPXgetsolnpoolnumsolns(env, lp)
+
+def CPXgetsolnpoolobjval(env, lp, soln, objval_p):
+    return _amplpy_ampls_swig.CPXgetsolnpoolobjval(env, lp, soln, objval_p)
+
+def CPXgetsolnpoolqconstrslack(env, lp, soln, qcslack, begin, end):
+    return _amplpy_ampls_swig.CPXgetsolnpoolqconstrslack(env, lp, soln, qcslack, begin, end)
+
+def CPXgetsolnpoolrngfilter(env, lp, lb_p, ub_p, nzcnt_p, ind, val, space, surplus_p, which):
+    return _amplpy_ampls_swig.CPXgetsolnpoolrngfilter(env, lp, lb_p, ub_p, nzcnt_p, ind, val, space, surplus_p, which)
+
+def CPXgetsolnpoolslack(env, lp, soln, slack, begin, end):
+    return _amplpy_ampls_swig.CPXgetsolnpoolslack(env, lp, soln, slack, begin, end)
+
+def CPXgetsolnpoolsolnindex(env, lp, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetsolnpoolsolnindex(env, lp, lname_str, index_p)
+
+def CPXgetsolnpoolsolnname(env, lp, store, storesz, surplus_p, which):
+    return _amplpy_ampls_swig.CPXgetsolnpoolsolnname(env, lp, store, storesz, surplus_p, which)
+
+def CPXgetsolnpoolx(env, lp, soln, x, begin, end):
+    return _amplpy_ampls_swig.CPXgetsolnpoolx(env, lp, soln, x, begin, end)
+
+def CPXgetsolvecallbackfunc(env, solvecallback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetsolvecallbackfunc(env, solvecallback_p, cbhandle_p)
+
+def CPXgetsos(env, lp, numsosnz_p, sostype, sosbeg, sosind, soswt, sosspace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetsos(env, lp, numsosnz_p, sostype, sosbeg, sosind, soswt, sosspace, surplus_p, begin, end)
+
+def CPXgetsosindex(env, lp, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetsosindex(env, lp, lname_str, index_p)
+
+def CPXgetsosinfeas(env, lp, x, infeasout, begin, end):
+    return _amplpy_ampls_swig.CPXgetsosinfeas(env, lp, x, infeasout, begin, end)
+
+def CPXgetsosname(env, lp, name, namestore, storespace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetsosname(env, lp, name, namestore, storespace, surplus_p, begin, end)
+
+def CPXgetsubmethod(env, lp):
+    return _amplpy_ampls_swig.CPXgetsubmethod(env, lp)
+
+def CPXgetsubstat(env, lp):
+    return _amplpy_ampls_swig.CPXgetsubstat(env, lp)
+
+def CPXgetusercutcallbackfunc(env, cutcallback_p, cbhandle_p):
+    return _amplpy_ampls_swig.CPXgetusercutcallbackfunc(env, cutcallback_p, cbhandle_p)
+
+def CPXindconstrslackfromx(env, lp, x, indslack):
+    return _amplpy_ampls_swig.CPXindconstrslackfromx(env, lp, x, indslack)
+
+def CPXmipopt(env, lp):
+    return _amplpy_ampls_swig.CPXmipopt(env, lp)
+
+def CPXordread(env, filename_str, numcols, colname, cnt_p, indices, priority, direction):
+    return _amplpy_ampls_swig.CPXordread(env, filename_str, numcols, colname, cnt_p, indices, priority, direction)
+
+def CPXordwrite(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXordwrite(env, lp, filename_str)
+
+def CPXpopulate(env, lp):
+    return _amplpy_ampls_swig.CPXpopulate(env, lp)
+
+def CPXreadcopymipstarts(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXreadcopymipstarts(env, lp, filename_str)
+
+def CPXreadcopyorder(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXreadcopyorder(env, lp, filename_str)
+
+def CPXreadcopysolnpoolfilters(env, lp, filename_str):
+    return _amplpy_ampls_swig.CPXreadcopysolnpoolfilters(env, lp, filename_str)
+
+def CPXrefinemipstartconflict(env, lp, mipstartindex, confnumrows_p, confnumcols_p):
+    return _amplpy_ampls_swig.CPXrefinemipstartconflict(env, lp, mipstartindex, confnumrows_p, confnumcols_p)
+
+def CPXrefinemipstartconflictext(env, lp, mipstartindex, grpcnt, concnt, grppref, grpbeg, grpind, grptype):
+    return _amplpy_ampls_swig.CPXrefinemipstartconflictext(env, lp, mipstartindex, grpcnt, concnt, grppref, grpbeg, grpind, grptype)
+
+def CPXsetbranchcallbackfunc(env, branchcallback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetbranchcallbackfunc(env, branchcallback, cbhandle)
+
+def CPXsetbranchnosolncallbackfunc(env, branchnosolncallback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetbranchnosolncallbackfunc(env, branchnosolncallback, cbhandle)
+
+def CPXsetdeletenodecallbackfunc(env, deletecallback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetdeletenodecallbackfunc(env, deletecallback, cbhandle)
+
+def CPXsetheuristiccallbackfunc(env, heuristiccallback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetheuristiccallbackfunc(env, heuristiccallback, cbhandle)
+
+def CPXsetincumbentcallbackfunc(env, incumbentcallback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetincumbentcallbackfunc(env, incumbentcallback, cbhandle)
+
+def CPXsetinfocallbackfunc(env, callback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetinfocallbackfunc(env, callback, cbhandle)
+
+def CPXsetlazyconstraintcallbackfunc(env, lazyconcallback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetlazyconstraintcallbackfunc(env, lazyconcallback, cbhandle)
+
+def CPXsetmipcallbackfunc(env, callback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetmipcallbackfunc(env, callback, cbhandle)
+
+def CPXsetnodecallbackfunc(env, nodecallback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetnodecallbackfunc(env, nodecallback, cbhandle)
+
+def CPXsetsolvecallbackfunc(env, solvecallback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetsolvecallbackfunc(env, solvecallback, cbhandle)
+
+def CPXsetusercutcallbackfunc(env, cutcallback, cbhandle):
+    return _amplpy_ampls_swig.CPXsetusercutcallbackfunc(env, cutcallback, cbhandle)
+
+def CPXwritemipstarts(env, lp, filename_str, begin, end):
+    return _amplpy_ampls_swig.CPXwritemipstarts(env, lp, filename_str, begin, end)
+CPXGC_H = _amplpy_ampls_swig.CPXGC_H
+
+def CPXaddindconstr(env, lp, indvar, complemented, nzcnt, rhs, sense, linind, linval, indname_str):
+    return _amplpy_ampls_swig.CPXaddindconstr(env, lp, indvar, complemented, nzcnt, rhs, sense, linind, linval, indname_str)
+CPXNET_H = _amplpy_ampls_swig.CPXNET_H
+
+def CPXNETaddarcs(env, net, narcs, fromnode, tonode, low, up, obj, anames):
+    return _amplpy_ampls_swig.CPXNETaddarcs(env, net, narcs, fromnode, tonode, low, up, obj, anames)
+
+def CPXNETaddnodes(env, net, nnodes, supply, name):
+    return _amplpy_ampls_swig.CPXNETaddnodes(env, net, nnodes, supply, name)
+
+def CPXNETbasewrite(env, net, filename_str):
+    return _amplpy_ampls_swig.CPXNETbasewrite(env, net, filename_str)
+
+def CPXNETchgarcname(env, net, cnt, indices, newname):
+    return _amplpy_ampls_swig.CPXNETchgarcname(env, net, cnt, indices, newname)
+
+def CPXNETchgarcnodes(env, net, cnt, indices, fromnode, tonode):
+    return _amplpy_ampls_swig.CPXNETchgarcnodes(env, net, cnt, indices, fromnode, tonode)
+
+def CPXNETchgbds(env, net, cnt, indices, lu, bd):
+    return _amplpy_ampls_swig.CPXNETchgbds(env, net, cnt, indices, lu, bd)
+
+def CPXNETchgname(env, net, key, vindex, name_str):
+    return _amplpy_ampls_swig.CPXNETchgname(env, net, key, vindex, name_str)
+
+def CPXNETchgnodename(env, net, cnt, indices, newname):
+    return _amplpy_ampls_swig.CPXNETchgnodename(env, net, cnt, indices, newname)
+
+def CPXNETchgobj(env, net, cnt, indices, obj):
+    return _amplpy_ampls_swig.CPXNETchgobj(env, net, cnt, indices, obj)
+
+def CPXNETchgobjsen(env, net, maxormin):
+    return _amplpy_ampls_swig.CPXNETchgobjsen(env, net, maxormin)
+
+def CPXNETchgsupply(env, net, cnt, indices, supply):
+    return _amplpy_ampls_swig.CPXNETchgsupply(env, net, cnt, indices, supply)
+
+def CPXNETcopybase(env, net, astat, nstat):
+    return _amplpy_ampls_swig.CPXNETcopybase(env, net, astat, nstat)
+
+def CPXNETcopynet(env, net, objsen, nnodes, supply, nnames, narcs, fromnode, tonode, low, up, obj, anames):
+    return _amplpy_ampls_swig.CPXNETcopynet(env, net, objsen, nnodes, supply, nnames, narcs, fromnode, tonode, low, up, obj, anames)
+
+def CPXNETcreateprob(env, status_p, name_str):
+    return _amplpy_ampls_swig.CPXNETcreateprob(env, status_p, name_str)
+
+def CPXNETdelarcs(env, net, begin, end):
+    return _amplpy_ampls_swig.CPXNETdelarcs(env, net, begin, end)
+
+def CPXNETdelnodes(env, net, begin, end):
+    return _amplpy_ampls_swig.CPXNETdelnodes(env, net, begin, end)
+
+def CPXNETdelset(env, net, whichnodes, whicharcs):
+    return _amplpy_ampls_swig.CPXNETdelset(env, net, whichnodes, whicharcs)
+
+def CPXNETfreeprob(env, net_p):
+    return _amplpy_ampls_swig.CPXNETfreeprob(env, net_p)
+
+def CPXNETgetarcindex(env, net, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXNETgetarcindex(env, net, lname_str, index_p)
+
+def CPXNETgetarcname(env, net, nnames, namestore, namespc, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetarcname(env, net, nnames, namestore, namespc, surplus_p, begin, end)
+
+def CPXNETgetarcnodes(env, net, fromnode, tonode, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetarcnodes(env, net, fromnode, tonode, begin, end)
+
+def CPXNETgetbase(env, net, astat, nstat):
+    return _amplpy_ampls_swig.CPXNETgetbase(env, net, astat, nstat)
+
+def CPXNETgetdj(env, net, dj, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetdj(env, net, dj, begin, end)
+
+def CPXNETgetitcnt(env, net):
+    return _amplpy_ampls_swig.CPXNETgetitcnt(env, net)
+
+def CPXNETgetlb(env, net, low, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetlb(env, net, low, begin, end)
+
+def CPXNETgetnodearcs(env, net, arccnt_p, arcbeg, arc, arcspace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetnodearcs(env, net, arccnt_p, arcbeg, arc, arcspace, surplus_p, begin, end)
+
+def CPXNETgetnodeindex(env, net, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXNETgetnodeindex(env, net, lname_str, index_p)
+
+def CPXNETgetnodename(env, net, nnames, namestore, namespc, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetnodename(env, net, nnames, namestore, namespc, surplus_p, begin, end)
+
+def CPXNETgetnumarcs(env, net):
+    return _amplpy_ampls_swig.CPXNETgetnumarcs(env, net)
+
+def CPXNETgetnumnodes(env, net):
+    return _amplpy_ampls_swig.CPXNETgetnumnodes(env, net)
+
+def CPXNETgetobj(env, net, obj, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetobj(env, net, obj, begin, end)
+
+def CPXNETgetobjsen(env, net):
+    return _amplpy_ampls_swig.CPXNETgetobjsen(env, net)
+
+def CPXNETgetobjval(env, net, objval_p):
+    return _amplpy_ampls_swig.CPXNETgetobjval(env, net, objval_p)
+
+def CPXNETgetphase1cnt(env, net):
+    return _amplpy_ampls_swig.CPXNETgetphase1cnt(env, net)
+
+def CPXNETgetpi(env, net, pi, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetpi(env, net, pi, begin, end)
+
+def CPXNETgetprobname(env, net, buf_str, bufspace, surplus_p):
+    return _amplpy_ampls_swig.CPXNETgetprobname(env, net, buf_str, bufspace, surplus_p)
+
+def CPXNETgetslack(env, net, slack, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetslack(env, net, slack, begin, end)
+
+def CPXNETgetstat(env, net):
+    return _amplpy_ampls_swig.CPXNETgetstat(env, net)
+
+def CPXNETgetsupply(env, net, supply, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetsupply(env, net, supply, begin, end)
+
+def CPXNETgetub(env, net, up, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetub(env, net, up, begin, end)
+
+def CPXNETgetx(env, net, x, begin, end):
+    return _amplpy_ampls_swig.CPXNETgetx(env, net, x, begin, end)
+
+def CPXNETprimopt(env, net):
+    return _amplpy_ampls_swig.CPXNETprimopt(env, net)
+
+def CPXNETreadcopybase(env, net, filename_str):
+    return _amplpy_ampls_swig.CPXNETreadcopybase(env, net, filename_str)
+
+def CPXNETreadcopyprob(env, net, filename_str):
+    return _amplpy_ampls_swig.CPXNETreadcopyprob(env, net, filename_str)
+
+def CPXNETsolninfo(env, net, pfeasind_p, dfeasind_p):
+    return _amplpy_ampls_swig.CPXNETsolninfo(env, net, pfeasind_p, dfeasind_p)
+
+def CPXNETsolution(env, net, netstat_p, objval_p, x, pi, slack, dj):
+    return _amplpy_ampls_swig.CPXNETsolution(env, net, netstat_p, objval_p, x, pi, slack, dj)
+
+def CPXNETwriteprob(env, net, filename_str, format_str):
+    return _amplpy_ampls_swig.CPXNETwriteprob(env, net, filename_str, format_str)
+CPXQP_H = _amplpy_ampls_swig.CPXQP_H
+
+def CPXchgqpcoef(env, lp, i, j, newvalue):
+    return _amplpy_ampls_swig.CPXchgqpcoef(env, lp, i, j, newvalue)
+
+def CPXcopyqpsep(env, lp, qsepvec):
+    return _amplpy_ampls_swig.CPXcopyqpsep(env, lp, qsepvec)
+
+def CPXcopyquad(env, lp, qmatbeg, qmatcnt, qmatind, qmatval):
+    return _amplpy_ampls_swig.CPXcopyquad(env, lp, qmatbeg, qmatcnt, qmatind, qmatval)
+
+def CPXgetnumqpnz(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumqpnz(env, lp)
+
+def CPXgetnumquad(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumquad(env, lp)
+
+def CPXgetqpcoef(env, lp, rownum, colnum, coef_p):
+    return _amplpy_ampls_swig.CPXgetqpcoef(env, lp, rownum, colnum, coef_p)
+
+def CPXgetquad(env, lp, nzcnt_p, qmatbeg, qmatind, qmatval, qmatspace, surplus_p, begin, end):
+    return _amplpy_ampls_swig.CPXgetquad(env, lp, nzcnt_p, qmatbeg, qmatind, qmatval, qmatspace, surplus_p, begin, end)
+
+def CPXqpindefcertificate(env, lp, x):
+    return _amplpy_ampls_swig.CPXqpindefcertificate(env, lp, x)
+
+def CPXqpopt(env, lp):
+    return _amplpy_ampls_swig.CPXqpopt(env, lp)
+CPXSOCP_H = _amplpy_ampls_swig.CPXSOCP_H
+
+def CPXaddqconstr(env, lp, linnzcnt, quadnzcnt, rhs, sense, linind, linval, quadrow, quadcol, quadval, lname_str):
+    return _amplpy_ampls_swig.CPXaddqconstr(env, lp, linnzcnt, quadnzcnt, rhs, sense, linind, linval, quadrow, quadcol, quadval, lname_str)
+
+def CPXdelqconstrs(env, lp, begin, end):
+    return _amplpy_ampls_swig.CPXdelqconstrs(env, lp, begin, end)
+
+def CPXgetnumqconstrs(env, lp):
+    return _amplpy_ampls_swig.CPXgetnumqconstrs(env, lp)
+
+def CPXgetqconstr(env, lp, linnzcnt_p, quadnzcnt_p, rhs_p, sense_p, linind, linval, linspace, linsurplus_p, quadrow, quadcol, quadval, quadspace, quadsurplus_p, which):
+    return _amplpy_ampls_swig.CPXgetqconstr(env, lp, linnzcnt_p, quadnzcnt_p, rhs_p, sense_p, linind, linval, linspace, linsurplus_p, quadrow, quadcol, quadval, quadspace, quadsurplus_p, which)
+
+def CPXgetqconstrdslack(env, lp, qind, nz_p, ind, val, space, surplus_p):
+    return _amplpy_ampls_swig.CPXgetqconstrdslack(env, lp, qind, nz_p, ind, val, space, surplus_p)
+
+def CPXgetqconstrindex(env, lp, lname_str, index_p):
+    return _amplpy_ampls_swig.CPXgetqconstrindex(env, lp, lname_str, index_p)
+
+def CPXgetqconstrinfeas(env, lp, x, infeasout, begin, end):
+    return _amplpy_ampls_swig.CPXgetqconstrinfeas(env, lp, x, infeasout, begin, end)
+
+def CPXgetqconstrname(env, lp, buf_str, bufspace, surplus_p, which):
+    return _amplpy_ampls_swig.CPXgetqconstrname(env, lp, buf_str, bufspace, surplus_p, which)
+
+def CPXgetqconstrslack(env, lp, qcslack, begin, end):
+    return _amplpy_ampls_swig.CPXgetqconstrslack(env, lp, qcslack, begin, end)
+
+def CPXgetxqxax(env, lp, xqxax, begin, end):
+    return _amplpy_ampls_swig.CPXgetxqxax(env, lp, xqxax, begin, end)
+
+def CPXqconstrslackfromx(env, lp, x, qcslack):
+    return _amplpy_ampls_swig.CPXqconstrslackfromx(env, lp, x, qcslack)
+
+def AMPLSClose_cplexmp(slv):
+    return _amplpy_ampls_swig.AMPLSClose_cplexmp(slv)
+
+def AMPLSGetModel_cplexmp(slv):
+    return _amplpy_ampls_swig.AMPLSGetModel_cplexmp(slv)
+
+def AMPLSGetEnv_cplexmp(slv):
+    return _amplpy_ampls_swig.AMPLSGetEnv_cplexmp(slv)
+
+def AMPLSOpen_cplexmp(arg1, arg2):
+    return _amplpy_ampls_swig.AMPLSOpen_cplexmp(arg1, arg2)
+class CBWrap(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    skipMsgCallback = property(_amplpy_ampls_swig.CBWrap_skipMsgCallback_get, _amplpy_ampls_swig.CBWrap_skipMsgCallback_set)
+
+    @staticmethod
+    def lp_callback_wrapper(env, lp, wf, cbh):
+        return _amplpy_ampls_swig.CBWrap_lp_callback_wrapper(env, lp, wf, cbh)
+
+    @staticmethod
+    def cut_callback_wrapper(env, cbdata, wherefrom, cbhandle, useraction_p):
+        return _amplpy_ampls_swig.CBWrap_cut_callback_wrapper(env, cbdata, wherefrom, cbhandle, useraction_p)
+
+    @staticmethod
+    def msg_callback_wrapper(handle, msg):
+        return _amplpy_ampls_swig.CBWrap_msg_callback_wrapper(handle, msg)
+
+    @staticmethod
+    def incumbent_callback_wrapper(env, cbdata, wherefrom, cbhandle, objval, x, isfeas_p, useraction_p):
+        return _amplpy_ampls_swig.CBWrap_incumbent_callback_wrapper(env, cbdata, wherefrom, cbhandle, objval, x, isfeas_p, useraction_p)
+
+    @staticmethod
+    def heuristiccallbackfunc_wrapper(env, cbdata, wherefrom, cbhandle, objval_p, x, checkfeas_p, useraction_p):
+        return _amplpy_ampls_swig.CBWrap_heuristiccallbackfunc_wrapper(env, cbdata, wherefrom, cbhandle, objval_p, x, checkfeas_p, useraction_p)
+
+    @staticmethod
+    def setDefaultCB(env, cbdata, wherefrom, userhandle, capabilities):
+        return _amplpy_ampls_swig.CBWrap_setDefaultCB(env, cbdata, wherefrom, userhandle, capabilities)
+
+    def __init__(self):
+        _amplpy_ampls_swig.CBWrap_swiginit(self, _amplpy_ampls_swig.new_CBWrap())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_CBWrap
+
+# Register CBWrap in _amplpy_ampls_swig:
+_amplpy_ampls_swig.CBWrap_swigregister(CBWrap)
+cvar = _amplpy_ampls_swig.cvar
+
+def CBWrap_lp_callback_wrapper(env, lp, wf, cbh):
+    return _amplpy_ampls_swig.CBWrap_lp_callback_wrapper(env, lp, wf, cbh)
+
+def CBWrap_cut_callback_wrapper(env, cbdata, wherefrom, cbhandle, useraction_p):
+    return _amplpy_ampls_swig.CBWrap_cut_callback_wrapper(env, cbdata, wherefrom, cbhandle, useraction_p)
+
+def CBWrap_msg_callback_wrapper(handle, msg):
+    return _amplpy_ampls_swig.CBWrap_msg_callback_wrapper(handle, msg)
+
+def CBWrap_incumbent_callback_wrapper(env, cbdata, wherefrom, cbhandle, objval, x, isfeas_p, useraction_p):
+    return _amplpy_ampls_swig.CBWrap_incumbent_callback_wrapper(env, cbdata, wherefrom, cbhandle, objval, x, isfeas_p, useraction_p)
+
+def CBWrap_heuristiccallbackfunc_wrapper(env, cbdata, wherefrom, cbhandle, objval_p, x, checkfeas_p, useraction_p):
+    return _amplpy_ampls_swig.CBWrap_heuristiccallbackfunc_wrapper(env, cbdata, wherefrom, cbhandle, objval_p, x, checkfeas_p, useraction_p)
+
+def CBWrap_setDefaultCB(env, cbdata, wherefrom, userhandle, capabilities):
+    return _amplpy_ampls_swig.CBWrap_setDefaultCB(env, cbdata, wherefrom, userhandle, capabilities)
+
+class CPLEXDrv(SolverDriverCPLEX):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def loadModel(self, modelName):
+        return _amplpy_ampls_swig.CPLEXDrv_loadModel(self, modelName)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_CPLEXDrv
+
+    def __init__(self):
+        _amplpy_ampls_swig.CPLEXDrv_swiginit(self, _amplpy_ampls_swig.new_CPLEXDrv())
+
+# Register CPLEXDrv in _amplpy_ampls_swig:
+_amplpy_ampls_swig.CPLEXDrv_swigregister(CPLEXDrv)
+
+class CPLEXModel(AMPLMPModel):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.CPLEXModel_swiginit(self, _amplpy_ampls_swig.new_CPLEXModel(*args))
+
+    def driver(self):
+        return _amplpy_ampls_swig.CPLEXModel_driver(self)
+
+    def getStatus(self):
+        return _amplpy_ampls_swig.CPLEXModel_getStatus(self)
+
+    def optimize(self):
+        return _amplpy_ampls_swig.CPLEXModel_optimize(self)
+
+    def getNumVars(self):
+        return _amplpy_ampls_swig.CPLEXModel_getNumVars(self)
+
+    def getNumCons(self):
+        return _amplpy_ampls_swig.CPLEXModel_getNumCons(self)
+
+    def getObj(self):
+        return _amplpy_ampls_swig.CPLEXModel_getObj(self)
+
+    def getSolution(self, first, length, sol):
+        return _amplpy_ampls_swig.CPLEXModel_getSolution(self, first, length, sol)
+
+    def error(self, code):
+        return _amplpy_ampls_swig.CPLEXModel_error(self, code)
+
+    def enableLazyConstraints(self):
+        return _amplpy_ampls_swig.CPLEXModel_enableLazyConstraints(self)
+
+    def getCPXLP(self):
+        return _amplpy_ampls_swig.CPLEXModel_getCPXLP(self)
+
+    def getCPXENV(self):
+        return _amplpy_ampls_swig.CPLEXModel_getCPXENV(self)
+
+    def setParam(self, *args):
+        return _amplpy_ampls_swig.CPLEXModel_setParam(self, *args)
+
+    def getIntParam(self, CPXPARAM):
+        return _amplpy_ampls_swig.CPLEXModel_getIntParam(self, CPXPARAM)
+
+    def getDoubleParam(self, CPXPARAM):
+        return _amplpy_ampls_swig.CPLEXModel_getDoubleParam(self, CPXPARAM)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_CPLEXModel
+
+    def getAMPLSIntParameter(self, param):
+        return _amplpy_ampls_swig.CPLEXModel_getAMPLSIntParameter(self, param)
+
+    def getAMPLSDoubleParameter(self, param):
+        return _amplpy_ampls_swig.CPLEXModel_getAMPLSDoubleParameter(self, param)
+
+    def setAMPLSParameter(self, *args):
+        return _amplpy_ampls_swig.CPLEXModel_setAMPLSParameter(self, *args)
+
+    def getAMPLSIntAttribute(self, attrib):
+        return _amplpy_ampls_swig.CPLEXModel_getAMPLSIntAttribute(self, attrib)
+
+    def getAMPLSDoubleAttribute(self, attrib):
+        return _amplpy_ampls_swig.CPLEXModel_getAMPLSDoubleAttribute(self, attrib)
+
+    def addConstraintImpl(self, name, numnz, vars, coefficients, sense, rhs):
+        return _amplpy_ampls_swig.CPLEXModel_addConstraintImpl(self, name, numnz, vars, coefficients, sense, rhs)
+    toCPLEXType = property(_amplpy_ampls_swig.CPLEXModel_toCPLEXType_get)
+
+    def addVariableImpl(self, name, numnz, cons, coefficients, lb, ub, objcoeff, type):
+        return _amplpy_ampls_swig.CPLEXModel_addVariableImpl(self, name, numnz, cons, coefficients, lb, ub, objcoeff, type)
+
+    def getConstraintsValueImpl(self, offset, length):
+        return _amplpy_ampls_swig.CPLEXModel_getConstraintsValueImpl(self, offset, length)
+
+    def getVarsValueImpl(self, offset, length):
+        return _amplpy_ampls_swig.CPLEXModel_getVarsValueImpl(self, offset, length)
+
+# Register CPLEXModel in _amplpy_ampls_swig:
+_amplpy_ampls_swig.CPLEXModel_swigregister(CPLEXModel)
+
+class CPLEXCallback(BaseCallback):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def run(self):
+        return _amplpy_ampls_swig.CPLEXCallback_run(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_CPLEXCallback
+
+    def getObj(self):
+        return _amplpy_ampls_swig.CPLEXCallback_getObj(self)
+
+    def getWhereString(self):
+        return _amplpy_ampls_swig.CPLEXCallback_getWhereString(self)
+
+    def getMessage(self):
+        return _amplpy_ampls_swig.CPLEXCallback_getMessage(self)
+
+    def getAMPLSWhere(self):
+        return _amplpy_ampls_swig.CPLEXCallback_getAMPLSWhere(self)
+
+    def get(self, what):
+        return _amplpy_ampls_swig.CPLEXCallback_get(self, what)
+
+    def getInt(self, what):
+        return _amplpy_ampls_swig.CPLEXCallback_getInt(self, what)
+
+    def getDouble(self, what):
+        return _amplpy_ampls_swig.CPLEXCallback_getDouble(self, what)
+
+    def getValue(self, v):
+        return _amplpy_ampls_swig.CPLEXCallback_getValue(self, v)
+
+    def setHeuristicSolution(self, nvars, indices, values):
+        return _amplpy_ampls_swig.CPLEXCallback_setHeuristicSolution(self, nvars, indices, values)
+
+    def getValueArray(self, v):
+        return _amplpy_ampls_swig.CPLEXCallback_getValueArray(self, v)
+
+    def __init__(self):
+        if self.__class__ == CPLEXCallback:
+            _self = None
+        else:
+            _self = self
+        _amplpy_ampls_swig.CPLEXCallback_swiginit(self, _amplpy_ampls_swig.new_CPLEXCallback(_self, ))
+    def __disown__(self):
+        self.this.disown()
+        _amplpy_ampls_swig.disown_CPLEXCallback(self)
+        return weakref.proxy(self)
+
+# Register CPLEXCallback in _amplpy_ampls_swig:
+_amplpy_ampls_swig.CPLEXCallback_swigregister(CPLEXCallback)
+
+class SolverDriverXpress(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+
+    def __init__(self, *args, **kwargs):
+        raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _amplpy_ampls_swig.delete_SolverDriverXpress
+
+    def setOptions(self, options):
+        return _amplpy_ampls_swig.SolverDriverXpress_setOptions(self, options)
+
+# Register SolverDriverXpress in _amplpy_ampls_swig:
+_amplpy_ampls_swig.SolverDriverXpress_swigregister(SolverDriverXpress)
+
+XPRSdeprecatedattrib = _amplpy_ampls_swig.XPRSdeprecatedattrib
+XPRSdeprecatedcontrol = _amplpy_ampls_swig.XPRSdeprecatedcontrol
+class XPRSalltype(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    XPRStype_undefined = _amplpy_ampls_swig.XPRSalltype_XPRStype_undefined
+    XPRStype_integer = _amplpy_ampls_swig.XPRSalltype_XPRStype_integer
+    XPRStype_real = _amplpy_ampls_swig.XPRSalltype_XPRStype_real
+    type = property(_amplpy_ampls_swig.XPRSalltype_type_get, _amplpy_ampls_swig.XPRSalltype_type_set)
+
+    def __init__(self):
+        _amplpy_ampls_swig.XPRSalltype_swiginit(self, _amplpy_ampls_swig.new_XPRSalltype())
+    __swig_destroy__ = _amplpy_ampls_swig.delete_XPRSalltype
+
+# Register XPRSalltype in _amplpy_ampls_swig:
+_amplpy_ampls_swig.XPRSalltype_swigregister(XPRSalltype)
+
+XPRS_PLUSINFINITY = _amplpy_ampls_swig.XPRS_PLUSINFINITY
+XPRS_MINUSINFINITY = _amplpy_ampls_swig.XPRS_MINUSINFINITY
+XPRS_MAXINT = _amplpy_ampls_swig.XPRS_MAXINT
+XPRS_MAXBANNERLENGTH = _amplpy_ampls_swig.XPRS_MAXBANNERLENGTH
+XPVERSION = _amplpy_ampls_swig.XPVERSION
+XPRS_MPSRHSNAME = _amplpy_ampls_swig.XPRS_MPSRHSNAME
+XPRS_MPSOBJNAME = _amplpy_ampls_swig.XPRS_MPSOBJNAME
+XPRS_MPSRANGENAME = _amplpy_ampls_swig.XPRS_MPSRANGENAME
+XPRS_MPSBOUNDNAME = _amplpy_ampls_swig.XPRS_MPSBOUNDNAME
+XPRS_OUTPUTMASK = _amplpy_ampls_swig.XPRS_OUTPUTMASK
+XPRS_TUNERMETHODFILE = _amplpy_ampls_swig.XPRS_TUNERMETHODFILE
+XPRS_TUNEROUTPUTPATH = _amplpy_ampls_swig.XPRS_TUNEROUTPUTPATH
+XPRS_TUNERSESSIONNAME = _amplpy_ampls_swig.XPRS_TUNERSESSIONNAME
+XPRS_COMPUTEEXECSERVICE = _amplpy_ampls_swig.XPRS_COMPUTEEXECSERVICE
+XPRS_MAXCUTTIME = _amplpy_ampls_swig.XPRS_MAXCUTTIME
+XPRS_MAXSTALLTIME = _amplpy_ampls_swig.XPRS_MAXSTALLTIME
+XPRS_TUNERMAXTIME = _amplpy_ampls_swig.XPRS_TUNERMAXTIME
+XPRS_MATRIXTOL = _amplpy_ampls_swig.XPRS_MATRIXTOL
+XPRS_PIVOTTOL = _amplpy_ampls_swig.XPRS_PIVOTTOL
+XPRS_FEASTOL = _amplpy_ampls_swig.XPRS_FEASTOL
+XPRS_OUTPUTTOL = _amplpy_ampls_swig.XPRS_OUTPUTTOL
+XPRS_SOSREFTOL = _amplpy_ampls_swig.XPRS_SOSREFTOL
+XPRS_OPTIMALITYTOL = _amplpy_ampls_swig.XPRS_OPTIMALITYTOL
+XPRS_ETATOL = _amplpy_ampls_swig.XPRS_ETATOL
+XPRS_RELPIVOTTOL = _amplpy_ampls_swig.XPRS_RELPIVOTTOL
+XPRS_MIPTOL = _amplpy_ampls_swig.XPRS_MIPTOL
+XPRS_MIPTOLTARGET = _amplpy_ampls_swig.XPRS_MIPTOLTARGET
+XPRS_BARPERTURB = _amplpy_ampls_swig.XPRS_BARPERTURB
+XPRS_MIPADDCUTOFF = _amplpy_ampls_swig.XPRS_MIPADDCUTOFF
+XPRS_MIPABSCUTOFF = _amplpy_ampls_swig.XPRS_MIPABSCUTOFF
+XPRS_MIPRELCUTOFF = _amplpy_ampls_swig.XPRS_MIPRELCUTOFF
+XPRS_PSEUDOCOST = _amplpy_ampls_swig.XPRS_PSEUDOCOST
+XPRS_PENALTY = _amplpy_ampls_swig.XPRS_PENALTY
+XPRS_BIGM = _amplpy_ampls_swig.XPRS_BIGM
+XPRS_MIPABSSTOP = _amplpy_ampls_swig.XPRS_MIPABSSTOP
+XPRS_MIPRELSTOP = _amplpy_ampls_swig.XPRS_MIPRELSTOP
+XPRS_CROSSOVERACCURACYTOL = _amplpy_ampls_swig.XPRS_CROSSOVERACCURACYTOL
+XPRS_PRIMALPERTURB = _amplpy_ampls_swig.XPRS_PRIMALPERTURB
+XPRS_DUALPERTURB = _amplpy_ampls_swig.XPRS_DUALPERTURB
+XPRS_BAROBJSCALE = _amplpy_ampls_swig.XPRS_BAROBJSCALE
+XPRS_BARRHSSCALE = _amplpy_ampls_swig.XPRS_BARRHSSCALE
+XPRS_CHOLESKYTOL = _amplpy_ampls_swig.XPRS_CHOLESKYTOL
+XPRS_BARGAPSTOP = _amplpy_ampls_swig.XPRS_BARGAPSTOP
+XPRS_BARDUALSTOP = _amplpy_ampls_swig.XPRS_BARDUALSTOP
+XPRS_BARPRIMALSTOP = _amplpy_ampls_swig.XPRS_BARPRIMALSTOP
+XPRS_BARSTEPSTOP = _amplpy_ampls_swig.XPRS_BARSTEPSTOP
+XPRS_ELIMTOL = _amplpy_ampls_swig.XPRS_ELIMTOL
+XPRS_MARKOWITZTOL = _amplpy_ampls_swig.XPRS_MARKOWITZTOL
+XPRS_MIPABSGAPNOTIFY = _amplpy_ampls_swig.XPRS_MIPABSGAPNOTIFY
+XPRS_MIPRELGAPNOTIFY = _amplpy_ampls_swig.XPRS_MIPRELGAPNOTIFY
+XPRS_BARLARGEBOUND = _amplpy_ampls_swig.XPRS_BARLARGEBOUND
+XPRS_PPFACTOR = _amplpy_ampls_swig.XPRS_PPFACTOR
+XPRS_REPAIRINDEFINITEQMAX = _amplpy_ampls_swig.XPRS_REPAIRINDEFINITEQMAX
+XPRS_BARGAPTARGET = _amplpy_ampls_swig.XPRS_BARGAPTARGET
+XPRS_DUMMYCONTROL = _amplpy_ampls_swig.XPRS_DUMMYCONTROL
+XPRS_BARSTARTWEIGHT = _amplpy_ampls_swig.XPRS_BARSTARTWEIGHT
+XPRS_BARFREESCALE = _amplpy_ampls_swig.XPRS_BARFREESCALE
+XPRS_SBEFFORT = _amplpy_ampls_swig.XPRS_SBEFFORT
+XPRS_HEURDIVERANDOMIZE = _amplpy_ampls_swig.XPRS_HEURDIVERANDOMIZE
+XPRS_HEURSEARCHEFFORT = _amplpy_ampls_swig.XPRS_HEURSEARCHEFFORT
+XPRS_CUTFACTOR = _amplpy_ampls_swig.XPRS_CUTFACTOR
+XPRS_EIGENVALUETOL = _amplpy_ampls_swig.XPRS_EIGENVALUETOL
+XPRS_INDLINBIGM = _amplpy_ampls_swig.XPRS_INDLINBIGM
+XPRS_TREEMEMORYSAVINGTARGET = _amplpy_ampls_swig.XPRS_TREEMEMORYSAVINGTARGET
+XPRS_INDPRELINBIGM = _amplpy_ampls_swig.XPRS_INDPRELINBIGM
+XPRS_RELAXTREEMEMORYLIMIT = _amplpy_ampls_swig.XPRS_RELAXTREEMEMORYLIMIT
+XPRS_MIPABSGAPNOTIFYOBJ = _amplpy_ampls_swig.XPRS_MIPABSGAPNOTIFYOBJ
+XPRS_MIPABSGAPNOTIFYBOUND = _amplpy_ampls_swig.XPRS_MIPABSGAPNOTIFYBOUND
+XPRS_PRESOLVEMAXGROW = _amplpy_ampls_swig.XPRS_PRESOLVEMAXGROW
+XPRS_HEURSEARCHTARGETSIZE = _amplpy_ampls_swig.XPRS_HEURSEARCHTARGETSIZE
+XPRS_CROSSOVERRELPIVOTTOL = _amplpy_ampls_swig.XPRS_CROSSOVERRELPIVOTTOL
+XPRS_CROSSOVERRELPIVOTTOLSAFE = _amplpy_ampls_swig.XPRS_CROSSOVERRELPIVOTTOLSAFE
+XPRS_DETLOGFREQ = _amplpy_ampls_swig.XPRS_DETLOGFREQ
+XPRS_MAXIMPLIEDBOUND = _amplpy_ampls_swig.XPRS_MAXIMPLIEDBOUND
+XPRS_FEASTOLTARGET = _amplpy_ampls_swig.XPRS_FEASTOLTARGET
+XPRS_OPTIMALITYTOLTARGET = _amplpy_ampls_swig.XPRS_OPTIMALITYTOLTARGET
+XPRS_PRECOMPONENTSEFFORT = _amplpy_ampls_swig.XPRS_PRECOMPONENTSEFFORT
+XPRS_LPLOGDELAY = _amplpy_ampls_swig.XPRS_LPLOGDELAY
+XPRS_HEURDIVEITERLIMIT = _amplpy_ampls_swig.XPRS_HEURDIVEITERLIMIT
+XPRS_BARKERNEL = _amplpy_ampls_swig.XPRS_BARKERNEL
+XPRS_FEASTOLPERTURB = _amplpy_ampls_swig.XPRS_FEASTOLPERTURB
+XPRS_CROSSOVERFEASWEIGHT = _amplpy_ampls_swig.XPRS_CROSSOVERFEASWEIGHT
+XPRS_LUPIVOTTOL = _amplpy_ampls_swig.XPRS_LUPIVOTTOL
+XPRS_MIPRESTARTGAPTHRESHOLD = _amplpy_ampls_swig.XPRS_MIPRESTARTGAPTHRESHOLD
+XPRS_NODEPROBINGEFFORT = _amplpy_ampls_swig.XPRS_NODEPROBINGEFFORT
+XPRS_INPUTTOL = _amplpy_ampls_swig.XPRS_INPUTTOL
+XPRS_MIPRESTARTFACTOR = _amplpy_ampls_swig.XPRS_MIPRESTARTFACTOR
+XPRS_BAROBJPERTURB = _amplpy_ampls_swig.XPRS_BAROBJPERTURB
+XPRS_CPIALPHA = _amplpy_ampls_swig.XPRS_CPIALPHA
+XPRS_GLOBALBOUNDINGBOX = _amplpy_ampls_swig.XPRS_GLOBALBOUNDINGBOX
+XPRS_TIMELIMIT = _amplpy_ampls_swig.XPRS_TIMELIMIT
+XPRS_SOLTIMELIMIT = _amplpy_ampls_swig.XPRS_SOLTIMELIMIT
+XPRS_REPAIRINFEASTIMELIMIT = _amplpy_ampls_swig.XPRS_REPAIRINFEASTIMELIMIT
+XPRS_EXTRAROWS = _amplpy_ampls_swig.XPRS_EXTRAROWS
+XPRS_EXTRACOLS = _amplpy_ampls_swig.XPRS_EXTRACOLS
+XPRS_LPITERLIMIT = _amplpy_ampls_swig.XPRS_LPITERLIMIT
+XPRS_LPLOG = _amplpy_ampls_swig.XPRS_LPLOG
+XPRS_SCALING = _amplpy_ampls_swig.XPRS_SCALING
+XPRS_PRESOLVE = _amplpy_ampls_swig.XPRS_PRESOLVE
+XPRS_CRASH = _amplpy_ampls_swig.XPRS_CRASH
+XPRS_PRICINGALG = _amplpy_ampls_swig.XPRS_PRICINGALG
+XPRS_INVERTFREQ = _amplpy_ampls_swig.XPRS_INVERTFREQ
+XPRS_INVERTMIN = _amplpy_ampls_swig.XPRS_INVERTMIN
+XPRS_MAXNODE = _amplpy_ampls_swig.XPRS_MAXNODE
+XPRS_MAXMIPSOL = _amplpy_ampls_swig.XPRS_MAXMIPSOL
+XPRS_SIFTPASSES = _amplpy_ampls_swig.XPRS_SIFTPASSES
+XPRS_DEFAULTALG = _amplpy_ampls_swig.XPRS_DEFAULTALG
+XPRS_VARSELECTION = _amplpy_ampls_swig.XPRS_VARSELECTION
+XPRS_NODESELECTION = _amplpy_ampls_swig.XPRS_NODESELECTION
+XPRS_BACKTRACK = _amplpy_ampls_swig.XPRS_BACKTRACK
+XPRS_MIPLOG = _amplpy_ampls_swig.XPRS_MIPLOG
+XPRS_KEEPNROWS = _amplpy_ampls_swig.XPRS_KEEPNROWS
+XPRS_MPSECHO = _amplpy_ampls_swig.XPRS_MPSECHO
+XPRS_MAXPAGELINES = _amplpy_ampls_swig.XPRS_MAXPAGELINES
+XPRS_OUTPUTLOG = _amplpy_ampls_swig.XPRS_OUTPUTLOG
+XPRS_BARSOLUTION = _amplpy_ampls_swig.XPRS_BARSOLUTION
+XPRS_CROSSOVER = _amplpy_ampls_swig.XPRS_CROSSOVER
+XPRS_BARITERLIMIT = _amplpy_ampls_swig.XPRS_BARITERLIMIT
+XPRS_CHOLESKYALG = _amplpy_ampls_swig.XPRS_CHOLESKYALG
+XPRS_BAROUTPUT = _amplpy_ampls_swig.XPRS_BAROUTPUT
+XPRS_EXTRAMIPENTS = _amplpy_ampls_swig.XPRS_EXTRAMIPENTS
+XPRS_REFACTOR = _amplpy_ampls_swig.XPRS_REFACTOR
+XPRS_BARTHREADS = _amplpy_ampls_swig.XPRS_BARTHREADS
+XPRS_KEEPBASIS = _amplpy_ampls_swig.XPRS_KEEPBASIS
+XPRS_CROSSOVEROPS = _amplpy_ampls_swig.XPRS_CROSSOVEROPS
+XPRS_VERSION = _amplpy_ampls_swig.XPRS_VERSION
+XPRS_CROSSOVERTHREADS = _amplpy_ampls_swig.XPRS_CROSSOVERTHREADS
+XPRS_BIGMMETHOD = _amplpy_ampls_swig.XPRS_BIGMMETHOD
+XPRS_MPSNAMELENGTH = _amplpy_ampls_swig.XPRS_MPSNAMELENGTH
+XPRS_ELIMFILLIN = _amplpy_ampls_swig.XPRS_ELIMFILLIN
+XPRS_PRESOLVEOPS = _amplpy_ampls_swig.XPRS_PRESOLVEOPS
+XPRS_MIPPRESOLVE = _amplpy_ampls_swig.XPRS_MIPPRESOLVE
+XPRS_MIPTHREADS = _amplpy_ampls_swig.XPRS_MIPTHREADS
+XPRS_BARORDER = _amplpy_ampls_swig.XPRS_BARORDER
+XPRS_BREADTHFIRST = _amplpy_ampls_swig.XPRS_BREADTHFIRST
+XPRS_AUTOPERTURB = _amplpy_ampls_swig.XPRS_AUTOPERTURB
+XPRS_DENSECOLLIMIT = _amplpy_ampls_swig.XPRS_DENSECOLLIMIT
+XPRS_CALLBACKFROMMASTERTHREAD = _amplpy_ampls_swig.XPRS_CALLBACKFROMMASTERTHREAD
+XPRS_MAXMCOEFFBUFFERELEMS = _amplpy_ampls_swig.XPRS_MAXMCOEFFBUFFERELEMS
+XPRS_REFINEOPS = _amplpy_ampls_swig.XPRS_REFINEOPS
+XPRS_LPREFINEITERLIMIT = _amplpy_ampls_swig.XPRS_LPREFINEITERLIMIT
+XPRS_MIPREFINEITERLIMIT = _amplpy_ampls_swig.XPRS_MIPREFINEITERLIMIT
+XPRS_DUALIZEOPS = _amplpy_ampls_swig.XPRS_DUALIZEOPS
+XPRS_CROSSOVERITERLIMIT = _amplpy_ampls_swig.XPRS_CROSSOVERITERLIMIT
+XPRS_PREBASISRED = _amplpy_ampls_swig.XPRS_PREBASISRED
+XPRS_PRESORT = _amplpy_ampls_swig.XPRS_PRESORT
+XPRS_PREPERMUTE = _amplpy_ampls_swig.XPRS_PREPERMUTE
+XPRS_PREPERMUTESEED = _amplpy_ampls_swig.XPRS_PREPERMUTESEED
+XPRS_MAXMEMORYSOFT = _amplpy_ampls_swig.XPRS_MAXMEMORYSOFT
+XPRS_CUTFREQ = _amplpy_ampls_swig.XPRS_CUTFREQ
+XPRS_SYMSELECT = _amplpy_ampls_swig.XPRS_SYMSELECT
+XPRS_SYMMETRY = _amplpy_ampls_swig.XPRS_SYMMETRY
+XPRS_MAXMEMORYHARD = _amplpy_ampls_swig.XPRS_MAXMEMORYHARD
+XPRS_MIQCPALG = _amplpy_ampls_swig.XPRS_MIQCPALG
+XPRS_QCCUTS = _amplpy_ampls_swig.XPRS_QCCUTS
+XPRS_QCROOTALG = _amplpy_ampls_swig.XPRS_QCROOTALG
+XPRS_PRECONVERTSEPARABLE = _amplpy_ampls_swig.XPRS_PRECONVERTSEPARABLE
+XPRS_ALGAFTERNETWORK = _amplpy_ampls_swig.XPRS_ALGAFTERNETWORK
+XPRS_TRACE = _amplpy_ampls_swig.XPRS_TRACE
+XPRS_MAXIIS = _amplpy_ampls_swig.XPRS_MAXIIS
+XPRS_CPUTIME = _amplpy_ampls_swig.XPRS_CPUTIME
+XPRS_COVERCUTS = _amplpy_ampls_swig.XPRS_COVERCUTS
+XPRS_GOMCUTS = _amplpy_ampls_swig.XPRS_GOMCUTS
+XPRS_LPFOLDING = _amplpy_ampls_swig.XPRS_LPFOLDING
+XPRS_MPSFORMAT = _amplpy_ampls_swig.XPRS_MPSFORMAT
+XPRS_CUTSTRATEGY = _amplpy_ampls_swig.XPRS_CUTSTRATEGY
+XPRS_CUTDEPTH = _amplpy_ampls_swig.XPRS_CUTDEPTH
+XPRS_TREECOVERCUTS = _amplpy_ampls_swig.XPRS_TREECOVERCUTS
+XPRS_TREEGOMCUTS = _amplpy_ampls_swig.XPRS_TREEGOMCUTS
+XPRS_CUTSELECT = _amplpy_ampls_swig.XPRS_CUTSELECT
+XPRS_TREECUTSELECT = _amplpy_ampls_swig.XPRS_TREECUTSELECT
+XPRS_DUALIZE = _amplpy_ampls_swig.XPRS_DUALIZE
+XPRS_DUALGRADIENT = _amplpy_ampls_swig.XPRS_DUALGRADIENT
+XPRS_SBITERLIMIT = _amplpy_ampls_swig.XPRS_SBITERLIMIT
+XPRS_SBBEST = _amplpy_ampls_swig.XPRS_SBBEST
+XPRS_BARINDEFLIMIT = _amplpy_ampls_swig.XPRS_BARINDEFLIMIT
+XPRS_HEURFREQ = _amplpy_ampls_swig.XPRS_HEURFREQ
+XPRS_HEURDEPTH = _amplpy_ampls_swig.XPRS_HEURDEPTH
+XPRS_HEURMAXSOL = _amplpy_ampls_swig.XPRS_HEURMAXSOL
+XPRS_HEURNODES = _amplpy_ampls_swig.XPRS_HEURNODES
+XPRS_LNPBEST = _amplpy_ampls_swig.XPRS_LNPBEST
+XPRS_LNPITERLIMIT = _amplpy_ampls_swig.XPRS_LNPITERLIMIT
+XPRS_BRANCHCHOICE = _amplpy_ampls_swig.XPRS_BRANCHCHOICE
+XPRS_BARREGULARIZE = _amplpy_ampls_swig.XPRS_BARREGULARIZE
+XPRS_SBSELECT = _amplpy_ampls_swig.XPRS_SBSELECT
+XPRS_LOCALCHOICE = _amplpy_ampls_swig.XPRS_LOCALCHOICE
+XPRS_LOCALBACKTRACK = _amplpy_ampls_swig.XPRS_LOCALBACKTRACK
+XPRS_DUALSTRATEGY = _amplpy_ampls_swig.XPRS_DUALSTRATEGY
+XPRS_HEURDIVESTRATEGY = _amplpy_ampls_swig.XPRS_HEURDIVESTRATEGY
+XPRS_HEURSELECT = _amplpy_ampls_swig.XPRS_HEURSELECT
+XPRS_BARSTART = _amplpy_ampls_swig.XPRS_BARSTART
+XPRS_PRESOLVEPASSES = _amplpy_ampls_swig.XPRS_PRESOLVEPASSES
+XPRS_BARNUMSTABILITY = _amplpy_ampls_swig.XPRS_BARNUMSTABILITY
+XPRS_BARORDERTHREADS = _amplpy_ampls_swig.XPRS_BARORDERTHREADS
+XPRS_EXTRASETS = _amplpy_ampls_swig.XPRS_EXTRASETS
+XPRS_FEASIBILITYPUMP = _amplpy_ampls_swig.XPRS_FEASIBILITYPUMP
+XPRS_PRECOEFELIM = _amplpy_ampls_swig.XPRS_PRECOEFELIM
+XPRS_PREDOMCOL = _amplpy_ampls_swig.XPRS_PREDOMCOL
+XPRS_HEURSEARCHFREQ = _amplpy_ampls_swig.XPRS_HEURSEARCHFREQ
+XPRS_HEURDIVESPEEDUP = _amplpy_ampls_swig.XPRS_HEURDIVESPEEDUP
+XPRS_SBESTIMATE = _amplpy_ampls_swig.XPRS_SBESTIMATE
+XPRS_BARCORES = _amplpy_ampls_swig.XPRS_BARCORES
+XPRS_MAXCHECKSONMAXTIME = _amplpy_ampls_swig.XPRS_MAXCHECKSONMAXTIME
+XPRS_MAXCHECKSONMAXCUTTIME = _amplpy_ampls_swig.XPRS_MAXCHECKSONMAXCUTTIME
+XPRS_HISTORYCOSTS = _amplpy_ampls_swig.XPRS_HISTORYCOSTS
+XPRS_ALGAFTERCROSSOVER = _amplpy_ampls_swig.XPRS_ALGAFTERCROSSOVER
+XPRS_MUTEXCALLBACKS = _amplpy_ampls_swig.XPRS_MUTEXCALLBACKS
+XPRS_BARCRASH = _amplpy_ampls_swig.XPRS_BARCRASH
+XPRS_HEURDIVESOFTROUNDING = _amplpy_ampls_swig.XPRS_HEURDIVESOFTROUNDING
+XPRS_HEURSEARCHROOTSELECT = _amplpy_ampls_swig.XPRS_HEURSEARCHROOTSELECT
+XPRS_HEURSEARCHTREESELECT = _amplpy_ampls_swig.XPRS_HEURSEARCHTREESELECT
+XPRS_MPS18COMPATIBLE = _amplpy_ampls_swig.XPRS_MPS18COMPATIBLE
+XPRS_ROOTPRESOLVE = _amplpy_ampls_swig.XPRS_ROOTPRESOLVE
+XPRS_CROSSOVERDRP = _amplpy_ampls_swig.XPRS_CROSSOVERDRP
+XPRS_FORCEOUTPUT = _amplpy_ampls_swig.XPRS_FORCEOUTPUT
+XPRS_PRIMALOPS = _amplpy_ampls_swig.XPRS_PRIMALOPS
+XPRS_DETERMINISTIC = _amplpy_ampls_swig.XPRS_DETERMINISTIC
+XPRS_PREPROBING = _amplpy_ampls_swig.XPRS_PREPROBING
+XPRS_TREEMEMORYLIMIT = _amplpy_ampls_swig.XPRS_TREEMEMORYLIMIT
+XPRS_TREECOMPRESSION = _amplpy_ampls_swig.XPRS_TREECOMPRESSION
+XPRS_TREEDIAGNOSTICS = _amplpy_ampls_swig.XPRS_TREEDIAGNOSTICS
+XPRS_MAXTREEFILESIZE = _amplpy_ampls_swig.XPRS_MAXTREEFILESIZE
+XPRS_PRECLIQUESTRATEGY = _amplpy_ampls_swig.XPRS_PRECLIQUESTRATEGY
+XPRS_IFCHECKCONVEXITY = _amplpy_ampls_swig.XPRS_IFCHECKCONVEXITY
+XPRS_PRIMALUNSHIFT = _amplpy_ampls_swig.XPRS_PRIMALUNSHIFT
+XPRS_REPAIRINDEFINITEQ = _amplpy_ampls_swig.XPRS_REPAIRINDEFINITEQ
+XPRS_MIPRAMPUP = _amplpy_ampls_swig.XPRS_MIPRAMPUP
+XPRS_MAXLOCALBACKTRACK = _amplpy_ampls_swig.XPRS_MAXLOCALBACKTRACK
+XPRS_USERSOLHEURISTIC = _amplpy_ampls_swig.XPRS_USERSOLHEURISTIC
+XPRS_FORCEPARALLELDUAL = _amplpy_ampls_swig.XPRS_FORCEPARALLELDUAL
+XPRS_BACKTRACKTIE = _amplpy_ampls_swig.XPRS_BACKTRACKTIE
+XPRS_BRANCHDISJ = _amplpy_ampls_swig.XPRS_BRANCHDISJ
+XPRS_MIPFRACREDUCE = _amplpy_ampls_swig.XPRS_MIPFRACREDUCE
+XPRS_CONCURRENTTHREADS = _amplpy_ampls_swig.XPRS_CONCURRENTTHREADS
+XPRS_MAXSCALEFACTOR = _amplpy_ampls_swig.XPRS_MAXSCALEFACTOR
+XPRS_HEURTHREADS = _amplpy_ampls_swig.XPRS_HEURTHREADS
+XPRS_THREADS = _amplpy_ampls_swig.XPRS_THREADS
+XPRS_HEURBEFORELP = _amplpy_ampls_swig.XPRS_HEURBEFORELP
+XPRS_PREDOMROW = _amplpy_ampls_swig.XPRS_PREDOMROW
+XPRS_BRANCHSTRUCTURAL = _amplpy_ampls_swig.XPRS_BRANCHSTRUCTURAL
+XPRS_QUADRATICUNSHIFT = _amplpy_ampls_swig.XPRS_QUADRATICUNSHIFT
+XPRS_BARPRESOLVEOPS = _amplpy_ampls_swig.XPRS_BARPRESOLVEOPS
+XPRS_QSIMPLEXOPS = _amplpy_ampls_swig.XPRS_QSIMPLEXOPS
+XPRS_MIPRESTART = _amplpy_ampls_swig.XPRS_MIPRESTART
+XPRS_CONFLICTCUTS = _amplpy_ampls_swig.XPRS_CONFLICTCUTS
+XPRS_PREPROTECTDUAL = _amplpy_ampls_swig.XPRS_PREPROTECTDUAL
+XPRS_CORESPERCPU = _amplpy_ampls_swig.XPRS_CORESPERCPU
+XPRS_RESOURCESTRATEGY = _amplpy_ampls_swig.XPRS_RESOURCESTRATEGY
+XPRS_CLAMPING = _amplpy_ampls_swig.XPRS_CLAMPING
+XPRS_SLEEPONTHREADWAIT = _amplpy_ampls_swig.XPRS_SLEEPONTHREADWAIT
+XPRS_PREDUPROW = _amplpy_ampls_swig.XPRS_PREDUPROW
+XPRS_CPUPLATFORM = _amplpy_ampls_swig.XPRS_CPUPLATFORM
+XPRS_BARALG = _amplpy_ampls_swig.XPRS_BARALG
+XPRS_SIFTING = _amplpy_ampls_swig.XPRS_SIFTING
+XPRS_LPLOGSTYLE = _amplpy_ampls_swig.XPRS_LPLOGSTYLE
+XPRS_RANDOMSEED = _amplpy_ampls_swig.XPRS_RANDOMSEED
+XPRS_TREEQCCUTS = _amplpy_ampls_swig.XPRS_TREEQCCUTS
+XPRS_PRELINDEP = _amplpy_ampls_swig.XPRS_PRELINDEP
+XPRS_DUALTHREADS = _amplpy_ampls_swig.XPRS_DUALTHREADS
+XPRS_PREOBJCUTDETECT = _amplpy_ampls_swig.XPRS_PREOBJCUTDETECT
+XPRS_PREBNDREDQUAD = _amplpy_ampls_swig.XPRS_PREBNDREDQUAD
+XPRS_PREBNDREDCONE = _amplpy_ampls_swig.XPRS_PREBNDREDCONE
+XPRS_PRECOMPONENTS = _amplpy_ampls_swig.XPRS_PRECOMPONENTS
+XPRS_MAXMIPTASKS = _amplpy_ampls_swig.XPRS_MAXMIPTASKS
+XPRS_MIPTERMINATIONMETHOD = _amplpy_ampls_swig.XPRS_MIPTERMINATIONMETHOD
+XPRS_PRECONEDECOMP = _amplpy_ampls_swig.XPRS_PRECONEDECOMP
+XPRS_HEURFORCESPECIALOBJ = _amplpy_ampls_swig.XPRS_HEURFORCESPECIALOBJ
+XPRS_HEURSEARCHROOTCUTFREQ = _amplpy_ampls_swig.XPRS_HEURSEARCHROOTCUTFREQ
+XPRS_PREELIMQUAD = _amplpy_ampls_swig.XPRS_PREELIMQUAD
+XPRS_PREIMPLICATIONS = _amplpy_ampls_swig.XPRS_PREIMPLICATIONS
+XPRS_TUNERMODE = _amplpy_ampls_swig.XPRS_TUNERMODE
+XPRS_TUNERMETHOD = _amplpy_ampls_swig.XPRS_TUNERMETHOD
+XPRS_TUNERTARGET = _amplpy_ampls_swig.XPRS_TUNERTARGET
+XPRS_TUNERTHREADS = _amplpy_ampls_swig.XPRS_TUNERTHREADS
+XPRS_TUNERHISTORY = _amplpy_ampls_swig.XPRS_TUNERHISTORY
+XPRS_TUNERPERMUTE = _amplpy_ampls_swig.XPRS_TUNERPERMUTE
+XPRS_TUNERVERBOSE = _amplpy_ampls_swig.XPRS_TUNERVERBOSE
+XPRS_TUNEROUTPUT = _amplpy_ampls_swig.XPRS_TUNEROUTPUT
+XPRS_PREANALYTICCENTER = _amplpy_ampls_swig.XPRS_PREANALYTICCENTER
+XPRS_NETCUTS = _amplpy_ampls_swig.XPRS_NETCUTS
+XPRS_LPFLAGS = _amplpy_ampls_swig.XPRS_LPFLAGS
+XPRS_MIPKAPPAFREQ = _amplpy_ampls_swig.XPRS_MIPKAPPAFREQ
+XPRS_OBJSCALEFACTOR = _amplpy_ampls_swig.XPRS_OBJSCALEFACTOR
+XPRS_TREEFILELOGINTERVAL = _amplpy_ampls_swig.XPRS_TREEFILELOGINTERVAL
+XPRS_IGNORECONTAINERCPULIMIT = _amplpy_ampls_swig.XPRS_IGNORECONTAINERCPULIMIT
+XPRS_IGNORECONTAINERMEMORYLIMIT = _amplpy_ampls_swig.XPRS_IGNORECONTAINERMEMORYLIMIT
+XPRS_MIPDUALREDUCTIONS = _amplpy_ampls_swig.XPRS_MIPDUALREDUCTIONS
+XPRS_GENCONSDUALREDUCTIONS = _amplpy_ampls_swig.XPRS_GENCONSDUALREDUCTIONS
+XPRS_PWLDUALREDUCTIONS = _amplpy_ampls_swig.XPRS_PWLDUALREDUCTIONS
+XPRS_BARFAILITERLIMIT = _amplpy_ampls_swig.XPRS_BARFAILITERLIMIT
+XPRS_AUTOSCALING = _amplpy_ampls_swig.XPRS_AUTOSCALING
+XPRS_GENCONSABSTRANSFORMATION = _amplpy_ampls_swig.XPRS_GENCONSABSTRANSFORMATION
+XPRS_COMPUTEJOBPRIORITY = _amplpy_ampls_swig.XPRS_COMPUTEJOBPRIORITY
+XPRS_PREFOLDING = _amplpy_ampls_swig.XPRS_PREFOLDING
+XPRS_COMPUTE = _amplpy_ampls_swig.XPRS_COMPUTE
+XPRS_NETSTALLLIMIT = _amplpy_ampls_swig.XPRS_NETSTALLLIMIT
+XPRS_SERIALIZEPREINTSOL = _amplpy_ampls_swig.XPRS_SERIALIZEPREINTSOL
+XPRS_NUMERICALEMPHASIS = _amplpy_ampls_swig.XPRS_NUMERICALEMPHASIS
+XPRS_PWLNONCONVEXTRANSFORMATION = _amplpy_ampls_swig.XPRS_PWLNONCONVEXTRANSFORMATION
+XPRS_MIPCOMPONENTS = _amplpy_ampls_swig.XPRS_MIPCOMPONENTS
+XPRS_MIPCONCURRENTNODES = _amplpy_ampls_swig.XPRS_MIPCONCURRENTNODES
+XPRS_MIPCONCURRENTSOLVES = _amplpy_ampls_swig.XPRS_MIPCONCURRENTSOLVES
+XPRS_OUTPUTCONTROLS = _amplpy_ampls_swig.XPRS_OUTPUTCONTROLS
+XPRS_SIFTSWITCH = _amplpy_ampls_swig.XPRS_SIFTSWITCH
+XPRS_HEUREMPHASIS = _amplpy_ampls_swig.XPRS_HEUREMPHASIS
+XPRS_COMPUTEMATX = _amplpy_ampls_swig.XPRS_COMPUTEMATX
+XPRS_COMPUTEMATX_IIS = _amplpy_ampls_swig.XPRS_COMPUTEMATX_IIS
+XPRS_COMPUTEMATX_IISMAXTIME = _amplpy_ampls_swig.XPRS_COMPUTEMATX_IISMAXTIME
+XPRS_BARREFITER = _amplpy_ampls_swig.XPRS_BARREFITER
+XPRS_COMPUTELOG = _amplpy_ampls_swig.XPRS_COMPUTELOG
+XPRS_SIFTPRESOLVEOPS = _amplpy_ampls_swig.XPRS_SIFTPRESOLVEOPS
+XPRS_CHECKINPUTDATA = _amplpy_ampls_swig.XPRS_CHECKINPUTDATA
+XPRS_ESCAPENAMES = _amplpy_ampls_swig.XPRS_ESCAPENAMES
+XPRS_IOTIMEOUT = _amplpy_ampls_swig.XPRS_IOTIMEOUT
+XPRS_AUTOCUTTING = _amplpy_ampls_swig.XPRS_AUTOCUTTING
+XPRS_CALLBACKCHECKTIMEDELAY = _amplpy_ampls_swig.XPRS_CALLBACKCHECKTIMEDELAY
+XPRS_MULTIOBJOPS = _amplpy_ampls_swig.XPRS_MULTIOBJOPS
+XPRS_MULTIOBJLOG = _amplpy_ampls_swig.XPRS_MULTIOBJLOG
+XPRS_GLOBALSPATIALBRANCHIFPREFERORIG = _amplpy_ampls_swig.XPRS_GLOBALSPATIALBRANCHIFPREFERORIG
+XPRS_PRECONFIGURATION = _amplpy_ampls_swig.XPRS_PRECONFIGURATION
+XPRS_FEASIBILITYJUMP = _amplpy_ampls_swig.XPRS_FEASIBILITYJUMP
+XPRS_EXTRAELEMS = _amplpy_ampls_swig.XPRS_EXTRAELEMS
+XPRS_EXTRASETELEMS = _amplpy_ampls_swig.XPRS_EXTRASETELEMS
+XPRS_MATRIXNAME = _amplpy_ampls_swig.XPRS_MATRIXNAME
+XPRS_BOUNDNAME = _amplpy_ampls_swig.XPRS_BOUNDNAME
+XPRS_OBJNAME = _amplpy_ampls_swig.XPRS_OBJNAME
+XPRS_RHSNAME = _amplpy_ampls_swig.XPRS_RHSNAME
+XPRS_RANGENAME = _amplpy_ampls_swig.XPRS_RANGENAME
+XPRS_XPRESSVERSION = _amplpy_ampls_swig.XPRS_XPRESSVERSION
+XPRS_UUID = _amplpy_ampls_swig.XPRS_UUID
+XPRS_MIPSOLTIME = _amplpy_ampls_swig.XPRS_MIPSOLTIME
+XPRS_TIME = _amplpy_ampls_swig.XPRS_TIME
+XPRS_LPOBJVAL = _amplpy_ampls_swig.XPRS_LPOBJVAL
+XPRS_SUMPRIMALINF = _amplpy_ampls_swig.XPRS_SUMPRIMALINF
+XPRS_MIPOBJVAL = _amplpy_ampls_swig.XPRS_MIPOBJVAL
+XPRS_BESTBOUND = _amplpy_ampls_swig.XPRS_BESTBOUND
+XPRS_OBJRHS = _amplpy_ampls_swig.XPRS_OBJRHS
+XPRS_MIPBESTOBJVAL = _amplpy_ampls_swig.XPRS_MIPBESTOBJVAL
+XPRS_OBJSENSE = _amplpy_ampls_swig.XPRS_OBJSENSE
+XPRS_BRANCHVALUE = _amplpy_ampls_swig.XPRS_BRANCHVALUE
+XPRS_PENALTYVALUE = _amplpy_ampls_swig.XPRS_PENALTYVALUE
+XPRS_CURRMIPCUTOFF = _amplpy_ampls_swig.XPRS_CURRMIPCUTOFF
+XPRS_BARCONDA = _amplpy_ampls_swig.XPRS_BARCONDA
+XPRS_BARCONDD = _amplpy_ampls_swig.XPRS_BARCONDD
+XPRS_MAXABSPRIMALINFEAS = _amplpy_ampls_swig.XPRS_MAXABSPRIMALINFEAS
+XPRS_MAXRELPRIMALINFEAS = _amplpy_ampls_swig.XPRS_MAXRELPRIMALINFEAS
+XPRS_MAXABSDUALINFEAS = _amplpy_ampls_swig.XPRS_MAXABSDUALINFEAS
+XPRS_MAXRELDUALINFEAS = _amplpy_ampls_swig.XPRS_MAXRELDUALINFEAS
+XPRS_PRIMALDUALINTEGRAL = _amplpy_ampls_swig.XPRS_PRIMALDUALINTEGRAL
+XPRS_MAXMIPINFEAS = _amplpy_ampls_swig.XPRS_MAXMIPINFEAS
+XPRS_ATTENTIONLEVEL = _amplpy_ampls_swig.XPRS_ATTENTIONLEVEL
+XPRS_MAXKAPPA = _amplpy_ampls_swig.XPRS_MAXKAPPA
+XPRS_TREECOMPLETION = _amplpy_ampls_swig.XPRS_TREECOMPLETION
+XPRS_PREDICTEDATTLEVEL = _amplpy_ampls_swig.XPRS_PREDICTEDATTLEVEL
+XPRS_OBSERVEDPRIMALINTEGRAL = _amplpy_ampls_swig.XPRS_OBSERVEDPRIMALINTEGRAL
+XPRS_CPISCALEFACTOR = _amplpy_ampls_swig.XPRS_CPISCALEFACTOR
+XPRS_OBJVAL = _amplpy_ampls_swig.XPRS_OBJVAL
+XPRS_BARPRIMALOBJ = _amplpy_ampls_swig.XPRS_BARPRIMALOBJ
+XPRS_BARDUALOBJ = _amplpy_ampls_swig.XPRS_BARDUALOBJ
+XPRS_BARPRIMALINF = _amplpy_ampls_swig.XPRS_BARPRIMALINF
+XPRS_BARDUALINF = _amplpy_ampls_swig.XPRS_BARDUALINF
+XPRS_BARCGAP = _amplpy_ampls_swig.XPRS_BARCGAP
+XPRS_ROWS = _amplpy_ampls_swig.XPRS_ROWS
+XPRS_SETS = _amplpy_ampls_swig.XPRS_SETS
+XPRS_PRIMALINFEAS = _amplpy_ampls_swig.XPRS_PRIMALINFEAS
+XPRS_DUALINFEAS = _amplpy_ampls_swig.XPRS_DUALINFEAS
+XPRS_SIMPLEXITER = _amplpy_ampls_swig.XPRS_SIMPLEXITER
+XPRS_LPSTATUS = _amplpy_ampls_swig.XPRS_LPSTATUS
+XPRS_MIPSTATUS = _amplpy_ampls_swig.XPRS_MIPSTATUS
+XPRS_CUTS = _amplpy_ampls_swig.XPRS_CUTS
+XPRS_NODES = _amplpy_ampls_swig.XPRS_NODES
+XPRS_NODEDEPTH = _amplpy_ampls_swig.XPRS_NODEDEPTH
+XPRS_ACTIVENODES = _amplpy_ampls_swig.XPRS_ACTIVENODES
+XPRS_MIPSOLNODE = _amplpy_ampls_swig.XPRS_MIPSOLNODE
+XPRS_MIPSOLS = _amplpy_ampls_swig.XPRS_MIPSOLS
+XPRS_COLS = _amplpy_ampls_swig.XPRS_COLS
+XPRS_SPAREROWS = _amplpy_ampls_swig.XPRS_SPAREROWS
+XPRS_SPARECOLS = _amplpy_ampls_swig.XPRS_SPARECOLS
+XPRS_SPAREMIPENTS = _amplpy_ampls_swig.XPRS_SPAREMIPENTS
+XPRS_ERRORCODE = _amplpy_ampls_swig.XPRS_ERRORCODE
+XPRS_MIPINFEAS = _amplpy_ampls_swig.XPRS_MIPINFEAS
+XPRS_PRESOLVESTATE = _amplpy_ampls_swig.XPRS_PRESOLVESTATE
+XPRS_PARENTNODE = _amplpy_ampls_swig.XPRS_PARENTNODE
+XPRS_NAMELENGTH = _amplpy_ampls_swig.XPRS_NAMELENGTH
+XPRS_QELEMS = _amplpy_ampls_swig.XPRS_QELEMS
+XPRS_NUMIIS = _amplpy_ampls_swig.XPRS_NUMIIS
+XPRS_MIPENTS = _amplpy_ampls_swig.XPRS_MIPENTS
+XPRS_BRANCHVAR = _amplpy_ampls_swig.XPRS_BRANCHVAR
+XPRS_MIPTHREADID = _amplpy_ampls_swig.XPRS_MIPTHREADID
+XPRS_ALGORITHM = _amplpy_ampls_swig.XPRS_ALGORITHM
+XPRS_SOLSTATUS = _amplpy_ampls_swig.XPRS_SOLSTATUS
+XPRS_ORIGINALROWS = _amplpy_ampls_swig.XPRS_ORIGINALROWS
+XPRS_CALLBACKCOUNT_OPTNODE = _amplpy_ampls_swig.XPRS_CALLBACKCOUNT_OPTNODE
+XPRS_CALLBACKCOUNT_CUTMGR = _amplpy_ampls_swig.XPRS_CALLBACKCOUNT_CUTMGR
+XPRS_ORIGINALQELEMS = _amplpy_ampls_swig.XPRS_ORIGINALQELEMS
+XPRS_MAXPROBNAMELENGTH = _amplpy_ampls_swig.XPRS_MAXPROBNAMELENGTH
+XPRS_STOPSTATUS = _amplpy_ampls_swig.XPRS_STOPSTATUS
+XPRS_ORIGINALMIPENTS = _amplpy_ampls_swig.XPRS_ORIGINALMIPENTS
+XPRS_ORIGINALSETS = _amplpy_ampls_swig.XPRS_ORIGINALSETS
+XPRS_SPARESETS = _amplpy_ampls_swig.XPRS_SPARESETS
+XPRS_CHECKSONMAXTIME = _amplpy_ampls_swig.XPRS_CHECKSONMAXTIME
+XPRS_CHECKSONMAXCUTTIME = _amplpy_ampls_swig.XPRS_CHECKSONMAXCUTTIME
+XPRS_ORIGINALCOLS = _amplpy_ampls_swig.XPRS_ORIGINALCOLS
+XPRS_QCELEMS = _amplpy_ampls_swig.XPRS_QCELEMS
+XPRS_QCONSTRAINTS = _amplpy_ampls_swig.XPRS_QCONSTRAINTS
+XPRS_ORIGINALQCELEMS = _amplpy_ampls_swig.XPRS_ORIGINALQCELEMS
+XPRS_ORIGINALQCONSTRAINTS = _amplpy_ampls_swig.XPRS_ORIGINALQCONSTRAINTS
+XPRS_PEAKTOTALTREEMEMORYUSAGE = _amplpy_ampls_swig.XPRS_PEAKTOTALTREEMEMORYUSAGE
+XPRS_CURRENTNODE = _amplpy_ampls_swig.XPRS_CURRENTNODE
+XPRS_TREEMEMORYUSAGE = _amplpy_ampls_swig.XPRS_TREEMEMORYUSAGE
+XPRS_TREEFILESIZE = _amplpy_ampls_swig.XPRS_TREEFILESIZE
+XPRS_TREEFILEUSAGE = _amplpy_ampls_swig.XPRS_TREEFILEUSAGE
+XPRS_INDICATORS = _amplpy_ampls_swig.XPRS_INDICATORS
+XPRS_ORIGINALINDICATORS = _amplpy_ampls_swig.XPRS_ORIGINALINDICATORS
+XPRS_CORESPERCPUDETECTED = _amplpy_ampls_swig.XPRS_CORESPERCPUDETECTED
+XPRS_CPUSDETECTED = _amplpy_ampls_swig.XPRS_CPUSDETECTED
+XPRS_CORESDETECTED = _amplpy_ampls_swig.XPRS_CORESDETECTED
+XPRS_PHYSICALCORESDETECTED = _amplpy_ampls_swig.XPRS_PHYSICALCORESDETECTED
+XPRS_PHYSICALCORESPERCPUDETECTED = _amplpy_ampls_swig.XPRS_PHYSICALCORESPERCPUDETECTED
+XPRS_BARSING = _amplpy_ampls_swig.XPRS_BARSING
+XPRS_BARSINGR = _amplpy_ampls_swig.XPRS_BARSINGR
+XPRS_PRESOLVEINDEX = _amplpy_ampls_swig.XPRS_PRESOLVEINDEX
+XPRS_CONES = _amplpy_ampls_swig.XPRS_CONES
+XPRS_CONEELEMS = _amplpy_ampls_swig.XPRS_CONEELEMS
+XPRS_PWLCONS = _amplpy_ampls_swig.XPRS_PWLCONS
+XPRS_GENCONS = _amplpy_ampls_swig.XPRS_GENCONS
+XPRS_TREERESTARTS = _amplpy_ampls_swig.XPRS_TREERESTARTS
+XPRS_ORIGINALPWLS = _amplpy_ampls_swig.XPRS_ORIGINALPWLS
+XPRS_ORIGINALGENCONS = _amplpy_ampls_swig.XPRS_ORIGINALGENCONS
+XPRS_COMPUTEEXECUTIONS = _amplpy_ampls_swig.XPRS_COMPUTEEXECUTIONS
+XPRS_RESTARTS = _amplpy_ampls_swig.XPRS_RESTARTS
+XPRS_SOLVESTATUS = _amplpy_ampls_swig.XPRS_SOLVESTATUS
+XPRS_GLOBALBOUNDINGBOXAPPLIED = _amplpy_ampls_swig.XPRS_GLOBALBOUNDINGBOXAPPLIED
+XPRS_OBJECTIVES = _amplpy_ampls_swig.XPRS_OBJECTIVES
+XPRS_SOLVEDOBJS = _amplpy_ampls_swig.XPRS_SOLVEDOBJS
+XPRS_OBJSTOSOLVE = _amplpy_ampls_swig.XPRS_OBJSTOSOLVE
+XPRS_GLOBALNLPINFEAS = _amplpy_ampls_swig.XPRS_GLOBALNLPINFEAS
+XPRS_BARITER = _amplpy_ampls_swig.XPRS_BARITER
+XPRS_BARDENSECOL = _amplpy_ampls_swig.XPRS_BARDENSECOL
+XPRS_BARCROSSOVER = _amplpy_ampls_swig.XPRS_BARCROSSOVER
+XPRS_IIS = _amplpy_ampls_swig.XPRS_IIS
+XPRS_SETMEMBERS = _amplpy_ampls_swig.XPRS_SETMEMBERS
+XPRS_ELEMS = _amplpy_ampls_swig.XPRS_ELEMS
+XPRS_SPAREELEMS = _amplpy_ampls_swig.XPRS_SPAREELEMS
+XPRS_SYSTEMMEMORY = _amplpy_ampls_swig.XPRS_SYSTEMMEMORY
+XPRS_ORIGINALSETMEMBERS = _amplpy_ampls_swig.XPRS_ORIGINALSETMEMBERS
+XPRS_SPARESETELEMS = _amplpy_ampls_swig.XPRS_SPARESETELEMS
+XPRS_CURRENTMEMORY = _amplpy_ampls_swig.XPRS_CURRENTMEMORY
+XPRS_PEAKMEMORY = _amplpy_ampls_swig.XPRS_PEAKMEMORY
+XPRS_TOTALMEMORY = _amplpy_ampls_swig.XPRS_TOTALMEMORY
+XPRS_AVAILABLEMEMORY = _amplpy_ampls_swig.XPRS_AVAILABLEMEMORY
+XPRS_PWLPOINTS = _amplpy_ampls_swig.XPRS_PWLPOINTS
+XPRS_GENCONCOLS = _amplpy_ampls_swig.XPRS_GENCONCOLS
+XPRS_GENCONVALS = _amplpy_ampls_swig.XPRS_GENCONVALS
+XPRS_ORIGINALPWLPOINTS = _amplpy_ampls_swig.XPRS_ORIGINALPWLPOINTS
+XPRS_ORIGINALGENCONCOLS = _amplpy_ampls_swig.XPRS_ORIGINALGENCONCOLS
+XPRS_ORIGINALGENCONVALS = _amplpy_ampls_swig.XPRS_ORIGINALGENCONVALS
+XPRS_MEMORYLIMITDETECTED = _amplpy_ampls_swig.XPRS_MEMORYLIMITDETECTED
+XPRS_BARAASIZE = _amplpy_ampls_swig.XPRS_BARAASIZE
+XPRS_BARLSIZE = _amplpy_ampls_swig.XPRS_BARLSIZE
+XPRS_MSP_DEFAULTUSERSOLFEASTOL = _amplpy_ampls_swig.XPRS_MSP_DEFAULTUSERSOLFEASTOL
+XPRS_MSP_DEFAULTUSERSOLMIPTOL = _amplpy_ampls_swig.XPRS_MSP_DEFAULTUSERSOLMIPTOL
+XPRS_MSP_SOL_FEASTOL = _amplpy_ampls_swig.XPRS_MSP_SOL_FEASTOL
+XPRS_MSP_SOL_MIPTOL = _amplpy_ampls_swig.XPRS_MSP_SOL_MIPTOL
+XPRS_MSP_DUPLICATESOLUTIONSPOLICY = _amplpy_ampls_swig.XPRS_MSP_DUPLICATESOLUTIONSPOLICY
+XPRS_MSP_INCLUDEPROBNAMEINLOGGING = _amplpy_ampls_swig.XPRS_MSP_INCLUDEPROBNAMEINLOGGING
+XPRS_MSP_WRITESLXSOLLOGGING = _amplpy_ampls_swig.XPRS_MSP_WRITESLXSOLLOGGING
+XPRS_MSP_ENABLESLACKSTORAGE = _amplpy_ampls_swig.XPRS_MSP_ENABLESLACKSTORAGE
+XPRS_MSP_OUTPUTLOG = _amplpy_ampls_swig.XPRS_MSP_OUTPUTLOG
+XPRS_MSP_SOL_BITFIELDSUSR = _amplpy_ampls_swig.XPRS_MSP_SOL_BITFIELDSUSR
+XPRS_MSP_SOLPRB_OBJ = _amplpy_ampls_swig.XPRS_MSP_SOLPRB_OBJ
+XPRS_MSP_SOLPRB_INFSUM_PRIMAL = _amplpy_ampls_swig.XPRS_MSP_SOLPRB_INFSUM_PRIMAL
+XPRS_MSP_SOLPRB_INFSUM_MIP = _amplpy_ampls_swig.XPRS_MSP_SOLPRB_INFSUM_MIP
+XPRS_MSP_SOLUTIONS = _amplpy_ampls_swig.XPRS_MSP_SOLUTIONS
+XPRS_MSP_PRB_VALIDSOLS = _amplpy_ampls_swig.XPRS_MSP_PRB_VALIDSOLS
+XPRS_MSP_PRB_FEASIBLESOLS = _amplpy_ampls_swig.XPRS_MSP_PRB_FEASIBLESOLS
+XPRS_MSP_SOL_COLS = _amplpy_ampls_swig.XPRS_MSP_SOL_COLS
+XPRS_MSP_SOL_NONZEROS = _amplpy_ampls_swig.XPRS_MSP_SOL_NONZEROS
+XPRS_MSP_SOL_ISUSERSOLUTION = _amplpy_ampls_swig.XPRS_MSP_SOL_ISUSERSOLUTION
+XPRS_MSP_SOL_ISREPROCESSEDUSERSOLUTION = _amplpy_ampls_swig.XPRS_MSP_SOL_ISREPROCESSEDUSERSOLUTION
+XPRS_MSP_SOL_BITFIELDSSYS = _amplpy_ampls_swig.XPRS_MSP_SOL_BITFIELDSSYS
+XPRS_MSP_SOLPRB_INFEASCOUNT = _amplpy_ampls_swig.XPRS_MSP_SOLPRB_INFEASCOUNT
+XPRS_MSP_SOLPRB_INFCNT_PRIMAL = _amplpy_ampls_swig.XPRS_MSP_SOLPRB_INFCNT_PRIMAL
+XPRS_MSP_SOLPRB_INFCNT_MIP = _amplpy_ampls_swig.XPRS_MSP_SOLPRB_INFCNT_MIP
+XPRS_MSE_OUTPUTTOL = _amplpy_ampls_swig.XPRS_MSE_OUTPUTTOL
+XPRS_MSE_CALLBACKCULLSOLS_MIPOBJECT = _amplpy_ampls_swig.XPRS_MSE_CALLBACKCULLSOLS_MIPOBJECT
+XPRS_MSE_CALLBACKCULLSOLS_DIVERSITY = _amplpy_ampls_swig.XPRS_MSE_CALLBACKCULLSOLS_DIVERSITY
+XPRS_MSE_CALLBACKCULLSOLS_MODOBJECT = _amplpy_ampls_swig.XPRS_MSE_CALLBACKCULLSOLS_MODOBJECT
+XPRS_MSE_OPTIMIZEDIVERSITY = _amplpy_ampls_swig.XPRS_MSE_OPTIMIZEDIVERSITY
+XPRS_MSE_OUTPUTLOG = _amplpy_ampls_swig.XPRS_MSE_OUTPUTLOG
+XPRS_MSE_DIVERSITYSUM = _amplpy_ampls_swig.XPRS_MSE_DIVERSITYSUM
+XPRS_MSE_SOLUTIONS = _amplpy_ampls_swig.XPRS_MSE_SOLUTIONS
+XPRS_MSE_METRIC_MIPOBJECT = _amplpy_ampls_swig.XPRS_MSE_METRIC_MIPOBJECT
+XPRS_MSE_METRIC_DIVERSITY = _amplpy_ampls_swig.XPRS_MSE_METRIC_DIVERSITY
+XPRS_MSE_METRIC_MODOBJECT = _amplpy_ampls_swig.XPRS_MSE_METRIC_MODOBJECT
+XPRS_NLPFUNCEVAL = _amplpy_ampls_swig.XPRS_NLPFUNCEVAL
+XPRS_NLPLOG = _amplpy_ampls_swig.XPRS_NLPLOG
+XPRS_NLPKEEPEQUALSCOLUMN = _amplpy_ampls_swig.XPRS_NLPKEEPEQUALSCOLUMN
+XPRS_NLPEVALUATE = _amplpy_ampls_swig.XPRS_NLPEVALUATE
+XPRS_NLPPRESOLVE = _amplpy_ampls_swig.XPRS_NLPPRESOLVE
+XPRS_LOCALSOLVER = _amplpy_ampls_swig.XPRS_LOCALSOLVER
+XPRS_NLPSTOPOUTOFRANGE = _amplpy_ampls_swig.XPRS_NLPSTOPOUTOFRANGE
+XPRS_NLPTHREADSAFEUSERFUNC = _amplpy_ampls_swig.XPRS_NLPTHREADSAFEUSERFUNC
+XPRS_NLPJACOBIAN = _amplpy_ampls_swig.XPRS_NLPJACOBIAN
+XPRS_NLPHESSIAN = _amplpy_ampls_swig.XPRS_NLPHESSIAN
+XPRS_MULTISTART = _amplpy_ampls_swig.XPRS_MULTISTART
+XPRS_MULTISTART_THREADS = _amplpy_ampls_swig.XPRS_MULTISTART_THREADS
+XPRS_MULTISTART_MAXSOLVES = _amplpy_ampls_swig.XPRS_MULTISTART_MAXSOLVES
+XPRS_MULTISTART_MAXTIME = _amplpy_ampls_swig.XPRS_MULTISTART_MAXTIME
+XPRS_NLPMAXTIME = _amplpy_ampls_swig.XPRS_NLPMAXTIME
+XPRS_NLPDERIVATIVES = _amplpy_ampls_swig.XPRS_NLPDERIVATIVES
+XPRS_NLPREFORMULATE = _amplpy_ampls_swig.XPRS_NLPREFORMULATE
+XPRS_NLPPRESOLVEOPS = _amplpy_ampls_swig.XPRS_NLPPRESOLVEOPS
+XPRS_MULTISTART_LOG = _amplpy_ampls_swig.XPRS_MULTISTART_LOG
+XPRS_MULTISTART_SEED = _amplpy_ampls_swig.XPRS_MULTISTART_SEED
+XPRS_MULTISTART_POOLSIZE = _amplpy_ampls_swig.XPRS_MULTISTART_POOLSIZE
+XPRS_NLPPOSTSOLVE = _amplpy_ampls_swig.XPRS_NLPPOSTSOLVE
+XPRS_NLPDETERMINISTIC = _amplpy_ampls_swig.XPRS_NLPDETERMINISTIC
+XPRS_NLPPRESOLVELEVEL = _amplpy_ampls_swig.XPRS_NLPPRESOLVELEVEL
+XPRS_NLPPROBING = _amplpy_ampls_swig.XPRS_NLPPROBING
+XPRS_NLPCALCTHREADS = _amplpy_ampls_swig.XPRS_NLPCALCTHREADS
+XPRS_NLPTHREADS = _amplpy_ampls_swig.XPRS_NLPTHREADS
+XPRS_NLPFINDIV = _amplpy_ampls_swig.XPRS_NLPFINDIV
+XPRS_NLPLINQUADBR = _amplpy_ampls_swig.XPRS_NLPLINQUADBR
+XPRS_GLOBALSOLVE = _amplpy_ampls_swig.XPRS_GLOBALSOLVE
+XPRS_SLPALGORITHM = _amplpy_ampls_swig.XPRS_SLPALGORITHM
+XPRS_SLPAUGMENTATION = _amplpy_ampls_swig.XPRS_SLPAUGMENTATION
+XPRS_SLPBARLIMIT = _amplpy_ampls_swig.XPRS_SLPBARLIMIT
+XPRS_SLPCASCADE = _amplpy_ampls_swig.XPRS_SLPCASCADE
+XPRS_SLPCASCADENLIMIT = _amplpy_ampls_swig.XPRS_SLPCASCADENLIMIT
+XPRS_SLPDAMPSTART = _amplpy_ampls_swig.XPRS_SLPDAMPSTART
+XPRS_SLPCUTSTRATEGY = _amplpy_ampls_swig.XPRS_SLPCUTSTRATEGY
+XPRS_SLPDELTAZLIMIT = _amplpy_ampls_swig.XPRS_SLPDELTAZLIMIT
+XPRS_SLPINFEASLIMIT = _amplpy_ampls_swig.XPRS_SLPINFEASLIMIT
+XPRS_SLPITERLIMIT = _amplpy_ampls_swig.XPRS_SLPITERLIMIT
+XPRS_SLPSAMECOUNT = _amplpy_ampls_swig.XPRS_SLPSAMECOUNT
+XPRS_SLPSAMEDAMP = _amplpy_ampls_swig.XPRS_SLPSAMEDAMP
+XPRS_SLPSBSTART = _amplpy_ampls_swig.XPRS_SLPSBSTART
+XPRS_SLPXCOUNT = _amplpy_ampls_swig.XPRS_SLPXCOUNT
+XPRS_SLPXLIMIT = _amplpy_ampls_swig.XPRS_SLPXLIMIT
+XPRS_SLPDELAYUPDATEROWS = _amplpy_ampls_swig.XPRS_SLPDELAYUPDATEROWS
+XPRS_SLPAUTOSAVE = _amplpy_ampls_swig.XPRS_SLPAUTOSAVE
+XPRS_SLPANALYZE = _amplpy_ampls_swig.XPRS_SLPANALYZE
+XPRS_SLPOCOUNT = _amplpy_ampls_swig.XPRS_SLPOCOUNT
+XPRS_SLPMIPALGORITHM = _amplpy_ampls_swig.XPRS_SLPMIPALGORITHM
+XPRS_SLPMIPRELAXSTEPBOUNDS = _amplpy_ampls_swig.XPRS_SLPMIPRELAXSTEPBOUNDS
+XPRS_SLPMIPFIXSTEPBOUNDS = _amplpy_ampls_swig.XPRS_SLPMIPFIXSTEPBOUNDS
+XPRS_SLPMIPITERLIMIT = _amplpy_ampls_swig.XPRS_SLPMIPITERLIMIT
+XPRS_SLPMIPCUTOFFLIMIT = _amplpy_ampls_swig.XPRS_SLPMIPCUTOFFLIMIT
+XPRS_SLPMIPOCOUNT = _amplpy_ampls_swig.XPRS_SLPMIPOCOUNT
+XPRS_SLPMIPDEFAULTALGORITHM = _amplpy_ampls_swig.XPRS_SLPMIPDEFAULTALGORITHM
+XPRS_SLPMIPLOG = _amplpy_ampls_swig.XPRS_SLPMIPLOG
+XPRS_SLPDELTAOFFSET = _amplpy_ampls_swig.XPRS_SLPDELTAOFFSET
+XPRS_SLPUPDATEOFFSET = _amplpy_ampls_swig.XPRS_SLPUPDATEOFFSET
+XPRS_SLPERROROFFSET = _amplpy_ampls_swig.XPRS_SLPERROROFFSET
+XPRS_SLPSBROWOFFSET = _amplpy_ampls_swig.XPRS_SLPSBROWOFFSET
+XPRS_SLPVCOUNT = _amplpy_ampls_swig.XPRS_SLPVCOUNT
+XPRS_SLPVLIMIT = _amplpy_ampls_swig.XPRS_SLPVLIMIT
+XPRS_SLPECFCHECK = _amplpy_ampls_swig.XPRS_SLPECFCHECK
+XPRS_SLPMIPCUTOFFCOUNT = _amplpy_ampls_swig.XPRS_SLPMIPCUTOFFCOUNT
+XPRS_SLPWCOUNT = _amplpy_ampls_swig.XPRS_SLPWCOUNT
+XPRS_SLPUNFINISHEDLIMIT = _amplpy_ampls_swig.XPRS_SLPUNFINISHEDLIMIT
+XPRS_SLPCONVERGENCEOPS = _amplpy_ampls_swig.XPRS_SLPCONVERGENCEOPS
+XPRS_SLPZEROCRITERION = _amplpy_ampls_swig.XPRS_SLPZEROCRITERION
+XPRS_SLPZEROCRITERIONSTART = _amplpy_ampls_swig.XPRS_SLPZEROCRITERIONSTART
+XPRS_SLPZEROCRITERIONCOUNT = _amplpy_ampls_swig.XPRS_SLPZEROCRITERIONCOUNT
+XPRS_SLPLSPATTERNLIMIT = _amplpy_ampls_swig.XPRS_SLPLSPATTERNLIMIT
+XPRS_SLPLSITERLIMIT = _amplpy_ampls_swig.XPRS_SLPLSITERLIMIT
+XPRS_SLPLSSTART = _amplpy_ampls_swig.XPRS_SLPLSSTART
+XPRS_SLPPENALTYINFOSTART = _amplpy_ampls_swig.XPRS_SLPPENALTYINFOSTART
+XPRS_SLPFILTER = _amplpy_ampls_swig.XPRS_SLPFILTER
+XPRS_SLPTRACEMASKOPS = _amplpy_ampls_swig.XPRS_SLPTRACEMASKOPS
+XPRS_SLPLSZEROLIMIT = _amplpy_ampls_swig.XPRS_SLPLSZEROLIMIT
+XPRS_SLPHEURSTRATEGY = _amplpy_ampls_swig.XPRS_SLPHEURSTRATEGY
+XPRS_SLPBARCROSSOVERSTART = _amplpy_ampls_swig.XPRS_SLPBARCROSSOVERSTART
+XPRS_SLPBARSTALLINGLIMIT = _amplpy_ampls_swig.XPRS_SLPBARSTALLINGLIMIT
+XPRS_SLPBARSTALLINGOBJLIMIT = _amplpy_ampls_swig.XPRS_SLPBARSTALLINGOBJLIMIT
+XPRS_SLPBARSTARTOPS = _amplpy_ampls_swig.XPRS_SLPBARSTARTOPS
+XPRS_SLPGRIDHEURSELECT = _amplpy_ampls_swig.XPRS_SLPGRIDHEURSELECT
+XPRS_NLPINFINITY = _amplpy_ampls_swig.XPRS_NLPINFINITY
+XPRS_NLPZERO = _amplpy_ampls_swig.XPRS_NLPZERO
+XPRS_NLPDEFAULTIV = _amplpy_ampls_swig.XPRS_NLPDEFAULTIV
+XPRS_NLPOPTTIME = _amplpy_ampls_swig.XPRS_NLPOPTTIME
+XPRS_NLPVALIDATIONTOL_A = _amplpy_ampls_swig.XPRS_NLPVALIDATIONTOL_A
+XPRS_NLPVALIDATIONTOL_R = _amplpy_ampls_swig.XPRS_NLPVALIDATIONTOL_R
+XPRS_NLPVALIDATIONINDEX_A = _amplpy_ampls_swig.XPRS_NLPVALIDATIONINDEX_A
+XPRS_NLPVALIDATIONINDEX_R = _amplpy_ampls_swig.XPRS_NLPVALIDATIONINDEX_R
+XPRS_NLPPRIMALINTEGRALREF = _amplpy_ampls_swig.XPRS_NLPPRIMALINTEGRALREF
+XPRS_NLPPRIMALINTEGRALALPHA = _amplpy_ampls_swig.XPRS_NLPPRIMALINTEGRALALPHA
+XPRS_NLPOBJVAL = _amplpy_ampls_swig.XPRS_NLPOBJVAL
+XPRS_NLPPRESOLVEZERO = _amplpy_ampls_swig.XPRS_NLPPRESOLVEZERO
+XPRS_NLPMERITLAMBDA = _amplpy_ampls_swig.XPRS_NLPMERITLAMBDA
+XPRS_MSMAXBOUNDRANGE = _amplpy_ampls_swig.XPRS_MSMAXBOUNDRANGE
+XPRS_NLPVALIDATIONTOL_K = _amplpy_ampls_swig.XPRS_NLPVALIDATIONTOL_K
+XPRS_NLPPRESOLVE_ELIMTOL = _amplpy_ampls_swig.XPRS_NLPPRESOLVE_ELIMTOL
+XPRS_NLPVALIDATIONTARGET_R = _amplpy_ampls_swig.XPRS_NLPVALIDATIONTARGET_R
+XPRS_NLPVALIDATIONTARGET_K = _amplpy_ampls_swig.XPRS_NLPVALIDATIONTARGET_K
+XPRS_NLPVALIDATIONFACTOR = _amplpy_ampls_swig.XPRS_NLPVALIDATIONFACTOR
+XPRS_SLPDAMP = _amplpy_ampls_swig.XPRS_SLPDAMP
+XPRS_SLPDAMPEXPAND = _amplpy_ampls_swig.XPRS_SLPDAMPEXPAND
+XPRS_SLPDAMPSHRINK = _amplpy_ampls_swig.XPRS_SLPDAMPSHRINK
+XPRS_SLPDELTA_A = _amplpy_ampls_swig.XPRS_SLPDELTA_A
+XPRS_SLPDELTA_R = _amplpy_ampls_swig.XPRS_SLPDELTA_R
+XPRS_SLPDELTA_Z = _amplpy_ampls_swig.XPRS_SLPDELTA_Z
+XPRS_SLPDELTACOST = _amplpy_ampls_swig.XPRS_SLPDELTACOST
+XPRS_SLPDELTAMAXCOST = _amplpy_ampls_swig.XPRS_SLPDELTAMAXCOST
+XPRS_SLPDJTOL = _amplpy_ampls_swig.XPRS_SLPDJTOL
+XPRS_SLPERRORCOST = _amplpy_ampls_swig.XPRS_SLPERRORCOST
+XPRS_SLPERRORMAXCOST = _amplpy_ampls_swig.XPRS_SLPERRORMAXCOST
+XPRS_SLPERRORTOL_A = _amplpy_ampls_swig.XPRS_SLPERRORTOL_A
+XPRS_SLPEXPAND = _amplpy_ampls_swig.XPRS_SLPEXPAND
+XPRS_SLPMAXWEIGHT = _amplpy_ampls_swig.XPRS_SLPMAXWEIGHT
+XPRS_SLPMINWEIGHT = _amplpy_ampls_swig.XPRS_SLPMINWEIGHT
+XPRS_SLPSHRINK = _amplpy_ampls_swig.XPRS_SLPSHRINK
+XPRS_SLPCTOL = _amplpy_ampls_swig.XPRS_SLPCTOL
+XPRS_SLPATOL_A = _amplpy_ampls_swig.XPRS_SLPATOL_A
+XPRS_SLPATOL_R = _amplpy_ampls_swig.XPRS_SLPATOL_R
+XPRS_SLPMTOL_A = _amplpy_ampls_swig.XPRS_SLPMTOL_A
+XPRS_SLPMTOL_R = _amplpy_ampls_swig.XPRS_SLPMTOL_R
+XPRS_SLPITOL_A = _amplpy_ampls_swig.XPRS_SLPITOL_A
+XPRS_SLPITOL_R = _amplpy_ampls_swig.XPRS_SLPITOL_R
+XPRS_SLPSTOL_A = _amplpy_ampls_swig.XPRS_SLPSTOL_A
+XPRS_SLPSTOL_R = _amplpy_ampls_swig.XPRS_SLPSTOL_R
+XPRS_SLPMVTOL = _amplpy_ampls_swig.XPRS_SLPMVTOL
+XPRS_SLPXTOL_A = _amplpy_ampls_swig.XPRS_SLPXTOL_A
+XPRS_SLPXTOL_R = _amplpy_ampls_swig.XPRS_SLPXTOL_R
+XPRS_SLPDEFAULTSTEPBOUND = _amplpy_ampls_swig.XPRS_SLPDEFAULTSTEPBOUND
+XPRS_SLPDAMPMAX = _amplpy_ampls_swig.XPRS_SLPDAMPMAX
+XPRS_SLPDAMPMIN = _amplpy_ampls_swig.XPRS_SLPDAMPMIN
+XPRS_SLPDELTACOSTFACTOR = _amplpy_ampls_swig.XPRS_SLPDELTACOSTFACTOR
+XPRS_SLPERRORCOSTFACTOR = _amplpy_ampls_swig.XPRS_SLPERRORCOSTFACTOR
+XPRS_SLPERRORTOL_P = _amplpy_ampls_swig.XPRS_SLPERRORTOL_P
+XPRS_SLPCASCADETOL_PA = _amplpy_ampls_swig.XPRS_SLPCASCADETOL_PA
+XPRS_SLPCASCADETOL_PR = _amplpy_ampls_swig.XPRS_SLPCASCADETOL_PR
+XPRS_SLPCASCADETOL_Z = _amplpy_ampls_swig.XPRS_SLPCASCADETOL_Z
+XPRS_SLPOTOL_A = _amplpy_ampls_swig.XPRS_SLPOTOL_A
+XPRS_SLPOTOL_R = _amplpy_ampls_swig.XPRS_SLPOTOL_R
+XPRS_SLPDELTA_X = _amplpy_ampls_swig.XPRS_SLPDELTA_X
+XPRS_SLPERRORCOSTS = _amplpy_ampls_swig.XPRS_SLPERRORCOSTS
+XPRS_SLPGRANULARITY = _amplpy_ampls_swig.XPRS_SLPGRANULARITY
+XPRS_SLPMIPCUTOFF_A = _amplpy_ampls_swig.XPRS_SLPMIPCUTOFF_A
+XPRS_SLPMIPCUTOFF_R = _amplpy_ampls_swig.XPRS_SLPMIPCUTOFF_R
+XPRS_SLPMIPOTOL_A = _amplpy_ampls_swig.XPRS_SLPMIPOTOL_A
+XPRS_SLPMIPOTOL_R = _amplpy_ampls_swig.XPRS_SLPMIPOTOL_R
+XPRS_SLPESCALATION = _amplpy_ampls_swig.XPRS_SLPESCALATION
+XPRS_SLPOBJTOPENALTYCOST = _amplpy_ampls_swig.XPRS_SLPOBJTOPENALTYCOST
+XPRS_SLPSHRINKBIAS = _amplpy_ampls_swig.XPRS_SLPSHRINKBIAS
+XPRS_SLPFEASTOLTARGET = _amplpy_ampls_swig.XPRS_SLPFEASTOLTARGET
+XPRS_SLPOPTIMALITYTOLTARGET = _amplpy_ampls_swig.XPRS_SLPOPTIMALITYTOLTARGET
+XPRS_SLPDELTA_INFINITY = _amplpy_ampls_swig.XPRS_SLPDELTA_INFINITY
+XPRS_SLPVTOL_A = _amplpy_ampls_swig.XPRS_SLPVTOL_A
+XPRS_SLPVTOL_R = _amplpy_ampls_swig.XPRS_SLPVTOL_R
+XPRS_SLPETOL_A = _amplpy_ampls_swig.XPRS_SLPETOL_A
+XPRS_SLPETOL_R = _amplpy_ampls_swig.XPRS_SLPETOL_R
+XPRS_SLPEVTOL_A = _amplpy_ampls_swig.XPRS_SLPEVTOL_A
+XPRS_SLPEVTOL_R = _amplpy_ampls_swig.XPRS_SLPEVTOL_R
+XPRS_SLPDELTA_ZERO = _amplpy_ampls_swig.XPRS_SLPDELTA_ZERO
+XPRS_SLPMINSBFACTOR = _amplpy_ampls_swig.XPRS_SLPMINSBFACTOR
+XPRS_SLPCLAMPVALIDATIONTOL_A = _amplpy_ampls_swig.XPRS_SLPCLAMPVALIDATIONTOL_A
+XPRS_SLPCLAMPVALIDATIONTOL_R = _amplpy_ampls_swig.XPRS_SLPCLAMPVALIDATIONTOL_R
+XPRS_SLPCLAMPSHRINK = _amplpy_ampls_swig.XPRS_SLPCLAMPSHRINK
+XPRS_SLPECFTOL_A = _amplpy_ampls_swig.XPRS_SLPECFTOL_A
+XPRS_SLPECFTOL_R = _amplpy_ampls_swig.XPRS_SLPECFTOL_R
+XPRS_SLPWTOL_A = _amplpy_ampls_swig.XPRS_SLPWTOL_A
+XPRS_SLPWTOL_R = _amplpy_ampls_swig.XPRS_SLPWTOL_R
+XPRS_SLPMATRIXTOL = _amplpy_ampls_swig.XPRS_SLPMATRIXTOL
+XPRS_SLPDRFIXRANGE = _amplpy_ampls_swig.XPRS_SLPDRFIXRANGE
+XPRS_SLPDRCOLTOL = _amplpy_ampls_swig.XPRS_SLPDRCOLTOL
+XPRS_SLPMIPERRORTOL_A = _amplpy_ampls_swig.XPRS_SLPMIPERRORTOL_A
+XPRS_SLPMIPERRORTOL_R = _amplpy_ampls_swig.XPRS_SLPMIPERRORTOL_R
+XPRS_SLPCDTOL_A = _amplpy_ampls_swig.XPRS_SLPCDTOL_A
+XPRS_SLPCDTOL_R = _amplpy_ampls_swig.XPRS_SLPCDTOL_R
+XPRS_SLPENFORCEMAXCOST = _amplpy_ampls_swig.XPRS_SLPENFORCEMAXCOST
+XPRS_SLPENFORCECOSTSHRINK = _amplpy_ampls_swig.XPRS_SLPENFORCECOSTSHRINK
+XPRS_SLPDRCOLDJTOL = _amplpy_ampls_swig.XPRS_SLPDRCOLDJTOL
+XPRS_SLPBARSTALLINGTOL = _amplpy_ampls_swig.XPRS_SLPBARSTALLINGTOL
+XPRS_SLPOBJTHRESHOLD = _amplpy_ampls_swig.XPRS_SLPOBJTHRESHOLD
+XPRS_SLPBOUNDTHRESHOLD = _amplpy_ampls_swig.XPRS_SLPBOUNDTHRESHOLD
+XPRS_NLPIVNAME = _amplpy_ampls_swig.XPRS_NLPIVNAME
+XPRS_SLPDELTAFORMAT = _amplpy_ampls_swig.XPRS_SLPDELTAFORMAT
+XPRS_SLPMINUSDELTAFORMAT = _amplpy_ampls_swig.XPRS_SLPMINUSDELTAFORMAT
+XPRS_SLPMINUSERRORFORMAT = _amplpy_ampls_swig.XPRS_SLPMINUSERRORFORMAT
+XPRS_SLPPLUSDELTAFORMAT = _amplpy_ampls_swig.XPRS_SLPPLUSDELTAFORMAT
+XPRS_SLPPLUSERRORFORMAT = _amplpy_ampls_swig.XPRS_SLPPLUSERRORFORMAT
+XPRS_SLPSBNAME = _amplpy_ampls_swig.XPRS_SLPSBNAME
+XPRS_SLPTOLNAME = _amplpy_ampls_swig.XPRS_SLPTOLNAME
+XPRS_SLPUPDATEFORMAT = _amplpy_ampls_swig.XPRS_SLPUPDATEFORMAT
+XPRS_SLPPENALTYROWFORMAT = _amplpy_ampls_swig.XPRS_SLPPENALTYROWFORMAT
+XPRS_SLPPENALTYCOLFORMAT = _amplpy_ampls_swig.XPRS_SLPPENALTYCOLFORMAT
+XPRS_SLPSBLOROWFORMAT = _amplpy_ampls_swig.XPRS_SLPSBLOROWFORMAT
+XPRS_SLPSBUPROWFORMAT = _amplpy_ampls_swig.XPRS_SLPSBUPROWFORMAT
+XPRS_SLPTRACEMASK = _amplpy_ampls_swig.XPRS_SLPTRACEMASK
+XPRS_SLPITERFALLBACKOPS = _amplpy_ampls_swig.XPRS_SLPITERFALLBACKOPS
+XPRS_NLPVALIDATIONSTATUS = _amplpy_ampls_swig.XPRS_NLPVALIDATIONSTATUS
+XPRS_NLPSOLSTATUS = _amplpy_ampls_swig.XPRS_NLPSOLSTATUS
+XPRS_NLPORIGINALROWS = _amplpy_ampls_swig.XPRS_NLPORIGINALROWS
+XPRS_NLPORIGINALCOLS = _amplpy_ampls_swig.XPRS_NLPORIGINALCOLS
+XPRS_NLPUFS = _amplpy_ampls_swig.XPRS_NLPUFS
+XPRS_NLPIFS = _amplpy_ampls_swig.XPRS_NLPIFS
+XPRS_NLPEQUALSCOLUMN = _amplpy_ampls_swig.XPRS_NLPEQUALSCOLUMN
+XPRS_NLPVARIABLES = _amplpy_ampls_swig.XPRS_NLPVARIABLES
+XPRS_NLPIMPLICITVARIABLES = _amplpy_ampls_swig.XPRS_NLPIMPLICITVARIABLES
+XPRS_NONLINEARCONSTRAINTS = _amplpy_ampls_swig.XPRS_NONLINEARCONSTRAINTS
+XPRS_NLPUSERFUNCCALLS = _amplpy_ampls_swig.XPRS_NLPUSERFUNCCALLS
+XPRS_NLPUSEDERIVATIVES = _amplpy_ampls_swig.XPRS_NLPUSEDERIVATIVES
+XPRS_NLPKEEPBESTITER = _amplpy_ampls_swig.XPRS_NLPKEEPBESTITER
+XPRS_NLPSTATUS = _amplpy_ampls_swig.XPRS_NLPSTATUS
+XPRS_LOCALSOLVERSELECTED = _amplpy_ampls_swig.XPRS_LOCALSOLVERSELECTED
+XPRS_NLPMODELROWS = _amplpy_ampls_swig.XPRS_NLPMODELROWS
+XPRS_NLPMODELCOLS = _amplpy_ampls_swig.XPRS_NLPMODELCOLS
+XPRS_NLPJOBID = _amplpy_ampls_swig.XPRS_NLPJOBID
+XPRS_MSJOBS = _amplpy_ampls_swig.XPRS_MSJOBS
+XPRS_NLPSTOPSTATUS = _amplpy_ampls_swig.XPRS_NLPSTOPSTATUS
+XPRS_NLPPRESOLVEELIMINATIONS = _amplpy_ampls_swig.XPRS_NLPPRESOLVEELIMINATIONS
+XPRS_NLPTOTALEVALUATIONERRORS = _amplpy_ampls_swig.XPRS_NLPTOTALEVALUATIONERRORS
+XPRS_SLPEXPLOREDELTAS = _amplpy_ampls_swig.XPRS_SLPEXPLOREDELTAS
+XPRS_SLPSEMICONTDELTAS = _amplpy_ampls_swig.XPRS_SLPSEMICONTDELTAS
+XPRS_SLPINTEGERDELTAS = _amplpy_ampls_swig.XPRS_SLPINTEGERDELTAS
+XPRS_SLPITER = _amplpy_ampls_swig.XPRS_SLPITER
+XPRS_SLPSTATUS = _amplpy_ampls_swig.XPRS_SLPSTATUS
+XPRS_SLPUNCONVERGED = _amplpy_ampls_swig.XPRS_SLPUNCONVERGED
+XPRS_SLPSBXCONVERGED = _amplpy_ampls_swig.XPRS_SLPSBXCONVERGED
+XPRS_SLPPENALTYDELTAROW = _amplpy_ampls_swig.XPRS_SLPPENALTYDELTAROW
+XPRS_SLPPENALTYDELTACOLUMN = _amplpy_ampls_swig.XPRS_SLPPENALTYDELTACOLUMN
+XPRS_SLPPENALTYERRORROW = _amplpy_ampls_swig.XPRS_SLPPENALTYERRORROW
+XPRS_SLPPENALTYERRORCOLUMN = _amplpy_ampls_swig.XPRS_SLPPENALTYERRORCOLUMN
+XPRS_SLPCOEFFICIENTS = _amplpy_ampls_swig.XPRS_SLPCOEFFICIENTS
+XPRS_SLPPENALTYDELTAS = _amplpy_ampls_swig.XPRS_SLPPENALTYDELTAS
+XPRS_SLPPENALTYERRORS = _amplpy_ampls_swig.XPRS_SLPPENALTYERRORS
+XPRS_SLPPLUSPENALTYERRORS = _amplpy_ampls_swig.XPRS_SLPPLUSPENALTYERRORS
+XPRS_SLPMINUSPENALTYERRORS = _amplpy_ampls_swig.XPRS_SLPMINUSPENALTYERRORS
+XPRS_SLPUCCONSTRAINEDCOUNT = _amplpy_ampls_swig.XPRS_SLPUCCONSTRAINEDCOUNT
+XPRS_SLPMIPNODES = _amplpy_ampls_swig.XPRS_SLPMIPNODES
+XPRS_SLPMIPITER = _amplpy_ampls_swig.XPRS_SLPMIPITER
+XPRS_SLPTOLSETS = _amplpy_ampls_swig.XPRS_SLPTOLSETS
+XPRS_SLPECFCOUNT = _amplpy_ampls_swig.XPRS_SLPECFCOUNT
+XPRS_SLPDELTAS = _amplpy_ampls_swig.XPRS_SLPDELTAS
+XPRS_SLPZEROESRESET = _amplpy_ampls_swig.XPRS_SLPZEROESRESET
+XPRS_SLPZEROESTOTAL = _amplpy_ampls_swig.XPRS_SLPZEROESTOTAL
+XPRS_SLPZEROESRETAINED = _amplpy_ampls_swig.XPRS_SLPZEROESRETAINED
+XPRS_SLPNONCONSTANTCOEFFS = _amplpy_ampls_swig.XPRS_SLPNONCONSTANTCOEFFS
+XPRS_SLPMIPSOLS = _amplpy_ampls_swig.XPRS_SLPMIPSOLS
+XPRS_NLPVALIDATIONINDEX_K = _amplpy_ampls_swig.XPRS_NLPVALIDATIONINDEX_K
+XPRS_NLPVALIDATIONNETOBJ = _amplpy_ampls_swig.XPRS_NLPVALIDATIONNETOBJ
+XPRS_NLPPRIMALINTEGRAL = _amplpy_ampls_swig.XPRS_NLPPRIMALINTEGRAL
+XPRS_SLPCURRENTDELTACOST = _amplpy_ampls_swig.XPRS_SLPCURRENTDELTACOST
+XPRS_SLPCURRENTERRORCOST = _amplpy_ampls_swig.XPRS_SLPCURRENTERRORCOST
+XPRS_SLPPENALTYERRORTOTAL = _amplpy_ampls_swig.XPRS_SLPPENALTYERRORTOTAL
+XPRS_SLPPENALTYERRORVALUE = _amplpy_ampls_swig.XPRS_SLPPENALTYERRORVALUE
+XPRS_SLPPENALTYDELTATOTAL = _amplpy_ampls_swig.XPRS_SLPPENALTYDELTATOTAL
+XPRS_SLPPENALTYDELTAVALUE = _amplpy_ampls_swig.XPRS_SLPPENALTYDELTAVALUE
+XPRS_KNITRO_PARAM_NEWPOINT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_NEWPOINT
+XPRS_KNITRO_PARAM_HONORBNDS = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_HONORBNDS
+XPRS_KNITRO_PARAM_ALGORITHM = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_ALGORITHM
+XPRS_KNITRO_PARAM_BAR_MURULE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_MURULE
+XPRS_KNITRO_PARAM_BAR_FEASIBLE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_FEASIBLE
+XPRS_KNITRO_PARAM_GRADOPT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_GRADOPT
+XPRS_KNITRO_PARAM_HESSOPT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_HESSOPT
+XPRS_KNITRO_PARAM_BAR_INITPT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_INITPT
+XPRS_KNITRO_PARAM_MAXCGIT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MAXCGIT
+XPRS_KNITRO_PARAM_MAXIT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MAXIT
+XPRS_KNITRO_PARAM_OUTLEV = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_OUTLEV
+XPRS_KNITRO_PARAM_SCALE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_SCALE
+XPRS_KNITRO_PARAM_SOC = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_SOC
+XPRS_KNITRO_PARAM_DELTA = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_DELTA
+XPRS_KNITRO_PARAM_BAR_FEASMODETOL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_FEASMODETOL
+XPRS_KNITRO_PARAM_FEASTOL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_FEASTOL
+XPRS_KNITRO_PARAM_FEASTOLABS = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_FEASTOLABS
+XPRS_KNITRO_PARAM_BAR_INITMU = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_INITMU
+XPRS_KNITRO_PARAM_OBJRANGE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_OBJRANGE
+XPRS_KNITRO_PARAM_OPTTOL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_OPTTOL
+XPRS_KNITRO_PARAM_OPTTOLABS = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_OPTTOLABS
+XPRS_KNITRO_PARAM_PIVOT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_PIVOT
+XPRS_KNITRO_PARAM_XTOL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_XTOL
+XPRS_KNITRO_PARAM_DEBUG = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_DEBUG
+XPRS_KNITRO_PARAM_MULTISTART = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MULTISTART
+XPRS_KNITRO_PARAM_MSMAXSOLVES = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MSMAXSOLVES
+XPRS_KNITRO_PARAM_MSMAXBNDRANGE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MSMAXBNDRANGE
+XPRS_KNITRO_PARAM_LMSIZE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_LMSIZE
+XPRS_KNITRO_PARAM_BAR_MAXCROSSIT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_MAXCROSSIT
+XPRS_KNITRO_PARAM_BLASOPTION = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BLASOPTION
+XPRS_KNITRO_PARAM_BAR_MAXREFACTOR = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_MAXREFACTOR
+XPRS_KNITRO_PARAM_BAR_MAXBACKTRACK = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_MAXBACKTRACK
+XPRS_KNITRO_PARAM_BAR_PENRULE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_PENRULE
+XPRS_KNITRO_PARAM_BAR_PENCONS = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_PENCONS
+XPRS_KNITRO_PARAM_MSNUMTOSAVE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MSNUMTOSAVE
+XPRS_KNITRO_PARAM_MSSAVETOL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MSSAVETOL
+XPRS_KNITRO_PARAM_MSTERMINATE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MSTERMINATE
+XPRS_KNITRO_PARAM_MSSTARTPTRANGE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MSSTARTPTRANGE
+XPRS_KNITRO_PARAM_INFEASTOL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_INFEASTOL
+XPRS_KNITRO_PARAM_LINSOLVER = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_LINSOLVER
+XPRS_KNITRO_PARAM_BAR_DIRECTINTERVAL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_DIRECTINTERVAL
+XPRS_KNITRO_PARAM_PRESOLVE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_PRESOLVE
+XPRS_KNITRO_PARAM_PRESOLVE_TOL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_PRESOLVE_TOL
+XPRS_KNITRO_PARAM_BAR_SWITCHRULE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_SWITCHRULE
+XPRS_KNITRO_PARAM_MA_TERMINATE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MA_TERMINATE
+XPRS_KNITRO_PARAM_MSSEED = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MSSEED
+XPRS_KNITRO_PARAM_BAR_RELAXCONS = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_BAR_RELAXCONS
+XPRS_KNITRO_PARAM_MIP_METHOD = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_METHOD
+XPRS_KNITRO_PARAM_MIP_BRANCHRULE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_BRANCHRULE
+XPRS_KNITRO_PARAM_MIP_SELECTRULE = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_SELECTRULE
+XPRS_KNITRO_PARAM_MIP_INTGAPABS = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_INTGAPABS
+XPRS_KNITRO_PARAM_MIP_INTGAPREL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_INTGAPREL
+XPRS_KNITRO_PARAM_MIP_OUTLEVEL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_OUTLEVEL
+XPRS_KNITRO_PARAM_MIP_OUTINTERVAL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_OUTINTERVAL
+XPRS_KNITRO_PARAM_MIP_DEBUG = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_DEBUG
+XPRS_KNITRO_PARAM_MIP_IMPLICATNS = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_IMPLICATNS
+XPRS_KNITRO_PARAM_MIP_GUB_BRANCH = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_GUB_BRANCH
+XPRS_KNITRO_PARAM_MIP_KNAPSACK = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_KNAPSACK
+XPRS_KNITRO_PARAM_MIP_ROUNDING = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_ROUNDING
+XPRS_KNITRO_PARAM_MIP_ROOTALG = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_ROOTALG
+XPRS_KNITRO_PARAM_MIP_LPALG = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_LPALG
+XPRS_KNITRO_PARAM_MIP_MAXNODES = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_MAXNODES
+XPRS_KNITRO_PARAM_MIP_HEURISTIC = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_HEURISTIC
+XPRS_KNITRO_PARAM_MIP_HEUR_MAXIT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_HEUR_MAXIT
+XPRS_KNITRO_PARAM_MIP_PSEUDOINIT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_PSEUDOINIT
+XPRS_KNITRO_PARAM_MIP_STRONG_MAXIT = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_STRONG_MAXIT
+XPRS_KNITRO_PARAM_MIP_STRONG_CANDLIM = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_STRONG_CANDLIM
+XPRS_KNITRO_PARAM_MIP_STRONG_LEVEL = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_MIP_STRONG_LEVEL
+XPRS_KNITRO_PARAM_PAR_NUMTHREADS = _amplpy_ampls_swig.XPRS_KNITRO_PARAM_PAR_NUMTHREADS
+XPRS_TOK_EOF = _amplpy_ampls_swig.XPRS_TOK_EOF
+XPRS_TOK_CON = _amplpy_ampls_swig.XPRS_TOK_CON
+XPRS_TOK_COL = _amplpy_ampls_swig.XPRS_TOK_COL
+XPRS_TOK_FUN = _amplpy_ampls_swig.XPRS_TOK_FUN
+XPRS_TOK_IFUN = _amplpy_ampls_swig.XPRS_TOK_IFUN
+XPRS_TOK_LB = _amplpy_ampls_swig.XPRS_TOK_LB
+XPRS_TOK_RB = _amplpy_ampls_swig.XPRS_TOK_RB
+XPRS_TOK_DEL = _amplpy_ampls_swig.XPRS_TOK_DEL
+XPRS_TOK_OP = _amplpy_ampls_swig.XPRS_TOK_OP
+XPRS_OP_UMINUS = _amplpy_ampls_swig.XPRS_OP_UMINUS
+XPRS_OP_EXPONENT = _amplpy_ampls_swig.XPRS_OP_EXPONENT
+XPRS_OP_MULTIPLY = _amplpy_ampls_swig.XPRS_OP_MULTIPLY
+XPRS_OP_DIVIDE = _amplpy_ampls_swig.XPRS_OP_DIVIDE
+XPRS_OP_PLUS = _amplpy_ampls_swig.XPRS_OP_PLUS
+XPRS_OP_MINUS = _amplpy_ampls_swig.XPRS_OP_MINUS
+XPRS_DEL_COMMA = _amplpy_ampls_swig.XPRS_DEL_COMMA
+XPRS_DEL_COLON = _amplpy_ampls_swig.XPRS_DEL_COLON
+XPRS_IFUN_LOG = _amplpy_ampls_swig.XPRS_IFUN_LOG
+XPRS_IFUN_LOG10 = _amplpy_ampls_swig.XPRS_IFUN_LOG10
+XPRS_IFUN_LN = _amplpy_ampls_swig.XPRS_IFUN_LN
+XPRS_IFUN_EXP = _amplpy_ampls_swig.XPRS_IFUN_EXP
+XPRS_IFUN_ABS = _amplpy_ampls_swig.XPRS_IFUN_ABS
+XPRS_IFUN_SQRT = _amplpy_ampls_swig.XPRS_IFUN_SQRT
+XPRS_IFUN_SIN = _amplpy_ampls_swig.XPRS_IFUN_SIN
+XPRS_IFUN_COS = _amplpy_ampls_swig.XPRS_IFUN_COS
+XPRS_IFUN_TAN = _amplpy_ampls_swig.XPRS_IFUN_TAN
+XPRS_IFUN_ARCSIN = _amplpy_ampls_swig.XPRS_IFUN_ARCSIN
+XPRS_IFUN_ARCCOS = _amplpy_ampls_swig.XPRS_IFUN_ARCCOS
+XPRS_IFUN_ARCTAN = _amplpy_ampls_swig.XPRS_IFUN_ARCTAN
+XPRS_IFUN_MIN = _amplpy_ampls_swig.XPRS_IFUN_MIN
+XPRS_IFUN_MAX = _amplpy_ampls_swig.XPRS_IFUN_MAX
+XPRS_IFUN_PWL = _amplpy_ampls_swig.XPRS_IFUN_PWL
+XPRS_IFUN_SUM = _amplpy_ampls_swig.XPRS_IFUN_SUM
+XPRS_IFUN_PROD = _amplpy_ampls_swig.XPRS_IFUN_PROD
+XPRS_IFUN_SIGN = _amplpy_ampls_swig.XPRS_IFUN_SIGN
+XPRS_IFUN_ERF = _amplpy_ampls_swig.XPRS_IFUN_ERF
+XPRS_IFUN_ERFC = _amplpy_ampls_swig.XPRS_IFUN_ERFC
+XPRS_SLPTOLSET_TC = _amplpy_ampls_swig.XPRS_SLPTOLSET_TC
+XPRS_SLPTOLSET_TA = _amplpy_ampls_swig.XPRS_SLPTOLSET_TA
+XPRS_SLPTOLSET_RA = _amplpy_ampls_swig.XPRS_SLPTOLSET_RA
+XPRS_SLPTOLSET_TM = _amplpy_ampls_swig.XPRS_SLPTOLSET_TM
+XPRS_SLPTOLSET_RM = _amplpy_ampls_swig.XPRS_SLPTOLSET_RM
+XPRS_SLPTOLSET_TI = _amplpy_ampls_swig.XPRS_SLPTOLSET_TI
+XPRS_SLPTOLSET_RI = _amplpy_ampls_swig.XPRS_SLPTOLSET_RI
+XPRS_SLPTOLSET_TS = _amplpy_ampls_swig.XPRS_SLPTOLSET_TS
+XPRS_SLPTOLSET_RS = _amplpy_ampls_swig.XPRS_SLPTOLSET_RS
+XPRS_SLPTOLSETBIT_TC = _amplpy_ampls_swig.XPRS_SLPTOLSETBIT_TC
+XPRS_SLPTOLSETBIT_TA = _amplpy_ampls_swig.XPRS_SLPTOLSETBIT_TA
+XPRS_SLPTOLSETBIT_RA = _amplpy_ampls_swig.XPRS_SLPTOLSETBIT_RA
+XPRS_SLPTOLSETBIT_TM = _amplpy_ampls_swig.XPRS_SLPTOLSETBIT_TM
+XPRS_SLPTOLSETBIT_RM = _amplpy_ampls_swig.XPRS_SLPTOLSETBIT_RM
+XPRS_SLPTOLSETBIT_TI = _amplpy_ampls_swig.XPRS_SLPTOLSETBIT_TI
+XPRS_SLPTOLSETBIT_RI = _amplpy_ampls_swig.XPRS_SLPTOLSETBIT_RI
+XPRS_SLPTOLSETBIT_TS = _amplpy_ampls_swig.XPRS_SLPTOLSETBIT_TS
+XPRS_SLPTOLSETBIT_RS = _amplpy_ampls_swig.XPRS_SLPTOLSETBIT_RS
+XPRS_SLPTOLSET_DELETE = _amplpy_ampls_swig.XPRS_SLPTOLSET_DELETE
+XPRS_SLPCONVERGEBIT_CTOL = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_CTOL
+XPRS_SLPCONVERGEBIT_ATOL = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_ATOL
+XPRS_SLPCONVERGEBIT_MTOL = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_MTOL
+XPRS_SLPCONVERGEBIT_ITOL = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_ITOL
+XPRS_SLPCONVERGEBIT_STOL = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_STOL
+XPRS_SLPCONVERGEBIT_USER = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_USER
+XPRS_SLPCONVERGEBIT_VTOL = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_VTOL
+XPRS_SLPCONVERGEBIT_XTOL = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_XTOL
+XPRS_SLPCONVERGEBIT_OTOL = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_OTOL
+XPRS_SLPCONVERGEBIT_WTOL = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_WTOL
+XPRS_SLPCONVERGEBIT_EXTENDEDSCALING = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_EXTENDEDSCALING
+XPRS_SLPCONVERGEBIT_VALIDATION = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_VALIDATION
+XPRS_SLPCONVERGEBIT_VALIDATION_K = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_VALIDATION_K
+XPRS_SLPCONVERGEBIT_NOQUADCHECK = _amplpy_ampls_swig.XPRS_SLPCONVERGEBIT_NOQUADCHECK
+XPRS_SLPHASNOCOEFS = _amplpy_ampls_swig.XPRS_SLPHASNOCOEFS
+XPRS_SLPHASDELTA = _amplpy_ampls_swig.XPRS_SLPHASDELTA
+XPRS_SLPHASIV = _amplpy_ampls_swig.XPRS_SLPHASIV
+XPRS_SLPHASCALCIV = _amplpy_ampls_swig.XPRS_SLPHASCALCIV
+XPRS_SLPISDELTA = _amplpy_ampls_swig.XPRS_SLPISDELTA
+XPRS_SLPISPLUSPENALTYDELTA = _amplpy_ampls_swig.XPRS_SLPISPLUSPENALTYDELTA
+XPRS_SLPISMINUSPENALTYDELTA = _amplpy_ampls_swig.XPRS_SLPISMINUSPENALTYDELTA
+XPRS_SLPISPENALTYDELTA = _amplpy_ampls_swig.XPRS_SLPISPENALTYDELTA
+XPRS_SLPISPLUSERRORVECTOR = _amplpy_ampls_swig.XPRS_SLPISPLUSERRORVECTOR
+XPRS_SLPISMINUSERRORVECTOR = _amplpy_ampls_swig.XPRS_SLPISMINUSERRORVECTOR
+XPRS_SLPISERRORVECTOR = _amplpy_ampls_swig.XPRS_SLPISERRORVECTOR
+XPRS_SLPISMISCVECTOR = _amplpy_ampls_swig.XPRS_SLPISMISCVECTOR
+XPRS_SLPISEQUALSCOLUMN = _amplpy_ampls_swig.XPRS_SLPISEQUALSCOLUMN
+XPRS_NLPPRESOLVEPROTECT = _amplpy_ampls_swig.XPRS_NLPPRESOLVEPROTECT
+XPRS_SLPHASCONVERGED = _amplpy_ampls_swig.XPRS_SLPHASCONVERGED
+XPRS_SLPACTIVESTEPBOUND = _amplpy_ampls_swig.XPRS_SLPACTIVESTEPBOUND
+XPRS_SLPACTIVESBROW = _amplpy_ampls_swig.XPRS_SLPACTIVESBROW
+XPRS_SLPELIMINATEDCOL = _amplpy_ampls_swig.XPRS_SLPELIMINATEDCOL
+XPRS_SLPISSTRUCTURALCOLUMN = _amplpy_ampls_swig.XPRS_SLPISSTRUCTURALCOLUMN
+XPRS_SLPISINCOEFS = _amplpy_ampls_swig.XPRS_SLPISINCOEFS
+XPRS_SLPISINGLOBAL = _amplpy_ampls_swig.XPRS_SLPISINGLOBAL
+XPRS_SLPHASZEROBOUND = _amplpy_ampls_swig.XPRS_SLPHASZEROBOUND
+XPRS_SLPFIXEDVAR = _amplpy_ampls_swig.XPRS_SLPFIXEDVAR
+XPRS_SLPBOUNDSSET = _amplpy_ampls_swig.XPRS_SLPBOUNDSSET
+XPRS_SLPUSEFULDELTA = _amplpy_ampls_swig.XPRS_SLPUSEFULDELTA
+XPRS_SLPNOUSEFULDELTA = _amplpy_ampls_swig.XPRS_SLPNOUSEFULDELTA
+XPRS_SLPISINTEGER = _amplpy_ampls_swig.XPRS_SLPISINTEGER
+XPRS_SLPCASCADECONTRACTION = _amplpy_ampls_swig.XPRS_SLPCASCADECONTRACTION
+XPRS_SLPISUPDATEROW = _amplpy_ampls_swig.XPRS_SLPISUPDATEROW
+XPRS_SLPISPENALTYROW = _amplpy_ampls_swig.XPRS_SLPISPENALTYROW
+XPRS_SLPISMISCROW = _amplpy_ampls_swig.XPRS_SLPISMISCROW
+XPRS_SLPISSBROW = _amplpy_ampls_swig.XPRS_SLPISSBROW
+XPRS_SLPHASPLUSERROR = _amplpy_ampls_swig.XPRS_SLPHASPLUSERROR
+XPRS_SLPHASMINUSERROR = _amplpy_ampls_swig.XPRS_SLPHASMINUSERROR
+XPRS_SLPHASERROR = _amplpy_ampls_swig.XPRS_SLPHASERROR
+XPRS_SLPISDETERMININGROW = _amplpy_ampls_swig.XPRS_SLPISDETERMININGROW
+XPRS_SLPNOERRORVECTORS = _amplpy_ampls_swig.XPRS_SLPNOERRORVECTORS
+XPRS_SLPHASNONZEROCOEF = _amplpy_ampls_swig.XPRS_SLPHASNONZEROCOEF
+XPRS_SLPREDUNDANTROW = _amplpy_ampls_swig.XPRS_SLPREDUNDANTROW
+XPRS_SLPUNCONVERGEDROW = _amplpy_ampls_swig.XPRS_SLPUNCONVERGEDROW
+XPRS_SLPACTIVEPENALTY = _amplpy_ampls_swig.XPRS_SLPACTIVEPENALTY
+XPRS_SLPHASSLPELEMENT = _amplpy_ampls_swig.XPRS_SLPHASSLPELEMENT
+XPRS_SLPTRANSFERROW = _amplpy_ampls_swig.XPRS_SLPTRANSFERROW
+XPRS_SLPMINIMUMAUGMENTATION = _amplpy_ampls_swig.XPRS_SLPMINIMUMAUGMENTATION
+XPRS_SLPEVENHANDEDAUGMENTATION = _amplpy_ampls_swig.XPRS_SLPEVENHANDEDAUGMENTATION
+XPRS_SLPEQUALITYERRORVECTORS = _amplpy_ampls_swig.XPRS_SLPEQUALITYERRORVECTORS
+XPRS_SLPALLERRORVECTORS = _amplpy_ampls_swig.XPRS_SLPALLERRORVECTORS
+XPRS_SLPPENALTYDELTAVECTORS = _amplpy_ampls_swig.XPRS_SLPPENALTYDELTAVECTORS
+XPRS_SLPAMEANWEIGHT = _amplpy_ampls_swig.XPRS_SLPAMEANWEIGHT
+XPRS_SLPSBFROMVALUES = _amplpy_ampls_swig.XPRS_SLPSBFROMVALUES
+XPRS_SLPSBFROMABSVALUES = _amplpy_ampls_swig.XPRS_SLPSBFROMABSVALUES
+XPRS_SLPSTEPBOUNDROWS = _amplpy_ampls_swig.XPRS_SLPSTEPBOUNDROWS
+XPRS_SLPALLROWERRORVECTORS = _amplpy_ampls_swig.XPRS_SLPALLROWERRORVECTORS
+XPRS_SLPNOUPDATEIFONLYIV = _amplpy_ampls_swig.XPRS_SLPNOUPDATEIFONLYIV
+XPRS_SLPNOFORMULADOMAINIV = _amplpy_ampls_swig.XPRS_SLPNOFORMULADOMAINIV
+XPRS_SLPSKIPIVLPHEURISTICS = _amplpy_ampls_swig.XPRS_SLPSKIPIVLPHEURISTICS
+XPRS_SLPNOSTEPBOUNDS = _amplpy_ampls_swig.XPRS_SLPNOSTEPBOUNDS
+XPRS_SLPSTEPBOUNDSASREQUIRED = _amplpy_ampls_swig.XPRS_SLPSTEPBOUNDSASREQUIRED
+XPRS_SLPESTIMATESTEPBOUNDS = _amplpy_ampls_swig.XPRS_SLPESTIMATESTEPBOUNDS
+XPRS_SLPDYNAMICDAMPING = _amplpy_ampls_swig.XPRS_SLPDYNAMICDAMPING
+XPRS_SLPHOLDVALUES = _amplpy_ampls_swig.XPRS_SLPHOLDVALUES
+XPRS_SLPRETAINPREVIOUSVALUE = _amplpy_ampls_swig.XPRS_SLPRETAINPREVIOUSVALUE
+XPRS_SLPRESETDELTAZ = _amplpy_ampls_swig.XPRS_SLPRESETDELTAZ
+XPRS_SLPQUICKCONVERGENCECHECK = _amplpy_ampls_swig.XPRS_SLPQUICKCONVERGENCECHECK
+XPRS_SLPESCALATEPENALTIES = _amplpy_ampls_swig.XPRS_SLPESCALATEPENALTIES
+XPRS_SLPSWITCHTOPRIMAL = _amplpy_ampls_swig.XPRS_SLPSWITCHTOPRIMAL
+XPRS_SLPNONZEROBOUND = _amplpy_ampls_swig.XPRS_SLPNONZEROBOUND
+XPRS_SLPMAXCOSTOPTION = _amplpy_ampls_swig.XPRS_SLPMAXCOSTOPTION
+XPRS_SLPRESIDUALERRORS = _amplpy_ampls_swig.XPRS_SLPRESIDUALERRORS
+XPRS_SLPNOLPPOLISHING = _amplpy_ampls_swig.XPRS_SLPNOLPPOLISHING
+XPRS_SLPCASCADEDBOUNDS = _amplpy_ampls_swig.XPRS_SLPCASCADEDBOUNDS
+XPRS_SLPCLAMPEXTENDEDACTIVESB = _amplpy_ampls_swig.XPRS_SLPCLAMPEXTENDEDACTIVESB
+XPRS_SLPCLAMPEXTENDEDALL = _amplpy_ampls_swig.XPRS_SLPCLAMPEXTENDEDALL
+XPRS_SLPMIPINITIALSLP = _amplpy_ampls_swig.XPRS_SLPMIPINITIALSLP
+XPRS_SLPMIPINITIALRELAXSLP = _amplpy_ampls_swig.XPRS_SLPMIPINITIALRELAXSLP
+XPRS_SLPMIPINITIALFIXSLP = _amplpy_ampls_swig.XPRS_SLPMIPINITIALFIXSLP
+XPRS_SLPMIPNODERELAXSLP = _amplpy_ampls_swig.XPRS_SLPMIPNODERELAXSLP
+XPRS_SLPMIPNODEFIXSLP = _amplpy_ampls_swig.XPRS_SLPMIPNODEFIXSLP
+XPRS_SLPMIPNODELIMITSLP = _amplpy_ampls_swig.XPRS_SLPMIPNODELIMITSLP
+XPRS_SLPMIPFINALRELAXSLP = _amplpy_ampls_swig.XPRS_SLPMIPFINALRELAXSLP
+XPRS_SLPMIPFINALFIXSLP = _amplpy_ampls_swig.XPRS_SLPMIPFINALFIXSLP
+XPRS_SLPMIPWITHINSLP = _amplpy_ampls_swig.XPRS_SLPMIPWITHINSLP
+XPRS_SLPSLPTHENMIP = _amplpy_ampls_swig.XPRS_SLPSLPTHENMIP
+XPRS_SLPROOTMIPDRIVEN = _amplpy_ampls_swig.XPRS_SLPROOTMIPDRIVEN
+XPRS_SLPSTATUS_CONVERGEDOBJUCC = _amplpy_ampls_swig.XPRS_SLPSTATUS_CONVERGEDOBJUCC
+XPRS_SLPSTATUS_CONVERGEDOBJSBX = _amplpy_ampls_swig.XPRS_SLPSTATUS_CONVERGEDOBJSBX
+XPRS_SLPSTATUS_LPINFEASIBLE = _amplpy_ampls_swig.XPRS_SLPSTATUS_LPINFEASIBLE
+XPRS_SLPSTATUS_LPUNFINISHED = _amplpy_ampls_swig.XPRS_SLPSTATUS_LPUNFINISHED
+XPRS_SLPSTATUS_MAXSLPITERATIONS = _amplpy_ampls_swig.XPRS_SLPSTATUS_MAXSLPITERATIONS
+XPRS_SLPSTATUS_INTEGERINFEASIBLE = _amplpy_ampls_swig.XPRS_SLPSTATUS_INTEGERINFEASIBLE
+XPRS_SLPSTATUS_RESIDUALPENALTIES = _amplpy_ampls_swig.XPRS_SLPSTATUS_RESIDUALPENALTIES
+XPRS_SLPSTATUS_CONVERGEDOBJOBJ = _amplpy_ampls_swig.XPRS_SLPSTATUS_CONVERGEDOBJOBJ
+XPRS_SLPSTATUS_MAXTIME = _amplpy_ampls_swig.XPRS_SLPSTATUS_MAXTIME
+XPRS_SLPSTATUS_USER = _amplpy_ampls_swig.XPRS_SLPSTATUS_USER
+XPRS_SLPSTATUS_VARSLINKEDINACTIVE = _amplpy_ampls_swig.XPRS_SLPSTATUS_VARSLINKEDINACTIVE
+XPRS_SLPSTATUS_NOVARSINACTIVE = _amplpy_ampls_swig.XPRS_SLPSTATUS_NOVARSINACTIVE
+XPRS_SLPSTATUS_OTOL = _amplpy_ampls_swig.XPRS_SLPSTATUS_OTOL
+XPRS_SLPSTATUS_VTOL = _amplpy_ampls_swig.XPRS_SLPSTATUS_VTOL
+XPRS_SLPSTATUS_XTOL = _amplpy_ampls_swig.XPRS_SLPSTATUS_XTOL
+XPRS_SLPSTATUS_WTOL = _amplpy_ampls_swig.XPRS_SLPSTATUS_WTOL
+XPRS_SLPSTATUS_ERROTOL = _amplpy_ampls_swig.XPRS_SLPSTATUS_ERROTOL
+XPRS_SLPSTATUS_EVTOL = _amplpy_ampls_swig.XPRS_SLPSTATUS_EVTOL
+XPRS_SLPSTATUS_POLISHED = _amplpy_ampls_swig.XPRS_SLPSTATUS_POLISHED
+XPRS_SLPSTATUS_POLISH_FAILURE = _amplpy_ampls_swig.XPRS_SLPSTATUS_POLISH_FAILURE
+XPRS_SLPSTATUS_ENFORCED = _amplpy_ampls_swig.XPRS_SLPSTATUS_ENFORCED
+XPRS_SLPSTATUS_CONSECUTIVE_INFEAS = _amplpy_ampls_swig.XPRS_SLPSTATUS_CONSECUTIVE_INFEAS
+XPRS_SLPSTATUS_KEEPBEST = _amplpy_ampls_swig.XPRS_SLPSTATUS_KEEPBEST
+XPRS_SLPSTATUS_CLAMPING = _amplpy_ampls_swig.XPRS_SLPSTATUS_CLAMPING
+XPRS_SLPSTATUS_ADAPTIVEITERS = _amplpy_ampls_swig.XPRS_SLPSTATUS_ADAPTIVEITERS
+XPRS_SLPSTATUS_OBJQNONCONVEX = _amplpy_ampls_swig.XPRS_SLPSTATUS_OBJQNONCONVEX
+XPRS_NLPSTATUS_UNSTARTED = _amplpy_ampls_swig.XPRS_NLPSTATUS_UNSTARTED
+XPRS_NLPSTATUS_SOLUTION = _amplpy_ampls_swig.XPRS_NLPSTATUS_SOLUTION
+XPRS_NLPSTATUS_LOCALLY_OPTIMAL = _amplpy_ampls_swig.XPRS_NLPSTATUS_LOCALLY_OPTIMAL
+XPRS_NLPSTATUS_OPTIMAL = _amplpy_ampls_swig.XPRS_NLPSTATUS_OPTIMAL
+XPRS_NLPSTATUS_NOSOLUTION = _amplpy_ampls_swig.XPRS_NLPSTATUS_NOSOLUTION
+XPRS_NLPSTATUS_LOCALLY_INFEASIBLE = _amplpy_ampls_swig.XPRS_NLPSTATUS_LOCALLY_INFEASIBLE
+XPRS_NLPSTATUS_INFEASIBLE = _amplpy_ampls_swig.XPRS_NLPSTATUS_INFEASIBLE
+XPRS_NLPSTATUS_UNBOUNDED = _amplpy_ampls_swig.XPRS_NLPSTATUS_UNBOUNDED
+XPRS_NLPSTATUS_UNFINISHED = _amplpy_ampls_swig.XPRS_NLPSTATUS_UNFINISHED
+XPRS_NLPSTATUS_UNSOLVED = _amplpy_ampls_swig.XPRS_NLPSTATUS_UNSOLVED
+XPRS_NLPSOLSTATUS_NONE = _amplpy_ampls_swig.XPRS_NLPSOLSTATUS_NONE
+XPRS_NLPSOLSTATUS_SOLUTION_NODUALS = _amplpy_ampls_swig.XPRS_NLPSOLSTATUS_SOLUTION_NODUALS
+XPRS_NLPSOLSTATUS_LOCALLYOPTIMAL_WITHDUALS = _amplpy_ampls_swig.XPRS_NLPSOLSTATUS_LOCALLYOPTIMAL_WITHDUALS
+XPRS_NLPSOLSTATUS_GLOBALLYOPTIMAL_NODUALS = _amplpy_ampls_swig.XPRS_NLPSOLSTATUS_GLOBALLYOPTIMAL_NODUALS
+XPRS_NLPSOLSTATUS_GLOBALLYOPTIMAL_WITHDUALS = _amplpy_ampls_swig.XPRS_NLPSOLSTATUS_GLOBALLYOPTIMAL_WITHDUALS
+XPRS_SLPGRIDENUMERATE = _amplpy_ampls_swig.XPRS_SLPGRIDENUMERATE
+XPRS_SLPGRIDCYCLIC = _amplpy_ampls_swig.XPRS_SLPGRIDCYCLIC
+XPRS_SLPGRIDANNEALING = _amplpy_ampls_swig.XPRS_SLPGRIDANNEALING
+XPRS_NLPRECALC = _amplpy_ampls_swig.XPRS_NLPRECALC
+XPRS_NLPTOLCALC = _amplpy_ampls_swig.XPRS_NLPTOLCALC
+XPRS_NLPALLCALCS = _amplpy_ampls_swig.XPRS_NLPALLCALCS
+XPRS_NLP2DERIVATIVE = _amplpy_ampls_swig.XPRS_NLP2DERIVATIVE
+XPRS_NLP1DERIVATIVE = _amplpy_ampls_swig.XPRS_NLP1DERIVATIVE
+XPRS_NLPALLDERIVATIVES = _amplpy_ampls_swig.XPRS_NLPALLDERIVATIVES
+XPRS_NLPINSTANCEFUNCTION = _amplpy_ampls_swig.XPRS_NLPINSTANCEFUNCTION
+XPRS_NLPPRESOLVEOPS_GENERAL = _amplpy_ampls_swig.XPRS_NLPPRESOLVEOPS_GENERAL
+XPRS_NLPPRESOLVEFIXZERO = _amplpy_ampls_swig.XPRS_NLPPRESOLVEFIXZERO
+XPRS_NLPPRESOLVEFIXALL = _amplpy_ampls_swig.XPRS_NLPPRESOLVEFIXALL
+XPRS_NLPPRESOLVESETBOUNDS = _amplpy_ampls_swig.XPRS_NLPPRESOLVESETBOUNDS
+XPRS_NLPPRESOLVEINTBOUNDS = _amplpy_ampls_swig.XPRS_NLPPRESOLVEINTBOUNDS
+XPRS_NLPPRESOLVEDOMAIN = _amplpy_ampls_swig.XPRS_NLPPRESOLVEDOMAIN
+XPRS_SLPNOPRESOLVECOEFFICIENTS = _amplpy_ampls_swig.XPRS_SLPNOPRESOLVECOEFFICIENTS
+XPRS_SLPNOPRESOLVEDELTAS = _amplpy_ampls_swig.XPRS_SLPNOPRESOLVEDELTAS
+XPRS_NLPPRESOLVEOPS_NO_DUAL_SIDE = _amplpy_ampls_swig.XPRS_NLPPRESOLVEOPS_NO_DUAL_SIDE
+XPRS_NLPPRESOLVEOPS_ELIMINATIONS = _amplpy_ampls_swig.XPRS_NLPPRESOLVEOPS_ELIMINATIONS
+XPRS_NLPPRESOLVEOPS_NOLINEAR = _amplpy_ampls_swig.XPRS_NLPPRESOLVEOPS_NOLINEAR
+XPRS_NLPPRESOLVEOPS_NOSIMPLIFIER = _amplpy_ampls_swig.XPRS_NLPPRESOLVEOPS_NOSIMPLIFIER
+XPRS_NLPPRESOLVELEVEL_BASIC = _amplpy_ampls_swig.XPRS_NLPPRESOLVELEVEL_BASIC
+XPRS_NLPPRESOLVELEVEL_LINEAR = _amplpy_ampls_swig.XPRS_NLPPRESOLVELEVEL_LINEAR
+XPRS_NLPPRESOLVELEVEL_FULL = _amplpy_ampls_swig.XPRS_NLPPRESOLVELEVEL_FULL
+XPRS_SLPCASCADE_ALL = _amplpy_ampls_swig.XPRS_SLPCASCADE_ALL
+XPRS_SLPCASCADE_COEF_VAR = _amplpy_ampls_swig.XPRS_SLPCASCADE_COEF_VAR
+XPRS_SLPCASCADE_ALL_COEF_VAR = _amplpy_ampls_swig.XPRS_SLPCASCADE_ALL_COEF_VAR
+XPRS_SLPCASCADE_STRUCT_VAR = _amplpy_ampls_swig.XPRS_SLPCASCADE_STRUCT_VAR
+XPRS_SLPCASCADE_ALL_STRUCT_VAR = _amplpy_ampls_swig.XPRS_SLPCASCADE_ALL_STRUCT_VAR
+XPRS_SLPCASCADE_SECONDARY_GROUPS = _amplpy_ampls_swig.XPRS_SLPCASCADE_SECONDARY_GROUPS
+XPRS_SLPCASCADE_DRCOL_PREVOUSVALUE = _amplpy_ampls_swig.XPRS_SLPCASCADE_DRCOL_PREVOUSVALUE
+XPRS_SLPCASCADE_DRCOL_PVRANGE = _amplpy_ampls_swig.XPRS_SLPCASCADE_DRCOL_PVRANGE
+XPRS_SLPCASCADE_AUTOAPPLY = _amplpy_ampls_swig.XPRS_SLPCASCADE_AUTOAPPLY
+XPRS_LOCALSOLVER_AUTO = _amplpy_ampls_swig.XPRS_LOCALSOLVER_AUTO
+XPRS_LOCALSOLVER_XSLP = _amplpy_ampls_swig.XPRS_LOCALSOLVER_XSLP
+XPRS_LOCALSOLVER_KNITRO = _amplpy_ampls_swig.XPRS_LOCALSOLVER_KNITRO
+XPRS_LOCALSOLVER_OPTIMIZER = _amplpy_ampls_swig.XPRS_LOCALSOLVER_OPTIMIZER
+XPRS_MSSET_INITIALVALUES = _amplpy_ampls_swig.XPRS_MSSET_INITIALVALUES
+XPRS_MSSET_SOLVERS = _amplpy_ampls_swig.XPRS_MSSET_SOLVERS
+XPRS_MSSET_SLP_BASIC = _amplpy_ampls_swig.XPRS_MSSET_SLP_BASIC
+XPRS_MSSET_SLP_EXTENDED = _amplpy_ampls_swig.XPRS_MSSET_SLP_EXTENDED
+XPRS_MSSET_KNITRO_BASIC = _amplpy_ampls_swig.XPRS_MSSET_KNITRO_BASIC
+XPRS_MSSET_KNITRO_EXTENDED = _amplpy_ampls_swig.XPRS_MSSET_KNITRO_EXTENDED
+XPRS_MSSET_INITIALFILTERED = _amplpy_ampls_swig.XPRS_MSSET_INITIALFILTERED
+XPRS_KKT_CALCULATION_RECALCULATE_RDJ = _amplpy_ampls_swig.XPRS_KKT_CALCULATION_RECALCULATE_RDJ
+XPRS_KKT_CALCULATION_MINIMZE_KKT_ERROR = _amplpy_ampls_swig.XPRS_KKT_CALCULATION_MINIMZE_KKT_ERROR
+XPRS_KKT_CALCULATION_MEASURE_BOTH = _amplpy_ampls_swig.XPRS_KKT_CALCULATION_MEASURE_BOTH
+XPRS_KKT_CALCULATION_ACTIVITY_BASED = _amplpy_ampls_swig.XPRS_KKT_CALCULATION_ACTIVITY_BASED
+XPRS_KKT_CALCULATION_RESPECT_BASIS = _amplpy_ampls_swig.XPRS_KKT_CALCULATION_RESPECT_BASIS
+XPRS_KKT_CALCULATION_ACTIVITY_BOTH = _amplpy_ampls_swig.XPRS_KKT_CALCULATION_ACTIVITY_BOTH
+XPRS_KKT_JUST_CALCULATE = _amplpy_ampls_swig.XPRS_KKT_JUST_CALCULATE
+XPRS_KKT_UPDATE_MULTIPLIERS = _amplpy_ampls_swig.XPRS_KKT_UPDATE_MULTIPLIERS
+XPRS_SLPTRACEMASK_GENERALFIT = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_GENERALFIT
+XPRS_SLPTRACEMASK_ROWS = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_ROWS
+XPRS_SLPTRACEMASK_COLS = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_COLS
+XPRS_SLPTRACEMASK_CASCADE = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_CASCADE
+XPRS_SLPTRACEMASK_TYPE = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_TYPE
+XPRS_SLPTRACEMASK_SLACK = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_SLACK
+XPRS_SLPTRACEMASK_DUAL = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_DUAL
+XPRS_SLPTRACEMASK_WEIGHT = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_WEIGHT
+XPRS_SLPTRACEMASK_SOLUTION = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_SOLUTION
+XPRS_SLPTRACEMASK_REDUCEDCOST = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_REDUCEDCOST
+XPRS_SLPTRACEMASK_SLPVALUE = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_SLPVALUE
+XPRS_SLPTRACEMASK_STEPBOUND = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_STEPBOUND
+XPRS_SLPTRACEMASK_CONVERGE = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_CONVERGE
+XPRS_SLPTRACEMASK_LINESEARCH = _amplpy_ampls_swig.XPRS_SLPTRACEMASK_LINESEARCH
+XPRS_SLPFILTER_KEEPBEST = _amplpy_ampls_swig.XPRS_SLPFILTER_KEEPBEST
+XPRS_SLPFILTER_CASCADE = _amplpy_ampls_swig.XPRS_SLPFILTER_CASCADE
+XPRS_SLPFILTER_ZEROLINESEARCH = _amplpy_ampls_swig.XPRS_SLPFILTER_ZEROLINESEARCH
+XPRS_SLPFILTER_ZEROLINESEARCHTR = _amplpy_ampls_swig.XPRS_SLPFILTER_ZEROLINESEARCHTR
+XPRS_SLPANALYZE_RECORDLINEARIZATION = _amplpy_ampls_swig.XPRS_SLPANALYZE_RECORDLINEARIZATION
+XPRS_SLPANALYZE_RECORDCASCADE = _amplpy_ampls_swig.XPRS_SLPANALYZE_RECORDCASCADE
+XPRS_SLPANALYZE_RECORDLINESEARCH = _amplpy_ampls_swig.XPRS_SLPANALYZE_RECORDLINESEARCH
+XPRS_SLPANALYZE_EXTENDEDFINALSUMMARY = _amplpy_ampls_swig.XPRS_SLPANALYZE_EXTENDEDFINALSUMMARY
+XPRS_SLPANALYZE_INFEASIBLE_ITERATION = _amplpy_ampls_swig.XPRS_SLPANALYZE_INFEASIBLE_ITERATION
+XPRS_SLPANALYZE_AUTOSAVEPOOL = _amplpy_ampls_swig.XPRS_SLPANALYZE_AUTOSAVEPOOL
+XPRS_SLPANALYZE_SAVELINEARIZATIONS = _amplpy_ampls_swig.XPRS_SLPANALYZE_SAVELINEARIZATIONS
+XPRS_SLPANALYZE_SAVEITERBASIS = _amplpy_ampls_swig.XPRS_SLPANALYZE_SAVEITERBASIS
+XPRS_SLPANALYZE_SAVEFILE = _amplpy_ampls_swig.XPRS_SLPANALYZE_SAVEFILE
+XPRS_NLPREFORMULATE_SLP2QP = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_SLP2QP
+XPRS_NLPREFORMULATE_QP2SLP = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_QP2SLP
+XPRS_NLPREFORMULATE_SLP2QCQP = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_SLP2QCQP
+XPRS_NLPREFORMULATE_QCQP2SLP = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_QCQP2SLP
+XPRS_NLPREFORMULATE_SOCP2SLP = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_SOCP2SLP
+XPRS_NLPREFORMULATE_QPSOLVE = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_QPSOLVE
+XPRS_NLPREFORMULATE_PWL = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_PWL
+XPRS_NLPREFORMULATE_ABS = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_ABS
+XPRS_NLPREFORMULATE_MINMAX = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_MINMAX
+XPRS_NLPREFORMULATE_ALLABS = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_ALLABS
+XPRS_NLPREFORMULATE_ALLMINMAX = _amplpy_ampls_swig.XPRS_NLPREFORMULATE_ALLMINMAX
+XPRS_SLPDELTA_CONT = _amplpy_ampls_swig.XPRS_SLPDELTA_CONT
+XPRS_SLPDELTA_SEMICONT = _amplpy_ampls_swig.XPRS_SLPDELTA_SEMICONT
+XPRS_SLPDELTA_INTEGER = _amplpy_ampls_swig.XPRS_SLPDELTA_INTEGER
+XPRS_SLPDELTA_EXPLORE = _amplpy_ampls_swig.XPRS_SLPDELTA_EXPLORE
+XPRS_SLPROWINFO_SLACK = _amplpy_ampls_swig.XPRS_SLPROWINFO_SLACK
+XPRS_SLPROWINFO_DUAL = _amplpy_ampls_swig.XPRS_SLPROWINFO_DUAL
+XPRS_SLPROWINFO_NUMPENALTYERRORS = _amplpy_ampls_swig.XPRS_SLPROWINFO_NUMPENALTYERRORS
+XPRS_SLPROWINFO_MAXPENALTYERROR = _amplpy_ampls_swig.XPRS_SLPROWINFO_MAXPENALTYERROR
+XPRS_SLPROWINFO_TOTALPENALTYERROR = _amplpy_ampls_swig.XPRS_SLPROWINFO_TOTALPENALTYERROR
+XPRS_SLPROWINFO_CURRENTPENALTYERROR = _amplpy_ampls_swig.XPRS_SLPROWINFO_CURRENTPENALTYERROR
+XPRS_SLPROWINFO_CURRENTPENALTYFACTOR = _amplpy_ampls_swig.XPRS_SLPROWINFO_CURRENTPENALTYFACTOR
+XPRS_SLPROWINFO_PENALTYCOLUMNPLUS = _amplpy_ampls_swig.XPRS_SLPROWINFO_PENALTYCOLUMNPLUS
+XPRS_SLPROWINFO_PENALTYCOLUMNPLUSVALUE = _amplpy_ampls_swig.XPRS_SLPROWINFO_PENALTYCOLUMNPLUSVALUE
+XPRS_SLPROWINFO_PENALTYCOLUMNPLUSDJ = _amplpy_ampls_swig.XPRS_SLPROWINFO_PENALTYCOLUMNPLUSDJ
+XPRS_SLPROWINFO_PENALTYCOLUMNMINUS = _amplpy_ampls_swig.XPRS_SLPROWINFO_PENALTYCOLUMNMINUS
+XPRS_SLPROWINFO_PENALTYCOLUMNMINUSVALUE = _amplpy_ampls_swig.XPRS_SLPROWINFO_PENALTYCOLUMNMINUSVALUE
+XPRS_SLPROWINFO_PENALTYCOLUMNMINUSDJ = _amplpy_ampls_swig.XPRS_SLPROWINFO_PENALTYCOLUMNMINUSDJ
+XPRS_SLPCOLINFO_VALUE = _amplpy_ampls_swig.XPRS_SLPCOLINFO_VALUE
+XPRS_SLPCOLINFO_RDJ = _amplpy_ampls_swig.XPRS_SLPCOLINFO_RDJ
+XPRS_SLPCOLINFO_DELTAINDEX = _amplpy_ampls_swig.XPRS_SLPCOLINFO_DELTAINDEX
+XPRS_SLPCOLINFO_DELTA = _amplpy_ampls_swig.XPRS_SLPCOLINFO_DELTA
+XPRS_SLPCOLINFO_DELTADJ = _amplpy_ampls_swig.XPRS_SLPCOLINFO_DELTADJ
+XPRS_SLPCOLINFO_UPDATEROW = _amplpy_ampls_swig.XPRS_SLPCOLINFO_UPDATEROW
+XPRS_SLPCOLINFO_SB = _amplpy_ampls_swig.XPRS_SLPCOLINFO_SB
+XPRS_SLPCOLINFO_SBDUAL = _amplpy_ampls_swig.XPRS_SLPCOLINFO_SBDUAL
+XPRS_SLPCOLINFO_LPVALUE = _amplpy_ampls_swig.XPRS_SLPCOLINFO_LPVALUE
+XPRS_USERFUNCTION_MAP = _amplpy_ampls_swig.XPRS_USERFUNCTION_MAP
+XPRS_USERFUNCTION_VECMAP = _amplpy_ampls_swig.XPRS_USERFUNCTION_VECMAP
+XPRS_USERFUNCTION_MULTIMAP = _amplpy_ampls_swig.XPRS_USERFUNCTION_MULTIMAP
+XPRS_USERFUNCTION_MAPDELTA = _amplpy_ampls_swig.XPRS_USERFUNCTION_MAPDELTA
+XPRS_USERFUNCTION_VECMAPDELTA = _amplpy_ampls_swig.XPRS_USERFUNCTION_VECMAPDELTA
+XPRS_USERFUNCTION_MULTIMAPDELTA = _amplpy_ampls_swig.XPRS_USERFUNCTION_MULTIMAPDELTA
+XPRS_NLPUSERFUNCNAMES = _amplpy_ampls_swig.XPRS_NLPUSERFUNCNAMES
+XPRS_NLPINTERNALFUNCNAMES = _amplpy_ampls_swig.XPRS_NLPINTERNALFUNCNAMES
+XPRS_NLPUSERFUNCNAMESNOCASE = _amplpy_ampls_swig.XPRS_NLPUSERFUNCNAMESNOCASE
+XPRS_NLPINTERNALFUNCNAMESNOCASE = _amplpy_ampls_swig.XPRS_NLPINTERNALFUNCNAMESNOCASE
+XPRS_NLPFORMULACOEFFCOULMNINDEX = _amplpy_ampls_swig.XPRS_NLPFORMULACOEFFCOULMNINDEX
+XPRS_NLPOBJECTIVEROWINDEX = _amplpy_ampls_swig.XPRS_NLPOBJECTIVEROWINDEX
+XPRS_SOLSTATUS_NOTFOUND = _amplpy_ampls_swig.XPRS_SOLSTATUS_NOTFOUND
+XPRS_SOLSTATUS_OPTIMAL = _amplpy_ampls_swig.XPRS_SOLSTATUS_OPTIMAL
+XPRS_SOLSTATUS_FEASIBLE = _amplpy_ampls_swig.XPRS_SOLSTATUS_FEASIBLE
+XPRS_SOLSTATUS_INFEASIBLE = _amplpy_ampls_swig.XPRS_SOLSTATUS_INFEASIBLE
+XPRS_SOLSTATUS_UNBOUNDED = _amplpy_ampls_swig.XPRS_SOLSTATUS_UNBOUNDED
+XPRS_SOLVESTATUS_UNSTARTED = _amplpy_ampls_swig.XPRS_SOLVESTATUS_UNSTARTED
+XPRS_SOLVESTATUS_STOPPED = _amplpy_ampls_swig.XPRS_SOLVESTATUS_STOPPED
+XPRS_SOLVESTATUS_FAILED = _amplpy_ampls_swig.XPRS_SOLVESTATUS_FAILED
+XPRS_SOLVESTATUS_COMPLETED = _amplpy_ampls_swig.XPRS_SOLVESTATUS_COMPLETED
+XPRS_LP_UNSTARTED = _amplpy_ampls_swig.XPRS_LP_UNSTARTED
+XPRS_LP_OPTIMAL = _amplpy_ampls_swig.XPRS_LP_OPTIMAL
+XPRS_LP_INFEAS = _amplpy_ampls_swig.XPRS_LP_INFEAS
+XPRS_LP_CUTOFF = _amplpy_ampls_swig.XPRS_LP_CUTOFF
+XPRS_LP_UNFINISHED = _amplpy_ampls_swig.XPRS_LP_UNFINISHED
+XPRS_LP_UNBOUNDED = _amplpy_ampls_swig.XPRS_LP_UNBOUNDED
+XPRS_LP_CUTOFF_IN_DUAL = _amplpy_ampls_swig.XPRS_LP_CUTOFF_IN_DUAL
+XPRS_LP_UNSOLVED = _amplpy_ampls_swig.XPRS_LP_UNSOLVED
+XPRS_LP_NONCONVEX = _amplpy_ampls_swig.XPRS_LP_NONCONVEX
+XPRS_MIP_NOT_LOADED = _amplpy_ampls_swig.XPRS_MIP_NOT_LOADED
+XPRS_MIP_LP_NOT_OPTIMAL = _amplpy_ampls_swig.XPRS_MIP_LP_NOT_OPTIMAL
+XPRS_MIP_LP_OPTIMAL = _amplpy_ampls_swig.XPRS_MIP_LP_OPTIMAL
+XPRS_MIP_NO_SOL_FOUND = _amplpy_ampls_swig.XPRS_MIP_NO_SOL_FOUND
+XPRS_MIP_SOLUTION = _amplpy_ampls_swig.XPRS_MIP_SOLUTION
+XPRS_MIP_INFEAS = _amplpy_ampls_swig.XPRS_MIP_INFEAS
+XPRS_MIP_OPTIMAL = _amplpy_ampls_swig.XPRS_MIP_OPTIMAL
+XPRS_MIP_UNBOUNDED = _amplpy_ampls_swig.XPRS_MIP_UNBOUNDED
+XPRS_OPTIMIZETYPE_LP = _amplpy_ampls_swig.XPRS_OPTIMIZETYPE_LP
+XPRS_OPTIMIZETYPE_MIP = _amplpy_ampls_swig.XPRS_OPTIMIZETYPE_MIP
+XPRS_OPTIMIZETYPE_LOCAL = _amplpy_ampls_swig.XPRS_OPTIMIZETYPE_LOCAL
+XPRS_OPTIMIZETYPE_GLOBAL = _amplpy_ampls_swig.XPRS_OPTIMIZETYPE_GLOBAL
+XPRS_BAR_DEFAULT = _amplpy_ampls_swig.XPRS_BAR_DEFAULT
+XPRS_BAR_MIN_DEGREE = _amplpy_ampls_swig.XPRS_BAR_MIN_DEGREE
+XPRS_BAR_MIN_LOCAL_FILL = _amplpy_ampls_swig.XPRS_BAR_MIN_LOCAL_FILL
+XPRS_BAR_NESTED_DISSECTION = _amplpy_ampls_swig.XPRS_BAR_NESTED_DISSECTION
+XPRS_ALG_DEFAULT = _amplpy_ampls_swig.XPRS_ALG_DEFAULT
+XPRS_ALG_DUAL = _amplpy_ampls_swig.XPRS_ALG_DUAL
+XPRS_ALG_PRIMAL = _amplpy_ampls_swig.XPRS_ALG_PRIMAL
+XPRS_ALG_BARRIER = _amplpy_ampls_swig.XPRS_ALG_BARRIER
+XPRS_ALG_NETWORK = _amplpy_ampls_swig.XPRS_ALG_NETWORK
+XPRS_STOP_NONE = _amplpy_ampls_swig.XPRS_STOP_NONE
+XPRS_STOP_TIMELIMIT = _amplpy_ampls_swig.XPRS_STOP_TIMELIMIT
+XPRS_STOP_CTRLC = _amplpy_ampls_swig.XPRS_STOP_CTRLC
+XPRS_STOP_NODELIMIT = _amplpy_ampls_swig.XPRS_STOP_NODELIMIT
+XPRS_STOP_ITERLIMIT = _amplpy_ampls_swig.XPRS_STOP_ITERLIMIT
+XPRS_STOP_MIPGAP = _amplpy_ampls_swig.XPRS_STOP_MIPGAP
+XPRS_STOP_SOLLIMIT = _amplpy_ampls_swig.XPRS_STOP_SOLLIMIT
+XPRS_STOP_GLOBALERROR = _amplpy_ampls_swig.XPRS_STOP_GLOBALERROR
+XPRS_STOP_MEMORYERROR = _amplpy_ampls_swig.XPRS_STOP_MEMORYERROR
+XPRS_STOP_USER = _amplpy_ampls_swig.XPRS_STOP_USER
+XPRS_STOP_SOLVECOMPLETE = _amplpy_ampls_swig.XPRS_STOP_SOLVECOMPLETE
+XPRS_STOP_LICENSELOST = _amplpy_ampls_swig.XPRS_STOP_LICENSELOST
+XPRS_STOP_TICKLIMIT = _amplpy_ampls_swig.XPRS_STOP_TICKLIMIT
+XPRS_STOP_NUMERICALERROR = _amplpy_ampls_swig.XPRS_STOP_NUMERICALERROR
+XPRS_ANA_AUTOMATIC = _amplpy_ampls_swig.XPRS_ANA_AUTOMATIC
+XPRS_ANA_NEVER = _amplpy_ampls_swig.XPRS_ANA_NEVER
+XPRS_ANA_ALWAYS = _amplpy_ampls_swig.XPRS_ANA_ALWAYS
+XPRS_BOOL_OFF = _amplpy_ampls_swig.XPRS_BOOL_OFF
+XPRS_BOOL_ON = _amplpy_ampls_swig.XPRS_BOOL_ON
+XPRS_BACKTRACKALG_BEST_ESTIMATE = _amplpy_ampls_swig.XPRS_BACKTRACKALG_BEST_ESTIMATE
+XPRS_BACKTRACKALG_BEST_BOUND = _amplpy_ampls_swig.XPRS_BACKTRACKALG_BEST_BOUND
+XPRS_BACKTRACKALG_DEEPEST_NODE = _amplpy_ampls_swig.XPRS_BACKTRACKALG_DEEPEST_NODE
+XPRS_BACKTRACKALG_HIGHEST_NODE = _amplpy_ampls_swig.XPRS_BACKTRACKALG_HIGHEST_NODE
+XPRS_BACKTRACKALG_EARLIEST_NODE = _amplpy_ampls_swig.XPRS_BACKTRACKALG_EARLIEST_NODE
+XPRS_BACKTRACKALG_LATEST_NODE = _amplpy_ampls_swig.XPRS_BACKTRACKALG_LATEST_NODE
+XPRS_BACKTRACKALG_RANDOM = _amplpy_ampls_swig.XPRS_BACKTRACKALG_RANDOM
+XPRS_BACKTRACKALG_MIN_INFEAS = _amplpy_ampls_swig.XPRS_BACKTRACKALG_MIN_INFEAS
+XPRS_BACKTRACKALG_BEST_ESTIMATE_MIN_INFEAS = _amplpy_ampls_swig.XPRS_BACKTRACKALG_BEST_ESTIMATE_MIN_INFEAS
+XPRS_BACKTRACKALG_DEEPEST_BEST_ESTIMATE = _amplpy_ampls_swig.XPRS_BACKTRACKALG_DEEPEST_BEST_ESTIMATE
+XPRS_BRANCH_MIN_EST_FIRST = _amplpy_ampls_swig.XPRS_BRANCH_MIN_EST_FIRST
+XPRS_BRANCH_MAX_EST_FIRST = _amplpy_ampls_swig.XPRS_BRANCH_MAX_EST_FIRST
+XPRS_ALG_PULL_CHOLESKY = _amplpy_ampls_swig.XPRS_ALG_PULL_CHOLESKY
+XPRS_ALG_PUSH_CHOLESKY = _amplpy_ampls_swig.XPRS_ALG_PUSH_CHOLESKY
+XPRS_XDRPBEFORE_CROSSOVER = _amplpy_ampls_swig.XPRS_XDRPBEFORE_CROSSOVER
+XPRS_XDRPINSIDE_CROSSOVER = _amplpy_ampls_swig.XPRS_XDRPINSIDE_CROSSOVER
+XPRS_XDRPAGGRESSIVE_BEFORE_CROSSOVER = _amplpy_ampls_swig.XPRS_XDRPAGGRESSIVE_BEFORE_CROSSOVER
+XPRS_DUALGRADIENT_AUTOMATIC = _amplpy_ampls_swig.XPRS_DUALGRADIENT_AUTOMATIC
+XPRS_DUALGRADIENT_DEVEX = _amplpy_ampls_swig.XPRS_DUALGRADIENT_DEVEX
+XPRS_DUALGRADIENT_STEEPESTEDGE = _amplpy_ampls_swig.XPRS_DUALGRADIENT_STEEPESTEDGE
+XPRS_DUALSTRATEGY_REMOVE_INFEAS_WITH_PRIMAL = _amplpy_ampls_swig.XPRS_DUALSTRATEGY_REMOVE_INFEAS_WITH_PRIMAL
+XPRS_DUALSTRATEGY_REMOVE_INFEAS_WITH_DUAL = _amplpy_ampls_swig.XPRS_DUALSTRATEGY_REMOVE_INFEAS_WITH_DUAL
+XPRS_FEASIBILITYPUMP_AUTOMATIC = _amplpy_ampls_swig.XPRS_FEASIBILITYPUMP_AUTOMATIC
+XPRS_FEASIBILITYPUMP_NEVER = _amplpy_ampls_swig.XPRS_FEASIBILITYPUMP_NEVER
+XPRS_FEASIBILITYPUMP_ALWAYS = _amplpy_ampls_swig.XPRS_FEASIBILITYPUMP_ALWAYS
+XPRS_FEASIBILITYPUMP_LASTRESORT = _amplpy_ampls_swig.XPRS_FEASIBILITYPUMP_LASTRESORT
+XPRS_HEURSEARCH_LOCAL_SEARCH_LARGE_NEIGHBOURHOOD = _amplpy_ampls_swig.XPRS_HEURSEARCH_LOCAL_SEARCH_LARGE_NEIGHBOURHOOD
+XPRS_HEURSEARCH_LOCAL_SEARCH_NODE_NEIGHBOURHOOD = _amplpy_ampls_swig.XPRS_HEURSEARCH_LOCAL_SEARCH_NODE_NEIGHBOURHOOD
+XPRS_HEURSEARCH_LOCAL_SEARCH_SOLUTION_NEIGHBOURHOOD = _amplpy_ampls_swig.XPRS_HEURSEARCH_LOCAL_SEARCH_SOLUTION_NEIGHBOURHOOD
+XPRS_HEURSTRATEGY_AUTOMATIC = _amplpy_ampls_swig.XPRS_HEURSTRATEGY_AUTOMATIC
+XPRS_HEURSTRATEGY_NONE = _amplpy_ampls_swig.XPRS_HEURSTRATEGY_NONE
+XPRS_HEURSTRATEGY_BASIC = _amplpy_ampls_swig.XPRS_HEURSTRATEGY_BASIC
+XPRS_HEURSTRATEGY_ENHANCED = _amplpy_ampls_swig.XPRS_HEURSTRATEGY_ENHANCED
+XPRS_HEURSTRATEGY_EXTENSIVE = _amplpy_ampls_swig.XPRS_HEURSTRATEGY_EXTENSIVE
+XPRS_NODESELECTION_LOCAL_FIRST = _amplpy_ampls_swig.XPRS_NODESELECTION_LOCAL_FIRST
+XPRS_NODESELECTION_BEST_FIRST = _amplpy_ampls_swig.XPRS_NODESELECTION_BEST_FIRST
+XPRS_NODESELECTION_LOCAL_DEPTH_FIRST = _amplpy_ampls_swig.XPRS_NODESELECTION_LOCAL_DEPTH_FIRST
+XPRS_NODESELECTION_BEST_FIRST_THEN_LOCAL_FIRST = _amplpy_ampls_swig.XPRS_NODESELECTION_BEST_FIRST_THEN_LOCAL_FIRST
+XPRS_NODESELECTION_DEPTH_FIRST = _amplpy_ampls_swig.XPRS_NODESELECTION_DEPTH_FIRST
+XPRS_OUTPUTLOG_NO_OUTPUT = _amplpy_ampls_swig.XPRS_OUTPUTLOG_NO_OUTPUT
+XPRS_OUTPUTLOG_FULL_OUTPUT = _amplpy_ampls_swig.XPRS_OUTPUTLOG_FULL_OUTPUT
+XPRS_OUTPUTLOG_ERRORS_AND_WARNINGS = _amplpy_ampls_swig.XPRS_OUTPUTLOG_ERRORS_AND_WARNINGS
+XPRS_OUTPUTLOG_ERRORS = _amplpy_ampls_swig.XPRS_OUTPUTLOG_ERRORS
+XPRS_PREPROBING_AUTOMATIC = _amplpy_ampls_swig.XPRS_PREPROBING_AUTOMATIC
+XPRS_PREPROBING_DISABLED = _amplpy_ampls_swig.XPRS_PREPROBING_DISABLED
+XPRS_PREPROBING_LIGHT = _amplpy_ampls_swig.XPRS_PREPROBING_LIGHT
+XPRS_PREPROBING_FULL = _amplpy_ampls_swig.XPRS_PREPROBING_FULL
+XPRS_PREPROBING_FULL_AND_REPEAT = _amplpy_ampls_swig.XPRS_PREPROBING_FULL_AND_REPEAT
+XPRS_PRESOLVEOPS_SINGLETONCOLUMNREMOVAL = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_SINGLETONCOLUMNREMOVAL
+XPRS_PRESOLVEOPS_SINGLETONROWREMOVAL = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_SINGLETONROWREMOVAL
+XPRS_PRESOLVEOPS_FORCINGROWREMOVAL = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_FORCINGROWREMOVAL
+XPRS_PRESOLVEOPS_DUALREDUCTIONS = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_DUALREDUCTIONS
+XPRS_PRESOLVEOPS_REDUNDANTROWREMOVAL = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_REDUNDANTROWREMOVAL
+XPRS_PRESOLVEOPS_DUPLICATECOLUMNREMOVAL = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_DUPLICATECOLUMNREMOVAL
+XPRS_PRESOLVEOPS_DUPLICATEROWREMOVAL = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_DUPLICATEROWREMOVAL
+XPRS_PRESOLVEOPS_STRONGDUALREDUCTIONS = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_STRONGDUALREDUCTIONS
+XPRS_PRESOLVEOPS_VARIABLEELIMINATIONS = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_VARIABLEELIMINATIONS
+XPRS_PRESOLVEOPS_NOIPREDUCTIONS = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_NOIPREDUCTIONS
+XPRS_PRESOLVEOPS_NOGLOBALDOMAINCHANGE = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_NOGLOBALDOMAINCHANGE
+XPRS_PRESOLVEOPS_NOADVANCEDIPREDUCTIONS = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_NOADVANCEDIPREDUCTIONS
+XPRS_PRESOLVEOPS_LINEARLYDEPENDANTROWREMOVAL = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_LINEARLYDEPENDANTROWREMOVAL
+XPRS_PRESOLVEOPS_NOINTEGERVARIABLEANDSOSDETECTION = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_NOINTEGERVARIABLEANDSOSDETECTION
+XPRS_PRESOLVEOPS_NODUALREDONGLOBALS = _amplpy_ampls_swig.XPRS_PRESOLVEOPS_NODUALREDONGLOBALS
+XPRS_PRESOLVESTATE_PROBLEMLOADED = _amplpy_ampls_swig.XPRS_PRESOLVESTATE_PROBLEMLOADED
+XPRS_PRESOLVESTATE_PROBLEMLPPRESOLVED = _amplpy_ampls_swig.XPRS_PRESOLVESTATE_PROBLEMLPPRESOLVED
+XPRS_PRESOLVESTATE_PROBLEMMIPPRESOLVED = _amplpy_ampls_swig.XPRS_PRESOLVESTATE_PROBLEMMIPPRESOLVED
+XPRS_PRESOLVESTATE_SOLUTIONVALID = _amplpy_ampls_swig.XPRS_PRESOLVESTATE_SOLUTIONVALID
+XPRS_MIPPRESOLVE_REDUCED_COST_FIXING = _amplpy_ampls_swig.XPRS_MIPPRESOLVE_REDUCED_COST_FIXING
+XPRS_MIPPRESOLVE_LOGIC_PREPROCESSING = _amplpy_ampls_swig.XPRS_MIPPRESOLVE_LOGIC_PREPROCESSING
+XPRS_MIPPRESOLVE_ALLOW_CHANGE_BOUNDS = _amplpy_ampls_swig.XPRS_MIPPRESOLVE_ALLOW_CHANGE_BOUNDS
+XPRS_MIPPRESOLVE_DUAL_REDUCTIONS = _amplpy_ampls_swig.XPRS_MIPPRESOLVE_DUAL_REDUCTIONS
+XPRS_MIPPRESOLVE_GLOBAL_COEFFICIENT_TIGHTENING = _amplpy_ampls_swig.XPRS_MIPPRESOLVE_GLOBAL_COEFFICIENT_TIGHTENING
+XPRS_MIPPRESOLVE_OBJECTIVE_BASED_REDUCTIONS = _amplpy_ampls_swig.XPRS_MIPPRESOLVE_OBJECTIVE_BASED_REDUCTIONS
+XPRS_MIPPRESOLVE_ALLOW_TREE_RESTART = _amplpy_ampls_swig.XPRS_MIPPRESOLVE_ALLOW_TREE_RESTART
+XPRS_MIPPRESOLVE_SYMMETRY_REDUCTIONS = _amplpy_ampls_swig.XPRS_MIPPRESOLVE_SYMMETRY_REDUCTIONS
+XPRS_PRESOLVE_NOPRIMALINFEASIBILITY = _amplpy_ampls_swig.XPRS_PRESOLVE_NOPRIMALINFEASIBILITY
+XPRS_PRESOLVE_NONE = _amplpy_ampls_swig.XPRS_PRESOLVE_NONE
+XPRS_PRESOLVE_DEFAULT = _amplpy_ampls_swig.XPRS_PRESOLVE_DEFAULT
+XPRS_PRESOLVE_KEEPREDUNDANTBOUNDS = _amplpy_ampls_swig.XPRS_PRESOLVE_KEEPREDUNDANTBOUNDS
+XPRS_PRICING_PARTIAL = _amplpy_ampls_swig.XPRS_PRICING_PARTIAL
+XPRS_PRICING_DEFAULT = _amplpy_ampls_swig.XPRS_PRICING_DEFAULT
+XPRS_PRICING_DEVEX = _amplpy_ampls_swig.XPRS_PRICING_DEVEX
+XPRS_CUTSTRATEGY_DEFAULT = _amplpy_ampls_swig.XPRS_CUTSTRATEGY_DEFAULT
+XPRS_CUTSTRATEGY_NONE = _amplpy_ampls_swig.XPRS_CUTSTRATEGY_NONE
+XPRS_CUTSTRATEGY_CONSERVATIVE = _amplpy_ampls_swig.XPRS_CUTSTRATEGY_CONSERVATIVE
+XPRS_CUTSTRATEGY_MODERATE = _amplpy_ampls_swig.XPRS_CUTSTRATEGY_MODERATE
+XPRS_CUTSTRATEGY_AGGRESSIVE = _amplpy_ampls_swig.XPRS_CUTSTRATEGY_AGGRESSIVE
+XPRS_VARSELECTION_AUTOMATIC = _amplpy_ampls_swig.XPRS_VARSELECTION_AUTOMATIC
+XPRS_VARSELECTION_MIN_UPDOWN_PSEUDO_COSTS = _amplpy_ampls_swig.XPRS_VARSELECTION_MIN_UPDOWN_PSEUDO_COSTS
+XPRS_VARSELECTION_SUM_UPDOWN_PSEUDO_COSTS = _amplpy_ampls_swig.XPRS_VARSELECTION_SUM_UPDOWN_PSEUDO_COSTS
+XPRS_VARSELECTION_MAX_UPDOWN_PSEUDO_COSTS_PLUS_TWICE_MIN = _amplpy_ampls_swig.XPRS_VARSELECTION_MAX_UPDOWN_PSEUDO_COSTS_PLUS_TWICE_MIN
+XPRS_VARSELECTION_MAX_UPDOWN_PSEUDO_COSTS = _amplpy_ampls_swig.XPRS_VARSELECTION_MAX_UPDOWN_PSEUDO_COSTS
+XPRS_VARSELECTION_DOWN_PSEUDO_COST = _amplpy_ampls_swig.XPRS_VARSELECTION_DOWN_PSEUDO_COST
+XPRS_VARSELECTION_UP_PSEUDO_COST = _amplpy_ampls_swig.XPRS_VARSELECTION_UP_PSEUDO_COST
+XPRS_SCALING_ROW_SCALING = _amplpy_ampls_swig.XPRS_SCALING_ROW_SCALING
+XPRS_SCALING_COLUMN_SCALING = _amplpy_ampls_swig.XPRS_SCALING_COLUMN_SCALING
+XPRS_SCALING_ROW_SCALING_AGAIN = _amplpy_ampls_swig.XPRS_SCALING_ROW_SCALING_AGAIN
+XPRS_SCALING_MAXIMUM = _amplpy_ampls_swig.XPRS_SCALING_MAXIMUM
+XPRS_SCALING_CURTIS_REID = _amplpy_ampls_swig.XPRS_SCALING_CURTIS_REID
+XPRS_SCALING_BY_MAX_ELEM_NOT_GEO_MEAN = _amplpy_ampls_swig.XPRS_SCALING_BY_MAX_ELEM_NOT_GEO_MEAN
+XPRS_SCALING_BIGM = _amplpy_ampls_swig.XPRS_SCALING_BIGM
+XPRS_SCALING_SIMPLEX_OBJECTIVE_SCALING = _amplpy_ampls_swig.XPRS_SCALING_SIMPLEX_OBJECTIVE_SCALING
+XPRS_SCALING_IGNORE_QUADRATIC_ROW_PART = _amplpy_ampls_swig.XPRS_SCALING_IGNORE_QUADRATIC_ROW_PART
+XPRS_SCALING_BEFORE_PRESOLVE = _amplpy_ampls_swig.XPRS_SCALING_BEFORE_PRESOLVE
+XPRS_SCALING_NO_SCALING_ROWS_UP = _amplpy_ampls_swig.XPRS_SCALING_NO_SCALING_ROWS_UP
+XPRS_SCALING_NO_SCALING_COLUMNS_DOWN = _amplpy_ampls_swig.XPRS_SCALING_NO_SCALING_COLUMNS_DOWN
+XPRS_SCALING_DISABLE_GLOBAL_OBJECTIVE_SCALING = _amplpy_ampls_swig.XPRS_SCALING_DISABLE_GLOBAL_OBJECTIVE_SCALING
+XPRS_SCALING_RHS_SCALING = _amplpy_ampls_swig.XPRS_SCALING_RHS_SCALING
+XPRS_SCALING_NO_AGGRESSIVE_Q_SCALING = _amplpy_ampls_swig.XPRS_SCALING_NO_AGGRESSIVE_Q_SCALING
+XPRS_SCALING_SLACK_SCALING = _amplpy_ampls_swig.XPRS_SCALING_SLACK_SCALING
+XPRS_SCALING_RUIZ = _amplpy_ampls_swig.XPRS_SCALING_RUIZ
+XPRS_SCALING_DOGLEG = _amplpy_ampls_swig.XPRS_SCALING_DOGLEG
+XPRS_SCALING_BEFORE_AND_AFTER_PRESOLVE = _amplpy_ampls_swig.XPRS_SCALING_BEFORE_AND_AFTER_PRESOLVE
+XPRS_CUTSELECT_CLIQUE = _amplpy_ampls_swig.XPRS_CUTSELECT_CLIQUE
+XPRS_CUTSELECT_MIR = _amplpy_ampls_swig.XPRS_CUTSELECT_MIR
+XPRS_CUTSELECT_COVER = _amplpy_ampls_swig.XPRS_CUTSELECT_COVER
+XPRS_CUTSELECT_FLOWPATH = _amplpy_ampls_swig.XPRS_CUTSELECT_FLOWPATH
+XPRS_CUTSELECT_IMPLICATION = _amplpy_ampls_swig.XPRS_CUTSELECT_IMPLICATION
+XPRS_CUTSELECT_LIFT_AND_PROJECT = _amplpy_ampls_swig.XPRS_CUTSELECT_LIFT_AND_PROJECT
+XPRS_CUTSELECT_DISABLE_CUT_ROWS = _amplpy_ampls_swig.XPRS_CUTSELECT_DISABLE_CUT_ROWS
+XPRS_CUTSELECT_GUB_COVER = _amplpy_ampls_swig.XPRS_CUTSELECT_GUB_COVER
+XPRS_CUTSELECT_DEFAULT = _amplpy_ampls_swig.XPRS_CUTSELECT_DEFAULT
+XPRS_REFINEOPS_LPOPTIMAL = _amplpy_ampls_swig.XPRS_REFINEOPS_LPOPTIMAL
+XPRS_REFINEOPS_MIPSOLUTION = _amplpy_ampls_swig.XPRS_REFINEOPS_MIPSOLUTION
+XPRS_REFINEOPS_MIPOPTIMAL = _amplpy_ampls_swig.XPRS_REFINEOPS_MIPOPTIMAL
+XPRS_REFINEOPS_MIPNODELP = _amplpy_ampls_swig.XPRS_REFINEOPS_MIPNODELP
+XPRS_REFINEOPS_LPPRESOLVE = _amplpy_ampls_swig.XPRS_REFINEOPS_LPPRESOLVE
+XPRS_REFINEOPS_ITERATIVEREFINER = _amplpy_ampls_swig.XPRS_REFINEOPS_ITERATIVEREFINER
+XPRS_REFINEOPS_REFINERPRECISION = _amplpy_ampls_swig.XPRS_REFINEOPS_REFINERPRECISION
+XPRS_REFINEOPS_REFINERUSEPRIMAL = _amplpy_ampls_swig.XPRS_REFINEOPS_REFINERUSEPRIMAL
+XPRS_REFINEOPS_REFINERUSEDUAL = _amplpy_ampls_swig.XPRS_REFINEOPS_REFINERUSEDUAL
+XPRS_REFINEOPS_MIPFIXGLOBALS = _amplpy_ampls_swig.XPRS_REFINEOPS_MIPFIXGLOBALS
+XPRS_REFINEOPS_MIPFIXGLOBALSTARGET = _amplpy_ampls_swig.XPRS_REFINEOPS_MIPFIXGLOBALSTARGET
+XPRS_DUALIZEOPS_SWITCHALGORITHM = _amplpy_ampls_swig.XPRS_DUALIZEOPS_SWITCHALGORITHM
+XPRS_TREEDIAGNOSTICS_MEMORY_USAGE_SUMMARIES = _amplpy_ampls_swig.XPRS_TREEDIAGNOSTICS_MEMORY_USAGE_SUMMARIES
+XPRS_TREEDIAGNOSTICS_MEMORY_SAVED_REPORTS = _amplpy_ampls_swig.XPRS_TREEDIAGNOSTICS_MEMORY_SAVED_REPORTS
+XPRS_BARPRESOLVEOPS_STANDARD_PRESOLVE = _amplpy_ampls_swig.XPRS_BARPRESOLVEOPS_STANDARD_PRESOLVE
+XPRS_BARPRESOLVEOPS_EXTRA_BARRIER_PRESOLVE = _amplpy_ampls_swig.XPRS_BARPRESOLVEOPS_EXTRA_BARRIER_PRESOLVE
+XPRS_MIPRESTART_DEFAULT = _amplpy_ampls_swig.XPRS_MIPRESTART_DEFAULT
+XPRS_MIPRESTART_OFF = _amplpy_ampls_swig.XPRS_MIPRESTART_OFF
+XPRS_MIPRESTART_MODERATE = _amplpy_ampls_swig.XPRS_MIPRESTART_MODERATE
+XPRS_MIPRESTART_AGGRESSIVE = _amplpy_ampls_swig.XPRS_MIPRESTART_AGGRESSIVE
+XPRS_PRECOEFELIM_DISABLED = _amplpy_ampls_swig.XPRS_PRECOEFELIM_DISABLED
+XPRS_PRECOEFELIM_AGGRESSIVE = _amplpy_ampls_swig.XPRS_PRECOEFELIM_AGGRESSIVE
+XPRS_PRECOEFELIM_CAUTIOUS = _amplpy_ampls_swig.XPRS_PRECOEFELIM_CAUTIOUS
+XPRS_PREDOMROW_AUTOMATIC = _amplpy_ampls_swig.XPRS_PREDOMROW_AUTOMATIC
+XPRS_PREDOMROW_DISABLED = _amplpy_ampls_swig.XPRS_PREDOMROW_DISABLED
+XPRS_PREDOMROW_CAUTIOUS = _amplpy_ampls_swig.XPRS_PREDOMROW_CAUTIOUS
+XPRS_PREDOMROW_MEDIUM = _amplpy_ampls_swig.XPRS_PREDOMROW_MEDIUM
+XPRS_PREDOMROW_AGGRESSIVE = _amplpy_ampls_swig.XPRS_PREDOMROW_AGGRESSIVE
+XPRS_PREDOMCOL_AUTOMATIC = _amplpy_ampls_swig.XPRS_PREDOMCOL_AUTOMATIC
+XPRS_PREDOMCOL_DISABLED = _amplpy_ampls_swig.XPRS_PREDOMCOL_DISABLED
+XPRS_PREDOMCOL_CAUTIOUS = _amplpy_ampls_swig.XPRS_PREDOMCOL_CAUTIOUS
+XPRS_PREDOMCOL_AGGRESSIVE = _amplpy_ampls_swig.XPRS_PREDOMCOL_AGGRESSIVE
+XPRS_PRIMALUNSHIFT_ALLOW_DUAL_UNSHIFT = _amplpy_ampls_swig.XPRS_PRIMALUNSHIFT_ALLOW_DUAL_UNSHIFT
+XPRS_PRIMALUNSHIFT_NO_DUAL_UNSHIFT = _amplpy_ampls_swig.XPRS_PRIMALUNSHIFT_NO_DUAL_UNSHIFT
+XPRS_REPAIRINDEFINITEQ_REPAIR_IF_POSSIBLE = _amplpy_ampls_swig.XPRS_REPAIRINDEFINITEQ_REPAIR_IF_POSSIBLE
+XPRS_REPAIRINDEFINITEQ_NO_REPAIR = _amplpy_ampls_swig.XPRS_REPAIRINDEFINITEQ_NO_REPAIR
+XPRS_OBJ_MINIMIZE = _amplpy_ampls_swig.XPRS_OBJ_MINIMIZE
+XPRS_OBJ_MAXIMIZE = _amplpy_ampls_swig.XPRS_OBJ_MAXIMIZE
+XPRS_TYPE_NOTDEFINED = _amplpy_ampls_swig.XPRS_TYPE_NOTDEFINED
+XPRS_TYPE_INT = _amplpy_ampls_swig.XPRS_TYPE_INT
+XPRS_TYPE_INT64 = _amplpy_ampls_swig.XPRS_TYPE_INT64
+XPRS_TYPE_DOUBLE = _amplpy_ampls_swig.XPRS_TYPE_DOUBLE
+XPRS_TYPE_STRING = _amplpy_ampls_swig.XPRS_TYPE_STRING
+XPRS_QCONVEXITY_UNKNOWN = _amplpy_ampls_swig.XPRS_QCONVEXITY_UNKNOWN
+XPRS_QCONVEXITY_NONCONVEX = _amplpy_ampls_swig.XPRS_QCONVEXITY_NONCONVEX
+XPRS_QCONVEXITY_CONVEX = _amplpy_ampls_swig.XPRS_QCONVEXITY_CONVEX
+XPRS_QCONVEXITY_REPAIRABLE = _amplpy_ampls_swig.XPRS_QCONVEXITY_REPAIRABLE
+XPRS_QCONVEXITY_CONVEXCONE = _amplpy_ampls_swig.XPRS_QCONVEXITY_CONVEXCONE
+XPRS_QCONVEXITY_CONECONVERTABLE = _amplpy_ampls_swig.XPRS_QCONVEXITY_CONECONVERTABLE
+XPRS_SOLINFO_ABSPRIMALINFEAS = _amplpy_ampls_swig.XPRS_SOLINFO_ABSPRIMALINFEAS
+XPRS_SOLINFO_RELPRIMALINFEAS = _amplpy_ampls_swig.XPRS_SOLINFO_RELPRIMALINFEAS
+XPRS_SOLINFO_ABSDUALINFEAS = _amplpy_ampls_swig.XPRS_SOLINFO_ABSDUALINFEAS
+XPRS_SOLINFO_RELDUALINFEAS = _amplpy_ampls_swig.XPRS_SOLINFO_RELDUALINFEAS
+XPRS_SOLINFO_MAXMIPFRACTIONAL = _amplpy_ampls_swig.XPRS_SOLINFO_MAXMIPFRACTIONAL
+XPRS_SOLINFO_ABSMIPINFEAS = _amplpy_ampls_swig.XPRS_SOLINFO_ABSMIPINFEAS
+XPRS_SOLINFO_RELMIPINFEAS = _amplpy_ampls_swig.XPRS_SOLINFO_RELMIPINFEAS
+XPRS_TUNERMODE_AUTOMATIC = _amplpy_ampls_swig.XPRS_TUNERMODE_AUTOMATIC
+XPRS_TUNERMODE_OFF = _amplpy_ampls_swig.XPRS_TUNERMODE_OFF
+XPRS_TUNERMODE_ON = _amplpy_ampls_swig.XPRS_TUNERMODE_ON
+XPRS_TUNERMETHOD_AUTOMATIC = _amplpy_ampls_swig.XPRS_TUNERMETHOD_AUTOMATIC
+XPRS_TUNERMETHOD_LPQUICK = _amplpy_ampls_swig.XPRS_TUNERMETHOD_LPQUICK
+XPRS_TUNERMETHOD_MIPQUICK = _amplpy_ampls_swig.XPRS_TUNERMETHOD_MIPQUICK
+XPRS_TUNERMETHOD_MIPCOMPREHENSIVE = _amplpy_ampls_swig.XPRS_TUNERMETHOD_MIPCOMPREHENSIVE
+XPRS_TUNERMETHOD_MIPROOTFOCUS = _amplpy_ampls_swig.XPRS_TUNERMETHOD_MIPROOTFOCUS
+XPRS_TUNERMETHOD_MIPTREEFOCUS = _amplpy_ampls_swig.XPRS_TUNERMETHOD_MIPTREEFOCUS
+XPRS_TUNERMETHOD_MIPSIMPLE = _amplpy_ampls_swig.XPRS_TUNERMETHOD_MIPSIMPLE
+XPRS_TUNERMETHOD_SLPQUICK = _amplpy_ampls_swig.XPRS_TUNERMETHOD_SLPQUICK
+XPRS_TUNERMETHOD_MISLPQUICK = _amplpy_ampls_swig.XPRS_TUNERMETHOD_MISLPQUICK
+XPRS_TUNERMETHOD_MIPHEURISTICS = _amplpy_ampls_swig.XPRS_TUNERMETHOD_MIPHEURISTICS
+XPRS_TUNERMETHOD_LPNUMERICS = _amplpy_ampls_swig.XPRS_TUNERMETHOD_LPNUMERICS
+XPRS_TUNERTARGET_AUTOMATIC = _amplpy_ampls_swig.XPRS_TUNERTARGET_AUTOMATIC
+XPRS_TUNERTARGET_TIMEGAP = _amplpy_ampls_swig.XPRS_TUNERTARGET_TIMEGAP
+XPRS_TUNERTARGET_TIMEBOUND = _amplpy_ampls_swig.XPRS_TUNERTARGET_TIMEBOUND
+XPRS_TUNERTARGET_TIMEOBJVAL = _amplpy_ampls_swig.XPRS_TUNERTARGET_TIMEOBJVAL
+XPRS_TUNERTARGET_INTEGRAL = _amplpy_ampls_swig.XPRS_TUNERTARGET_INTEGRAL
+XPRS_TUNERTARGET_SLPTIME = _amplpy_ampls_swig.XPRS_TUNERTARGET_SLPTIME
+XPRS_TUNERTARGET_SLPOBJVAL = _amplpy_ampls_swig.XPRS_TUNERTARGET_SLPOBJVAL
+XPRS_TUNERTARGET_SLPVALIDATION = _amplpy_ampls_swig.XPRS_TUNERTARGET_SLPVALIDATION
+XPRS_TUNERTARGET_GAP = _amplpy_ampls_swig.XPRS_TUNERTARGET_GAP
+XPRS_TUNERTARGET_BOUND = _amplpy_ampls_swig.XPRS_TUNERTARGET_BOUND
+XPRS_TUNERTARGET_OBJVAL = _amplpy_ampls_swig.XPRS_TUNERTARGET_OBJVAL
+XPRS_TUNERTARGET_PRIMALINTEGRAL = _amplpy_ampls_swig.XPRS_TUNERTARGET_PRIMALINTEGRAL
+XPRS_TUNERHISTORY_IGNORE = _amplpy_ampls_swig.XPRS_TUNERHISTORY_IGNORE
+XPRS_TUNERHISTORY_APPEND = _amplpy_ampls_swig.XPRS_TUNERHISTORY_APPEND
+XPRS_TUNERHISTORY_REUSE = _amplpy_ampls_swig.XPRS_TUNERHISTORY_REUSE
+XPRS_TUNERROOTALG_DUAL = _amplpy_ampls_swig.XPRS_TUNERROOTALG_DUAL
+XPRS_TUNERROOTALG_PRIMAL = _amplpy_ampls_swig.XPRS_TUNERROOTALG_PRIMAL
+XPRS_TUNERROOTALG_BARRIER = _amplpy_ampls_swig.XPRS_TUNERROOTALG_BARRIER
+XPRS_TUNERROOTALG_NETWORK = _amplpy_ampls_swig.XPRS_TUNERROOTALG_NETWORK
+XPRS_LPFLAGS_DUAL = _amplpy_ampls_swig.XPRS_LPFLAGS_DUAL
+XPRS_LPFLAGS_PRIMAL = _amplpy_ampls_swig.XPRS_LPFLAGS_PRIMAL
+XPRS_LPFLAGS_BARRIER = _amplpy_ampls_swig.XPRS_LPFLAGS_BARRIER
+XPRS_LPFLAGS_NETWORK = _amplpy_ampls_swig.XPRS_LPFLAGS_NETWORK
+XPRS_GENCONS_MAX = _amplpy_ampls_swig.XPRS_GENCONS_MAX
+XPRS_GENCONS_MIN = _amplpy_ampls_swig.XPRS_GENCONS_MIN
+XPRS_GENCONS_AND = _amplpy_ampls_swig.XPRS_GENCONS_AND
+XPRS_GENCONS_OR = _amplpy_ampls_swig.XPRS_GENCONS_OR
+XPRS_GENCONS_ABS = _amplpy_ampls_swig.XPRS_GENCONS_ABS
+XPRS_CLAMPING_PRIMAL = _amplpy_ampls_swig.XPRS_CLAMPING_PRIMAL
+XPRS_CLAMPING_DUAL = _amplpy_ampls_swig.XPRS_CLAMPING_DUAL
+XPRS_CLAMPING_SLACKS = _amplpy_ampls_swig.XPRS_CLAMPING_SLACKS
+XPRS_CLAMPING_RDJ = _amplpy_ampls_swig.XPRS_CLAMPING_RDJ
+XPRS_ROWFLAG_QUADRATIC = _amplpy_ampls_swig.XPRS_ROWFLAG_QUADRATIC
+XPRS_ROWFLAG_DELAYED = _amplpy_ampls_swig.XPRS_ROWFLAG_DELAYED
+XPRS_ROWFLAG_MODELCUT = _amplpy_ampls_swig.XPRS_ROWFLAG_MODELCUT
+XPRS_ROWFLAG_INDICATOR = _amplpy_ampls_swig.XPRS_ROWFLAG_INDICATOR
+XPRS_ROWFLAG_NONLINEAR = _amplpy_ampls_swig.XPRS_ROWFLAG_NONLINEAR
+XPRS_OBJECTIVE_PRIORITY = _amplpy_ampls_swig.XPRS_OBJECTIVE_PRIORITY
+XPRS_OBJECTIVE_WEIGHT = _amplpy_ampls_swig.XPRS_OBJECTIVE_WEIGHT
+XPRS_OBJECTIVE_ABSTOL = _amplpy_ampls_swig.XPRS_OBJECTIVE_ABSTOL
+XPRS_OBJECTIVE_RELTOL = _amplpy_ampls_swig.XPRS_OBJECTIVE_RELTOL
+XPRS_OBJECTIVE_RHS = _amplpy_ampls_swig.XPRS_OBJECTIVE_RHS
+XPRS_ALLOW_COMPUTE_ALWAYS = _amplpy_ampls_swig.XPRS_ALLOW_COMPUTE_ALWAYS
+XPRS_ALLOW_COMPUTE_NEVER = _amplpy_ampls_swig.XPRS_ALLOW_COMPUTE_NEVER
+XPRS_ALLOW_COMPUTE_DEFAULT = _amplpy_ampls_swig.XPRS_ALLOW_COMPUTE_DEFAULT
+XPRS_COMPUTELOG_NEVER = _amplpy_ampls_swig.XPRS_COMPUTELOG_NEVER
+XPRS_COMPUTELOG_REALTIME = _amplpy_ampls_swig.XPRS_COMPUTELOG_REALTIME
+XPRS_COMPUTELOG_ONCOMPLETION = _amplpy_ampls_swig.XPRS_COMPUTELOG_ONCOMPLETION
+XPRS_COMPUTELOG_ONERROR = _amplpy_ampls_swig.XPRS_COMPUTELOG_ONERROR
+XPRS_NAMES_ROW = _amplpy_ampls_swig.XPRS_NAMES_ROW
+XPRS_NAMES_COLUMN = _amplpy_ampls_swig.XPRS_NAMES_COLUMN
+XPRS_NAMES_SET = _amplpy_ampls_swig.XPRS_NAMES_SET
+XPRS_NAMES_PWLCONS = _amplpy_ampls_swig.XPRS_NAMES_PWLCONS
+XPRS_NAMES_GENCONS = _amplpy_ampls_swig.XPRS_NAMES_GENCONS
+XPRS_NAMES_OBJECTIVE = _amplpy_ampls_swig.XPRS_NAMES_OBJECTIVE
+XPRS_NAMES_USERFUNC = _amplpy_ampls_swig.XPRS_NAMES_USERFUNC
+XPRS_NAMES_INTERNALFUNC = _amplpy_ampls_swig.XPRS_NAMES_INTERNALFUNC
+XPRS_NAMES_USERFUNCNOCASE = _amplpy_ampls_swig.XPRS_NAMES_USERFUNCNOCASE
+XPRS_NAMES_INTERNALFUNCNOCASE = _amplpy_ampls_swig.XPRS_NAMES_INTERNALFUNCNOCASE
+XPRS_GLOBALBOUNDINGBOX_NOT_APPLIED = _amplpy_ampls_swig.XPRS_GLOBALBOUNDINGBOX_NOT_APPLIED
+XPRS_GLOBALBOUNDINGBOX_ORIGINAL = _amplpy_ampls_swig.XPRS_GLOBALBOUNDINGBOX_ORIGINAL
+XPRS_GLOBALBOUNDINGBOX_AUXILIARY = _amplpy_ampls_swig.XPRS_GLOBALBOUNDINGBOX_AUXILIARY
+XPRS_MULTIOBJOPS_ENABLED = _amplpy_ampls_swig.XPRS_MULTIOBJOPS_ENABLED
+XPRS_MULTIOBJOPS_PRESOLVE = _amplpy_ampls_swig.XPRS_MULTIOBJOPS_PRESOLVE
+XPRS_MULTIOBJOPS_RCFIXING = _amplpy_ampls_swig.XPRS_MULTIOBJOPS_RCFIXING
+XPRS_ISUSERSOLUTION = _amplpy_ampls_swig.XPRS_ISUSERSOLUTION
+XPRS_ISREPROCESSEDUSERSOLUTION = _amplpy_ampls_swig.XPRS_ISREPROCESSEDUSERSOLUTION
+
+def XPRScopycallbacks(dest, src):
+    return _amplpy_ampls_swig.XPRScopycallbacks(dest, src)
+
+def XPRScopycontrols(dest, src):
+    return _amplpy_ampls_swig.XPRScopycontrols(dest, src)
+
+def XPRScopyprob(dest, src, name):
+    return _amplpy_ampls_swig.XPRScopyprob(dest, src, name)
+
+def XPRScreateprob(p_prob):
+    return _amplpy_ampls_swig.XPRScreateprob(p_prob)
+
+def XPRSdestroyprob(prob):
+    return _amplpy_ampls_swig.XPRSdestroyprob(prob)
+
+def XPRSinit(path):
+    return _amplpy_ampls_swig.XPRSinit(path)
+
+def XPRSfree():
+    return _amplpy_ampls_swig.XPRSfree()
+
+def XPRSgetlicerrmsg(buffer, maxbytes):
+    return _amplpy_ampls_swig.XPRSgetlicerrmsg(buffer, maxbytes)
+
+def XPRSlicense(p_i, p_c):
+    return _amplpy_ampls_swig.XPRSlicense(p_i, p_c)
+
+def XPRSbeginlicensing(p_notyet):
+    return _amplpy_ampls_swig.XPRSbeginlicensing(p_notyet)
+
+def XPRSendlicensing():
+    return _amplpy_ampls_swig.XPRSendlicensing()
+
+def XPRSsetcheckedmode(checkedmode):
+    return _amplpy_ampls_swig.XPRSsetcheckedmode(checkedmode)
+
+def XPRSgetcheckedmode(p_checkedmode):
+    return _amplpy_ampls_swig.XPRSgetcheckedmode(p_checkedmode)
+
+def XPRSgetbanner(banner):
+    return _amplpy_ampls_swig.XPRSgetbanner(banner)
+
+def XPRSgetversion(version):
+    return _amplpy_ampls_swig.XPRSgetversion(version)
+
+def XPRSgetdaysleft(p_daysleft):
+    return _amplpy_ampls_swig.XPRSgetdaysleft(p_daysleft)
+
+def XPRSfeaturequery(feature, p_status):
+    return _amplpy_ampls_swig.XPRSfeaturequery(feature, p_status)
+
+def XPRSsetprobname(prob, probname):
+    return _amplpy_ampls_swig.XPRSsetprobname(prob, probname)
+
+def XPRSsetlogfile(prob, filename):
+    return _amplpy_ampls_swig.XPRSsetlogfile(prob, filename)
+
+def XPRSsetdefaultcontrol(prob, control):
+    return _amplpy_ampls_swig.XPRSsetdefaultcontrol(prob, control)
+
+def XPRSsetdefaults(prob):
+    return _amplpy_ampls_swig.XPRSsetdefaults(prob)
+
+def XPRSinterrupt(prob, reason):
+    return _amplpy_ampls_swig.XPRSinterrupt(prob, reason)
+
+def XPRSgetprobname(prob, name):
+    return _amplpy_ampls_swig.XPRSgetprobname(prob, name)
+
+def XPRSsetintcontrol(prob, control, value):
+    return _amplpy_ampls_swig.XPRSsetintcontrol(prob, control, value)
+
+def XPRSsetdblcontrol(prob, control, value):
+    return _amplpy_ampls_swig.XPRSsetdblcontrol(prob, control, value)
+
+def XPRSsetstrcontrol(prob, control, value):
+    return _amplpy_ampls_swig.XPRSsetstrcontrol(prob, control, value)
+
+def XPRSgetintcontrol(prob, control, p_value):
+    return _amplpy_ampls_swig.XPRSgetintcontrol(prob, control, p_value)
+
+def XPRSgetdblcontrol(prob, control, p_value):
+    return _amplpy_ampls_swig.XPRSgetdblcontrol(prob, control, p_value)
+
+def XPRSgetstrcontrol(prob, control, value):
+    return _amplpy_ampls_swig.XPRSgetstrcontrol(prob, control, value)
+
+def XPRSgetstringcontrol(prob, control, value, maxbytes, p_nbytes):
+    return _amplpy_ampls_swig.XPRSgetstringcontrol(prob, control, value, maxbytes, p_nbytes)
+
+def XPRSgetintattrib(prob, attrib, p_value):
+    return _amplpy_ampls_swig.XPRSgetintattrib(prob, attrib, p_value)
+
+def XPRSgetstrattrib(prob, attrib, value):
+    return _amplpy_ampls_swig.XPRSgetstrattrib(prob, attrib, value)
+
+def XPRSgetstringattrib(prob, attrib, value, maxbytes, p_nbytes):
+    return _amplpy_ampls_swig.XPRSgetstringattrib(prob, attrib, value, maxbytes, p_nbytes)
+
+def XPRSgetdblattrib(prob, attrib, p_value):
+    return _amplpy_ampls_swig.XPRSgetdblattrib(prob, attrib, p_value)
+
+def XPRSgetcontrolinfo(prob, name, p_id, p_type):
+    return _amplpy_ampls_swig.XPRSgetcontrolinfo(prob, name, p_id, p_type)
+
+def XPRSgetattribinfo(prob, name, p_id, p_type):
+    return _amplpy_ampls_swig.XPRSgetattribinfo(prob, name, p_id, p_type)
+
+def XPRSsetobjintcontrol(prob, objidx, control, value):
+    return _amplpy_ampls_swig.XPRSsetobjintcontrol(prob, objidx, control, value)
+
+def XPRSsetobjdblcontrol(prob, objidx, control, value):
+    return _amplpy_ampls_swig.XPRSsetobjdblcontrol(prob, objidx, control, value)
+
+def XPRSgetobjintcontrol(prob, objidx, control, p_value):
+    return _amplpy_ampls_swig.XPRSgetobjintcontrol(prob, objidx, control, p_value)
+
+def XPRSgetobjdblcontrol(prob, objidx, control, p_value):
+    return _amplpy_ampls_swig.XPRSgetobjdblcontrol(prob, objidx, control, p_value)
+
+def XPRSgetobjintattrib(prob, solveidx, attrib, p_value):
+    return _amplpy_ampls_swig.XPRSgetobjintattrib(prob, solveidx, attrib, p_value)
+
+def XPRSgetobjintattrib64(prob, solveidx, attrib, p_value):
+    return _amplpy_ampls_swig.XPRSgetobjintattrib64(prob, solveidx, attrib, p_value)
+
+def XPRSgetobjdblattrib(prob, solveidx, attrib, p_value):
+    return _amplpy_ampls_swig.XPRSgetobjdblattrib(prob, solveidx, attrib, p_value)
+
+def XPRSgetqobj(prob, objqcol1, objqcol2, p_objqcoef):
+    return _amplpy_ampls_swig.XPRSgetqobj(prob, objqcol1, objqcol2, p_objqcoef)
+
+def XPRSreadprob(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSreadprob(prob, filename, flags)
+
+def XPRSloadlp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub):
+    return _amplpy_ampls_swig.XPRSloadlp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub)
+
+def XPRSloadqp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef):
+    return _amplpy_ampls_swig.XPRSloadqp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef)
+
+def XPRSloadmiqp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval):
+    return _amplpy_ampls_swig.XPRSloadmiqp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval)
+
+def XPRSloadmiqp64(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval):
+    return _amplpy_ampls_swig.XPRSloadmiqp64(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval)
+
+def XPRSfixmipentities(prob, options):
+    return _amplpy_ampls_swig.XPRSfixmipentities(prob, options)
+
+def XPRSloadmodelcuts(prob, nrows, rowind):
+    return _amplpy_ampls_swig.XPRSloadmodelcuts(prob, nrows, rowind)
+
+def XPRSloaddelayedrows(prob, nrows, rowind):
+    return _amplpy_ampls_swig.XPRSloaddelayedrows(prob, nrows, rowind)
+
+def XPRSloaddirs(prob, ndirs, colind, priority, dir, uppseudo, downpseudo):
+    return _amplpy_ampls_swig.XPRSloaddirs(prob, ndirs, colind, priority, dir, uppseudo, downpseudo)
+
+def XPRSloadbranchdirs(prob, ncols, colind, dir):
+    return _amplpy_ampls_swig.XPRSloadbranchdirs(prob, ncols, colind, dir)
+
+def XPRSloadpresolvedirs(prob, ndirs, colind, priority, dir, uppseudo, downpseudo):
+    return _amplpy_ampls_swig.XPRSloadpresolvedirs(prob, ndirs, colind, priority, dir, uppseudo, downpseudo)
+
+def XPRSloadmip(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval):
+    return _amplpy_ampls_swig.XPRSloadmip(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval)
+
+def XPRSloadmip64(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval):
+    return _amplpy_ampls_swig.XPRSloadmip64(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval)
+
+def XPRSaddnames(prob, type, names, first, last):
+    return _amplpy_ampls_swig.XPRSaddnames(prob, type, names, first, last)
+
+def XPRSaddsetnames(prob, names, first, last):
+    return _amplpy_ampls_swig.XPRSaddsetnames(prob, names, first, last)
+
+def XPRSscale(prob, rowscale, colscale):
+    return _amplpy_ampls_swig.XPRSscale(prob, rowscale, colscale)
+
+def XPRSreaddirs(prob, filename):
+    return _amplpy_ampls_swig.XPRSreaddirs(prob, filename)
+
+def XPRSwritedirs(prob, filename):
+    return _amplpy_ampls_swig.XPRSwritedirs(prob, filename)
+
+def XPRSunloadprob(prob):
+    return _amplpy_ampls_swig.XPRSunloadprob(prob)
+
+def XPRSsetindicators(prob, nrows, rowind, colind, complement):
+    return _amplpy_ampls_swig.XPRSsetindicators(prob, nrows, rowind, colind, complement)
+
+def XPRSaddpwlcons(prob, npwls, npoints, colind, resultant, start, xval, yval):
+    return _amplpy_ampls_swig.XPRSaddpwlcons(prob, npwls, npoints, colind, resultant, start, xval, yval)
+
+def XPRSgetpwlcons(prob, colind, resultant, start, xval, yval, maxpoints, p_npoints, first, last):
+    return _amplpy_ampls_swig.XPRSgetpwlcons(prob, colind, resultant, start, xval, yval, maxpoints, p_npoints, first, last)
+
+def XPRSaddgencons(prob, ncons, ncols, nvals, contype, resultant, colstart, colind, valstart, val):
+    return _amplpy_ampls_swig.XPRSaddgencons(prob, ncons, ncols, nvals, contype, resultant, colstart, colind, valstart, val)
+
+def XPRSgetgencons(prob, contype, resultant, colstart, colind, maxcols, p_ncols, valstart, val, maxvals, p_nvals, first, last):
+    return _amplpy_ampls_swig.XPRSgetgencons(prob, contype, resultant, colstart, colind, maxcols, p_ncols, valstart, val, maxvals, p_nvals, first, last)
+
+def XPRSdelpwlcons(prob, npwls, pwlind):
+    return _amplpy_ampls_swig.XPRSdelpwlcons(prob, npwls, pwlind)
+
+def XPRSdelgencons(prob, ncons, conind):
+    return _amplpy_ampls_swig.XPRSdelgencons(prob, ncons, conind)
+
+def XPRSdumpcontrols(prob):
+    return _amplpy_ampls_swig.XPRSdumpcontrols(prob)
+
+def XPRSgetindicators(prob, colind, complement, first, last):
+    return _amplpy_ampls_swig.XPRSgetindicators(prob, colind, complement, first, last)
+
+def XPRSdelindicators(prob, first, last):
+    return _amplpy_ampls_swig.XPRSdelindicators(prob, first, last)
+
+def XPRSgetdirs(prob, p_ndir, indices, prios, branchdirs, uppseudo, downpseudo):
+    return _amplpy_ampls_swig.XPRSgetdirs(prob, p_ndir, indices, prios, branchdirs, uppseudo, downpseudo)
+
+def XPRSlpoptimize(prob, flags):
+    return _amplpy_ampls_swig.XPRSlpoptimize(prob, flags)
+
+def XPRSmipoptimize(prob, flags):
+    return _amplpy_ampls_swig.XPRSmipoptimize(prob, flags)
+
+def XPRSoptimize(prob, flags, solvestatus, solstatus):
+    return _amplpy_ampls_swig.XPRSoptimize(prob, flags, solvestatus, solstatus)
+
+def XPRSreadslxsol(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSreadslxsol(prob, filename, flags)
+
+def XPRSalter(prob, filename):
+    return _amplpy_ampls_swig.XPRSalter(prob, filename)
+
+def XPRSreadbasis(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSreadbasis(prob, filename, flags)
+
+def XPRSreadbinsol(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSreadbinsol(prob, filename, flags)
+
+def XPRSgetinfeas(prob, p_nprimalcols, p_nprimalrows, p_ndualrows, p_ndualcols, x, slack, duals, djs):
+    return _amplpy_ampls_swig.XPRSgetinfeas(prob, p_nprimalcols, p_nprimalrows, p_ndualrows, p_ndualcols, x, slack, duals, djs)
+
+def XPRSgetscaledinfeas(prob, p_nprimalcols, p_nprimalrows, p_ndualrows, p_ndualcols, x, slack, duals, djs):
+    return _amplpy_ampls_swig.XPRSgetscaledinfeas(prob, p_nprimalcols, p_nprimalrows, p_ndualrows, p_ndualcols, x, slack, duals, djs)
+
+def XPRSgetunbvec(prob, p_seq):
+    return _amplpy_ampls_swig.XPRSgetunbvec(prob, p_seq)
+
+def XPRScrossoverlpsol(prob, p_status):
+    return _amplpy_ampls_swig.XPRScrossoverlpsol(prob, p_status)
+
+def XPRStune(prob, flags):
+    return _amplpy_ampls_swig.XPRStune(prob, flags)
+
+def XPRStunerwritemethod(prob, methodfile):
+    return _amplpy_ampls_swig.XPRStunerwritemethod(prob, methodfile)
+
+def XPRStunerreadmethod(prob, methodfile):
+    return _amplpy_ampls_swig.XPRStunerreadmethod(prob, methodfile)
+
+def XPRSgetbarnumstability(prob, colstab, rowstab):
+    return _amplpy_ampls_swig.XPRSgetbarnumstability(prob, colstab, rowstab)
+
+def XPRSgetpivotorder(prob, pivotorder):
+    return _amplpy_ampls_swig.XPRSgetpivotorder(prob, pivotorder)
+
+def XPRSgetpresolvemap(prob, rowmap, colmap):
+    return _amplpy_ampls_swig.XPRSgetpresolvemap(prob, rowmap, colmap)
+
+def XPRSbtran(prob, vec):
+    return _amplpy_ampls_swig.XPRSbtran(prob, vec)
+
+def XPRSftran(prob, vec):
+    return _amplpy_ampls_swig.XPRSftran(prob, vec)
+
+def XPRSsparsebtran(prob, val, ind, p_ncoefs):
+    return _amplpy_ampls_swig.XPRSsparsebtran(prob, val, ind, p_ncoefs)
+
+def XPRSsparseftran(prob, val, ind, p_ncoefs):
+    return _amplpy_ampls_swig.XPRSsparseftran(prob, val, ind, p_ncoefs)
+
+def XPRSgetobj(prob, objcoef, first, last):
+    return _amplpy_ampls_swig.XPRSgetobj(prob, objcoef, first, last)
+
+def XPRSgetobjn(prob, objidx, objcoef, first, last):
+    return _amplpy_ampls_swig.XPRSgetobjn(prob, objidx, objcoef, first, last)
+
+def XPRSgetrhs(prob, rhs, first, last):
+    return _amplpy_ampls_swig.XPRSgetrhs(prob, rhs, first, last)
+
+def XPRSgetrhsrange(prob, rng, first, last):
+    return _amplpy_ampls_swig.XPRSgetrhsrange(prob, rng, first, last)
+
+def XPRSgetlb(prob, lb, first, last):
+    return _amplpy_ampls_swig.XPRSgetlb(prob, lb, first, last)
+
+def XPRSgetub(prob, ub, first, last):
+    return _amplpy_ampls_swig.XPRSgetub(prob, ub, first, last)
+
+def XPRSgetcols(prob, start, rowind, rowcoef, maxcoefs, p_ncoefs, first, last):
+    return _amplpy_ampls_swig.XPRSgetcols(prob, start, rowind, rowcoef, maxcoefs, p_ncoefs, first, last)
+
+def XPRSgetrows(prob, start, colind, colcoef, maxcoefs, p_ncoefs, first, last):
+    return _amplpy_ampls_swig.XPRSgetrows(prob, start, colind, colcoef, maxcoefs, p_ncoefs, first, last)
+
+def XPRSgetrowflags(prob, flags, first, last):
+    return _amplpy_ampls_swig.XPRSgetrowflags(prob, flags, first, last)
+
+def XPRSclearrowflags(prob, flags, first, last):
+    return _amplpy_ampls_swig.XPRSclearrowflags(prob, flags, first, last)
+
+def XPRSgetcoef(prob, row, col, p_coef):
+    return _amplpy_ampls_swig.XPRSgetcoef(prob, row, col, p_coef)
+
+def XPRSgetmqobj(prob, start, colind, objqcoef, maxcoefs, p_ncoefs, first, last):
+    return _amplpy_ampls_swig.XPRSgetmqobj(prob, start, colind, objqcoef, maxcoefs, p_ncoefs, first, last)
+
+def XPRSwritebasis(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSwritebasis(prob, filename, flags)
+
+def XPRSwritesol(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSwritesol(prob, filename, flags)
+
+def XPRSwritebinsol(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSwritebinsol(prob, filename, flags)
+
+def XPRSwriteprtsol(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSwriteprtsol(prob, filename, flags)
+
+def XPRSwriteslxsol(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSwriteslxsol(prob, filename, flags)
+
+def XPRSgetpresolvesol(prob, x, slack, duals, djs):
+    return _amplpy_ampls_swig.XPRSgetpresolvesol(prob, x, slack, duals, djs)
+
+def XPRSgetsolution(prob, status, x, first, last):
+    return _amplpy_ampls_swig.XPRSgetsolution(prob, status, x, first, last)
+
+def XPRSgetslacks(prob, status, slacks, first, last):
+    return _amplpy_ampls_swig.XPRSgetslacks(prob, status, slacks, first, last)
+
+def XPRSgetduals(prob, status, duals, first, last):
+    return _amplpy_ampls_swig.XPRSgetduals(prob, status, duals, first, last)
+
+def XPRSgetredcosts(prob, status, djs, first, last):
+    return _amplpy_ampls_swig.XPRSgetredcosts(prob, status, djs, first, last)
+
+def XPRSgetlastbarsol(prob, x, slack, duals, djs, p_status):
+    return _amplpy_ampls_swig.XPRSgetlastbarsol(prob, x, slack, duals, djs, p_status)
+
+def XPRSiisclear(prob):
+    return _amplpy_ampls_swig.XPRSiisclear(prob)
+
+def XPRSiisfirst(prob, mode, p_status):
+    return _amplpy_ampls_swig.XPRSiisfirst(prob, mode, p_status)
+
+def XPRSiisnext(prob, p_status):
+    return _amplpy_ampls_swig.XPRSiisnext(prob, p_status)
+
+def XPRSiisstatus(prob, p_niis, nrows, ncols, suminfeas, numinfeas):
+    return _amplpy_ampls_swig.XPRSiisstatus(prob, p_niis, nrows, ncols, suminfeas, numinfeas)
+
+def XPRSiisall(prob):
+    return _amplpy_ampls_swig.XPRSiisall(prob)
+
+def XPRSiiswrite(prob, iis, filename, filetype, flags):
+    return _amplpy_ampls_swig.XPRSiiswrite(prob, iis, filename, filetype, flags)
+
+def XPRSiisisolations(prob, iis):
+    return _amplpy_ampls_swig.XPRSiisisolations(prob, iis)
+
+def XPRSgetiisdata(prob, iis, p_nrows, p_ncols, rowind, colind, contype, bndtype, duals, djs, isolationrows, isolationcols):
+    return _amplpy_ampls_swig.XPRSgetiisdata(prob, iis, p_nrows, p_ncols, rowind, colind, contype, bndtype, duals, djs, isolationrows, isolationcols)
+
+def XPRSgetiis(prob, p_ncols, p_nrows, colind, rowind):
+    return _amplpy_ampls_swig.XPRSgetiis(prob, p_ncols, p_nrows, colind, rowind)
+
+def XPRSloadpresolvebasis(prob, rowstat, colstat):
+    return _amplpy_ampls_swig.XPRSloadpresolvebasis(prob, rowstat, colstat)
+
+def XPRSgetmipentities(prob, p_nentities, p_nsets, coltype, colind, limit, settype, start, setcols, refval):
+    return _amplpy_ampls_swig.XPRSgetmipentities(prob, p_nentities, p_nsets, coltype, colind, limit, settype, start, setcols, refval)
+
+def XPRSgetmipentities64(prob, p_nentities, p_nsets, coltype, colind, limit, settype, start, setcols, refval):
+    return _amplpy_ampls_swig.XPRSgetmipentities64(prob, p_nentities, p_nsets, coltype, colind, limit, settype, start, setcols, refval)
+
+def XPRSloadsecurevecs(prob, nrows, ncols, rowind, colind):
+    return _amplpy_ampls_swig.XPRSloadsecurevecs(prob, nrows, ncols, rowind, colind)
+
+def XPRSaddrows(prob, nrows, ncoefs, rowtype, rhs, rng, start, colind, rowcoef):
+    return _amplpy_ampls_swig.XPRSaddrows(prob, nrows, ncoefs, rowtype, rhs, rng, start, colind, rowcoef)
+
+def XPRSdelrows(prob, nrows, rowind):
+    return _amplpy_ampls_swig.XPRSdelrows(prob, nrows, rowind)
+
+def XPRSaddcols(prob, ncols, ncoefs, objcoef, start, rowind, rowcoef, lb, ub):
+    return _amplpy_ampls_swig.XPRSaddcols(prob, ncols, ncoefs, objcoef, start, rowind, rowcoef, lb, ub)
+
+def XPRSdelcols(prob, ncols, colind):
+    return _amplpy_ampls_swig.XPRSdelcols(prob, ncols, colind)
+
+def XPRSchgcoltype(prob, ncols, colind, coltype):
+    return _amplpy_ampls_swig.XPRSchgcoltype(prob, ncols, colind, coltype)
+
+def XPRSloadbasis(prob, rowstat, colstat):
+    return _amplpy_ampls_swig.XPRSloadbasis(prob, rowstat, colstat)
+
+def XPRSpostsolve(prob):
+    return _amplpy_ampls_swig.XPRSpostsolve(prob)
+
+def XPRSdelsets(prob, nsets, setind):
+    return _amplpy_ampls_swig.XPRSdelsets(prob, nsets, setind)
+
+def XPRSaddsets(prob, nsets, nelems, settype, start, colind, refval):
+    return _amplpy_ampls_swig.XPRSaddsets(prob, nsets, nelems, settype, start, colind, refval)
+
+def XPRSstrongbranch(prob, nbounds, colind, bndtype, bndval, iterlim, objval, status):
+    return _amplpy_ampls_swig.XPRSstrongbranch(prob, nbounds, colind, bndtype, bndval, iterlim, objval, status)
+
+def XPRSestimaterowdualranges(prob, nrows, rowind, iterlim, mindual, maxdual):
+    return _amplpy_ampls_swig.XPRSestimaterowdualranges(prob, nrows, rowind, iterlim, mindual, maxdual)
+
+def XPRSsetmessagestatus(prob, msgcode, status):
+    return _amplpy_ampls_swig.XPRSsetmessagestatus(prob, msgcode, status)
+
+def XPRSgetmessagestatus(prob, msgcode, p_status):
+    return _amplpy_ampls_swig.XPRSgetmessagestatus(prob, msgcode, p_status)
+
+def XPRSchgobjsense(prob, objsense):
+    return _amplpy_ampls_swig.XPRSchgobjsense(prob, objsense)
+
+def XPRSchgglblimit(prob, ncols, colind, limit):
+    return _amplpy_ampls_swig.XPRSchgglblimit(prob, ncols, colind, limit)
+
+def XPRSsave(prob):
+    return _amplpy_ampls_swig.XPRSsave(prob)
+
+def XPRSsaveas(prob, sSaveFileName):
+    return _amplpy_ampls_swig.XPRSsaveas(prob, sSaveFileName)
+
+def XPRSrestore(prob, probname, flags):
+    return _amplpy_ampls_swig.XPRSrestore(prob, probname, flags)
+
+def XPRSpivot(prob, enter, leave):
+    return _amplpy_ampls_swig.XPRSpivot(prob, enter, leave)
+
+def XPRSloadlpsol(prob, x, slack, duals, djs, p_status):
+    return _amplpy_ampls_swig.XPRSloadlpsol(prob, x, slack, duals, djs, p_status)
+
+def XPRSlogfilehandler(xprsobj, cbdata, thread, msg, msgtype, msgcode):
+    return _amplpy_ampls_swig.XPRSlogfilehandler(xprsobj, cbdata, thread, msg, msgtype, msgcode)
+
+def XPRSrepairweightedinfeas(prob, p_status, lepref, gepref, lbpref, ubpref, phase2, delta, flags):
+    return _amplpy_ampls_swig.XPRSrepairweightedinfeas(prob, p_status, lepref, gepref, lbpref, ubpref, phase2, delta, flags)
+
+def XPRSrepairweightedinfeasbounds(prob, p_status, lepref, gepref, lbpref, ubpref, lerelax, gerelax, lbrelax, ubrelax, phase2, delta, flags):
+    return _amplpy_ampls_swig.XPRSrepairweightedinfeasbounds(prob, p_status, lepref, gepref, lbpref, ubpref, lerelax, gerelax, lbrelax, ubrelax, phase2, delta, flags)
+
+def XPRSrepairinfeas(prob, p_status, penalty, phase2, flags, lepref, gepref, lbpref, ubpref, delta):
+    return _amplpy_ampls_swig.XPRSrepairinfeas(prob, p_status, penalty, phase2, flags, lepref, gepref, lbpref, ubpref, delta)
+
+def XPRSbasisstability(prob, type, norm, scaled, p_value):
+    return _amplpy_ampls_swig.XPRSbasisstability(prob, type, norm, scaled, p_value)
+
+def XPRSgetindex(prob, type, name, p_index):
+    return _amplpy_ampls_swig.XPRSgetindex(prob, type, name, p_index)
+
+def XPRSgetlasterror(prob, errmsg):
+    return _amplpy_ampls_swig.XPRSgetlasterror(prob, errmsg)
+
+def XPRSgetobjecttypename(xprsobj, p_name):
+    return _amplpy_ampls_swig.XPRSgetobjecttypename(xprsobj, p_name)
+
+def XPRSgetprimalray(prob, ray, p_hasray):
+    return _amplpy_ampls_swig.XPRSgetprimalray(prob, ray, p_hasray)
+
+def XPRSgetdualray(prob, ray, p_hasray):
+    return _amplpy_ampls_swig.XPRSgetdualray(prob, ray, p_hasray)
+
+def XPRSstrongbranchcb(prob, nbounds, colind, bndtype, bndval, iterlim, objval, status, callback, data):
+    return _amplpy_ampls_swig.XPRSstrongbranchcb(prob, nbounds, colind, bndtype, bndval, iterlim, objval, status, callback, data)
+
+def XPRSloadmipsol(prob, x, p_status):
+    return _amplpy_ampls_swig.XPRSloadmipsol(prob, x, p_status)
+
+def XPRSgetbasis(prob, rowstat, colstat):
+    return _amplpy_ampls_swig.XPRSgetbasis(prob, rowstat, colstat)
+
+def XPRSgetbasisval(prob, row, col, p_rowstat, p_colstat):
+    return _amplpy_ampls_swig.XPRSgetbasisval(prob, row, col, p_rowstat, p_colstat)
+
+def XPRSaddcuts(prob, ncuts, cuttype, rowtype, rhs, start, colind, cutcoef):
+    return _amplpy_ampls_swig.XPRSaddcuts(prob, ncuts, cuttype, rowtype, rhs, start, colind, cutcoef)
+
+def XPRSdelcuts(prob, basis, cuttype, interp, delta, ncuts, cutind):
+    return _amplpy_ampls_swig.XPRSdelcuts(prob, basis, cuttype, interp, delta, ncuts, cutind)
+
+def XPRSdelcpcuts(prob, cuttype, interp, ncuts, cutind):
+    return _amplpy_ampls_swig.XPRSdelcpcuts(prob, cuttype, interp, ncuts, cutind)
+
+def XPRSgetcutlist(prob, cuttype, interp, p_ncuts, maxcuts, cutind):
+    return _amplpy_ampls_swig.XPRSgetcutlist(prob, cuttype, interp, p_ncuts, maxcuts, cutind)
+
+def XPRSgetcpcutlist(prob, cuttype, interp, delta, p_ncuts, maxcuts, cutind, viol):
+    return _amplpy_ampls_swig.XPRSgetcpcutlist(prob, cuttype, interp, delta, p_ncuts, maxcuts, cutind, viol)
+
+def XPRSgetcpcuts(prob, rowind, ncuts, maxcoefs, cuttype, rowtype, start, colind, cutcoef, rhs):
+    return _amplpy_ampls_swig.XPRSgetcpcuts(prob, rowind, ncuts, maxcoefs, cuttype, rowtype, start, colind, cutcoef, rhs)
+
+def XPRSloadcuts(prob, coltype, interp, ncuts, cutind):
+    return _amplpy_ampls_swig.XPRSloadcuts(prob, coltype, interp, ncuts, cutind)
+
+def XPRSstorecuts(prob, ncuts, nodups, cuttype, rowtype, rhs, start, cutind, colind, cutcoef):
+    return _amplpy_ampls_swig.XPRSstorecuts(prob, ncuts, nodups, cuttype, rowtype, rhs, start, cutind, colind, cutcoef)
+
+def XPRSpresolverow(prob, rowtype, norigcoefs, origcolind, origrowcoef, origrhs, maxcoefs, p_ncoefs, colind, rowcoef, p_rhs, p_status):
+    return _amplpy_ampls_swig.XPRSpresolverow(prob, rowtype, norigcoefs, origcolind, origrowcoef, origrhs, maxcoefs, p_ncoefs, colind, rowcoef, p_rhs, p_status)
+
+def XPRSpostsolvesol(prob, prex, origx):
+    return _amplpy_ampls_swig.XPRSpostsolvesol(prob, prex, origx)
+
+def XPRSstorebounds(prob, nbounds, colind, bndtype, bndval, p_bounds):
+    return _amplpy_ampls_swig.XPRSstorebounds(prob, nbounds, colind, bndtype, bndval, p_bounds)
+
+def XPRSsetbranchcuts(prob, ncuts, cutind):
+    return _amplpy_ampls_swig.XPRSsetbranchcuts(prob, ncuts, cutind)
+
+def XPRSsetbranchbounds(prob, bounds):
+    return _amplpy_ampls_swig.XPRSsetbranchbounds(prob, bounds)
+
+def XPRSgetpivots(prob, enter, outlist, x, p_objval, p_npivots, maxpivots):
+    return _amplpy_ampls_swig.XPRSgetpivots(prob, enter, outlist, x, p_objval, p_npivots, maxpivots)
+
+def XPRSwriteprob(prob, filename, flags):
+    return _amplpy_ampls_swig.XPRSwriteprob(prob, filename, flags)
+
+def XPRScalcslacks(prob, solution, slacks):
+    return _amplpy_ampls_swig.XPRScalcslacks(prob, solution, slacks)
+
+def XPRScalcreducedcosts(prob, duals, solution, djs):
+    return _amplpy_ampls_swig.XPRScalcreducedcosts(prob, duals, solution, djs)
+
+def XPRScalcobjective(prob, solution, p_objval):
+    return _amplpy_ampls_swig.XPRScalcobjective(prob, solution, p_objval)
+
+def XPRScalcobjn(prob, objidx, solution, p_objval):
+    return _amplpy_ampls_swig.XPRScalcobjn(prob, objidx, solution, p_objval)
+
+def XPRScalcsolinfo(prob, solution, duals, property, p_value):
+    return _amplpy_ampls_swig.XPRScalcsolinfo(prob, solution, duals, property, p_value)
+
+def XPRSgetrowtype(prob, rowtype, first, last):
+    return _amplpy_ampls_swig.XPRSgetrowtype(prob, rowtype, first, last)
+
+def XPRSgetpresolvebasis(prob, rowstat, colstat):
+    return _amplpy_ampls_swig.XPRSgetpresolvebasis(prob, rowstat, colstat)
+
+def XPRSgetcoltype(prob, coltype, first, last):
+    return _amplpy_ampls_swig.XPRSgetcoltype(prob, coltype, first, last)
+
+def XPRSchgbounds(prob, nbounds, colind, bndtype, bndval):
+    return _amplpy_ampls_swig.XPRSchgbounds(prob, nbounds, colind, bndtype, bndval)
+
+def XPRSgetnamelist(prob, type, names, maxbytes, p_nbytes, first, last):
+    return _amplpy_ampls_swig.XPRSgetnamelist(prob, type, names, maxbytes, p_nbytes, first, last)
+
+def XPRSaddmipsol(prob, length, solval, colind, name):
+    return _amplpy_ampls_swig.XPRSaddmipsol(prob, length, solval, colind, name)
+
+def XPRSgetcutslack(prob, cutind, p_slack):
+    return _amplpy_ampls_swig.XPRSgetcutslack(prob, cutind, p_slack)
+
+def XPRSgetcutmap(prob, ncuts, cutind, cutmap):
+    return _amplpy_ampls_swig.XPRSgetcutmap(prob, ncuts, cutind, cutmap)
+
+def XPRSgetnames(prob, type, names, first, last):
+    return _amplpy_ampls_swig.XPRSgetnames(prob, type, names, first, last)
+
+def XPRSgetlpsol(prob, x, slack, duals, djs):
+    return _amplpy_ampls_swig.XPRSgetlpsol(prob, x, slack, duals, djs)
+
+def XPRSgetlpsolval(prob, col, row, p_x, p_slack, p_dual, p_dj):
+    return _amplpy_ampls_swig.XPRSgetlpsolval(prob, col, row, p_x, p_slack, p_dual, p_dj)
+
+def XPRSgetmipsol(prob, x, slack):
+    return _amplpy_ampls_swig.XPRSgetmipsol(prob, x, slack)
+
+def XPRSgetmipsolval(prob, col, row, p_x, p_slack):
+    return _amplpy_ampls_swig.XPRSgetmipsolval(prob, col, row, p_x, p_slack)
+
+def XPRSchgobj(prob, ncols, colind, objcoef):
+    return _amplpy_ampls_swig.XPRSchgobj(prob, ncols, colind, objcoef)
+
+def XPRSchgcoef(prob, row, col, coef):
+    return _amplpy_ampls_swig.XPRSchgcoef(prob, row, col, coef)
+
+def XPRSchgmcoef(prob, ncoefs, rowind, colind, rowcoef):
+    return _amplpy_ampls_swig.XPRSchgmcoef(prob, ncoefs, rowind, colind, rowcoef)
+
+def XPRSchgmqobj(prob, ncoefs, objqcol1, objqcol2, objqcoef):
+    return _amplpy_ampls_swig.XPRSchgmqobj(prob, ncoefs, objqcol1, objqcol2, objqcoef)
+
+def XPRSchgqobj(prob, objqcol1, objqcol2, objqcoef):
+    return _amplpy_ampls_swig.XPRSchgqobj(prob, objqcol1, objqcol2, objqcoef)
+
+def XPRSchgrhs(prob, nrows, rowind, rhs):
+    return _amplpy_ampls_swig.XPRSchgrhs(prob, nrows, rowind, rhs)
+
+def XPRSchgrhsrange(prob, nrows, rowind, rng):
+    return _amplpy_ampls_swig.XPRSchgrhsrange(prob, nrows, rowind, rng)
+
+def XPRSchgrowtype(prob, nrows, rowind, rowtype):
+    return _amplpy_ampls_swig.XPRSchgrowtype(prob, nrows, rowind, rowtype)
+
+def XPRSaddobj(prob, ncols, colind, objcoef, priority, weight):
+    return _amplpy_ampls_swig.XPRSaddobj(prob, ncols, colind, objcoef, priority, weight)
+
+def XPRSchgobjn(prob, objidx, ncols, colind, objcoef):
+    return _amplpy_ampls_swig.XPRSchgobjn(prob, objidx, ncols, colind, objcoef)
+
+def XPRSdelobj(prob, objidx):
+    return _amplpy_ampls_swig.XPRSdelobj(prob, objidx)
+
+def XPRSsetcblplog(prob, f_lplog, p):
+    return _amplpy_ampls_swig.XPRSsetcblplog(prob, f_lplog, p)
+
+def XPRSgetcblplog(prob, f_lplog, p):
+    return _amplpy_ampls_swig.XPRSgetcblplog(prob, f_lplog, p)
+
+def XPRSaddcblplog(prob, f_lplog, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcblplog(prob, f_lplog, p, priority)
+
+def XPRSremovecblplog(prob, f_lplog, p):
+    return _amplpy_ampls_swig.XPRSremovecblplog(prob, f_lplog, p)
+
+def XPRSsetcbmiplog(prob, f_miplog, p):
+    return _amplpy_ampls_swig.XPRSsetcbmiplog(prob, f_miplog, p)
+
+def XPRSgetcbmiplog(prob, f_miplog, p):
+    return _amplpy_ampls_swig.XPRSgetcbmiplog(prob, f_miplog, p)
+
+def XPRSaddcbmiplog(prob, f_miplog, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbmiplog(prob, f_miplog, p, priority)
+
+def XPRSremovecbmiplog(prob, f_miplog, p):
+    return _amplpy_ampls_swig.XPRSremovecbmiplog(prob, f_miplog, p)
+
+def XPRSsetcbcutlog(prob, f_cutlog, p):
+    return _amplpy_ampls_swig.XPRSsetcbcutlog(prob, f_cutlog, p)
+
+def XPRSgetcbcutlog(prob, f_cutlog, p):
+    return _amplpy_ampls_swig.XPRSgetcbcutlog(prob, f_cutlog, p)
+
+def XPRSaddcbcutlog(prob, f_cutlog, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbcutlog(prob, f_cutlog, p, priority)
+
+def XPRSremovecbcutlog(prob, f_cutlog, p):
+    return _amplpy_ampls_swig.XPRSremovecbcutlog(prob, f_cutlog, p)
+
+def XPRSsetcbbarlog(prob, f_barlog, p):
+    return _amplpy_ampls_swig.XPRSsetcbbarlog(prob, f_barlog, p)
+
+def XPRSgetcbbarlog(prob, f_barlog, p):
+    return _amplpy_ampls_swig.XPRSgetcbbarlog(prob, f_barlog, p)
+
+def XPRSaddcbbarlog(prob, f_barlog, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbbarlog(prob, f_barlog, p, priority)
+
+def XPRSremovecbbarlog(prob, f_barlog, p):
+    return _amplpy_ampls_swig.XPRSremovecbbarlog(prob, f_barlog, p)
+
+def XPRSsetcbcutmgr(prob, f_cutmgr, p):
+    return _amplpy_ampls_swig.XPRSsetcbcutmgr(prob, f_cutmgr, p)
+
+def XPRSgetcbcutmgr(prob, f_cutmgr, p):
+    return _amplpy_ampls_swig.XPRSgetcbcutmgr(prob, f_cutmgr, p)
+
+def XPRSaddcbcutmgr(prob, f_cutmgr, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbcutmgr(prob, f_cutmgr, p, priority)
+
+def XPRSremovecbcutmgr(prob, f_cutmgr, p):
+    return _amplpy_ampls_swig.XPRSremovecbcutmgr(prob, f_cutmgr, p)
+
+def XPRSsetcbchgnode(prob, f_chgnode, p):
+    return _amplpy_ampls_swig.XPRSsetcbchgnode(prob, f_chgnode, p)
+
+def XPRSgetcbchgnode(prob, f_chgnode, p):
+    return _amplpy_ampls_swig.XPRSgetcbchgnode(prob, f_chgnode, p)
+
+def XPRSaddcbchgnode(prob, f_chgnode, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbchgnode(prob, f_chgnode, p, priority)
+
+def XPRSremovecbchgnode(prob, f_chgnode, p):
+    return _amplpy_ampls_swig.XPRSremovecbchgnode(prob, f_chgnode, p)
+
+def XPRSsetcboptnode(prob, f_optnode, p):
+    return _amplpy_ampls_swig.XPRSsetcboptnode(prob, f_optnode, p)
+
+def XPRSgetcboptnode(prob, f_optnode, p):
+    return _amplpy_ampls_swig.XPRSgetcboptnode(prob, f_optnode, p)
+
+def XPRSaddcboptnode(prob, f_optnode, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcboptnode(prob, f_optnode, p, priority)
+
+def XPRSremovecboptnode(prob, f_optnode, p):
+    return _amplpy_ampls_swig.XPRSremovecboptnode(prob, f_optnode, p)
+
+def XPRSsetcbprenode(prob, f_prenode, p):
+    return _amplpy_ampls_swig.XPRSsetcbprenode(prob, f_prenode, p)
+
+def XPRSgetcbprenode(prob, f_prenode, p):
+    return _amplpy_ampls_swig.XPRSgetcbprenode(prob, f_prenode, p)
+
+def XPRSaddcbprenode(prob, f_prenode, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbprenode(prob, f_prenode, p, priority)
+
+def XPRSremovecbprenode(prob, f_prenode, p):
+    return _amplpy_ampls_swig.XPRSremovecbprenode(prob, f_prenode, p)
+
+def XPRSsetcbinfnode(prob, f_infnode, p):
+    return _amplpy_ampls_swig.XPRSsetcbinfnode(prob, f_infnode, p)
+
+def XPRSgetcbinfnode(prob, f_infnode, p):
+    return _amplpy_ampls_swig.XPRSgetcbinfnode(prob, f_infnode, p)
+
+def XPRSaddcbinfnode(prob, f_infnode, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbinfnode(prob, f_infnode, p, priority)
+
+def XPRSremovecbinfnode(prob, f_infnode, p):
+    return _amplpy_ampls_swig.XPRSremovecbinfnode(prob, f_infnode, p)
+
+def XPRSsetcbnodecutoff(prob, f_nodecutoff, p):
+    return _amplpy_ampls_swig.XPRSsetcbnodecutoff(prob, f_nodecutoff, p)
+
+def XPRSgetcbnodecutoff(prob, f_nodecutoff, p):
+    return _amplpy_ampls_swig.XPRSgetcbnodecutoff(prob, f_nodecutoff, p)
+
+def XPRSaddcbnodecutoff(prob, f_nodecutoff, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbnodecutoff(prob, f_nodecutoff, p, priority)
+
+def XPRSremovecbnodecutoff(prob, f_nodecutoff, p):
+    return _amplpy_ampls_swig.XPRSremovecbnodecutoff(prob, f_nodecutoff, p)
+
+def XPRSsetcbintsol(prob, f_intsol, p):
+    return _amplpy_ampls_swig.XPRSsetcbintsol(prob, f_intsol, p)
+
+def XPRSgetcbintsol(prob, f_intsol, p):
+    return _amplpy_ampls_swig.XPRSgetcbintsol(prob, f_intsol, p)
+
+def XPRSaddcbintsol(prob, f_intsol, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbintsol(prob, f_intsol, p, priority)
+
+def XPRSremovecbintsol(prob, f_intsol, p):
+    return _amplpy_ampls_swig.XPRSremovecbintsol(prob, f_intsol, p)
+
+def XPRSsetcbpreintsol(prob, f_preintsol, p):
+    return _amplpy_ampls_swig.XPRSsetcbpreintsol(prob, f_preintsol, p)
+
+def XPRSgetcbpreintsol(prob, f_preintsol, p):
+    return _amplpy_ampls_swig.XPRSgetcbpreintsol(prob, f_preintsol, p)
+
+def XPRSaddcbpreintsol(prob, f_preintsol, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbpreintsol(prob, f_preintsol, p, priority)
+
+def XPRSremovecbpreintsol(prob, f_preintsol, p):
+    return _amplpy_ampls_swig.XPRSremovecbpreintsol(prob, f_preintsol, p)
+
+def XPRSsetcbchgbranch(prob, f_chgbranch, p):
+    return _amplpy_ampls_swig.XPRSsetcbchgbranch(prob, f_chgbranch, p)
+
+def XPRSgetcbchgbranch(prob, f_chgbranch, p):
+    return _amplpy_ampls_swig.XPRSgetcbchgbranch(prob, f_chgbranch, p)
+
+def XPRSaddcbchgbranch(prob, f_chgbranch, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbchgbranch(prob, f_chgbranch, p, priority)
+
+def XPRSremovecbchgbranch(prob, f_chgbranch, p):
+    return _amplpy_ampls_swig.XPRSremovecbchgbranch(prob, f_chgbranch, p)
+
+def XPRSsetcbestimate(prob, f_estimate, p):
+    return _amplpy_ampls_swig.XPRSsetcbestimate(prob, f_estimate, p)
+
+def XPRSgetcbestimate(prob, f_estimate, p):
+    return _amplpy_ampls_swig.XPRSgetcbestimate(prob, f_estimate, p)
+
+def XPRSaddcbestimate(prob, f_estimate, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbestimate(prob, f_estimate, p, priority)
+
+def XPRSremovecbestimate(prob, f_estimate, p):
+    return _amplpy_ampls_swig.XPRSremovecbestimate(prob, f_estimate, p)
+
+def XPRSsetcbsepnode(prob, f_sepnode, p):
+    return _amplpy_ampls_swig.XPRSsetcbsepnode(prob, f_sepnode, p)
+
+def XPRSgetcbsepnode(prob, f_sepnode, p):
+    return _amplpy_ampls_swig.XPRSgetcbsepnode(prob, f_sepnode, p)
+
+def XPRSaddcbsepnode(prob, f_sepnode, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbsepnode(prob, f_sepnode, p, priority)
+
+def XPRSremovecbsepnode(prob, f_sepnode, p):
+    return _amplpy_ampls_swig.XPRSremovecbsepnode(prob, f_sepnode, p)
+
+def XPRSsetcbmessage(prob, f_message, p):
+    return _amplpy_ampls_swig.XPRSsetcbmessage(prob, f_message, p)
+
+def XPRSgetcbmessage(prob, f_message, p):
+    return _amplpy_ampls_swig.XPRSgetcbmessage(prob, f_message, p)
+
+def XPRSaddcbmessage(prob, f_message, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbmessage(prob, f_message, p, priority)
+
+def XPRSremovecbmessage(prob, f_message, p):
+    return _amplpy_ampls_swig.XPRSremovecbmessage(prob, f_message, p)
+
+def XPRSsetcbmipthread(prob, f_mipthread, p):
+    return _amplpy_ampls_swig.XPRSsetcbmipthread(prob, f_mipthread, p)
+
+def XPRSgetcbmipthread(prob, f_mipthread, p):
+    return _amplpy_ampls_swig.XPRSgetcbmipthread(prob, f_mipthread, p)
+
+def XPRSaddcbmipthread(prob, f_mipthread, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbmipthread(prob, f_mipthread, p, priority)
+
+def XPRSremovecbmipthread(prob, f_mipthread, p):
+    return _amplpy_ampls_swig.XPRSremovecbmipthread(prob, f_mipthread, p)
+
+def XPRSsetcbdestroymt(prob, f_destroymt, p):
+    return _amplpy_ampls_swig.XPRSsetcbdestroymt(prob, f_destroymt, p)
+
+def XPRSgetcbdestroymt(prob, f_destroymt, p):
+    return _amplpy_ampls_swig.XPRSgetcbdestroymt(prob, f_destroymt, p)
+
+def XPRSaddcbdestroymt(prob, f_destroymt, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbdestroymt(prob, f_destroymt, p, priority)
+
+def XPRSremovecbdestroymt(prob, f_destroymt, p):
+    return _amplpy_ampls_swig.XPRSremovecbdestroymt(prob, f_destroymt, p)
+
+def XPRSsetcbnewnode(prob, f_newnode, p):
+    return _amplpy_ampls_swig.XPRSsetcbnewnode(prob, f_newnode, p)
+
+def XPRSgetcbnewnode(prob, f_newnode, p):
+    return _amplpy_ampls_swig.XPRSgetcbnewnode(prob, f_newnode, p)
+
+def XPRSaddcbnewnode(prob, f_newnode, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbnewnode(prob, f_newnode, p, priority)
+
+def XPRSremovecbnewnode(prob, f_newnode, p):
+    return _amplpy_ampls_swig.XPRSremovecbnewnode(prob, f_newnode, p)
+
+def XPRSsetcbbariteration(prob, f_bariteration, p):
+    return _amplpy_ampls_swig.XPRSsetcbbariteration(prob, f_bariteration, p)
+
+def XPRSgetcbbariteration(prob, f_bariteration, p):
+    return _amplpy_ampls_swig.XPRSgetcbbariteration(prob, f_bariteration, p)
+
+def XPRSaddcbbariteration(prob, f_bariteration, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbbariteration(prob, f_bariteration, p, priority)
+
+def XPRSremovecbbariteration(prob, f_bariteration, p):
+    return _amplpy_ampls_swig.XPRSremovecbbariteration(prob, f_bariteration, p)
+
+def XPRSsetcbpresolve(prob, f_presolve, p):
+    return _amplpy_ampls_swig.XPRSsetcbpresolve(prob, f_presolve, p)
+
+def XPRSgetcbpresolve(prob, f_presolve, p):
+    return _amplpy_ampls_swig.XPRSgetcbpresolve(prob, f_presolve, p)
+
+def XPRSaddcbpresolve(prob, f_presolve, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbpresolve(prob, f_presolve, p, priority)
+
+def XPRSremovecbpresolve(prob, f_presolve, p):
+    return _amplpy_ampls_swig.XPRSremovecbpresolve(prob, f_presolve, p)
+
+def XPRSsetcbchgbranchobject(prob, f_chgbranchobject, p):
+    return _amplpy_ampls_swig.XPRSsetcbchgbranchobject(prob, f_chgbranchobject, p)
+
+def XPRSgetcbchgbranchobject(prob, f_chgbranchobject, p):
+    return _amplpy_ampls_swig.XPRSgetcbchgbranchobject(prob, f_chgbranchobject, p)
+
+def XPRSaddcbchgbranchobject(prob, f_chgbranchobject, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbchgbranchobject(prob, f_chgbranchobject, p, priority)
+
+def XPRSremovecbchgbranchobject(prob, f_chgbranchobject, p):
+    return _amplpy_ampls_swig.XPRSremovecbchgbranchobject(prob, f_chgbranchobject, p)
+
+def XPRSsetcbcomputerestart(prob, f_computerestart, p):
+    return _amplpy_ampls_swig.XPRSsetcbcomputerestart(prob, f_computerestart, p)
+
+def XPRSgetcbcomputerestart(prob, f_computerestart, p):
+    return _amplpy_ampls_swig.XPRSgetcbcomputerestart(prob, f_computerestart, p)
+
+def XPRSaddcbcomputerestart(prob, f_computerestart, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbcomputerestart(prob, f_computerestart, p, priority)
+
+def XPRSremovecbcomputerestart(prob, f_computerestart, p):
+    return _amplpy_ampls_swig.XPRSremovecbcomputerestart(prob, f_computerestart, p)
+
+def XPRSsetcbnodelpsolved(prob, f_nodelpsolved, p):
+    return _amplpy_ampls_swig.XPRSsetcbnodelpsolved(prob, f_nodelpsolved, p)
+
+def XPRSgetcbnodelpsolved(prob, f_nodelpsolved, p):
+    return _amplpy_ampls_swig.XPRSgetcbnodelpsolved(prob, f_nodelpsolved, p)
+
+def XPRSaddcbnodelpsolved(prob, f_nodelpsolved, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbnodelpsolved(prob, f_nodelpsolved, p, priority)
+
+def XPRSremovecbnodelpsolved(prob, f_nodelpsolved, p):
+    return _amplpy_ampls_swig.XPRSremovecbnodelpsolved(prob, f_nodelpsolved, p)
+
+def XPRSsetcbgapnotify(prob, f_gapnotify, p):
+    return _amplpy_ampls_swig.XPRSsetcbgapnotify(prob, f_gapnotify, p)
+
+def XPRSgetcbgapnotify(prob, f_gapnotify, p):
+    return _amplpy_ampls_swig.XPRSgetcbgapnotify(prob, f_gapnotify, p)
+
+def XPRSaddcbgapnotify(prob, f_gapnotify, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbgapnotify(prob, f_gapnotify, p, priority)
+
+def XPRSremovecbgapnotify(prob, f_gapnotify, p):
+    return _amplpy_ampls_swig.XPRSremovecbgapnotify(prob, f_gapnotify, p)
+
+def XPRSsetcbusersolnotify(prob, f_usersolnotify, p):
+    return _amplpy_ampls_swig.XPRSsetcbusersolnotify(prob, f_usersolnotify, p)
+
+def XPRSgetcbusersolnotify(prob, f_usersolnotify, p):
+    return _amplpy_ampls_swig.XPRSgetcbusersolnotify(prob, f_usersolnotify, p)
+
+def XPRSaddcbusersolnotify(prob, f_usersolnotify, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbusersolnotify(prob, f_usersolnotify, p, priority)
+
+def XPRSremovecbusersolnotify(prob, f_usersolnotify, p):
+    return _amplpy_ampls_swig.XPRSremovecbusersolnotify(prob, f_usersolnotify, p)
+
+def XPRSsetcbbeforesolve(prob, f_beforesolve, p):
+    return _amplpy_ampls_swig.XPRSsetcbbeforesolve(prob, f_beforesolve, p)
+
+def XPRSgetcbbeforesolve(prob, f_beforesolve, p):
+    return _amplpy_ampls_swig.XPRSgetcbbeforesolve(prob, f_beforesolve, p)
+
+def XPRSaddcbbeforesolve(prob, f_beforesolve, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbbeforesolve(prob, f_beforesolve, p, priority)
+
+def XPRSremovecbbeforesolve(prob, f_beforesolve, p):
+    return _amplpy_ampls_swig.XPRSremovecbbeforesolve(prob, f_beforesolve, p)
+
+def XPRSsetcbbeforeobjective(prob, f_beforeobjective, p):
+    return _amplpy_ampls_swig.XPRSsetcbbeforeobjective(prob, f_beforeobjective, p)
+
+def XPRSgetcbbeforeobjective(prob, f_beforeobjective, p):
+    return _amplpy_ampls_swig.XPRSgetcbbeforeobjective(prob, f_beforeobjective, p)
+
+def XPRSaddcbbeforeobjective(prob, f_beforeobjective, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbbeforeobjective(prob, f_beforeobjective, p, priority)
+
+def XPRSremovecbbeforeobjective(prob, f_beforeobjective, p):
+    return _amplpy_ampls_swig.XPRSremovecbbeforeobjective(prob, f_beforeobjective, p)
+
+def XPRSsetcbafterobjective(prob, f_afterobjective, p):
+    return _amplpy_ampls_swig.XPRSsetcbafterobjective(prob, f_afterobjective, p)
+
+def XPRSgetcbafterobjective(prob, f_afterobjective, p):
+    return _amplpy_ampls_swig.XPRSgetcbafterobjective(prob, f_afterobjective, p)
+
+def XPRSaddcbafterobjective(prob, f_afterobjective, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbafterobjective(prob, f_afterobjective, p, priority)
+
+def XPRSremovecbafterobjective(prob, f_afterobjective, p):
+    return _amplpy_ampls_swig.XPRSremovecbafterobjective(prob, f_afterobjective, p)
+
+def XPRSsetcbchecktime(prob, f_checktime, p):
+    return _amplpy_ampls_swig.XPRSsetcbchecktime(prob, f_checktime, p)
+
+def XPRSgetcbchecktime(prob, f_checktime, p):
+    return _amplpy_ampls_swig.XPRSgetcbchecktime(prob, f_checktime, p)
+
+def XPRSaddcbchecktime(prob, f_checktime, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbchecktime(prob, f_checktime, p, priority)
+
+def XPRSremovecbchecktime(prob, f_checktime, p):
+    return _amplpy_ampls_swig.XPRSremovecbchecktime(prob, f_checktime, p)
+
+def XPRSsetcbslpcascadeend(prob, f_slpcascadeend, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpcascadeend(prob, f_slpcascadeend, p)
+
+def XPRSgetcbslpcascadeend(prob, f_slpcascadeend, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpcascadeend(prob, f_slpcascadeend, p)
+
+def XPRSaddcbslpcascadeend(prob, f_slpcascadeend, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpcascadeend(prob, f_slpcascadeend, p, priority)
+
+def XPRSremovecbslpcascadeend(prob, f_slpcascadeend, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpcascadeend(prob, f_slpcascadeend, p)
+
+def XPRSsetcbslpcascadestart(prob, f_slpcascadestart, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpcascadestart(prob, f_slpcascadestart, p)
+
+def XPRSgetcbslpcascadestart(prob, f_slpcascadestart, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpcascadestart(prob, f_slpcascadestart, p)
+
+def XPRSaddcbslpcascadestart(prob, f_slpcascadestart, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpcascadestart(prob, f_slpcascadestart, p, priority)
+
+def XPRSremovecbslpcascadestart(prob, f_slpcascadestart, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpcascadestart(prob, f_slpcascadestart, p)
+
+def XPRSsetcbslpcascadevar(prob, f_slpcascadevar, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpcascadevar(prob, f_slpcascadevar, p)
+
+def XPRSgetcbslpcascadevar(prob, f_slpcascadevar, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpcascadevar(prob, f_slpcascadevar, p)
+
+def XPRSaddcbslpcascadevar(prob, f_slpcascadevar, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpcascadevar(prob, f_slpcascadevar, p, priority)
+
+def XPRSremovecbslpcascadevar(prob, f_slpcascadevar, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpcascadevar(prob, f_slpcascadevar, p)
+
+def XPRSsetcbslpcascadevarfail(prob, f_slpcascadevarfail, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpcascadevarfail(prob, f_slpcascadevarfail, p)
+
+def XPRSgetcbslpcascadevarfail(prob, f_slpcascadevarfail, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpcascadevarfail(prob, f_slpcascadevarfail, p)
+
+def XPRSaddcbslpcascadevarfail(prob, f_slpcascadevarfail, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpcascadevarfail(prob, f_slpcascadevarfail, p, priority)
+
+def XPRSremovecbslpcascadevarfail(prob, f_slpcascadevarfail, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpcascadevarfail(prob, f_slpcascadevarfail, p)
+
+def XPRSsetcbslpconstruct(prob, f_slpconstruct, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpconstruct(prob, f_slpconstruct, p)
+
+def XPRSgetcbslpconstruct(prob, f_slpconstruct, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpconstruct(prob, f_slpconstruct, p)
+
+def XPRSaddcbslpconstruct(prob, f_slpconstruct, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpconstruct(prob, f_slpconstruct, p, priority)
+
+def XPRSremovecbslpconstruct(prob, f_slpconstruct, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpconstruct(prob, f_slpconstruct, p)
+
+def XPRSsetcbslpintsol(prob, f_slpintsol, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpintsol(prob, f_slpintsol, p)
+
+def XPRSgetcbslpintsol(prob, f_slpintsol, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpintsol(prob, f_slpintsol, p)
+
+def XPRSaddcbslpintsol(prob, f_slpintsol, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpintsol(prob, f_slpintsol, p, priority)
+
+def XPRSremovecbslpintsol(prob, f_slpintsol, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpintsol(prob, f_slpintsol, p)
+
+def XPRSsetcbslpiterend(prob, f_slpiterend, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpiterend(prob, f_slpiterend, p)
+
+def XPRSgetcbslpiterend(prob, f_slpiterend, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpiterend(prob, f_slpiterend, p)
+
+def XPRSaddcbslpiterend(prob, f_slpiterend, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpiterend(prob, f_slpiterend, p, priority)
+
+def XPRSremovecbslpiterend(prob, f_slpiterend, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpiterend(prob, f_slpiterend, p)
+
+def XPRSsetcbslpiterstart(prob, f_slpiterstart, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpiterstart(prob, f_slpiterstart, p)
+
+def XPRSgetcbslpiterstart(prob, f_slpiterstart, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpiterstart(prob, f_slpiterstart, p)
+
+def XPRSaddcbslpiterstart(prob, f_slpiterstart, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpiterstart(prob, f_slpiterstart, p, priority)
+
+def XPRSremovecbslpiterstart(prob, f_slpiterstart, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpiterstart(prob, f_slpiterstart, p)
+
+def XPRSsetcbslpitervar(prob, f_slpitervar, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpitervar(prob, f_slpitervar, p)
+
+def XPRSgetcbslpitervar(prob, f_slpitervar, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpitervar(prob, f_slpitervar, p)
+
+def XPRSaddcbslpitervar(prob, f_slpitervar, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpitervar(prob, f_slpitervar, p, priority)
+
+def XPRSremovecbslpitervar(prob, f_slpitervar, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpitervar(prob, f_slpitervar, p)
+
+def XPRSsetcbslpdrcol(prob, f_slpdrcol, p):
+    return _amplpy_ampls_swig.XPRSsetcbslpdrcol(prob, f_slpdrcol, p)
+
+def XPRSgetcbslpdrcol(prob, f_slpdrcol, p):
+    return _amplpy_ampls_swig.XPRSgetcbslpdrcol(prob, f_slpdrcol, p)
+
+def XPRSaddcbslpdrcol(prob, f_slpdrcol, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslpdrcol(prob, f_slpdrcol, p, priority)
+
+def XPRSremovecbslpdrcol(prob, f_slpdrcol, p):
+    return _amplpy_ampls_swig.XPRSremovecbslpdrcol(prob, f_slpdrcol, p)
+
+def XPRSsetcbmsjobstart(prob, f_msjobstart, p):
+    return _amplpy_ampls_swig.XPRSsetcbmsjobstart(prob, f_msjobstart, p)
+
+def XPRSgetcbmsjobstart(prob, f_msjobstart, p):
+    return _amplpy_ampls_swig.XPRSgetcbmsjobstart(prob, f_msjobstart, p)
+
+def XPRSaddcbmsjobstart(prob, f_msjobstart, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbmsjobstart(prob, f_msjobstart, p, priority)
+
+def XPRSremovecbmsjobstart(prob, f_msjobstart, p):
+    return _amplpy_ampls_swig.XPRSremovecbmsjobstart(prob, f_msjobstart, p)
+
+def XPRSsetcbmsjobend(prob, f_msjobend, p):
+    return _amplpy_ampls_swig.XPRSsetcbmsjobend(prob, f_msjobend, p)
+
+def XPRSgetcbmsjobend(prob, f_msjobend, p):
+    return _amplpy_ampls_swig.XPRSgetcbmsjobend(prob, f_msjobend, p)
+
+def XPRSaddcbmsjobend(prob, f_msjobend, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbmsjobend(prob, f_msjobend, p, priority)
+
+def XPRSremovecbmsjobend(prob, f_msjobend, p):
+    return _amplpy_ampls_swig.XPRSremovecbmsjobend(prob, f_msjobend, p)
+
+def XPRSsetcbmswinner(prob, f_mswinner, p):
+    return _amplpy_ampls_swig.XPRSsetcbmswinner(prob, f_mswinner, p)
+
+def XPRSgetcbmswinner(prob, f_mswinner, p):
+    return _amplpy_ampls_swig.XPRSgetcbmswinner(prob, f_mswinner, p)
+
+def XPRSaddcbmswinner(prob, f_mswinner, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbmswinner(prob, f_mswinner, p, priority)
+
+def XPRSremovecbmswinner(prob, f_mswinner, p):
+    return _amplpy_ampls_swig.XPRSremovecbmswinner(prob, f_mswinner, p)
+
+def XPRSsetcbnlpcoefevalerror(prob, f_nlpcoefevalerror, p):
+    return _amplpy_ampls_swig.XPRSsetcbnlpcoefevalerror(prob, f_nlpcoefevalerror, p)
+
+def XPRSgetcbnlpcoefevalerror(prob, f_nlpcoefevalerror, p):
+    return _amplpy_ampls_swig.XPRSgetcbnlpcoefevalerror(prob, f_nlpcoefevalerror, p)
+
+def XPRSaddcbnlpcoefevalerror(prob, f_nlpcoefevalerror, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbnlpcoefevalerror(prob, f_nlpcoefevalerror, p, priority)
+
+def XPRSremovecbnlpcoefevalerror(prob, f_nlpcoefevalerror, p):
+    return _amplpy_ampls_swig.XPRSremovecbnlpcoefevalerror(prob, f_nlpcoefevalerror, p)
+
+def XPRSsetcbslppreupdatelinearization(prob, f_slppreupdatelinearization, p):
+    return _amplpy_ampls_swig.XPRSsetcbslppreupdatelinearization(prob, f_slppreupdatelinearization, p)
+
+def XPRSgetcbslppreupdatelinearization(prob, f_slppreupdatelinearization, p):
+    return _amplpy_ampls_swig.XPRSgetcbslppreupdatelinearization(prob, f_slppreupdatelinearization, p)
+
+def XPRSaddcbslppreupdatelinearization(prob, f_slppreupdatelinearization, p, priority):
+    return _amplpy_ampls_swig.XPRSaddcbslppreupdatelinearization(prob, f_slppreupdatelinearization, p, priority)
+
+def XPRSremovecbslppreupdatelinearization(prob, f_slppreupdatelinearization, p):
+    return _amplpy_ampls_swig.XPRSremovecbslppreupdatelinearization(prob, f_slppreupdatelinearization, p)
+
+def XPRSobjsa(prob, ncols, colind, lower, upper):
+    return _amplpy_ampls_swig.XPRSobjsa(prob, ncols, colind, lower, upper)
+
+def XPRSbndsa(prob, ncols, colind, lblower, lbupper, ublower, ubupper):
+    return _amplpy_ampls_swig.XPRSbndsa(prob, ncols, colind, lblower, lbupper, ublower, ubupper)
+
+def XPRSrhssa(prob, nrows, rowind, lower, upper):
+    return _amplpy_ampls_swig.XPRSrhssa(prob, nrows, rowind, lower, upper)
+
+def XPRS_ge_setcbmsghandler(f_msghandler, p):
+    return _amplpy_ampls_swig.XPRS_ge_setcbmsghandler(f_msghandler, p)
+
+def XPRS_ge_getcbmsghandler(f_msghandler, p):
+    return _amplpy_ampls_swig.XPRS_ge_getcbmsghandler(f_msghandler, p)
+
+def XPRS_ge_addcbmsghandler(f_msghandler, p, priority):
+    return _amplpy_ampls_swig.XPRS_ge_addcbmsghandler(f_msghandler, p, priority)
+
+def XPRS_ge_removecbmsghandler(f_msghandler, p):
+    return _amplpy_ampls_swig.XPRS_ge_removecbmsghandler(f_msghandler, p)
+
+def XPRS_ge_setarchconsistency(consistent):
+    return _amplpy_ampls_swig.XPRS_ge_setarchconsistency(consistent)
+
+def XPRS_ge_setsafemode(safemode):
+    return _amplpy_ampls_swig.XPRS_ge_setsafemode(safemode)
+
+def XPRS_ge_getsafemode(p_safemode):
+    return _amplpy_ampls_swig.XPRS_ge_getsafemode(p_safemode)
+
+def XPRS_ge_setdebugmode(debugmode):
+    return _amplpy_ampls_swig.XPRS_ge_setdebugmode(debugmode)
+
+def XPRS_ge_getdebugmode(p_debugmode):
+    return _amplpy_ampls_swig.XPRS_ge_getdebugmode(p_debugmode)
+
+def XPRS_ge_getlasterror(p_msgcode, msg, maxbytes, p_nbytes):
+    return _amplpy_ampls_swig.XPRS_ge_getlasterror(p_msgcode, msg, maxbytes, p_nbytes)
+
+def XPRS_ge_setcomputeallowed(allow):
+    return _amplpy_ampls_swig.XPRS_ge_setcomputeallowed(allow)
+
+def XPRS_ge_getcomputeallowed(p_allow):
+    return _amplpy_ampls_swig.XPRS_ge_getcomputeallowed(p_allow)
+
+def XPRS_msp_create(msp):
+    return _amplpy_ampls_swig.XPRS_msp_create(msp)
+
+def XPRS_msp_destroy(msp):
+    return _amplpy_ampls_swig.XPRS_msp_destroy(msp)
+
+def XPRS_msp_probattach(msp, prob):
+    return _amplpy_ampls_swig.XPRS_msp_probattach(msp, prob)
+
+def XPRS_msp_probdetach(msp, prob):
+    return _amplpy_ampls_swig.XPRS_msp_probdetach(msp, prob)
+
+def XPRS_msp_getsollist(msp, prob_to_rank_against, iRankAttrib, bRankAscending, iRankFirstIndex_Ob, iRankLastIndex_Ob, iSolutionIds_Zb, nReturnedSolIds, nSols):
+    return _amplpy_ampls_swig.XPRS_msp_getsollist(msp, prob_to_rank_against, iRankAttrib, bRankAscending, iRankFirstIndex_Ob, iRankLastIndex_Ob, iSolutionIds_Zb, nReturnedSolIds, nSols)
+
+def XPRS_msp_getsollist2(msp, prob_to_rank_against, iRankAttrib, bRankAscending, iRankFirstIndex_Ob, iRankLastIndex_Ob, bUseUserBitFilter, iUserBitMask, iUserBitPattern, bUseInternalBitFilter, iInternalBitMask, iInternalBitPattern, iSolutionIds_Zb, nReturnedSolIds, nSols):
+    return _amplpy_ampls_swig.XPRS_msp_getsollist2(msp, prob_to_rank_against, iRankAttrib, bRankAscending, iRankFirstIndex_Ob, iRankLastIndex_Ob, bUseUserBitFilter, iUserBitMask, iUserBitPattern, bUseInternalBitFilter, iInternalBitMask, iInternalBitPattern, iSolutionIds_Zb, nReturnedSolIds, nSols)
+
+def XPRS_msp_getsol(msp, iSolutionId, iSolutionIdStatus_, x, iColFirst, iColLast, nValuesReturned):
+    return _amplpy_ampls_swig.XPRS_msp_getsol(msp, iSolutionId, iSolutionIdStatus_, x, iColFirst, iColLast, nValuesReturned)
+
+def XPRS_msp_getslack(msp, prob_to_rank_against, iSolutionId, iSolutionIdStatus_, slack, iRowFirst, iRowLast, nValuesReturned):
+    return _amplpy_ampls_swig.XPRS_msp_getslack(msp, prob_to_rank_against, iSolutionId, iSolutionIdStatus_, slack, iRowFirst, iRowLast, nValuesReturned)
+
+def XPRS_msp_loadsol(msp, iSolutionId, x, nCols, sSolutionName, bNameModifiedForUniqueness, iSolutionIdOfExistingDuplicatePreventedLoad):
+    return _amplpy_ampls_swig.XPRS_msp_loadsol(msp, iSolutionId, x, nCols, sSolutionName, bNameModifiedForUniqueness, iSolutionIdOfExistingDuplicatePreventedLoad)
+
+def XPRS_msp_delsol(msp, iSolutionId, iSolutionIdStatus_):
+    return _amplpy_ampls_swig.XPRS_msp_delsol(msp, iSolutionId, iSolutionIdStatus_)
+
+def XPRS_msp_getintattribprobsol(msp, prob_to_rank_against, iSolutionId, iSolutionIdStatus_, iAttribId, Dst):
+    return _amplpy_ampls_swig.XPRS_msp_getintattribprobsol(msp, prob_to_rank_against, iSolutionId, iSolutionIdStatus_, iAttribId, Dst)
+
+def XPRS_msp_getdblattribprobsol(msp, prob_to_rank_against, iSolutionId, iSolutionIdStatus_, iAttribId, Dst):
+    return _amplpy_ampls_swig.XPRS_msp_getdblattribprobsol(msp, prob_to_rank_against, iSolutionId, iSolutionIdStatus_, iAttribId, Dst)
+
+def XPRS_msp_getintattribprob(msp, prob, iAttribId, Dst):
+    return _amplpy_ampls_swig.XPRS_msp_getintattribprob(msp, prob, iAttribId, Dst)
+
+def XPRS_msp_getdblattribprob(msp, prob, iAttribId, Dst):
+    return _amplpy_ampls_swig.XPRS_msp_getdblattribprob(msp, prob, iAttribId, Dst)
+
+def XPRS_msp_getintattribsol(msp, iSolutionId, iSolutionIdStatus_, iAttribId, Dst):
+    return _amplpy_ampls_swig.XPRS_msp_getintattribsol(msp, iSolutionId, iSolutionIdStatus_, iAttribId, Dst)
+
+def XPRS_msp_getdblattribsol(msp, iSolutionId, iSolutionIdStatus_, iAttribId, Dst):
+    return _amplpy_ampls_swig.XPRS_msp_getdblattribsol(msp, iSolutionId, iSolutionIdStatus_, iAttribId, Dst)
+
+def XPRS_msp_getintcontrolsol(msp, iSolutionId, iSolutionIdStatus_, iControlId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_getintcontrolsol(msp, iSolutionId, iSolutionIdStatus_, iControlId, Val)
+
+def XPRS_msp_getdblcontrolsol(msp, iSolutionId, iSolutionIdStatus_, iControlId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_getdblcontrolsol(msp, iSolutionId, iSolutionIdStatus_, iControlId, Val)
+
+def XPRS_msp_setintcontrolsol(msp, iSolutionId, iSolutionIdStatus_, iControlId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_setintcontrolsol(msp, iSolutionId, iSolutionIdStatus_, iControlId, Val)
+
+def XPRS_msp_setdblcontrolsol(msp, iSolutionId, iSolutionIdStatus_, iControlId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_setdblcontrolsol(msp, iSolutionId, iSolutionIdStatus_, iControlId, Val)
+
+def XPRS_msp_getintattribprobextreme(msp, prob_to_rank_against, bGet_Max_Otherwise_Min, iSolutionId, iAttribId, ExtremeVal):
+    return _amplpy_ampls_swig.XPRS_msp_getintattribprobextreme(msp, prob_to_rank_against, bGet_Max_Otherwise_Min, iSolutionId, iAttribId, ExtremeVal)
+
+def XPRS_msp_getdblattribprobextreme(msp, prob_to_rank_against, bGet_Max_Otherwise_Min, iSolutionId, iAttribId, ExtremeVal):
+    return _amplpy_ampls_swig.XPRS_msp_getdblattribprobextreme(msp, prob_to_rank_against, bGet_Max_Otherwise_Min, iSolutionId, iAttribId, ExtremeVal)
+
+def XPRS_msp_getintattrib(msp, iAttribId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_getintattrib(msp, iAttribId, Val)
+
+def XPRS_msp_getdblattrib(msp, iAttribId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_getdblattrib(msp, iAttribId, Val)
+
+def XPRS_msp_getintcontrol(msp, iControlId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_getintcontrol(msp, iControlId, Val)
+
+def XPRS_msp_getdblcontrol(msp, iControlId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_getdblcontrol(msp, iControlId, Val)
+
+def XPRS_msp_setintcontrol(msp, iControlId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_setintcontrol(msp, iControlId, Val)
+
+def XPRS_msp_setdblcontrol(msp, iControlId, Val):
+    return _amplpy_ampls_swig.XPRS_msp_setdblcontrol(msp, iControlId, Val)
+
+def XPRS_msp_setsolname(msp, iSolutionId, sNewSolutionBaseName, bNameModifiedForUniqueness, iSolutionIdStatus_):
+    return _amplpy_ampls_swig.XPRS_msp_setsolname(msp, iSolutionId, sNewSolutionBaseName, bNameModifiedForUniqueness, iSolutionIdStatus_)
+
+def XPRS_msp_getsolname(msp, iSolutionId, _sname, _iStringBufferBytes, _iBytesInInternalString, iSolutionIdStatus_):
+    return _amplpy_ampls_swig.XPRS_msp_getsolname(msp, iSolutionId, _sname, _iStringBufferBytes, _iBytesInInternalString, iSolutionIdStatus_)
+
+def XPRS_msp_findsolbyname(msp, sSolutionName, iSolutionId):
+    return _amplpy_ampls_swig.XPRS_msp_findsolbyname(msp, sSolutionName, iSolutionId)
+
+def XPRS_msp_writeslxsol(msp, prob_context, iSolutionId, iSolutionIdStatus_, sFileName, sFlags):
+    return _amplpy_ampls_swig.XPRS_msp_writeslxsol(msp, prob_context, iSolutionId, iSolutionIdStatus_, sFileName, sFlags)
+
+def XPRS_msp_readslxsol(msp, col_name_list, sFileName, sFlags, iSolutionId_Beg, iSolutionId_End):
+    return _amplpy_ampls_swig.XPRS_msp_readslxsol(msp, col_name_list, sFileName, sFlags, iSolutionId_Beg, iSolutionId_End)
+
+def XPRS_msp_getlasterror(msp, iMsgCode, _msg, _iStringBufferBytes, _iBytesInInternalString):
+    return _amplpy_ampls_swig.XPRS_msp_getlasterror(msp, iMsgCode, _msg, _iStringBufferBytes, _iBytesInInternalString)
+
+def XPRS_msp_setcbmsghandler(msp, f_msghandler, p):
+    return _amplpy_ampls_swig.XPRS_msp_setcbmsghandler(msp, f_msghandler, p)
+
+def XPRS_msp_getcbmsghandler(msp, f_msghandler, p):
+    return _amplpy_ampls_swig.XPRS_msp_getcbmsghandler(msp, f_msghandler, p)
+
+def XPRS_msp_addcbmsghandler(msp, f_msghandler, p, priority):
+    return _amplpy_ampls_swig.XPRS_msp_addcbmsghandler(msp, f_msghandler, p, priority)
+
+def XPRS_msp_removecbmsghandler(msp, f_msghandler, p):
+    return _amplpy_ampls_swig.XPRS_msp_removecbmsghandler(msp, f_msghandler, p)
+
+def XPRSaddqmatrix(prob, row, ncoefs, rowqcol1, rowqcol2, rowqcoef):
+    return _amplpy_ampls_swig.XPRSaddqmatrix(prob, row, ncoefs, rowqcol1, rowqcol2, rowqcoef)
+
+def XPRSdelqmatrix(prob, row):
+    return _amplpy_ampls_swig.XPRSdelqmatrix(prob, row)
+
+def XPRSloadqcqp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nqrows, qrowind, nrowqcoef, rowqcol1, rowqcol2, rowqcoef):
+    return _amplpy_ampls_swig.XPRSloadqcqp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nqrows, qrowind, nrowqcoef, rowqcol1, rowqcol2, rowqcoef)
+
+def XPRSloadmiqcqp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nqrows, qrowind, nrowqcoefs, rowqcol1, rowqcol2, rowqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval):
+    return _amplpy_ampls_swig.XPRSloadmiqcqp(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nqrows, qrowind, nrowqcoefs, rowqcol1, rowqcol2, rowqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval)
+
+def XPRSloadmiqcqp64(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nqrows, qrowind, nrowqcoefs, rowqcol1, rowqcol2, rowqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval):
+    return _amplpy_ampls_swig.XPRSloadmiqcqp64(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nqrows, qrowind, nrowqcoefs, rowqcol1, rowqcol2, rowqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval)
+
+def XPRSgetqrowcoeff(prob, row, rowqcol1, rowqcol2, p_rowqcoef):
+    return _amplpy_ampls_swig.XPRSgetqrowcoeff(prob, row, rowqcol1, rowqcol2, p_rowqcoef)
+
+def XPRSgetqrowqmatrix(prob, row, start, colind, rowqcoef, maxcoefs, p_ncoefs, first, last):
+    return _amplpy_ampls_swig.XPRSgetqrowqmatrix(prob, row, start, colind, rowqcoef, maxcoefs, p_ncoefs, first, last)
+
+def XPRSgetqrowqmatrixtriplets(prob, row, p_ncoefs, rowqcol1, rowqcol2, rowqcoef):
+    return _amplpy_ampls_swig.XPRSgetqrowqmatrixtriplets(prob, row, p_ncoefs, rowqcol1, rowqcol2, rowqcoef)
+
+def XPRSchgqrowcoeff(prob, row, rowqcol1, rowqcol2, rowqcoef):
+    return _amplpy_ampls_swig.XPRSchgqrowcoeff(prob, row, rowqcol1, rowqcol2, rowqcoef)
+
+def XPRSgetqrows(prob, p_nrows, rowind):
+    return _amplpy_ampls_swig.XPRSgetqrows(prob, p_nrows, rowind)
+
+def XPRS_mse_create(mse):
+    return _amplpy_ampls_swig.XPRS_mse_create(mse)
+
+def XPRS_mse_destroy(mse):
+    return _amplpy_ampls_swig.XPRS_mse_destroy(mse)
+
+def XPRS_mse_minim(mse, prob, msp, f_mse_handler, p, nMaxSols):
+    return _amplpy_ampls_swig.XPRS_mse_minim(mse, prob, msp, f_mse_handler, p, nMaxSols)
+
+def XPRS_mse_maxim(mse, prob, msp, f_mse_handler, p, nMaxSols):
+    return _amplpy_ampls_swig.XPRS_mse_maxim(mse, prob, msp, f_mse_handler, p, nMaxSols)
+
+def XPRS_mse_opt(mse, prob, msp, f_mse_handler, p, nMaxSols):
+    return _amplpy_ampls_swig.XPRS_mse_opt(mse, prob, msp, f_mse_handler, p, nMaxSols)
+
+def XPRS_mse_getsollist(mse, iMetricId, iRankFirstIndex_Ob, iRankLastIndex_Ob, iSolutionIds, nReturnedSolIds, nSols):
+    return _amplpy_ampls_swig.XPRS_mse_getsollist(mse, iMetricId, iRankFirstIndex_Ob, iRankLastIndex_Ob, iSolutionIds, nReturnedSolIds, nSols)
+
+def XPRS_mse_getsolmetric(mse, iSolutionId, iSolutionIdStatus, iMetricId, dMetric):
+    return _amplpy_ampls_swig.XPRS_mse_getsolmetric(mse, iSolutionId, iSolutionIdStatus, iMetricId, dMetric)
+
+def XPRS_mse_getcullchoice(mse, iMetricId, cull_sol_id_list, nMaxSolsToCull, nSolsToCull, dNewSolMetric, x, nCols, bRejectSoln):
+    return _amplpy_ampls_swig.XPRS_mse_getcullchoice(mse, iMetricId, cull_sol_id_list, nMaxSolsToCull, nSolsToCull, dNewSolMetric, x, nCols, bRejectSoln)
+
+def XPRS_mse_getintattrib(mse, iAttribId, Val):
+    return _amplpy_ampls_swig.XPRS_mse_getintattrib(mse, iAttribId, Val)
+
+def XPRS_mse_getdblattrib(mse, iAttribId, Val):
+    return _amplpy_ampls_swig.XPRS_mse_getdblattrib(mse, iAttribId, Val)
+
+def XPRS_mse_getintcontrol(mse, iAttribId, Val):
+    return _amplpy_ampls_swig.XPRS_mse_getintcontrol(mse, iAttribId, Val)
+
+def XPRS_mse_getdblcontrol(mse, iAttribId, Val):
+    return _amplpy_ampls_swig.XPRS_mse_getdblcontrol(mse, iAttribId, Val)
+
+def XPRS_mse_setintcontrol(mse, iAttribId, Val):
+    return _amplpy_ampls_swig.XPRS_mse_setintcontrol(mse, iAttribId, Val)
+
+def XPRS_mse_setdblcontrol(mse, iAttribId, Val):
+    return _amplpy_ampls_swig.XPRS_mse_setdblcontrol(mse, iAttribId, Val)
+
+def XPRS_mse_getlasterror(mse, iMsgCode, _msg, _iStringBufferBytes, _iBytesInInternalString):
+    return _amplpy_ampls_swig.XPRS_mse_getlasterror(mse, iMsgCode, _msg, _iStringBufferBytes, _iBytesInInternalString)
+
+def XPRS_mse_setsolbasename(mse, sSolutionBaseName):
+    return _amplpy_ampls_swig.XPRS_mse_setsolbasename(mse, sSolutionBaseName)
+
+def XPRS_mse_getsolbasename(mse, _sname, _iStringBufferBytes, _iBytesInInternalString):
+    return _amplpy_ampls_swig.XPRS_mse_getsolbasename(mse, _sname, _iStringBufferBytes, _iBytesInInternalString)
+
+def XPRS_mse_setcbgetsolutiondiff(mse, f_mse_getsolutiondiff, p):
+    return _amplpy_ampls_swig.XPRS_mse_setcbgetsolutiondiff(mse, f_mse_getsolutiondiff, p)
+
+def XPRS_mse_getcbgetsolutiondiff(mse, f_mse_getsolutiondiff, p):
+    return _amplpy_ampls_swig.XPRS_mse_getcbgetsolutiondiff(mse, f_mse_getsolutiondiff, p)
+
+def XPRS_mse_addcbgetsolutiondiff(mse, f_mse_getsolutiondiff, p, priority):
+    return _amplpy_ampls_swig.XPRS_mse_addcbgetsolutiondiff(mse, f_mse_getsolutiondiff, p, priority)
+
+def XPRS_mse_removecbgetsolutiondiff(mse, f_mse_getsolutiondiff, p):
+    return _amplpy_ampls_swig.XPRS_mse_removecbgetsolutiondiff(mse, f_mse_getsolutiondiff, p)
+
+def XPRS_mse_setcbmsghandler(mse, f_msghandler, p):
+    return _amplpy_ampls_swig.XPRS_mse_setcbmsghandler(mse, f_msghandler, p)
+
+def XPRS_mse_getcbmsghandler(mse, f_msghandler, p):
+    return _amplpy_ampls_swig.XPRS_mse_getcbmsghandler(mse, f_msghandler, p)
+
+def XPRS_mse_addcbmsghandler(mse, f_msghandler, p, priority):
+    return _amplpy_ampls_swig.XPRS_mse_addcbmsghandler(mse, f_msghandler, p, priority)
+
+def XPRS_mse_removecbmsghandler(mse, f_msghandler, p):
+    return _amplpy_ampls_swig.XPRS_mse_removecbmsghandler(mse, f_msghandler, p)
+
+def XPRS_bo_create(p_bo, prob, isoriginal):
+    return _amplpy_ampls_swig.XPRS_bo_create(p_bo, prob, isoriginal)
+
+def XPRS_bo_destroy(bo):
+    return _amplpy_ampls_swig.XPRS_bo_destroy(bo)
+
+def XPRS_bo_store(bo, p_status):
+    return _amplpy_ampls_swig.XPRS_bo_store(bo, p_status)
+
+def XPRS_bo_addbranches(bo, nbranches):
+    return _amplpy_ampls_swig.XPRS_bo_addbranches(bo, nbranches)
+
+def XPRS_bo_getbranches(bo, p_nbranches):
+    return _amplpy_ampls_swig.XPRS_bo_getbranches(bo, p_nbranches)
+
+def XPRS_bo_setpriority(bo, priority):
+    return _amplpy_ampls_swig.XPRS_bo_setpriority(bo, priority)
+
+def XPRS_bo_setpreferredbranch(bo, branch):
+    return _amplpy_ampls_swig.XPRS_bo_setpreferredbranch(bo, branch)
+
+def XPRS_bo_addbounds(bo, branch, nbounds, bndtype, colind, bndval):
+    return _amplpy_ampls_swig.XPRS_bo_addbounds(bo, branch, nbounds, bndtype, colind, bndval)
+
+def XPRS_bo_getbounds(bo, branch, p_nbounds, maxbounds, bndtype, colind, bndval):
+    return _amplpy_ampls_swig.XPRS_bo_getbounds(bo, branch, p_nbounds, maxbounds, bndtype, colind, bndval)
+
+def XPRS_bo_addrows(bo, branch, nrows, ncoefs, rowtype, rhs, start, colind, rowcoef):
+    return _amplpy_ampls_swig.XPRS_bo_addrows(bo, branch, nrows, ncoefs, rowtype, rhs, start, colind, rowcoef)
+
+def XPRS_bo_getrows(bo, branch, p_nrows, maxrows, p_ncoefs, maxcoefs, rowtype, rhs, start, colind, rowcoef):
+    return _amplpy_ampls_swig.XPRS_bo_getrows(bo, branch, p_nrows, maxrows, p_ncoefs, maxcoefs, rowtype, rhs, start, colind, rowcoef)
+
+def XPRS_bo_addcuts(bo, branch, ncuts, cutind):
+    return _amplpy_ampls_swig.XPRS_bo_addcuts(bo, branch, ncuts, cutind)
+
+def XPRS_bo_getid(bo, p_id):
+    return _amplpy_ampls_swig.XPRS_bo_getid(bo, p_id)
+
+def XPRS_bo_getlasterror(bo, p_msgcode, msg, maxbytes, p_nbytes):
+    return _amplpy_ampls_swig.XPRS_bo_getlasterror(bo, p_msgcode, msg, maxbytes, p_nbytes)
+
+def XPRS_bo_validate(bo, p_status):
+    return _amplpy_ampls_swig.XPRS_bo_validate(bo, p_status)
+
+def XPRSmsaddjob(prob, description, ninitial, colind, initial, nintcontrols, intcontrolid, intcontrolval, ndblcontrols, dblcontrolid, dblcontrolval, data):
+    return _amplpy_ampls_swig.XPRSmsaddjob(prob, description, ninitial, colind, initial, nintcontrols, intcontrolid, intcontrolval, ndblcontrols, dblcontrolid, dblcontrolval, data)
+
+def XPRSmsaddpreset(prob, description, preset, maxjobs, data):
+    return _amplpy_ampls_swig.XPRSmsaddpreset(prob, description, preset, maxjobs, data)
+
+def XPRSmsaddcustompreset(prob, description, preset, maxjobs, ninitial, colind, initial, nintcontrols, intcontrolid, intcontrolval, ndblcontrols, dblcontrolid, dblcontrolval, data):
+    return _amplpy_ampls_swig.XPRSmsaddcustompreset(prob, description, preset, maxjobs, ninitial, colind, initial, nintcontrols, intcontrolid, intcontrolval, ndblcontrols, dblcontrolid, dblcontrolval, data)
+
+def XPRSnlpsetfunctionerror(prob):
+    return _amplpy_ampls_swig.XPRSnlpsetfunctionerror(prob)
+
+def XPRSnlpprintevalinfo(prob):
+    return _amplpy_ampls_swig.XPRSnlpprintevalinfo(prob)
+
+def XPRSnlpvalidate(prob):
+    return _amplpy_ampls_swig.XPRSnlpvalidate(prob)
+
+def XPRSnlpoptimize(prob, flags):
+    return _amplpy_ampls_swig.XPRSnlpoptimize(prob, flags)
+
+def XPRSgetnlpsol(prob, x, slack, duals, djs):
+    return _amplpy_ampls_swig.XPRSgetnlpsol(prob, x, slack, duals, djs)
+
+def XPRSnlpsetcurrentiv(prob):
+    return _amplpy_ampls_swig.XPRSnlpsetcurrentiv(prob)
+
+def XPRSnlpvalidaterow(prob, row):
+    return _amplpy_ampls_swig.XPRSnlpvalidaterow(prob, row)
+
+def XPRSnlpvalidatekkt(prob, mode, respectbasis, updatemult, violtarget):
+    return _amplpy_ampls_swig.XPRSnlpvalidatekkt(prob, mode, respectbasis, updatemult, violtarget)
+
+def XPRSmsclear(prob):
+    return _amplpy_ampls_swig.XPRSmsclear(prob)
+
+def XPRSnlpevaluateformula(prob, parsed, type, values, p_value):
+    return _amplpy_ampls_swig.XPRSnlpevaluateformula(prob, parsed, type, values, p_value)
+
+def XPRSnlpvalidatevector(prob, solution, p_suminf, p_sumscaledinf, p_objval):
+    return _amplpy_ampls_swig.XPRSnlpvalidatevector(prob, solution, p_suminf, p_sumscaledinf, p_objval)
+
+def XPRSnlpadduserfunction(prob, funcname, functype, nin, nout, options, function, data, p_type):
+    return _amplpy_ampls_swig.XPRSnlpadduserfunction(prob, funcname, functype, nin, nout, options, function, data, p_type)
+
+def XPRSnlpdeluserfunction(prob, type):
+    return _amplpy_ampls_swig.XPRSnlpdeluserfunction(prob, type)
+
+def XPRSnlpimportlibfunc(prob, libname, funcname, p_function, p_status):
+    return _amplpy_ampls_swig.XPRSnlpimportlibfunc(prob, libname, funcname, p_function, p_status)
+
+def XPRSnlpaddformulas(prob, ncoefs, rowind, formulastart, parsed, type, value):
+    return _amplpy_ampls_swig.XPRSnlpaddformulas(prob, ncoefs, rowind, formulastart, parsed, type, value)
+
+def XPRSnlpchgformulastring(prob, row, formula):
+    return _amplpy_ampls_swig.XPRSnlpchgformulastring(prob, row, formula)
+
+def XPRSnlpchgformula(prob, row, parsed, type, value):
+    return _amplpy_ampls_swig.XPRSnlpchgformula(prob, row, parsed, type, value)
+
+def XPRSnlpgetformula(prob, row, parsed, maxtypes, p_ntypes, type, value):
+    return _amplpy_ampls_swig.XPRSnlpgetformula(prob, row, parsed, maxtypes, p_ntypes, type, value)
+
+def XPRSnlpgetformularows(prob, p_nformulas, rowind):
+    return _amplpy_ampls_swig.XPRSnlpgetformularows(prob, p_nformulas, rowind)
+
+def XPRSnlploadformulas(prob, nnlpcoefs, rowind, formulastart, parsed, type, value):
+    return _amplpy_ampls_swig.XPRSnlploadformulas(prob, nnlpcoefs, rowind, formulastart, parsed, type, value)
+
+def XPRSnlpdelformulas(prob, nformulas, rowind):
+    return _amplpy_ampls_swig.XPRSnlpdelformulas(prob, nformulas, rowind)
+
+def XPRSnlpgetformulastring(prob, row, formula, maxbytes):
+    return _amplpy_ampls_swig.XPRSnlpgetformulastring(prob, row, formula, maxbytes)
+
+def XPRSnlpsetinitval(prob, nvars, colind, initial):
+    return _amplpy_ampls_swig.XPRSnlpsetinitval(prob, nvars, colind, initial)
+
+def XPRSslpgetcoefformula(prob, row, col, p_factor, parsed, maxtypes, p_ntypes, type, value):
+    return _amplpy_ampls_swig.XPRSslpgetcoefformula(prob, row, col, p_factor, parsed, maxtypes, p_ntypes, type, value)
+
+def XPRSslpgetcoefs(prob, p_ncoefs, rowind, colind):
+    return _amplpy_ampls_swig.XPRSslpgetcoefs(prob, p_ncoefs, rowind, colind)
+
+def XPRSslploadcoefs(prob, ncoefs, rowind, colind, factor, formulastart, parsed, type, coef):
+    return _amplpy_ampls_swig.XPRSslploadcoefs(prob, ncoefs, rowind, colind, factor, formulastart, parsed, type, coef)
+
+def XPRSslpdelcoefs(prob, ncoefs, rowind, colind):
+    return _amplpy_ampls_swig.XPRSslpdelcoefs(prob, ncoefs, rowind, colind)
+
+def XPRSslpgetccoef(prob, row, col, p_factor, formula, maxbytes):
+    return _amplpy_ampls_swig.XPRSslpgetccoef(prob, row, col, p_factor, formula, maxbytes)
+
+def XPRSslpsetdetrow(prob, nvars, colind, rowind):
+    return _amplpy_ampls_swig.XPRSslpsetdetrow(prob, nvars, colind, rowind)
+
+def XPRSslpaddcoefs(prob, ncoefs, rowind, colind, factor, formulastart, parsed, type, value):
+    return _amplpy_ampls_swig.XPRSslpaddcoefs(prob, ncoefs, rowind, colind, factor, formulastart, parsed, type, value)
+
+def XPRSslpchgccoef(prob, row, col, factor, formula):
+    return _amplpy_ampls_swig.XPRSslpchgccoef(prob, row, col, factor, formula)
+
+def XPRSslpchgcoef(prob, row, col, factor, parsed, type, value):
+    return _amplpy_ampls_swig.XPRSslpchgcoef(prob, row, col, factor, parsed, type, value)
+
+def XPRSslpgetcolinfo(prob, type, col, p_info):
+    return _amplpy_ampls_swig.XPRSslpgetcolinfo(prob, type, col, p_info)
+
+def XPRSslpgetrowinfo(prob, type, row, p_info):
+    return _amplpy_ampls_swig.XPRSslpgetrowinfo(prob, type, row, p_info)
+
+def XPRSslpcascade(prob):
+    return _amplpy_ampls_swig.XPRSslpcascade(prob)
+
+def XPRSslpcascadeorder(prob):
+    return _amplpy_ampls_swig.XPRSslpcascadeorder(prob)
+
+def XPRSslpchgrowstatus(prob, row, status):
+    return _amplpy_ampls_swig.XPRSslpchgrowstatus(prob, row, status)
+
+def XPRSslpchgrowwt(prob, row, weight):
+    return _amplpy_ampls_swig.XPRSslpchgrowwt(prob, row, weight)
+
+def XPRSslpchgdeltatype(prob, nvars, varind, deltatypes, values):
+    return _amplpy_ampls_swig.XPRSslpchgdeltatype(prob, nvars, varind, deltatypes, values)
+
+def XPRSslpchgcascadenlimit(prob, col, limit):
+    return _amplpy_ampls_swig.XPRSslpchgcascadenlimit(prob, col, limit)
+
+def XPRSslpconstruct(prob):
+    return _amplpy_ampls_swig.XPRSslpconstruct(prob)
+
+def XPRSslpgetrowstatus(prob, row, p_status):
+    return _amplpy_ampls_swig.XPRSslpgetrowstatus(prob, row, p_status)
+
+def XPRSslpgetrowwt(prob, row, p_weight):
+    return _amplpy_ampls_swig.XPRSslpgetrowwt(prob, row, p_weight)
+
+def XPRSslpevaluatecoef(prob, row, col, p_value):
+    return _amplpy_ampls_swig.XPRSslpevaluatecoef(prob, row, col, p_value)
+
+def XPRSslpreinitialize(prob):
+    return _amplpy_ampls_swig.XPRSslpreinitialize(prob)
+
+def XPRSslpunconstruct(prob):
+    return _amplpy_ampls_swig.XPRSslpunconstruct(prob)
+
+def XPRSslpupdatelinearization(prob):
+    return _amplpy_ampls_swig.XPRSslpupdatelinearization(prob)
+
+def XPRSslpfixpenalties(prob, p_status):
+    return _amplpy_ampls_swig.XPRSslpfixpenalties(prob, p_status)
+
+def XPRSnlppostsolve(prob):
+    return _amplpy_ampls_swig.XPRSnlppostsolve(prob)
+
+def XPRSnlpcalcslacks(prob, solution, slack):
+    return _amplpy_ampls_swig.XPRSnlpcalcslacks(prob, solution, slack)
+
+def XPRSnlpchgobjformula(prob, parsed, type, value):
+    return _amplpy_ampls_swig.XPRSnlpchgobjformula(prob, parsed, type, value)
+
+def XPRSnlpchgobjformulastring(prob, formula):
+    return _amplpy_ampls_swig.XPRSnlpchgobjformulastring(prob, formula)
+
+def XPRSnlpgetobjformula(prob, parsed, maxtypes, p_ntypes, type, value):
+    return _amplpy_ampls_swig.XPRSnlpgetobjformula(prob, parsed, maxtypes, p_ntypes, type, value)
+
+def XPRSnlpgetobjformulastring(prob, formula, maxbytes):
+    return _amplpy_ampls_swig.XPRSnlpgetobjformulastring(prob, formula, maxbytes)
+
+def XPRSnlpdelobjformula(prob):
+    return _amplpy_ampls_swig.XPRSnlpdelobjformula(prob)
+
+def XPRSminim(prob, flags):
+    return _amplpy_ampls_swig.XPRSminim(prob, flags)
+
+def XPRSmaxim(prob, flags):
+    return _amplpy_ampls_swig.XPRSmaxim(prob, flags)
+
+def XPRSbasiscondition(prob, p_cond, p_scaledcond):
+    return _amplpy_ampls_swig.XPRSbasiscondition(prob, p_cond, p_scaledcond)
+
+def XPRSrefinemipsol(prob, options, flags, solution, refined, p_status):
+    return _amplpy_ampls_swig.XPRSrefinemipsol(prob, options, flags, solution, refined, p_status)
+
+def XPRSgetnamelistobject(prob, type, p_nml):
+    return _amplpy_ampls_swig.XPRSgetnamelistobject(prob, type, p_nml)
+
+def XPRS_nml_create(p_nml):
+    return _amplpy_ampls_swig.XPRS_nml_create(p_nml)
+
+def XPRS_nml_destroy(nml):
+    return _amplpy_ampls_swig.XPRS_nml_destroy(nml)
+
+def XPRS_nml_getnamecount(nml, p_count):
+    return _amplpy_ampls_swig.XPRS_nml_getnamecount(nml, p_count)
+
+def XPRS_nml_getmaxnamelen(nml, p_namelen):
+    return _amplpy_ampls_swig.XPRS_nml_getmaxnamelen(nml, p_namelen)
+
+def XPRS_nml_getnames(nml, pad, buffer, maxbytes, p_nbytes, first, last):
+    return _amplpy_ampls_swig.XPRS_nml_getnames(nml, pad, buffer, maxbytes, p_nbytes, first, last)
+
+def XPRS_nml_addnames(nml, names, first, last):
+    return _amplpy_ampls_swig.XPRS_nml_addnames(nml, names, first, last)
+
+def XPRS_nml_removenames(nml, first, last):
+    return _amplpy_ampls_swig.XPRS_nml_removenames(nml, first, last)
+
+def XPRS_nml_findname(nml, name, p_index):
+    return _amplpy_ampls_swig.XPRS_nml_findname(nml, name, p_index)
+
+def XPRS_nml_copynames(dest, src):
+    return _amplpy_ampls_swig.XPRS_nml_copynames(dest, src)
+
+def XPRS_nml_getlasterror(nml, p_msgcode, msg, maxbytes, p_nbytes):
+    return _amplpy_ampls_swig.XPRS_nml_getlasterror(nml, p_msgcode, msg, maxbytes, p_nbytes)
+
+def XPRSgetsol(prob, x, slack, duals, djs):
+    return _amplpy_ampls_swig.XPRSgetsol(prob, x, slack, duals, djs)
+
+def XPRSfixglobals(prob, options):
+    return _amplpy_ampls_swig.XPRSfixglobals(prob, options)
+
+def XPRSgetglobal(prob, p_nentities, p_nsets, coltype, colind, limit, settype, start, setcols, refval):
+    return _amplpy_ampls_swig.XPRSgetglobal(prob, p_nentities, p_nsets, coltype, colind, limit, settype, start, setcols, refval)
+
+def XPRSloadqcqpglobal(prob, probname, ncols, nrows, qrtypes, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, mqcol1, mqcol2, objqcoef, nqrows, qrowind, nrowqcoefs, rowqcol1, rowqcol2, rowqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval):
+    return _amplpy_ampls_swig.XPRSloadqcqpglobal(prob, probname, ncols, nrows, qrtypes, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, mqcol1, mqcol2, objqcoef, nqrows, qrowind, nrowqcoefs, rowqcol1, rowqcol2, rowqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval)
+
+def XPRSloadqglobal(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval):
+    return _amplpy_ampls_swig.XPRSloadqglobal(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nobjqcoefs, objqcol1, objqcol2, objqcoef, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval)
+
+def XPRSloadglobal(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval):
+    return _amplpy_ampls_swig.XPRSloadglobal(prob, probname, ncols, nrows, rowtype, rhs, rng, objcoef, start, collen, rowind, rowcoef, lb, ub, nentities, nsets, coltype, entind, limit, settype, setstart, setind, refval)
+
+def XPRSaddcbgloballog(prob, globallog, data, priority):
+    return _amplpy_ampls_swig.XPRSaddcbgloballog(prob, globallog, data, priority)
+
+def XPRSremovecbgloballog(prob, globallog, data):
+    return _amplpy_ampls_swig.XPRSremovecbgloballog(prob, globallog, data)
+class XPRESSCallback(BaseCallback):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def run(self):
+        return _amplpy_ampls_swig.XPRESSCallback_run(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_XPRESSCallback
+
+    def getObj(self):
+        return _amplpy_ampls_swig.XPRESSCallback_getObj(self)
+
+    def getWhereString(self):
+        return _amplpy_ampls_swig.XPRESSCallback_getWhereString(self)
+
+    def getMessage(self):
+        return _amplpy_ampls_swig.XPRESSCallback_getMessage(self)
+
+    def getAMPLSWhere(self):
+        return _amplpy_ampls_swig.XPRESSCallback_getAMPLSWhere(self)
+
+    def getValue(self, v):
+        return _amplpy_ampls_swig.XPRESSCallback_getValue(self, v)
+
+    def get(self, what):
+        return _amplpy_ampls_swig.XPRESSCallback_get(self, what)
+
+    def getInt(self, what):
+        return _amplpy_ampls_swig.XPRESSCallback_getInt(self, what)
+
+    def getDouble(self, what):
+        return _amplpy_ampls_swig.XPRESSCallback_getDouble(self, what)
+
+    def getXPRSprob(self):
+        return _amplpy_ampls_swig.XPRESSCallback_getXPRSprob(self)
+
+    def setHeuristicSolution(self, nvars, indices, values):
+        return _amplpy_ampls_swig.XPRESSCallback_setHeuristicSolution(self, nvars, indices, values)
+
+    def getValueArray(self, v):
+        return _amplpy_ampls_swig.XPRESSCallback_getValueArray(self, v)
+
+    def __init__(self):
+        if self.__class__ == XPRESSCallback:
+            _self = None
+        else:
+            _self = self
+        _amplpy_ampls_swig.XPRESSCallback_swiginit(self, _amplpy_ampls_swig.new_XPRESSCallback(_self, ))
+    def __disown__(self):
+        self.this.disown()
+        _amplpy_ampls_swig.disown_XPRESSCallback(self)
+        return weakref.proxy(self)
+
+# Register XPRESSCallback in _amplpy_ampls_swig:
+_amplpy_ampls_swig.XPRESSCallback_swigregister(XPRESSCallback)
+
+class XPRESSDrv(SolverDriverXpress):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def loadModel(self, modelName):
+        return _amplpy_ampls_swig.XPRESSDrv_loadModel(self, modelName)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_XPRESSDrv
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.XPRESSDrv_swiginit(self, _amplpy_ampls_swig.new_XPRESSDrv(*args))
+
+# Register XPRESSDrv in _amplpy_ampls_swig:
+_amplpy_ampls_swig.XPRESSDrv_swigregister(XPRESSDrv)
+
+class XPRESSModel(AMPLMPModel):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+
+    def __init__(self, *args):
+        _amplpy_ampls_swig.XPRESSModel_swiginit(self, _amplpy_ampls_swig.new_XPRESSModel(*args))
+
+    def driver(self):
+        return _amplpy_ampls_swig.XPRESSModel_driver(self)
+
+    def getStatus(self):
+        return _amplpy_ampls_swig.XPRESSModel_getStatus(self)
+
+    def optimize(self):
+        return _amplpy_ampls_swig.XPRESSModel_optimize(self)
+
+    def getNumVars(self):
+        return _amplpy_ampls_swig.XPRESSModel_getNumVars(self)
+
+    def getNumCons(self):
+        return _amplpy_ampls_swig.XPRESSModel_getNumCons(self)
+
+    def getObj(self):
+        return _amplpy_ampls_swig.XPRESSModel_getObj(self)
+
+    def getSolution(self, first, length, sol):
+        return _amplpy_ampls_swig.XPRESSModel_getSolution(self, first, length, sol)
+
+    def error(self, code):
+        return _amplpy_ampls_swig.XPRESSModel_error(self, code)
+
+    def getXPRSprob(self):
+        return _amplpy_ampls_swig.XPRESSModel_getXPRSprob(self)
+
+    def getIntAttr(self, what):
+        return _amplpy_ampls_swig.XPRESSModel_getIntAttr(self, what)
+
+    def getDoubleAttr(self, what):
+        return _amplpy_ampls_swig.XPRESSModel_getDoubleAttr(self, what)
+
+    def isMIP(self):
+        return _amplpy_ampls_swig.XPRESSModel_isMIP(self)
+    __swig_destroy__ = _amplpy_ampls_swig.delete_XPRESSModel
+
+    def setParam(self, *args):
+        return _amplpy_ampls_swig.XPRESSModel_setParam(self, *args)
+
+    def getIntParam(self, XPRSParam):
+        return _amplpy_ampls_swig.XPRESSModel_getIntParam(self, XPRSParam)
+
+    def getDoubleParam(self, XPRSParam):
+        return _amplpy_ampls_swig.XPRESSModel_getDoubleParam(self, XPRSParam)
+
+    def enableLazyConstraints(self):
+        return _amplpy_ampls_swig.XPRESSModel_enableLazyConstraints(self)
+
+    def setAMPLSParameter(self, *args):
+        return _amplpy_ampls_swig.XPRESSModel_setAMPLSParameter(self, *args)
+
+    def getAMPLSIntParameter(self, params):
+        return _amplpy_ampls_swig.XPRESSModel_getAMPLSIntParameter(self, params)
+
+    def getAMPLSDoubleParameter(self, params):
+        return _amplpy_ampls_swig.XPRESSModel_getAMPLSDoubleParameter(self, params)
+
+    def getAMPLSIntAttribute(self, attrib):
+        return _amplpy_ampls_swig.XPRESSModel_getAMPLSIntAttribute(self, attrib)
+
+    def getAMPLSDoubleAttribute(self, attrib):
+        return _amplpy_ampls_swig.XPRESSModel_getAMPLSDoubleAttribute(self, attrib)
+
+    def addConstraintImpl(self, name, numnz, vars, coefficients, sense, rhs):
+        return _amplpy_ampls_swig.XPRESSModel_addConstraintImpl(self, name, numnz, vars, coefficients, sense, rhs)
+    toXPRESSType = property(_amplpy_ampls_swig.XPRESSModel_toXPRESSType_get)
+
+    def addVariableImpl(self, name, numnz, cons, coefficients, lb, ub, objcoeff, type):
+        return _amplpy_ampls_swig.XPRESSModel_addVariableImpl(self, name, numnz, cons, coefficients, lb, ub, objcoeff, type)
+
+    def getConstraintsValueImpl(self, offset, length):
+        return _amplpy_ampls_swig.XPRESSModel_getConstraintsValueImpl(self, offset, length)
+
+    def getVarsValueImpl(self, offset, length):
+        return _amplpy_ampls_swig.XPRESSModel_getVarsValueImpl(self, offset, length)
+
+# Register XPRESSModel in _amplpy_ampls_swig:
+_amplpy_ampls_swig.XPRESSModel_swigregister(XPRESSModel)
 
 
 

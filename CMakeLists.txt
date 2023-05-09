@@ -29,7 +29,7 @@ defSolver(cplex cplex cplex "")
 defSolver(cplexmp cplex cplexmp "")
 defSolver(xpress xpress xpress "")
 defSolver(cbcmp cbc cbcmp "")
-defSolver(copt copt copt "")#ADDITIONALINCLUDES "${CMAKE_BINARY_DIR}/_deps/cbc-src/Cbc/src" "${CMAKE_BINARY_DIR}/_deps/coinutils-src/CoinUtils/src")
+defSolver(copt copt copt "")
 
 set(BUILD_AMPLS "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
 
@@ -118,7 +118,7 @@ if(hasParent)
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1001)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2211)
-  set(copt_BASE_DIR ${SOLVERLIBS}/copt/6.5.0)
+  set(copt_BASE_DIR ${SOLVERLIBS}/copt/6.5.2)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/41.01.01)
 else()
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs)
@@ -141,68 +141,90 @@ endmacro()
 
 
 
-macro(FindSolverLib OUTPUTTARGETNAME BASELIBFILENAME)
+function(FindSolverLib OUTPUTTARGETNAME BASELIBFILENAME)
     if(WIN32)
         string(TOLOWER ${BASELIBFILENAME} LIBFILENAME)
         string(REPLACE ".dll" ".lib" DLLFILENAME ${LIBFILENAME})
     else()
         set(LIBFILENAME ${BASELIBFILENAME})
     endif()
-    find_library(LIB_LIBFILE ${LIBFILENAME} PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
-    if(NOT LIB_LIBFILE)
+    find_library(LIB_LIBFILE_${OUTPUTTARGETNAME} ${LIBFILENAME} NAMES ${LIBFILENAME}-lib PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH)
+    if(NOT LIB_LIBFILE_${OUTPUTTARGETNAME})
       message(FATAL_ERROR "Library ${LIBFILENAME} not found in ${AMPLS_DIR}")
     endif()
-
     if(WIN32)
-      find_file(LIB_DLLFILE ${solver}-lib.dll PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
+      find_file(LIB_DLLFILE_${OUTPUTTARGETNAME} ${BASELIBFILENAME}-lib.dll PATHS ${AMPLS_DIR} REQUIRED NO_DEFAULT_PATH) 
     endif()
     add_library(${OUTPUTTARGETNAME} SHARED IMPORTED)
     if(WIN32)
-      set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_LOCATION ${LIB_DLLFILE})
-      set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_IMPLIB ${LIB_LIBFILE})
+      set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_LOCATION ${LIB_DLLFILE_${OUTPUTTARGETNAME}})
+      set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_IMPLIB ${LIB_LIBFILE_${OUTPUTTARGETNAME}})
     else()
-      set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_LOCATION ${LIB_LIBFILE})
+      set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_LOCATION ${LIB_LIBFILE_${OUTPUTTARGETNAME}})
     endif()
-endmacro()
+endfunction()
+
 if(WIN32)
     set(sys "/lib/win64")
-    CreateSolverLib(gurobi-solverlib ${gurobi_BASE_DIR}/include 
-    ${gurobi_BASE_DIR}/${sys}/gurobi100.dll ${gurobi_BASE_DIR}/${sys}/gurobi100.lib)
-    set(gurobi-solver-deps gurobi-solverlib)
+    set(GRBINC ${gurobi_BASE_DIR}/include)
+    if(hasParent)
+        set(GRBINC ${GRBINC}/gurobi)
+    endif()
+    
+    CreateSolverLib(gurobi-solverlib ${GRBINC}
+    ${gurobi_BASE_DIR}/${sys}/gurobi100.dll 
+    ${gurobi_BASE_DIR}/${sys}/gurobi100.lib)
     
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/cplex2211.dll
       ${cplex_BASE_DIR}/${sys}/cplex2211.lib)
-    set(cplex-solver-deps cplex-solverlib)
-
+      
      CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
       ${copt_BASE_DIR}/${sys}/copt.dll
       ${copt_BASE_DIR}/${sys}/copt.lib)
-    set(copt-solver-deps copt-solverlib)
     
     CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
       ${xpress_BASE_DIR}/${sys}/xprs.dll
       ${xpress_BASE_DIR}/${sys}/xprs.lib)
-    set(xpress-solver-deps xpress-solverlib)
-    set(cbc-solver-deps Coin::CbcSolver)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/win64) # AMPL base driver library locations
 elseif(APPLE)
     set(sys "/lib/osx64")
-    set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/osx64/libgurobi91.dylib)
-    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/osx64/libcplex2010.dylib)
-    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/osx64/libxprs.dylib)
-                     # ${xpress_BASE_DIR}/lib/osx64/libxprl.dylib)
+    CreateSolverLib(gurobi-solverlib ${GRBINC} 
+                      ${gurobi_BASE_DIR}/${sys}/libgurobi10.dylib)
+
+    CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
+      ${cplex_BASE_DIR}/${sys}/libcplex2211.dylib)
+      
+   CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
+      ${copt_BASE_DIR}/${sys}/libcopt.dylib)
+    
+   CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
+      ${xpress_BASE_DIR}/${sys}/libxprs.dylib)
+
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/osx64) # AMPL base driver library locations
 else()
     set(sys "/lib/linux64")
-    set(gurobi_LIBRARY ${gurobi_BASE_DIR}/lib/linux64/libgurobi91.so)
-    set(cplex_LIBRARY ${cplex_BASE_DIR}/lib/linux64/libcplex2010.so)
-    set(xpress_LIBRARY ${xpress_BASE_DIR}/lib/linux64/libxprs.so.37.01)
-                        #${xpress_BASE_DIR}/lib/linux64/libxprl.so.x8.11 )
+    CreateSolverLib(gurobi-solverlib ${GRBINC}
+                      ${gurobi_BASE_DIR}/${sys}/libgurobi10.so)
+
+    CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
+      ${cplex_BASE_DIR}/${sys}/libcplex2211.so)
+      
+    CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
+      ${copt_BASE_DIR}/${sys}/libcopt.so)
+    
+    CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
+      ${xpress_BASE_DIR}/${sys}/libxprs.so.41)
+
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()
 
+set(gurobi-solver-deps gurobi-solverlib)
+set(cplex-solver-deps cplex-solverlib)
+set(copt-solver-deps copt-solverlib)
+set(xpress-solver-deps xpress-solverlib)
+set(cbc-solver-deps Coin::CbcSolver)
 
  # Get rid of warning in newer versions of cmake
 macro(ADD_SWIG_LIBRARY name language)
@@ -233,7 +255,7 @@ function(AddSolverStub solver targetbase libname)
   # i'll need just one
   set(IMPORTLIB ${targetbase}-lib)
   if(NOT TARGET ${IMPORTLIB})
-      FindSolverLib(${IMPORTLIB} ${libname}-lib)
+      FindSolverLib(${IMPORTLIB} ${libname})
   endif()
 
   add_prefix(

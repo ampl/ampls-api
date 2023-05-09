@@ -8,7 +8,6 @@
 
 void declareModel(ampl::AMPL& a) {
 
-  //a.eval("option version;");
   a.eval("param nPatterns integer >= 0;"
     "set PATTERNS = 1..nPatterns;  "
     "set WIDTHS;"                   // finished widths

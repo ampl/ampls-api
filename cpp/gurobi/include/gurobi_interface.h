@@ -111,6 +111,8 @@ class GurobiModel : public AMPLMPModel {
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 
 public:
+  using Driver = ampls::GurobiDrv;
+
   void enableLazyConstraints()
   {
     setParam(GRB_INT_PAR_LAZYCONSTRAINTS, 1);

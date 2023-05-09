@@ -121,6 +121,8 @@ class CbcModel : public AMPLMPModel {
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
   void writeSolImpl(const char* solFileName);
 public:
+  using Driver = ampls::CbcDrv;
+
   void enableLazyConstraints()  {
     Cbc_setParameter(model_, "preprocess", "off");
   }

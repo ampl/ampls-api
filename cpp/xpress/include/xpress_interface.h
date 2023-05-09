@@ -185,6 +185,7 @@ class XPRESSModel : public AMPLMPModel {
   }
  
 public:
+  using Driver = ampls::XPRESSDrv;
 
   XPRESSModel(const XPRESSModel &other) : AMPLMPModel(other), 
     prob_(other.prob_), tStart_(other.tStart_) {

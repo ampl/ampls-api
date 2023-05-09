@@ -110,6 +110,7 @@ class CoptModel : public AMPLMPModel {
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
 
 public:
+  using Driver = ampls::CoptDrv;
   void enableLazyConstraints()
   {
     setParam(COPT_INTPARAM_LAZYCONSTRAINTS, 1);

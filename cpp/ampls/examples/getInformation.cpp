@@ -5,6 +5,9 @@
 
 const char* MODELNAME = "tsp.nl";
 
+// This example illustrates how to obtain basic information
+// during the solution process using generic callbacks.
+
 class MyGenericCallback : public ampls::GenericCallback
 {
   int nMIPnodes = 0;
@@ -18,13 +21,11 @@ class MyGenericCallback : public ampls::GenericCallback
     // Get the generic mapping
      ampls::Where::CBWhere where = getAMPLSWhere();
      //printf("Where: %i\n", where);
-    
-    char BUFFER[100];
-    
     switch (where)
     {
     case ampls::Where::MSG:
-      std::cout<<getMessage() << std::endl;
+      // Print out all messages coming from the solver
+      std::cout<<getMessage();
       return 0;
     case ampls::Where::PRESOLVE:
       if((getValue(ampls::Value::PRE_DELROWS).integer+
@@ -38,7 +39,7 @@ class MyGenericCallback : public ampls::GenericCallback
     case ampls::Where::MIPNODE:
       nMIPnodes++;
       printf("\nNew MIP node. Count: %d", nMIPnodes);
-      printf("\nRel MIP GAP: %f", getValue(ampls::Value::MIP_RELATIVEGAP).dbl);
+      //printf("\nRel MIP GAP: %f", getValue(ampls::Value::MIP_RELATIVEGAP).dbl);
       return 0;
     case ampls::Where::MIP:
     case ampls::Where::MIPSOL:
@@ -59,8 +60,9 @@ class MyGenericCallback : public ampls::GenericCallback
 
 };
 
-double doStuff(ampls::AMPLModel& m, const char *name) 
+template<class T> double doStuff(const char* nlfile) 
 {
+  T m = ampls::AMPLModel::load<T>(nlfile);
   // Set a (generic) callback
   MyGenericCallback cb;
   m.setCallback(&cb);
@@ -69,7 +71,7 @@ double doStuff(ampls::AMPLModel& m, const char *name)
   m.optimize();
   // Get the objective value
   double obj = m.getObj();
-  printf("\nSolution with %s=%f\n", name, obj);
+  printf("\nSolution with %s=%f\n", m.driver(), obj);
 
   ampls::Status::SolStatus s = m.getStatus();
   switch (s)
@@ -86,15 +88,6 @@ double doStuff(ampls::AMPLModel& m, const char *name)
     default:
       printf("Status: %d\n", s);
   }
-  // Get the solution vector
-  std::vector<double> solution = m.getSolutionVector();
-  int nnz = 0;
-  for (int i = 0; i < solution.size(); i++)
-    if (solution[i] != 0) nnz++;
-  printf("\nNumber of non zeroes = %d\n", nnz);
-
-  double mipgap = m.getAMPLSDoubleAttribute(ampls::SolverAttributes::DBL_RelMIPGap);
-  printf("\nSolution MIP gap=%f\n", mipgap);
 
   // Write the AMPL sol file
   m.writeSol();
@@ -106,43 +99,23 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
 #ifdef USE_gurobi
-  // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
-  ampls::GurobiModel g = gurobi.loadModel(buffer);
-  // Use it as generic model
-  doStuff(g, "gurobi");
+  doStuff<ampls::GurobiModel>(buffer);
 #endif
 
 #ifdef USE_copt
-  // Load a model using CPLEX driver
-  ampls::CoptDrv copt;
-  ampls::CoptModel coptmodel = copt.loadModel(buffer);
-  // Use it as generic model
-  doStuff(coptmodel, "copt");
+  doStuff<ampls::CoptModel >(buffer);
 #endif
 
 #ifdef USE_cplexmp
-  // Load a model using CPLEX driver
-  ampls::CPLEXDrv cplex;
-  ampls::CPLEXModel c = cplex.loadModel(buffer);
-  // Use it as generic model
-  doStuff(c, "cplex");
+  doStuff<ampls::CPLEXModel >(buffer);
 #endif
 
 #ifdef USE_xpress
-  // Load a model using Xpress driver
-  ampls::XPRESSDrv xpress;
-  ampls::XPRESSModel x = xpress.loadModel(buffer);
-  // Use it as generic model
-  doStuff(x, "xpress");
+  doStuff<ampls::XPRESSModel >(buffer);
 #endif
 
 #ifdef USE_cbcmp
-  // Load a model using CPLEX driver
-  ampls::CbcDrv cbc;
-  ampls::CbcModel cbcmodel = cbc.loadModel(buffer);
-  // Use it as generic model
-  doStuff(cbcmodel, "cbc");
+  doStuff<ampls::CbcModel >(buffer);
 #endif
 
 

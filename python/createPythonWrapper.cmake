@@ -5,14 +5,16 @@ find_package(PythonLibs REQUIRED)
 set(PYTHON_SWIG_API amplpy_${modulename}_swig) # name of swig generated wrapper
 
 # ############ Create SWIG wrapper #############
-# Workaround to bypass licensing routines
-set(gurobi_INCLUDE_DIR ${gurobi_INCLUDE_DIR}/gurobi)
-set(includeDir ${${basesolvername}_INCLUDE_DIR})
+if(NOT ${basesolvername} MATCHES ampls) 
+    get_target_property(libinclude ${basesolvername}-solverlib INTERFACE_INCLUDE_DIRECTORIES)
+    set(includeDir ${libinclude})
+endif()
 
-include_directories(
+include_directories(${PYTHON_SWIG_API} PUBLIC
   ${PYTHON_INCLUDE_PATH} ${includeDir} # for solver headers
   ${DIR_CPP_INCLUDE} # for solver_interface.h
   ${ampls_INCLUDE})
+
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
@@ -27,6 +29,8 @@ set(SWIG_CPP_HEADER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.h")
 set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES CPLUSPLUS
                                                                     ON)
 add_swig_library(${PYTHON_SWIG_API} python ${SWIG_PYTHON_MODULE_NAME}.i)
+
+
 if(NOT ${solvername} STREQUAL "ampls")
 swig_link_libraries(${PYTHON_SWIG_API} ${solvername}-drv                    
                     ${PYTHON_LIBRARIES})

@@ -836,7 +836,6 @@ public:
   /**
   Set AMPL options (using AMPL solver drivers command line semantics), especially useful to instruct the library
   to return suffixes when returning the solution to AMPL.
-  NOTE: MUST be called before loading the model.
 
   Example:
   
@@ -1087,6 +1086,11 @@ protected:
   }
 public:
 
+  template<class T> static T load(const char* nlfile) { 
+    T::Driver d;
+    return d.loadModel(nlfile);
+  }
+
   virtual const char* driver() { throw AMPLSolverException("Not implemented in base class!"); }
   std::string getRecordedEntities(bool exportToAMPL = true) {
     return records_.getRecordedEntities(exportToAMPL);
@@ -1311,12 +1315,31 @@ public:
   virtual double getAMPLSDoubleAttribute(SolverAttributes::Attribs) {
     throw AMPLSolverException("Not implemented in base class!");
   }
-
+  /// <summary>
+  /// Get a list of the options supported by the solver, as seen from the -= output
+  /// of the solver driver. Note that these options are the ones found in the list 
+  /// of the corresponding solver driver options at:
+  /// https://dev.ampl.com/solvers/index.html
+  /// </summary>
+  /// <returns>A vector of option descriptions</returns>
   virtual std::vector<Option>& getOptions() { 
     throw AMPLSolverException("Not implemented in base class!");
   };
-
+  /// <summary>
+  /// Set a solver driver option to the specified value. 
+  /// See getOptions() for a list of supported options.
+  /// </summary>
   virtual void setOption(const char* name, int value) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  virtual void setOption(const char* name, double value) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  /// <summary>
+  /// Get the current value of the option 'name'.
+  /// See getOptions() for a list of supported options.
+  /// </summary>
+  virtual int getOptionValue(const char* name) {
     throw AMPLSolverException("Not implemented in base class!");
   }
 };
@@ -1375,10 +1398,12 @@ protected:
 public:
   /// <summary>
   /// Get a list of the options supported by the solver, as seen from the -= output
-  /// of the solver driver
+  /// of the solver driver. Note that these options are the ones found in the list 
+  /// of the corresponding solver driver options at:
+  /// https://dev.ampl.com/solvers/index.html
   /// </summary>
   /// <returns>A vector of option descriptions</returns>
-  std::vector<Option>& getOptions() {
+  virtual std::vector<Option>& getOptions() {
     if (options_.size() == 0)
     {
       auto opt = impl::mp::AMPLSGetOptions(solver_);
@@ -1390,17 +1415,20 @@ public:
     return options_;
   };
   /// <summary>
-  /// Set an option to the specified value
+  /// Set a solver driver option to the specified value. 
+  /// See getOptions() for a list of supported options.
   /// </summary>
-  void setOption(const char* name, int value);
+  virtual void setOption(const char* name, int value);
   /// <summary>
-  /// Set an option to the specified value
+  /// Set an option to the specified value.
+  /// See getOptions() for a list of supported options.
   /// </summary>
-  void setOption(const char* name, double value);
+  virtual void setOption(const char* name, double value);
   /// <summary>
-  /// Get the current value of the option 'name'
+  /// Get the current value of the option 'name'.
+  /// See getOptions() for a list of supported options.
   /// </summary>
-  int getOptionValue(const char* name) {
+  virtual int getOptionValue(const char* name) {
     int v;
     impl::mp::AMPLSGetIntOption(solver_, name, &v);
     return v;

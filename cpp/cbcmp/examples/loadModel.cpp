@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
   }
   
   // Get solution vector via Cbc C API
-  int nc;
+  int nc = model.getNumVars();
   const double* varsFromCbc = Cbc_getColSolution(cbc);
 
   // Get inverse map and display the variables with solver ordering
