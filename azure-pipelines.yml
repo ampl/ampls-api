@@ -1,6 +1,6 @@
 jobs:
 - job: linux
-  pool: {vmImage: 'Ubuntu-18.04'}
+  pool: {vmImage: 'ubuntu-latest'}
   strategy:
     matrix:
       gurobi:
@@ -41,7 +41,7 @@ jobs:
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
 - job: macos
-  pool: {vmImage: 'macOS-10.15'}
+  pool: {vmImage: 'macOS-latest'}
   strategy:
     matrix:
       gurobi:
@@ -78,7 +78,7 @@ jobs:
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
 - job: windows
-  pool: {vmImage: 'windows-2019'}
+  pool: {vmImage: 'windows-latest'}
   strategy:
     matrix:
       gurobi:
