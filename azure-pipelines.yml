@@ -6,7 +6,7 @@ jobs:
       gurobi:
         solver: 'gurobi'
       cplex:
-        solver: 'cplex'
+        solver: 'cplexmp'
         CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
@@ -47,7 +47,7 @@ jobs:
       gurobi:
         solver: 'gurobi'
       cplex:
-        solver: 'cplex'
+        solver: 'cplexmp'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps: 
@@ -84,7 +84,7 @@ jobs:
       gurobi:
         solver: 'gurobi'
       cplex:
-        solver: 'cplex'
+        solver: 'cplexmp'
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:
