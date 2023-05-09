@@ -802,7 +802,9 @@ protected:
   {
     FILE* f = fopen(modelName, "rb");
     if (!f)
-      throw ampls::AMPLSolverException::format("Could not find file: %s", modelName);
+      throw ampls::AMPLSolverException::format("Could not find file: %s, make sure it is exported from AMPL.\n"
+        "Note that if AMPL presolver detects an unfeasibility, it will not export it. To overcome this, set the\n"
+        "option 'presolve' to 0 before exporting the model.", modelName);
     else
       fclose(f);
 
@@ -1434,8 +1436,9 @@ namespace ampls {
   namespace AMPLAPIInterface
   {
     namespace impl {
-
+      const char* FN = "___modelexport___.nl";
       void doExport(ampl::AMPL& a) {
+        remove(FN);
         a.eval("option auxfiles cr;");
         a.eval("write g___modelexport___;");
       }
@@ -1447,7 +1450,7 @@ namespace ampls {
       template<> GurobiModel exportModel<GurobiModel>(ampl::AMPL& a) {
         doExport(a);
         GurobiDrv gurobi;
-        return gurobi.loadModel("___modelexport___.nl");
+        return gurobi.loadModel(FN);
       }
 #endif
 
@@ -1455,7 +1458,7 @@ namespace ampls {
       template<> CbcModel exportModel<CbcModel>(ampl::AMPL& a) {
         doExport(a);
         CbcDrv cbc;
-        return cbc.loadModel("___modelexport___.nl");
+        return cbc.loadModel(FN);
       }
 #endif
 
@@ -1463,7 +1466,7 @@ namespace ampls {
       template<> CoptModel exportModel<CoptModel>(ampl::AMPL& a) {
         doExport(a);
         CoptDrv copt;
-        return copt.loadModel("___modelexport___.nl");
+        return copt.loadModel(FN);
       }
 #endif
 
@@ -1471,7 +1474,7 @@ namespace ampls {
       template<> CPLEXModel exportModel<CPLEXModel>(ampl::AMPL& a) {
         doExport(a);
         CPLEXDrv cplex;
-        return cplex.loadModel("___modelexport___.nl");
+        return cplex.loadModel(FN);
       }
 #endif
 
@@ -1479,7 +1482,7 @@ namespace ampls {
       template<> XPRESSModel exportModel<XPRESSModel>(ampl::AMPL& a) {
         doExport(a);
         XPRESSDrv xpress;
-        return xpress.loadModel("___modelexport___.nl");
+        return xpress.loadModel(FN);
       }
 #endif
     } // namespace impl

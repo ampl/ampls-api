@@ -25,4 +25,4 @@ try:
 except:
     raise
 
-__version__ = '0.1.0b18'
+__version__ = '0.1.0'

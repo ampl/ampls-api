@@ -225,11 +225,19 @@ std::string Variable::toAMPLString(const std::map<int, std::string>& varMap,
   return ss.str();
 }
 
+void handleStatus(const char* name, int status) {
+  if (!status)
+    return;
+  if (status==1)
+    throw ampls::AMPLSolverException::format("Unknown option: %s", name);
+  else
+    throw ampls::AMPLSolverException::format("Problems setting option: %s", name);
+}
 void AMPLMPModel::setOption(const char* name, int value) {
-  impl::mp::AMPLSSetIntOption(solver_, name, value);
+  handleStatus(name, impl::mp::AMPLSSetIntOption(solver_, name, value));
 }
 void AMPLMPModel::setOption(const char* name, double value) {
-  impl::mp::AMPLSSetDblOption(solver_, name, value);
+  handleStatus(name, impl::mp::AMPLSSetDblOption(solver_, name, value));
 }
 
 namespace impl {
