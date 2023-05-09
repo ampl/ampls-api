@@ -24,6 +24,7 @@ The interfaces are available for multiple languages; the core is written in C++ 
 - Gurobi
 - CPLEX
 - XPRESS 
+- Copt
 
 ## Languages
 
