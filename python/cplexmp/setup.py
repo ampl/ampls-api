@@ -131,7 +131,7 @@ setup(
             os.path.join('amplpy_cplex', 'cpp', 'cplex', 'include'),
             os.path.join('amplpy_cplex', 'cpp', 'ampls', 'include'),
         ],
-        libraries=['cplex2010', 'cplex-lib'],
+        libraries=['cplex2211', 'cplex-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[

@@ -131,7 +131,7 @@ setup(
             os.path.join('amplpy_gurobi', 'cpp', 'gurobi', 'include'),
             os.path.join('amplpy_gurobi', 'cpp', 'ampls', 'include'),
         ],
-        libraries=['gurobi91', 'gurobi-lib'],
+        libraries=['gurobi100', 'gurobi-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[
