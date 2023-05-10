@@ -3,7 +3,7 @@
 
 #include<iostream>
 #include<string>
-
+#include <cstring>
 const char* MODELNAME = "tsp.nl";
 
 class CCB : public ampls::GenericCallback

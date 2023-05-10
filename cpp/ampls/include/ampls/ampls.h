@@ -466,9 +466,9 @@ namespace impl
 {
   class Records
   {
-    friend class AMPLModel;
-    friend class Constraint;
-    friend class Variable;
+    friend class ampls::AMPLModel;
+    friend class ampls::Constraint;
+    friend class ampls::Variable;
 
     AMPLModel* parent_;
     std::vector<Variable> vars_;
@@ -491,7 +491,7 @@ namespace impl
       vars_(other.vars_), cons_(other.cons_),
       entities_(other.entities_) { }
 
-    Records& Records::operator=(const Records& other)
+    Records& operator=(const Records& other)
     {
       if (this != &other) {
         parent_ = other.parent_;
@@ -501,7 +501,7 @@ namespace impl
       }
       return *this;
     }
-    Records& Records::operator=(Records&& other)
+    Records& operator=(Records&& other)
     {
       if (this != &other) {
         parent_ = std::move(other.parent_);
@@ -1087,7 +1087,7 @@ protected:
 public:
 
   template<class T> static T load(const char* nlfile) { 
-    T::Driver d;
+    typename T::Driver d;
     return d.loadModel(nlfile);
   }
 

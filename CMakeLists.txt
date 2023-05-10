@@ -128,16 +128,20 @@ else()
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress)
 endif()
 
-macro(CreateSolverLib name includedirs lib importlib)
-     add_library(${name} SHARED IMPORTED)
+function(CreateSolverLib name includedirs lib)
+    cmake_parse_arguments(CSLIB "" "IMPORTLIB" "" ${ARGN})
+    add_library(${name} SHARED IMPORTED)
     if(WIN32)
       set_property(TARGET ${name} PROPERTY IMPORTED_LOCATION ${lib})
-      set_property(TARGET ${name} PROPERTY IMPORTED_IMPLIB ${importlib})
+      if(NOT CSLIB_IMPORTLIB)
+        message(ERROR "Import lib not specified")
+      endif()
+      set_property(TARGET ${name} PROPERTY IMPORTED_IMPLIB ${CSLIB_IMPORTLIB})
     else()
       set_property(TARGET ${name} PROPERTY IMPORTED_LOCATION ${lib})
     endif()
-    set_target_properties(${name}  PROPERTIES INTERFACE_INCLUDE_DIRECTORIES ${includedirs})
-endmacro()
+    set_target_properties(${name} PROPERTIES INTERFACE_INCLUDE_DIRECTORIES ${includedirs})
+endfunction()
 
 
 
@@ -163,35 +167,34 @@ function(FindSolverLib OUTPUTTARGETNAME BASELIBFILENAME)
       set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_LOCATION ${LIB_LIBFILE_${OUTPUTTARGETNAME}})
     endif()
 endfunction()
-
+set(GRBINC ${gurobi_BASE_DIR}/include)
+if(hasParent)
+    set(GRBINC ${GRBINC}/gurobi)
+endif()
 if(WIN32)
-    set(sys "/lib/win64")
-    set(GRBINC ${gurobi_BASE_DIR}/include)
-    if(hasParent)
-        set(GRBINC ${GRBINC}/gurobi)
-    endif()
+    set(sys "lib/win64")
     
     CreateSolverLib(gurobi-solverlib ${GRBINC}
     ${gurobi_BASE_DIR}/${sys}/gurobi100.dll 
-    ${gurobi_BASE_DIR}/${sys}/gurobi100.lib)
+    IMPORTLIB ${gurobi_BASE_DIR}/${sys}/gurobi100.lib)
     
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/cplex2211.dll
-      ${cplex_BASE_DIR}/${sys}/cplex2211.lib)
+      IMPORTLIB ${cplex_BASE_DIR}/${sys}/cplex2211.lib)
       
      CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
       ${copt_BASE_DIR}/${sys}/copt.dll
-      ${copt_BASE_DIR}/${sys}/copt.lib)
+      IMPORTLIB ${copt_BASE_DIR}/${sys}/copt.lib)
     
     CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
       ${xpress_BASE_DIR}/${sys}/xprs.dll
-      ${xpress_BASE_DIR}/${sys}/xprs.lib)
+      IMPORTLIB ${xpress_BASE_DIR}/${sys}/xprs.lib)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/win64) # AMPL base driver library locations
 elseif(APPLE)
-    set(sys "/lib/osx64")
+    set(sys "lib/osx64")
     CreateSolverLib(gurobi-solverlib ${GRBINC} 
-                      ${gurobi_BASE_DIR}/${sys}/libgurobi10.dylib)
+                      ${gurobi_BASE_DIR}/${sys}/libgurobi100.dylib)
 
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/libcplex2211.dylib)
@@ -204,9 +207,9 @@ elseif(APPLE)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/osx64) # AMPL base driver library locations
 else()
-    set(sys "/lib/linux64")
+    set(sys "lib/linux64")
     CreateSolverLib(gurobi-solverlib ${GRBINC}
-                      ${gurobi_BASE_DIR}/${sys}/libgurobi10.so)
+                      ${gurobi_BASE_DIR}/${sys}/libgurobi100.so)
 
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/libcplex2211.so)

@@ -193,7 +193,7 @@ public:
   }
   XPRESSModel(XPRESSModel&& other) noexcept :
     AMPLMPModel(std::move(other)), prob_(std::move(other.prob_)),
-    tStart_(std::move(other.tStart_)), driver_(std::move(other.driver_)) { 
+    tStart_(std::move(other.tStart_)), driver_(other.driver_) { 
     other.prob_ = nullptr;
   }
   
