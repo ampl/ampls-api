@@ -24,12 +24,11 @@ function(defSolver name solvername libtargetname)
   set(${name}_ADDITIONALINCLUDES ${DEFSOLVER_ADDITIONALINCLUDES} PARENT_SCOPE)
 endfunction()
 
-defSolver(gurobi gurobi gurobi "")
-defSolver(cplex cplex cplex "")
-defSolver(cplexmp cplex cplexmp "")
-defSolver(xpress xpress xpress "")
-defSolver(cbcmp cbc cbcmp "")
-defSolver(copt copt copt "")
+defSolver(gurobi gurobi gurobi)
+defSolver(cplexmp cplex cplexmp)
+defSolver(xpress xpress xpress)
+defSolver(cbcmp cbc cbcmp)
+defSolver(copt copt copt)
 
 set(BUILD_AMPLS "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
 
