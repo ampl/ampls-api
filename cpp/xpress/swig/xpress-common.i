@@ -35,6 +35,7 @@
 %ignore XPRSgetobjintattrib64;
 %ignore XPRSloadmiqp64;
 %ignore XPRSloadmip64;
+%ignore XPRSgetmipentities64;
 
 %feature("director") ampls::XPRESSCallback;
 %ignore ampls::impl::xpress;
