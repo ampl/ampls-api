@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-AMPLPY-CPLEX
+AMPLPY-copt
 ------------
 
-CPLEX driver for AMPL.  This package uses AMPLS-API, which is an open source set of lightweight
+copt driver for AMPL.  This package uses AMPLS-API, which is an open source set of lightweight
 interfaces between AMPL and solvers, which allow:
 
 - Read in an AMPL model instance from an `NL` file
@@ -67,8 +67,8 @@ def libdir():
 
 def link_args():
     rpaths = [
-        os.path.join('amplpy_cplex', 'libs', 'ampls', libdir()),
-        os.path.join('amplpy_cplex', 'libs', 'cplex', 'lib', libdir()),
+        os.path.join('amplpy_copt', 'libs', 'ampls', libdir()),
+        os.path.join('amplpy_copt', 'libs', 'copt', 'lib', libdir()),
     ]
     if OSTYPE == 'Darwin':
         return ['-Wl,-rpath,@loader_path/' + rpath for rpath in rpaths]
@@ -82,9 +82,9 @@ def link_args():
 
 
 setup(
-    name='amplpy_cplex',
+    name='amplpy_copt',
     version='0.1.0',
-    description='CPLEX extension for amplpy',
+    description='copt extension for amplpy',
     long_description=__doc__,
     license='BSD-3',
     platforms='any',
@@ -117,35 +117,35 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    packages=['amplpy_cplex'],
+    packages=['amplpy_copt'],
     ext_modules=[Extension(
-        '_amplpy_cplex_swig',
+        '_amplpy_copt_swig',
         library_dirs=[
-            os.path.join('amplpy_cplex', 'libs', 'cplex', 'lib', libdir()),
-            os.path.join('amplpy_cplex', 'libs', 'ampls', libdir()),
+            os.path.join('amplpy_copt', 'libs', 'copt', 'lib', libdir()),
+            os.path.join('amplpy_copt', 'libs', 'ampls', libdir()),
         ],
         define_macros=[('SWIG', 1)],
         include_dirs=[
-            os.path.join('amplpy_cplex', 'libs', 'cplex', 'include'),
-            os.path.join('amplpy_cplex', 'swig'),
-            os.path.join('amplpy_cplex', 'cpp', 'cplex', 'include'),
-            os.path.join('amplpy_cplex', 'cpp', 'ampls', 'include'),
+            os.path.join('amplpy_copt', 'libs', 'copt', 'include'),
+            os.path.join('amplpy_copt', 'swig'),
+            os.path.join('amplpy_copt', 'cpp', 'copt', 'include'),
+            os.path.join('amplpy_copt', 'cpp', 'ampls', 'include'),
         ],
-        libraries=['cplex2010', 'cplex-lib'],
+        libraries=['copt2010', 'copt-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[
-            os.path.join('amplpy_cplex', 'swig',
-                         'amplpy_cplex_swig_wrap.cxx')
+            os.path.join('amplpy_copt', 'swig',
+                         'amplpy_copt_swig_wrap.cxx')
         ] + [
-            os.path.join('amplpy_cplex', 'cpp', 'ampls', 'src', fname)
-            for fname in ls_dir(os.path.join('amplpy_cplex', 'cpp', 'ampls', 'src'))
+            os.path.join('amplpy_copt', 'cpp', 'ampls', 'src', fname)
+            for fname in ls_dir(os.path.join('amplpy_copt', 'cpp', 'ampls', 'src'))
             if fname.endswith(('.c', '.cpp'))
         ] + [
-            os.path.join('amplpy_cplex', 'cpp', 'cplex', 'src', fname)
-            for fname in ls_dir(os.path.join('amplpy_cplex', 'cpp', 'cplex', 'src'))
+            os.path.join('amplpy_copt', 'cpp', 'copt', 'src', fname)
+            for fname in ls_dir(os.path.join('amplpy_copt', 'cpp', 'copt', 'src'))
             if fname.endswith(('.c', '.cpp'))
         ],
     )],
-    package_data={'': ls_dir('amplpy_cplex/')},
+    package_data={'': ls_dir('amplpy_copt/')},
 )

@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
 cd `dirname $0`
-NAME=cplex
-SOLVERS="cplex"
+NAME=copt
+SOLVERS="copt"
 PACKAGE=amplpy_$NAME
 
 PLATFORMS="linux64 osx64 win64"

@@ -15,6 +15,41 @@ def setCallback(self, cb):
     self._setCallback(cb)
 
 
+
+if __package__ == 'amplpy_copt':
+    from amplpy_copt_swig import *
+    COPT_DRIVER = COPTDrv()
+
+    def exportCoptModel(self, options=None):
+        global COPT_DRIVER
+        import tempfile
+        import shutil
+        import os
+        tmp = tempfile.mkdtemp()
+        fname = os.path.join(tmp, 'model').replace('"', '""')
+        try:
+            if options:
+                COPT_DRIVER.setOptions(options)
+            self.option['auxfiles'] = 'c'
+            self.eval('write "g{}";'.format(fname))
+            model = COPT_DRIVER.loadModel(fname + '.nl')
+            model._solfile = fname + '.sol'
+            os.remove(fname + '.nl')
+            model._setCallback = model.setCallback
+            model.setCallback = types.MethodType(setCallback, model)
+            return model
+        except:
+            shutil.rmtree(tmp)
+            raise
+
+    try:
+        from amplpy import AMPL
+        AMPL.exportCoptModel = exportCoptModel
+    except:
+        pass
+
+
+
 if __package__ == 'amplpy_cplex':
     from amplpy_cplex_swig import *
     CPLEX_DRIVER = CPLEXDrv()
@@ -85,6 +120,8 @@ def exportModel(self, driver, options=None):
         return self.exportGurobiModel(options)
     elif driver == 'cplex':
         return self.exportCplexModel(options)
+    elif driver == 'copt':
+        return self.exportCoptModel(options)
 
 
 def importSolution(self, model):
