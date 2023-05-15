@@ -135,17 +135,17 @@ setup(
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[
-            os.path.join('amplpy_cplex', 'swig',
-                         'amplpy_cplex_swig_wrap.cxx')
+            os.path.join('amplpy_cplexmp', 'swig',
+                         'amplpy_cplexmp_swig_wrap.cxx')
         ] + [
-            os.path.join('amplpy_cplex', 'cpp', 'ampls', 'src', fname)
-            for fname in ls_dir(os.path.join('amplpy_cplex', 'cpp', 'ampls', 'src'))
+            os.path.join('amplpy_cplexmp', 'cpp', 'ampls', 'src', fname)
+            for fname in ls_dir(os.path.join('amplpy_cplexmp', 'cpp', 'ampls', 'src'))
             if fname.endswith(('.c', '.cpp'))
         ] + [
-            os.path.join('amplpy_cplex', 'cpp', 'cplex', 'src', fname)
-            for fname in ls_dir(os.path.join('amplpy_cplex', 'cpp', 'cplex', 'src'))
+            os.path.join('amplpy_cplexmp', 'cpp', 'cplexmp', 'src', fname)
+            for fname in ls_dir(os.path.join('amplpy_cplexmp', 'cpp', 'cplexmp', 'src'))
             if fname.endswith(('.c', '.cpp'))
         ],
     )],
-    package_data={'': ls_dir('amplpy_cplex/')},
+    package_data={'': ls_dir('amplpy_cplexmp/')},
 )
