@@ -67,8 +67,8 @@ def libdir():
 
 def link_args():
     rpaths = [
-        os.path.join('amplpy_cplex', 'libs', 'ampls', libdir()),
-        os.path.join('amplpy_cplex', 'libs', 'cplex', 'lib', libdir()),
+        os.path.join('amplpy_cplexmp', 'libs', 'ampls', libdir()),
+        os.path.join('amplpy_cplexmp', 'libs', 'cplex', 'lib', libdir()),
     ]
     if OSTYPE == 'Darwin':
         return ['-Wl,-rpath,@loader_path/' + rpath for rpath in rpaths]
@@ -82,7 +82,7 @@ def link_args():
 
 
 setup(
-    name='amplpy_cplex',
+    name='amplpy_cplexmp',
     version='0.1.0',
     description='CPLEX extension for amplpy',
     long_description=__doc__,
@@ -117,9 +117,9 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    packages=['amplpy_cplex'],
+    packages=['amplpy_cplexmp'],
     ext_modules=[Extension(
-        '_amplpy_cplex_swig',
+        '_amplpy_cplexmp_swig',
         library_dirs=[
             os.path.join('amplpy_cplexmp', 'libs', 'cplex', 'lib', libdir()),
             os.path.join('amplpy_cplexmp', 'libs', 'ampls', libdir()),
