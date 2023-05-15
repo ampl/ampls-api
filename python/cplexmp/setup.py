@@ -121,17 +121,17 @@ setup(
     ext_modules=[Extension(
         '_amplpy_cplex_swig',
         library_dirs=[
-            os.path.join('amplpy_cplex', 'libs', 'cplex', 'lib', libdir()),
-            os.path.join('amplpy_cplex', 'libs', 'ampls', libdir()),
+            os.path.join('amplpy_cplexmp', 'libs', 'cplex', 'lib', libdir()),
+            os.path.join('amplpy_cplexmp', 'libs', 'ampls', libdir()),
         ],
         define_macros=[('SWIG', 1)],
         include_dirs=[
-            os.path.join('amplpy_cplex', 'libs', 'cplex', 'include'),
-            os.path.join('amplpy_cplex', 'swig'),
-            os.path.join('amplpy_cplex', 'cpp', 'cplex', 'include'),
-            os.path.join('amplpy_cplex', 'cpp', 'ampls', 'include'),
+            os.path.join('amplpy_cplexmp', 'libs', 'cplex', 'include'),
+            os.path.join('amplpy_cplexmp', 'swig'),
+            os.path.join('amplpy_cplexmp', 'cpp', 'cplexmp', 'include'),
+            os.path.join('amplpy_cplexmp', 'cpp', 'ampls', 'include'),
         ],
-        libraries=['cplex2211', 'cplex-lib'],
+        libraries=['cplex2211', 'cplexmp-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[
