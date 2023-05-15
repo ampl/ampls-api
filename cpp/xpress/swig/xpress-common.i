@@ -31,6 +31,7 @@
 %ignore XPRSaddqmatrix64;
 %ignore XPRSloadqcqp64;
 %ignore XPRSloadqcqpglobal64;
+%ignore XPRSloadmiqcqp64
 
 %feature("director") ampls::XPRESSCallback;
 %ignore ampls::impl::xpress;
