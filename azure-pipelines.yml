@@ -78,7 +78,7 @@ jobs:
         bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
-        python -m pip install --upgrade cibuildwheel==2.0.0
+        python -m pip install --upgrade cibuildwheel==2.1.3
         cibuildwheel --platform macos --output-dir $TMP .
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
