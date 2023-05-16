@@ -2,53 +2,53 @@ variables:
   CIBW_SKIP: pp* cp27-* *_i686 *-win32 *musllinux*
 
 jobs:
-- job: linux
-  pool: {vmImage: 'ubuntu-latest'}
-  strategy:
-    matrix:
-      gurobi:
-        solver: 'gurobi'
-      cplex:
-        solver: 'cplexmp'
-        CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
-      xpress:
-        solver: 'xpress'
-        CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
-  variables:
-    wheelhouse: $(Build.ArtifactStagingDirectory)
-  steps:
-    - task: UsePythonVersion@0
-    # - script: |
-    #     sudo apt-get install swig
-    #   displayName: Install SWIG
-    - bash: |
-        bash libs/download.sh
-      displayName: Download libraries
-    - bash: |
-        set -ex
-        mkdir -p tmp
-        TMP=`pwd`/tmp
-        cp support/twine.sh $WHEELHOUSE/twine.sh
-        cd python/$SOLVER
-        bash prepare.sh linux64
-        bash swig.sh
-        pip install --upgrade pip
-        pip install urllib3[secure] --upgrade
-        python -m pip install --upgrade cibuildwheel==1.12.0
-        # CIBW_BUILD="cp35-*" cibuildwheel --platform linux --output-dir $TMP .
-        # python -m pip install --upgrade cibuildwheel==2.12.0
-        cibuildwheel --platform linux --output-dir $TMP .
-        pip install cibuildwheel==1.12.0
-        ls -l $TMP
-        test "$(ls -A $TMP)" || exit 1
-        mv $TMP/* $WHEELHOUSE/
-        bash prepare.sh # to package libs for all platforms
-        python setup.py sdist -d $WHEELHOUSE
-        # pip install twine
-        # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/* || true
-      displayName: Build wheels
-    - task: PublishBuildArtifacts@1
-      inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
+# - job: linux
+#   pool: {vmImage: 'ubuntu-latest'}
+#   strategy:
+#     matrix:
+#       gurobi:
+#         solver: 'gurobi'
+#       cplex:
+#         solver: 'cplexmp'
+#         CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
+#       xpress:
+#         solver: 'xpress'
+#         CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
+#   variables:
+#     wheelhouse: $(Build.ArtifactStagingDirectory)
+#   steps:
+#     - task: UsePythonVersion@0
+#     # - script: |
+#     #     sudo apt-get install swig
+#     #   displayName: Install SWIG
+#     - bash: |
+#         bash libs/download.sh
+#       displayName: Download libraries
+#     - bash: |
+#         set -ex
+#         mkdir -p tmp
+#         TMP=`pwd`/tmp
+#         cp support/twine.sh $WHEELHOUSE/twine.sh
+#         cd python/$SOLVER
+#         bash prepare.sh linux64
+#         bash swig.sh
+#         pip install --upgrade pip
+#         pip install urllib3[secure] --upgrade
+#         python -m pip install --upgrade cibuildwheel==1.12.0
+#         # CIBW_BUILD="cp35-*" cibuildwheel --platform linux --output-dir $TMP .
+#         # python -m pip install --upgrade cibuildwheel==2.12.0
+#         cibuildwheel --platform linux --output-dir $TMP .
+#         pip install cibuildwheel==1.12.0
+#         ls -l $TMP
+#         test "$(ls -A $TMP)" || exit 1
+#         mv $TMP/* $WHEELHOUSE/
+#         bash prepare.sh # to package libs for all platforms
+#         python setup.py sdist -d $WHEELHOUSE
+#         # pip install twine
+#         # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/* || true
+#       displayName: Build wheels
+#     - task: PublishBuildArtifacts@1
+#       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
 - job: macos
   pool: {vmImage: 'macOS-latest'}
   strategy:
@@ -78,7 +78,7 @@ jobs:
         bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
-        python -m pip install --upgrade cibuildwheel==1.12.0
+        python -m pip install --upgrade cibuildwheel==2.0.0
         cibuildwheel --platform macos --output-dir $TMP .
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
@@ -88,47 +88,47 @@ jobs:
       displayName: Build wheels
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
-- job: windows
-  pool: {vmImage: 'windows-latest'}
-  strategy:
-    matrix:
-      gurobi:
-        solver: 'gurobi'
-      cplex:
-        solver: 'cplexmp'
-      xpress:
-        solver: 'xpress'
-  variables:
-    wheelhouse: $(Build.ArtifactStagingDirectory)
-  steps:
-    - task: UsePythonVersion@0
-    # - script: |
-    #     choco install vcpython27 -f -y
-    #   displayName: Install Visual C++ for Python 2.7
-    # - script: |
-    #     choco install -y --x86 swig
-    #   displayName: Install SWIG
-    - bash: |
-        bash libs/download.sh
-      displayName: Download libraries
-    - bash: |
-        set -ex
-        mkdir -p tmp
-        TMP=`pwd`/tmp
-        cd python/$SOLVER
-        bash prepare.sh win64
-        bash swig.sh
-        python -m pip install --user --upgrade pip
-        python -m pip install urllib3[secure] --upgrade
-        python -m pip install --upgrade cibuildwheel==1.12.0
-        CIBW_BUILD="cp35-*" cibuildwheel --platform windows --output-dir $TMP .
-        python -m pip install --upgrade cibuildwheel==2.12.0
-        cibuildwheel --platform windows --output-dir $TMP .
-        ls -l $TMP
-        test "$(ls -A $TMP)" || exit 1
-        mv $TMP/* $WHEELHOUSE/
-        # python -m pip install twine
-        # python -m twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
-      displayName: Build wheels
-    - task: PublishBuildArtifacts@1
-      inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
+# - job: windows
+#   pool: {vmImage: 'windows-latest'}
+#   strategy:
+#     matrix:
+#       gurobi:
+#         solver: 'gurobi'
+#       cplex:
+#         solver: 'cplexmp'
+#       xpress:
+#         solver: 'xpress'
+#   variables:
+#     wheelhouse: $(Build.ArtifactStagingDirectory)
+#   steps:
+#     - task: UsePythonVersion@0
+#     # - script: |
+#     #     choco install vcpython27 -f -y
+#     #   displayName: Install Visual C++ for Python 2.7
+#     # - script: |
+#     #     choco install -y --x86 swig
+#     #   displayName: Install SWIG
+#     - bash: |
+#         bash libs/download.sh
+#       displayName: Download libraries
+#     - bash: |
+#         set -ex
+#         mkdir -p tmp
+#         TMP=`pwd`/tmp
+#         cd python/$SOLVER
+#         bash prepare.sh win64
+#         bash swig.sh
+#         python -m pip install --user --upgrade pip
+#         python -m pip install urllib3[secure] --upgrade
+#         python -m pip install --upgrade cibuildwheel==1.12.0
+#         CIBW_BUILD="cp35-*" cibuildwheel --platform windows --output-dir $TMP .
+#         python -m pip install --upgrade cibuildwheel==2.12.0
+#         cibuildwheel --platform windows --output-dir $TMP .
+#         ls -l $TMP
+#         test "$(ls -A $TMP)" || exit 1
+#         mv $TMP/* $WHEELHOUSE/
+#         # python -m pip install twine
+#         # python -m twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
+#       displayName: Build wheels
+#     - task: PublishBuildArtifacts@1
+#       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
