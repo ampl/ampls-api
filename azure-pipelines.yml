@@ -35,8 +35,8 @@ jobs:
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
         python -m pip install --upgrade cibuildwheel==1.12.0
-        CIBW_BUILD="cp35-*" cibuildwheel --platform linux --output-dir $TMP .
-        python -m pip install --upgrade cibuildwheel==2.12.0
+        # CIBW_BUILD="cp35-*" cibuildwheel --platform linux --output-dir $TMP .
+        # python -m pip install --upgrade cibuildwheel==2.12.0
         cibuildwheel --platform linux --output-dir $TMP .
         pip install cibuildwheel==1.12.0
         ls -l $TMP
@@ -78,7 +78,7 @@ jobs:
         bash swig.sh
         pip install --upgrade pip
         pip install urllib3[secure] --upgrade
-        python -m pip install --upgrade cibuildwheel==2.12.0
+        python -m pip install --upgrade cibuildwheel==1.12.0
         cibuildwheel --platform macos --output-dir $TMP .
         ls -l $TMP
         test "$(ls -A $TMP)" || exit 1
