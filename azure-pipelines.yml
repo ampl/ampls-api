@@ -52,6 +52,7 @@ jobs:
         solver: 'cplexmp'
       xpress:
         solver: 'xpress'
+        CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps: 
