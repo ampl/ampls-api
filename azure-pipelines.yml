@@ -9,7 +9,7 @@ jobs:
       gurobi:
         solver: 'gurobi'
       cplex:
-        solver: 'cplexmp'
+        solver: 'cplex'
         CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
       xpress:
         solver: 'xpress'
@@ -55,7 +55,7 @@ jobs:
       gurobi:
         solver: 'gurobi'
       cplex:
-        solver: 'cplexmp'
+        solver: 'cplex'
       xpress:
         solver: 'xpress'
   variables:
@@ -94,7 +94,7 @@ jobs:
       gurobi:
         solver: 'gurobi'
       cplex:
-        solver: 'cplexmp'
+        solver: 'cplex'
       xpress:
         solver: 'xpress'
   variables:
