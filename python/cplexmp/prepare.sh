@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
 cd `dirname $0`
-NAME=cplexmp
-SOLVER="cplex"
+NAME=cplex
+SOLVERS="cplex"
 PACKAGE=amplpy_$NAME
 
 PLATFORMS="linux64 osx64 win64"
@@ -17,12 +17,13 @@ mkdir -p $PACKAGE/cpp
 cp -r ../../cpp/ampls $PACKAGE/cpp/ampls
 
 mkdir -p $PACKAGE/libs
-cp -r ../../cpp/$NAME $PACKAGE/cpp/$NAME
-mkdir -p $PACKAGE/libs/$SOLVER
-cp -r ../../libs/$SOLVER/include $PACKAGE/libs/$SOLVER/
-for p in $PLATFORMS; do
-    mkdir -p $PACKAGE/libs/ampls/$p
-    cp -r ../../libs/ampls/$p/*$NAME* $PACKAGE/libs/ampls/$p/
-    mkdir -p $PACKAGE/libs/$SOLVER/lib/$p
-    cp -r ../../libs/$SOLVER/lib/$p $PACKAGE/libs/$SOLVER/lib/
+for s in $SOLVERS; do
+    cp -r ../../cpp/${s}mp $PACKAGE/cpp/
+    mkdir -p $PACKAGE/libs/$s
+    cp -r ../../libs/$s/include $PACKAGE/libs/$s/
+    for p in $PLATFORMS; do
+        mkdir -p $PACKAGE/libs/$s/lib/$p
+        cp -r ../../libs/$s/lib/$p $PACKAGE/libs/$s/lib/
+        cp -r ../../libs/ampls/$p/*$s* $PACKAGE/libs/$s/lib/$p
+    done
 done
