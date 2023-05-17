@@ -22,9 +22,8 @@ for s in $SOLVERS; do
     mkdir -p $PACKAGE/libs/$s
     cp -r ../../libs/$s/include $PACKAGE/libs/$s/
     for p in $PLATFORMS; do
-        mkdir -p $PACKAGE/libs/ampls/$p
-        cp -r ../../libs/ampls/$p/*$s* $PACKAGE/libs/ampls/$p/
         mkdir -p $PACKAGE/libs/$s/lib/$p
         cp -r ../../libs/$s/lib/$p $PACKAGE/libs/$s/lib/
+        cp -r ../../libs/ampls/$p/*$s* $PACKAGE/libs/$s/lib/$p
     done
 done
