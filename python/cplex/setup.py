@@ -135,7 +135,9 @@ setup(
             libraries=["cplex2211", "cplexmp-lib"],
             extra_compile_args=compile_args(),
             extra_link_args=link_args(),
-            sources=[os.path.join("amplpy_cplex", "swig", "amplpy_cplex_swig_wrap.cxx")]
+            sources=[
+                os.path.join("amplpy_cplex", "swig", "amplpy_cplexmp_swig_wrap.cxx")
+            ]
             + [
                 os.path.join("amplpy_cplex", "cpp", "ampls", "src", fname)
                 for fname in ls_dir(os.path.join("amplpy_cplex", "cpp", "ampls", "src"))
