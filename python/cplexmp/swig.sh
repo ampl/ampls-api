@@ -1,6 +1,6 @@
 #!/bin/bash
 cd `dirname $0`
-cd amplpy_cplexmp/swig
+cd amplpy_cplex/swig
 swig -python -c++ \
     -I../cpp/ampls/include \
     -I../cpp/cplexmp/include \
