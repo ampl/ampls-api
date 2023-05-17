@@ -67,8 +67,8 @@ def libdir():
 
 def link_args():
     rpaths = [
-        # os.path.join('amplpy_cplexmp', 'libs', 'ampls', libdir()),
-        os.path.join("amplpy_cplexmp", "libs", "cplex", "lib", libdir()),
+        # os.path.join('amplpy_cplex', 'libs', 'ampls', libdir()),
+        os.path.join("amplpy_cplex", "libs", "cplex", "lib", libdir()),
     ]
     if OSTYPE == "Darwin":
         return ["-Wl,-rpath,@loader_path/" + rpath for rpath in rpaths]
@@ -82,7 +82,7 @@ def link_args():
 
 
 setup(
-    name="amplpy_cplexmp",
+    name="amplpy_cplex",
     version="0.1.0",
     description="CPLEX extension for amplpy",
     long_description=__doc__,
@@ -117,42 +117,38 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
-    packages=["amplpy_cplexmp"],
+    packages=["amplpy_cplex"],
     ext_modules=[
         Extension(
-            "_amplpy_cplexmp_swig",
+            "_amplpy_cplex_swig",
             library_dirs=[
-                os.path.join("amplpy_cplexmp", "libs", "cplex", "lib", libdir()),
-                # os.path.join('amplpy_cplexmp', 'libs', 'ampls', libdir()),
+                os.path.join("amplpy_cplex", "libs", "cplex", "lib", libdir()),
+                # os.path.join('amplpy_cplex', 'libs', 'ampls', libdir()),
             ],
             define_macros=[("SWIG", 1)],
             include_dirs=[
-                os.path.join("amplpy_cplexmp", "libs", "cplex", "include"),
-                os.path.join("amplpy_cplexmp", "swig"),
-                os.path.join("amplpy_cplexmp", "cpp", "cplexmp", "include"),
-                os.path.join("amplpy_cplexmp", "cpp", "ampls", "include"),
+                os.path.join("amplpy_cplex", "libs", "cplex", "include"),
+                os.path.join("amplpy_cplex", "swig"),
+                os.path.join("amplpy_cplex", "cpp", "cplexmp", "include"),
+                os.path.join("amplpy_cplex", "cpp", "ampls", "include"),
             ],
             libraries=["cplex2211", "cplexmp-lib"],
             extra_compile_args=compile_args(),
             extra_link_args=link_args(),
-            sources=[
-                os.path.join("amplpy_cplexmp", "swig", "amplpy_cplexmp_swig_wrap.cxx")
-            ]
+            sources=[os.path.join("amplpy_cplex", "swig", "amplpy_cplex_swig_wrap.cxx")]
             + [
-                os.path.join("amplpy_cplexmp", "cpp", "ampls", "src", fname)
-                for fname in ls_dir(
-                    os.path.join("amplpy_cplexmp", "cpp", "ampls", "src")
-                )
+                os.path.join("amplpy_cplex", "cpp", "ampls", "src", fname)
+                for fname in ls_dir(os.path.join("amplpy_cplex", "cpp", "ampls", "src"))
                 if fname.endswith((".c", ".cpp"))
             ]
             + [
-                os.path.join("amplpy_cplexmp", "cpp", "cplexmp", "src", fname)
+                os.path.join("amplpy_cplex", "cpp", "cplexmp", "src", fname)
                 for fname in ls_dir(
-                    os.path.join("amplpy_cplexmp", "cpp", "cplexmp", "src")
+                    os.path.join("amplpy_cplex", "cpp", "cplexmp", "src")
                 )
                 if fname.endswith((".c", ".cpp"))
             ],
         )
     ],
-    package_data={"": ls_dir("amplpy_cplexmp/")},
+    package_data={"": ls_dir("amplpy_cplex/")},
 )
