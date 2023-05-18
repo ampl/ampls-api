@@ -33,8 +33,8 @@ void impl::copt::copt_log_callback_wrapper(char* msg, void* userdata) {
 CoptDrv::~CoptDrv() {
 }
 
-CoptModel CoptDrv::loadModelImpl(char** args) {
-  return CoptModel(impl::copt::AMPLSOpen_copt(3, args), args[1]);
+CoptModel CoptDrv::loadModelImpl(const char** args) {
+  return CoptModel(impl::copt::AMPLSOpen_copt(3, const_cast<char*>(args)), args[1]);
 }
 CoptModel CoptDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);

@@ -108,7 +108,7 @@ associated with the model being instantiated and deleted with it
 class XPRESSDrv : public impl::SolverDriver<XPRESSModel> {
   mutable bool owning_;
   void freeXPRESSEnv();
-  XPRESSModel loadModelImpl(char** args);
+  XPRESSModel loadModelImpl(const char** args);
 public:
   /**
   * Load a model from an NL file.

@@ -48,7 +48,7 @@ class Callback;
 Encapsulates the main environment of the copt driver
 */
 class CoptDrv : public impl::SolverDriver<CoptModel>  {
-  CoptModel loadModelImpl(char** args);
+  CoptModel loadModelImpl(const char** args);
 public:
   /**
   * Load a model from an NL file.
