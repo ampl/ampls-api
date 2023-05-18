@@ -16,7 +16,7 @@ class ProgressCallback(ampls.GenericCallback):
         t = self.getAMPLSWhere()
         print("AMPL Phase: {}, from solver: {}".format(t, self.getWhereString()))
         if t == ampls.Where.MSG:
-            # print(self.getMessage())
+            print(self.getMessage())
             return 0
         if t == ampls.Where.LPSOLVE:
             print(
@@ -50,7 +50,7 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
         t = self.get_ampls_where()
         print("AMPL Phase: {}, from solver: {}".format(t, self.get_where_string()))
         if t == ampls.Where.MSG:
-            # print(self.getMessage())
+            print(self.get_message())
             return 0
         if t == ampls.Where.LPSOLVE:
             print(
@@ -59,14 +59,14 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
                 )
             )
             return 0
-        if t == ampls.Where.PRESOLVE:
-            print(
-                "Presolve, eliminated {} rows and {} columns.".format(
-                    self.getValue(ampls.Value.PRE_DELROWS).integer,
-                    self.getValue(ampls.Value.PRE_DELCOLS).integer,
-                )
-            )
-            return 0
+        # if t == ampls.Where.PRESOLVE:
+        #     print(
+        #         "Presolve, eliminated {} rows and {} columns.".format(
+        #             self.get_value(ampls.Value.PRE_DELROWS).integer,
+        #             self.get_value(ampls.Value.PRE_DELCOLS).integer,
+        #         )
+        #     )
+        #     return 0
         if t == ampls.Where.MIPNODE:
             self.n_mip_nodes += 1
             print("New MIP node, count {}".format(self.n_mip_nodes))
@@ -85,14 +85,14 @@ class TestCallbacks(TestBase.TestBase):
         obj = gm.getObj()
         self.assertAlmostEqual(376.96, obj, delta=0.01)
 
-    # def test_progress_callback_snake_case(self):
-    #     ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
-    #     gm = ampl.exportGurobiModel()
-    #     cb = ProgressCallbackSnakeCase()
-    #     gm.set_callback(cb)
-    #     gm.optimize()
-    #     obj = gm.get_obj()
-    #     self.assertAlmostEqual(376.96, obj, delta=0.01)
+    def test_progress_callback_snake_case(self):
+        ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
+        gm = ampl.exportGurobiModel()
+        cb = ProgressCallbackSnakeCase()
+        gm.set_callback(cb)
+        gm.optimize()
+        obj = gm.get_obj()
+        self.assertAlmostEqual(376.96, obj, delta=0.01)
 
 
 if __name__ == "__main__":
