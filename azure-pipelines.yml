@@ -1,5 +1,6 @@
 variables:
   CIBW_SKIP: pp* cp27-* *_i686 *-win32 *musllinux*
+  CIBW_TEST_REQUIRES: --index-url https://pypi.ampl.com --extra-index-url https://pypi.org/simple ampl_module_base
 
 jobs:
 - job: linux
@@ -8,6 +9,7 @@ jobs:
     matrix:
       gurobi:
         solver: 'gurobi'
+        CIBW_TEST_COMMAND: python -m amplpy_gurobi.tests
       cplex:
         solver: 'cplex'
         CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
@@ -54,6 +56,7 @@ jobs:
     matrix:
       gurobi:
         solver: 'gurobi'
+        CIBW_TEST_COMMAND: python -m amplpy_gurobi.tests
       cplex:
         solver: 'cplex'
       xpress:
@@ -93,6 +96,7 @@ jobs:
     matrix:
       gurobi:
         solver: 'gurobi'
+        CIBW_TEST_COMMAND: python -m amplpy_gurobi.tests
       cplex:
         solver: 'cplex'
       xpress:
