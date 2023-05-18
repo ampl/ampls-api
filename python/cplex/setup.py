@@ -129,14 +129,14 @@ setup(
             include_dirs=[
                 os.path.join("amplpy_cplex", "libs", "cplex", "include"),
                 os.path.join("amplpy_cplex", "swig"),
-                os.path.join("amplpy_cplex", "cpp", "cplexmp", "include"),
+                os.path.join("amplpy_cplex", "cpp", "cplex", "include"),
                 os.path.join("amplpy_cplex", "cpp", "ampls", "include"),
             ],
             libraries=["cplex2211", "cplexmp-lib"],
             extra_compile_args=compile_args(),
             extra_link_args=link_args(),
             sources=[
-                os.path.join("amplpy_cplex", "swig", "amplpy_cplexmp_swig_wrap.cxx")
+                os.path.join("amplpy_cplex", "swig", "amplpy_cplex_swig_wrap.cxx")
             ]
             + [
                 os.path.join("amplpy_cplex", "cpp", "ampls", "src", fname)
@@ -144,9 +144,9 @@ setup(
                 if fname.endswith((".c", ".cpp"))
             ]
             + [
-                os.path.join("amplpy_cplex", "cpp", "cplexmp", "src", fname)
+                os.path.join("amplpy_cplex", "cpp", "cplex", "src", fname)
                 for fname in ls_dir(
-                    os.path.join("amplpy_cplex", "cpp", "cplexmp", "src")
+                    os.path.join("amplpy_cplex", "cpp", "cplex", "src")
                 )
                 if fname.endswith((".c", ".cpp"))
             ],

@@ -18,7 +18,7 @@ cp -r ../../cpp/ampls $PACKAGE/cpp/ampls
 
 mkdir -p $PACKAGE/libs
 for s in $SOLVERS; do
-    cp -r ../../cpp/${s}mp $PACKAGE/cpp/
+    cp -r ../../cpp/${s} $PACKAGE/cpp/
     mkdir -p $PACKAGE/libs/$s
     cp -r ../../libs/$s/include $PACKAGE/libs/$s/
     for p in $PLATFORMS; do
