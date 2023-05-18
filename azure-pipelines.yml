@@ -18,6 +18,7 @@ jobs:
       xpress:
         solver: 'xpress'
         CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
+        CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:
@@ -66,6 +67,7 @@ jobs:
         CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
       xpress:
         solver: 'xpress'
+        CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps: 
@@ -109,6 +111,7 @@ jobs:
         CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
       xpress:
         solver: 'xpress'
+        CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:
