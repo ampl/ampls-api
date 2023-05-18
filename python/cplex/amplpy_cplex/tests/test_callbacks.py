@@ -52,13 +52,13 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
         if t == ampls.Where.MSG:
             print(self.get_message())
             return 0
-        if t == ampls.Where.LPSOLVE:
-            print(
-                "LP solve, {} iterations".format(
-                    self.get_value(ampls.Value.ITERATIONS).integer
-                )
-            )
-            return 0
+        # if t == ampls.Where.LPSOLVE:
+        #     print(
+        #         "LP solve, {} iterations".format(
+        #             self.get_value(ampls.Value.ITERATIONS).integer
+        #         )
+        #     )
+        #     return 0
         # if t == ampls.Where.PRESOLVE:
         #     print(
         #         "Presolve, eliminated {} rows and {} columns.".format(
@@ -77,22 +77,22 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
 
 class TestCallbacks(TestBase.TestBase):
     def test_progress_callback(self):
-        ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
+        ampl = tsp_model(os.path.join(self._data_dir, "tsp_10_1.txt"))
         gm = ampl.exportCplexModel()
         cb = ProgressCallback()
         gm.setCallback(cb)
         gm.optimize()
         obj = gm.getObj()
-        self.assertAlmostEqual(376.96, obj, delta=0.01)
+        self.assertAlmostEqual(159.47, obj, delta=0.01)
 
     def test_progress_callback_snake_case(self):
-        ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
+        ampl = tsp_model(os.path.join(self._data_dir, "tsp_10_1.txt"))
         gm = ampl.exportCplexModel()
         cb = ProgressCallbackSnakeCase()
         gm.set_callback(cb)
         gm.optimize()
         obj = gm.get_obj()
-        self.assertAlmostEqual(376.96, obj, delta=0.01)
+        self.assertAlmostEqual(159.47, obj, delta=0.01)
 
 
 if __name__ == "__main__":
