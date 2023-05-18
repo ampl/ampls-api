@@ -1,7 +1,7 @@
 #!/bin/bash
 cd `dirname $0`
 cd amplpy_xpress/swig
-swig -python -c++ -builtin \
+swig -python -c++ \
     -I../cpp/ampls/include \
     -I../cpp/xpress/include \
     -I../libs/xpress/include \
