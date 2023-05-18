@@ -11,7 +11,7 @@
 #include "ilcplex/cplex.h"
 
 #include "ampls/ampls.h"
-#include "cplexmp_callback.h"
+#include "cplex_callback.h"
 
 #ifdef _WIN32
 #define CPXPUBLIC      __stdcall
@@ -82,7 +82,7 @@ this way, it is deleted in the destructor.
 */
 class CPLEXDrv : public impl::SolverDriver<CPLEXModel> {
   void freeCPLEXEnv();
-  CPLEXModel loadModelImpl(char** args);
+  CPLEXModel loadModelImpl(const char** args);
 public:
  /**
  * Load a model from an NL file.

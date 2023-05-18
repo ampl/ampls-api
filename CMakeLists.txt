@@ -25,7 +25,7 @@ function(defSolver name solvername libtargetname)
 endfunction()
 
 defSolver(gurobi gurobi gurobi)
-defSolver(cplexmp cplex cplexmp)
+defSolver(cplex cplex cplexmp)
 defSolver(xpress xpress xpress)
 defSolver(cbcmp cbc cbcmp)
 defSolver(copt copt copt)
@@ -320,7 +320,7 @@ function(AddSolverStub solver targetbase libname)
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
                                                       )
-          add_to_folder(${targetbase}/swig ${solver}-common)
+          add_to_folder(${solver}/swig ${solver}-common)
           add_subdirectory(${DIR_PYTHON})
           if(WIN32)
             add_subdirectory(${DIR_CSHARP})

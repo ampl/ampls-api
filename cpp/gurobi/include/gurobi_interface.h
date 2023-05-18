@@ -47,7 +47,7 @@ class Callback;
 Encapsulates the main environment of the gurobi driver
 */
 class GurobiDrv : public impl::SolverDriver<GurobiModel>  {
-  GurobiModel loadModelImpl(char** args);
+  GurobiModel loadModelImpl(const char** args);
 public:
   /**
   * Load a model from an NL file.

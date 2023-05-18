@@ -98,8 +98,6 @@ struct Variant
 // Forward declarations
 class AMPLModel;
 class GenericCallback;
-char** generateArguments(const char* modelName, std::vector<std::string> options);
-void deleteParams(char** params);
 
 
 
@@ -789,11 +787,9 @@ public:
 */
 template<class T> class SolverDriver
 {
-  std::vector<std::string> options_;
-
   AMPLMutex loadMutex;
 protected:
-  virtual T loadModelImpl(char** args) = 0;
+  virtual T loadModelImpl(const char** args) = 0;
   /**
   Not to be used directly; to be called in the solver driver `loadModel` function implementations to provide
   common functionalities like mutex and exception handling
@@ -808,46 +804,26 @@ protected:
     else
       fclose(f);
 
-    char** args = NULL;
+    // Add exe name, -AMPL and \0
+    const char* args[4] = { "driver", modelName, "-AMPL", NULL };
     try {
-
-      args = generateArguments(modelName, options_);
       loadMutex.Lock();
       T mod = loadModelImpl(args);
       loadMutex.Unlock();
-      deleteParams(args);
       return mod;
     }
     catch (const ampls::AMPLSolverException& e) {
       loadMutex.Unlock();
-      deleteParams(args);
       throw e;
     }
     catch (const std::exception& e) {
       loadMutex.Unlock();
-      deleteParams(args);
       throw e;
     }
   }
 public:
   SolverDriver() {}
   ~SolverDriver() {}
-
-  /**
-  Set AMPL options (using AMPL solver drivers command line semantics), especially useful to instruct the library
-  to return suffixes when returning the solution to AMPL.
-
-  Example:
-  
-      std::vector<std::string>  options = { "return_mipgap=3"};
-      ampls::GurobiDrv gurobi;
-      gurobi.setOptions(options);
-      ampls::GurobiModel g = gurobi.loadModel("modelfile.nl");
-  ```
-  */
-  void setOptions(std::vector<std::string> options) {
-    options_ = options; 
-  }
 };
 } // namespace impl
 

@@ -28,4 +28,4 @@ CSHARP_ARRAYS(const int, int)
 %apply char* INPUT[]{ char** indname }
 
 %include "../../../cpp/ampls/swig/ampls-common.i"
-%include "../../../cpp/cplexmp/swig/cplexmp-common.i"
+%include "../../../cpp/cplex/swig/cplex-common.i"

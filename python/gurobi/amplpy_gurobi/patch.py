@@ -19,7 +19,7 @@ if __package__ == 'amplpy_cplex':
     from amplpy_cplex_swig import *
     CPLEX_DRIVER = CPLEXDrv()
 
-    def exportCplexModel(self, options=None):
+    def exportCplexModel(self):
         global CPLEX_DRIVER
         import tempfile
         import shutil
@@ -27,8 +27,6 @@ if __package__ == 'amplpy_cplex':
         tmp = tempfile.mkdtemp()
         fname = os.path.join(tmp, 'model').replace('"', '""')
         try:
-            if options:
-                CPLEX_DRIVER.setOptions(options)
             self.option['auxfiles'] = 'c'
             self.eval('write "g{}";'.format(fname))
             model = CPLEX_DRIVER.loadModel(fname + '.nl')
@@ -51,7 +49,7 @@ if __package__ == 'amplpy_gurobi':
     from amplpy_gurobi_swig import *
     GUROBI_DRIVER = GurobiDrv()
 
-    def exportGurobiModel(self, options=None):
+    def exportGurobiModel(self):
         global GUROBI_DRIVER
         import tempfile
         import shutil
@@ -59,8 +57,6 @@ if __package__ == 'amplpy_gurobi':
         tmp = tempfile.mkdtemp()
         fname = os.path.join(tmp, 'model').replace('"', '""')
         try:
-            if options:
-                GUROBI_DRIVER.setOptions(options)
             self.option['auxfiles'] = 'c'
             self.eval('write "g{}";'.format(fname))
             model = GUROBI_DRIVER.loadModel(fname + '.nl')
@@ -80,11 +76,11 @@ if __package__ == 'amplpy_gurobi':
         pass
 
 
-def exportModel(self, driver, options=None):
+def export_model(self, driver):
     if driver == 'gurobi':
-        return self.exportGurobiModel(options)
+        return self.export_gurobi_model()
     elif driver == 'cplex':
-        return self.exportCplexModel(options)
+        return self.export_cplex_model()
 
 
 def importSolution(self, model):

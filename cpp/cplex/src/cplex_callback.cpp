@@ -1,5 +1,5 @@
-#include "cplexmp_interface.h"
-#include "cplexmp_callback.h"
+#include "cplex_interface.h"
+#include "cplex_callback.h"
 
 
 #define CPLEX_CALL( call ) do { if (int e=call) \

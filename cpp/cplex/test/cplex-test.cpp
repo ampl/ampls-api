@@ -1,4 +1,4 @@
-#include "cplexmp_interface.h"
+#include "cplex_interface.h"
 
 #include "test-config.h" // for MODELS_DIR
 

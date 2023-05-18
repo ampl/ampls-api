@@ -26,8 +26,8 @@ int impl::grb::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* 
 GurobiDrv::~GurobiDrv() {
 }
 
-GurobiModel GurobiDrv::loadModelImpl(char** args) {
-  return GurobiModel((ampls::impl::mp::AMPLS_MP_Solver*)impl::grb::AMPLSOpen_gurobi(3, args), args[1]);
+GurobiModel GurobiDrv::loadModelImpl(const char** args) {
+  return GurobiModel((ampls::impl::mp::AMPLS_MP_Solver*)impl::grb::AMPLSOpen_gurobi(3, const_cast<char**>(args)), args[1]);
 }
 GurobiModel GurobiDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);

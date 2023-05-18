@@ -1,2 +1,2 @@
 include("../createPythonWrapper.cmake")
-createPythonWrapper(cplexmp cplex cplexmp cplexmp) 
+createPythonWrapper(cplex cplex cplexmp cplexmp) 
