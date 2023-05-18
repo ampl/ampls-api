@@ -14,8 +14,8 @@ if platform.system() == 'Windows':
             os.path.join(BASEDIR, 'libs', 'ampls', 'win64'),
         ]
         for path in paths:
-            dllfile = glob(os.path.join(path, '*.dll'))[0]
-            ctypes.CDLL(os.path.join(path, dllfile))
+            dllfile = glob(os.path.join(path, '*.dll'))
+            for d in dllfile: ctypes.CDLL(os.path.join(path, d))
     except:
         pass
 
