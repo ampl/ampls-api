@@ -17,6 +17,12 @@ else:
 LIBPATH=os.path.join(BASEDIR, 'libs', 'xpress', 'lib', sysdir)
 # Add path to help finding the license file
 sys.path.insert(1,LIBPATH)
+print("Addedd {}".format(LIBPATH))
+LICFILE=os.path.join(LIBPATH, 'xpauth.xpr')
+print("License file does ".format(LICFILE))
+if not os.path.exists(LICFILE):
+    print("not ")
+print("exists.")
 
 if platform.system() == 'Windows':
     import ctypes
