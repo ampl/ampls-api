@@ -99,7 +99,8 @@ struct Variant
 class AMPLModel;
 class GenericCallback;
 
-
+char** generateArguments(const char* modelName);
+void deleteParams(char** params);
 
 struct VarType {
   enum Type {
@@ -804,20 +805,23 @@ protected:
     else
       fclose(f);
 
-    // Add exe name, -AMPL and \0
-    const char* args[4] = { "driver", modelName, "-AMPL", NULL };
+    char** args = NULL;
     try {
+      args = generateArguments(modelName);
       loadMutex.Lock();
       T mod = loadModelImpl(args);
       loadMutex.Unlock();
+      deleteParams(args);
       return mod;
     }
     catch (const ampls::AMPLSolverException& e) {
       loadMutex.Unlock();
+      deleteParams(args);
       throw e;
     }
     catch (const std::exception& e) {
       loadMutex.Unlock();
+      deleteParams(args);
       throw e;
     }
   }

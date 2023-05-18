@@ -11,7 +11,30 @@
 
 namespace ampls
 {
+char** generateArguments(const char* modelName)
+{
 
+  // Add exe name, -AMPL and \0
+  char** params = new char* [4];
+  const char* MYNAME = "my";
+  const char* OPTION = "-AMPL";
+
+  params[0] = new char[strlen(MYNAME) + 1];
+  strcpy(params[0], MYNAME);
+  params[1] = new char[strlen(modelName) + 1];
+  strcpy(params[1], modelName);
+  params[2] = new char[strlen(OPTION) + 1];
+  strcpy(params[2], OPTION);
+  params[3] = NULL;
+  return params;
+}
+
+void deleteParams(char** params)
+{
+  for (int i = 0; i < 3; i++)
+    delete[]params[i];
+  delete[] params;
+}
 
 std::string getSuffixedFileName(const std::string& nlFileName, const char* ext) {
   size_t lastindex = nlFileName.find_last_of(".");
