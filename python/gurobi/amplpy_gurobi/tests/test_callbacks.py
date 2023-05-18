@@ -78,7 +78,7 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
 class TestCallbacks(TestBase.TestBase):
     def test_progress_callback(self):
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
-        gm = ampl.exportGurobiModel()
+        gm = ampl.export_gurobi_model()
         cb = ProgressCallback()
         gm.setCallback(cb)
         gm.optimize()
@@ -87,7 +87,7 @@ class TestCallbacks(TestBase.TestBase):
 
     def test_progress_callback_snake_case(self):
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
-        gm = ampl.exportGurobiModel()
+        gm = ampl.export_gurobi_model()
         cb = ProgressCallbackSnakeCase()
         gm.set_callback(cb)
         gm.optimize()

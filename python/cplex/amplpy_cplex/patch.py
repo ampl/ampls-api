@@ -14,38 +14,54 @@ def setCallback(self, cb):
     super(type(cb), cb).__init__()
     self._setCallback(cb)
 
+def _do_export(self, drv):
+    import tempfile
+    import shutil
+    import os
+    tmp = tempfile.mkdtemp()
+    fname = os.path.join(tmp, 'model').replace('"', '""')
+    try:
+        self.option['auxfiles'] = 'c'
+        self.eval('write "g{}";'.format(fname))
+        model = drv.loadModel(fname + '.nl')
+        model._solfile = fname + '.sol'
+        os.remove(fname + '.nl')
+        model._setCallback = model.setCallback
+        model.setCallback = types.MethodType(setCallback, model)
+        return model
+    except:
+        shutil.rmtree(tmp)
+        raise
+
+
+
+if __package__ == 'amplpy_copt':
+    from amplpy_copt_swig import *
+    COPT_DRIVER = COPTDrv()
+    def exportCoptModel(self, options=None):
+        global COPT_DRIVER
+        _do_export(self, COPT_DRIVER)
+
+    try:
+        from amplpy import AMPL
+        AMPL.export_copt_model = exportCoptModel
+    except:
+        pass
+
 
 if __package__ == 'amplpy_cplex':
     from amplpy_cplex_swig import *
     CPLEX_DRIVER = CPLEXDrv()
-
     def exportCplexModel(self, options=None):
         global CPLEX_DRIVER
-        import tempfile
-        import shutil
-        import os
-        tmp = tempfile.mkdtemp()
-        fname = os.path.join(tmp, 'model').replace('"', '""')
-        try:
-            if options:
-                CPLEX_DRIVER.setOptions(options)
-            self.option['auxfiles'] = 'c'
-            self.eval('write "g{}";'.format(fname))
-            model = CPLEX_DRIVER.loadModel(fname + '.nl')
-            model._solfile = fname + '.sol'
-            os.remove(fname + '.nl')
-            model._setCallback = model.setCallback
-            model.setCallback = types.MethodType(setCallback, model)
-            return model
-        except:
-            shutil.rmtree(tmp)
-            raise
+        _do_export(self, CPLEX_DRIVER)
 
     try:
         from amplpy import AMPL
-        AMPL.exportCplexModel = exportCplexModel
+        AMPL.export_cplex_model = exportCplexModel
     except:
         pass
+
 
 if __package__ == 'amplpy_gurobi':
     from amplpy_gurobi_swig import *
@@ -53,38 +69,39 @@ if __package__ == 'amplpy_gurobi':
 
     def exportGurobiModel(self, options=None):
         global GUROBI_DRIVER
-        import tempfile
-        import shutil
-        import os
-        tmp = tempfile.mkdtemp()
-        fname = os.path.join(tmp, 'model').replace('"', '""')
-        try:
-            if options:
-                GUROBI_DRIVER.setOptions(options)
-            self.option['auxfiles'] = 'c'
-            self.eval('write "g{}";'.format(fname))
-            model = GUROBI_DRIVER.loadModel(fname + '.nl')
-            model._solfile = fname + '.sol'
-            os.remove(fname + '.nl')
-            model._setCallback = model.setCallback
-            model.setCallback = types.MethodType(setCallback, model)
-            return model
-        except:
-            shutil.rmtree(tmp)
-            raise
+        _do_export(self, GUROBI_DRIVER)
 
     try:
         from amplpy import AMPL
-        AMPL.exportGurobiModel = exportGurobiModel
+        AMPL.export_gurobi_model = exportGurobiModel
     except:
         pass
 
 
-def exportModel(self, driver, options=None):
+if __package__ == 'amplpy_xpress':
+    from amplpy_xpress_swig import *
+    XPRESS_DRIVER = XPRESSDrv()
+
+    def exportXpressModel(self, options=None):
+        global XPRESS_DRIVER
+        _do_export(self, XPRESS_DRIVER)
+
+    try:
+        from amplpy import AMPL
+        AMPL.export_xpress_model = exportXpressModel
+    except:
+        pass
+
+
+def exportModel(self, driver):
     if driver == 'gurobi':
-        return self.exportGurobiModel(options)
+        return self.export_gurobi_model()
     elif driver == 'cplex':
-        return self.exportCplexModel(options)
+        return self.export_cplex_model()
+    elif driver == 'copt':
+        return self.export_copt_model()
+    elif driver == 'xpress':
+        return self.export_xpress_model()
 
 
 def importSolution(self, model):
@@ -102,8 +119,8 @@ def importSolution(self, model):
 
 try:
     from amplpy import AMPL
-    AMPL.exportModel = exportModel
-    AMPL.importSolution = importSolution
+    AMPL.export_model = exportModel
+    AMPL.import_solution = importSolution
 except:
     pass
 
