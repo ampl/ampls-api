@@ -40,7 +40,7 @@ if __package__ == 'amplpy_copt':
     COPT_DRIVER = COPTDrv()
     def exportCoptModel(self, options=None):
         global COPT_DRIVER
-        _do_export(self, COPT_DRIVER)
+        return _do_export(self, COPT_DRIVER)
 
     try:
         from amplpy import AMPL
@@ -54,7 +54,7 @@ if __package__ == 'amplpy_cplex':
     CPLEX_DRIVER = CPLEXDrv()
     def exportCplexModel(self, options=None):
         global CPLEX_DRIVER
-        _do_export(self, CPLEX_DRIVER)
+        return _do_export(self, CPLEX_DRIVER)
 
     try:
         from amplpy import AMPL
@@ -69,7 +69,7 @@ if __package__ == 'amplpy_gurobi':
 
     def exportGurobiModel(self, options=None):
         global GUROBI_DRIVER
-        _do_export(self, GUROBI_DRIVER)
+        return _do_export(self, GUROBI_DRIVER)
 
     try:
         from amplpy import AMPL
@@ -84,7 +84,7 @@ if __package__ == 'amplpy_xpress':
 
     def exportXpressModel(self, options=None):
         global XPRESS_DRIVER
-        _do_export(self, XPRESS_DRIVER)
+        return _do_export(self, XPRESS_DRIVER)
 
     try:
         from amplpy import AMPL
