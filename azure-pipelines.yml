@@ -49,6 +49,8 @@ jobs:
         python setup.py sdist -d $WHEELHOUSE
         # pip install twine
         # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/* || true
+      env:
+        CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
       displayName: Build wheels
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
