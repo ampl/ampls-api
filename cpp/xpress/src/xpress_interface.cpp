@@ -47,8 +47,8 @@ XPRESSDrv::~XPRESSDrv() {
 }
 
 
-XPRESSModel XPRESSDrv::loadModelImpl(const char** args) {
-  return XPRESSModel(static_cast<impl::mp::AMPLS_MP_Solver*>(impl::xpress::AMPLSOpen_xpress(3, const_cast<char*>(args))),
+XPRESSModel XPRESSDrv::loadModelImpl(char** args) {
+  return XPRESSModel(static_cast<impl::mp::AMPLS_MP_Solver*>(impl::xpress::AMPLSOpen_xpress(3, args)),
     args[1]);
 }
 XPRESSModel XPRESSDrv::loadModel(const char* modelName) {

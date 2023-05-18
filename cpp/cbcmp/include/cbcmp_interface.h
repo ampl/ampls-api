@@ -54,7 +54,7 @@ class CbcDrv : public impl::SolverDriver<CbcModel>  {
 
   void freeCbcEnv();
 
-  CbcModel loadModelImpl(const char** args);
+  CbcModel loadModelImpl(char** args);
 public:
   /**
   * Load a model from an NL file.

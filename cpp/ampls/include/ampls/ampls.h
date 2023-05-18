@@ -789,7 +789,7 @@ template<class T> class SolverDriver
 {
   AMPLMutex loadMutex;
 protected:
-  virtual T loadModelImpl(const char** args) = 0;
+  virtual T loadModelImpl(char** args) = 0;
   /**
   Not to be used directly; to be called in the solver driver `loadModel` function implementations to provide
   common functionalities like mutex and exception handling

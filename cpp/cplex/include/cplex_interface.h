@@ -82,7 +82,7 @@ this way, it is deleted in the destructor.
 */
 class CPLEXDrv : public impl::SolverDriver<CPLEXModel> {
   void freeCPLEXEnv();
-  CPLEXModel loadModelImpl(const char** args);
+  CPLEXModel loadModelImpl(char** args);
 public:
  /**
  * Load a model from an NL file.

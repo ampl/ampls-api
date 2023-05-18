@@ -28,7 +28,7 @@ void impl::cbcmp::callback_wrapper(Cbc_Model* model, int msgno, int ndouble, con
 CbcDrv::~CbcDrv() {
 }
 
-CbcModel CbcDrv::loadModelImpl(char** args) {
+CbcModel CbcDrv::loadModelImpl(const char** args) {
   return CbcModel(impl::cbcmp::AMPLSOpen_cbcmp(3, args), args[1]);
 }
 CbcModel CbcDrv::loadModel(const char* modelName) {
