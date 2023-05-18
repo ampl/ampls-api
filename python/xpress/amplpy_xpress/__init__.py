@@ -7,12 +7,14 @@ sys.path.append(os.path.join(BASEDIR, 'swig'))
 
 if platform.system() == 'Windows':
     import ctypes
-    try:
-        solverlib_path= os.path.join(BASEDIR, 'libs', 'xpress', 'lib', 'win64')
-        for dll in ['xprs.dll', 'xprl.dll', 'xpress-lib.dll']:
+    
+    solverlib_path= os.path.join(BASEDIR, 'libs', 'xpress', 'lib', 'win64')
+    
+    for dll in ['xprl.dll', 'xprs.dll','xpress-lib.dll']:
+        try:
             ctypes.CDLL(os.path.join(solverlib_path, dll))
-    except Exception as e:
-        print("Problem importing library:\n{}\n".format(e))
+        except Exception as e:
+            print("Problem importing library {}:\n{}\n".format(os.path.join(solverlib_path, dll), e))
 
 
 

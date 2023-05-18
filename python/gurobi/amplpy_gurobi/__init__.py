@@ -7,13 +7,12 @@ sys.path.append(os.path.join(BASEDIR, 'swig'))
 
 if platform.system() == 'Windows':
     import ctypes
-    try:
-        solverlib_path= os.path.join(BASEDIR, 'libs', 'gurobi', 'lib', 'win64')
-        ctypes.CDLL(os.path.join(solverlib_path, 'gurobi100.dll'))
-        ctypes.CDLL(os.path.join(solverlib_path, 'gurobi-lib.dll'))
-    except Exception as e:
-        print("Problem importing library:\n{}\n".format(e))
-
+    solverlib_path= os.path.join(BASEDIR, 'libs', 'gurobi', 'lib', 'win64')
+    for dll in ['gurobi100', 'gurobi-lib.dll']:
+        try:
+            ctypes.CDLL(os.path.join(solverlib_path, dll))
+        except Exception as e:
+            print("Problem importing library {}:\n{}\n".format(os.path.join(solverlib_path, dll), e))
 
 try:
     from .patch import *
