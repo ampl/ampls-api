@@ -14,6 +14,7 @@ jobs:
       cplex:
         solver: 'cplex'
         CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
+        CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
       xpress:
         solver: 'xpress'
         CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
@@ -62,6 +63,7 @@ jobs:
         CIBW_TEST_COMMAND: python -m amplpy_gurobi.tests
       cplex:
         solver: 'cplex'
+        CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
       xpress:
         solver: 'xpress'
   variables:
@@ -104,6 +106,7 @@ jobs:
         CIBW_TEST_COMMAND: python -m amplpy_gurobi.tests
       cplex:
         solver: 'cplex'
+        CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
       xpress:
         solver: 'xpress'
   variables:
