@@ -1,7 +1,6 @@
 variables:
   CIBW_SKIP: pp* cp27-* *_i686 *-win32 *musllinux*
   CIBW_TEST_REQUIRES: --index-url https://pypi.ampl.com --extra-index-url https://pypi.org/simple amplpy ampl_module_base
-  CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
   CIBW_ENVIRONMENT_PASS_LINUX: AMPLKEY_UUID
 
 jobs:
@@ -91,6 +90,8 @@ jobs:
         mv $TMP/* $WHEELHOUSE/
         # pip install twine
         # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
+      env:
+        CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
       displayName: Build wheels
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
@@ -136,6 +137,8 @@ jobs:
         mv $TMP/* $WHEELHOUSE/
         # python -m pip install twine
         # python -m twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
+      env:
+        CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
       displayName: Build wheels
     - task: PublishBuildArtifacts@1
       inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
