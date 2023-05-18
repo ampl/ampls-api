@@ -1,6 +1,7 @@
 variables:
   CIBW_SKIP: pp* cp27-* *_i686 *-win32 *musllinux*
   CIBW_TEST_REQUIRES: --index-url https://pypi.ampl.com --extra-index-url https://pypi.org/simple amplpy ampl_module_base
+  CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
 
 jobs:
 - job: linux
