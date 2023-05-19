@@ -1,5 +1,6 @@
-pip==21.1
-setuptools==65.5.1
+pip
+setuptools
 amplpy
-amplpy_cplex
-amplpy_gurobi
+pandas
+#amplpy_cplex
+#amplpy_gurobi

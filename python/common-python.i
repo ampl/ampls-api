@@ -202,8 +202,9 @@ virtual std::vector<Option>& getOptions() {
   return $self->getOptions();
 }
 
-virtual void setOption(const char* name, int value) { $self->setOption(name, value); }
+virtual void set_option(const char* name, int value) { $self->setOption(name, value); }
 
+virtual void set_option(const char* name, double value) { $self->setOption(name, value); }
 
 };
 

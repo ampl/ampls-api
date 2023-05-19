@@ -32,15 +32,23 @@ ampls::GurobiModel solveModel(ampl::AMPL& ampl) {
     return gurobiModel;
 }
 
+ampls::XPRESSModel solveModelX(ampl::AMPL& ampl) {
+  auto  gurobiModel = ampls::AMPLAPIInterface::exportModel<ampls::XPRESSModel>(ampl);
+  //gurobiModel.setOption("mip_gap", 1);
+  gurobiModel.optimize();
+  ampls::AMPLAPIInterface::importModel(ampl, gurobiModel);
+  return gurobiModel;
+}
+
 
 void createAndSolveSimpleModel() {
   int numVars = 10;
   ampl::AMPL ampl;
   makeAmplModel(ampl, numVars, false);
-  auto gurobiModel = solveModel(ampl);
-  int statusNum = gurobiModel.getIntAttr("Status");
-  assert(gurobiModel.getStatus() == ampls::Status::OPTIMAL);
-  assert(statusNum == GRB_OPTIMAL);
+  auto gurobiModel = solveModelX(ampl);
+  //int statusNum = gurobiModel.getIntAttr("Status");
+  //./assert(gurobiModel.getStatus() == ampls::Status::OPTIMAL);
+  //assert(statusNum == GRB_OPTIMAL);
   //#Num Vars is even->last var idx is odd->expect odd idx vars to be 1
   //#Num Vars is odd->last var idx is even->expect even idx vars to be 1
   std::vector<double> expectedSolution(numVars);

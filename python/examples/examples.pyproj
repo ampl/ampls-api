@@ -5,13 +5,13 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{70a86a47-99f8-408d-96f9-857616bb467f}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>tsp_simple_cuts_gurobi.py</StartupFile>
-    <SearchPath>..\..\..\solvers-private\build\vs64\bin</SearchPath>
+    <StartupFile>multiple_models.py</StartupFile>
+    <SearchPath>..\..\build\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <InterpreterId />
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -24,6 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="load_model.py" />
+    <Compile Include="multiple_models.py" />
     <Compile Include="pattern_generation_generic.py" />
     <Compile Include="progress_callback.py" />
     <Compile Include="progress_callback_gurobi1.py" />
@@ -35,6 +36,17 @@
     <Compile Include="tsp_helpers.py" />
     <Compile Include="tsp_simple_cuts.py" />
     <Compile Include="tsp_simple_cuts_gurobi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.9</Version>
+      <Description>env (Python 3.9 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>
