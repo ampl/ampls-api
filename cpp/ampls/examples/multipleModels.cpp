@@ -24,28 +24,20 @@ void makeAmplModel(ampl::AMPL &ampl , int numvars, bool unfeasible, bool flipDat
     d2.addRow(i, unfeasible ? -1 : 1);
   ampl.setData(d2, "constraintIndexes");
 }
-ampls::GurobiModel solveModel(ampl::AMPL& ampl) {
-    auto  gurobiModel = ampls::AMPLAPIInterface::exportModel<ampls::GurobiModel>(ampl);
+template <class T> T solveModel(ampl::AMPL& ampl) {
+    auto model = ampls::AMPLAPIInterface::exportModel<T>(ampl);
     //gurobiModel.setOption("mip_gap", 1);
-    gurobiModel.optimize();
-    ampls::AMPLAPIInterface::importModel(ampl, gurobiModel);
-    return gurobiModel;
-}
-
-ampls::XPRESSModel solveModelX(ampl::AMPL& ampl) {
-  auto  gurobiModel = ampls::AMPLAPIInterface::exportModel<ampls::XPRESSModel>(ampl);
-  //gurobiModel.setOption("mip_gap", 1);
-  gurobiModel.optimize();
-  ampls::AMPLAPIInterface::importModel(ampl, gurobiModel);
-  return gurobiModel;
+    model.optimize();
+    ampls::AMPLAPIInterface::importModel(ampl, model);
+    return model;
 }
 
 
-void createAndSolveSimpleModel() {
+template <class T> void createAndSolveSimpleModel() {
   int numVars = 10;
   ampl::AMPL ampl;
   makeAmplModel(ampl, numVars, false);
-  auto gurobiModel = solveModelX(ampl);
+  auto model = solveModel<T>(ampl);
   //int statusNum = gurobiModel.getIntAttr("Status");
   //./assert(gurobiModel.getStatus() == ampls::Status::OPTIMAL);
   //assert(statusNum == GRB_OPTIMAL);
@@ -57,37 +49,58 @@ void createAndSolveSimpleModel() {
     expectedSolution[i] = std::abs(i % 2 - numVars % 2);
     expectedObjective += i * expectedSolution[i];
   }
-  double solverObjective = gurobiModel.getObj();
+  double solverObjective = model.getObj();
   assert(solverObjective == expectedObjective);
   printf("Completed Simple Model Test.\n\n");
 }
 
 
-void createAndSolveInfeasibleModel(bool presolve) {
+template <class T> void createAndSolveInfeasibleModel(bool presolve) {
     int numVars = 10;
     ampl::AMPL ampl;
     makeAmplModel(ampl, numVars, true);
     ampl.setIntOption("presolve", presolve ? 10 : 0); // 10 is the default number of presolve passes
-    auto gurobiModel = solveModel(ampl);
+    auto model = solveModel<T>(ampl);
     
-    assert(gurobiModel.getStatus() == ampls::Status::INFEASIBLE);
-    int statusNum = gurobiModel.getIntAttr("Status");
-    assert(statusNum == GRB_INFEASIBLE);
-    printf("Completed Infeasible Model Test.\n\n");
+    assert(model.getStatus() == ampls::Status::INFEASIBLE);
+    //int statusNum = gurobiModel.getIntAttr("Status");
+    //assert(statusNum == GRB_INFEASIBLE);
+    printf("Completed Infeasible Model Test\n\n");
 }
 
-int main(int argc, char** argv) {
+template <class T> void run() {
   // This will fail because AMPL's presolve will block the 
-  // export of the model
+// export of the model
   try {
-    createAndSolveInfeasibleModel(true);
+    createAndSolveInfeasibleModel<T>(true);
   }
   catch (const ampls::AMPLSolverException& e) {
     printf("Caught exception: %s\n\n", e.what());
   }
 
-  createAndSolveInfeasibleModel(false);
-  createAndSolveSimpleModel();
-
+  createAndSolveInfeasibleModel<T>(false);
+  createAndSolveSimpleModel<T>();
 }
-;
+
+int main(int argc, char** argv) {
+
+#ifdef USE_gurobi
+  run<ampls::GurobiModel>();
+#endif
+
+#ifdef USE_cbcmp
+  run<ampls::CbcModel>();
+#endif
+
+#ifdef USE_copt
+  run<ampls::CoptModel>();
+#endif
+
+#ifdef USE_cplex
+  run<ampls::CPLEXModel>();
+#endif
+
+#ifdef USE_xpress
+  run<ampls::XPRESSModel>();
+#endif
+}

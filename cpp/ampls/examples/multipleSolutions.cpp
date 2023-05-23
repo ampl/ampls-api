@@ -66,5 +66,5 @@ int main(int argc, char** argv) {
 
   #ifdef USE_xpress
     run<ampls::XPRESSModel>();
-#endif
+  #endif
 }
