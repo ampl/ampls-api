@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{70a86a47-99f8-408d-96f9-857616bb467f}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>multiple_models.py</StartupFile>
+    <StartupFile>options.py</StartupFile>
     <SearchPath>..\..\build\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -25,6 +25,7 @@
   <ItemGroup>
     <Compile Include="load_model.py" />
     <Compile Include="multiple_models.py" />
+    <Compile Include="options.py" />
     <Compile Include="pattern_generation_generic.py" />
     <Compile Include="progress_callback.py" />
     <Compile Include="progress_callback_gurobi1.py" />

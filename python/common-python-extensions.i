@@ -99,6 +99,15 @@ def __e_to_v(v):
   if isinstance(v, Enum): return v.value
   return v
 
+def __var_to_v(v):
+    if v.type == 0:
+        return v.str
+    if v.type == 1:
+        return v.integer
+    if v.type == 2:
+        return v.dbl
+    raise RuntimeError("Should not happen")
+
 def __get_ampls_parameter(self, param):
     if param.name.startswith('DBL'):
         return self.getAMPLSDoubleParameter(__e_to_v(param))
@@ -118,5 +127,12 @@ AMPLModel.set_ampls_parameter=lambda self,what,value : self.setAMPLSParameter(wh
 AMPLModel.get_ampls_parameter=__get_ampls_parameter
 AMPLModel.get_ampls_attribute=__get_ampls_attribute
 
+GenericCallback._getValue=GenericCallback.getValue
+def _do_get_value(self, what):
+    v = self._getValue(__e_to_v(what))
+    return __var_to_v(v)
+
+GenericCallback.getValue=_do_get_value
+GenericCallback.get_value=_do_get_value
 %}
 

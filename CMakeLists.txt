@@ -257,7 +257,7 @@ function(AddSolverStub solver targetbase libname)
   # i'll need just one
   set(IMPORTLIB ${targetbase}-lib)
   if(NOT TARGET ${IMPORTLIB})
-      FindSolverLib(${IMPORTLIB} ${libname})
+      FindSolverLib(${IMPORTLIB} ${targetbase})
   endif()
 
   add_prefix(
@@ -320,7 +320,7 @@ function(AddSolverStub solver targetbase libname)
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
                                                       )
-          add_to_folder(${solver}/swig ${solver}-common)
+          add_to_folder(${targetbase}/swig ${solver}-common)
           add_subdirectory(${DIR_PYTHON})
           if(WIN32)
             add_subdirectory(${DIR_CSHARP})

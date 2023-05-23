@@ -338,6 +338,7 @@ namespace ampls{
         ENTRYPOINT int AMPLSSetStrOption(void* slv, const char* name, const char* value);
         ENTRYPOINT int AMPLSGetStrOption(void* slv, const char* name, const char* const* value);
         ENTRYPOINT int AMPLSLoadNLModel(AMPLS_MP_Solver* slv, const char* nl_filename);
+        ENTRYPOINT void AMPLSReadExtras(AMPLS_MP_Solver* slv);
       }
     } // namespace mp
     // ******* end MP ******* 
@@ -1315,11 +1316,22 @@ public:
   virtual void setOption(const char* name, double value) {
     throw AMPLSolverException("Not implemented in base class!");
   }
+  virtual void setOption(const char* name, const char* value) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
   /// <summary>
   /// Get the current value of the option 'name'.
   /// See getOptions() for a list of supported options.
   /// </summary>
   virtual int getOptionValue(const char* name) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  /// <summary>
+  /// Refresh the underlying solver driver, useful in case solver
+  /// options that involve reading suffixes have been changed with 
+  /// the AMPLModel::setOption set of functions
+  /// </summary>
+  virtual void refresh() {
     throw AMPLSolverException("Not implemented in base class!");
   }
 };
@@ -1405,6 +1417,11 @@ public:
   /// </summary>
   virtual void setOption(const char* name, double value);
   /// <summary>
+/// Set an option to the specified value.
+/// See getOptions() for a list of supported options.
+/// </summary>
+  virtual void setOption(const char* name, const char* value);
+  /// <summary>
   /// Get the current value of the option 'name'.
   /// See getOptions() for a list of supported options.
   /// </summary>
@@ -1412,6 +1429,10 @@ public:
     int v;
     impl::mp::AMPLSGetIntOption(solver_, name, &v);
     return v;
+  }
+
+  void refresh() {
+    impl::mp::AMPLSReadExtras(solver_);
   }
 };
 

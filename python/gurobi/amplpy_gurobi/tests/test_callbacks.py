@@ -21,15 +21,15 @@ class ProgressCallback(ampls.GenericCallback):
         if t == ampls.Where.LPSOLVE:
             print(
                 "LP solve, {} iterations".format(
-                    self.getValue(ampls.Value.ITERATIONS).integer
+                    self.getValue(ampls.Value.ITERATIONS)
                 )
             )
             return 0
         if t == ampls.Where.PRESOLVE:
             print(
                 "Presolve, eliminated {} rows and {} columns.".format(
-                    self.getValue(ampls.Value.PRE_DELROWS).integer,
-                    self.getValue(ampls.Value.PRE_DELCOLS).integer,
+                    self.getValue(ampls.Value.PRE_DELROWS),
+                    self.getValue(ampls.Value.PRE_DELCOLS)
                 )
             )
             return 0
@@ -53,20 +53,15 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
             print(self.get_message())
             return 0
         if t == ampls.Where.LPSOLVE:
-            print(
-                "LP solve, {} iterations".format(
-                    self.get_value(ampls.Value.ITERATIONS).integer
-                )
-            )
+            print("LP solve, {} iterations".format(
+                self.get_value(ampls.Value.ITERATIONS)) )
             return 0
-        # if t == ampls.Where.PRESOLVE:
-        #     print(
-        #         "Presolve, eliminated {} rows and {} columns.".format(
-        #             self.get_value(ampls.Value.PRE_DELROWS).integer,
-        #             self.get_value(ampls.Value.PRE_DELCOLS).integer,
-        #         )
-        #     )
-        #     return 0
+        if t == ampls.Where.PRESOLVE:
+             print("Presolve, eliminated {} rows and {} columns.".format(
+                     self.get_value(ampls.Value.PRE_DELROWS),
+                     self.get_value(ampls.Value.PRE_DELCOLS))
+             )
+             return 0
         if t == ampls.Where.MIPNODE:
             self.n_mip_nodes += 1
             print("New MIP node, count {}".format(self.n_mip_nodes))

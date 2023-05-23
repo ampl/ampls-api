@@ -116,14 +116,16 @@ def importSolution(self, model):
     self.eval('solution "{}";'.format(model._solfile))
     os.remove(model._solfile)
 
+def set_solution(self, stub: str, i: int):
+    self.eval(f"solution {stub}{i}.sol;")
 
 try:
     from amplpy import AMPL
-    AMPL.export_model = exportModel
+    AMPL.to_ampls = exportModel
     AMPL.import_solution = importSolution
+    AMPL.set_solution = set_solution
 except:
     pass
-
 
 def tuple2var(varname, *args):
     def val(index):

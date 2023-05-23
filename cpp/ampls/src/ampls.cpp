@@ -234,6 +234,9 @@ void AMPLMPModel::setOption(const char* name, int value) {
 void AMPLMPModel::setOption(const char* name, double value) {
   handleStatus(name, impl::mp::AMPLSSetDblOption(solver_, name, value));
 }
+void AMPLMPModel::setOption(const char* name, const char* value) {
+  handleStatus(name, impl::mp::AMPLSSetStrOption(solver_, name, value));
+}
 
 namespace impl {
 

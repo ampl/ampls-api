@@ -206,6 +206,7 @@ virtual void set_option(const char* name, int value) { $self->setOption(name, va
 
 virtual void set_option(const char* name, double value) { $self->setOption(name, value); }
 
+virtual void set_option(const char* name, const char* value) { $self->setOption(name, value); }
 };
 
 %extend ampls::impl::BaseCallback {

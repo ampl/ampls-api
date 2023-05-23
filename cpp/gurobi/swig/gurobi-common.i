@@ -14,7 +14,6 @@
 %ignore ampls::GurobiCallback::getSolution;
 %template(SolverDriverGrb) ampls::impl::SolverDriver<ampls::GurobiModel>;
 
-
 %include "gurobi_c.h"
 %include "gurobi_callback.h"
 %include "gurobi_interface.h"
