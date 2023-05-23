@@ -5,7 +5,7 @@
     <ProjectGuid>a2848927-8f72-426d-85b4-d2c1723408a2</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>test_callbacks.py</StartupFile>
+    <StartupFile>test_multiple_solutions.py</StartupFile>
     <SearchPath>..\test;..\..\build\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -13,6 +13,8 @@
     <RootNamespace>tests</RootNamespace>
     <TestFramework>Pytest</TestFramework>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

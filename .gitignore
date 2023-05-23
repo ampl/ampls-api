@@ -26,3 +26,6 @@ env/
 amplpy_*_swig.py
 amplpy_*_swig_wrap.cxx
 amplpy_*_swig_wrap.h
+/python/cplex/amplpy_cplex/swig/amplpy_cplex_swig_wrap.cxx
+/python/cplex/amplpy_cplex/swig/amplpy_cplex_swig.py
+/python/cplex/amplpy_cplex/swig/amplpy_cplex_swig_wrap.h

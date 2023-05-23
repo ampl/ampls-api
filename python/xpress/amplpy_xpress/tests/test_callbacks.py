@@ -11,6 +11,9 @@ except:
 import amplpy_xpress as ampls
 import os
 
+SOLVER='xpress'
+
+
 class ProgressCallback(ampls.GenericCallback):
     def __init__(self):
         super(ProgressCallback, self).__init__()
@@ -72,24 +75,19 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
 
 
 class TestCallbacks(TestBase.TestBase):
-    def test_progress_callback(self):
+    def _callback(self, cb):
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
-        gm = ampl.export_gurobi_model()
-        cb = ProgressCallback()
+        gm = ampl.to_ampls(SOLVER)
         gm.setCallback(cb)
         gm.optimize()
         obj = gm.getObj()
         self.assertAlmostEqual(376.96, obj, delta=0.01)
 
-    def test_progress_callback_snake_case(self):
-        ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
-        gm = ampl.export_gurobi_model()
-        cb = ProgressCallbackSnakeCase()
-        gm.set_callback(cb)
-        gm.optimize()
-        obj = gm.get_obj()
-        self.assertAlmostEqual(376.96, obj, delta=0.01)
+    def test_progress_callback(self):
+        self._callback(ProgressCallback())
 
+    def test_progress_callback_snake_case(self):
+        self._callback(ProgressCallbackSnakeCase())
 
 if __name__ == "__main__":
     unittest.main()

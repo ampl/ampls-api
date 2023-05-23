@@ -3,7 +3,6 @@
 %include "../../../common-python.i" 
 %include "../../../../cpp/ampls/swig/ampls-common.i"
 
-
 %extend ampls::GurobiModel {
 
   int get_int_attr(const char* name) {

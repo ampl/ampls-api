@@ -139,7 +139,7 @@ int main(int argc, char** argv) {
       printf("ERROR!!! %i\n", res);
       return res;
     }
-
+    m.setOption("ore", "54");
     m.optimize();
     obj = m.getObj();
     m.writeSol();

@@ -9,6 +9,8 @@ except:
 from amplpy import AMPL
 import amplpy_gurobi as ampls
 
+SOLVER='gurobi'
+
 def create_model() -> AMPL:
     """ Create an instance of AMPL and a model"""
     ampl = AMPL()
@@ -18,14 +20,15 @@ def create_model() -> AMPL:
     return ampl
 
 def solve_model(ampl: AMPL):
-    model=ampl.to_ampls('gurobi')
+    model=ampl.to_ampls(SOLVER)
     model.setOption("sol:stub", "stub");
     model.setOption("sol:poolgap", 0.1);
     model.refresh()
     model.optimize()
     ampl.import_solution(model)
     v = int(ampl.get_value("TotalSum.nsol"))
-    assert v==3
+    if SOLVER != 'cplex': # not supported right now
+        assert v==3
     print(f"Got {v} solutions")
     for i in range(1,v+1):
         ampl.import_solution("stub", i)
