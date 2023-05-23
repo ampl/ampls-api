@@ -1439,8 +1439,8 @@ public:
 } // namespace
 
 // Convenience macro to use solver-specific libs
-#ifdef USE_cplexmp
-#include "cplexmp_interface.h"
+#ifdef USE_cplex
+#include "cplex_interface.h"
 #endif
 #ifdef USE_gurobi
 #include "gurobi_interface.h"
@@ -1499,7 +1499,7 @@ namespace ampls {
       }
 #endif
 
-#ifdef USE_cplexmp
+#ifdef USE_cplex
       template<> CPLEXModel exportModel<CPLEXModel>(ampl::AMPL& a) {
         doExport(a);
         CPLEXDrv cplex;

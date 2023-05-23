@@ -15,12 +15,6 @@ createPythonWrapper(ampls ampls ampls ampls)
 target_link_libraries(amplpy_ampls_swig ${LINK_LIBS})
 target_compile_definitions(amplpy_ampls_swig PRIVATE CPLEXD)
 
-set(TESTDIR ${CMAKE_CURRENT_SOURCE_DIR}/../test)
-file(WRITE ${TESTDIR}/config.py 
-    "BIN_DIR='${CMAKE_BINARY_DIR}/bin'\n"
-    "MOD_DIR='${CMAKE_SOURCE_DIR}/test/models'\n"
-    "MODULES='${ENABLED_SOLVERS}'\n")
-
 if(MSVC)
   include_external_msproject(
     python-tests

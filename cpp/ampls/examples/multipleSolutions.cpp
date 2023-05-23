@@ -16,9 +16,10 @@ void createModel(ampl::AMPL& ampl) {
 
 template <class T> T solveModel(ampl::AMPL& ampl) {
     T model = ampls::AMPLAPIInterface::exportModel<T>(ampl);
+    model.setOption("outlev", 1);
     model.setOption("sol:stub", "stub");
     model.setOption("sol:poolgap", 0.1);
-    model.setOption("outlev", 1);
+    
 
     // Have to refresh to make the driver aware of the options
     model.refresh();
@@ -28,12 +29,12 @@ template <class T> T solveModel(ampl::AMPL& ampl) {
     return model;
 }
 
-int main(int argc, char** argv) {
+template <class T> void run() {
   ampl::AMPL ampl;
   createModel(ampl);
-  auto m = solveModel<ampls::GurobiModel>(ampl);
+  auto m = solveModel<T>(ampl);
   ampls::AMPLAPIInterface::importModel(ampl, m);
-  
+
   int nsol = static_cast<int>(ampl.getValue("TotalSum.nsol").dbl());
   printf("Gotten %d solutions\n", nsol);
 
@@ -44,5 +45,26 @@ int main(int argc, char** argv) {
     ampl.eval(BUFFER);
     std::cout << ampl.getData("x,y,z").toString();
   }
+}
 
+int main(int argc, char** argv) {
+  #ifdef USE_gurobi
+    run<ampls::GurobiModel>();
+  #endif
+
+  #ifdef USE_cbcmp
+    run<ampls::CbcModel>();
+  #endif
+
+  #ifdef USE_copt
+    run<ampls::CoptModel>();
+  #endif
+
+  #ifdef USE_cplex
+    run<ampls::CPLEXModel>();
+  #endif
+
+  #ifdef USE_xpress
+    run<ampls::XPRESSModel>();
+#endif
 }
