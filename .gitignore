@@ -1,8 +1,8 @@
 /build
 /build-*
 # Default VSCode and VS dirs
-/.vs
-/.vscode
+.vs
+.vscode
 *.col
 __pycache__
 bin
@@ -22,3 +22,7 @@ env/
 /csharp/copt/api/dev_coptsharp.csproj
 /csharp/cplexmp/api/dev_cplexmpsharp.csproj
 /python/examples/.vscode
+*.sol
+amplpy_*_swig.py
+amplpy_*_swig_wrap.cxx
+amplpy_*_swig_wrap.h
