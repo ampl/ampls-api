@@ -26,9 +26,11 @@ template <class T> T solveModel(ampl::AMPL& ampl) {
     }
     // Have to refresh to make the driver aware of the options
     model.refresh();
-    // Use AMPLModel::optimize() so that the driver "solve" function
-    // is used
-    model.optimize();
+    // Use AMPLModel::solveMP() so that the driver "solve" function
+    // is used; this makes the calling program call the drivers' solve
+    // function, that in many cases will contain code specifically for
+    // handling multiple solutions
+    model.solveMP();
     return model;
 }
 
@@ -54,7 +56,7 @@ int main(int argc, char** argv) {
 #ifdef USE_xpress
   // Note XPRESS is not supported (yet) due to its very specific
   // handling of multiple solutions
-  //run<ampls::XPRESSModel>();
+  run<ampls::XPRESSModel>();
 #endif
   #ifdef USE_gurobi
     run<ampls::GurobiModel>();

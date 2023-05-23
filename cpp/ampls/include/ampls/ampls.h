@@ -339,6 +339,7 @@ namespace ampls{
         ENTRYPOINT int AMPLSGetStrOption(void* slv, const char* name, const char* const* value);
         ENTRYPOINT int AMPLSLoadNLModel(AMPLS_MP_Solver* slv, const char* nl_filename);
         ENTRYPOINT void AMPLSReadExtras(AMPLS_MP_Solver* slv);
+        ENTRYPOINT void AMPLSSolve(AMPLS_MP_Solver* slv);
       }
     } // namespace mp
     // ******* end MP ******* 
@@ -1207,7 +1208,12 @@ public:
   virtual int optimize() {
     throw AMPLSolverException("Not implemented in base class!");
   };
-
+  /**
+  Solve with the driver's function
+  */
+  virtual void solveMP() {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
   /**
   Write the solution file to the defualt location (filename.sol in the original directory)
   */
@@ -1432,8 +1438,12 @@ public:
   }
 
   void refresh() {
-    impl::mp::AMPLSReadExtras(solver_);
+    impl::mp::AMPLSReadExtras(solver_); }
+
+  void solveMP() {
+    impl::mp::AMPLSSolve(solver_);
   }
+
 };
 
 } // namespace
