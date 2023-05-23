@@ -18,9 +18,12 @@ template <class T> T solveModel(ampl::AMPL& ampl) {
     T model = ampls::AMPLAPIInterface::exportModel<T>(ampl);
     model.setOption("outlev", 1);
     model.setOption("sol:stub", "stub");
-    model.setOption("sol:poolgap", 0.1);
-    
-
+    try {
+      model.setOption("sol:poolgap", 0.1);
+    }
+    catch (const ampls::AMPLSolverException& e) {
+      printf(e.what());
+    }
     // Have to refresh to make the driver aware of the options
     model.refresh();
     // Use AMPLModel::optimize() so that the driver "solve" function
@@ -48,6 +51,11 @@ template <class T> void run() {
 }
 
 int main(int argc, char** argv) {
+#ifdef USE_xpress
+  // Note XPRESS is not supported (yet) due to its very specific
+  // handling of multiple solutions
+  //run<ampls::XPRESSModel>();
+#endif
   #ifdef USE_gurobi
     run<ampls::GurobiModel>();
   #endif
@@ -64,7 +72,5 @@ int main(int argc, char** argv) {
     run<ampls::CPLEXModel>();
   #endif
 
-  #ifdef USE_xpress
-    run<ampls::XPRESSModel>();
-  #endif
+
 }
