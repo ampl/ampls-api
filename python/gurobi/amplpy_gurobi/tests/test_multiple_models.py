@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from . import TestBase
+try:
+    from . import TestBase
+except:
+    import TestBase
+
 import amplpy
 import amplpy_gurobi as ampls
 import pandas as pd
-from typing import Any, Dict
 
-def makeAmplModel(numVars:int=10, flipObjective:bool = False, makeInfeasible:bool = False, 
+def makeAmplModel(numVars=10, flipObjective = False, makeInfeasible = False, 
                   presolveLevel : bool = 10):
     """ Create an instance of AMPL and a model"""
     ampl = amplpy.AMPL()
@@ -45,7 +48,7 @@ def makeAmplModel(numVars:int=10, flipObjective:bool = False, makeInfeasible:boo
     ampl.setData(constraintIndexesDf,set_name = "constraintIndexes")
     return ampl
 
-def solveModel(ampl:amplpy.AMPL, options:Dict[str,Any] = {}, useNativeCall: bool=True):
+def solveModel(ampl, options = {}, useNativeCall=True):
     model= ampl.export_gurobi_model()
     for o, v in options.items():
         model.set_option(o,v) # Set options from

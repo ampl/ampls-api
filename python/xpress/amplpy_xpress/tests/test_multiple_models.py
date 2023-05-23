@@ -7,7 +7,7 @@ except:
     import TestBase
 
 import amplpy
-import amplpy_gurobi as ampls
+import amplpy_xpress as ampls
 import pandas as pd
 
 def makeAmplModel(numVars=10, flipObjective = False, makeInfeasible = False, 

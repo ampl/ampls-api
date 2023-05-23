@@ -23,7 +23,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="config.py" />
     <Compile Include="TestBase.py" />
     <Compile Include="test_callbacks.py" />
     <Compile Include="test_multiple_solutions.py" />

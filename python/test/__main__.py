@@ -5,10 +5,11 @@ from __future__ import absolute_import
 import unittest
 import os
 
-if False:
+try:
     from .test_callbacks import TestCallbacks
     from .test_multiple_models import TestMultipleModels
-else:
+    from .test_multiple_solutions import TestMultipleSolutions
+except:
     from test_callbacks import TestCallbacks
     from test_multiple_models import TestMultipleModels
     from test_multiple_solutions import TestMultipleSolutions

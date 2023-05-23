@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from enum import Enum
-if False:
+
+try:
     from . import TestBase
     from .tsp_helpers import tsp_model
-else:
+except:
     import TestBase
     from tsp_helpers import tsp_model
 import amplpy_gurobi as ampls

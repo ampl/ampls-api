@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from . import TestBase
-from .tsp_helpers import tsp_model
-import amplpy_gurobi as ampls
-import os
 
+try:
+    from . import TestBase
+    from .tsp_helpers import tsp_model
+except:
+    import TestBase
+    from tsp_helpers import tsp_model
+import amplpy_cplex as ampls
+import os
 
 class ProgressCallback(ampls.GenericCallback):
     def __init__(self):
@@ -21,15 +25,15 @@ class ProgressCallback(ampls.GenericCallback):
         if t == ampls.Where.LPSOLVE:
             print(
                 "LP solve, {} iterations".format(
-                    self.getValue(ampls.Value.ITERATIONS)
+                    self.getValue(ampls.Value.ITERATIONS).integer
                 )
             )
             return 0
         if t == ampls.Where.PRESOLVE:
             print(
                 "Presolve, eliminated {} rows and {} columns.".format(
-                    self.getValue(ampls.Value.PRE_DELROWS),
-                    self.getValue(ampls.Value.PRE_DELCOLS)
+                    self.getValue(ampls.Value.PRE_DELROWS).integer,
+                    self.getValue(ampls.Value.PRE_DELCOLS).integer,
                 )
             )
             return 0
@@ -39,7 +43,6 @@ class ProgressCallback(ampls.GenericCallback):
         if t == ampls.Where.MIPSOL:
             print("MIP Solution = {}".format(self.getObj()))
         return 0
-
 
 class ProgressCallbackSnakeCase(ampls.GenericCallback):
     def __init__(self):
@@ -53,15 +56,13 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
             print(self.get_message())
             return 0
         if t == ampls.Where.LPSOLVE:
-            print("LP solve, {} iterations".format(
-                self.get_value(ampls.Value.ITERATIONS)) )
+            print("LP solve, {self.get_value(ampls.Value.ITERATIONS)} iterations")
             return 0
         if t == ampls.Where.PRESOLVE:
-             print("Presolve, eliminated {} rows and {} columns.".format(
-                     self.get_value(ampls.Value.PRE_DELROWS),
-                     self.get_value(ampls.Value.PRE_DELCOLS))
-             )
-             return 0
+            print("Presolve, eliminated {} rows and {} columns.".format(
+                   self.get_value(ampls.Value.PRE_DELROWS), 
+                   self.get_value(ampls.Value.PRE_DELCOLS)))
+            return 0
         if t == ampls.Where.MIPNODE:
             self.n_mip_nodes += 1
             print("New MIP node, count {}".format(self.n_mip_nodes))

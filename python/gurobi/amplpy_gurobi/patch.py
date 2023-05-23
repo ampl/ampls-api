@@ -1,6 +1,5 @@
 import types
 
-
 def setCallback(self, cb):
     def run(self):
         try:
@@ -21,11 +20,11 @@ def _do_export(self, drv):
     tmp = tempfile.mkdtemp()
     fname = os.path.join(tmp, 'model').replace('"', '""')
     try:
-        self.option['auxfiles'] = 'c'
-        self.eval('write "g{}";'.format(fname))
-        model = drv.loadModel(fname + '.nl')
-        model._solfile = fname + '.sol'
-        os.remove(fname + '.nl')
+        self.option['auxfiles'] = 'cr'
+        self.eval(f'write "g{fname}";')
+        model = drv.loadModel(f'{fname}.nl')
+        model._solfile = f'{fname}.sol'
+        os.remove(f'{fname}.nl')
         model._setCallback = model.setCallback
         model.setCallback = types.MethodType(setCallback, model)
         return model
@@ -33,12 +32,10 @@ def _do_export(self, drv):
         shutil.rmtree(tmp)
         raise
 
-
-
 if __package__ == 'amplpy_copt':
     from amplpy_copt_swig import *
     COPT_DRIVER = COPTDrv()
-    def exportCoptModel(self, options=None):
+    def exportCoptModel(self):
         global COPT_DRIVER
         return _do_export(self, COPT_DRIVER)
 
@@ -52,7 +49,7 @@ if __package__ == 'amplpy_copt':
 if __package__ == 'amplpy_cplex':
     from amplpy_cplex_swig import *
     CPLEX_DRIVER = CPLEXDrv()
-    def exportCplexModel(self, options=None):
+    def exportCplexModel(self):
         global CPLEX_DRIVER
         return _do_export(self, CPLEX_DRIVER)
 
@@ -67,7 +64,7 @@ if __package__ == 'amplpy_gurobi':
     from amplpy_gurobi_swig import *
     GUROBI_DRIVER = GurobiDrv()
 
-    def exportGurobiModel(self, options=None):
+    def exportGurobiModel(self):
         global GUROBI_DRIVER
         return _do_export(self, GUROBI_DRIVER)
 
@@ -82,7 +79,7 @@ if __package__ == 'amplpy_xpress':
     from amplpy_xpress_swig import *
     XPRESS_DRIVER = XPRESSDrv()
 
-    def exportXpressModel(self, options=None):
+    def exportXpressModel(self):
         global XPRESS_DRIVER
         return _do_export(self, XPRESS_DRIVER)
 
@@ -102,28 +99,33 @@ def exportModel(self, driver):
         return self.export_copt_model()
     elif driver == 'xpress':
         return self.export_xpress_model()
+    solverList= "copt, cplex, gurobi, xpress"
+    raise ValueError("{} is not supported, please choose from: {solverList}")
 
 
-def importSolution(self, model):
+def importSolution(self, model, number = None):
     if isinstance(model, dict):
         self.eval(''.join(
             'let {} := {};'.format(name, value)
             for name, value in model.items()
         ))
         return
+    if isinstance(model, str):
+        if number is None:
+            self.eval(f'solution "{model}.sol";')
+        else:
+            self.eval(f'solution "{model}{number}.sol";')
+        return
+
     import os
     model.writeSol()
-    self.eval('solution "{}";'.format(model._solfile))
+    self.eval(f'solution "{model._solfile}";')
     os.remove(model._solfile)
-
-def set_solution(self, stub: str, i: int):
-    self.eval(f"solution {stub}{i}.sol;")
 
 try:
     from amplpy import AMPL
     AMPL.to_ampls = exportModel
     AMPL.import_solution = importSolution
-    AMPL.set_solution = set_solution
 except:
     pass
 

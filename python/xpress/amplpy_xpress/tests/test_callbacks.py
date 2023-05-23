@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
-from . import TestBase
-from .tsp_helpers import tsp_model
+
+try:
+    from . import TestBase
+    from .tsp_helpers import tsp_model
+except:
+    import TestBase
+    from tsp_helpers import tsp_model
 import amplpy_xpress as ampls
 import os
-
 
 class ProgressCallback(ampls.GenericCallback):
     def __init__(self):
@@ -40,7 +44,6 @@ class ProgressCallback(ampls.GenericCallback):
             print("MIP Solution = {}".format(self.getObj()))
         return 0
 
-
 class ProgressCallbackSnakeCase(ampls.GenericCallback):
     def __init__(self):
         super(ProgressCallbackSnakeCase, self).__init__()
@@ -53,20 +56,13 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
             print(self.get_message())
             return 0
         if t == ampls.Where.LPSOLVE:
-            print(
-                "LP solve, {} iterations".format(
-                    self.get_value(ampls.Value.ITERATIONS).integer
-                )
-            )
+            print("LP solve, {self.get_value(ampls.Value.ITERATIONS)} iterations")
             return 0
-        # if t == ampls.Where.PRESOLVE:
-        #     print(
-        #         "Presolve, eliminated {} rows and {} columns.".format(
-        #             self.get_value(ampls.Value.PRE_DELROWS).integer,
-        #             self.get_value(ampls.Value.PRE_DELCOLS).integer,
-        #         )
-        #     )
-        #     return 0
+        if t == ampls.Where.PRESOLVE:
+            print("Presolve, eliminated {} rows and {} columns.".format(
+                   self.get_value(ampls.Value.PRE_DELROWS), 
+                   self.get_value(ampls.Value.PRE_DELCOLS)))
+            return 0
         if t == ampls.Where.MIPNODE:
             self.n_mip_nodes += 1
             print("New MIP node, count {}".format(self.n_mip_nodes))
@@ -78,7 +74,7 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
 class TestCallbacks(TestBase.TestBase):
     def test_progress_callback(self):
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
-        gm = ampl.export_xpress_model()
+        gm = ampl.export_gurobi_model()
         cb = ProgressCallback()
         gm.setCallback(cb)
         gm.optimize()
@@ -87,7 +83,7 @@ class TestCallbacks(TestBase.TestBase):
 
     def test_progress_callback_snake_case(self):
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
-        gm = ampl.export_xpress_model()
+        gm = ampl.export_gurobi_model()
         cb = ProgressCallbackSnakeCase()
         gm.set_callback(cb)
         gm.optimize()

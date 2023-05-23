@@ -7,7 +7,7 @@ except:
     import TestBase
 
 from amplpy import AMPL
-import amplpy_gurobi as ampls
+import amplpy_cplex as ampls
 
 def create_model() -> AMPL:
     """ Create an instance of AMPL and a model"""
@@ -18,7 +18,7 @@ def create_model() -> AMPL:
     return ampl
 
 def solve_model(ampl: AMPL):
-    model=ampl.to_ampls('gurobi')
+    model=ampl.to_ampls('cplex')
     model.setOption("sol:stub", "stub");
     model.setOption("sol:poolgap", 0.1);
     model.refresh()
