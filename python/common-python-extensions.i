@@ -251,11 +251,27 @@ def __get_ampls_attribute(self, param):
         return self.getAMPLSDoubleAttribute(__e_to_v(param))
     return self.getAMPLSIntAttribute(__e_to_v(param))
 
-AMPLModel.get_status=lambda self : Status(self.getStatus())
-BaseCallback.get_ampls_where=lambda self : Where(self.getAMPLSWhere())
-AMPLModel.set_ampls_parameter=lambda self,what,value : self.setAMPLSParameter(what.value, __e_to_v(value))
+AMPLModel._getStatus=AMPLModel.getStatus
+AMPLModel.getStatus=lambda self : Status(self._getStatus())
+AMPLModel.get_status=lambda self : Status(self._getStatus())
+
+BaseCallback._getAMPLSWhere=BaseCallback.getAMPLSWhere
+BaseCallback.get_ampls_where=lambda self : Where(self._getAMPLSWhere())
+BaseCallback.getAMPLSWhere=lambda self : Where(self._getAMPLSWhere())
+
+GenericCallback._getAMPLSWhere=GenericCallback.getAMPLSWhere
+GenericCallback.get_ampls_where=lambda self : Where(self._getAMPLSWhere())
+GenericCallback.getAMPLSWhere=lambda self : Where(self._getAMPLSWhere())
+
+AMPLModel._setAMPLSParameter=AMPLModel.setAMPLSParameter
+AMPLModel.set_ampls_parameter=lambda self,what,value : self._setAMPLSParameter(what.value, __e_to_v(value))
+AMPLModel.setAMPLSParameter=lambda self,what,value : self._setAMPLSParameter(what.value, __e_to_v(value))
+
+AMPLModel.getAMPLSParameter=__get_ampls_parameter
 AMPLModel.get_ampls_parameter=__get_ampls_parameter
+
 AMPLModel.get_ampls_attribute=__get_ampls_attribute
+AMPLModel.getAMPLSAttribute=__get_ampls_attribute
 
 GenericCallback._getValue=GenericCallback.getValue
 def _do_get_value(self, what):

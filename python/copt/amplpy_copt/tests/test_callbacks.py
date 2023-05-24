@@ -8,10 +8,10 @@ try:
 except:
     import TestBase
     from tsp_helpers import tsp_model
-import amplpy_cplex as ampls
+import amplpy_copt as ampls
 import os
 
-SOLVER='cplex'
+SOLVER='copt'
 
 MUTE=True
 
