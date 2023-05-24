@@ -6,7 +6,7 @@ foreach(s ${AMPLS_SOLVER_NAMES})
     if(ENABLE_${s})
         get_target_property(libinclude ${${s}_SOLVER}-solverlib INTERFACE_INCLUDE_DIRECTORIES)
         get_target_property(targetinclude ${${s}_SOLVER}-drv INTERFACE_INCLUDE_DIRECTORIES)
-        set(LINK_LIBS ${LINK_LIBS} ${${s}_TARGET}-lib ${${s}_TARGET}-drv)
+        set(LINK_LIBS ${LINK_LIBS} ${${s}_TARGET}-lib ${${s}_SOLVER}-drv)
         set(SOLVERS_INCLUDE ${SOLVERS_INCLUDE} ${libinclude} ${targetinclude})
     endif()
 endforeach()
@@ -15,6 +15,7 @@ createPythonWrapper(ampls ampls ampls ampls)
 target_link_libraries(amplpy_ampls_swig ${LINK_LIBS})
 target_compile_definitions(amplpy_ampls_swig PRIVATE CPLEXD)
 
+set(TESTDIR ${CMAKE_CURRENT_SOURCE_DIR}/../test)
 if(MSVC)
   include_external_msproject(
     python-tests
@@ -22,10 +23,20 @@ if(MSVC)
     python-tests)
 endif()
 
+
+set(PYTHON_DEPS)
+foreach(s ${AMPLS_SOLVER_NAMES})
+    if(ENABLE_${s})
+      set(PYTHON_DEPS ${PYTHON_DEPS} amplpy_${s}_swig)
+    endif()
+endforeach()
+
+message("PYTHON_DEPS=${PYTHON_DEPS}")
 add_custom_target(python-tests-run
     COMMAND pytest
     WORKING_DIRECTORY ${TESTDIR}
-    COMMENT "Running Python tests.")
+    COMMENT "Running Python tests."
+    DEPENDS ${PYTHON_DEPS})
 
 
 add_to_folder(ampls/test python-tests-run python-tests)

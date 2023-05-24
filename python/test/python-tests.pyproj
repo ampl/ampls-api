@@ -5,7 +5,7 @@
     <ProjectGuid>a2848927-8f72-426d-85b4-d2c1723408a2</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>test_multiple_solutions.py</StartupFile>
+    <StartupFile>test_multiple_models.py</StartupFile>
     <SearchPath>..\test;..\..\build\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>

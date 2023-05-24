@@ -6,6 +6,10 @@
 
 #include "ampl/ampl.h"
 
+
+/// <summary>
+/// Create an AMPL model using the AMPL API
+/// </summary>
 void makeAmplModel(ampl::AMPL &ampl , int numvars, bool unfeasible, bool flipData = false) {
   ampl.eval("set varIndexes within Integers; set constraintIndexes within Integers;"
     "param varCosts{ varIndexes };"
@@ -24,13 +28,53 @@ void makeAmplModel(ampl::AMPL &ampl , int numvars, bool unfeasible, bool flipDat
     d2.addRow(i, unfeasible ? -1 : 1);
   ampl.setData(d2, "constraintIndexes");
 }
-template <class T> T solveModel(ampl::AMPL& ampl) {
+
+/// <summary>
+/// Export the AMPL model to a (templated) AMPLS solver and solve it via AMPLS
+/// Reimports the model in the AMPL API object and also returns the AMPLS object for
+/// further analysis 
+/// </summary>
+template <class T> T solveModel(ampl::AMPL& ampl, const std::map<std::string, int>& options = {}) {
     auto model = ampls::AMPLAPIInterface::exportModel<T>(ampl);
-    //gurobiModel.setOption("mip_gap", 1);
+    for (auto o : options)
+      model.setOption(o.first.c_str(), o.second);
     model.optimize();
     ampls::AMPLAPIInterface::importModel(ampl, model);
     return model;
 }
+/// <summary>
+/// Template function for solver-specific methods
+/// </summary>
+template <class T> void checkNativeStatus(T& model) {}
+#ifdef USE_gurobi
+void checkNativeStatus(ampls::GurobiModel& grbmodel) {
+  // Use AMPLS wrapper to Gurobi native function
+  int status = grbmodel.getIntAttr(GRB_INT_ATTR_STATUS);
+  assert(status == GRB_OPTIMAL);
+
+  // Use Gurobi native functions
+  GRBgetintattr(grbmodel.getGRBmodel(), GRB_INT_ATTR_STATUS, &status);
+  assert(status == GRB_OPTIMAL);
+}
+#endif
+#ifdef USE_cplex
+void checkNativeStatus(ampls::CPLEXModel& model) {
+  // Use CPLEX native functions
+  int status = CPXgetstat(model.getCPXENV(), model.getCPXLP());
+  assert(status == CPXMIP_OPTIMAL);
+}
+#endif
+#ifdef USE_xpress
+void checkNativeStatus(ampls::XPRESSModel& model) {
+  // Use AMPLS wrapper to XPRESS native function
+  int status = model.getIntAttr(XPRS_LPSTATUS);
+  assert(status = XPRS_LP_OPTIMAL);
+  
+  // Use XPRESS native functions
+  XPRSgetintattrib(model.getXPRSprob(), XPRS_LPSTATUS, &status);
+  assert(status = XPRS_LP_OPTIMAL);
+}
+#endif
 
 
 template <class T> void createAndSolveSimpleModel() {
@@ -38,11 +82,15 @@ template <class T> void createAndSolveSimpleModel() {
   ampl::AMPL ampl;
   makeAmplModel(ampl, numVars, false);
   auto model = solveModel<T>(ampl);
-  //int statusNum = gurobiModel.getIntAttr("Status");
-  //./assert(gurobiModel.getStatus() == ampls::Status::OPTIMAL);
-  //assert(statusNum == GRB_OPTIMAL);
-  //#Num Vars is even->last var idx is odd->expect odd idx vars to be 1
-  //#Num Vars is odd->last var idx is even->expect even idx vars to be 1
+
+  // Get status throught AMPLS
+  assert(model.getStatus() == ampls::Status::OPTIMAL);
+
+  // Demonstrate solver native methods
+  checkNativeStatus(model);
+
+  // Num Vars is even->last var idx is odd->expect odd idx vars to be 1
+  // Num Vars is odd->last var idx is even->expect even idx vars to be 1
   std::vector<double> expectedSolution(numVars);
   double expectedObjective = 0;
   for (int i = 0; i < numVars; i++) {
@@ -54,24 +102,22 @@ template <class T> void createAndSolveSimpleModel() {
   printf("Completed Simple Model Test.\n\n");
 }
 
-
 template <class T> void createAndSolveInfeasibleModel(bool presolve) {
     int numVars = 10;
     ampl::AMPL ampl;
     makeAmplModel(ampl, numVars, true);
     ampl.setIntOption("presolve", presolve ? 10 : 0); // 10 is the default number of presolve passes
-    auto model = solveModel<T>(ampl);
-    
+    std::map<std::string, int> options = { {"outlev", 1}, {"iisfind", 1} };
+    auto model = solveModel<T>(ampl, options);
     assert(model.getStatus() == ampls::Status::INFEASIBLE);
-    //int statusNum = gurobiModel.getIntAttr("Status");
-    //assert(statusNum == GRB_INFEASIBLE);
     printf("Completed Infeasible Model Test\n\n");
 }
 
+
 template <class T> void run() {
-  // This will fail because AMPL's presolve will block the 
-// export of the model
   try {
+    // This will fail because AMPL's presolve will block the 
+    // export of the model
     createAndSolveInfeasibleModel<T>(true);
   }
   catch (const ampls::AMPLSolverException& e) {
@@ -84,23 +130,19 @@ template <class T> void run() {
 
 int main(int argc, char** argv) {
 
-#ifdef USE_gurobi
-  run<ampls::GurobiModel>();
-#endif
-
-#ifdef USE_cbcmp
-  run<ampls::CbcModel>();
-#endif
-
-#ifdef USE_copt
-  run<ampls::CoptModel>();
-#endif
-
 #ifdef USE_cplex
   run<ampls::CPLEXModel>();
 #endif
-
 #ifdef USE_xpress
   run<ampls::XPRESSModel>();
+#endif
+#ifdef USE_gurobi
+  run<ampls::GurobiModel>();
+#endif
+#ifdef USE_cbcmp
+  run<ampls::CbcModel>();
+#endif
+#ifdef USE_copt
+  run<ampls::CoptModel>();
 #endif
 }

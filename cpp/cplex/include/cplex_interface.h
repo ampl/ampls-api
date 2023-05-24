@@ -190,6 +190,7 @@ public:
       return Status::OPTIMAL;
     case CPX_STAT_INFEASIBLE: // Problem infeasible
     case CPXMIP_INFEASIBLE:
+    case CPX_STAT_CONFLICT_MINIMAL:
       return Status::INFEASIBLE;
     case CPX_STAT_UNBOUNDED: // Problem unbounded
     case CPXMIP_UNBOUNDED:
@@ -208,6 +209,7 @@ public:
     case CPX_STAT_ABORT_DETTIME_LIM:
     case CPX_STAT_ABORT_TIME_LIM:
     case CPX_STAT_CONFLICT_ABORT_DETTIME_LIM:
+    case CPX_STAT_CONFLICT_ABORT_TIME_LIM:
     case CPXMIP_DETTIME_LIM_FEAS:
     case CPXMIP_DETTIME_LIM_INFEAS:
     case CPXMIP_TIME_LIM_FEAS:
