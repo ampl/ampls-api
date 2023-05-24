@@ -22,12 +22,15 @@ def create_model() -> AMPL:
 def solve_model(ampl: AMPL):
     model=ampl.to_ampls(SOLVER)
     model.setOption("sol:stub", "stub");
-    model.setOption("sol:poolgap", 0.1);
+    try:
+        model.setOption("sol:poolgap", 0.1);
+    except:
+        pass
     model.refresh()
     model.optimize()
     ampl.import_solution(model)
     v = int(ampl.get_value("TotalSum.nsol"))
-    if SOLVER != 'cplex': # not supported right now
+    if SOLVER != 'xpress': # not supported right now
         assert v==3
     print(f"Got {v} solutions")
     for i in range(1,v+1):
