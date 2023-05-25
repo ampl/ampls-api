@@ -8,10 +8,10 @@ try:
 except:
     import TestBase
     from tsp_helpers import tsp_model
-import amplpy_gurobi as ampls
+import amplpy_xpress as ampls
 import os
 
-SOLVER = "gurobi"
+SOLVER = "xpress"
 
 MUTE = True
 
