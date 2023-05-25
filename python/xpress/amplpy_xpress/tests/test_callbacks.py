@@ -21,7 +21,7 @@ class ProgressCallback(ampls.GenericCallback):
         super(ProgressCallback, self).__init__()
         self.n_mip_nodes = 0
         self.calls = {w: 0 for w in ampls.Where}
-        self.notMapped = []
+        self.not_mapped = []
 
     def run(self):
         t = self.getAMPLSWhere()
@@ -56,7 +56,7 @@ class ProgressCallback(ampls.GenericCallback):
             if not MUTE:
                 print("MIP Solution = {}".format(self.getObj()))
         if t == ampls.Where.NOTMAPPED:
-            self.notMapped.append(self.getWhereString())
+            self.not_mapped.append(self.getWhereString())
         return 0
 
 
@@ -106,11 +106,14 @@ class TestCallbacks(TestBase):
 
         cb = ProgressCallback()
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
-        gm = ampl.to_ampls(SOLVER)
-        gm.setCallback(cb)
-        gm.optimize()
-        obj = gm.getObj()
+        model = ampl.to_ampls(SOLVER)
+        model.setCallback(cb)
+        model.optimize()
+        obj = model.getObj()
         self.assertAlmostEqual(376.96, obj, delta=0.01)
+        ampl.importSolution(model)
+        ampl_obj = ampl.getCurrentObjective().value()
+        self.assertAlmostEqual(376.96, ampl_obj, delta=0.01)
 
         pprint(cb.calls)
 
@@ -119,11 +122,14 @@ class TestCallbacks(TestBase):
 
         cb = ProgressCallbackSnakeCase()
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
-        gm = ampl.to_ampls(SOLVER)
-        gm.set_callback(cb)
-        gm.optimize()
-        obj = gm.get_obj()
+        model = ampl.to_ampls(SOLVER)
+        model.set_callback(cb)
+        model.optimize()
+        obj = model.get_obj()
         self.assertAlmostEqual(376.96, obj, delta=0.01)
+        ampl.import_solution(model)
+        ampl_obj = ampl.get_current_objective().value()
+        self.assertAlmostEqual(376.96, ampl_obj, delta=0.01)
 
         pprint(cb.calls)
 
