@@ -13,10 +13,11 @@ elif platform.system() == "Linux":
 elif platform.system() == "Darwin":
     sysdir = "osx64"
 else:
-    print("Platform not recognized: {}", platform.system())
+    print(f"Platform not recognized: {platform.system()}")
 
 LIBPATH = os.path.join(BASEDIR, "libs", "xpress", "lib", sysdir)
 os.environ["PATH"] = LIBPATH + os.pathsep + os.environ["PATH"]
+
 
 try:
     from .patch import *

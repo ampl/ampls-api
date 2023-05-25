@@ -29,9 +29,9 @@ def _do_export(self, drv):
         model = drv.loadModel(f"{fname}.nl")
         model._solfile = f"{fname}.sol"
         os.remove(f"{fname}.nl")
-        model._setCallback = model.set_callback
-        model.setCallback = types.MethodType(set_callback, model)
+        model._set_callback = model.set_callback
         model.set_callback = types.MethodType(set_callback, model)
+        model.setCallback = types.MethodType(set_callback, model)
         return model
     except:
         shutil.rmtree(tmp)

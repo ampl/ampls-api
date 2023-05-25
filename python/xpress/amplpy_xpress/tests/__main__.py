@@ -3,6 +3,7 @@
 import unittest
 import os
 
+from .test_callbacks import TestCallbacks
 from .test_multiple_models import TestMultipleModels
 from .test_multiple_solutions import TestMultipleSolutions
 
