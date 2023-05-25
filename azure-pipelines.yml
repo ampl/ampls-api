@@ -125,22 +125,16 @@ jobs:
     - bash: |
         bash libs/download.sh
       displayName: Download libraries
-    - bash: |
-        set -ex
-        mkdir -p tmp
-        TMP=`pwd`/tmp
+    - script: |
+        md tmp
         cd python/$SOLVER
         bash prepare.sh win64
         bash swig.sh
         python -m pip install --user --upgrade pip
         python -m pip install urllib3[secure] --upgrade
-        # python -m pip install --upgrade cibuildwheel==1.12.0
-        # CIBW_BUILD="cp35-*" cibuildwheel --platform windows --output-dir $TMP .
         python -m pip install --upgrade cibuildwheel==2.12.3
-        cibuildwheel --platform windows --output-dir $TMP .
-        ls -l $TMP
-        test "$(ls -A $TMP)" || exit 1
-        mv $TMP/* $WHEELHOUSE/
+        cibuildwheel --platform windows --output-dir tmp .
+        copy tmp/* $WHEELHOUSE/
         # python -m pip install twine
         # python -m twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
       env:
