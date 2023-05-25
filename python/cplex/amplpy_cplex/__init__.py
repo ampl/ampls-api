@@ -15,7 +15,7 @@ elif platform.system() == 'Darwin':
 else:
     print(f'Platform not recognized: {platform.system()}')
 
-LIBPATH = os.path.join(BASEDIR, "libs", "xpress", "lib", sysdir)
+LIBPATH = os.path.join(BASEDIR, "libs", "cplex", "lib", sysdir)
 os.environ["PATH"] = LIBPATH + os.pathsep + os.environ["PATH"]
 
 if platform.system() == 'Windows':
