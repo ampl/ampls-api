@@ -16,24 +16,7 @@ else:
     print("Platform not recognized: {}", platform.system())
 
 LIBPATH = os.path.join(BASEDIR, "libs", "xpress", "lib", sysdir)
-import amplpy
-
-# Add path to help finding the license file
 os.environ["PATH"] = LIBPATH + os.pathsep + os.environ["PATH"]
-
-if platform.system() == "Windows":
-    import ctypes
-
-    for dll in ["xprl.dll", "xprs.dll", "xpress-lib.dll"]:
-        try:
-            ctypes.CDLL(os.path.join(LIBPATH, dll))
-        except Exception as e:
-            print(
-                "Problem importing library {}:\n{}\n".format(
-                    os.path.join(LIBPATH, dll), e
-                )
-            )
-
 
 try:
     from .patch import *
