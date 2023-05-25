@@ -1,17 +1,18 @@
 #!/bin/bash
+set -ex
+cd "`dirname "$0"`"
+
 version=$1
-solvers=( "ampls" "cbcmp" "copt" "cplex" "gurobi" "xpress" )
-for i in "${solvers[@]}"
-do
-  cp common/* "$i/amplpy_$i/"
-  cp test/*.py "$i/amplpy_$i/tests/"
-  find "$i/amplpy_$i/tests/" -name '*.py' -exec sed -i -e "s/amplpy_gurobi/amplpy_$i/g" {} \;
-  find "$i/amplpy_$i/tests/" -name '*.py' -exec sed -i -e "s/SOLVER='gurobi'/SOLVER='$i'/g" {} \;
-  
-  
-  cp test/data/* "$i/amplpy_$i/tests/data/"
+solvers=("cplex" "gurobi" "xpress")
+for SOLVER in "${solvers[@]}"; do
+    cp common/* "$SOLVER/amplpy_$SOLVER/"
+    TESTS_DIR="$PWD/$SOLVER/amplpy_$SOLVER/tests/"
+    rm -rf $TESTS_DIR/*
+    cp test/*.py $TESTS_DIR
+    cp -r test/data $TESTS_DIR
+    for FILE in $TESTS_DIR/*.py; do
+        sed -i~ "s/SOLVER[ \t]*=[ \t]*\"[^\"]*\"/SOLVER = \"$SOLVER\"/" $FILE
+        sed -i~ "s/SOLVER[ \t]*=[ \t]*\'[^\']*\'/SOLVER = \"$SOLVER\"/" $FILE
+        sed -i~ "s/amplpy_[a-z]*/amplpy_$SOLVER/" $FILE
+    done
 done
-
-
-
-
