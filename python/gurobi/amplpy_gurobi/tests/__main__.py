@@ -1,18 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
-
 import unittest
 import os
+import sys
 
-try:
-    from .test_callbacks import TestCallbacks
-    from .test_multiple_models import TestMultipleModels
-    from .test_multiple_solutions import TestMultipleSolutions
-except:
-    from test_callbacks import TestCallbacks
-    from test_multiple_models import TestMultipleModels
-    from test_multiple_solutions import TestMultipleSolutions
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
+from test_callbacks import TestCallbacks
+from test_multiple_models import TestMultipleModels
+from test_multiple_solutions import TestMultipleSolutions
 
 if __name__ == "__main__":
     from amplpy import modules

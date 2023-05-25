@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import unittest
+import os
+import sys
 
-try:
-    from . import TestBase
-    from .tsp_helpers import tsp_model
-except:
-    import TestBase
-    from tsp_helpers import tsp_model
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
+from test_base import TestBase
+from tsp_helpers import tsp_model
+
 import amplpy_gurobi as ampls
 import os
 
@@ -100,7 +100,7 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
         return 0
 
 
-class TestCallbacks(TestBase.TestBase):
+class TestCallbacks(TestBase):
     def test_progress_callback(self):
         from pprint import pprint
 
