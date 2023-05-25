@@ -1,6 +1,7 @@
 import sys
 import os
 import platform
+import amplpy  # to load modules before loading cplex
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
