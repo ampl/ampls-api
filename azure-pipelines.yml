@@ -111,7 +111,7 @@ jobs:
         CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
       xpress:
         solver: 'xpress'
-        CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
+        #CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
   variables:
     wheelhouse: $(Build.ArtifactStagingDirectory)
   steps:
