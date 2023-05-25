@@ -15,8 +15,19 @@ elif platform.system() == "Darwin":
 else:
     print(f"Platform not recognized: {platform.system()}")
 
-LIBPATH = os.path.join(BASEDIR, "libs", "cplex", "lib", sysdir)
-os.environ["PATH"] = LIBPATH + os.pathsep + os.environ["PATH"]
+if platform.system() == "Windows":
+    import ctypes
+
+    LIBPATH = os.path.join(BASEDIR, "libs", "cplex", "lib", "win64")
+    for dll in ["cplex2211.dll", "cplexmp-lib.dll"]:
+        try:
+            ctypes.CDLL(os.path.join(LIBPATH, dll))
+        except Exception as e:
+            print(
+                "Problem importing library {}:\n{}\n".format(
+                    os.path.join(LIBPATH, dll), e
+                )
+            )
 
 
 try:

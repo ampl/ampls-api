@@ -1,6 +1,7 @@
 import sys
 import os
 import platform
+import amplpy  # to load modules before loading xpress
 
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -17,6 +18,19 @@ else:
 
 LIBPATH = os.path.join(BASEDIR, "libs", "xpress", "lib", sysdir)
 os.environ["PATH"] = LIBPATH + os.pathsep + os.environ["PATH"]
+
+if platform.system() == "Windows":
+    import ctypes
+
+    for dll in ["xprl.dll", "xprs.dll", "xpress-lib.dll"]:
+        try:
+            ctypes.CDLL(os.path.join(LIBPATH, dll))
+        except Exception as e:
+            print(
+                "Problem importing library {}:\n{}\n".format(
+                    os.path.join(LIBPATH, dll), e
+                )
+            )
 
 
 try:
