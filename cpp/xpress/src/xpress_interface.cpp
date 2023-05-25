@@ -42,14 +42,15 @@ void XPRS_CC XPRSCBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, i
 
 
 XPRESSDrv::~XPRESSDrv() {
-  //if (owning_)
-    //impl::xpress::AMPLXPRESSfreeEnv();
 }
 
 
 XPRESSModel XPRESSDrv::loadModelImpl(char** args) {
-  return XPRESSModel(static_cast<impl::mp::AMPLS_MP_Solver*>(impl::xpress::AMPLSOpen_xpress(3, args)),
-    args[1]);
+  auto mp = static_cast<impl::mp::AMPLS_MP_Solver*>(impl::xpress::AMPLSOpen_xpress(3, args));
+  auto msg = impl::mp::AMPLSGetMessages(mp);
+  if (msg[0] != nullptr)
+    throw ampls::AMPLSolverException(msg[0]);
+  return XPRESSModel(mp, args[1]);
 }
 XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);

@@ -65,31 +65,51 @@ int main(int argc, char** argv) {
   strcat(buffer, MODELNAME);
 
 #ifdef USE_gurobi
-  // Load a model using gurobi driver
-  ampls::GurobiModel gurobimodel = ampls::AMPLModel::load<ampls::GurobiModel>(buffer);
-  // Use it as generic model
-  doStuff(gurobimodel);
+  try {
+    // Load a model using gurobi driver
+    ampls::GurobiModel gurobimodel = ampls::AMPLModel::load<ampls::GurobiModel>(buffer);
+    // Use it as generic model
+    doStuff(gurobimodel);
+  }
+  catch (const ampls::AMPLSolverException& e) {
+    printf(e.what());
+  }
 #endif
 
 #ifdef USE_xpress
-  // Load a model using XPRESS driver
-  ampls::XPRESSModel xpressmodel = ampls::AMPLModel::load<ampls::XPRESSModel>(buffer);
-  // Use it as generic model
-  doStuff(xpressmodel);
+  try {
+    // Load a model using XPRESS driver
+    ampls::XPRESSModel xpressmodel = ampls::AMPLModel::load<ampls::XPRESSModel>(buffer);
+    // Use it as generic model
+    doStuff(xpressmodel);
+  }
+  catch (const ampls::AMPLSolverException& e) {
+    printf(e.what());
+  }
 #endif
 
-#ifdef USE_cplexmp
-  // Load a model using CPLEX driver
-  ampls::CPLEXModel cplexmodel = ampls::AMPLModel::load<ampls::CPLEXModel>(buffer);
-  // Use it as generic model
-  doStuff(cplexmodel);
+#ifdef USE_cplex
+  try {
+    // Load a model using CPLEX driver
+    ampls::CPLEXModel cplexmodel = ampls::AMPLModel::load<ampls::CPLEXModel>(buffer);
+    // Use it as generic model
+    doStuff(cplexmodel);
+  }
+  catch (const ampls::AMPLSolverException& e) {
+    printf(e.what());
+  }
 #endif
   
 #ifdef USE_copt
-  // Load a model using Copt driver
-  ampls::CoptModel coptmodel = ampls::AMPLModel::load<ampls::CoptModel>(buffer);
-  // Use it as generic model
-  doStuff(coptmodel);
+  try{
+    // Load a model using Copt driver
+    ampls::CoptModel coptmodel = ampls::AMPLModel::load<ampls::CoptModel>(buffer);
+    // Use it as generic model
+    doStuff(coptmodel);
+  }
+  catch (const ampls::AMPLSolverException& e) {
+    printf(e.what());
+  }
 #endif
 
 #ifdef USE_cbcmp

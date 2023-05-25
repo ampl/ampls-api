@@ -27,8 +27,13 @@ GurobiDrv::~GurobiDrv() {
 }
 
 GurobiModel GurobiDrv::loadModelImpl(char** args) {
-  return GurobiModel((ampls::impl::mp::AMPLS_MP_Solver*)impl::grb::AMPLSOpen_gurobi(3, args), args[1]);
+  auto mp = static_cast<impl::mp::AMPLS_MP_Solver*>(impl::grb::AMPLSOpen_gurobi(3, args));
+  auto msg = impl::mp::AMPLSGetMessages(mp);
+  if (msg[0] != nullptr)
+    throw ampls::AMPLSolverException(msg[0]);
+  return GurobiModel(mp, args[1]);
 }
+
 GurobiModel GurobiDrv::loadModel(const char* modelName) {
   return loadModelGeneric(modelName);
 }

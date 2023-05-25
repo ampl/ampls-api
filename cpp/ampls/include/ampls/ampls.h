@@ -340,6 +340,7 @@ namespace ampls{
         ENTRYPOINT int AMPLSLoadNLModel(AMPLS_MP_Solver* slv, const char* nl_filename);
         ENTRYPOINT void AMPLSReadExtras(AMPLS_MP_Solver* slv);
         ENTRYPOINT void AMPLSSolve(AMPLS_MP_Solver* slv);
+        ENTRYPOINT const char* const* AMPLSGetMessages(AMPLS_MP_Solver* slv);
       }
     } // namespace mp
     // ******* end MP ******* 
