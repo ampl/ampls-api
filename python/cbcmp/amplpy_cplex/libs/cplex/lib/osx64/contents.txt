@@ -1,0 +1,2 @@
+This directory should contain the file libcplex{version}.dylib, e.g.:
+./libcplex12100.dylib

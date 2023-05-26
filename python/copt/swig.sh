@@ -1,8 +1,8 @@
 #!/bin/bash
 cd `dirname $0`
-cd amplpy_cplex/swig
+cd amplpy_copt/swig
 swig -python -c++ -builtin \
     -I../cpp/ampls/include \
-    -I../cpp/cplex/include \
-    -I../libs/cplex/include \
-    amplpy_cplex_swig.i
+    -I../cpp/copt/include \
+    -I../libs/copt/include \
+    amplpy_copt_swig.i
