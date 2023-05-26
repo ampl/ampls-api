@@ -38,6 +38,7 @@ template <class T> T solveModel(ampl::AMPL& ampl, const std::map<std::string, in
     auto model = ampls::AMPLAPIInterface::exportModel<T>(ampl);
     for (auto o : options)
       model.setOption(o.first.c_str(), o.second);
+
     model.optimize();
     ampls::AMPLAPIInterface::importModel(ampl, model);
     return model;
@@ -83,7 +84,7 @@ template <class T> void createAndSolveSimpleModel() {
   makeAmplModel(ampl, numVars, false);
   auto model = solveModel<T>(ampl);
 
-  // Get status throught AMPLS
+  // Get status through AMPLS
   assert(model.getStatus() == ampls::Status::OPTIMAL);
 
   // Demonstrate solver native methods

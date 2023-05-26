@@ -24,7 +24,7 @@ class ProgressCallback(ampls.GenericCallback):
         self.notMapped=[]
 
     def run(self):
-        t = self.getAMPLSWhere()
+        t = self.getAMPLWhere()
         self.calls[t]+=1
         if not MUTE: print("AMPLS Phase: {}, from solver: {}".format(t, self.getWhereString()))
         if t == ampls.Where.MSG:
@@ -60,7 +60,7 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
         self.calls = { w : 0 for w in ampls.Where}
         self.not_mapped=[]
     def run(self):
-        t = self.get_ampls_where()
+        t = self.get_ampl_where()
         self.calls[t]+=1
         if not MUTE: print("AMPLS Phase: {}, from solver: {}".format(t, self.get_where_string()))
         if t == ampls.Where.MSG:

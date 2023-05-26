@@ -240,10 +240,10 @@ public:
           nnz++;
      // std::cout << "Number of non zeros in node solution: " << nnz << "\n";
     }*/
-    if (getAMPLSWhere() == ampls::Where::MSG)
+    if (getAMPLWhere() == ampls::Where::MSG)
       std::cout << getMessage() << "\n";
     // Get the generic mapping
-    if (getAMPLSWhere() == ampls::Where::MIPSOL)
+    if (getAMPLWhere() == ampls::Where::MIPSOL)
     {
       std::cout << "Bound=" << getValue(ampls::Value::MIP_OBJBOUND) << "\n";
       std::cout << "Obj="<< getValue(ampls::Value::OBJ) << "\n";

@@ -19,8 +19,8 @@ if(LINUX)
 endif()
 
 add_library(ampls STATIC ${ampls_SOURCES})
-target_include_directories(ampls PRIVATE ${ampls_DIR}
-      PUBLIC ${ampls_INCLUDE})
+      target_include_directories(ampls PRIVATE ${ampls_DIR}
+                                PUBLIC ${ampls_INCLUDE})
 if(NOT WIN32)
   target_compile_options(ampls PRIVATE -fPIC)
   find_package(Threads REQUIRED)
@@ -38,32 +38,35 @@ foreach(s ${ENABLED_SOLVERS})
     set(PREPROCESSORDEFS ${PREPROCESSORDEFS} USE_${s}=1)
  endforeach()
  message("ampls examples linked with ${ENABLED_SOLVERS}")
+
  # Find amplapi, if present add combined examples
+ set(AMPLAPI_VERSION 2.1.0)
 if(WIN32)
   set(libdir win64)
-  set(libname ampl-2.1.0.lib)
-  set(dllname ampl-2.1.0.dll)
+  set(libname ampl-${AMPLAPI_VERSION}.lib)
+  set(dllname ampl-${AMPLAPI_VERSION}.dll)
 elseif(APPLE)
   set(libdir osx64)
-  set(libname libampl.2.1.0.dylib)
+  set(libname libampl.${AMPLAPI_VERSION}.dylib)
 else()
  set(libdir linux64)
- set(libname libampl.so.2.1.0)
+ set(libname libampl.so.${AMPLAPI_VERSION})
 endif()
 set(AMPLAPIDIR ${CMAKE_CURRENT_SOURCE_DIR}/../../libs/amplapi/${libdir})
-if(EXISTS ${AMPLAPIDIR}/lib)
+
+
+if(EXISTS ${AMPLAPIDIR}/lib/${libname})
   set(BUILD_AMPLAPI_EXAMPLES ON)
   add_library(amplapi SHARED IMPORTED)
   if(WIN32)
-  set_target_properties(
-  amplapi PROPERTIES
-    IMPORTED_IMPLIB ${AMPLAPIDIR}/lib/${libname}
-    IMPORTED_LOCATION ${AMPLAPIDIR}/bin/${dllname}
-    INTERFACE_INCLUDE_DIRECTORIES ${AMPLAPIDIR}/include)
+    set_target_properties(amplapi PROPERTIES
+      IMPORTED_IMPLIB ${AMPLAPIDIR}/lib/${libname}
+      IMPORTED_LOCATION ${AMPLAPIDIR}/bin/${dllname}
+      INTERFACE_INCLUDE_DIRECTORIES ${AMPLAPIDIR}/include)
   else()
-  set_target_properties(amplapi PROPERTIES
-    IMPORTED_LOCATION ${AMPLAPIDIR}/lib/${libname}
-    INTERFACE_INCLUDE_DIRECTORIES ${AMPLAPIDIR}/include)
+    set_target_properties(amplapi PROPERTIES
+      IMPORTED_LOCATION ${AMPLAPIDIR}/lib/${libname}
+      INTERFACE_INCLUDE_DIRECTORIES ${AMPLAPIDIR}/include)
   endif()
 endif()
 

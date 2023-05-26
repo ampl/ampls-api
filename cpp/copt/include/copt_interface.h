@@ -256,38 +256,38 @@ public:
   ~CoptModel();
 
   /**Set an integer parameter using ampls aliases*/
-  void setAMPLSParameter(SolverParams::SolverParameters param,
+  void setAMPLParameter(SolverParams::SolverParameters param,
     int value) {
     if (param == SolverParams::INT_LP_Algorithm)
       value = LPalgorithmMap[value];
     setParam(getParamAlias(param), value);
   }
   /**Set a double parameter using ampls aliases*/
-  void setAMPLSParameter(SolverParams::SolverParameters param,
+  void setAMPLParameter(SolverParams::SolverParameters param,
     double value) {    
     setParam(getParamAlias(param), value);
   }
 
   /**Get an integer parameter using ampls aliases*/
-  int getAMPLSIntParameter(SolverParams::SolverParameters params) {
+  int getAMPLIntParameter(SolverParams::SolverParameters params) {
     return getIntParam(getParamAlias(params));
   }
   /**Get a double parameter using ampls aliases*/
-  double getAMPLSDoubleParameter(SolverParams::SolverParameters params) {
+  double getAMPLDoubleParameter(SolverParams::SolverParameters params) {
     return getDoubleParam(getParamAlias(params));
   }
 
   /** Get an integer attribute using ampls aliases */
-  int getAMPLSIntAttribute(SolverAttributes::Attribs attrib) {
+  int getAMPLIntAttribute(SolverAttributes::Attribs attrib) {
     return getIntAttr(getAttribAlias(attrib));
   }
   /** Get a double attribute using ampls aliases */
-  double getAMPLSDoubleAttribute(SolverAttributes::Attribs attrib) {
+  double getAMPLDoubleAttribute(SolverAttributes::Attribs attrib) {
     switch (attrib)
     {
     case SolverAttributes::DBL_RelMIPGap:
       return impl::calculateRelMIPGAP(getObj(),
-        getAMPLSDoubleAttribute(SolverAttributes::DBL_CurrentObjBound));
+        getAMPLDoubleAttribute(SolverAttributes::DBL_CurrentObjBound));
     default:
       return getDoubleAttr(getAttribAlias(attrib));
     }

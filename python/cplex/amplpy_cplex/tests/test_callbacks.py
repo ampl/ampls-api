@@ -24,7 +24,7 @@ class ProgressCallback(ampls.GenericCallback):
         self.not_mapped = []
 
     def run(self):
-        t = self.getAMPLSWhere()
+        t = self.getAMPLWhere()
         self.calls[t] += 1
         if not MUTE:
             print("AMPLS Phase: {}, from solver: {}".format(t, self.getWhereString()))
@@ -68,7 +68,7 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
         self.not_mapped = []
 
     def run(self):
-        t = self.get_ampls_where()
+        t = self.get_ampl_where()
         self.calls[t] += 1
         if not MUTE:
             print("AMPLS Phase: {}, from solver: {}".format(t, self.get_where_string()))
@@ -132,6 +132,9 @@ class TestCallbacks(TestBase):
         self.assertAlmostEqual(376.96, ampl_obj, delta=0.01)
 
         pprint(cb.calls)
+
+    def test_tsp(self):
+        import tsp_callback
 
 
 if __name__ == "__main__":

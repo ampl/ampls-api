@@ -6,8 +6,8 @@
     <ProjectHome>
     </ProjectHome>
     <StartupFile>test_callbacks.py</StartupFile>
-    <SearchPath>..\test;..\..\build\bin</SearchPath>
-    <WorkingDirectory>.</WorkingDirectory>
+    <SearchPath>..\test;..\..\build\bin;..\..\build\bin</SearchPath>
+    <WorkingDirectory>D:\Development\ampl\ampls-api\build\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>python-tests</Name>
     <RootNamespace>tests</RootNamespace>
@@ -15,6 +15,7 @@
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,10 +26,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="TestBase.py" />
+    <Compile Include="test_base.py" />
     <Compile Include="test_callbacks.py" />
     <Compile Include="test_multiple_solutions.py" />
     <Compile Include="test_multiple_models.py" />
+    <Compile Include="tsp_callback.py" />
     <Compile Include="tsp_helpers.py" />
     <Compile Include="__init__.py" />
     <Compile Include="__main__.py" />

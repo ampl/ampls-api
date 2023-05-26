@@ -99,9 +99,9 @@ class MyCallback(ampls.GenericCallback):
 
     def run(self):
         try:
-            if ENABLE_CB_MIPSOL and self.getAMPLSWhere() == ampls.Where.MIPSOL:
+            if ENABLE_CB_MIPSOL and self.getAMPLWhere() == ampls.Where.MIPSOL:
                 return self.mipsol()
-            elif ENABLE_CB_MIPNODE and self.getAMPLSWhere() == ampls.Where.MIPNODE:
+            elif ENABLE_CB_MIPNODE and self.getAMPLWhere() == ampls.Where.MIPNODE:
                 return self.mipnode()
             else:
                 return 0

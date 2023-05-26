@@ -15,7 +15,7 @@ namespace amplsharp_test
         {
             public override int run()
             {
-                var f = getAMPLSWhere();
+                var f = getAMPLWhere();
                 switch (f)
                 {
                     case Where.MSG:

@@ -19,7 +19,7 @@ namespace ampls_examples
 
     private void DoStuff(AMPLModel m, string name)
     {
-      m.setAMPLSParameter(SolverParams.SolverParameters.DBL_MIPGap, 0.2);
+      m.setAMPLParameter(SolverParams.SolverParameters.DBL_MIPGap, 0.2);
       m.optimize();
 
       // Print model solution result

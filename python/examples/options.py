@@ -20,7 +20,7 @@ def solve(ampl: AMPL):
     mod.set_option("sol:poolgap", 0.1)
     mod.set_option("sol:stub", "test_multi")
     # use ampls mapping
-    mod.set_ampls_parameter(ampls.SolverParams.INT_SolutionLimit, 5)
+    mod.set_ampl_parameter(ampls.SolverParams.INT_SolutionLimit, 5)
 
     # Use gurobi parameter
     mod.set_param(ampls.GRB_INT_PAR_SOLUTIONLIMIT, 5)

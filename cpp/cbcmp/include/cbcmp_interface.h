@@ -262,33 +262,33 @@ public:
   ~CbcModel();
 
   /**Set an integer parameter using ampls aliases*/
-  void setAMPLSParameter(SolverParams::SolverParameters param,
+  void setAMPLParameter(SolverParams::SolverParameters param,
     int value) {
     if (param == SolverParams::INT_LP_Algorithm)
       value = LPalgorithmMap[value];
     setParam(getGRBParamAlias(param), value);
   }
   /**Set a double parameter using ampls aliases*/
-  void setAMPLSParameter(SolverParams::SolverParameters param,
+  void setAMPLParameter(SolverParams::SolverParameters param,
     double value) {    
     setParam(getGRBParamAlias(param), value);
   }
 
   /**Get an integer parameter using ampls aliases*/
-  int getAMPLSIntParameter(SolverParams::SolverParameters params) {
+  int getAMPLIntParameter(SolverParams::SolverParameters params) {
     return getIntParam(getGRBParamAlias(params));
   }
   /**Get a double parameter using ampls aliases*/
-  double getAMPLSDoubleParameter(SolverParams::SolverParameters params) {
+  double getAMPLDoubleParameter(SolverParams::SolverParameters params) {
     return getDoubleParam(getGRBParamAlias(params));
   }
 
   /** Get an integer attribute using ampls aliases */
-  int getAMPLSIntAttribute(SolverAttributes::Attribs attrib) {
+  int getAMPLIntAttribute(SolverAttributes::Attribs attrib) {
     return getIntAttr(getGRBAttribAlias(attrib));
   }
   /** Get a double attribute using ampls aliases */
-  double getAMPLSDoubleAttribute(SolverAttributes::Attribs attrib) {
+  double getAMPLDoubleAttribute(SolverAttributes::Attribs attrib) {
       return getDoubleParam(getGRBAttribAlias(attrib));
   }
 

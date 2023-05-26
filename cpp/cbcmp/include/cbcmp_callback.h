@@ -131,7 +131,7 @@ public:
     return 0;
   }
 
-  virtual Where::CBWhere getAMPLSWhere() {
+  virtual Where::CBWhere getAMPLWhere() {
     return (ampls::Where::CBWhere)where_;
   }
   /** Get a value (using cbc C library enumeration to specify what)*/

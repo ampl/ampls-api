@@ -19,7 +19,7 @@ class MyGenericCallback : public ampls::GenericCallback
     //printf("\nCalled from %s\n", getWhere());
     double obj;
     // Get the generic mapping
-     ampls::Where::CBWhere where = getAMPLSWhere();
+     ampls::Where::CBWhere where = getAMPLWhere();
      //printf("Where: %i\n", where);
     switch (where)
     {
@@ -66,7 +66,7 @@ template<class T> double doStuff(const char* nlfile)
   // Set a (generic) callback
   MyGenericCallback cb;
   m.setCallback(&cb);
-  m.setAMPLSParameter(ampls::SolverParams::DBL_MIPGap, 0.001);
+  m.setAMPLParameter(ampls::SolverParams::DBL_MIPGap, 0.001);
   // Start the optimization process
   m.optimize();
   // Get the objective value

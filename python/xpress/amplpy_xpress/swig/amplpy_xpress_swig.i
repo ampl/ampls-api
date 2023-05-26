@@ -26,5 +26,6 @@
  XPRSprob get_xprs_prob() { return $self->getXPRSprob(); }
 }
 
+
 %include "../../../../cpp/xpress/swig/xpress-common.i"
 %include "../../../common-python-extensions.i"

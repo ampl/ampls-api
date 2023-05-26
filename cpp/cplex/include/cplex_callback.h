@@ -73,7 +73,7 @@ public:
   const char* getWhereString();
   const char* getMessage();
 
-  Where::CBWhere getAMPLSWhere() {
+  Where::CBWhere getAMPLWhere() {
     switch (getWhere())
     {
     case -1:

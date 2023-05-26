@@ -11,7 +11,7 @@ class CCB : public ampls::GenericCallback
   virtual int run()
   {
     // printf("Called from %s\n", getWhere(whereFrom));
-    switch (getAMPLSWhere())
+    switch (getAMPLWhere())
     {
     case ampls::Where::MSG:
   //    printf("**%s**\n", getMessage());

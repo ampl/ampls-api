@@ -97,7 +97,7 @@ class MyCallback(ampls.GurobiCallback):
 
     def run(self):
         try:
-            where = self.getAMPLSWhere()
+            where = self.getAMPLWhere()
             if ENABLE_CB_MIPSOL and where == ampls.GRB_CB_MIPSOL:
                 return self.mipsol()
             elif ENABLE_CB_MIPNODE and where == ampls.GRB_CB_MIPNODE:

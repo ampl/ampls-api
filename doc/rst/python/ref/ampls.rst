@@ -99,20 +99,20 @@ AMPLModel
 
       Get the name of the NL file from which the model has been loaded from
 
-   .. method:: setAMPLSParameter(whichParameter : ampls.SolverParams, value)
+   .. method:: setAMPLParameter(whichParameter : ampls.SolverParams, value)
 
       Set a generic solver parameter to the specified value. The paramter currently mapped are
       only the ones accessible via the ampls.SolverParams enumeration. To set other solver controls
       refer to the solver specific API. Example::
 
-         model.setAMPLSParameter(ampls.SolverParams.INT_LP_Algorithm, ampls.LPAlgorithms.Barrier)
+         model.setAMPLParameter(ampls.SolverParams.INT_LP_Algorithm, ampls.LPAlgorithms.Barrier)
 
-   .. method:: getAMPLSIntParameter(whichParameter : ampls.SolverParams)
+   .. method:: getAMPLIntParameter(whichParameter : ampls.SolverParams)
 
       Get the current value of an (integer) solver control. The type of the solver control is
       obvious by the enumeration name (e.g. ampls.SolverParams.INT_SolutionLimit)
 
-   .. method:: getAMPLSDoubleParameter(whichParameter : ampls.SolverParams)
+   .. method:: getAMPLDoubleParameter(whichParameter : ampls.SolverParams)
 
       Get the current value of a (float) solver control. The type of the solver control is
       obvious by the enumeration name (e.g. ampls.SolverParams.DBL_MIPGap)
@@ -138,13 +138,13 @@ GenericCallback
 
       Get the current solution as a vector (see :py:meth:`AMPLModel.getSolutionVector`). Note that 
       this method can not be called for all stages of the solution process, namely it can not be 
-      called for all values of py:meth:`GenericCallback.getAMPLSWhere()`.
+      called for all values of py:meth:`GenericCallback.getAMPLWhere()`.
 
    .. method:: getSolutionDict() -> dict
 
       Get the current solution as a dictionary (see :py:meth:`AMPLModel.getSolutionDict`). Note that 
       this method can not be called for all stages of the solution process, namely it can not be 
-      called for all values of py:meth:`GenericCallback.getAMPLSWhere()`.
+      called for all values of py:meth:`GenericCallback.getAMPLWhere()`.
 
    .. method::  getObj()
       
@@ -156,7 +156,7 @@ GenericCallback
       Get an iteger representing where in the solution process the callback has been called.
       NOTE: this is expressed using the solver’s own (not mapped) values
 
-   .. method::  getAMPLSWhere() -> ampls.Where
+   .. method::  getAMPLWhere() -> ampls.Where
       
       Get where in the solution process the callback has been called (mapped). Not all possible values are mapped; in case 
       more advanced functionality is needed, please refer to the solver-specific documentation (inherit directly from 
@@ -168,7 +168,7 @@ GenericCallback
 
    .. method:: getMessage()
       
-      Get the message that was being printed (valid is if :py:meth:`GenericCallback.getAMPLSWhere` == ampls.Where.MSG)
+      Get the message that was being printed (valid is if :py:meth:`GenericCallback.getAMPLWhere` == ampls.Where.MSG)
 
    .. method:: getValue(Value.CBValue v)
       

@@ -357,8 +357,6 @@ namespace ampls{
       return std::string(buf.data(), buf.data() + size - 1); // We don't want the '\0' inside
     }
     double calculateRelMIPGAP(double obj, double bbound);
-
-
   }
 
   class Entity
@@ -778,7 +776,7 @@ public:
   virtual const char* getMessage() = 0;
 
   /** Get where in the solution process the callback has been called (generic) */
-  virtual Where::CBWhere getAMPLSWhere() = 0;
+  virtual Where::CBWhere getAMPLWhere() = 0;
   /** Get a (generic) value */
   virtual Variant getValue(Value::CBValue v) = 0;
   /** Get a (generic) array */
@@ -885,9 +883,9 @@ public:
     return impl_->getWhere();
   }
   /** Get where in the solution process the callback has been called (generic) */
-  Where::CBWhere getAMPLSWhere()
+  Where::CBWhere getAMPLWhere()
   {
-    return impl_->getAMPLSWhere();
+    return impl_->getAMPLWhere();
   }
   /** Get a textual representation of the current solver status*/
   const char *getWhereString()
@@ -1267,7 +1265,7 @@ public:
   @param param The parameter to be set
   @param value The integer value to set
   */
-  virtual void setAMPLSParameter(SolverParams::SolverParameters param,
+  virtual void setAMPLParameter(SolverParams::SolverParameters param,
     int value) {
     throw AMPLSolverException("Not implemented in base class!");
   }
@@ -1276,7 +1274,7 @@ public:
   @param param The parameter to be set
   @param value The double value to set
   */
-  virtual void setAMPLSParameter(SolverParams::SolverParameters params,
+  virtual void setAMPLParameter(SolverParams::SolverParameters params,
     double value) {
     throw AMPLSolverException("Not implemented in base class!");
   }
@@ -1285,22 +1283,22 @@ public:
   Get the value of an integer parameter (solver control) using ampls generic aliases
   @param param The parameter to get
   */
-  virtual int getAMPLSIntParameter(SolverParams::SolverParameters params)  {
+  virtual int getAMPLIntParameter(SolverParams::SolverParameters params)  {
     throw AMPLSolverException("Not implemented in base class!");
   }
   /**
   Get the value of a double parameter (solver control) using ampls generic aliases
   @param param The parameter to get
   */
-  virtual double getAMPLSDoubleParameter(SolverParams::SolverParameters param) {
+  virtual double getAMPLDoubleParameter(SolverParams::SolverParameters param) {
     throw AMPLSolverException("Not implemented in base class!");
   }
 
-  virtual int getAMPLSIntAttribute(SolverAttributes::Attribs)  {
+  virtual int getAMPLIntAttribute(SolverAttributes::Attribs)  {
     throw AMPLSolverException("Not implemented in base class!");
   }
 
-  virtual double getAMPLSDoubleAttribute(SolverAttributes::Attribs) {
+  virtual double getAMPLDoubleAttribute(SolverAttributes::Attribs) {
     throw AMPLSolverException("Not implemented in base class!");
   }
   /// <summary>

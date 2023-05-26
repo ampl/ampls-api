@@ -126,7 +126,7 @@ virtual const char* get_where_string(){return $self->getWhereString(); }
 
 virtual const char* get_message() {return $self->getMessage();}
 
-virtual Where::CBWhere get_ampls_where() { return $self->getAMPLSWhere(); }
+virtual Where::CBWhere get_ampl_where() { return $self->getAMPLWhere(); }
 
 virtual Variant get_value(Value::CBValue v) {return $self->getValue(v);}
 virtual std::vector<double> get_value_array(Value::CBValue v) {return $self->getValueArray(v);}
@@ -238,47 +238,85 @@ def __var_to_v(v):
         return v.dbl
     raise RuntimeError("Should not happen")
 
-def __get_ampls_parameter(self, param):
+def __get_ampl_parameter(self, param):
     if param.name.startswith('DBL'):
-        return self.getAMPLSDoubleParameter(__e_to_v(param))
-    v = self.getAMPLSIntParameter(__e_to_v(param))
+        return self.getAMPLDoubleParameter(__e_to_v(param))
+    v = self.getAMPLIntParameter(__e_to_v(param))
     if param == SolverParams.INT_LP_Algorithm:
         return LPAlgorithms(v)
     return v
 
-def __get_ampls_attribute(self, param):
+def __get_ampl_attribute(self, param):
     if param.name.startswith('DBL'):
-        return self.getAMPLSDoubleAttribute(__e_to_v(param))
-    return self.getAMPLSIntAttribute(__e_to_v(param))
+        return self.getAMPLDoubleAttribute(__e_to_v(param))
+    return self.getAMPLIntAttribute(__e_to_v(param))
 
 AMPLModel._getStatus=AMPLModel.getStatus
 AMPLModel.getStatus=lambda self : Status(self._getStatus())
 AMPLModel.get_status=lambda self : Status(self._getStatus())
 
-BaseCallback._getAMPLSWhere=BaseCallback.getAMPLSWhere
-BaseCallback.get_ampls_where=lambda self : Where(self._getAMPLSWhere())
-BaseCallback.getAMPLSWhere=lambda self : Where(self._getAMPLSWhere())
+AMPLModel._setAMPLParameter=AMPLModel.setAMPLParameter
+AMPLModel.set_ampl_parameter=lambda self,what,value : self._setAMPLParameter(what.value, __e_to_v(value))
+AMPLModel.setAMPLParameter=lambda self,what,value : self._setAMPLParameter(what.value, __e_to_v(value))
 
-GenericCallback._getAMPLSWhere=GenericCallback.getAMPLSWhere
-GenericCallback.get_ampls_where=lambda self : Where(self._getAMPLSWhere())
-GenericCallback.getAMPLSWhere=lambda self : Where(self._getAMPLSWhere())
+AMPLModel.getAMPLParameter=__get_ampl_parameter
+AMPLModel.get_ampl_parameter=__get_ampl_parameter
 
-AMPLModel._setAMPLSParameter=AMPLModel.setAMPLSParameter
-AMPLModel.set_ampls_parameter=lambda self,what,value : self._setAMPLSParameter(what.value, __e_to_v(value))
-AMPLModel.setAMPLSParameter=lambda self,what,value : self._setAMPLSParameter(what.value, __e_to_v(value))
+AMPLModel.get_ampl_attribute=__get_ampl_attribute
+AMPLModel.getAMPLAttribute=__get_ampl_attribute
 
-AMPLModel.getAMPLSParameter=__get_ampls_parameter
-AMPLModel.get_ampls_parameter=__get_ampls_parameter
 
-AMPLModel.get_ampls_attribute=__get_ampls_attribute
-AMPLModel.getAMPLSAttribute=__get_ampls_attribute
-
-GenericCallback._getValue=GenericCallback.getValue
 def _do_get_value(self, what):
     v = self._getValue(__e_to_v(what))
     return __var_to_v(v)
 
+BaseCallback._getValue=BaseCallback.getValue
+GenericCallback._getValue=GenericCallback.getValue
 GenericCallback.getValue=_do_get_value
 GenericCallback.get_value=_do_get_value
+BaseCallback.getValue=_do_get_value
+BaseCallback.get_value=_do_get_value
+
+BaseCallback._getAMPLWhere=BaseCallback.getAMPLWhere
+BaseCallback.get_ampl_where=lambda self : Where(self._getAMPLWhere())
+BaseCallback.getAMPLWhere=lambda self : Where(self._getAMPLWhere())
+
+GenericCallback._getAMPLWhere=GenericCallback.getAMPLWhere
+GenericCallback.get_ampl_where=lambda self : Where(self._getAMPLWhere())
+GenericCallback.getAMPLWhere=lambda self : Where(self._getAMPLWhere())
+
+def addCut(self, vars, coeffs, direction, rhs):
+    return self._addCut(vars, coeffs, __e_to_v(direction), rhs)
+def addLazy(self, vars, coeffs, direction, rhs):
+    return self._addLazy(vars, coeffs, __e_to_v(direction), rhs)
+def addCutIndices(self, nvars, coeffs, direction, rhs):
+    return self._addCutIndices(nvars, coeffs, __e_to_v(direction), rhs)
+def addLazyIndices(self, nvars, coeffs, direction, rhs):
+    return self._addLazyIndices(nvars, coeffs, __e_to_v(direction), rhs)
+
+GenericCallback._addLazy=GenericCallback.addLazy
+GenericCallback._addCut=GenericCallback.addCut
+GenericCallback._addLazyIndices=GenericCallback.addLazyIndices
+GenericCallback._addCutIndices=GenericCallback.addCutIndices
+GenericCallback.addLazy=addLazy
+GenericCallback.addCut=addCut
+GenericCallback.addCutIndices=addCutIndices
+GenericCallback.addLazyIndices=addLazyIndices
+GenericCallback.add_lazy=addLazy
+GenericCallback.add_cut=addCut
+GenericCallback.add_cut_indices=addCutIndices
+GenericCallback.add_lazy_indices=addLazyIndices
+BaseCallback._addLazy=BaseCallback.addLazy
+BaseCallback._addCut=BaseCallback.addCut
+BaseCallback._addLazyIndices=BaseCallback.addLazyIndices
+BaseCallback._addCutIndices=BaseCallback.addCutIndices
+BaseCallback.addLazy=addLazy
+BaseCallback.addCut=addCut
+BaseCallback.addCutIndices=addCutIndices
+BaseCallback.addLazyIndices=addLazyIndices
+BaseCallback.add_lazy=addLazy
+BaseCallback.add_cut=addCut
+BaseCallback.add_cut_indices=addCutIndices
+BaseCallback.add_lazy_indices=addLazyIndices
 %}
 

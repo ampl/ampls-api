@@ -13,7 +13,7 @@ class MyCallback(ampls.GenericCallback):
         self.nMIPnodes = 0
 
     def run(self):
-        t = self.getAMPLSWhere()
+        t = self.getAMPLWhere()
         print("AMPL Phase: {}, from solver: {}".format(
             t, self.getWhereString()))
         if t == ampls.Where.MSG:

@@ -22,6 +22,5 @@
  CPXENVptr get_cplex_env() { return $self->getCPXENV(); }
 }
 
-
 %include "../../../../cpp/cplex/swig/cplex-common.i"
 %include "../../../common-python-extensions.i"
