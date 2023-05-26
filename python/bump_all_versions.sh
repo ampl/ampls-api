@@ -4,7 +4,7 @@ if [ "$#" -eq 0 ]; then
 else
  
   version=$1
-  solvers=( "ampls" "cbcmp" "copt" "cplexmp" "gurobi" "xpress" )
+  solvers=( "ampls" "cbcmp" "copt" "cplex" "gurobi" "xpress" )
   for i in "${solvers[@]}"
   do
     cd "$i"
