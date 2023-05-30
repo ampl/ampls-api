@@ -63,7 +63,15 @@ int CPXPUBLIC impl::cpx::CBWrap::lp_callback_wrapper(CPXCENVptr env, void* cbdat
 int CPXPUBLIC  impl::cpx::CBWrap::cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
   void* userhandle, int* useraction_p)
 {
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, 0);
+  int capabilities;
+  if ((wherefrom == CPX_CALLBACK_MIP_CUT_FEAS) ||
+    (wherefrom == CPX_CALLBACK_MIP_CUT_UNBD))
+    capabilities = CanDo::ADD_LAZY_CONSTRAINT;
+  else if ((wherefrom == CPX_CALLBACK_MIP_CUT_LOOP) ||
+    (wherefrom == CPX_CALLBACK_MIP_CUT_LAST))
+    capabilities = CanDo::ADD_USER_CUT;
+
+  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, CanDo::ADD_USER_CUT | CanDo::ADD_LAZY_CONSTRAINT);
   int res = cb->run();
   if (res)
     *useraction_p = CPX_CALLBACK_FAIL;
@@ -92,20 +100,16 @@ CPLEXDrv::~CPLEXDrv() {
 
 void CPLEXDrv::freeCPLEXEnv()
 {
-  //CPXENVptr env = getEnv();
-  //CPXcloseCPLEX(&env);
 }
 
-CPLEXModel CPLEXDrv::loadModelImpl(char** args) {
+CPLEXModel CPLEXDrv::loadModelImpl(char** args, const char** options) {
   auto mp = static_cast<impl::mp::AMPLS_MP_Solver*>(impl::cpx::AMPLSOpen_cplexmp(3, args));
   auto msg = impl::mp::AMPLSGetMessages(mp);
   if (msg[0] != nullptr)
     throw ampls::AMPLSolverException(msg[0]);
-  return CPLEXModel(mp, args[1]);
+  return CPLEXModel(mp, args[1], options);
 }
-CPLEXModel CPLEXDrv::loadModel(const char* modelName) {
-  return loadModelGeneric(modelName);
-}
+
 int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
   impl::cpx::CBWrap::skipMsgCallback = false;
   /* Now get the standard channels.  If an error, just call our

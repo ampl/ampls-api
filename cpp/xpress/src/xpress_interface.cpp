@@ -15,6 +15,7 @@ XPRESSCallback* XPRSCBWrap::setDefaultCB(XPRSprob prob, void* data,
   cb->where_ = (int)wherefrom;
   cb->prob_ = prob;
   cb->currentCapabilities_ = capabilities;
+  cb->preintsol_ = 0;
   return cb;
 }
 
@@ -27,41 +28,51 @@ void  XPRSCBWrap::message_callback_wrapper(XPRSprob prob, void* object, const ch
 }
 void XPRS_CC XPRSCBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
 {
-  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::intsol, CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION);
+  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::intsol, 
+    CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION);
   cb->run();
 }
 
 void XPRS_CC XPRSCBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, int* feas)
 {
-  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::optnode);
+  int v;
+  XPRSgetintattrib(prob, XPRS_MIPINFEAS, &v);
+  auto where = v > 0 ? XPRESSWhere::optnode : XPRESSWhere::intsol;
+  XPRESSCallback* cb = setDefaultCB(prob, object, where,
+    CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION | CanDo::ADD_LAZY_CONSTRAINT | CanDo::ADD_USER_CUT);
+  cb->feas_ = *feas;
   cb->run();
+  *feas = cb->feas_;
 }
-
+void XPRS_CC XPRSCBWrap::preintsol_callback_wrapper(XPRSprob prob, void* object, int soltype, int* p_reject, double* p_cutoff)
+{
+  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::intsol,
+    CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION | CanDo::ADD_LAZY_CONSTRAINT | CanDo::ADD_USER_CUT);
+  cb->preintsol_ = 1;
+  cb->feas_ = *p_reject;
+  cb->run();
+  *p_reject = cb->feas_;
+}
 } // impl
 } // xpress
 
 
-XPRESSDrv::~XPRESSDrv() {
-}
+XPRESSDrv::~XPRESSDrv() { }
 
-
-XPRESSModel XPRESSDrv::loadModelImpl(char** args) {
+XPRESSModel XPRESSDrv::loadModelImpl(char** args, const char** options) {
   auto mp = static_cast<impl::mp::AMPLS_MP_Solver*>(impl::xpress::AMPLSOpen_xpress(3, args));
   auto msg = impl::mp::AMPLSGetMessages(mp);
   if (msg[0] != nullptr)
     throw ampls::AMPLSolverException(msg[0]);
-  return XPRESSModel(mp, args[1]);
+  return XPRESSModel(mp, args[1], options);
 }
-XPRESSModel XPRESSDrv::loadModel(const char* modelName) {
-  return loadModelGeneric(modelName);
-}
-
 int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
-   
-  // Add the callbacks
   int status = XPRSsetcbintsol(prob_, impl::xpress::XPRSCBWrap::intsol_callback_wrapper,
     callback);
   AMPLSXPRSERRORCHECK("XPRSsetcbintsol")
+  status = XPRSaddcbpreintsol(prob_, impl::xpress::XPRSCBWrap::preintsol_callback_wrapper,
+    callback, 0);
+  AMPLSXPRSERRORCHECK("XPRSsetcbpreintsol")
   status = XPRSsetcbmessage(prob_, impl::xpress::XPRSCBWrap::message_callback_wrapper,
     callback);
   AMPLSXPRSERRORCHECK("XPRSsetcbmessage")
@@ -69,7 +80,6 @@ int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
     callback);
    AMPLSXPRSERRORCHECK("XPRSsetcboptnode")
   return status;
-  // TODO Finish!
 }
 
 class MyXPRESSCallbackBridge : public XPRESSCallback {

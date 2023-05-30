@@ -31,11 +31,11 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "tspg96.nl");
 
-#ifdef USE_xpressmp
+#ifdef USE_xpress
   doStuff<ampls::XPRESSModel>(buffer);
 #endif
 
-#ifdef USE_cplexmp
+#ifdef USE_cplex
   doStuff<ampls::CPLEXModel>(buffer);
 #endif
 

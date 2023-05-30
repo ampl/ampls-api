@@ -13,19 +13,14 @@ namespace ampls
 {
 char** generateArguments(const char* modelName)
 {
-
-  // Add exe name, -AMPL and \0
-  char** params = new char* [4];
+  // Add exe name and \0
+  char** params = new char* [3];
   const char* MYNAME = "my";
-  const char* OPTION = "-AMPL";
-
   params[0] = new char[strlen(MYNAME) + 1];
   strcpy(params[0], MYNAME);
   params[1] = new char[strlen(modelName) + 1];
   strcpy(params[1], modelName);
-  params[2] = new char[strlen(OPTION) + 1];
-  strcpy(params[2], OPTION);
-  params[3] = NULL;
+  params[2] = NULL;
   return params;
 }
 
@@ -278,6 +273,8 @@ namespace impl {
     const double* coeffs, CutDirection::Direction direction, double rhs,
     int type) {
     ampls::Constraint c(model_, NULL, length, indices, coeffs, direction, rhs);
+    if (cutDebug_)
+      printCut(c, cutDebugIntCoefficients_, cutDebugPrintVarNames_);
     int status = doAddCut(c, type);
     if (status)
       throw ampls::AMPLSolverException::format("Error while adding cut!");
@@ -299,10 +296,6 @@ namespace impl {
       else
         indices.push_back(map[vars[i]]);
     }
-    if (cutDebug_)
-      printCut(ampls::Constraint(model_, NULL, (int)length, &indices[0], coeffs, direction, rhs),
-        cutDebugIntCoefficients_, cutDebugPrintVarNames_);
-   
     return callDoAddCut((int)length, indices.data(), coeffs, direction, rhs, lazy);
   }
 

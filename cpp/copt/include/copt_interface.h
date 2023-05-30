@@ -48,15 +48,8 @@ class Callback;
 Encapsulates the main environment of the copt driver
 */
 class CoptDrv : public impl::SolverDriver<CoptModel>  {
-  CoptModel loadModelImpl(char** args);
+  CoptModel loadModelImpl(char** args, const char** options);
 public:
-  /**
-  * Load a model from an NL file.
-  * Mappings between solver row and column numbers and AMPL names are
-  * available only if the row and col files have been generated as well,
-  * by means of the ampl option `option auxfiles cr;` before writing the NL file.
-  */
-  CoptModel loadModel(const char* modelName);
   ~CoptDrv();
 };
 
@@ -101,7 +94,8 @@ class CoptModel : public AMPLMPModel {
   int lastErrorCode_;
 
   CoptModel() : AMPLMPModel(), COPTModel_(NULL), lastErrorCode_(0) {}
-  CoptModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile) : AMPLMPModel(s, nlfile),
+  CoptModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile, 
+    const char** options) : AMPLMPModel(s, nlfile, options),
     lastErrorCode_(0) {
     COPTModel_ = impl::copt::AMPLSGetModel_copt(s);
   }

@@ -60,6 +60,8 @@ namespace ampls
       // node has been found during the Branch and Bound search.
       // feas: The feasibility status.If set to a nonzero value by the user, the current node will be declared infeasible.
       static void XPRS_CC optnode_callback_wrapper(XPRSprob my_prob, void* my_object, int* feas);
+
+      static void XPRS_CC preintsol_callback_wrapper(XPRSprob prob, void* object, int soltype, int* p_reject, double* p_cutoff);
       // Declares a node selection callback function. 
       // This is called every time the code backtracks to select a new node during the MIP search.
       // nodnum 
@@ -108,15 +110,8 @@ associated with the model being instantiated and deleted with it
 class XPRESSDrv : public impl::SolverDriver<XPRESSModel> {
   mutable bool owning_;
   void freeXPRESSEnv();
-  XPRESSModel loadModelImpl(char** args);
+  XPRESSModel loadModelImpl(char** args, const char** options);
 public:
-  /**
-  * Load a model from an NL file.
-  * Mappings between solver row and column numbers and AMPL names are
-  * available only if the row and col files have been generated as well,
-  * by means of the ampl option `option auxfiles cr;` before writing the NL file.
-  */
-  XPRESSModel loadModel(const char* modelName);
   ~XPRESSDrv();
 
   XPRESSDrv() : owning_(false) {}
@@ -151,7 +146,7 @@ class XPRESSModel : public AMPLMPModel {
 
   XPRESSModel() : AMPLMPModel(),
     prob_(NULL), tStart_(0) {}
-  XPRESSModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile) : AMPLMPModel(s,nlfile) {
+  XPRESSModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile, const char** options) : AMPLMPModel(s,nlfile, options) {
     prob_ = impl::xpress::AMPLSGetModel_xpress(s);
   }
 
@@ -359,9 +354,11 @@ public:
   }
 
   void enableLazyConstraints() {
+    
     setParam(XPRS_PRESOLVE,0);
     setParam(XPRS_MIPPRESOLVE, 0);
     setParam(XPRS_SYMMETRY, 0); 
+    setParam(XPRS_MIPDUALREDUCTIONS, 0);
   };
 
   /**Set an integer parameter using ampls aliases*/

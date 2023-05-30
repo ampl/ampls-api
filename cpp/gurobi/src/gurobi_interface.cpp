@@ -9,10 +9,15 @@ int impl::grb::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* 
   GurobiCallback* cb = (GurobiCallback*)usrdata;
   cb->cbdata_ = cbdata;
   cb->where_ = where;
-  if (cb->getAMPLWhere() == ampls::Where::MIPNODE)
-    cb->currentCapabilities_ = ampls::CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION;
-  else
-    cb->currentCapabilities_ = 0;
+
+  cb->currentCapabilities_ = 0;
+  if (where == GRB_CB_MIPNODE) 
+    cb->currentCapabilities_ = ampls::CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION |
+    ampls::CanDo::ADD_LAZY_CONSTRAINT | ampls::CanDo::ADD_USER_CUT;
+  if (where == GRB_CB_MIPSOL)
+    cb->currentCapabilities_ |= ampls::CanDo::ADD_LAZY_CONSTRAINT | ampls::CanDo::IMPORT_SOLUTION;
+  if (where == GRB_CB_MIP)
+    cb->currentCapabilities_ |= ampls::CanDo::IMPORT_SOLUTION;
 
   int res = cb->run();
   if (res == -1)
@@ -26,18 +31,13 @@ int impl::grb::callback_wrapper(GRBmodel* model, void* cbdata, int where, void* 
 GurobiDrv::~GurobiDrv() {
 }
 
-GurobiModel GurobiDrv::loadModelImpl(char** args) {
+GurobiModel GurobiDrv::loadModelImpl(char** args, const char** options) {
   auto mp = static_cast<impl::mp::AMPLS_MP_Solver*>(impl::grb::AMPLSOpen_gurobi(3, args));
   auto msg = impl::mp::AMPLSGetMessages(mp);
   if (msg[0] != nullptr)
     throw ampls::AMPLSolverException(msg[0]);
-  return GurobiModel(mp, args[1]);
+  return GurobiModel(mp, args[1], options);
 }
-
-GurobiModel GurobiDrv::loadModel(const char* modelName) {
-  return loadModelGeneric(modelName);
-}
-
 
 int GurobiModel::setCallbackDerived(impl::BaseCallback* callback) {
   return GRBsetcallbackfunc(GRBModel_, impl::grb::callback_wrapper, callback);

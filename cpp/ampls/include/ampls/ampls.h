@@ -193,9 +193,13 @@ struct CanDo
   enum Functionality
   {
     /** Can a solution be imported at this stage */
-    IMPORT_SOLUTION = 0,
+    IMPORT_SOLUTION = 1,
     /** Can get current value of relaxation solution */
-    GET_LP_SOLUTION = 1
+    GET_LP_SOLUTION = 2,
+    /** Add lazy constraint */
+    ADD_LAZY_CONSTRAINT = 4,
+    /** Add user cut */
+    ADD_USER_CUT = 8
   };
 };
 
@@ -337,7 +341,7 @@ namespace ampls{
         ENTRYPOINT int AMPLSGetDblOption(void* slv, const char* name, double* value);
         ENTRYPOINT int AMPLSSetStrOption(void* slv, const char* name, const char* value);
         ENTRYPOINT int AMPLSGetStrOption(void* slv, const char* name, const char* const* value);
-        ENTRYPOINT int AMPLSLoadNLModel(AMPLS_MP_Solver* slv, const char* nl_filename);
+        ENTRYPOINT int AMPLSLoadNLModel(AMPLS_MP_Solver* slv, const char* nl_filename, char** options);
         ENTRYPOINT void AMPLSReadExtras(AMPLS_MP_Solver* slv);
         ENTRYPOINT void AMPLSSolve(AMPLS_MP_Solver* slv);
         ENTRYPOINT const char* const* AMPLSGetMessages(AMPLS_MP_Solver* slv);
@@ -670,7 +674,7 @@ public:
   
   // Check if the specified functionality is available at this stage
   virtual bool canDo(CanDo::Functionality f) {
-    return currentCapabilities_ && (int)f;
+    return currentCapabilities_ & (int)f;
   }
 
   void record(const ampls::Variable& v);
@@ -791,12 +795,12 @@ template<class T> class SolverDriver
 {
   AMPLMutex loadMutex;
 protected:
-  virtual T loadModelImpl(char** args) = 0;
+  virtual T loadModelImpl(char** args, const char** options) = 0;
   /**
   Not to be used directly; to be called in the solver driver `loadModel` function implementations to provide
   common functionalities like mutex and exception handling
   */
-  T loadModelGeneric(const char* modelName)
+  T loadModelGeneric(const char* modelName, const char** options)
   {
     FILE* f = fopen(modelName, "rb");
     if (!f)
@@ -810,7 +814,7 @@ protected:
     try {
       args = generateArguments(modelName);
       loadMutex.Lock();
-      T mod = loadModelImpl(args);
+      T mod = loadModelImpl(args, options);
       loadMutex.Unlock();
       deleteParams(args);
       return mod;
@@ -827,6 +831,19 @@ protected:
     }
   }
 public:
+  /**
+* Load a model from an NL file.
+* Mappings between solver row and column numbers and AMPL names are
+* available only if the row and col files have been generated as well,
+* by means of the ampl option `option auxfiles cr;` before writing the NL file.
+*/
+  
+  T loadModel(const char* modelName, const char** options=nullptr) {
+    return loadModelGeneric(modelName, options);
+  }
+
+
+
   SolverDriver() {}
   ~SolverDriver() {}
 };
@@ -1066,10 +1083,16 @@ protected:
     throw AMPLSolverException("Not implemented in base class!");
   }
 public:
-
-  template<class T> static T load(const char* nlfile) { 
+  /// <summary>
+  /// Load a model from an NL file
+  /// </summary>
+  /// <typeparam name="T">Concrete class (e.g. CPLEXModel, GurobiModel, ...) to create</typeparam>
+  /// <param name="nlfile">NL file path</param>
+  /// <param name="options">NULL terminated array of startup options</param>
+  /// <returns></returns>
+  template<class T> static T load(const char* nlfile, const char** options=nullptr) { 
     typename T::Driver d;
-    return d.loadModel(nlfile);
+    return d.loadModel(nlfile, options);
   }
 
   virtual const char* driver() { throw AMPLSolverException("Not implemented in base class!"); }
@@ -1382,9 +1405,18 @@ protected:
     return *this;
   }
 
-  AMPLMPModel(impl::mp::AMPLS_MP_Solver* mp, const char* nlfile) {
-    if(impl::mp::AMPLSLoadNLModel(mp, nlfile))
-      throw std::runtime_error("Problem loading the model");
+  AMPLMPModel(impl::mp::AMPLS_MP_Solver* mp, const char* nlfile,
+    const char** options) {
+    if (impl::mp::AMPLSLoadNLModel(mp, nlfile, const_cast<char**>(options)))
+    {
+      std::string s;
+      auto msgs = impl::mp::AMPLSGetMessages(mp);
+      auto msg = msgs;
+      while (*msg != nullptr) {
+        s += *msg++;
+      }
+      throw std::runtime_error("Problem loading the model:\n"+ s);
+    }
     solver_ = mp;
     fileName_ = nlfile;
   }
@@ -1481,57 +1513,59 @@ namespace ampls {
         a.eval("write g___modelexport___;");
       }
 
-      template <class T> T exportModel(ampl::AMPL& a);
+      template <class T> T exportModel(ampl::AMPL& a, const char** options = nullptr);
 
 
 #ifdef USE_gurobi
-      template<> GurobiModel exportModel<GurobiModel>(ampl::AMPL& a) {
+      template<> GurobiModel exportModel<GurobiModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         GurobiDrv gurobi;
-        return gurobi.loadModel(FN);
+        return gurobi.loadModel(FN, options);
       }
 #endif
 
 #ifdef USE_cbcmp
-      template<> CbcModel exportModel<CbcModel>(ampl::AMPL& a) {
+      template<> CbcModel exportModel<CbcModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         CbcDrv cbc;
-        return cbc.loadModel(FN);
+        return cbc.loadModel(FN, options);
       }
 #endif
 
 #ifdef USE_copt
-      template<> CoptModel exportModel<CoptModel>(ampl::AMPL& a) {
+      template<> CoptModel exportModel<CoptModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         CoptDrv copt;
-        return copt.loadModel(FN);
+        return copt.loadModel(FN, options);
       }
 #endif
 
 #ifdef USE_cplex
-      template<> CPLEXModel exportModel<CPLEXModel>(ampl::AMPL& a) {
+      template<> CPLEXModel exportModel<CPLEXModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         CPLEXDrv cplex;
-        return cplex.loadModel(FN);
+        return cplex.loadModel(FN, options);
       }
 #endif
 
 #ifdef USE_xpress
-      template<> XPRESSModel exportModel<XPRESSModel>(ampl::AMPL& a) {
+      template<> XPRESSModel exportModel<XPRESSModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         XPRESSDrv xpress;
-        return xpress.loadModel(FN);
+        return xpress.loadModel(FN, options);
       }
 #endif
     } // namespace impl
 
-    template <class T> T exportModel(ampl::AMPL& a) {
-      return impl::exportModel<T>(a);
+    template <class T> T exportModel(ampl::AMPL& a, const char** options = nullptr) {
+      return impl::exportModel<T>(a, options);
     }
 
     void importModel(ampl::AMPL& a, AMPLModel& g) {
+      g.setOption("wantsol", 9);
       g.writeSol();
       a.eval("solution ___modelexport___.sol;");
+      g.setOption("wantsol", 1);
       a.eval(g.getRecordedEntities());
     }
   } // namespace AMPLAPIInterface

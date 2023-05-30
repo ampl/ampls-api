@@ -59,9 +59,17 @@ class XPRESSCallback : public impl::BaseCallback {
   double objval_;
   double* x_;
 
+  // Stores the feasibility status when adding user cut via callback
+  int feas_;
+
+  int preintsol_;
+
   static const char toXPRESSRowType[3];
 
 protected:
+  bool isPreIntSol() {
+    return preintsol_!=0;
+  }
   // Interface
   int doAddCut(const ampls::Constraint& c, int type);
 public:

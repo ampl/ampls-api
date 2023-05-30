@@ -87,8 +87,9 @@ if(PREPROCESSORDEFS)
     foreach(e ${EXAMPLES})
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
     endforeach()
+    
     if(BUILD_AMPLAPI_EXAMPLES)
-      foreach(e cuttingStock addEntities tsp multipleModels multipleSolutions)
+      foreach(e cuttingStock addEntities tsp multipleModels multipleSolutions setOptions)
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
         target_link_libraries(ampls-${e} PRIVATE amplapi)
         target_compile_definitions(ampls-${e} PRIVATE USE_amplapi)
@@ -97,6 +98,7 @@ if(PREPROCESSORDEFS)
           $<TARGET_FILE:amplapi> $<TARGET_FILE_DIR:ampls-${e}>
           COMMENT "Copying amplapi dynamic library to binary directory"
         )
+
       endforeach()
     endif()
 

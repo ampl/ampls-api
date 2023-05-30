@@ -77,28 +77,23 @@ Variant CPLEXCallback::getValue(Value::CBValue v) {
 int CPLEXCallback::doAddCut(const ampls::Constraint& c, int lazy) {
   char sense = toCPLEXSense(c.sense());
 
+ 
   int res;
   if (lazy)
-  { // CPLEX does this by registering two different callbacks. 
+  { 
+    // CPLEX does this by registering two different callbacks. 
     // I can catch it from "where" (see bendersatsp.c example in CPLEX lib)
-    if ((where_ == CPX_CALLBACK_MIP_CUT_FEAS) ||
-      (where_ == CPX_CALLBACK_MIP_CUT_UNBD)
-      )
-    {
-      res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, c.indices().size(), c.rhs(), 
+    if (!canDo(CanDo::ADD_LAZY_CONSTRAINT))
+      throw ampls::AMPLSolverException("Functionality not available at this stage");
+    res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, c.indices().size(), c.rhs(), 
         sense, c.indices().data(), c.coeffs().data(), CPX_USECUT_FORCE);
-    }
-    else
-      return 0;
   }
   else
   {
-    if ((where_ == CPX_CALLBACK_MIP_CUT_LOOP) ||
-      (where_ == CPX_CALLBACK_MIP_CUT_LAST))
-      res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, c.indices().size(), c.rhs(),
+    if (!canDo(CanDo::ADD_LAZY_CONSTRAINT))
+      throw ampls::AMPLSolverException("Functionality not available at this stage");
+    res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, c.indices().size(), c.rhs(),
         sense, c.indices().data(), c.coeffs().data(), CPX_USECUT_FILTER);
-    else
-      return 0;
   }
   if (res != 0) {
     fprintf(stderr, "Failed to add %s: %s\n", lazy ? "lazy constraint" : "user cut",

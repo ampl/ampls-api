@@ -106,7 +106,7 @@ int main(int argc, char** argv) {
   doStuff<ampls::CoptModel >(buffer);
 #endif
 
-#ifdef USE_cplexmp
+#ifdef USE_cplex
   doStuff<ampls::CPLEXModel >(buffer);
 #endif
 
@@ -117,8 +117,6 @@ int main(int argc, char** argv) {
 #ifdef USE_cbcmp
   doStuff<ampls::CbcModel >(buffer);
 #endif
-
-
   return 0;
  
 }

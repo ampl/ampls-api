@@ -11,12 +11,32 @@ const char* XPRESSCallback::getMessage() {
 }
 
 int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
-  int cutType[1] = { 1 };
-  char sense[1] = { toXPRESSRowType[(int)c.sense()] };
-  double rhs[1] = { c.rhs() };
-  int start[2] = { 0, (int)c.indices().size()};
-  return XPRSaddcuts(prob_, 1, cutType, sense, rhs, start,
-    c.indices().data(), c.coeffs().data());
+  int res = 0;
+  if (!preintsol_) {
+    int cutType = { 1 };
+    char sense = toXPRESSRowType[(int)c.sense()];
+    int size = (int)c.indices().size();;
+    std::vector<int> indices(size);
+    std::vector<double> coeffs(size);
+    int nnewcoffs;
+    double rhs;
+    int status;
+    // TODO: Num cols
+    int max = size;
+    XPRSpresolverow(prob_, sense, size,
+      c.indices().data(), c.coeffs().data(), c.rhs(), max, &nnewcoffs,
+      indices.data(), coeffs.data(), &rhs, &status);
+
+    if (status >= 0) {
+      int mtype = 0, mstart[2];
+      mstart[0] = 0; mstart[1] = nnewcoffs;
+      XPRSaddcuts(prob_, 1, &mtype, &sense, &rhs, mstart, indices.data(), coeffs.data());
+
+    }
+  }
+  if (res == 0)
+    feas_ = 1;
+  return res;
 }
 
 int XPRESSCallback::getSolution(int len, double* sol) {

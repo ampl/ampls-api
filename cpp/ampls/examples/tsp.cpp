@@ -2,37 +2,19 @@
 #include <algorithm>
 #include <map>
 #include <set>
-#include <string>
-#include <sstream>
 #include <regex>
 #include <iostream>
 #include <exception>
+#include <tuple>
+#include <fstream>
 
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
-
-#ifdef USE_amplapi
-    #include "ampl/ampl.h"
-#endif
+#include "ampl/ampl.h"
 
 
 const double INTTOLERANCE = 1e-4;
 
-std::vector<std::string> split(const std::string str, const std::string regex_str)
-{
-  const std::regex regex(regex_str);
-  std::smatch matches;
-  std::vector<std::string> ret;
-
-  if (std::regex_search(str, matches, regex)) {
-    for (size_t i = 0; i < matches.size(); ++i) {
-      ret.push_back(matches[i].str());
-    }
-  }
-  else 
-    throw std::runtime_error("Match not found");
-  return ret;
-}
 
 struct GraphArc {
   int from;
@@ -43,6 +25,7 @@ struct GraphArc {
     this->from = from;
     this->to = to;
   }
+
   static GraphArc fromVar(const std::string& var)
   {
   #if __cplusplus >= 201103L
@@ -90,6 +73,23 @@ struct GraphArc {
         res.push_back(xvar[i]);
     }
     return res;
+  }
+
+
+  static std::vector<std::string> split(const std::string str, const std::string regex_str)
+  {
+    const std::regex regex(regex_str);
+    std::smatch matches;
+    std::vector<std::string> ret;
+
+    if (std::regex_search(str, matches, regex)) {
+      for (size_t i = 0; i < matches.size(); ++i) {
+        ret.push_back(matches[i].str());
+      }
+    }
+    else
+      throw std::runtime_error("Match not found");
+    return ret;
   }
 
 };
@@ -194,6 +194,93 @@ public:
   }
 };
 
+class TSPUtil {
+private:
+  static void declare(ampl::AMPL& a) {
+
+    a.eval("set NODES ordered; param hpos{ NODES }; param vpos{NODES};");
+    a.eval("set PAIRS := {i in NODES, j in NODES : ord(i) < ord(j)};");
+    a.eval("param distance{ (i,j) in PAIRS }:= sqrt((hpos[j] - hpos[i]) **2 + (vpos[j] - vpos[i]) **2);");
+    a.eval("var X{ PAIRS } binary;");
+    a.eval("var Length;");
+    a.eval("minimize Tour_Length : Length;");
+    a.eval("subject to Visit_All{i in NODES } : sum{ (i, j) in PAIRS } X[i, j] + sum{ (j, i) in PAIRS } X[j, i] = 2;");
+    a.eval("c: Length = sum{ (i,j) in PAIRS } distance[i, j] * X[i, j];");
+  }
+
+  static std::string trim(const std::string& str)
+  {
+    size_t first = str.find_first_not_of(' ');
+    if (std::string::npos == first)
+    {
+      return str;
+    }
+    size_t last = str.find_last_not_of(' ');
+    return str.substr(first, (last - first + 1));
+  }
+
+  static std::tuple<std::vector<double>,
+    std::vector<double>, std::vector<double>> readTSP(const char* path) {
+
+    std::ifstream infile(path);
+    std::string line;
+    int nitems = 0;
+    bool coords = false;
+    int node;
+    double x, y;
+    std::vector<double> nodes;
+    std::vector<double> xs, ys;
+    while (std::getline(infile, line))
+    {
+      if (nitems == 0) {
+        if (line.find("DIMENSION") != std::string::npos)
+        {
+          auto ss = trim(line.substr(line.find(":") + 1));
+          std::istringstream iss(ss);
+          if (!(iss >> nitems))
+            break; // errror
+        }
+        continue;
+      }
+      if (!coords)
+      {
+        if (line.find("NODE_COORD_SECTION") != std::string::npos)
+        {
+          coords = true;
+          continue;
+        }
+      }
+      if (coords) {
+        std::istringstream iss(trim(line));
+        if (iss >> node >> x >> y) {
+          nodes.push_back(node);
+          xs.push_back(x);
+          ys.push_back(y);
+        }
+      }
+    }
+    for (auto x : nodes)
+    {
+      printf("node: %d\n", x);
+    }
+    return std::make_tuple(nodes, xs, ys);
+  }
+public:
+  static void createModel(ampl::AMPL& a, const char* tspFile) {
+    declare(a);
+    auto t = readTSP(tspFile);//
+    std::vector<double> nodes;
+    std::vector<double> xs, ys;
+    std::tie(nodes, xs, ys) = t;
+    auto df = ampl::DataFrame(1, { "NODES", "hpos", "vpos" });
+    df.setColumn("NODES", nodes.data(), nodes.size());
+    df.setColumn("hpos", xs.data(), nodes.size());
+    df.setColumn("vpos", ys.data(), nodes.size());
+    a.setData(df, "NODES");
+    a.eval("display NODES, hpos, vpos;");
+  }
+};
+
 std::set<int> setDiff(std::set<int> s1, std::set<int> s2)
 {
   std::set<int> result;
@@ -212,7 +299,8 @@ class MyGenericCallbackCut : public ampls::GenericCallback
   
   
 public:
-  MyGenericCallbackCut() : nrun(0) {}
+  MyGenericCallbackCut() : minXIndex(0), nrun(0) {
+  }
 
   void setMap(std::map<std::string, int> map)
   {
@@ -231,19 +319,11 @@ public:
 
   virtual int run()
   {
-   /* if (checkCanDo(ampls::CanDo::GET_LP_SOLUTION))
-    {
-      int nnz = 0;
-      auto s = getValueArray(ampls::Value::MIP_SOL_RELAXED);
-      for (auto d : s)
-        if(d != 0)
-          nnz++;
-     // std::cout << "Number of non zeros in node solution: " << nnz << "\n";
-    }*/
     if (getAMPLWhere() == ampls::Where::MSG)
       std::cout << getMessage() << "\n";
     // Get the generic mapping
-    if (getAMPLWhere() == ampls::Where::MIPSOL)
+    if ((getAMPLWhere() == ampls::Where::MIPSOL) &&
+      checkCanDo(ampls::CanDo::ADD_LAZY_CONSTRAINT) )
     {
       std::cout << "Bound=" << getValue(ampls::Value::MIP_OBJBOUND) << "\n";
       std::cout << "Obj="<< getValue(ampls::Value::OBJ) << "\n";
@@ -298,7 +378,6 @@ double doStuff(ampls::AMPLModel& m)
   cb.setMap(m.getVarMapFiltered("X"));
   m.enableLazyConstraints();
   m.setCallback(&cb);
-  
   // Start the optimization process
   m.optimize();
 
@@ -327,130 +406,49 @@ double doStuff(ampls::AMPLModel& m)
   return obj;
 }
 
-
-
-#ifdef USE_amplapi
-
-void declareModel(ampl::AMPL& a) {
-
-  a.eval("set NODES ordered; param hpos{ NODES }; param vpos{NODES};");
-  a.eval("set PAIRS := {i in NODES, j in NODES : ord(i) < ord(j)};");
-  a.eval("param distance{ (i,j) in PAIRS }:= sqrt((hpos[j] - hpos[i]) **2 + (vpos[j] - vpos[i]) **2);");
-  a.eval("var X{ PAIRS } binary;");
-  a.eval("var Length;");
-  a.eval("minimize Tour_Length : Length;");
-  a.eval("subject to Visit_All{i in NODES } : sum{ (i, j) in PAIRS } X[i, j] + sum{ (j, i) in PAIRS } X[j, i] = 2;");
-  a.eval("c: Length = sum{ (i,j) in PAIRS } distance[i, j] * X[i, j];");
-}
-#include <sstream>
-#include <string>
-#include <fstream>
-
-std::string trim(const std::string& str)
-{
-  size_t first = str.find_first_not_of(' ');
-  if (std::string::npos == first)
-  {
-    return str;
-  }
-  size_t last = str.find_last_not_of(' ');
-  return str.substr(first, (last - first + 1));
-}
-#include <tuple>
-std::tuple<std::vector<double>,
-  std::vector<double>, std::vector<double>> readTSP(const char* path) {
-
-  std::ifstream infile(path);
-  std::string line;
-  int nitems = 0;
-  bool coords = false;
-  int node;
-  double x, y;
-  std::vector<double> nodes;
-  std::vector<double> xs, ys;
-  while (std::getline(infile, line))
-  {
-    if (nitems == 0) {
-      if (line.find("DIMENSION") != std::string::npos)
-      {
-        auto ss = trim(line.substr(line.find(":") + 1));
-        std::istringstream iss(ss);
-        if (!(iss >> nitems))
-          break; // errror
-      }
-      continue;
-    }
-    if (!coords)
-    {
-      if (line.find("NODE_COORD_SECTION") != std::string::npos)
-      {
-        coords = true;
-        continue;
-      }
-    }
-    if (coords) {
-      std::istringstream iss(trim(line));
-      if (iss >> node >> x >> y) {
-        nodes.push_back(node);
-        xs.push_back(x);
-        ys.push_back(y);
-      }
-    }
-  }
-  for (auto x : nodes)
-  {
-    printf("node: %d\n", x);
-  }
-  return std::make_tuple(nodes, xs, ys);
-}
-
-
-#endif
 int main(int argc, char** argv) {
 
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
-  strcat(buffer, "tspg96.nl");
-
-#ifdef USE_amplapi
+  strcat(buffer, "tsp/gr96.tsp");
   ampl::AMPL a;
+
   try {
-    declareModel(a);
+    // Create a TSP model instance using AMPL
+    TSPUtil::createModel(a, buffer);
   }
   catch (const std::exception& e) {
     std::cout << e.what();
   }
-  auto t= readTSP("D:/Development/ampl/ampls-api/python/examples/tsp/gr96.tsp");
-  std::vector<double> nodes;
-  std::vector<double> xs, ys;
-  std::tie(nodes, xs, ys) = t;
-  auto df = ampl::DataFrame(1, { "NODES", "hpos", "vpos" });
-  df.setColumn("NODES", nodes.data(), nodes.size());
-  df.setColumn("hpos", xs.data(), nodes.size());
-  df.setColumn("vpos", ys.data(), nodes.size());
-  a.setData(df, "NODES");
-  a.eval("display NODES, hpos, vpos;");
 
-#ifdef USE_cbcmp
-  auto cbcmodel = ampls::AMPLAPIInterface::exportModel<ampls::CbcModel>(a);
-  doStuff(cbcmodel);
-#endif
-#ifdef USE_copt
-  auto coptmodel = ampls::AMPLAPIInterface::exportModel<ampls::CoptModel>(a);
-  doStuff(coptmodel);
-#endif
-#ifdef USE_xpress
-  auto xpressmodel = ampls::AMPLAPIInterface::exportModel<ampls::XPRESSModel>(a);
-  doStuff(xpressmodel);
+  // Used to store the results
+  std::map<std::string, double> res;
+  double obj;
+
+
+#ifdef USE_cplex
+  auto cplexmodel = ampls::AMPLAPIInterface::exportModel<ampls::CPLEXModel>(a);
+  obj = doStuff(cplexmodel);
+  res.insert({ cplexmodel.driver(), obj });
 #endif
 #ifdef USE_gurobi
   auto gurobimodel = ampls::AMPLAPIInterface::exportModel<ampls::GurobiModel>(a);
-  doStuff(gurobimodel);
+  obj = doStuff(gurobimodel);
+  res.insert({ gurobimodel.driver(), obj });
 #endif
-#ifdef USE_cplexmp
-  auto cplexmodel = ampls::AMPLAPIInterface::exportModel<ampls::CPLEXModel>(a);
-  doStuff(cplexmodel);
+#ifdef USE_cbcmp
+  auto cbcmodel = ampls::AMPLAPIInterface::exportModel<ampls::CbcModel>(a);
+  obj = doStuff(cbcmodel);
+  res.insert({ cbcmodel.driver(), obj });
 #endif
+#ifdef USE_copt
+  auto coptmodel = ampls::AMPLAPIInterface::exportModel<ampls::CoptModel>(a);
+  obj=doStuff(coptmodel);
+  res.insert({ coptmodel.driver(), obj });
 #endif
+  // Print out the results
+  for (auto a : res) {
+    printf("%s=%f\n", a.first.c_str(), a.second);
+  }
 }
 ;

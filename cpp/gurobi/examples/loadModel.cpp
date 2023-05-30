@@ -16,13 +16,10 @@ const char* MODELNAME = "testmodel.nl";
 
 
 int main(int argc, char** argv) {
-  char buffer[255];
-  strcpy(buffer, MODELS_DIR);
-  strcat(buffer, MODELNAME);
-
-  // Load a model using gurobi driver
-  ampls::GurobiDrv gurobi;
-  ampls::GurobiModel model = gurobi.loadModel(buffer);
+  std::string s = MODELS_DIR;
+  s += MODELNAME;
+  // Load a model using gurobi
+  ampls::GurobiModel model = ampls::AMPLModel::load<ampls::GurobiModel>(s.c_str());
 
   // Start the optimization process
   model.optimize();

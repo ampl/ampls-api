@@ -5,12 +5,10 @@
 const char* MODELNAME = "tsp.nl";
 
 // This example shows how to:
-// 1. load a model from an NL file,
+// 1. load a model from an NL file, passing an option at loading time
 // 2. solve it 
 // 3. get basic information about the solution
 // 4. write out a solution file ready to be imported in AMPL
-
-
 double doStuff(ampls::AMPLModel& m) 
 {
   // Set parameter with common mapping
@@ -64,10 +62,13 @@ int main(int argc, char** argv) {
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
 
+  const char* options[2];
+  options[0] = "outlev=1";
+  options[1] = NULL;
 #ifdef USE_gurobi
   try {
     // Load a model using gurobi driver
-    ampls::GurobiModel gurobimodel = ampls::AMPLModel::load<ampls::GurobiModel>(buffer);
+    ampls::GurobiModel gurobimodel = ampls::AMPLModel::load<ampls::GurobiModel>(buffer, options);
     // Use it as generic model
     doStuff(gurobimodel);
   }
@@ -75,11 +76,11 @@ int main(int argc, char** argv) {
     printf(e.what());
   }
 #endif
-
+  
 #ifdef USE_xpress
   try {
     // Load a model using XPRESS driver
-    ampls::XPRESSModel xpressmodel = ampls::AMPLModel::load<ampls::XPRESSModel>(buffer);
+    ampls::XPRESSModel xpressmodel = ampls::AMPLModel::load<ampls::XPRESSModel>(buffer, options);
     // Use it as generic model
     doStuff(xpressmodel);
   }
@@ -91,7 +92,7 @@ int main(int argc, char** argv) {
 #ifdef USE_cplex
   try {
     // Load a model using CPLEX driver
-    ampls::CPLEXModel cplexmodel = ampls::AMPLModel::load<ampls::CPLEXModel>(buffer);
+    ampls::CPLEXModel cplexmodel = ampls::AMPLModel::load<ampls::CPLEXModel>(buffer, options);
     // Use it as generic model
     doStuff(cplexmodel);
   }
@@ -103,7 +104,7 @@ int main(int argc, char** argv) {
 #ifdef USE_copt
   try{
     // Load a model using Copt driver
-    ampls::CoptModel coptmodel = ampls::AMPLModel::load<ampls::CoptModel>(buffer);
+    ampls::CoptModel coptmodel = ampls::AMPLModel::load<ampls::CoptModel>(buffer, options);
     // Use it as generic model
     doStuff(coptmodel);
   }

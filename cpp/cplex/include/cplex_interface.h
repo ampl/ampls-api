@@ -82,16 +82,8 @@ this way, it is deleted in the destructor.
 */
 class CPLEXDrv : public impl::SolverDriver<CPLEXModel> {
   void freeCPLEXEnv();
-  CPLEXModel loadModelImpl(char** args);
+  CPLEXModel loadModelImpl(char** args, const char** options);
 public:
- /**
- * Load a model from an NL file.
- * Mappings between solver row and column numbers and AMPL names are
- * available only if the row and col files have been generated as well,
- * by means of the ampl option `option auxfiles cr;` before writing the NL file.
- */
-  CPLEXModel loadModel(const char* modelName);
-
   ~CPLEXDrv();
 };
 
@@ -129,7 +121,8 @@ class CPLEXModel : public AMPLMPModel {
 
   CPLEXModel() : AMPLMPModel(), model_(nullptr), lastErrorCode_(0) {}
 
-  CPLEXModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile) : AMPLMPModel(s, nlfile),
+  CPLEXModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile,
+    const char** options) : AMPLMPModel(s, nlfile, options),
     lastErrorCode_(0) {
     model_ = impl::cpx::AMPLSGetModel_cplexmp(s);
   }

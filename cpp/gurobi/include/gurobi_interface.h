@@ -47,15 +47,8 @@ class Callback;
 Encapsulates the main environment of the gurobi driver
 */
 class GurobiDrv : public impl::SolverDriver<GurobiModel>  {
-  GurobiModel loadModelImpl(char** args);
+  GurobiModel loadModelImpl(char** args, const char** options);
 public:
-  /**
-  * Load a model from an NL file.
-  * Mappings between solver row and column numbers and AMPL names are
-  * available only if the row and col files have been generated as well,
-  * by means of the ampl option `option auxfiles cr;` before writing the NL file.
-  */
-  GurobiModel loadModel(const char* modelName);
   ~GurobiDrv();
 };
 
@@ -102,7 +95,7 @@ class GurobiModel : public AMPLMPModel {
   int lastErrorCode_;
 
   GurobiModel() : AMPLMPModel(), GRBModel_(NULL), lastErrorCode_(0) {}
-  GurobiModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile) : AMPLMPModel(s, nlfile),
+  GurobiModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile, const char** opt) : AMPLMPModel(s, nlfile, opt),
     lastErrorCode_(0) {
     GRBModel_ = impl::grb::AMPLSGetModel_gurobi(s);
   }
