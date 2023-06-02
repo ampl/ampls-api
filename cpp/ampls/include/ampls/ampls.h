@@ -44,6 +44,7 @@ public:
   }
 };
 
+
 /**
 * Stores a solver return value.
 * Note that the strings are owned by the solver itself,
@@ -194,12 +195,14 @@ struct CanDo
   {
     /** Can a solution be imported at this stage */
     IMPORT_SOLUTION = 1,
-    /** Can get current value of relaxation solution */
+    /** Can get current value of the relaxation solution */
     GET_LP_SOLUTION = 2,
+    /** Can get current value of the integer solution */
+    GET_MIP_SOLUTION = 4,
     /** Add lazy constraint */
-    ADD_LAZY_CONSTRAINT = 4,
+    ADD_LAZY_CONSTRAINT = 8,
     /** Add user cut */
-    ADD_USER_CUT = 8
+    ADD_USER_CUT = 16
   };
 };
 
@@ -224,11 +227,12 @@ struct Value
     ITERATIONS = 4,
     /** Time since solution start*/
     RUNTIME = 5,
+    /** Number of MIP nodes*/
+    MIP_NODES = 6,
     /** Current relative MIP gap*/
-    MIP_RELATIVEGAP = 6,
-    
-
-    MIP_OBJBOUND=7,
+    MIP_RELATIVEGAP = 7,
+    /** Current best bound on objective */
+    MIP_OBJBOUND=8,
     /* Relaxed solution - only in MIP node */
     MIP_SOL_RELAXED
 
@@ -340,7 +344,7 @@ namespace ampls{
         ENTRYPOINT int AMPLSSetDblOption(void* slv, const char* name, double value);
         ENTRYPOINT int AMPLSGetDblOption(void* slv, const char* name, double* value);
         ENTRYPOINT int AMPLSSetStrOption(void* slv, const char* name, const char* value);
-        ENTRYPOINT int AMPLSGetStrOption(void* slv, const char* name, const char* const* value);
+        ENTRYPOINT int AMPLSGetStrOption(void* slv, const char* name, const char** value);
         ENTRYPOINT int AMPLSLoadNLModel(AMPLS_MP_Solver* slv, const char* nl_filename, char** options);
         ENTRYPOINT void AMPLSReadExtras(AMPLS_MP_Solver* slv);
         ENTRYPOINT void AMPLSSolve(AMPLS_MP_Solver* slv);
@@ -670,8 +674,11 @@ protected:
 
   }
   int currentCapabilities_;
+
+
 public:
   
+
   // Check if the specified functionality is available at this stage
   virtual bool canDo(CanDo::Functionality f) {
     return currentCapabilities_ & (int)f;
@@ -824,6 +831,11 @@ protected:
       deleteParams(args);
       throw e;
     }
+    catch (const std::runtime_error &e) {
+      loadMutex.Unlock();
+      deleteParams(args);
+      throw e;
+    }
     catch (const std::exception& e) {
       loadMutex.Unlock();
       deleteParams(args);
@@ -832,16 +844,23 @@ protected:
   }
 public:
   /**
-* Load a model from an NL file.
-* Mappings between solver row and column numbers and AMPL names are
-* available only if the row and col files have been generated as well,
-* by means of the ampl option `option auxfiles cr;` before writing the NL file.
-*/
+  * Load a model from an NL file.
+  * Mappings between solver row and column numbers and AMPL names are
+  * available only if the row and col files have been generated as well,
+  * by means of the ampl option `option auxfiles cr;` before writing the NL file.
+  */
   
   T loadModel(const char* modelName, const char** options=nullptr) {
     return loadModelGeneric(modelName, options);
   }
-
+  T loadModel(const char* modelName, std::vector<std::string> options) {
+    std::vector<const char*> pointers;
+    pointers.reserve(options.size() + 1);
+    for (auto s : options)
+      pointers.push_back(s.data());
+    pointers.push_back(nullptr);
+    return loadModelGeneric(modelName, pointers.data());
+  }
 
 
   SolverDriver() {}
@@ -919,7 +938,7 @@ public:
   {
     return impl_->getValue(v);
   }
-  bool checkCanDo(CanDo::Functionality f) {
+  virtual bool canDo(CanDo::Functionality f) {
     return impl_->canDo(f);
   }
 
@@ -938,11 +957,9 @@ struct Option {
     UNKNOWN
   };
   Type type_;
-  Option(const char* name, const char* description, int type) {
-    name_ = name;
-    description_ = description;
-    type_ = (Type)type;
-  }
+  Option() : name_(nullptr), description_(nullptr), type_(UNKNOWN) {}
+  Option(const char* name, const char* description, int type) : name_(name),
+  description_(description), type_((Type)type) { }
   const char* name() { return name_; }
   const char* description() { return description_; }
   Type type() { return type_; }
@@ -1180,7 +1197,7 @@ public:
   as it needs a special treatment to automatically create the solver-specific wrapper
   @param callback The generic callback to be set
   */
-  int setCallback(GenericCallback *callback)
+  virtual int setCallback(GenericCallback *callback)
   {
     callback->model_ = this;
     impl::BaseCallback *realcb = createCallbackImplDerived(callback);
@@ -1227,15 +1244,9 @@ public:
   /**
   Start the optimization process
   */
-  virtual int optimize() {
+  virtual void optimize() {
     throw AMPLSolverException("Not implemented in base class!");
   };
-  /**
-  Solve with the driver's function
-  */
-  virtual void solveMP() {
-    throw AMPLSolverException("Not implemented in base class!");
-  }
   /**
   Write the solution file to the defualt location (filename.sol in the original directory)
   */
@@ -1331,12 +1342,16 @@ public:
   /// https://dev.ampl.com/solvers/index.html
   /// </summary>
   /// <returns>A vector of option descriptions</returns>
-  virtual std::vector<Option>& getOptions() { 
+  virtual std::vector<Option> getOptions() { 
     throw AMPLSolverException("Not implemented in base class!");
   };
   /// <summary>
   /// Set a solver driver option to the specified value. 
-  /// See getOptions() for a list of supported options.
+  /// See getOptions() for a list of supported options. Note that some options
+  /// (most notably the converter options, with prefixes acc: and cvt:) cannot 
+  /// be specified after the model has been loaded. Such options should be specified
+  /// when loading/importing the model (AMPLModel::load or AMPLAPIInterface::exportModel<T>()).
+  /// When in doubt, specify all options at loading time.
   /// </summary>
   virtual void setOption(const char* name, int value) {
     throw AMPLSolverException("Not implemented in base class!");
@@ -1351,7 +1366,21 @@ public:
   /// Get the current value of the option 'name'.
   /// See getOptions() for a list of supported options.
   /// </summary>
-  virtual int getOptionValue(const char* name) {
+  virtual int getIntOption(const char* name) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  /// <summary>
+  /// Get the current value of the option 'name'.
+  /// See getOptions() for a list of supported options.
+  /// </summary>
+  virtual double getDoubleOption(const char* name) {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  /// <summary>
+/// Get the current value of the option 'name'.
+/// See getOptions() for a list of supported options.
+/// </summary>
+  virtual std::string getStringOption(const char* name) {
     throw AMPLSolverException("Not implemented in base class!");
   }
   /// <summary>
@@ -1365,7 +1394,7 @@ public:
 };
 
 class AMPLMPModel : public AMPLModel {
-  
+  // Store a cache of the available options to avoid unnecessary API calls
   std::vector<Option> options_;
    
 protected:
@@ -1432,7 +1461,7 @@ public:
   /// https://dev.ampl.com/solvers/index.html
   /// </summary>
   /// <returns>A vector of option descriptions</returns>
-  virtual std::vector<Option>& getOptions() {
+  virtual std::vector<Option> getOptions() {
     if (options_.size() == 0)
     {
       auto opt = impl::mp::AMPLSGetOptions(solver_);
@@ -1462,17 +1491,44 @@ public:
   /// Get the current value of the option 'name'.
   /// See getOptions() for a list of supported options.
   /// </summary>
-  virtual int getOptionValue(const char* name) {
+  int getIntOption(const char* name) {
     int v;
     impl::mp::AMPLSGetIntOption(solver_, name, &v);
     return v;
   }
+  /// <summary>
+  /// Get the current value of the option 'name'.
+  /// See getOptions() for a list of supported options.
+  /// </summary>
+  double getDoubleOption(const char* name) {
+      double v;
+      impl::mp::AMPLSGetDblOption(solver_, name, &v);
+      return v;
+  }
+  /// <summary>
+/// Get the current value of the option 'name'.
+/// See getOptions() for a list of supported options.
+/// </summary>
+  std::string getStringOption(const char* name) {
+    const char* v;
+    impl::mp::AMPLSGetStrOption(solver_, name, &v); 
+    return std::string(v);
+  }
 
+  /// <summary>
+  /// Refresh the underlying model (especially useful if modifying
+  /// with setOption() functionalities that need suffixes to be read
+  /// from the NL file
+  /// </summary>
   void refresh() {
     impl::mp::AMPLSReadExtras(solver_); }
 
-  void solveMP() {
+  /// <summary>
+  /// Solve using the underlying MP solver driver functionality
+  /// </summary>
+  void optimize() {
     impl::mp::AMPLSSolve(solver_);
+    resetVarMapInternal();
   }
 
 };
@@ -1503,19 +1559,20 @@ public:
 #include "ampl/ampl.h"
 
 namespace ampls {
+
+  
+
   namespace AMPLAPIInterface
   {
-    namespace impl {
-      const char* FN = "___modelexport___.nl";
-      void doExport(ampl::AMPL& a) {
-        remove(FN);
-        a.eval("option auxfiles cr;");
-        a.eval("write g___modelexport___;");
-      }
 
+    namespace impl {
+     
+      void doExport(ampl::AMPL& a) {
+        a.write("g___modelexport___", "cr");
+      }
       template <class T> T exportModel(ampl::AMPL& a, const char** options = nullptr);
 
-
+      const char* FN = "___modelexport___.nl";
 #ifdef USE_gurobi
       template<> GurobiModel exportModel<GurobiModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
@@ -1556,9 +1613,30 @@ namespace ampls {
       }
 #endif
     } // namespace impl
-
-    template <class T> T exportModel(ampl::AMPL& a, const char** options = nullptr) {
+    /// <summary>
+    /// Export model from the AMPLAPI instance using the specified options
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="a"></param>
+    /// <param name="options"></param>
+    /// <returns></returns>
+    template <class T> T exportModel(ampl::AMPL& a) {
+      return impl::exportModel<T>(a, nullptr);
+    }
+    template <class T> T exportModel(ampl::AMPL& a, const char** options) {
       return impl::exportModel<T>(a, options);
+    }
+    template <class T> T exportModel(ampl::AMPL& a, const std::vector<std::string> &options) {
+      const char** myptr = nullptr;
+      std::vector<const char*> ptrs;
+      if (options.size() > 0) {
+        ptrs.reserve(options.size() + 1);
+        for (const std::string &a : options)
+          ptrs.push_back(a.data());
+        ptrs.push_back(nullptr);
+        myptr = ptrs.data();
+      }
+      return exportModel<T>(a, myptr);
     }
 
     void importModel(ampl::AMPL& a, AMPLModel& g) {

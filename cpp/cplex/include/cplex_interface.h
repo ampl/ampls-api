@@ -115,7 +115,6 @@ class CPLEXModel : public AMPLMPModel {
     throw AMPLSolverException("Not implemented!");
   }
 
-  int status_;
   CPXLPptr model_;
   int lastErrorCode_;
 
@@ -139,12 +138,11 @@ public:
   using Driver = ampls::CPLEXDrv;
 
   CPLEXModel(const CPLEXModel& other) : AMPLMPModel(other),
-    status_(other.status_),
     model_(other.model_),
     lastErrorCode_(other.lastErrorCode_) { }
 
   CPLEXModel(CPLEXModel&& other) noexcept :
-    AMPLMPModel(std::move(other)), status_(std::move(other.status_)),
+    AMPLMPModel(std::move(other)), 
     model_(std::move(other.model_)), lastErrorCode_(std::move(other.lastErrorCode_))
   {
     other.model_ = nullptr;
@@ -153,7 +151,6 @@ public:
     if (this != &other)
     {
       AMPLMPModel::operator=(other);
-      status_ = other.status_;
       model_ = other.model_;
       lastErrorCode_ = other.lastErrorCode_;
     }
@@ -164,7 +161,6 @@ public:
   CPLEXModel& operator=(CPLEXModel&& other) noexcept {
     if (this != &other) {
       AMPLMPModel::operator=(std::move(other));
-      std::swap(status_, other.status_);
       std::swap(model_, other.model_);
       std::swap(lastErrorCode_, other.lastErrorCode_);
     }
@@ -219,7 +215,7 @@ public:
     }
   }
 
-  int optimize();
+  void optimize();
 
   int getNumVars() {
     return CPXXgetnumcols(getCPXENV(), model_);

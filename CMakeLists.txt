@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 project(ampls)
-set(ampls_VERSION 0.1.0)
+set(ampls_VERSION 0.1.2)
 
 set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

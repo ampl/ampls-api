@@ -146,8 +146,6 @@ public:
 
   const char* driver() { return "Copt"; }
 
-  int optimize();
-
   Status::SolStatus getStatus() {
     if (getIntAttr(COPT_INTATTR_ISMIP)) {
       int optstatus = getIntAttr(COPT_INTATTR_MIPSTATUS);

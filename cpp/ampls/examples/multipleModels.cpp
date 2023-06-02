@@ -7,26 +7,30 @@
 #include "ampl/ampl.h"
 
 
-/// <summary>
-/// Create an AMPL model using the AMPL API
-/// </summary>
-void makeAmplModel(ampl::AMPL &ampl , int numvars, bool unfeasible, bool flipData = false) {
+/// This example shows how to create AMPL models using the AMPL API and detect various 
+/// errors that can arise when importing them to AMPLS
+
+void makeAmplModel(ampl::AMPL &ampl , int numvars, bool unfeasible, bool unbounded=false) {
+  assert(!(unfeasible && unbounded));
   ampl.eval("set varIndexes within Integers; set constraintIndexes within Integers;"
     "param varCosts{ varIndexes };"
     "param rightHandSides{ constraintIndexes };"
     "var x{ i in varIndexes } >= 0;"
-    "maximize objectiveFunction : sum{ i in varIndexes } varCosts[i] * x[i];"
-    " subject to mainConstraints{ j in constraintIndexes } : x[j] + x[j + 1] <= rightHandSides[j];");
+    "maximize objectiveFunction : sum{ i in varIndexes } varCosts[i] * x[i];");
+    
 
   ampl::DataFrame d(1, { "varIndexes", "varCosts" });
   for (int i = 0; i < numvars; i++)
-    d.addRow(i, flipData ? -i : i);
+    d.addRow(i, i);
   ampl.setData(d, "varIndexes");
-
-  ampl::DataFrame d2(1, { "constraintIndexes", "rightHandSides" });
-  for (int i = 0; i < numvars - 1; i++)
-    d2.addRow(i, unfeasible ? -1 : 1);
-  ampl.setData(d2, "constraintIndexes");
+  if (!unbounded)
+  {
+    ampl.eval(" subject to mainConstraints{ j in constraintIndexes } : x[j] + x[j + 1] <= rightHandSides[j];");
+    ampl::DataFrame d2(1, { "constraintIndexes", "rightHandSides" });
+    for (int i = 0; i < numvars - 1; i++)
+      d2.addRow(i, unfeasible ? -1 : 1);
+    ampl.setData(d2, "constraintIndexes");
+  }
 }
 
 /// <summary>
@@ -103,6 +107,12 @@ template <class T> void createAndSolveSimpleModel() {
   printf("Completed Simple Model Test.\n\n");
 }
 
+template <class T> void createAndSolveTrivialModel() {
+  ampl::AMPL ampl;
+  ampl.eval("var x; maximize z:x; c:x=5;");
+  auto model = solveModel<T>(ampl);
+}
+
 template <class T> void createAndSolveInfeasibleModel(bool presolve) {
     int numVars = 10;
     ampl::AMPL ampl;
@@ -114,18 +124,48 @@ template <class T> void createAndSolveInfeasibleModel(bool presolve) {
     printf("Completed Infeasible Model Test\n\n");
 }
 
+template <class T> void createAndSolveUnboundedModel(bool presolve) {
+  int numVars = 10;
+  ampl::AMPL ampl;
+  makeAmplModel(ampl, numVars, false, true);
+  ampl.setIntOption("presolve", presolve ? 100 : 0); // 10 is the default number of presolve passes
+  std::map<std::string, int> options = { {"outlev", 1}};
+  auto model = solveModel<T>(ampl, options);
+  assert(model.getStatus() == ampls::Status::UNBOUNDED);
+  printf("Completed Unbounded Model Test\n\n");
+}
 
 template <class T> void run() {
+  bool caught = false;
   try {
     // This will fail because AMPL's presolve will block the 
     // export of the model
     createAndSolveInfeasibleModel<T>(true);
   }
-  catch (const ampls::AMPLSolverException& e) {
-    printf("Caught exception: %s\n\n", e.what());
+  catch (const ampl::InfeasibilityException& e) {
+    printf("Completed Infeasible presolved Model Test\n\n");
+    printf("Caught exception:\n%s\n", e.what());
+    caught = true;
   }
+  assert(caught);
+  caught = false;
+  try {
+    createAndSolveTrivialModel<T>();
+  }
+  catch (const ampl::PresolveException& e) {
+    printf("Completed Trivial Model Test\n");
+    printf("Caught exception:\n%s\n", e.what());
+    caught = true;
+  }
+  assert(caught);
 
   createAndSolveInfeasibleModel<T>(false);
+
+  // Unbounded models are exported either way
+  createAndSolveUnboundedModel<T>(true);
+  createAndSolveUnboundedModel<T>(false);
+
+  // Normal model solver to completion
   createAndSolveSimpleModel<T>();
 }
 

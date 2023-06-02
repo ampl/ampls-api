@@ -3,19 +3,6 @@
 // Include AMPLS to interact with solvers
 #include "ampls/ampls.h"
 
-/// <summary>
-/// Create a non linear AMPL model using the AMPL API
-/// </summary>
-void makeAmplNQueens(ampl::AMPL &ampl , int size) {
-  ampl.eval("param n integer > 0;" // # N-queens
-    "var Row{1..n} integer >= 1 <= n;"
-    "row_attacks: alldiff({ j in 1..n } Row[j]);"
-    "diag_attacks: alldiff({ j in 1..n } Row[j] + j);"
-    "rdiag_attacks: alldiff({ j in 1..n } Row[j] - j);");
-  ampl.getParameter("n").set(size);
-
-}
-
 void makeNLModel(ampl::AMPL& ampl) {
   ampl.eval("param pi := 4 * atan(1);"
     "var x >= -4 * pi, <= -pi;"
@@ -33,7 +20,7 @@ void makeNLModel(ampl::AMPL& ampl) {
 /// the latter are runtime options that can be used in repeated solves.
 /// </summary>
 template <class T> T exportAndRun(ampl::AMPL& ampl,
-  const char** loadOptions = nullptr,
+  const std::vector<std::string> loadOptions = {},
   const std::map<std::string, int>& otherOptions = {}) {
 
     auto model = ampls::AMPLAPIInterface::exportModel<T>(ampl, loadOptions);
@@ -45,41 +32,101 @@ template <class T> T exportAndRun(ampl::AMPL& ampl,
 }
 
 
-template <class T> void run(const char* options[]=nullptr) {
+template <class T> void run(const std::vector<std::string> loadOptions = {},
+  const std::map<std::string, int>& otherOptions = {}) {
   ampl::AMPL a;
   makeNLModel(a);
-  try {
-    exportAndRun<T>(a, options);
-  }
-  catch (const std::exception& e) {
-    printf("Exception caught=%s\n", e.what());
-  }
+  exportAndRun<T>(a, loadOptions, otherOptions);
+}
+/// <summary>
+/// Shows and tests how to set options and how to get their values
+/// </summary>
+/// <typeparam name="T"></typeparam>
+template <class T> void getAndSetOptions() {
+  ampl::AMPL a;
+  makeNLModel(a);
+  auto model = ampls::AMPLAPIInterface::exportModel<T>(a);
+  // Options set afterwards
+  model.setOption("outlev", 1);
+  assert(1 == model.getIntOption("outlev"));
+  model.setOption("outlev", 0);
+  assert(0 == model.getIntOption("outlev"));
+
+  model.setOption("mip:gap", 0.1);
+  assert(0.1 == model.getDoubleOption("mip:gap"));
+
+  model.setOption("tech:logfile", "mylog");
+  auto c = model.getStringOption("tech:logfile");
+  assert("mylog"==c);
+
+  // Options set at export stage
+  auto model2 = ampls::AMPLAPIInterface::exportModel<T>(a, { "cvt:pre:all=1" });
+  assert(1 == model2.getIntOption("cvt:pre:all"));
+  auto model3 = ampls::AMPLAPIInterface::exportModel<T>(a, { "cvt:pre:all=0" });
+  assert(0 == model3.getIntOption("cvt:pre:all"));
 }
 
 int main(int argc, char** argv) {
-
 #ifdef USE_gurobi
-  // Set converter option; must be done before loading the model
-  const char* options[] = { "acc:sin=0", nullptr };
-  run<ampls::GurobiModel>(options);
+  getAndSetOptions<ampls::GurobiModel>();
+  try {
+    run<ampls::GurobiModel>({ "rongname" });
+  }
+  catch (const std::runtime_error& e) {
+    printf("\nAMPLSolverException caught:\n%s\n", e.what());
+  }
+  // This would have no effect if specified when exporting the model
+  // (or when reading the NL file with AMPLModel::load())
+  try {
+    {
+      run<ampls::GurobiModel>({}, { {"cvt:pre:all", 0} });
+    }
+  }
+  catch (const ampls::AMPLSolverException& e) {
+    printf("\nAMPLSolverException caught:\n%s\n", e.what());
+  }
+  // Set converter option; must be when exporting the model
+  run<ampls::GurobiModel>({ "acc:sin=0" });
+
   // Try with default options (uses gurobi's SIN function)
-  const char* noptions[] = { NULL };
-  run<ampls::GurobiModel>(noptions);
+  run<ampls::GurobiModel>({});
 #endif
 #ifdef USE_cplex
+  // This would have no effect if specified when exporting the model
+  // (or when reading the NL file with AMPLModel::load())
+  try {
+    run<ampls::CPLEXModel>({}, { {"cvt:pre:all", 0} });
+  }
+  catch (const ampls::AMPLSolverException& e) {
+    printf("\nAMPLSolverException caught:\n%s\n", e.what());
+  }
   // Linearization options, no effect after the model is loaded
-  const char* ploption[] = { "cvt:plapprox:reltol=0.1", nullptr };
-  run<ampls::CPLEXModel>(ploption);
-  const char* ploption2[] = { "cvt:plapprox:reltol=0.6", nullptr };
-  run<ampls::CPLEXModel>(ploption2);
+  run<ampls::CPLEXModel>({ "cvt:plapprox:reltol=0.1" });
+  run<ampls::CPLEXModel>({ "cvt:plapprox:reltol=0.6" });
 #endif
 #ifdef USE_xpress
+  // This would have no effect if specified when exporting the model
+  // (or when reading the NL file with AMPLModel::load())
+  try {
+    run<ampls::XPRESSModel>({}, { {"cvt:pre:all", 0} });
+  }
+  catch (const ampls::AMPLSolverException& e) {
+    printf("\nAMPLSolverException caught:\n%s\n", e.what());
+  }
   run<ampls::XPRESSModel>();
 #endif
 #ifdef USE_cbcmp
   run<ampls::CbcModel>();
 #endif
 #ifdef USE_copt
+  // This would have no effect if specified when exporting the model
+// (or when reading the NL file with AMPLModel::load())
+  try {
+    run<ampls::CoptModel>({}, { {"cvt:pre:all", 0} });
+  }
+  catch (const ampls::AMPLSolverException& e) {
+    printf("\nAMPLSolverException caught:\n%s\n", e.what());
+  }
   run<ampls::CoptModel>();
 #endif
 }

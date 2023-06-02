@@ -26,11 +26,11 @@ template <class T> T solveModel(ampl::AMPL& ampl) {
     }
     // Have to refresh to make the driver aware of the options
     model.refresh();
-    // Use AMPLModel::solveMP() so that the driver "solve" function
+    // In most solvers, the driver "solve" function
     // is used; this makes the calling program call the drivers' solve
     // function, that in many cases will contain code specifically for
     // handling multiple solutions
-    model.solveMP();
+    model.optimize();
     return model;
 }
 

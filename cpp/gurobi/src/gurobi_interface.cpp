@@ -58,12 +58,6 @@ impl::BaseCallback* GurobiModel::createCallbackImplDerived(GenericCallback* call
   return new MyGurobiCallbackBridge(callback);
 }
 
-int GurobiModel::optimize() {
-  lastErrorCode_ = GRBoptimize(GRBModel_);
-  resetVarMapInternal();
-  return lastErrorCode_;
-}
-
 int GurobiModel::getIntAttr(const char* name) {
   int v;
   int r = GRBgetintattr(GRBModel_, name, &v);

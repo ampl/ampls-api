@@ -21,6 +21,5 @@ ENABLE_PREPROCESSING   = YES
 MACRO_EXPANSION        = YES
 EXPAND_ONLY_PREDEF     = YES
 HIDE_FRIEND_COMPOUNDS  = YES
-PREDEFINED = __cplusplus \
-			 protected=private
-EXCLUDE_SYMBOLS = ampls::impl::AMPLMutex  ampls::cpx::impl ampls::grb::impl ampls::xpress::impl
+PREDEFINED = USE_amplapi __cplusplus protected=private
+EXCLUDE_SYMBOLS = ampls::impl::AMPLMutex  ampls::impl::cpx ampls::impl::grb ampls::impl::xpress

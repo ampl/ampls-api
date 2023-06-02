@@ -147,8 +147,6 @@ public:
 
   const char* driver() { return "Gurobi"; }
 
-  int optimize();
-
   Status::SolStatus getStatus() {
     int grbstatus = getIntAttr(GRB_INT_ATTR_STATUS);
     switch (grbstatus)
@@ -217,7 +215,7 @@ public:
     return v;
   }
   /** Get a textual parameter (using gurobi C library name) */
-  char* getStrParam(const char* name) {
+  char* getStringParam(const char* name) {
     char* v = NULL;
     int status = GRBgetstrparam(GRBgetenv(GRBModel_), name, v);
     AMPLSGRBERRORCHECK("GRBgetstrparam")

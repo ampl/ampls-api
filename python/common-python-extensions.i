@@ -6,6 +6,7 @@
 
 
 
+
 %extend ampls::AMPLModel {
 
 std::string get_recorded_entities(bool exportToAMPL = true) {
@@ -57,7 +58,7 @@ virtual void enable_lazy_constraints(){ $self->enableLazyConstraints(); }
 
 void print_model_vars(bool onlyNonZero) { $self->printModelVars(onlyNonZero); }
 
-std::vector<Option>& getOptions() {
+std::vector<Option> get_options() {
   return $self->getOptions(); }
 
 void set_option(const char* name, int value) { 
@@ -69,6 +70,17 @@ $self->setOption(name, value); }
 void set_option(const char* name, const char* value) { 
 $self->setOption(name, value); }
 
+std::vector<Option> getOptions() {
+  return $self->getOptions(); }
+
+int get_int_option(const char* name) { 
+  return $self->getIntOption(name); }
+
+double get_double_option(const char* name) { 
+  return $self->getDoubleOption(name); }
+
+std::string get_string_option(const char* name) { 
+  return $self->getStringOption(name); }
 };
 
 %extend ampls::impl::BaseCallback {
@@ -210,6 +222,7 @@ virtual std::vector<double> get_value_array(Value::CBValue v) {return $self->get
 }
 
 
+
 %pythoncode %{
 from enum import Enum
 def to_enum(enumclasses : list):
@@ -250,6 +263,8 @@ def __get_ampl_attribute(self, param):
     if param.name.startswith('DBL'):
         return self.getAMPLDoubleAttribute(__e_to_v(param))
     return self.getAMPLIntAttribute(__e_to_v(param))
+
+
 
 AMPLModel._getStatus=AMPLModel.getStatus
 AMPLModel.getStatus=lambda self : Status(self._getStatus())
@@ -319,4 +334,12 @@ BaseCallback.add_cut=addCut
 BaseCallback.add_cut_indices=addCutIndices
 BaseCallback.add_lazy_indices=addLazyIndices
 %}
+
+%extend ampls::Option {
+  %pythoncode %{
+    def __repr__(self):
+      return self.toString()
+  %}
+};
+
 

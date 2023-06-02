@@ -30,8 +30,8 @@ The following is a generic installation procedure; OS-specific commands are omit
 
 
 2. Download the solver libraries package appropriate for your platform from `here <https://ampl.com>`_
-3. Extract them to `ampls-api/libs`
-4. Create a build directory in `ampls-api`::
+3. Extract them to ``ampls-api/libs``
+4. Create a build directory in ``ampls-api``::
 
         cd ampls-api
         mkdir build
@@ -39,9 +39,15 @@ The following is a generic installation procedure; OS-specific commands are omit
 
 5. Execute cmake::
 
-        cmake ..
+        cmake .. -DBUILD_AMPLS=listofsolvers
+   
+   The currently available solvers can be looked at in the directory cpp. For example, a valid configuration
+   command is::
+   
+        cmake .. -DBUILD_AMPLS=cplex,gurobi,xpress,copt
 
 6. Depending on your operating system and build system, you may have a solution file or make files in the directory
+
 
 Executing an example
 --------------------

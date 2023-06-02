@@ -156,7 +156,7 @@ class TestMultipleModels(TestBase):
         try:
             # With presolve set to a high level, AMPL detects the infeasibilitty
             # and does not export the model. Throws an explainatory runtime error
-            # createAndSolveInfeasibleModel(10)
+            create_and_solve_infeasible_model(10)
             pass
         except RuntimeError as e:
             print(e)

@@ -6,6 +6,14 @@ Reference
 This section contains the reference to all the classes and functions
 of the C++ API.
 
+
+.. doxygenfunction::AMPLAPIInterface::exportModel
+
+|
+
+.. doxygenfunction::AMPLAPIInterface::importModel
+
+
 Generic
 -------
 .. doxygenclass:: ampls::AMPLModel
@@ -24,7 +32,7 @@ Generic
 
 .. doxygenenum:: ampls::Value::CBValue
 
-|
+
 
 Gurobi
 ------

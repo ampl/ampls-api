@@ -3,7 +3,7 @@
 
 #include <cstring> // for strcat 
 
-const char* MODELNAME = "tsp.nl";
+const char* MODELNAME = "queens18.nl";
 
 // This example illustrates how to obtain basic information
 // during the solution process using generic callbacks.
@@ -38,7 +38,7 @@ class MyGenericCallback : public ampls::GenericCallback
           return 0;
     case ampls::Where::MIPNODE:
       nMIPnodes++;
-      printf("\nNew MIP node. Count: %d", nMIPnodes);
+      //printf("\nNew MIP node. Count: %d", nMIPnodes);
       //printf("\nRel MIP GAP: %f", getValue(ampls::Value::MIP_RELATIVEGAP).dbl);
       return 0;
     case ampls::Where::MIP:
@@ -52,8 +52,6 @@ class MyGenericCallback : public ampls::GenericCallback
       catch (...) {
         return 0;
       }
-    case ampls::Where::NOTMAPPED:
-      printf("\nNot mapped! Where: %s", getWhereString());
     }
     return 0;
   }
@@ -67,6 +65,15 @@ template<class T> double doStuff(const char* nlfile)
   MyGenericCallback cb;
   m.setCallback(&cb);
   m.setAMPLParameter(ampls::SolverParams::DBL_MIPGap, 0.001);
+  try {
+    m.setOption("return_mipgap", 5);
+    m.setOption("mipstartvalue", 3);
+    m.setOption("mipstartalg", 2);
+    m.setOption("mipdisplay", 2);
+  }
+  catch (const std::exception& e) {
+    printf(e.what());
+  }
   // Start the optimization process
   m.optimize();
   // Get the objective value
@@ -98,17 +105,18 @@ int main(int argc, char** argv) {
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, MODELNAME);
+
+#ifdef USE_cplex
+  doStuff<ampls::CPLEXModel >(buffer);
+#endif
 #ifdef USE_gurobi
-  doStuff<ampls::GurobiModel>(buffer);
+  //doStuff<ampls::GurobiModel>(buffer);
 #endif
 
 #ifdef USE_copt
   doStuff<ampls::CoptModel >(buffer);
 #endif
 
-#ifdef USE_cplex
-  doStuff<ampls::CPLEXModel >(buffer);
-#endif
 
 #ifdef USE_xpress
   doStuff<ampls::XPRESSModel >(buffer);

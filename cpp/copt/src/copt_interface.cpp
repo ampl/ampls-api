@@ -61,12 +61,6 @@ impl::BaseCallback* CoptModel::createCallbackImplDerived(GenericCallback* callba
   return new MyCoptCallbackBridge(callback);
 }
 
-int CoptModel::optimize() {
-  lastErrorCode_ = COPT_Solve(COPTModel_);
-  resetVarMapInternal();
-  return lastErrorCode_;
-}
-
 int CoptModel::getIntAttr(const char* name) {
   int v;
   int r = COPT_GetIntAttr(COPTModel_, name, &v);

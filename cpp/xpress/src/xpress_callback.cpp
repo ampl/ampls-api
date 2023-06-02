@@ -114,10 +114,10 @@ Variant XPRESSCallback::getValue(Value::CBValue v) {
   case Value::ITERATIONS:
     return Variant(getInt(XPRS_BARITER));
   case Value::OBJ:
-    return Variant(getDouble(XPRS_MIPOBJVAL));
+    return Variant(getDouble(XPRS_MIPOBJVAL)); 
     //return Variant(getDouble(XPRS_LPOBJVAL));
   case Value::RUNTIME:
-    return Variant(((double)clock() - ((XPRESSModel*)model_)->tStart_) / CLOCKS_PER_SEC);
+    return Variant(getDouble(XPRS_TIME));
   case Value::MIP_OBJBOUND:
     return Variant(getDouble(XPRS_BESTBOUND));
   }

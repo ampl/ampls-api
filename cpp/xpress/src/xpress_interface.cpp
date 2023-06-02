@@ -97,14 +97,6 @@ impl::BaseCallback* XPRESSModel::createCallbackImplDerived(GenericCallback* call
   return new MyXPRESSCallbackBridge(callback);
 }
 
-int XPRESSModel::optimize() {
-  tStart_ = clock();
-  if (getIntAttr(XPRS_ORIGINALMIPENTS) > 0)
-    return XPRSmipoptimize(prob_, NULL);
-  else
-    return XPRSlpoptimize(prob_, NULL);
-}
-
 std::vector<double> XPRESSModel::getConstraintsValueImpl(int offset, int length) {
   std::vector<double> cons(getNumCons());
   int status = XPRSgetsol(prob_, NULL, NULL, cons.data(), NULL);

@@ -16,8 +16,8 @@
  double get_double_param(const char* name) {
      return $self->getDoubleParam(name); }
 
- const char* get_str_param(const char* name) {
-     return $self->getStrParam(name); }
+ const char* get_string_param(const char* name) {
+     return $self->getStringParam(name); }
 
  void set_param(const char* name, int value) {
      $self->setParam(name, value); }

@@ -19,6 +19,7 @@ Contents
    architecture
    examples
    reference
+   changes
 
 
 Indices

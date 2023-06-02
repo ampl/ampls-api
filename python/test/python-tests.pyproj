@@ -5,17 +5,18 @@
     <ProjectGuid>a2848927-8f72-426d-85b4-d2c1723408a2</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>test_callbacks.py</StartupFile>
+    <StartupFile>test_options.py</StartupFile>
     <SearchPath>..\test;..\..\build\bin;..\..\build\bin</SearchPath>
-    <WorkingDirectory>D:\Development\ampl\ampls-api\build\bin</WorkingDirectory>
+    <WorkingDirectory>D:\Development\ampl\ampls-api\build\vs64\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>python-tests</Name>
     <RootNamespace>tests</RootNamespace>
     <TestFramework>Pytest</TestFramework>
-    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>Global|PythonCore|3.10</InterpreterId>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +31,7 @@
     <Compile Include="test_callbacks.py" />
     <Compile Include="test_multiple_solutions.py" />
     <Compile Include="test_multiple_models.py" />
+    <Compile Include="test_options.py" />
     <Compile Include="tsp_callback.py" />
     <Compile Include="tsp_helpers.py" />
     <Compile Include="__init__.py" />
@@ -48,6 +50,9 @@
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
       <Architecture>X64</Architecture>
     </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.10" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

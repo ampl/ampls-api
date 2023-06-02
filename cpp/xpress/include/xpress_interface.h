@@ -140,12 +140,11 @@ class XPRESSModel : public AMPLMPModel {
 
 
   XPRSprob prob_;
-  clock_t tStart_;
   XPRESSDrv  driver_;
   
 
   XPRESSModel() : AMPLMPModel(),
-    prob_(NULL), tStart_(0) {}
+    prob_(NULL) {}
   XPRESSModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile, const char** options) : AMPLMPModel(s,nlfile, options) {
     prob_ = impl::xpress::AMPLSGetModel_xpress(s);
   }
@@ -183,12 +182,12 @@ public:
   using Driver = ampls::XPRESSDrv;
 
   XPRESSModel(const XPRESSModel &other) : AMPLMPModel(other), 
-    prob_(other.prob_), tStart_(other.tStart_) {
+    prob_(other.prob_) {
     driver_ = other.driver_;
   }
   XPRESSModel(XPRESSModel&& other) noexcept :
     AMPLMPModel(std::move(other)), prob_(std::move(other.prob_)),
-    tStart_(std::move(other.tStart_)), driver_(other.driver_) { 
+    driver_(other.driver_) { 
     other.prob_ = nullptr;
   }
   
@@ -197,7 +196,6 @@ public:
     {
       AMPLMPModel::operator=(other);
       prob_ = other.prob_;
-      tStart_ = other.tStart_;
       driver_ = other.driver_;
     }
     return *this;
@@ -208,7 +206,6 @@ public:
       AMPLMPModel::operator=(std::move(other));
       prob_ = std::move(other.prob_);
       other.prob_ = nullptr;
-      tStart_ = other.tStart_;
       driver_ = std::move(other.driver_);
     }
     return *this;
@@ -264,9 +261,6 @@ public:
       }
     }
   }
-
-  int optimize();
-
   int getNumVars() {
     return getIntAttr(XPRS_ORIGINALCOLS);
   }

@@ -8,9 +8,9 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from test_base import TestBase
 
 from amplpy import AMPL
-import amplpy_gurobi as ampls
+import amplpy_cplex as ampls
 
-SOLVER = "gurobi"
+SOLVER = "cplex"
 
 
 class TestMultipleSolutions(TestBase):

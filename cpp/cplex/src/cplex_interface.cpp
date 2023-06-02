@@ -125,7 +125,6 @@ int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
   }
 
   /* Now set up the error channel first.  The label will be "cpxerror" */
-
   status = CPXaddfuncdest(env, cpxerror, callback, impl::cpx::CBWrap::msg_callback_wrapper);
   if (status) {
     fprintf(stderr, "Could not set up error message handler.\n");
@@ -194,7 +193,7 @@ impl::BaseCallback* CPLEXModel::createCallbackImplDerived(GenericCallback* callb
   return new MyCPLEXCallbackBridge(callback);
 }
 
-int CPLEXModel::optimize() {
+void CPLEXModel::optimize() {
   CPXENVptr env = getCPXENV();
   int probtype = CPXgetprobtype(env, model_);
   int status = 0;
@@ -218,11 +217,8 @@ int CPLEXModel::optimize() {
     status = CPXhybbaropt(env, model_, CPX_ALG_NONE);
   }
   resetVarMapInternal();
-  // This gets communicated to writeSol
-  status_ = status;
   // Print error message in case of error
   AMPLSCPXERRORCHECK("CPX**opt");
-  return status;
 }
 
 std::string CPLEXModel::error(int code) {

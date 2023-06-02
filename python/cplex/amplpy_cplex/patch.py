@@ -16,7 +16,7 @@ def set_callback(self, cb):
     self._set_callback(cb)
 
 
-def _do_export(self, drv):
+def _do_export(self, drv, options=None):
     import tempfile
     import shutil
     import os
@@ -26,7 +26,7 @@ def _do_export(self, drv):
     try:
         self.option["auxfiles"] = "cr"
         self.eval(f'write "g{fname}";')
-        model = drv.loadModel(f"{fname}.nl")
+        model = drv.loadModel(f"{fname}.nl", options)
         model._solfile = f"{fname}.sol"
         os.remove(f"{fname}.nl")
         model._set_callback = model.set_callback
@@ -43,9 +43,9 @@ if __package__ == "amplpy_copt":
 
     COPT_DRIVER = COPTDrv()
 
-    def export_copt_model(self):
+    def export_copt_model(self, options=None):
         global COPT_DRIVER
-        return _do_export(self, COPT_DRIVER)
+        return _do_export(self, COPT_DRIVER, options)
 
     try:
         AMPL.export_copt_model = export_copt_model
@@ -59,9 +59,9 @@ if __package__ == "amplpy_cplex":
 
     CPLEX_DRIVER = CPLEXDrv()
 
-    def export_cplex_model(self):
+    def export_cplex_model(self, options=None):
         global CPLEX_DRIVER
-        return _do_export(self, CPLEX_DRIVER)
+        return _do_export(self, CPLEX_DRIVER, options)
 
     try:
         AMPL.export_cplex_model = export_cplex_model
@@ -75,9 +75,9 @@ if __package__ == "amplpy_gurobi":
 
     GUROBI_DRIVER = GurobiDrv()
 
-    def export_gurobi_model(self):
+    def export_gurobi_model(self, options=None):
         global GUROBI_DRIVER
-        return _do_export(self, GUROBI_DRIVER)
+        return _do_export(self, GUROBI_DRIVER, options)
 
     try:
         AMPL.export_gurobi_model = export_gurobi_model
@@ -91,9 +91,9 @@ if __package__ == "amplpy_xpress":
 
     XPRESS_DRIVER = XPRESSDrv()
 
-    def export_xpress_model(self):
+    def export_xpress_model(self, options=None):
         global XPRESS_DRIVER
-        return _do_export(self, XPRESS_DRIVER)
+        return _do_export(self, XPRESS_DRIVER, options)
 
     try:
         AMPL.export_xpress_model = export_xpress_model
@@ -102,15 +102,15 @@ if __package__ == "amplpy_xpress":
         pass
 
 
-def to_ampls(self, driver):
+def to_ampls(self, driver, options=None):
     if driver == "gurobi":
-        return self.export_gurobi_model()
+        return self.export_gurobi_model(options)
     elif driver == "cplex":
-        return self.export_cplex_model()
+        return self.export_cplex_model(options)
     elif driver == "copt":
-        return self.export_copt_model()
+        return self.export_copt_model(options)
     elif driver == "xpress":
-        return self.export_xpress_model()
+        return self.export_xpress_model(options)
     solver_list = "copt, cplex, gurobi, xpress"
     raise ValueError(f"{driver} is not supported, please choose from: {solver_list}")
 

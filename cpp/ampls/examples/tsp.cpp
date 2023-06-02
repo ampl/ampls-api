@@ -323,7 +323,7 @@ public:
       std::cout << getMessage() << "\n";
     // Get the generic mapping
     if ((getAMPLWhere() == ampls::Where::MIPSOL) &&
-      checkCanDo(ampls::CanDo::ADD_LAZY_CONSTRAINT) )
+      canDo(ampls::CanDo::ADD_LAZY_CONSTRAINT) )
     {
       std::cout << "Bound=" << getValue(ampls::Value::MIP_OBJBOUND) << "\n";
       std::cout << "Obj="<< getValue(ampls::Value::OBJ) << "\n";
@@ -428,11 +428,13 @@ int main(int argc, char** argv) {
 
 #ifdef USE_cplex
   auto cplexmodel = ampls::AMPLAPIInterface::exportModel<ampls::CPLEXModel>(a);
+  //cplexmodel.setOption("threads", 1);
   obj = doStuff(cplexmodel);
   res.insert({ cplexmodel.driver(), obj });
 #endif
+  
 #ifdef USE_gurobi
-  auto gurobimodel = ampls::AMPLAPIInterface::exportModel<ampls::GurobiModel>(a);
+   auto gurobimodel = ampls::AMPLAPIInterface::exportModel<ampls::GurobiModel>(a);
   obj = doStuff(gurobimodel);
   res.insert({ gurobimodel.driver(), obj });
 #endif

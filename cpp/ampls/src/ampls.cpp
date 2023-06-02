@@ -223,13 +223,28 @@ void handleStatus(const char* name, int status) {
   else
     throw ampls::AMPLSolverException::format("Problems setting option: %s", name);
 }
+
+void detectInvalidOption(const char* name) {
+  const char* invalid[2] = { "acc:", "cvt:" };
+  for (int i = 0; i < 2; i++) {
+    if (strncmp(name, invalid[i], 4) == 0) {
+      throw ampls::AMPLSolverException::format(
+        "Cannot set these option after the model is instantiated. Specify them\n"
+        "in AMPLModel::load() or in AMPLAPIInterface::exportModel<T>();");
+    }
+  }
+}
+
 void AMPLMPModel::setOption(const char* name, int value) {
+  detectInvalidOption(name);
   handleStatus(name, impl::mp::AMPLSSetIntOption(solver_, name, value));
 }
 void AMPLMPModel::setOption(const char* name, double value) {
+  detectInvalidOption(name);
   handleStatus(name, impl::mp::AMPLSSetDblOption(solver_, name, value));
 }
 void AMPLMPModel::setOption(const char* name, const char* value) {
+  detectInvalidOption(name);
   handleStatus(name, impl::mp::AMPLSSetStrOption(solver_, name, value));
 }
 
