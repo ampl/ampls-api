@@ -1,3 +1,4 @@
 breathe==4.33.1
 sphinx==4.2.0
 ampl-sphinx-theme
+myst-parser

@@ -294,8 +294,13 @@ public:
   XPRSprob getXPRSprob() {
     return prob_;
   }
- 
-  
+  /** Solve the problem */
+  void optimize() {
+    if (getIntAttr(XPRS_ORIGINALMIPENTS) > 0)
+      XPRSmipoptimize(prob_, NULL);
+    else
+      XPRSlpoptimize(prob_, NULL);
+  }
   /** Get an integer attribute identified by XPRESS native enum */
   int getIntAttr(int what) {
     int ret;

@@ -17,7 +17,7 @@ set(SPHINX_INDEX_FILE ${SPHINX_BUILD}/index.html)
 file(GLOB_RECURSE DOC_SOURCES ${SPHINX_SOURCE}/*.rst)
 
 set(COMMON_FILES ${CMAKE_CURRENT_SOURCE_DIR}/common/definitions.rst
-                 ${CMAKE_SOURCE_DIR}/changes.rst)
+                 ${CMAKE_SOURCE_DIR}/changes.md)
 add_custom_command(OUTPUT ${SPHINX_INDEX_FILE}
                   COMMAND
                   ${SPHINX_EXECUTABLE} -b html
