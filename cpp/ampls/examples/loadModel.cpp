@@ -1,16 +1,19 @@
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
-#include <cstring> // for strcat 
-const char* MODELNAME = "tsp.nl";
+#include <cassert>
+#include <string>  
+
+
 
 // This example shows how to:
 // 1. load a model from an NL file, passing an option at loading time
 // 2. solve it 
 // 3. get basic information about the solution
 // 4. write out a solution file ready to be imported in AMPL
-double doStuff(ampls::AMPLModel& m) 
-{
+// Note that this function could have included the ampls::AMPLModel creation
+// but having the base class as a parameter helps intellisense
+void doStuff(ampls::AMPLModel& m) {
   // Set parameter with common mapping
   m.setAMPLParameter(ampls::SolverParams::DBL_MIPGap, 0.1);
   // Start the optimization process
@@ -18,6 +21,7 @@ double doStuff(ampls::AMPLModel& m)
   printf("\n%s solution ", m.driver());
   // Get the generic status
   ampls::Status::SolStatus s = m.getStatus();
+  assert(s == ampls::Status::OPTIMAL);
   switch (s)
   {
   case ampls::Status::OPTIMAL:
@@ -44,81 +48,49 @@ double doStuff(ampls::AMPLModel& m)
   for (int i = 0; i < solution.size(); i++)
     if (solution[i] != 0) nnz++;
   printf("%s: Number of non zeroes=%d\n", m.driver(), nnz);
-  
-  // Set an option specific to the solver driver (in this case, instructing it to
+  assert(nnz==51);
+
+  // Set an option of the solver driver (in this case, instructing it to
   // return the MIP gap when communicating the solution back to AMPL)
   m.setOption("return_mipgap", 3);
 
-  // Write a solution file ready to be imported in AMPL
-  char BUFFER[1024];
+  // Write a solution file ready to be imported in AMPL, that includes the MIP gap
+  char BUFFER[100];
   sprintf(BUFFER, "%s-%s.sol", m.getFileName().c_str(), m.driver());
   printf("%s: Writing solution file to: %s\n\n\n", m.driver(), BUFFER);
   m.writeSol(BUFFER);
-  return obj;
+}
+
+template <class T> void example() {
+  assert(1);
+  const char* MODELNAME = "tsp.nl";
+  std::string md(MODELS_DIR);
+  md += MODELNAME;
+  const char* options[2] = { "outlev=1", NULL };
+  
+  T model = ampls::AMPLModel::load<T>(md.c_str(), options);
+  doStuff(model);
 }
 
 int main(int argc, char** argv) {
-  char buffer[255];
-  strcpy(buffer, MODELS_DIR);
-  strcat(buffer, MODELNAME);
-
-  const char* options[2];
-  options[0] = "outlev=1";
-  options[1] = NULL;
 #ifdef USE_gurobi
-  try {
-    // Load a model using gurobi driver
-    ampls::GurobiModel gurobimodel = ampls::AMPLModel::load<ampls::GurobiModel>(buffer, options);
-    // Use it as generic model
-    doStuff(gurobimodel);
-  }
-  catch (const ampls::AMPLSolverException& e) {
-    printf(e.what());
-  }
+  example<ampls::GurobiModel>();
 #endif
-  
+
 #ifdef USE_xpress
-  try {
-    // Load a model using XPRESS driver
-    ampls::XPRESSModel xpressmodel = ampls::AMPLModel::load<ampls::XPRESSModel>(buffer, options);
-    // Use it as generic model
-    doStuff(xpressmodel);
-  }
-  catch (const ampls::AMPLSolverException& e) {
-    printf(e.what());
-  }
+  example<ampls::XPRESSModel>();
 #endif
 
 #ifdef USE_cplex
-  try {
-    // Load a model using CPLEX driver
-    ampls::CPLEXModel cplexmodel = ampls::AMPLModel::load<ampls::CPLEXModel>(buffer, options);
-    // Use it as generic model
-    doStuff(cplexmodel);
-  }
-  catch (const ampls::AMPLSolverException& e) {
-    printf(e.what());
-  }
+  example< ampls::CPLEXModel>();
 #endif
-  
+
 #ifdef USE_copt
-  try{
-    // Load a model using Copt driver
-    ampls::CoptModel coptmodel = ampls::AMPLModel::load<ampls::CoptModel>(buffer, options);
-    // Use it as generic model
-    doStuff(coptmodel);
-  }
-  catch (const ampls::AMPLSolverException& e) {
-    printf(e.what());
-  }
+  example<ampls::CoptModel>();
 #endif
 
 #ifdef USE_cbcmp
-  // Load a model using CBC driver
-  ampls::CbcModel cbcmodel = ampls::AMPLModel::load<ampls::CbcModel>(buffer);
-  // Use it as generic model
-  doStuff(cbcmodel);
+  example<ampls::CbcModel>();
 #endif
-
   return 0;
 }

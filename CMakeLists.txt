@@ -13,6 +13,7 @@ set(AMPLS_BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 option(BUILD_SWIG_WRAPPERS "Build swig wrappers" ON)
 option(BUILD_AMPLS_DOC "Build AMPLS documentation" OFF)
+option(BUILD_AMPLS_TESTS "Build cpp tests" OFF)
 
 # Set solvers to build.
 function(defSolver name solvername libtargetname)
@@ -109,7 +110,7 @@ else()
 endif()
 set(GENERATED_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include) # For generated files
 file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
-     "const char MODELS_DIR[] = \"${PROJECT_SOURCE_DIR}/test/models/\";\n")
+     "#ifndef _TEST_CONFIG_\n#define _TEST_CONFIG_\nconst char MODELS_DIR[] = \"${PROJECT_SOURCE_DIR}/test/models/\";\n#endif")
 
 # Solver vendors libraries and headers locations
 get_directory_property(hasParent PARENT_DIRECTORY)

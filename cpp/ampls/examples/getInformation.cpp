@@ -1,9 +1,9 @@
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
-#include <cstring> // for strcat 
+#include <string>  
+#include <cassert>
 
-const char* MODELNAME = "queens18.nl";
 
 // This example illustrates how to obtain basic information
 // during the solution process using generic callbacks.
@@ -38,10 +38,7 @@ class MyGenericCallback : public ampls::GenericCallback
           return 0;
     case ampls::Where::MIPNODE:
       nMIPnodes++;
-      //printf("\nNew MIP node. Count: %d", nMIPnodes);
-      //printf("\nRel MIP GAP: %f", getValue(ampls::Value::MIP_RELATIVEGAP).dbl);
       return 0;
-    case ampls::Where::MIP:
     case ampls::Where::MIPSOL:
       try {
         obj = getObj();
@@ -58,9 +55,13 @@ class MyGenericCallback : public ampls::GenericCallback
 
 };
 
-template<class T> double doStuff(const char* nlfile) 
+template<class T> void example() 
 {
-  T m = ampls::AMPLModel::load<T>(nlfile);
+  const char* MODELNAME = "queens18.nl";
+  std::string md(MODELS_DIR);
+  md += MODELNAME;
+
+  T m = ampls::AMPLModel::load<T>(md.c_str());
   // Set a (generic) callback
   MyGenericCallback cb;
   m.setCallback(&cb);
@@ -79,8 +80,10 @@ template<class T> double doStuff(const char* nlfile)
   // Get the objective value
   double obj = m.getObj();
   printf("\nSolution with %s=%f\n", m.driver(), obj);
-
+  
+  assert( (obj>= 158-10e-6) && (obj <= 158 + 10e-6) );
   ampls::Status::SolStatus s = m.getStatus();
+  assert(s == ampls::Status::OPTIMAL);
   switch (s)
   {
     case ampls::Status::OPTIMAL:
@@ -98,32 +101,23 @@ template<class T> double doStuff(const char* nlfile)
 
   // Write the AMPL sol file
   m.writeSol();
-  return obj;
 }
 int main(int argc, char** argv) {
 
-  char buffer[255];
-  strcpy(buffer, MODELS_DIR);
-  strcat(buffer, MODELNAME);
-
 #ifdef USE_cplex
-  doStuff<ampls::CPLEXModel >(buffer);
+  example<ampls::CPLEXModel >();
 #endif
 #ifdef USE_gurobi
-  //doStuff<ampls::GurobiModel>(buffer);
+  example<ampls::GurobiModel>();
 #endif
-
 #ifdef USE_copt
-  doStuff<ampls::CoptModel >(buffer);
+  example<ampls::CoptModel>();
 #endif
-
-
 #ifdef USE_xpress
-  doStuff<ampls::XPRESSModel >(buffer);
+  example<ampls::XPRESSModel>();
 #endif
-
 #ifdef USE_cbcmp
-  doStuff<ampls::CbcModel >(buffer);
+  example<ampls::CbcModel>();
 #endif
   return 0;
  

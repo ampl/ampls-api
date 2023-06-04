@@ -406,8 +406,7 @@ double doStuff(ampls::AMPLModel& m)
   return obj;
 }
 
-int main(int argc, char** argv) {
-
+template <class T> std::pair<std::string, double> example() {
   char buffer[255];
   strcpy(buffer, MODELS_DIR);
   strcat(buffer, "tsp/gr96.tsp");
@@ -425,32 +424,37 @@ int main(int argc, char** argv) {
   std::map<std::string, double> res;
   double obj;
 
+  auto model = ampls::AMPLAPIInterface::exportModel<T>(a);
+  obj = doStuff(model);
+  return { model.driver(), obj };
+}
 
-#ifdef USE_cplex
-  auto cplexmodel = ampls::AMPLAPIInterface::exportModel<ampls::CPLEXModel>(a);
-  //cplexmodel.setOption("threads", 1);
-  obj = doStuff(cplexmodel);
-  res.insert({ cplexmodel.driver(), obj });
-#endif
-  
+int main(int argc, char** argv) {
+  // Used to store the results
+  std::map<std::string, double> res;
+  double obj;
 #ifdef USE_gurobi
-   auto gurobimodel = ampls::AMPLAPIInterface::exportModel<ampls::GurobiModel>(a);
-  obj = doStuff(gurobimodel);
-  res.insert({ gurobimodel.driver(), obj });
+  res.insert(example<ampls::GurobiModel>());
 #endif
-#ifdef USE_cbcmp
-  auto cbcmodel = ampls::AMPLAPIInterface::exportModel<ampls::CbcModel>(a);
-  obj = doStuff(cbcmodel);
-  res.insert({ cbcmodel.driver(), obj });
+  /*
+#ifdef USE_xpress
+   res.insert(example<ampls::XPRESSModel>());
 #endif
+*/
+#ifdef USE_cplex
+  res.insert(example< ampls::CPLEXModel>());
+#endif
+
 #ifdef USE_copt
-  auto coptmodel = ampls::AMPLAPIInterface::exportModel<ampls::CoptModel>(a);
-  obj=doStuff(coptmodel);
-  res.insert({ coptmodel.driver(), obj });
+  res.insert(example<ampls::CoptModel>());
+#endif
+
+#ifdef USE_cbcmp
+  res.insert(example<ampls::CbcModel>());
 #endif
   // Print out the results
   for (auto a : res) {
     printf("%s=%f\n", a.first.c_str(), a.second);
   }
+  return 0;
 }
-;

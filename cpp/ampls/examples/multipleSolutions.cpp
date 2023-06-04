@@ -34,7 +34,7 @@ template <class T> T solveModel(ampl::AMPL& ampl) {
     return model;
 }
 
-template <class T> void run() {
+template <class T> void example() {
   ampl::AMPL ampl;
   createModel(ampl);
   auto m = solveModel<T>(ampl);
@@ -56,23 +56,23 @@ int main(int argc, char** argv) {
 #ifdef USE_xpress
   // Note XPRESS is not supported (yet) due to its very specific
   // handling of multiple solutions
-  run<ampls::XPRESSModel>();
+  example<ampls::XPRESSModel>();
 #endif
   #ifdef USE_gurobi
-    run<ampls::GurobiModel>();
+    example<ampls::GurobiModel>();
   #endif
 
   #ifdef USE_cbcmp
-    run<ampls::CbcModel>();
+    example<ampls::CbcModel>();
   #endif
 
   #ifdef USE_copt
-    run<ampls::CoptModel>();
+    example<ampls::CoptModel>();
   #endif
 
   #ifdef USE_cplex
-    run<ampls::CPLEXModel>();
+    example<ampls::CPLEXModel>();
   #endif
 
-
+    return 0;
 }

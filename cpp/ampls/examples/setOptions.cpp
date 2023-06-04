@@ -65,68 +65,49 @@ template <class T> void getAndSetOptions() {
   auto model3 = ampls::AMPLAPIInterface::exportModel<T>(a, { "cvt:pre:all=0" });
   assert(0 == model3.getIntOption("cvt:pre:all"));
 }
+template<class T> void example() {
 
-int main(int argc, char** argv) {
-#ifdef USE_gurobi
-  getAndSetOptions<ampls::GurobiModel>();
+  getAndSetOptions<T>();
+
+  // This would have effect only if specified when exporting the model
+  // (or when reading the NL file with AMPLModel::load())
   try {
-    run<ampls::GurobiModel>({ "rongname" });
+    run<T>({}, { {"cvt:pre:all", 0} });
+  }
+  catch (const ampls::AMPLSolverException& e) {
+    printf("\nAMPLSolverException caught:\n%s\n", e.what());
+  }
+  // This will throw an exepction
+  try {
+    run<T>({ "wrongname" });
   }
   catch (const std::runtime_error& e) {
     printf("\nAMPLSolverException caught:\n%s\n", e.what());
   }
-  // This would have no effect if specified when exporting the model
-  // (or when reading the NL file with AMPLModel::load())
-  try {
-    {
-      run<ampls::GurobiModel>({}, { {"cvt:pre:all", 0} });
-    }
-  }
-  catch (const ampls::AMPLSolverException& e) {
-    printf("\nAMPLSolverException caught:\n%s\n", e.what());
-  }
-  // Set converter option; must be when exporting the model
-  run<ampls::GurobiModel>({ "acc:sin=0" });
 
-  // Try with default options (uses gurobi's SIN function)
-  run<ampls::GurobiModel>({});
-#endif
-#ifdef USE_cplex
-  // This would have no effect if specified when exporting the model
-  // (or when reading the NL file with AMPLModel::load())
-  try {
-    run<ampls::CPLEXModel>({}, { {"cvt:pre:all", 0} });
-  }
-  catch (const ampls::AMPLSolverException& e) {
-    printf("\nAMPLSolverException caught:\n%s\n", e.what());
-  }
-  // Linearization options, no effect after the model is loaded
   run<ampls::CPLEXModel>({ "cvt:plapprox:reltol=0.1" });
   run<ampls::CPLEXModel>({ "cvt:plapprox:reltol=0.6" });
+}
+
+int main(int argc, char** argv) {
+#ifdef USE_gurobi
+  example<ampls::GurobiModel>();
 #endif
+
 #ifdef USE_xpress
-  // This would have no effect if specified when exporting the model
-  // (or when reading the NL file with AMPLModel::load())
-  try {
-    run<ampls::XPRESSModel>({}, { {"cvt:pre:all", 0} });
-  }
-  catch (const ampls::AMPLSolverException& e) {
-    printf("\nAMPLSolverException caught:\n%s\n", e.what());
-  }
-  run<ampls::XPRESSModel>();
+  example<ampls::XPRESSModel>();
 #endif
-#ifdef USE_cbcmp
-  run<ampls::CbcModel>();
+
+#ifdef USE_cplex
+  example< ampls::CPLEXModel>();
 #endif
+
 #ifdef USE_copt
-  // This would have no effect if specified when exporting the model
-// (or when reading the NL file with AMPLModel::load())
-  try {
-    run<ampls::CoptModel>({}, { {"cvt:pre:all", 0} });
-  }
-  catch (const ampls::AMPLSolverException& e) {
-    printf("\nAMPLSolverException caught:\n%s\n", e.what());
-  }
-  run<ampls::CoptModel>();
+  example<ampls::CoptModel>();
 #endif
+
+#ifdef USE_cbcmp
+  example<ampls::CbcModel>();
+#endif
+  return 0;
 }

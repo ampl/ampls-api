@@ -135,7 +135,7 @@ template <class T> void createAndSolveUnboundedModel(bool presolve) {
   printf("Completed Unbounded Model Test\n\n");
 }
 
-template <class T> void run() {
+template <class T> void example() {
   bool caught = false;
   try {
     // This will fail because AMPL's presolve will block the 
@@ -172,18 +172,19 @@ template <class T> void run() {
 int main(int argc, char** argv) {
 
 #ifdef USE_cplex
-  run<ampls::CPLEXModel>();
+  example<ampls::CPLEXModel>();
 #endif
 #ifdef USE_xpress
-  run<ampls::XPRESSModel>();
+  example<ampls::XPRESSModel>();
 #endif
 #ifdef USE_gurobi
-  run<ampls::GurobiModel>();
+  example<ampls::GurobiModel>();
 #endif
 #ifdef USE_cbcmp
-  run<ampls::CbcModel>();
+  example<ampls::CbcModel>();
 #endif
 #ifdef USE_copt
-  run<ampls::CoptModel>();
+  example<ampls::CoptModel>();
 #endif
+  return 0;
 }

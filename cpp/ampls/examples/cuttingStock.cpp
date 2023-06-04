@@ -90,7 +90,7 @@ void AMPLSol(ampl::AMPL &a) {
     "solve Cutting_Opt;"
     "display Cut;");
 }
-template <class T> void doStuff()
+template <class T> void example()
 {
   try {
     ampl::AMPL a;
@@ -106,20 +106,20 @@ template <class T> void doStuff()
 }
 int main(int argc, char** argv) {
 #ifdef USE_gurobi
-  doStuff<ampls::GurobiModel>();
+  example<ampls::GurobiModel>();
 #endif
   /*
 #ifdef USE_copt
-  doStuff<ampls::CoptModel>();
+  example<ampls::CoptModel>();
 #endif
 #ifdef USE_cplexmp
-  doStuff<ampls::CPLEXModel>();
+  example<ampls::CPLEXModel>();
 #endif
 #ifdef USE_cbcmp
-  doStuff<ampls::CbcModel>();
+  example<ampls::CbcModel>();
 #endif
 #ifdef USE_xpress
-  doStuff<ampls::XPRESSModel>();
+  example<ampls::XPRESSModel>();
 #endif*/
   return 0;
  

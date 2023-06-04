@@ -8,15 +8,17 @@
 #include "test-config.h" // for MODELS_DIR
 
 
-template <class T> double doStuff(const char* model)
+template <class T> void example()
 {
+  const char* MODELNAME = "tspg96.nl";
+  std::string md(MODELS_DIR);
+  md += MODELNAME;
   try {
-    T m=ampls::AMPLModel::load<T>(model);
+    T m=ampls::AMPLModel::load<T>(md.c_str());
     m.setOption("nonvalid", 1);
     m.optimize();
     double obj = m.getObj();
     printf("\nObjective (%s)=%f\n", m.driver(), obj);
-    return obj;
   }
   catch (const ampls::AMPLSolverException& e)
   {
@@ -27,28 +29,26 @@ template <class T> double doStuff(const char* model)
 
 
 int main(int argc, char** argv) {
-  char buffer[255];
-  strcpy(buffer, MODELS_DIR);
-  strcat(buffer, "tspg96.nl");
+
 
 #ifdef USE_xpress
-  doStuff<ampls::XPRESSModel>(buffer);
+  example<ampls::XPRESSModel>();
 #endif
 
 #ifdef USE_cplex
-  doStuff<ampls::CPLEXModel>(buffer);
+  example<ampls::CPLEXModel>();
 #endif
 
 #ifdef USE_gurobi
-  doStuff<ampls::GurobiModel>(buffer);
+  example<ampls::GurobiModel>();
 #endif
 
 #ifdef USE_cbcmp
-  doStuff<ampls::CbcModel>(buffer);
+  example<ampls::CbcModel>();
 #endif
 
 #ifdef USE_copt
-  doStuff<ampls::CoptModel>(buffer);
+  example<ampls::CoptModel>();
 #endif
-
+  return 0;
 }

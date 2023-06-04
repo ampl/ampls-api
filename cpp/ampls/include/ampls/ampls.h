@@ -1567,49 +1567,48 @@ namespace ampls {
 
     namespace impl {
      
-      void doExport(ampl::AMPL& a) {
+      inline void doExport(ampl::AMPL& a) {
         a.write("g___modelexport___", "cr");
       }
-      template <class T> T exportModel(ampl::AMPL& a, const char** options = nullptr);
+      template <class T> inline T exportModel(ampl::AMPL& a, const char** options = nullptr);
 
-      const char* FN = "___modelexport___.nl";
 #ifdef USE_gurobi
-      template<> GurobiModel exportModel<GurobiModel>(ampl::AMPL& a, const char** options) {
+      template<> inline GurobiModel exportModel<GurobiModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         GurobiDrv gurobi;
-        return gurobi.loadModel(FN, options);
+        return gurobi.loadModel("___modelexport___.nl", options);
       }
 #endif
 
 #ifdef USE_cbcmp
-      template<> CbcModel exportModel<CbcModel>(ampl::AMPL& a, const char** options) {
+      template<> inline CbcModel exportModel<CbcModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         CbcDrv cbc;
-        return cbc.loadModel(FN, options);
+        return cbc.loadModel("___modelexport___.nl", options);
       }
 #endif
 
 #ifdef USE_copt
-      template<> CoptModel exportModel<CoptModel>(ampl::AMPL& a, const char** options) {
+      template<> inline CoptModel exportModel<CoptModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         CoptDrv copt;
-        return copt.loadModel(FN, options);
+        return copt.loadModel("___modelexport___.nl", options);
       }
 #endif
 
 #ifdef USE_cplex
-      template<> CPLEXModel exportModel<CPLEXModel>(ampl::AMPL& a, const char** options) {
+      template<> inline CPLEXModel exportModel<CPLEXModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         CPLEXDrv cplex;
-        return cplex.loadModel(FN, options);
+        return cplex.loadModel("___modelexport___.nl", options);
       }
 #endif
 
 #ifdef USE_xpress
-      template<> XPRESSModel exportModel<XPRESSModel>(ampl::AMPL& a, const char** options) {
+      template<> inline XPRESSModel exportModel<XPRESSModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         XPRESSDrv xpress;
-        return xpress.loadModel(FN, options);
+        return xpress.loadModel("___modelexport___.nl", options);
       }
 #endif
     } // namespace impl
@@ -1620,13 +1619,13 @@ namespace ampls {
     /// <param name="a"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    template <class T> T exportModel(ampl::AMPL& a) {
+    template <class T> inline T exportModel(ampl::AMPL& a) {
       return impl::exportModel<T>(a, nullptr);
     }
-    template <class T> T exportModel(ampl::AMPL& a, const char** options) {
+     template <class T> inline  T exportModel(ampl::AMPL& a, const char** options) {
       return impl::exportModel<T>(a, options);
     }
-    template <class T> T exportModel(ampl::AMPL& a, const std::vector<std::string> &options) {
+    template  <class T> inline  T exportModel(ampl::AMPL& a, const std::vector<std::string> &options) {
       const char** myptr = nullptr;
       std::vector<const char*> ptrs;
       if (options.size() > 0) {
@@ -1639,7 +1638,7 @@ namespace ampls {
       return exportModel<T>(a, myptr);
     }
 
-    void importModel(ampl::AMPL& a, AMPLModel& g) {
+    inline void importModel(ampl::AMPL& a, AMPLModel& g) {
       g.setOption("wantsol", 9);
       g.writeSol();
       a.eval("solution ___modelexport___.sol;");

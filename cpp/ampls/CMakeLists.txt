@@ -89,7 +89,8 @@ if(PREPROCESSORDEFS)
     endforeach()
     
     if(BUILD_AMPLAPI_EXAMPLES)
-      foreach(e cuttingStock addEntities tsp multipleModels multipleSolutions setOptions)
+      set(AMPLAPI_EXAMPLES cuttingStock addEntities tsp multipleModels multipleSolutions setOptions)
+      foreach(e ${AMPLAPI_EXAMPLES})
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
         target_link_libraries(ampls-${e} PRIVATE amplapi)
         target_compile_definitions(ampls-${e} PRIVATE USE_amplapi)
@@ -98,26 +99,53 @@ if(PREPROCESSORDEFS)
           $<TARGET_FILE:amplapi> $<TARGET_FILE_DIR:ampls-${e}>
           COMMENT "Copying amplapi dynamic library to binary directory"
         )
-
       endforeach()
     endif()
-
-    # Add tests
-    add_prefix(TEST_SOURCES ${ampls_DIR}/test/
-      api-test.cpp)
-    add_executable(ampls-test ${TEST_SOURCES})
-    target_compile_definitions(ampls-test PRIVATE ${PREPROCESSORDEFS})
-    target_include_directories(ampls-test PRIVATE
-       ${GENERATED_INCLUDE_DIR} # for test-config
-     )
-    target_link_libraries(ampls-test ${LINKLIBS})
-    add_to_folder(ampls ampls-test)
 endif()
-#install(
-    #FILES ${ampls_SOURCES}
-    #DESTINATION amplpy_gurobi/amplpy_gurobi/ampls/
-#)
-#install(
-    #DIRECTORY ${ampls_INCLUDE}/
-    #DESTINATION amplpy_gurobi/amplpy_gurobi/ampls/include/
-#)
+
+if(BUILD_AMPLS_TESTS)
+    # GoogleTest requires at least C++14
+    set(CMAKE_CXX_STANDARD 14)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    include(FetchContent)
+    FetchContent_Declare(
+      googletest
+      URL https://github.com/google/googletest/archive/06f44bc951046150f1348598854b211afdcf37fc.zip
+    )
+    # For Windows: Prevent overriding the parent project's compiler/linker settings
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(googletest)
+    add_to_folder(ampls/test/gtest gmock gmock_main gtest gtest_main)
+
+    enable_testing()
+
+    set(EXAMPLES_TEST "")
+    foreach(s ${EXAMPLES})
+        set(EXAMPLES_TEST ${EXAMPLES_TEST} ${s}-test.cpp)
+    endforeach()
+    set(AMPLAPI_EXAMPLES_TEST "")
+    foreach(s ${AMPLAPI_EXAMPLES})
+        set(AMPLAPI_EXAMPLES_TEST ${AMPLAPI_EXAMPLES_TEST} ${s}-test.cpp)
+    endforeach()
+     # Add tests
+     # Get sources from examples
+    add_prefix(TEST_SOURCES ${ampls_DIR}/test/
+          ${EXAMPLES_TEST} ${AMPLAPI_EXAMPLES_TEST})
+
+    add_executable(ampls-test ${TEST_SOURCES} ${ampls_DIR}/test/test-base.h ${ampls_DIR}/test/test-execute.h)
+    target_compile_definitions(ampls-test PRIVATE ${PREPROCESSORDEFS})
+    target_include_directories(ampls-test PRIVATE 
+                     ${ampls_DIR}/examples # to include examples
+                    ${GENERATED_INCLUDE_DIR})# for test-config
+    
+    if(BUILD_AMPLAPI_EXAMPLES)
+      target_compile_definitions(ampls-test PRIVATE USE_amplapi)
+      target_link_libraries(ampls-test amplapi)
+    endif()
+    target_link_libraries(ampls-test ${LINKLIBS} GTest::gtest_main)
+
+    add_to_folder(ampls ampls-test)
+    include(GoogleTest)
+    gtest_discover_tests(ampls-test)
+    add_to_folder(ampls/test ampls-test)
+endif()

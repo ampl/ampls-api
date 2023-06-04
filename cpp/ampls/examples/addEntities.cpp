@@ -20,7 +20,7 @@ void printStatistics(ampls::AMPLModel& m, const char* name)
   printf("%s: objective=%f\n", name, m.getObj());
 }
 
-template <class T> void doStuff()
+template <class T> void example()
 {
   ampl::AMPL ampl;
   
@@ -59,19 +59,19 @@ template <class T> void doStuff()
 
 int main(int argc, char** argv) {
 #ifdef USE_copt
-  doStuff<ampls::CoptModel>();
+  example<ampls::CoptModel>();
 #endif 
 #ifdef USE_cplexmp
-  doStuff<ampls::CPLEXModel>();
+  example<ampls::CPLEXModel>();
 #endif
 #ifdef USE_gurobi
-  doStuff<ampls::GurobiModel>();
+  example<ampls::GurobiModel>();
 #endif
 #ifdef USE_xpress
-  doStuff<ampls::XPRESSModel>();
+  example<ampls::XPRESSModel>();
 #endif 
 #ifdef USE_cbcmp
-  doStuff<ampls::CbcModel>();
+  example<ampls::CbcModel>();
 #endif 
   return 0;
  
