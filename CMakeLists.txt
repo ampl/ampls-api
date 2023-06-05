@@ -276,7 +276,7 @@ function(AddSolverStub solver targetbase libname)
     target_compile_options(${TARGETNAME} PRIVATE -fPIC)
   endif()
   
-  set(EXAMPLES loadModel getInformation simpleCuts)
+  set(EXAMPLES loadModel getInformation simpleCuts genericbranch-cplex genericbranch-ampls)
   foreach(exname ${EXAMPLES})
       set(tar ${libname}-${exname}) 
       set(src ${DIR_CPP}/examples/${exname}.cpp)

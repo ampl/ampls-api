@@ -23,7 +23,8 @@
 #define CPXCDECL
 #endif
 
-struct ASL;
+
+
 
 
 namespace ampls
@@ -37,6 +38,7 @@ class CPLEXModel;
   {
     namespace cpx
     {
+      
   /* Define a macro to do our error checking */
     #define AMPLSCPXERRORCHECK(name)  \
     if (status)  \
@@ -54,19 +56,9 @@ class CPLEXModel;
       
     public:
       static bool skipMsgCallback;
-      static int CPXPUBLIC lp_callback_wrapper(CPXCENVptr env, void* lp, int wf, void* cbh);
-      static int CPXPUBLIC cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
-        void* cbhandle, int* useraction_p);
+      static int CPXPUBLIC genericcallback(CPXCALLBACKCONTEXTptr context, CPXLONG contextid,
+        void* cbhandle);
       static void CPXPUBLIC msg_callback_wrapper(void* handle, const char* msg);
-      static int CPXPUBLIC incumbent_callback_wrapper(CPXCENVptr env,
-        void* cbdata, int wherefrom, void* cbhandle, double objval, double* x, int* isfeas_p,
-        int* useraction_p);
-      static int CPXPUBLIC heuristiccallbackfunc_wrapper(CPXCENVptr env,
-        void* cbdata, int wherefrom, void* cbhandle, double* objval_p,
-        double* x, int* checkfeas_p, int* useraction_p);
-
-      static CPLEXCallback* setDefaultCB(CPXCENVptr env, void* cbdata,
-        int wherefrom, void* userhandle, int capabilities);
     };
   
   }
@@ -115,6 +107,7 @@ class CPLEXModel : public AMPLMPModel {
     throw AMPLSolverException("Not implemented!");
   }
 
+  int status_;
   CPXLPptr model_;
   int lastErrorCode_;
 
@@ -138,11 +131,12 @@ public:
   using Driver = ampls::CPLEXDrv;
 
   CPLEXModel(const CPLEXModel& other) : AMPLMPModel(other),
+    status_(other.status_),
     model_(other.model_),
     lastErrorCode_(other.lastErrorCode_) { }
 
   CPLEXModel(CPLEXModel&& other) noexcept :
-    AMPLMPModel(std::move(other)), 
+    AMPLMPModel(std::move(other)), status_(std::move(other.status_)),
     model_(std::move(other.model_)), lastErrorCode_(std::move(other.lastErrorCode_))
   {
     other.model_ = nullptr;
@@ -151,6 +145,7 @@ public:
     if (this != &other)
     {
       AMPLMPModel::operator=(other);
+      status_ = other.status_;
       model_ = other.model_;
       lastErrorCode_ = other.lastErrorCode_;
     }
@@ -161,6 +156,7 @@ public:
   CPLEXModel& operator=(CPLEXModel&& other) noexcept {
     if (this != &other) {
       AMPLMPModel::operator=(std::move(other));
+      std::swap(status_, other.status_);
       std::swap(model_, other.model_);
       std::swap(lastErrorCode_, other.lastErrorCode_);
     }
@@ -238,16 +234,18 @@ public:
     return status;
   }
 
-
   std::string error(int code);
 
-  void enableLazyConstraints() {
-    setParam(CPXPARAM_MIP_Strategy_CallbackReducedLP, CPX_OFF);
-    setParam(CPXPARAM_Preprocessing_Linear, 0);
-  }
 
   // ********************* CPLEX specific *********************
-
+  int setCallback(impl::BaseCallback* callback) {
+    int i = ampls::AMPLModel::setCallback(callback);
+    return i;
+  }
+  int setCallback(GenericCallback* callback) {
+    int i = ampls::AMPLModel::setCallback(callback);
+    return i;
+  }
   /** Get the pointer to the native CPLEX LP model object */
   CPXLPptr getCPXLP() {
     return model_;

@@ -7,7 +7,7 @@
 #include <exception>
 #include <tuple>
 #include <fstream>
-
+#include <type_traits>
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 #include "ampl/ampl.h"
@@ -378,6 +378,7 @@ double doStuff(ampls::AMPLModel& m)
   cb.setMap(m.getVarMapFiltered("X"));
   m.enableLazyConstraints();
   m.setCallback(&cb);
+
   // Start the optimization process
   m.optimize();
 
@@ -425,6 +426,14 @@ template <class T> std::pair<std::string, double> example() {
   double obj;
 
   auto model = ampls::AMPLAPIInterface::exportModel<T>(a);
+
+  // Implementing parallel MIP callbacks with CPLEX is more involving,
+  // see the CPLEX-specific examples:
+  // cplex/genericbranch-cplex
+  // cplex/genericbranch-ampls
+  if (std::is_same<T, ampls::CPLEXModel>::value)
+     model.setOption("threads", 1);
+
   obj = doStuff(model);
   return { model.driver(), obj };
 }
@@ -442,7 +451,7 @@ int main(int argc, char** argv) {
 #endif
 */
 #ifdef USE_cplex
-  res.insert(example< ampls::CPLEXModel>());
+  res.insert(example<ampls::CPLEXModel>());
 #endif
 
 #ifdef USE_copt

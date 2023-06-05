@@ -6,114 +6,146 @@
 #include <map>
 
 #include "ampls/ampls.h"
-
 #include "ilcplex/cplex.h"
 
-
-
+#define CPX_ENUM_MSG_CALLBACK -1
 
 namespace ampls
 {
-namespace impl { namespace cpx { class CBWrap; } }
-class CPLEXModel;
+  namespace impl { namespace cpx { class CBWrap; } }
+  class CPLEXModel;
 
-/**
-* Base class for CPLEX callbacks, inherit from this to declare a
-* callback to be called at various stages of the solution process.
-* Provides all mapping between solver-specific and generic values.
-* To implement a callback, you should implement the run() method and
-* set it via AMPLModel::setCallback() before starting the solution
-* process via AMPLModel::optimize().
-* Depending on where the callback is called from, you can obtain various
-* information about the progress of the optimization and can modify the behaviour
-* of the solver.
-*/
-class CPLEXCallback : public impl::BaseCallback {
-  char CODE[60];
-  friend class CPLEXModel;
-  friend class  impl::cpx::CBWrap;
-  // Callback data
-  CPXCENVptr env_;
-  // Stores the pointer to the CPLEX model being used, as passed from the callback
-  void* lp_;
-  // Stores the pointer to the data passed from CPLEX to the callback
-  void* cbdata_;
-  // Stores the message passed from CPLEX msg function to the callback
-  const char* msg_;
+  /**
+  * Base class for CPLEX callbacks, inherit from this to declare a
+  * callback to be called at various stages of the solution process.
+  * Provides all mapping between solver-specific and generic values.
+  * To implement a callback, you should implement the run() method and
+  * set it via AMPLModel::setCallback() before starting the solution
+  * process via AMPLModel::optimize().
+  * Depending on where the callback is called from, you can obtain various
+  * information about the progress of the optimization and can modify the behaviour
+  * of the solver.
+  */
+  class CPLEXCallback : public impl::BaseCallback {
+    char CODE[60];
+    // Stores the message passed from CPLEX msg function to the callback
+    const char* msg_;
+    // Thread-local data for multithreaded callbacks
+    struct LOCALDATA {
+      int where_;
+      CPXCALLBACKCONTEXTptr context_;
+    };
+    std::vector<LOCALDATA> local_;
+    bool hasThreads_;
 
-  // Stores obj and solution values when incumbent found
-  double objval_;
-  double* x_;
+    friend class CPLEXModel;
+    friend class  impl::cpx::CBWrap;
 
-  // For importing heuristic solution
-  int heurUserAction_;
-  int heurCheckFeas_;
+    static char toCPLEXSense(CutDirection::Direction direction);
 
-
-  static char toCPLEXSense(ampls::CutDirection::Direction direction);
+    CPXCALLBACKCONTEXTptr context(int threadId) { 
+      return local_[threadId].context_; }
 
 
-protected:
-  // Interface
-  int doAddCut(const ampls::Constraint& c,
-    int type);
-  CPXCENVptr getCPXENV() { return env_; }
-  void* getCBData() { return cbdata_; }
-  
-public:
+    // Interface
+    int doAddCut(const ampls::Constraint& c, int type);
+    
+  protected:
+    const char* getMessage() { return msg_; }
+    // Thread aware version
+    bool canDo(CanDo::Functionality f, int threadid);
+    bool canDo(CanDo::Functionality f) { return canDo(f, 0); }
 
-  virtual int run() = 0;
-  ~CPLEXCallback() {};
+    // Interface
+    using BaseCallback::getSolutionVector;
+    int getSolution(int len, double* sol);
+    double getObj();
 
-  // Interface
-  using BaseCallback::getSolutionVector;
-  int getSolution(int len, double* sol);
-  double getObj();
-  using BaseCallback::getWhere;
-  const char* getWhereString();
-  const char* getMessage();
-
-  Where::CBWhere getAMPLWhere() {
-    switch (getWhere())
-    {
-    case -1:
-      return  Where::MSG;
-    case CPX_CALLBACK_PRESOLVE:
-      return Where::PRESOLVE;
-    case CPX_CALLBACK_PRIMAL:
-    case CPX_CALLBACK_DUAL:
-    case CPX_CALLBACK_BARRIER:
-      return Where::LPSOLVE;
-    //case CPX_CALLBACK_MIP_NODE:
-      // For user cuts
-    case CPX_CALLBACK_MIP_CUT_LOOP:
-    case CPX_CALLBACK_MIP_CUT_LAST:
-    case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
-      return Where::MIPNODE;
-    //case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
-    //case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
-    //case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
-    // For lazy constraints
-    case CPX_CALLBACK_MIP_CUT_FEAS:
-    case CPX_CALLBACK_MIP_CUT_UNBD:
-      return Where::MIPSOL;
-    default:
-      return Where::NOTMAPPED;
+    
+    const char* getWhereString() {
+      return getWhereString(0);
     }
-  }
-  /** Get a  value at this stage of the solution process */
-  Variant get(int what);
-  /** Get an integer value at this stage of the solution process*/
-  int getInt(int what);
+    const char* getWhereString(int threadid);
 
-  /** Get a double value at this stage of the solution process*/
-  double getDouble(int what);
+    Where::CBWhere getAMPLWhere() {
+      return getAMPLWhere(0);
+    }
+    Where::CBWhere getAMPLWhere(int threadid) {
+      switch (getWhere(threadid))
+      {
+      case CPX_ENUM_MSG_CALLBACK: return Where::MSG;
+      case CPX_CALLBACKCONTEXT_CANDIDATE: return Where::MIPSOL;
+      case CPX_CALLBACKCONTEXT_RELAXATION: return Where::MIPNODE;
+      case CPX_CALLBACKCONTEXT_GLOBAL_PROGRESS: return Where::LPSOLVE;
+      default:
+        return Where::NOTMAPPED;
+      }
+    }
 
-  virtual Variant getValue(Value::CBValue v);
-  int setHeuristicSolution(int nvars, const int* indices, const double* values);
+    Variant getValue(Value::CBValue v);
+    Variant getValue(Value::CBValue v, int threadid0);
 
-  std::vector<double> getValueArray(Value::CBValue v);
-};
+    std::vector<double> getValueArray(Value::CBValue v);
+    std::vector<double> getValueArray(Value::CBValue v, int threadid);
 
-} // namespace
+    int setHeuristicSolution(int nvars, const int* indices, const double* values);
+
+    /** Get a  value at this stage of the solution process */
+    Variant getCPLEXInfo(CPXCALLBACKINFO what, int threadid = 0);
+    /** Get an integer value at this stage of the solution process*/
+    int getCPLEXInt(CPXCALLBACKINFO what, int threadid = 0);
+    /** Get a double value at this stage of the solution process*/
+    double getCPLEXDouble(CPXCALLBACKINFO what, int threadid = 0);
+    /** Get a double value at this stage of the solution process*/
+    long getCPLEXLong(CPXCALLBACKINFO what, int threadid = 0);
+    /** Get access to CPLEX callback native context */
+    CPXCALLBACKCONTEXTptr getCPXContext(int threadId = 0) {
+      return local_[threadId].context_;
+    }
+
+  public:
+    CPLEXCallback() : CODE(""), BaseCallback(), msg_(nullptr),
+      local_(1), hasThreads_(false) { }
+
+    /// <summary>
+    ///  CPLEX specific. Usable only after linking the callback to a model 
+    /// using AMPLModel::setCallback.
+    /// Returns the number of cores in the system or the value of
+    /// the options threads, if present in the model
+    /// </summary>
+    int getMaxThreads();
+    
+    /// <summary>
+    /// Enable threads support for this callback.
+    /// Maximum supported threads = ncores if nthreads==0,
+    /// else nthreads
+    /// </summary>
+    void enableThreadsSupport(int nthreads=0) {
+      if (nthreads < 0)
+        throw std::out_of_range("Number of threads cannot be negative");
+      local_.resize(nthreads);
+      hasThreads_ = true;
+    }
+    /// <summary>
+    /// Get CPLEX callback context id
+    /// </summary>
+    int getWhere(int threadid = 0) {
+      return local_[threadid].where_;
+    }
+    /// <summary>
+    /// Override to implement generic (or single threaded) callback 
+    /// </summary>
+    virtual int run() { 
+      throw ampls::AMPLSolverException("If support for multithreading is not needed, "
+        "the function void run() should be implemented"); }
+
+    /// <summary>
+    /// Override to implement multi-threaded callback (CPLEX-specific)
+    /// </summary>
+    virtual int run(int threadid) {
+      throw ampls::AMPLSolverException("If support for multithreading is needed, "
+        "the function void run(int) should be implemented");
+    }
+  };
+} // namespace ampls
 #endif // CPLEX_CALLBACK_H_INCLUDE_

@@ -109,7 +109,7 @@ int main(int argc, char** argv) {
     printf("%s\n", o.toString().c_str());
 
   m.setOption("mip:return_gap", 1);
-  printf("Option=%d\n", m.getOptionValue("mip:return_gap"));
+  printf("Option=%d\n", m.getIntOption("mip:return_gap"));
   m.enableLazyConstraints();
   MyGurobiCallback cb;
   res = m.setCallback(&cb);

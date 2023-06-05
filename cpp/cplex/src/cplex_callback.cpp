@@ -1,305 +1,183 @@
 #include "cplex_interface.h"
 #include "cplex_callback.h"
 
-
 #define CPLEX_CALL( call ) do { if (int e=call) \
   throw AMPLSolverException::format( \
-    "  Call failed: %s with code %d", #call, e ); } while (0)
+    "  Call failed: %s with code %d", #call, e ); } while (0);
 
 
 namespace ampls
 {
 char errbuf[CPXMESSAGEBUFSIZE];
-const char* CPLEXCallback::getMessage() {
-  return msg_;
+
+int CPLEXCallback::getMaxThreads() {
+  int num_cores;
+  auto env = ((ampls::CPLEXModel*)model_)->getCPXENV();
+
+  int threads = model_->getIntOption("threads");
+  if (threads == 0)
+  {
+    CPXgetnumcores(env, &num_cores);
+    return num_cores;
+  }
+  return threads;
 }
 
 
-double CPLEXCallback::getDouble(int what)
+bool CPLEXCallback::canDo(CanDo::Functionality f, int threadid) {
+  switch (f) {
+    case CanDo::GET_MIP_SOLUTION:
+    case CanDo::ADD_LAZY_CONSTRAINT:
+      if (getWhere(threadid) != CPX_CALLBACKCONTEXT_CANDIDATE) return false;
+      int point;
+      CPXcallbackcandidateispoint(context(threadid), &point);
+      return point!=0;
+    case CanDo::GET_LP_SOLUTION:
+    case CanDo::ADD_USER_CUT:
+      return getWhere(threadid) == CPX_CALLBACKCONTEXT_RELAXATION;
+    case CanDo::IMPORT_SOLUTION:
+      return (getWhere(threadid) != CPX_CALLBACKCONTEXT_THREAD_UP) &&
+        (getWhere(threadid) != CPX_CALLBACKCONTEXT_THREAD_DOWN);
+    default:
+      return false;
+  }
+
+
+}
+
+double CPLEXCallback::getCPLEXDouble(CPXCALLBACKINFO what, int threadid)
 {
   double res;
-  CPLEX_CALL(CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
-    what, &res));
+  int status;
+  CPLEX_CALL(CPXcallbackgetinfodbl(context(threadid), what, &res));
   return res;
 }
 
-int CPLEXCallback::getInt(int what)
+int CPLEXCallback::getCPLEXInt(CPXCALLBACKINFO what, int threadid)
 {
   int res;
   int status;
-  if (what < CPX_CALLBACK_INFO_NODE_SIINF)
-  {
-    status = CPXgetcallbackinfo(getCPXENV(), cbdata_, where_,
-      what, &res);
-    if (status)
-    {
-      printf("While getting %d (where=%d)\n", what, where_);
-      printf("ERROR %s\n", model_->error(status).c_str());
-    }
-    return res;
-  }
-  throw std::runtime_error("Not supported yet");
+  CPLEX_CALL(CPXcallbackgetinfoint(context(threadid), what, &res));
+  return res;
+}
+
+long CPLEXCallback::getCPLEXLong(CPXCALLBACKINFO what, int threadid)
+{
+  CPXLONG res;
+  int status;
+  CPLEX_CALL(CPXcallbackgetinfolong(context(threadid), what, &res));
+  return res;
 }
 
 Variant CPLEXCallback::getValue(Value::CBValue v) {
   switch (v)
   {
-  case Value::ITERATIONS:
-    if (where_ < CPX_CALLBACK_MIP)
-      return get(CPX_CALLBACK_INFO_ITCOUNT);
-    else
-      return get(CPX_CALLBACK_INFO_MIP_ITERATIONS);
-  case Value::OBJ:
-    return Variant(getObj());
-  case Value::PRE_DELCOLS:
-    return get(CPX_CALLBACK_INFO_PRESOLVE_COLSGONE);
-  case Value::PRE_DELROWS:
-    return get(CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE);
-  case Value::PRE_COEFFCHANGED:
-    return get(CPX_CALLBACK_INFO_PRESOLVE_COEFFS);
-  case Value::MIP_RELATIVEGAP:
-    return get(CPX_CALLBACK_INFO_MIP_REL_GAP);
-  case Value::MIP_OBJBOUND:
-    return get(CPX_CALLBACK_INFO_MIP_FEAS); // TODO
-  case Value::RUNTIME:
-  {
-    double time;
-    CPLEX_CALL(CPXXgettime(env_, &time));
-    double starttime = getDouble(CPX_CALLBACK_INFO_STARTTIME);
-    return Variant(time - starttime);
-  }
-  default: throw AMPLSolverException("Specified value unknown.");
+    case Value::ITERATIONS:
+      return getCPLEXInfo(CPXCALLBACKINFO_ITCOUNT);
+    case Value::MIP_NODES:
+      return getCPLEXInfo(CPXCALLBACKINFO_NODECOUNT);
+    case Value::RUNTIME:
+      return getCPLEXInfo(CPXCALLBACKINFO_TIME);
+    case Value::MIP_OBJBOUND:
+      return getCPLEXInfo(CPXCALLBACKINFO_BEST_BND); 
+    case Value::OBJ:
+      return Variant(getObj());
+    case Value::MIP_RELATIVEGAP:
+    return Variant(impl::calculateRelMIPGAP(getObj(),
+      getCPLEXDouble(CPXCALLBACKINFO_BEST_BND)));
+  default: throw AMPLSolverException("Specified value unknown or unsupported");
   }
 }
 
 
 
 int CPLEXCallback::doAddCut(const ampls::Constraint& c, int lazy) {
-  char sense = toCPLEXSense(c.sense());
-
- 
-  int res;
+  double rhs[1] = { c.rhs() };
+  char sense[1] = { toCPLEXSense(c.sense()) };
+  int res, purgeable= CPX_USECUT_FORCE, local=0;
+  int beg = 0;
   if (lazy)
   { 
-    // CPLEX does this by registering two different callbacks. 
-    // I can catch it from "where" (see bendersatsp.c example in CPLEX lib)
     if (!canDo(CanDo::ADD_LAZY_CONSTRAINT))
       throw ampls::AMPLSolverException("Functionality not available at this stage");
-    res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, c.indices().size(), c.rhs(), 
-        sense, c.indices().data(), c.coeffs().data(), CPX_USECUT_FORCE);
+    res= CPXcallbackrejectcandidate(context(0), 1, c.indices().size(), rhs, sense, &beg, c.indices().data(),
+      c.coeffs().data());
   }
   else
   {
-    if (!canDo(CanDo::ADD_LAZY_CONSTRAINT))
+    if (!canDo(CanDo::ADD_USER_CUT))
       throw ampls::AMPLSolverException("Functionality not available at this stage");
-    res = CPXcutcallbackadd(getCPXENV(), cbdata_, where_, c.indices().size(), c.rhs(),
-        sense, c.indices().data(), c.coeffs().data(), CPX_USECUT_FILTER);
+    res = CPXcallbackaddusercuts(context(0), 1, c.indices().size(), rhs, sense, &beg, c.indices().data(),
+      c.coeffs().data(), &purgeable, &local);
   }
   if (res != 0) {
     fprintf(stderr, "Failed to add %s: %s\n", lazy ? "lazy constraint" : "user cut",
-      CPXgeterrorstring(getCPXENV(), res, errbuf));
+      CPXgeterrorstring(((CPLEXModel*)model_)->getCPXENV(), res, errbuf));
   }
   return res;
 }
 
 int CPLEXCallback::getSolution(int len, double* sol) {
-  if ((where_ == CPX_CALLBACK_MIP_CUT_FEAS) || (where_ == CPX_CALLBACK_MIP_CUT_UNBD) ||
-    (where_== CPX_CALLBACK_MIP_CUT_LOOP) || (where_ == CPX_CALLBACK_MIP_CUT_LAST))
-  {
-    int error = CPXgetcallbacknodex(getCPXENV(), cbdata_, where_, sol, 0, len - 1);
-    if (error != 0)
-    fprintf(stderr, "Failed to retrieve solution nodex from callback: %s\n",
-      CPXgeterrorstring(getCPXENV(), error, errbuf));
-    return 0;
-  }
-  if ((where_ >= CPX_CALLBACK_MIP) && (where_ <= CPX_CALLBACK_MIP_INCUMBENT_MIPSTART))
-  {
-    int error = CPXgetcallbackincumbent(getCPXENV(), cbdata_, where_, sol, 0, len-1);
-    if (error!= 0)
-        fprintf(stderr, "Failed to retrieve solution from callback: %s\n",
-          CPXgeterrorstring(getCPXENV(), error, errbuf));
-    return 0;
-  }
+  double obj;
+  if (getAMPLWhere()==Where::MIPSOL)
+    return CPXXcallbackgetcandidatepoint(context(0), sol, 0, len - 1, &obj);
+  else if (getAMPLWhere() == Where::MIPNODE)
+    return CPXXcallbackgetrelaxationpoint(context(0), sol, 0, len - 1, &obj);
   throw ampls::AMPLSolverException("Cannot get the solution vector in this stage.");
 }
 double CPLEXCallback::getObj() {
-  int phase = -1;
-  switch (where_)
-  {
-  case CPX_CALLBACK_PRIMAL:
-  case CPX_CALLBACK_DUAL:
-    phase = getInt(CPX_CALLBACK_INFO_PRIMAL_FEAS);
-    if (phase != 0)
-      return getDouble(CPX_CALLBACK_INFO_PRIMAL_OBJ);
-    break;
-  case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN:
-  case CPX_CALLBACK_MIP_CUT_FEAS:
-  case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN:
-  case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN:
-  case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART:
-    return objval_;
-  default:
-    throw ampls::AMPLSolverException("Cannot get the objective value in this stage.");
-  }
-  throw ampls::AMPLSolverException::format("Cannot get the objective value in this stage (%s)", getWhereString());
+  // TODO Check for global vs thread-local objective
+  return getCPLEXDouble(CPXCALLBACKINFO_BEST_SOL);
 }
-const char* CPLEXCallback::getWhereString()
+
+#define _CASE(EnumValue) case EnumValue: return #EnumValue
+
+const char* CPLEXCallback::getWhereString(int threadid)
 {
-  switch (where_)
+  switch (getWhere(threadid))
   {
-  case CPX_CALLBACK_PRIMAL: return "CPX_CALLBACK_PRIMAL";
-  case CPX_CALLBACK_DUAL: return "CPX_CALLBACK_DUAL";
-  case CPX_CALLBACK_NETWORK: return "CPX_CALLBACK_NETWORK";
-  case CPX_CALLBACK_PRIMAL_CROSSOVER: return "CPX_CALLBACK_PRIMAL_CROSSOVER";
-  case CPX_CALLBACK_DUAL_CROSSOVER: return "CPX_CALLBACK_DUAL_CROSSOVER";
-  case CPX_CALLBACK_BARRIER: return "CPX_CALLBACK_BARRIER";
-  case CPX_CALLBACK_PRESOLVE: return "CPX_CALLBACK_PRESOLVE";
-  case CPX_CALLBACK_QPBARRIER: return "CPX_CALLBACK_QPBARRIER";
-  case CPX_CALLBACK_QPSIMPLEX: return "CPX_CALLBACK_QPSIMPLEX";
-  case CPX_CALLBACK_TUNING: return "CPX_CALLBACK_TUNING";
-
-    // MIP:
-  case CPX_CALLBACK_MIP: return "CPX_CALLBACK_MIP";
-  case CPX_CALLBACK_MIP_BRANCH: return "CPX_CALLBACK_MIP_BRANCH";
-  case CPX_CALLBACK_MIP_NODE: return "CPX_CALLBACK_MIP_NODE";
-  case CPX_CALLBACK_MIP_HEURISTIC: return "CPX_CALLBACK_MIP_HEURISTIC";
-  case CPX_CALLBACK_MIP_SOLVE: return "CPX_CALLBACK_MIP_SOLVE";
-  case CPX_CALLBACK_MIP_CUT_LOOP: return "CPX_CALLBACK_MIP_CUT_LOOP";
-  case CPX_CALLBACK_MIP_PROBE: return "CPX_CALLBACK_MIP_PROBE";
-  case CPX_CALLBACK_MIP_FRACCUT: return "CPX_CALLBACK_MIP_FRACCUT";
-  case CPX_CALLBACK_MIP_DISJCUT: return "CPX_CALLBACK_MIP_DISJCUT";
-  case CPX_CALLBACK_MIP_FLOWMIR: return "CPX_CALLBACK_MIP_FLOWMIR";
-  case CPX_CALLBACK_MIP_INCUMBENT_NODESOLN: return "CPX_CALLBACK_MIP_INCUMBENT_NODESOLN";
-  case CPX_CALLBACK_MIP_DELETENODE: return "CPX_CALLBACK_MIP_DELETENODE";
-  case CPX_CALLBACK_MIP_BRANCH_NOSOLN: return "CPX_CALLBACK_MIP_BRANCH_NOSOLN";
-  case CPX_CALLBACK_MIP_CUT_LAST: return "CPX_CALLBACK_MIP_CUT_LAST";
-  case CPX_CALLBACK_MIP_CUT_FEAS: return "CPX_CALLBACK_MIP_CUT_FEAS";
-  case CPX_CALLBACK_MIP_CUT_UNBD: return "CPX_CALLBACK_MIP_CUT_UNBD";
-  case CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN: return "CPX_CALLBACK_MIP_INCUMBENT_HEURSOLN";
-  case CPX_CALLBACK_MIP_INCUMBENT_USERSOLN: return "CPX_CALLBACK_MIP_INCUMBENT_USERSOLN";
-  case CPX_CALLBACK_MIP_INCUMBENT_MIPSTART: return "CPX_CALLBACK_MIP_INCUMBENT_MIPSTART";
+    _CASE(CPX_CALLBACKCONTEXT_BRANCHING);
+    _CASE(CPX_CALLBACKCONTEXT_CANDIDATE);
+    _CASE(CPX_CALLBACKCONTEXT_GLOBAL_PROGRESS);
+    _CASE(CPX_CALLBACKCONTEXT_LOCAL_PROGRESS);
+    _CASE(CPX_CALLBACKCONTEXT_RELAXATION);
+    _CASE(CPX_CALLBACKCONTEXT_THREAD_DOWN);
+    _CASE(CPX_CALLBACKCONTEXT_THREAD_UP);
   }
-
   sprintf(CODE, "Unknown where from code: %d", where_);
   return CODE;
 }
 
-Variant CPLEXCallback::get(int what)
+Variant CPLEXCallback::getCPLEXInfo(CPXCALLBACKINFO what, int threadid)
 {
-  Variant r = Variant();
-  switch (what)
-  {
-  case CPX_CALLBACK_INFO_PRIMAL_FEAS:
-  case CPX_CALLBACK_INFO_DUAL_FEAS:
-  case CPX_CALLBACK_INFO_ITCOUNT:
-  case CPX_CALLBACK_INFO_CROSSOVER_PPUSH:
-  case CPX_CALLBACK_INFO_CROSSOVER_PEXCH:
-  case CPX_CALLBACK_INFO_CROSSOVER_DPUSH:
-  case CPX_CALLBACK_INFO_CROSSOVER_DEXCH:
-  case CPX_CALLBACK_INFO_PRESOLVE_ROWSGONE:
-  case CPX_CALLBACK_INFO_PRESOLVE_COLSGONE:
-  case CPX_CALLBACK_INFO_PRESOLVE_COEFFS:
-  case CPX_CALLBACK_INFO_PRESOLVE_AGGSUBST:
-  case CPX_CALLBACK_INFO_CROSSOVER_SBCNT:
-    // MIP
-  case CPX_CALLBACK_INFO_NODE_COUNT:
-  case CPX_CALLBACK_INFO_NODES_LEFT:
-  case CPX_CALLBACK_INFO_MIP_ITERATIONS:
-  case CPX_CALLBACK_INFO_MIP_FEAS:
-  case CPX_CALLBACK_INFO_CLIQUE_COUNT:
-  case CPX_CALLBACK_INFO_COVER_COUNT:
-  case CPX_CALLBACK_INFO_FLOWCOVER_COUNT:
-  case CPX_CALLBACK_INFO_GUBCOVER_COUNT:
-  case CPX_CALLBACK_INFO_IMPLBD_COUNT:
-  case CPX_CALLBACK_INFO_PROBE_PHASE:
-  case CPX_CALLBACK_INFO_FRACCUT_COUNT:
-  case CPX_CALLBACK_INFO_DISJCUT_COUNT:
-  case CPX_CALLBACK_INFO_FLOWPATH_COUNT:
-  case CPX_CALLBACK_INFO_MIRCUT_COUNT:
-  case CPX_CALLBACK_INFO_ZEROHALFCUT_COUNT:
-  case CPX_CALLBACK_INFO_MY_THREAD_NUM:
-  case CPX_CALLBACK_INFO_USER_THREADS:
-  case CPX_CALLBACK_INFO_MCFCUT_COUNT:
-  case CPX_CALLBACK_INFO_LANDPCUT_COUNT:
-  case CPX_CALLBACK_INFO_USERCUT_COUNT:
-  case CPX_CALLBACK_INFO_TABLECUT_COUNT:
-  case CPX_CALLBACK_INFO_SOLNPOOLCUT_COUNT:
-  case CPX_CALLBACK_INFO_BENDERS_COUNT:
-  case CPX_CALLBACK_INFO_NODE_COUNT_LONG:
-  case CPX_CALLBACK_INFO_NODES_LEFT_LONG:
-  case CPX_CALLBACK_INFO_MIP_ITERATIONS_LONG:
-
-    // NODE
-  case CPX_CALLBACK_INFO_NODE_NIINF:
-  case CPX_CALLBACK_INFO_NODE_DEPTH:
-  case CPX_CALLBACK_INFO_NODE_TYPE: // Note that this is char
-  case CPX_CALLBACK_INFO_NODE_VAR:
-  case CPX_CALLBACK_INFO_NODE_SOS:
-  case CPX_CALLBACK_INFO_NODE_SEQNUM:
-  case CPX_CALLBACK_INFO_NODE_NODENUM:
-  case CPX_CALLBACK_INFO_NODE_SEQNUM_LONG:
-  case CPX_CALLBACK_INFO_NODE_NODENUM_LONG:
-  case CPX_CALLBACK_INFO_NODE_DEPTH_LONG:
-
-    // SOS
-  case CPX_CALLBACK_INFO_SOS_TYPE: // This is char
-  case CPX_CALLBACK_INFO_SOS_NUM:
-  case CPX_CALLBACK_INFO_SOS_SIZE:
-  case CPX_CALLBACK_INFO_SOS_IS_FEASIBLE:
-  case CPX_CALLBACK_INFO_SOS_MEMBER_INDEX:
-
-    /* Values for getcallbackindicatorinfo function */
-  case CPX_CALLBACK_INFO_IC_NUM:
-  case CPX_CALLBACK_INFO_IC_IMPLYING_VAR:
-  case CPX_CALLBACK_INFO_IC_IMPLIED_VAR:
-  case CPX_CALLBACK_INFO_IC_SENSE:
-  case CPX_CALLBACK_INFO_IC_COMPL:
-  case CPX_CALLBACK_INFO_IC_IS_FEASIBLE:
-
+  Variant r;
+  switch(what) {
+  case CPXCALLBACKINFO_ITCOUNT:
+  case CPXCALLBACKINFO_THREADID:
+  case CPXCALLBACKINFO_NODECOUNT:
+  case CPXCALLBACKINFO_FEASIBLE:
+  case CPXCALLBACKINFO_THREADS:
+  case CPXCALLBACKINFO_CANDIDATE_SOURCE:
+  case CPXCALLBACKINFO_RESTARTS:
+  case CPXCALLBACKINFO_AFTERCUTLOOP:
     r.type = 1;
-    r.integer = getInt(what);
-    return r;
+    r.integer = getCPLEXInt(what, threadid);
+    break;
 
-  case CPX_CALLBACK_INFO_PRIMAL_OBJ:
-  case CPX_CALLBACK_INFO_DUAL_OBJ:
-  case CPX_CALLBACK_INFO_PRIMAL_INFMEAS:
-  case CPX_CALLBACK_INFO_DUAL_INFMEAS:
-  case CPX_CALLBACK_INFO_STARTTIME:
-  case CPX_CALLBACK_INFO_ENDTIME:
-  case CPX_CALLBACK_INFO_STARTDETTIME:
-  case CPX_CALLBACK_INFO_ENDDETTIME:
-  case CPX_CALLBACK_INFO_TUNING_PROGRESS:
+  // long
+  case CPXCALLBACKINFO_NODEUID:
+  case CPXCALLBACKINFO_NODEDEPTH:
+  case CPXCALLBACKINFO_NODESLEFT:
+    r.type = 1;
+    r.integer = getCPLEXLong(what, threadid);
+    break;
 
-
-
-    // MIP
-  case CPX_CALLBACK_INFO_BEST_INTEGER:
-  case CPX_CALLBACK_INFO_BEST_REMAINING:
-  case CPX_CALLBACK_INFO_CUTOFF:
-  case CPX_CALLBACK_INFO_PROBE_PROGRESS:
-  case CPX_CALLBACK_INFO_FRACCUT_PROGRESS:
-  case CPX_CALLBACK_INFO_DISJCUT_PROGRESS:
-  case CPX_CALLBACK_INFO_FLOWMIR_PROGRESS:
-  case CPX_CALLBACK_INFO_MIP_REL_GAP:
-  case CPX_CALLBACK_INFO_KAPPA_STABLE:
-  case CPX_CALLBACK_INFO_KAPPA_SUSPICIOUS:
-  case CPX_CALLBACK_INFO_KAPPA_UNSTABLE:
-  case CPX_CALLBACK_INFO_KAPPA_ILLPOSED:
-  case CPX_CALLBACK_INFO_KAPPA_MAX:
-  case CPX_CALLBACK_INFO_KAPPA_ATTENTION:
-
-    // NODE
-  case CPX_CALLBACK_INFO_NODE_SIINF:
-  case CPX_CALLBACK_INFO_NODE_ESTIMATE:
-  case CPX_CALLBACK_INFO_NODE_OBJVAL:
-
-    // SOS
-  case CPX_CALLBACK_INFO_SOS_MEMBER_REFVAL:
-
-    // Indicator
-  case CPX_CALLBACK_INFO_IC_RHS:
+  case CPXCALLBACKINFO_BEST_SOL:
+  case CPXCALLBACKINFO_BEST_BND:
+  case CPXCALLBACKINFO_TIME:
+  case CPXCALLBACKINFO_DETTIME:
     r.type = 2;
-    r.dbl = getDouble(what);
+    r.dbl = getCPLEXDouble(what, threadid);
     break;
   }
   return r;
@@ -313,20 +191,20 @@ char CPLEXCallback::toCPLEXSense(ampls::CutDirection::Direction direction)
 }
 
 int CPLEXCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
-  heurUserAction_ = CPX_CALLBACK_SET;
-  for (int i = 0; i < nvars; i++)
-    x_[indices[i]] = values[i];
-  return 0;
+  // TODO what to do for obj value?
+  return CPXcallbackpostheursoln(context(0), nvars, indices, values, INFINITY,
+    CPXCALLBACKSOLUTION_SOLVE);
 }
 
 std::vector<double> CPLEXCallback::getValueArray(Value::CBValue v) {
   switch (v)
   {
   case Value::MIP_SOL_RELAXED:
-    if (where_ == CPX_CALLBACK_MIP_HEURISTIC)
-    {
-      std::vector<double> c(x_, x_+model_->getNumVars());
-      return c;
+    if (canDo(CanDo::GET_LP_SOLUTION)) {
+      int NVARS = model_->getNumVars();
+      std::vector<double> res(NVARS);
+      CPXcallbackgetrelaxationpoint(context(0), res.data(), 0, NVARS - 1, NULL);
+      return res;
     }
   }
   return std::vector<double>();

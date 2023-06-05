@@ -5,80 +5,29 @@
 
 namespace ampls
 {
-CPLEXCallback* impl::cpx::CBWrap::setDefaultCB(CPXCENVptr env, void* cbdata,
-  int wherefrom, void* userhandle, int capabilities)
-{
-  CPLEXCallback* cb = static_cast<CPLEXCallback*>(userhandle);
-  cb->where_ = wherefrom;
-  cb->env_ = env;
-  cb->cbdata_ = cbdata;
-  cb->currentCapabilities_ = capabilities;
-  return cb;
-}
 
-int CPXPUBLIC impl::cpx::CBWrap::incumbent_callback_wrapper(CPXCENVptr env, void* cbdata,
-  int wherefrom, void* userhandle,
-  double objval, double* x, int* isfeas_p, int* useraction_p) {
+int CPXPUBLIC impl::cpx::CBWrap::genericcallback(CPXCALLBACKCONTEXTptr context, CPXLONG contextid,
+    void* cbhandle) {
+  CPLEXCallback* cb = static_cast<CPLEXCallback*>(cbhandle);
+  CPXINT tid;
 
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, 0);
-
-  *isfeas_p = 1; // use new solution by default
-  cb->objval_ = objval;
-  cb->x_ = x;
-  if (cb->run())
-    *useraction_p = CPX_CALLBACK_FAIL;
+  if (cb->hasThreads_) 
+    CPXcallbackgetinfoint(context, CPXCALLBACKINFO_THREADID, &tid);
   else
-    *useraction_p = CPX_CALLBACK_DEFAULT;
+    tid = 0;
+
+  // Assign thread local info
+  cb->local_[tid].context_ = context;
+  cb->local_[tid].where_ = (int)contextid;
+
+  if (cb->hasThreads_)
+    cb->run(tid);
+  else
+    cb->run();
+  // TODO To abort: CPXcallbackabort
   return 0;
 }
 
-int CPXPUBLIC impl::cpx::CBWrap::heuristiccallbackfunc_wrapper(CPXCENVptr env,
-  void* cbdata, int wherefrom, void* userhandle, 
-  double* objval_p, double* x, int* checkfeas_p, int* useraction_p) {
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, ampls::CanDo::IMPORT_SOLUTION |
-  ampls::CanDo::GET_LP_SOLUTION);
-  cb->objval_ = *objval_p;
-  cb->x_ = x;
-  cb->heurUserAction_ = CPX_CALLBACK_DEFAULT;
-  cb->run();
-  // This is set by the setHeuristic solution function
-  if (cb->heurUserAction_ == CPX_CALLBACK_SET)
-  {
-    *objval_p = cb->objval_;
-    *checkfeas_p = cb->heurCheckFeas_;
-    *useraction_p = cb->heurUserAction_;
-  }
-  else
-    *useraction_p = CPX_CALLBACK_DEFAULT;
-  return 0;
-}
-
-int CPXPUBLIC impl::cpx::CBWrap::lp_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
-    void* userhandle)
-{
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, 0);
-  return cb->run();
-}
-
-int CPXPUBLIC  impl::cpx::CBWrap::cut_callback_wrapper(CPXCENVptr env, void* cbdata, int wherefrom,
-  void* userhandle, int* useraction_p)
-{
-  int capabilities;
-  if ((wherefrom == CPX_CALLBACK_MIP_CUT_FEAS) ||
-    (wherefrom == CPX_CALLBACK_MIP_CUT_UNBD))
-    capabilities = CanDo::ADD_LAZY_CONSTRAINT;
-  else if ((wherefrom == CPX_CALLBACK_MIP_CUT_LOOP) ||
-    (wherefrom == CPX_CALLBACK_MIP_CUT_LAST))
-    capabilities = CanDo::ADD_USER_CUT;
-
-  CPLEXCallback* cb = setDefaultCB(env, cbdata, wherefrom, userhandle, CanDo::ADD_USER_CUT | CanDo::ADD_LAZY_CONSTRAINT);
-  int res = cb->run();
-  if (res)
-    *useraction_p = CPX_CALLBACK_FAIL;
-  else
-    *useraction_p = CPX_CALLBACK_DEFAULT;
-  return 0;
-}
 
 bool impl::cpx::CBWrap::skipMsgCallback = false;
 void CPXPUBLIC
@@ -87,12 +36,15 @@ impl::cpx::CBWrap::msg_callback_wrapper(void* handle, const char* msg)
 
   if (impl::cpx::CBWrap::skipMsgCallback)
     return;
-
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(handle);
-  cb->where_ = -1;
-  cb->currentCapabilities_ = 0;
+  
+  cb->local_[0].where_ = CPX_ENUM_MSG_CALLBACK;
+  cb->local_[0].context_ = nullptr;
   cb->msg_ = msg;
-  cb->run();
+  if (cb->hasThreads_)
+    cb->run(0);
+  else
+    cb->run();
 }
 
 CPLEXDrv::~CPLEXDrv() {
@@ -125,6 +77,7 @@ int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
   }
 
   /* Now set up the error channel first.  The label will be "cpxerror" */
+
   status = CPXaddfuncdest(env, cpxerror, callback, impl::cpx::CBWrap::msg_callback_wrapper);
   if (status) {
     fprintf(stderr, "Could not set up error message handler.\n");
@@ -151,31 +104,16 @@ int setMsgCallback(impl::BaseCallback* callback, CPXENVptr env) {
 }
 
 int CPLEXModel::setCallbackDerived(impl::BaseCallback* callback) {
-  CPXENVptr p = getCPXENV();
-  // Add the callback 
-  int status = CPXsetlazyconstraintcallbackfunc(p, impl::cpx::CBWrap::cut_callback_wrapper,
-    callback);
-  if (status)
-    return status;
-  status = CPXsetusercutcallbackfunc(p, impl::cpx::CBWrap::cut_callback_wrapper,
-    callback);
-  if (status)
-    return status;
-  status = CPXsetmipcallbackfunc(p, impl::cpx::CBWrap::lp_callback_wrapper, callback);
-  if (status)
-    return status;
-  status = CPXsetlpcallbackfunc(p, impl::cpx::CBWrap::lp_callback_wrapper, callback);
-  if (status)
-    return status;
-  status = CPXsetincumbentcallbackfunc(p, impl::cpx::CBWrap::incumbent_callback_wrapper, callback);
+
+  int context = CPX_CALLBACKCONTEXT_BRANCHING | CPX_CALLBACKCONTEXT_CANDIDATE | CPX_CALLBACKCONTEXT_GLOBAL_PROGRESS
+    | CPX_CALLBACKCONTEXT_LOCAL_PROGRESS | CPX_CALLBACKCONTEXT_RELAXATION | CPX_CALLBACKCONTEXT_THREAD_UP | CPX_CALLBACKCONTEXT_THREAD_DOWN;
+
+  int status = CPXcallbacksetfunc(getCPXENV(), getCPXLP(), context, impl::cpx::CBWrap::genericcallback, callback);
+
   if (status)
     return status;
 
-  status = CPXsetheuristiccallbackfunc(p, impl::cpx::CBWrap::heuristiccallbackfunc_wrapper, callback);
-  if (status)
-    return status;
-
-  return setMsgCallback(callback, p);
+  return setMsgCallback(callback, getCPXENV());
 }
 
 class MyCPLEXCallbackBridge : public CPLEXCallback {
@@ -185,7 +123,10 @@ public:
     cb_ = cb;
   }
   virtual int run() {
-    return cb_->run();
+    return ((CPLEXCallback*)cb_)->run();
+  }
+  virtual int run(int i=0) {
+    return ((CPLEXCallback*)cb_)->run(i);
   }
 };
 
@@ -217,6 +158,8 @@ void CPLEXModel::optimize() {
     status = CPXhybbaropt(env, model_, CPX_ALG_NONE);
   }
   resetVarMapInternal();
+  // This gets communicated to writeSol
+  status_ = status;
   // Print error message in case of error
   AMPLSCPXERRORCHECK("CPX**opt");
 }

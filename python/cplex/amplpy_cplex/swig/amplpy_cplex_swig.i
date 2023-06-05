@@ -8,7 +8,6 @@
  int get_int_param(int param) {
      return $self->getIntParam(param); }
 
-
  double get_double_param(int param) {
      return $self->getDoubleParam(param); }
 

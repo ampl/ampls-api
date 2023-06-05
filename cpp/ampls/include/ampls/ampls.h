@@ -703,7 +703,8 @@ public:
   }
 
   BaseCallback() :cutDebug_(false), cutDebugIntCoefficients_(false),
-    cutDebugPrintVarNames_(false), model_(NULL), where_(0) {}
+    cutDebugPrintVarNames_(false), model_(NULL), where_(0),
+  currentCapabilities_(0){}
   /** Function to override, called periodically by the optimizer*/
   virtual int run() = 0;
   /** Get the map AMPLEntityName -> SolverVarIndex*/

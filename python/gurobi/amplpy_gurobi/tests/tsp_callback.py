@@ -16,7 +16,7 @@ var2tuple = ampls.var2tuple
 tuple2var = ampls.tuple2var
 
 # Create model in AMPL
-ampl = tsp_model("data/tsp_40_1.txt", ENABLE_MTZ)
+ampl = tsp_model("D:\\Development\\ampl\\ampls-api\\python\\test\\data/tsp_40_1.txt", ENABLE_MTZ)
 # Export it to the solver
 m = ampl.to_ampls(SOLVER)
 # Display info
@@ -96,7 +96,7 @@ class my_callback(ampls.GenericCallback):
 
 cb = my_callback()
 m.setCallback(cb)
-
+if SOLVER=="cplex": m.set_option("threads", 1)
 m.optimize()
 obj = m.get_obj()
 nvars = m.get_num_vars()

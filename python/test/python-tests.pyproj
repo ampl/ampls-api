@@ -5,9 +5,9 @@
     <ProjectGuid>a2848927-8f72-426d-85b4-d2c1723408a2</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>test_options.py</StartupFile>
+    <StartupFile>tsp_callback.py</StartupFile>
     <SearchPath>..\test;..\..\build\bin;..\..\build\bin</SearchPath>
-    <WorkingDirectory>D:\Development\ampl\ampls-api\build\vs64\bin</WorkingDirectory>
+    <WorkingDirectory>D:\Development\ampl\ampls-api\build\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>python-tests</Name>
     <RootNamespace>tests</RootNamespace>
