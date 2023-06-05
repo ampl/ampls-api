@@ -16,16 +16,16 @@ var2tuple = ampls.var2tuple
 tuple2var = ampls.tuple2var
 
 # Create model in AMPL
-ampl = tsp_model("D:\\Development\\ampl\\ampls-api\\python\\test\\data/tsp_40_1.txt", ENABLE_MTZ)
+ampl = tsp_model('data/tsp_40_1.txt', ENABLE_MTZ)
 # Export it to the solver
 m = ampl.to_ampls(SOLVER)
 # Display info
-print("Model loaded, nvars=", m.get_num_vars())
+print('Model loaded, nvars=', m.get_num_vars())
 
 if ENABLE_CB_MIPSOL:  # needs lazy constraints
     m.enable_lazy_constraints()
 
-var_map = dict(m.getVarMapFiltered("x"))
+var_map = dict(m.getVarMapFiltered('x'))
 xvars = {index: var2tuple(var)[1:] for var, index in var_map.items()}
 vertices = list(
     sorted(set([x[0] for x in xvars.values()] + [x[1] for x in xvars.values()])))
@@ -39,7 +39,7 @@ class my_callback(ampls.GenericCallback):
         sol = self.get_solution_vector()
         nv = sum(abs(x) > 1e-5 for x in sol)
         if VERBOSE:
-            print("MIPSOL #{}, nnz={}".format(self.CALL_COUNT_MIPSOL, nv))
+            print('MIPSOL #{}, nnz={}'.format(self.CALL_COUNT_MIPSOL, nv))
 
         values = {xvars[i]: sol[i] for i in xvars if abs(sol[i]) > 1e-5}
         uf = UnionFind()
@@ -47,11 +47,11 @@ class my_callback(ampls.GenericCallback):
             uf.link(u, v)
         groups = uf.groups()
         if len(groups) == 1:
-            print("Valid solution!")
+            print('Valid solution!')
         else:
             for grp in groups:
-                if VERBOSE: print("> sub-tour: ", grp)
-                cutvarnames = [tuple2var("x", i, j) for i in grp for j in grp if i != j]
+                if VERBOSE: print('> sub-tour: ', grp)
+                cutvarnames = [tuple2var('x', i, j) for i in grp for j in grp if i != j]
                 coeffs = [1 for i in range(len(cutvarnames))]
                 self.add_lazy(cutvarnames, coeffs, ampls.CutDirection.LE, len(grp) - 1)
         return 0
@@ -59,7 +59,7 @@ class my_callback(ampls.GenericCallback):
     def mipnode(self):
         self.CALL_COUNT_MIPNODE += 1
         if VERBOSE:
-            print("MIPNODE #{}!".format(self.CALL_COUNT_MIPNODE))
+            print('MIPNODE #{}!'.format(self.CALL_COUNT_MIPNODE))
         if self.CALL_COUNT_MIPNODE >= 1000:
             return 1
         sol = self.get_solution_vector()
@@ -70,11 +70,11 @@ class my_callback(ampls.GenericCallback):
                 p1 = set(partition)
                 p2 = set(vertices) - p1
                 min_cut = sum(capacities.get((i, j), 0) for i in p1 for j in p2)
-                cutvarnames = [tuple2var("x", i, j) for i in p1 for j in p2]
+                cutvarnames = [tuple2var('x', i, j) for i in p1 for j in p2]
                 coeffs = [1 for i in range(len(cutvarnames))]
                 self.add_cut(cutvarnames, coeffs, ampls.CutDirection.GE, 1)
                 print(
-                    "> max-flow: {}, min-cut: {}, must be == 1".format(
+                    '> max-flow: {}, min-cut: {}, must be == 1'.format(
                         max_flow, min_cut
                     )
                 )
@@ -90,17 +90,19 @@ class my_callback(ampls.GenericCallback):
             else:
                 return 0
         except Exception as e:
-            print("Error:", e)
+            print('Error:', e)
             return 1
 
 
 cb = my_callback()
 m.setCallback(cb)
-if SOLVER=="cplex": m.set_option("threads", 1)
+# Implemeting multithreaded callbacks for CPLEX is more involving
+if SOLVER=='cplex': m.set_option('threads', 1)
+
 m.optimize()
 obj = m.get_obj()
 nvars = m.get_num_vars()
-print("Solved for {} variables, objective {}".format(nvars, obj))
+print('Solved for {} variables, objective {}'.format(nvars, obj))
 if m.get_status() == ampls.Status.OPTIMAL:
     ampl.import_solution(m)
-    ampl.display("total")
+    ampl.display('total')
