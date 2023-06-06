@@ -89,6 +89,10 @@ Variant  CoptCallback::getValue(Value::CBValue v) {
       getDouble(COPT_CBINFO_BESTBND));
   case Value::MIP_OBJBOUND:
     return getDouble(COPT_CBINFO_BESTBND);
+  case Value::N_COLS:
+    return model_->getNumVars();
+  case Value::N_ROWS:
+    return model_->getNumCons();
   default:
     throw AMPLSolverException("Specified value unknown.");
   }

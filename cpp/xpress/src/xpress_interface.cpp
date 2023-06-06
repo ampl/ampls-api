@@ -11,6 +11,8 @@ namespace impl {
 XPRESSCallback* XPRSCBWrap::setDefaultCB(XPRSprob prob, void* data,
   XPRESSWhere wherefrom, int capabilities)
 {
+
+
   XPRESSCallback* cb = static_cast<XPRESSCallback*>(data);
   cb->where_ = (int)wherefrom;
   cb->prob_ = prob;
@@ -42,7 +44,7 @@ void XPRS_CC XPRSCBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, i
     CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION | CanDo::ADD_LAZY_CONSTRAINT | CanDo::ADD_USER_CUT);
   cb->feas_ = *feas;
   cb->run();
-  *feas = cb->feas_;
+  *feas = 0;
 }
 void XPRS_CC XPRSCBWrap::preintsol_callback_wrapper(XPRSprob prob, void* object, int soltype, int* p_reject, double* p_cutoff)
 {

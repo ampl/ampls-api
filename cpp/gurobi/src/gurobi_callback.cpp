@@ -190,6 +190,12 @@ Variant  GurobiCallback::getValue(Value::CBValue v) {
       return get(GRB_CB_BARRIER_ITRCNT);
   case Value::RUNTIME:
     return get(GRB_CB_RUNTIME);
+  case Value::MIP_NODES:
+    return get(GRB_CB_MIPNODE_NODCNT);
+  case Value::N_COLS:
+    return model_->getNumVars();
+  case Value::N_ROWS:
+    return model_->getNumCons();
   default:
     throw AMPLSolverException("Specified value unknown.");
   }

@@ -85,6 +85,10 @@ Variant CPLEXCallback::getValue(Value::CBValue v) {
     case Value::MIP_RELATIVEGAP:
     return Variant(impl::calculateRelMIPGAP(getObj(),
       getCPLEXDouble(CPXCALLBACKINFO_BEST_BND)));
+    case Value::N_COLS:
+      return model_->getNumVars();
+    case Value::N_ROWS:
+      return model_->getNumCons();
   default: throw AMPLSolverException("Specified value unknown or unsupported");
   }
 }

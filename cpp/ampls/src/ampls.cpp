@@ -293,7 +293,7 @@ namespace impl {
     int status = doAddCut(c, type);
     if (status)
       throw ampls::AMPLSolverException::format("Error while adding cut!");
-    c.solverIndex(model_->getNumCons() - 1);
+    c.solverIndex(getValue(ampls::Value::CBValue::N_ROWS).dbl - 1);
     return c;
   }
 

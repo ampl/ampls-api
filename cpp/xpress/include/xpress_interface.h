@@ -353,10 +353,7 @@ public:
   }
 
   void enableLazyConstraints() {
-    
-    setParam(XPRS_PRESOLVE,0);
-    setParam(XPRS_MIPPRESOLVE, 0);
-    setParam(XPRS_SYMMETRY, 0); 
+    setParam(XPRS_PRESOLVE, 0);
     setParam(XPRS_MIPDUALREDUCTIONS, 0);
   };
 

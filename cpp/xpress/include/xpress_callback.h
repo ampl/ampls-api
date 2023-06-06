@@ -77,7 +77,8 @@ public:
   virtual int run() = 0;
   ~XPRESSCallback() {};
 
-  using BaseCallback::getSolutionVector;
+
+  std::vector<double> getSolutionVector();
   int getSolution(int len, double* sol);
   double getObj() {
     if (getInt(XPRS_ORIGINALMIPENTS) > 0)

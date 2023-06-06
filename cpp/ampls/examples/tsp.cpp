@@ -427,12 +427,14 @@ template <class T> std::pair<std::string, double> example() {
 
   auto model = ampls::AMPLAPIInterface::exportModel<T>(a);
 
+  #ifdef USE_cplex
   // Implementing parallel MIP callbacks with CPLEX is more involving,
   // see the CPLEX-specific examples:
   // cplex/genericbranch-cplex
   // cplex/genericbranch-ampls
   if (std::is_same<T, ampls::CPLEXModel>::value)
      model.setOption("threads", 1);
+  #endif
 
   obj = doStuff(model);
   return { model.driver(), obj };
@@ -442,18 +444,19 @@ int main(int argc, char** argv) {
   // Used to store the results
   std::map<std::string, double> res;
   double obj;
+  
 #ifdef USE_gurobi
   res.insert(example<ampls::GurobiModel>());
 #endif
-  /*
+  
 #ifdef USE_xpress
    res.insert(example<ampls::XPRESSModel>());
 #endif
-*/
+
 #ifdef USE_cplex
   res.insert(example<ampls::CPLEXModel>());
 #endif
-
+  
 #ifdef USE_copt
   res.insert(example<ampls::CoptModel>());
 #endif

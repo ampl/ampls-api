@@ -13,7 +13,7 @@ const char* XPRESSCallback::getMessage() {
 int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
   int res = 0;
   if (!preintsol_) {
-    int cutType = { 1 };
+    int cutType = 1;
     char sense = toXPRESSRowType[(int)c.sense()];
     int size = (int)c.indices().size();;
     std::vector<int> indices(size);
@@ -28,9 +28,9 @@ int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
       indices.data(), coeffs.data(), &rhs, &status);
 
     if (status >= 0) {
-      int mtype = 0, mstart[2];
-      mstart[0] = 0; mstart[1] = nnewcoffs;
-      XPRSaddcuts(prob_, 1, &mtype, &sense, &rhs, mstart, indices.data(), coeffs.data());
+      int mtype = 0, mstart[2] = { 0, nnewcoffs };
+      XPRSaddcuts(prob_,1, &cutType, &sense, &rhs, mstart, 
+        indices.data(), coeffs.data());
 
     }
   }
@@ -40,7 +40,7 @@ int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
 }
 
 int XPRESSCallback::getSolution(int len, double* sol) {
-  int nvars = model_->getNumVars();
+  int nvars = getInt(XPRS_COLS);
   if (len < nvars)
     throw AMPLSolverException::format("Must allocate an array of at least %d elements.", nvars);
   if (where_ == (int)impl::xpress::XPRESSWhere::prenode)
@@ -50,6 +50,21 @@ int XPRESSCallback::getSolution(int len, double* sol) {
     return XPRSgetlpsol(prob_, sol, NULL, NULL, NULL);
 
   throw ampls::AMPLSolverException("Cannot get the solution vector in this stage.");
+}
+
+
+std::vector<double> XPRESSCallback::getSolutionVector() {
+  int len = getInt(XPRS_COLS);
+  std::vector<double> res(len);
+  int s;
+  try {
+    s = getSolution(len, res.data());
+  }
+  catch (...)
+  {
+    return res;
+  }
+  return res;
 }
 
 using impl::xpress::XPRESSWhere;
@@ -120,6 +135,10 @@ Variant XPRESSCallback::getValue(Value::CBValue v) {
     return Variant(getDouble(XPRS_TIME));
   case Value::MIP_OBJBOUND:
     return Variant(getDouble(XPRS_BESTBOUND));
+  case Value::N_COLS:
+    return Variant(getInt(XPRS_ORIGINALCOLS));
+  case Value::N_ROWS:
+    return Variant(getInt(XPRS_ORIGINALROWS));
   }
   throw std::runtime_error("Not supported yet");
   return Variant(); // silence gcc warning

@@ -234,8 +234,11 @@ struct Value
     /** Current best bound on objective */
     MIP_OBJBOUND=8,
     /* Relaxed solution - only in MIP node */
-    MIP_SOL_RELAXED
-
+    MIP_SOL_RELAXED =9,
+    /* Number of rows in terms of the original problem */
+    N_ROWS = 10,
+    /* Number of columns in terms of the original problem */
+    N_COLS = 11
   };
 };
 
@@ -770,7 +773,7 @@ public:
 
   
   /** Get the current solution vector */
-  std::vector<double> getSolutionVector();
+  virtual std::vector<double> getSolutionVector();
   /** Get the current solution */
   virtual int getSolution(int len, double* sol) = 0;
   /** Get the current objective value */
@@ -894,10 +897,15 @@ protected:
   }
 
 public:
+
   /** Get the current solution vector   */
   int getSolution(int len, double *sol)
   {
     return impl_->getSolution(len, sol);
+  }
+  std::vector<double> getSolutionVector()
+  {
+    return impl_-> getSolutionVector();
   }
   std::vector<double>  getValueArray(Value::CBValue v)
   {
