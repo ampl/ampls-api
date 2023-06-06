@@ -32,6 +32,7 @@ class BranchCallback : public ampls::CPLEXCallback {
   CALLBACKDATA data_;
 
 public:
+  
   void init_callback_data(CPXENVptr env, CPXLPptr lp, int nthreads) {
     /* Read the column types into the data that we will pass into the callback. */
     data_.cols = model_->getNumVars();
@@ -45,8 +46,6 @@ public:
       data_.relx[t][0] = t;
     }
   }
-  ~BranchCallback() { destroy_callback_data(); }
-
   void destroy_callback_data() {
     if (data_.relx) {
       for (int t = 0; t < data_.nthreads; ++t)
@@ -55,8 +54,11 @@ public:
     }
     free(data_.ctype);
   }
+  ~BranchCallback() { destroy_callback_data(); }
 
+ 
 
+  // Thread-safe increment the specified field
   void increment(int& field) {
     std::lock_guard<std::mutex> lock(data_.mutex);
     field++;
@@ -65,7 +67,7 @@ public:
   int run(int threadid) {
     int status, lpstat;
     double obj;
-
+    
     if (this->getWhere(threadid) != CPX_CALLBACKCONTEXT_BRANCHING)
       return 0;
     increment(data_.calls);
@@ -158,10 +160,11 @@ public:
       }
     }
   }
-      
+    
+  // Single threaded invocation uses this function
+  // It is present for compatibility with the GenericCallback interface
   int run() { 
-    // for single threaded execution we could also define the "normal" execution
-    // point
+    
     return run(0);
   }
 
@@ -181,8 +184,6 @@ int main(int argc, char* argv[])
   
   BranchCallback cb;
   /* Register the callback function. */
-  // status = CPXcallbacksetfunc(env, lp, CPX_CALLBACKCONTEXT_BRANCHING,
-  // branchcallback, &data);*/
   cplexmodel.setCallback(&cb);
 
   // Set the number of threads here. Set it to 1 to have single-threaded
@@ -194,25 +195,23 @@ int main(int argc, char* argv[])
   // option threads, if specified
   int nthreads = cb.getMaxThreads();
   if(nthreads>1) cb.enableThreadsSupport(nthreads);
+
   /* Pass native structs to initialize data directly from the CPLEX object,
      reusing the logic of the original example */
   auto env = cplexmodel.getCPXENV();
   auto lp = cplexmodel.getCPXLP();
   cb.init_callback_data(env, lp, nthreads);
-  
 
-  int status;
-  double objval;
-  // status = CPXsetintparam(env, CPXPARAM_ScreenOutput, CPX_ON);
-  cplexmodel.setParam(CPXPARAM_ScreenOutput, CPX_ON);
-  
   /* Limit the number of nodes.
    * The branching strategy implemented here is not smart so solving even
    * a simple MIP may turn out to take a long time.
    */
-   // status = CPXsetintparam(env, CPXPARAM_MIP_Limits_Nodes, 1000);
   cplexmodel.setParam(CPXPARAM_MIP_Limits_Nodes, 1000);
-  
+  cplexmodel.setParam(CPXPARAM_ScreenOutput, CPX_ON);
+
+  int status;
+  double objval;
+
   /* Solve the model. */
   status = CPXmipopt(env, lp);
 

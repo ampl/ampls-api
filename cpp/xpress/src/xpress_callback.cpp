@@ -11,7 +11,6 @@ const char* XPRESSCallback::getMessage() {
 }
 
 int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
-  int res = 0;
   if (!preintsol_) {
     int cutType = 1;
     char sense = toXPRESSRowType[(int)c.sense()];
@@ -21,7 +20,6 @@ int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
     int nnewcoffs;
     double rhs;
     int status;
-    // TODO: Num cols
     int max = size;
     XPRSpresolverow(prob_, sense, size,
       c.indices().data(), c.coeffs().data(), c.rhs(), max, &nnewcoffs,
@@ -29,14 +27,14 @@ int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
 
     if (status >= 0) {
       int mtype = 0, mstart[2] = { 0, nnewcoffs };
-      XPRSaddcuts(prob_,1, &cutType, &sense, &rhs, mstart, 
+      int status = XPRSaddcuts(prob_, 1, &cutType, &sense, &rhs, mstart,
         indices.data(), coeffs.data());
 
     }
   }
-  if (res == 0)
+  else // Here if we're trying to add a cut in preintsol. 
     feas_ = 1;
-  return res;
+  return 0;
 }
 
 int XPRESSCallback::getSolution(int len, double* sol) {

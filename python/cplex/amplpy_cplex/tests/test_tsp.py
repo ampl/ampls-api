@@ -14,7 +14,7 @@ SOLVER = "cplex"
 var2tuple = ampls.var2tuple
 tuple2var = ampls.tuple2var
 
-VERBOSE = False
+VERBOSE = True
 ENABLE_MTZ = False
 
 ENABLE_CB_MIPNODE = True
@@ -88,8 +88,10 @@ class my_callback(ampls.GenericCallback):
 
     def run(self):
         try:
-            if ENABLE_CB_MIPSOL and self.get_ampl_where() == ampls.Where.MIPSOL:
-                return self.mipsol()
+          
+            if ENABLE_CB_MIPSOL and self.get_ampl_where()== ampls.Where.MIPSOL:
+                if self.can_do(ampls.CanDo.ADD_LAZY_CONSTRAINT):
+                    return self.mipsol()
             elif ENABLE_CB_MIPNODE and self.get_ampl_where() == ampls.Where.MIPNODE:
                 return self.mipnode()
             else:

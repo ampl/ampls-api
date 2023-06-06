@@ -291,9 +291,9 @@ namespace impl {
     if (cutDebug_)
       printCut(c, cutDebugIntCoefficients_, cutDebugPrintVarNames_);
     int status = doAddCut(c, type);
-    if (status)
+    if (status) 
       throw ampls::AMPLSolverException::format("Error while adding cut!");
-    c.solverIndex(getValue(ampls::Value::CBValue::N_ROWS).dbl - 1);
+    c.solverIndex(getValue(ampls::Value::CBValue::N_ROWS).integer - 1);
     return c;
   }
 

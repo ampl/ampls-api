@@ -282,15 +282,27 @@ AMPLModel.getAMPLAttribute=__get_ampl_attribute
 
 
 def _do_get_value(self, what):
-    v = self._getValue(__e_to_v(what))
+    v = self.getValue(__e_to_v(what))
     return __var_to_v(v)
 
-BaseCallback._getValue=BaseCallback.getValue
-GenericCallback._getValue=GenericCallback.getValue
-GenericCallback.getValue=_do_get_value
-GenericCallback.get_value=_do_get_value
+# Note: do not override getValue, as it is 
+# also called from the cpp routines
+#BaseCallback._getValue=BaseCallback.getValue
+#GenericCallback._getValue=GenericCallback.getValue
+#GenericCallback.getValue=_do_get_value
+#GenericCallback.get_value=_do_get_value
 BaseCallback.getValue=_do_get_value
 BaseCallback.get_value=_do_get_value
+
+def _do_can_do(self, func):
+  return self._canDo(__e_to_v(func))
+
+BaseCallback._canDo=BaseCallback.canDo
+GenericCallback._canDo=GenericCallback.canDo
+BaseCallback.canDo=_do_can_do
+GenericCallback.canDo=_do_can_do
+BaseCallback.can_do=_do_can_do
+GenericCallback.can_do=_do_can_do
 
 BaseCallback._getAMPLWhere=BaseCallback.getAMPLWhere
 BaseCallback.get_ampl_where=lambda self : Where(self._getAMPLWhere())

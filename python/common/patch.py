@@ -5,7 +5,8 @@ from amplpy import AMPL
 def set_callback(self, cb):
     def run(self):
         try:
-            return self._run()
+            res=self._run()
+            return res if res is not None else 0
         except Exception as e:
             print("Error:", e)
             return 0

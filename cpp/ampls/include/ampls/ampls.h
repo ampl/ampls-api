@@ -947,7 +947,7 @@ public:
   {
     return impl_->getValue(v);
   }
-  virtual bool canDo(CanDo::Functionality f) {
+  bool canDo(CanDo::Functionality f) {
     return impl_->canDo(f);
   }
 
