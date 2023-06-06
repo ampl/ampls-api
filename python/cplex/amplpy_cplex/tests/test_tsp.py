@@ -89,9 +89,8 @@ class my_callback(ampls.GenericCallback):
     def run(self):
         try:
           
-            if ENABLE_CB_MIPSOL and self.get_ampl_where()== ampls.Where.MIPSOL:
-                if self.can_do(ampls.CanDo.ADD_LAZY_CONSTRAINT):
-                    return self.mipsol()
+            if ENABLE_CB_MIPSOL and self.get_ampl_where()== ampls.Where.MIPSOL and self.can_do(ampls.CanDo.ADD_LAZY_CONSTRAINT):
+                return self.mipsol()
             elif ENABLE_CB_MIPNODE and self.get_ampl_where() == ampls.Where.MIPNODE:
                 return self.mipnode()
             else:

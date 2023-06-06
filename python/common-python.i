@@ -36,8 +36,6 @@
   free($2);
 }
 
-
-
 // Pass python list as double array
 %typemap(in) const double* {
   /* Check if is a list  */
@@ -101,9 +99,6 @@
   free($1);
 }
 
-
-
-
 %include <stdint.i>
 
 %typemap(in, numinputs = 0, noblock = 1) int* len {
@@ -136,7 +131,6 @@
   }
 }
 
-
 // The following are useful to return python dictionaries when not using the -builtin switch
 %pythonappend ampls::AMPLModel::getSolutionDict() %{return val.asdict()%}
 %pythonappend ampls::impl::BaseCallback::getSolutionDict() %{return val.asdict()%}
@@ -144,3 +138,4 @@
 %ignore "getVarMapInverse";
 %ignore "getVarMapFiltered";
 
+%include "../../../exceptions-python.i"

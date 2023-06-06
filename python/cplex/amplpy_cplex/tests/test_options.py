@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from ast import Try
 import unittest
 import os
 import sys
@@ -25,9 +26,14 @@ class TestOptions(TestBase):
 
     def test_get_and_set_options(self):
         ampl = TestOptions.create_model()
+
         # Set converter option at load time
         model = ampl.to_ampls(SOLVER, ["cvt:pre:all=1"])
         assert 1==model.get_int_option("cvt:pre:all")
+
+        # Try setting a wrong option
+        with self.assertRaises(ampls.AMPLSolverException):
+            model.set_option("wrongname", 0)
 
         # Set converter option at load time
         model = ampl.to_ampls(SOLVER, ["cvt:pre:all=0"])
@@ -59,7 +65,7 @@ class TestOptions(TestBase):
             print(o)
 
         # Try setting converter option after to_ampls will fail
-        with self.assertRaises(RuntimeError):
+        with self.assertRaises(ampls.AMPLSolverException):
             model.set_option("cvt:pre:all", 0)
 
 

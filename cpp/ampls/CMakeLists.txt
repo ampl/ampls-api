@@ -30,6 +30,8 @@ target_link_libraries(ampls ${LINKLIBS})
 target_compile_features(ampls PUBLIC cxx_std_11)
 add_to_folder(ampls ampls)
 
+target_sources(ampls PRIVATE ${CMAKE_SOURCE_DIR}/changes.md)
+
 # Check which libraries are being built and add only the relevant
 # examples and link libs
 set(PREPROCESSORDEFS "")

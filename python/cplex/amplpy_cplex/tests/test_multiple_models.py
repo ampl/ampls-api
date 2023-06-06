@@ -70,7 +70,7 @@ def solve_model(ampl, options={}, use_native_call=False):
             model.set_option(o, v)  # Set options from
             # ampl driver (see https://dev.ampl.com/solvers/gurobi/options.html)
             # Most of them will work the same way across solvers
-        except Exception as e:
+        except ampls.AMPLSolverException as e:
             print(f"Exception while setting {o}: {str(e)}")
 
     if SOLVER == "gurobi":
@@ -158,7 +158,7 @@ class TestMultipleModels(TestBase):
             # and does not export the model. Throws an explainatory runtime error
             create_and_solve_infeasible_model(10)
             pass
-        except RuntimeError as e:
+        except ampls.AMPLSolverException as e:
             print(e)
         # Turning off presolve makes ampl actually export the model
         # In the fucntion we'll set some options to find the source of the infeasibility
