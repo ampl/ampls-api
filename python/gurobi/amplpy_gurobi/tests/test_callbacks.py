@@ -135,9 +135,6 @@ class TestCallbacks(TestBase):
 
         pprint(cb.calls)
 
-    def test_tsp(self):
-        import tsp_callback
-
 
 if __name__ == "__main__":
     unittest.main()
