@@ -5,7 +5,7 @@
     <ProjectGuid>a2848927-8f72-426d-85b4-d2c1723408a2</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>tsp_callback.py</StartupFile>
+    <StartupFile>__main__.py</StartupFile>
     <SearchPath>..\test;..\..\build\bin;..\..\build\bin</SearchPath>
     <WorkingDirectory>D:\Development\ampl\ampls-api\build\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -32,7 +32,7 @@
     <Compile Include="test_multiple_solutions.py" />
     <Compile Include="test_multiple_models.py" />
     <Compile Include="test_options.py" />
-    <Compile Include="tsp_callback.py" />
+    <Compile Include="test_tsp.py" />
     <Compile Include="tsp_helpers.py" />
     <Compile Include="__init__.py" />
     <Compile Include="__main__.py" />
