@@ -9,6 +9,7 @@ from test_callbacks import TestCallbacks
 from test_multiple_models import TestMultipleModels
 from test_multiple_solutions import TestMultipleSolutions
 from test_options import TestOptions
+from test_tsp import Test_Tsp
 
 if __name__ == "__main__":
     from amplpy import modules
