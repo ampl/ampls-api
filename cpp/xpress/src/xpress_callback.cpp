@@ -152,6 +152,7 @@ std::vector<double> XPRESSCallback::getValueArray(Value::CBValue v) {
     case Value::MIP_SOL_RELAXED:
         return getSolutionVector();
   }
+  throw std::runtime_error("Not supported yet");
 }
 
 } // 

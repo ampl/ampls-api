@@ -32,7 +32,7 @@ namespace ampls
       extern "C" {
         // Imported from the copt driver library
         ENTRYPOINT void AMPLSClose_copt(void* slv);
-        ENTRYPOINT copt_prob* AMPLSGetModel_copt(void* slv);
+        ENTRYPOINT void* AMPLSGetModel_copt(void* slv);
         ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_copt(int, char**);
       }
       // Forward declarations
@@ -97,7 +97,7 @@ class CoptModel : public AMPLMPModel {
   CoptModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile, 
     const char** options) : AMPLMPModel(s, nlfile, options),
     lastErrorCode_(0) {
-    COPTModel_ = impl::copt::AMPLSGetModel_copt(s);
+    COPTModel_ = (copt_prob*)impl::copt::AMPLSGetModel_copt(s);
   }
   // Interface implementation
   int setCallbackDerived(impl::BaseCallback* callback);

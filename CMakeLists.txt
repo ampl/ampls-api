@@ -321,6 +321,8 @@ function(AddSolverStub solver targetbase libname)
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python-extensions.i
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
+                                                      ${CMAKE_CURRENT_SOURCE_DIR}/csharp/common-csharp.i
+                                                      ${CMAKE_CURRENT_SOURCE_DIR}/csharp/exceptions-csharp.i
                                                       )
           add_to_folder(${targetbase}/swig ${solver}-common)
           add_subdirectory(${DIR_PYTHON})

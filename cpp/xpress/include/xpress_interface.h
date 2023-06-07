@@ -33,7 +33,7 @@ namespace ampls
     extern "C" {
       // Imported from the xpress driver
       ENTRYPOINT void AMPLSClose_xpress(void* slv);
-      ENTRYPOINT XPRSprob AMPLSGetModel_xpress(void* slv);
+      ENTRYPOINT void* AMPLSGetModel_xpress(void* slv);
       ENTRYPOINT void* AMPLSOpen_xpress(int, char**);
     }
     
@@ -146,7 +146,7 @@ class XPRESSModel : public AMPLMPModel {
   XPRESSModel() : AMPLMPModel(),
     prob_(NULL) {}
   XPRESSModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile, const char** options) : AMPLMPModel(s,nlfile, options) {
-    prob_ = impl::xpress::AMPLSGetModel_xpress(s);
+    prob_ = static_cast<XPRSprob>(impl::xpress::AMPLSGetModel_xpress(s));
   }
 
   int setCallbackDerived(impl::BaseCallback* callback);

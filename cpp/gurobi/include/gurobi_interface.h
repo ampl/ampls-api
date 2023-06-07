@@ -32,7 +32,7 @@ namespace ampls
       extern "C" {
         // Imported from the gurobi driver library
         ENTRYPOINT void AMPLSClose_gurobi(void* slv);
-        ENTRYPOINT GRBmodel* AMPLSGetModel_gurobi(void* slv);
+        ENTRYPOINT void* AMPLSGetModel_gurobi(void* slv);
         ENTRYPOINT void* AMPLSOpen_gurobi(int, char**);
       }
       // Forward declarations
@@ -97,7 +97,7 @@ class GurobiModel : public AMPLMPModel {
   GurobiModel() : AMPLMPModel(), GRBModel_(NULL), lastErrorCode_(0) {}
   GurobiModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile, const char** opt) : AMPLMPModel(s, nlfile, opt),
     lastErrorCode_(0) {
-    GRBModel_ = impl::grb::AMPLSGetModel_gurobi(s);
+    GRBModel_ =(GRBmodel*) impl::grb::AMPLSGetModel_gurobi(s);
   }
   // Interface implementation
   int setCallbackDerived(impl::BaseCallback* callback);
