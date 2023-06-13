@@ -11,7 +11,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 
 set(AMPLS_BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-option(BUILD_SWIG_WRAPPERS "Build swig wrappers" ON)
+option(BUILD_SWIG_WRAPPERS "Build swig wrappers" OFF)
 option(BUILD_AMPLS_DOC "Build AMPLS documentation" OFF)
 option(BUILD_AMPLS_TESTS "Build cpp tests" OFF)
 
@@ -30,6 +30,7 @@ defSolver(cplex cplex cplexmp)
 defSolver(xpress xpress xpress)
 defSolver(cbcmp cbc cbcmp)
 defSolver(copt copt copt)
+defSolver(scip scip scip)
 
 set(BUILD_AMPLS "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
 
@@ -126,6 +127,7 @@ else()
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex)
   set(copt_BASE_DIR ${SOLVERLIBS}/copt)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress)
+  set(scip_BASE_DIR ${SOLVERLIBS}/scip)
 endif()
 
 function(CreateSolverLib name includedirs lib)
@@ -190,6 +192,10 @@ if(WIN32)
       ${xpress_BASE_DIR}/${sys}/xprs.dll
       IMPORTLIB ${xpress_BASE_DIR}/${sys}/xprs.lib)
 
+    CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
+      ${scip_BASE_DIR}/${sys}/libscip.dll
+      IMPORTLIB ${scip_BASE_DIR}/${sys}/libscip.lib)
+
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/win64) # AMPL base driver library locations
 elseif(APPLE)
     set(sys "lib/osx64")
@@ -204,6 +210,9 @@ elseif(APPLE)
     
    CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
       ${xpress_BASE_DIR}/${sys}/libxprs.dylib)
+
+    CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
+      ${scip_BASE_DIR}/${sys}/libscip.dylib)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/osx64) # AMPL base driver library locations
 else()
@@ -220,6 +229,9 @@ else()
     CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
       ${xpress_BASE_DIR}/${sys}/libxprs.so.41)
 
+    CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
+      ${scip_BASE_DIR}/${sys}/libscip.so)
+
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()
 
@@ -228,6 +240,7 @@ set(cplex-solver-deps cplex-solverlib)
 set(copt-solver-deps copt-solverlib)
 set(xpress-solver-deps xpress-solverlib)
 set(cbc-solver-deps Coin::CbcSolver)
+set(scip-solver-deps scip-solverlib)
 
  # Get rid of warning in newer versions of cmake
 macro(ADD_SWIG_LIBRARY name language)

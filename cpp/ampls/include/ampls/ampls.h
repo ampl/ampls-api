@@ -1620,6 +1620,14 @@ namespace ampls {
         return xpress.loadModel("___modelexport___.nl", options);
       }
 #endif
+
+#ifdef USE_scip
+      template<> inline SCIPModel exportModel<SCIPModel>(ampl::AMPL& a, const char** options) {
+        doExport(a);
+        SCIPDrv scip;
+        return scip.loadModel("___modelexport___.nl", options);
+      }
+#endif
     } // namespace impl
     /// <summary>
     /// Export model from the AMPLAPI instance using the specified options
