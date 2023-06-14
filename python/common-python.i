@@ -1,3 +1,12 @@
+// Add the following for windows, otherwise it tries to link
+// to python debug libraries (not always available)
+%begin %{
+#ifdef _MSC_VER
+#define SWIG_PYTHON_INTERPRETER_NO_DEBUG
+#endif
+%}
+
+
 %include "carrays.i"
 %include <std_string.i>
 %array_class(double, dblArray);

@@ -92,7 +92,7 @@ namespace gurobisharp_test
 
                 GCB gcb = new GCB();
                 m.setCallback(gcb);
-                double obj = m.optimize();
+                m.optimize();
                 Console.WriteLine("Solution with CPLEX={0}", m.getObj());
                 double[] sol = new double[nvars];
                 m.getSolution(0, nvars, sol);

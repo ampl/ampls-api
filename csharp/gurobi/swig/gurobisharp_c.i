@@ -10,7 +10,9 @@ CSHARP_ARRAYS(const int, int)
 %apply double OUTPUT[]{ double* sol }
 %apply double INPUT[]{ const double* coeffs }
 %apply int INPUT[]{ const int* vars }
-  
+
+
+%include "../../common-csharp.i"
 %include "../../../cpp/ampls/swig/ampls-common.i"
 %include "../../../cpp/gurobi/swig/gurobi-common.i"
 

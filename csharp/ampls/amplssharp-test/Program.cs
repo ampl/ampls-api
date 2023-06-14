@@ -53,7 +53,7 @@ namespace amplsharp_test
             int nvars = m.getNumVars();
             GCB gcb = new GCB();
             m.setCallback(gcb);
-            double obj = m.optimize();
+            m.optimize();
             var sol = m.getSolutionVector().Where(a => a != 0).ToList();
             Console.WriteLine($"Status: {m.getStatus().ToString()}");
             Console.WriteLine($"Solution of {m.GetType().Name}={m.getObj()}, nnz={sol.Count()}");
