@@ -156,7 +156,7 @@ class XPRESSModel : public AMPLMPModel {
   std::map<int, int> parametersMap = {
      {SolverParams::INT_SolutionLimit , XPRS_MAXMIPSOL},
      {SolverParams::DBL_MIPGap , XPRS_MIPRELSTOP},
-     {SolverParams::DBL_TimeLimit , XPRS_MAXTIME},
+     {SolverParams::DBL_TimeLimit , XPRS_TIMELIMIT},
      {SolverParams::INT_LP_Algorithm , XPRS_ALGORITHM}
   };
   const int LPalgorithmMap[4] = { -1, 3, 2, 4 };
