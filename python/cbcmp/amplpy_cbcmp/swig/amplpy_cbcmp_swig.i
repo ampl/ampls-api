@@ -5,4 +5,6 @@
 %include "../../../../cpp/cbcmp/swig/cbcmp-common.i"
 
 %include "../../../common-python-extensions.i"
+%include "../../../common-python-overrides.i"
+
 

@@ -92,6 +92,10 @@ def solve_model(ampl, options={}, use_native_call=False):
         # Fully native
         ampls.XPRSsetintcontrol(model.get_xprs_prob(), ampls.XPRS_THREADS, 4)
 
+    # Also some control parameters (~options) are wrapped at ampls level:
+    model.set_ampl_parameter(ampls.SolverParams.DBL_TimeLimit, 5.0)
+    assert 5==model.get_ampl_parameter(ampls.SolverParams.DBL_TimeLimit)
+
     # The same applies to any function; the two statements below are therefore equivalent,
     # the first uses the (generic) function call, the latter uses the Gurobi C API directly:
     if use_native_call:

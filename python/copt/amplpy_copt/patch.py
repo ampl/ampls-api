@@ -1,114 +1,128 @@
 import types
+from amplpy import AMPL
 
-def setCallback(self, cb):
+
+def set_callback(self, cb):
     def run(self):
         try:
-            return self._run()
+            res=self._run()
+            return res if res is not None else 0
         except Exception as e:
-            print('Error:', e)
+            print("Error:", e)
             return 0
 
     cb._run = cb.run
     cb.run = types.MethodType(run, cb)
     super(type(cb), cb).__init__()
-    self._setCallback(cb)
+    self._set_callback(cb)
 
-def _do_export(self, drv):
+
+def _do_export(self, drv, options=None):
     import tempfile
     import shutil
     import os
+
     tmp = tempfile.mkdtemp()
-    fname = os.path.join(tmp, 'model').replace('"', '""')
+    fname = os.path.join(tmp, "model").replace('"', '""')
     try:
-        self.option['auxfiles'] = 'cr'
+        self.option["auxfiles"] = "cr"
         self.eval(f'write "g{fname}";')
-        model = drv.loadModel(f'{fname}.nl')
-        model._solfile = f'{fname}.sol'
-        os.remove(f'{fname}.nl')
-        model._setCallback = model.setCallback
-        model.setCallback = types.MethodType(setCallback, model)
+        model = drv.loadModel(f"{fname}.nl", options)
+        model._solfile = f"{fname}.sol"
+        os.remove(f"{fname}.nl")
+        model._set_callback = model.set_callback
+        model.set_callback = types.MethodType(set_callback, model)
+        model.setCallback = types.MethodType(set_callback, model)
         return model
     except:
         shutil.rmtree(tmp)
         raise
 
-if __package__ == 'amplpy_copt':
+
+if __package__ == "amplpy_copt":
     from amplpy_copt_swig import *
+
     COPT_DRIVER = COPTDrv()
-    def exportCoptModel(self):
+
+    def export_copt_model(self, options=None):
         global COPT_DRIVER
-        return _do_export(self, COPT_DRIVER)
+        return _do_export(self, COPT_DRIVER, options)
 
     try:
-        from amplpy import AMPL
-        AMPL.export_copt_model = exportCoptModel
+        AMPL.export_copt_model = export_copt_model
+        AMPL.exportCoptModel = export_copt_model
     except:
         pass
 
 
-if __package__ == 'amplpy_cplex':
+if __package__ == "amplpy_cplex":
     from amplpy_cplex_swig import *
+
     CPLEX_DRIVER = CPLEXDrv()
-    def exportCplexModel(self):
+
+    def export_cplex_model(self, options=None):
         global CPLEX_DRIVER
-        return _do_export(self, CPLEX_DRIVER)
+        return _do_export(self, CPLEX_DRIVER, options)
 
     try:
-        from amplpy import AMPL
-        AMPL.export_cplex_model = exportCplexModel
+        AMPL.export_cplex_model = export_cplex_model
+        AMPL.exportCplexModel = export_cplex_model
     except:
         pass
 
 
-if __package__ == 'amplpy_gurobi':
+if __package__ == "amplpy_gurobi":
     from amplpy_gurobi_swig import *
+
     GUROBI_DRIVER = GurobiDrv()
 
-    def exportGurobiModel(self):
+    def export_gurobi_model(self, options=None):
         global GUROBI_DRIVER
-        return _do_export(self, GUROBI_DRIVER)
+        return _do_export(self, GUROBI_DRIVER, options)
 
     try:
-        from amplpy import AMPL
-        AMPL.export_gurobi_model = exportGurobiModel
+        AMPL.export_gurobi_model = export_gurobi_model
+        AMPL.exportGurobiModel = export_gurobi_model
     except:
         pass
 
 
-if __package__ == 'amplpy_xpress':
+if __package__ == "amplpy_xpress":
     from amplpy_xpress_swig import *
+
     XPRESS_DRIVER = XPRESSDrv()
 
-    def exportXpressModel(self):
+    def export_xpress_model(self, options=None):
         global XPRESS_DRIVER
-        return _do_export(self, XPRESS_DRIVER)
+        return _do_export(self, XPRESS_DRIVER, options)
 
     try:
-        from amplpy import AMPL
-        AMPL.export_xpress_model = exportXpressModel
+        AMPL.export_xpress_model = export_xpress_model
+        AMPL.exportXpressModel = export_xpress_model
     except:
         pass
 
 
-def exportModel(self, driver):
-    if driver == 'gurobi':
-        return self.export_gurobi_model()
-    elif driver == 'cplex':
-        return self.export_cplex_model()
-    elif driver == 'copt':
-        return self.export_copt_model()
-    elif driver == 'xpress':
-        return self.export_xpress_model()
-    solverList= "copt, cplex, gurobi, xpress"
-    raise ValueError("{} is not supported, please choose from: {solverList}")
+def to_ampls(self, driver, options=None):
+    if driver == "gurobi":
+        return self.export_gurobi_model(options)
+    elif driver == "cplex":
+        return self.export_cplex_model(options)
+    elif driver == "copt":
+        return self.export_copt_model(options)
+    elif driver == "xpress":
+        return self.export_xpress_model(options)
+    solver_list = "copt, cplex, gurobi, xpress"
+    raise ValueError(f"{driver} is not supported, please choose from: {solver_list}")
 
 
-def importSolution(self, model, number = None):
+def import_solution(self, model, number=None):
     if isinstance(model, dict):
-        self.eval(''.join(
-            'let {} := {};'.format(name, value)
-            for name, value in model.items()
-        ))
+        self.eval(
+            "".join(
+                "let {} := {};".format(name, value) for name, value in model.items()
+            )
+        )
         return
     if isinstance(model, str):
         if number is None:
@@ -118,16 +132,21 @@ def importSolution(self, model, number = None):
         return
 
     import os
-    model.writeSol()
+
+    model.write_sol()
     self.eval(f'solution "{model._solfile}";')
     os.remove(model._solfile)
 
+
 try:
     from amplpy import AMPL
-    AMPL.to_ampls = exportModel
-    AMPL.import_solution = importSolution
+
+    AMPL.to_ampls = to_ampls
+    AMPL.import_solution = import_solution
+    AMPL.importSolution = import_solution
 except:
     pass
+
 
 def tuple2var(varname, *args):
     def val(index):
@@ -135,21 +154,22 @@ def tuple2var(varname, *args):
             _ = float(index)
             return str(index)
         except ValueError:
-            return '\'{}\''.format(index)
+            return "'{}'".format(index)
+
     if len(args) == 0:
         return varname
-    return '{}[{}]'.format(varname, ','.join(val(x) for x in args))
+    return "{}[{}]".format(varname, ",".join(val(x) for x in args))
 
 
 def var2tuple(varname):
-    indices = varname[varname.find('[')+1: -1].split(',')
+    indices = varname[varname.find("[") + 1 : -1].split(",")
     for i in range(len(indices)):
-        indices[i] = indices[i].strip(' ')
-        if indices[i][0] in ('\'', '\"'):
+        indices[i] = indices[i].strip(" ")
+        if indices[i][0] in ("'", '"'):
             indices[i] = indices[i][1:-1]
         else:
             try:
                 indices[i] = int(indices[i])
             except:
                 pass
-    return tuple([varname[:varname.find('[')]] + indices)
+    return tuple([varname[: varname.find("[")]] + indices)

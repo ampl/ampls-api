@@ -107,6 +107,8 @@ class TestCallbacks(TestBase):
         cb = ProgressCallback()
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
         model = ampl.to_ampls(SOLVER)
+        cb.model=model
+        #model.setAMPLParameter(ampls.SolverParams.DBL_MIPGap, 0.1)
         if SOLVER == "cplex": model.set_option("threads", 1)
         model.setCallback(cb)
         model.optimize()
@@ -115,7 +117,6 @@ class TestCallbacks(TestBase):
         ampl.importSolution(model)
         ampl_obj = ampl.getCurrentObjective().value()
         self.assertAlmostEqual(376.96, ampl_obj, delta=0.01)
-
         pprint(cb.calls)
 
     def test_progress_callback_snake_case(self):
@@ -124,6 +125,7 @@ class TestCallbacks(TestBase):
         cb = ProgressCallbackSnakeCase()
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
         model = ampl.to_ampls(SOLVER)
+        cb.model=model
         if SOLVER == "cplex": model.set_option("threads", 1)
         model.set_callback(cb)
         model.optimize()

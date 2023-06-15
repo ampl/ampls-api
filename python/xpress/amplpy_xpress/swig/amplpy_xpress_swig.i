@@ -29,3 +29,6 @@
 
 %include "../../../../cpp/xpress/swig/xpress-common.i"
 %include "../../../common-python-extensions.i"
+%include "../../../common-python-overrides.i"
+
+%include "xpress-python-overrides.i"

@@ -9,6 +9,7 @@ Here **[Breaking]** means the change that may break valid user code, **[Fix]** -
   is not disabled by default but implementation needs extra care. 
 * **[Breaking]** Solver and solver driver related errors in Python are now thrown as 
   ampls.AMPLSolverException
+* **[Fix]** Fixed python wrappers for AMPLModel.*etAMPLParameter and AMPLModel.getStatus
 
 ## 0.1.2 - 2023-06-02
 

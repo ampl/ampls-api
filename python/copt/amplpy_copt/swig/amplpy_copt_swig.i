@@ -5,4 +5,9 @@
 %include "../../../../cpp/copt/swig/copt-common.i"
 
 %include "../../../common-python-extensions.i"
+%include "../../../common-python-overrides.i"
+
+%include "copt-python-overrides.i"
+
+
 

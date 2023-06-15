@@ -3,9 +3,15 @@ set -ex
 cd "`dirname "$0"`"
 
 version=$1
-solvers=("cplex" "gurobi" "xpress")
-for SOLVER in "${solvers[@]}"; do
+solvers=("cplex" "gurobi" "xpress" "copt")
+modelclasses=("CPLEXModel" "GurobiModel" "XPRESSModel" "CoptModel") 
+
+for index in "${!solvers[@]}"; do
+    SOLVER=${solvers[index]}
+    MODEL_CLASS=${modelclasses[index]}
     cp common/* "$SOLVER/amplpy_$SOLVER/"
+    cp common-python-overrides.i "$SOLVER/amplpy_$SOLVER/swig/$SOLVER-python-overrides.i"
+    sed -i~ "s/AMPLModel\./$MODEL_CLASS./g" "$SOLVER/amplpy_$SOLVER/swig/$SOLVER-python-overrides.i"
     TESTS_DIR="$PWD/$SOLVER/amplpy_$SOLVER/tests/"
     rm -rf $TESTS_DIR/*
     cp test/*.py $TESTS_DIR

@@ -251,39 +251,22 @@ def __var_to_v(v):
         return v.dbl
     raise RuntimeError("Should not happen")
 
-def __get_ampl_parameter(self, param):
-    if param.name.startswith('DBL'):
-        return self.getAMPLDoubleParameter(__e_to_v(param))
-    v = self.getAMPLIntParameter(__e_to_v(param))
-    if param == SolverParams.INT_LP_Algorithm:
-        return LPAlgorithms(v)
-    return v
-
-def __get_ampl_attribute(self, param):
-    if param.name.startswith('DBL'):
-        return self.getAMPLDoubleAttribute(__e_to_v(param))
-    return self.getAMPLIntAttribute(__e_to_v(param))
-
-
-
-AMPLModel._getStatus=AMPLModel.getStatus
-AMPLModel.getStatus=lambda self : Status(self._getStatus())
-AMPLModel.get_status=lambda self : Status(self._getStatus())
-
-AMPLModel._setAMPLParameter=AMPLModel.setAMPLParameter
-AMPLModel.set_ampl_parameter=lambda self,what,value : self._setAMPLParameter(what.value, __e_to_v(value))
-AMPLModel.setAMPLParameter=lambda self,what,value : self._setAMPLParameter(what.value, __e_to_v(value))
-
-AMPLModel.getAMPLParameter=__get_ampl_parameter
-AMPLModel.get_ampl_parameter=__get_ampl_parameter
-
-AMPLModel.get_ampl_attribute=__get_ampl_attribute
-AMPLModel.getAMPLAttribute=__get_ampl_attribute
-
 
 def _do_get_value(self, what):
     v = self.getValue(__e_to_v(what))
     return __var_to_v(v)
+
+def _do_can_do(self, func):
+  return self._canDo(__e_to_v(func))
+
+def addCut(self, vars, coeffs, direction, rhs):
+    return self._addCut(vars, coeffs, __e_to_v(direction), rhs)
+def addLazy(self, vars, coeffs, direction, rhs):
+    return self._addLazy(vars, coeffs, __e_to_v(direction), rhs)
+def addCutIndices(self, nvars, coeffs, direction, rhs):
+    return self._addCutIndices(nvars, coeffs, __e_to_v(direction), rhs)
+def addLazyIndices(self, nvars, coeffs, direction, rhs):
+    return self._addLazyIndices(nvars, coeffs, __e_to_v(direction), rhs)
 
 # Note: do not override getValue, as it is 
 # also called from the cpp routines
@@ -293,9 +276,6 @@ def _do_get_value(self, what):
 #GenericCallback.get_value=_do_get_value
 BaseCallback.getValue=_do_get_value
 BaseCallback.get_value=_do_get_value
-
-def _do_can_do(self, func):
-  return self._canDo(__e_to_v(func))
 
 BaseCallback._canDo=BaseCallback.canDo
 GenericCallback._canDo=GenericCallback.canDo
@@ -312,14 +292,6 @@ GenericCallback._getAMPLWhere=GenericCallback.getAMPLWhere
 GenericCallback.get_ampl_where=lambda self : Where(self._getAMPLWhere())
 GenericCallback.getAMPLWhere=lambda self : Where(self._getAMPLWhere())
 
-def addCut(self, vars, coeffs, direction, rhs):
-    return self._addCut(vars, coeffs, __e_to_v(direction), rhs)
-def addLazy(self, vars, coeffs, direction, rhs):
-    return self._addLazy(vars, coeffs, __e_to_v(direction), rhs)
-def addCutIndices(self, nvars, coeffs, direction, rhs):
-    return self._addCutIndices(nvars, coeffs, __e_to_v(direction), rhs)
-def addLazyIndices(self, nvars, coeffs, direction, rhs):
-    return self._addLazyIndices(nvars, coeffs, __e_to_v(direction), rhs)
 
 GenericCallback._addLazy=GenericCallback.addLazy
 GenericCallback._addCut=GenericCallback.addCut
@@ -345,6 +317,24 @@ BaseCallback.add_lazy=addLazy
 BaseCallback.add_cut=addCut
 BaseCallback.add_cut_indices=addCutIndices
 BaseCallback.add_lazy_indices=addLazyIndices
+
+# The following are used in common-python-overrides.i
+def __get_ampl_parameter(self, param):
+    if param.name.startswith('DBL'):
+        return self.getAMPLDoubleParameter(__e_to_v(param))
+    v = self.getAMPLIntParameter(__e_to_v(param))
+    if param == SolverParams.INT_LP_Algorithm:
+        return LPAlgorithms(v)
+    return v
+
+def __get_ampl_attribute(self, param):
+    if param.name.startswith('DBL'):
+        return self.getAMPLDoubleAttribute(__e_to_v(param))
+    return self.getAMPLIntAttribute(__e_to_v(param))
+
+def __setAMPLParameter(self, what, value):
+    self._setAMPLParameter(__e_to_v(what.value), value)
+
 %}
 
 %extend ampls::Option {

@@ -5,6 +5,7 @@
 
 %extend ampls::GurobiModel {
 
+
   int get_int_attr(const char* name) {
       return $self->getIntAttr(name); }
  double get_double_attr(const char* name) {
@@ -34,8 +35,8 @@
 
 }
 
-
 %include "../../../../cpp/gurobi/swig/gurobi-common.i"
 %include "../../../common-python-extensions.i"
+%include "../../../common-python-overrides.i"
 
-
+%include "gurobi-python-overrides.i"
