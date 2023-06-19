@@ -212,7 +212,7 @@ elseif(APPLE)
       ${xpress_BASE_DIR}/${sys}/libxprs.dylib)
 
     CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
-      ${scip_BASE_DIR}/${sys}/libscip.dylib)
+      ${scip_BASE_DIR}/${sys}/libscip.8.0.3.0.dylib)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/osx64) # AMPL base driver library locations
 else()
@@ -230,7 +230,7 @@ else()
       ${xpress_BASE_DIR}/${sys}/libxprs.so.41)
 
     CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
-      ${scip_BASE_DIR}/${sys}/libscip.so)
+      ${scip_BASE_DIR}/${sys}/libscip.8.0.3.0.so)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()

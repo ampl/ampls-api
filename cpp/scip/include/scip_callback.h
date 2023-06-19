@@ -133,4 +133,4 @@ public:
 };
 
 } // namespace
-#endif // CBC_CALLBACK_H_INCLUDE_
+#endif // SCIP_CALLBACK_H_INCLUDE_
