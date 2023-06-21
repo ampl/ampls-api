@@ -10,7 +10,7 @@
 #include "scip/scip.h"
 
 namespace ampls {
-namespace impl { namespace scip{
+namespace impl { namespace scip {
 void cut_callback_wrapper(void* solver, void* osicuts, void* appdata, int level, int pass);
 void callback_wrapper(SCIP* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,
   int nchar, char** cvec);

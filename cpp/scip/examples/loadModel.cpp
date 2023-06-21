@@ -7,14 +7,12 @@
 
 #include <cstring> // for strcat 
 
-const char* MODELNAME = "testmodel.nl";
+const char* MODELNAME = "tspg96.nl";
 
 /* Demonstrates how to load a model using ampls SCIP interface,
    and how to obtain basic information with ampls routines and
    via SCIP library.
 */
-
-
 int main(int argc, char** argv) {
   std::string s = MODELS_DIR;
   s += MODELNAME;
@@ -36,33 +34,33 @@ int main(int argc, char** argv) {
   printf("Objective from scip: %f\n", obj);
 
   // Get solution vector via generic interface
-  //std::vector<double> vars = model.getSolutionVector();
+  std::vector<double> vars = model.getSolutionVector();
   // Get map and display the variables ordered as AMPL stores them
-  //auto fg = model.getVarMap();
-  //double value;
-  //printf("\nSolution vector ordered by AMPL definition\n");
-  //for (auto r : fg)
-  //{
-  //  value = vars[r.second];
-  //  if (value != 0)
-  //    printf("Index: %i AMPL: %s=%f\n", r.second, r.first.data(), value);
-  //}
+  auto fg = model.getVarMap();
+  double value;
+  int numvar = model.getNumVars();
+  for (auto r : fg)
+  {
+    value = vars[r.second];
+    if (value != 0)
+      printf("Index: %i AMPL: %s=%f\n", r.second, r.first.data(), value);
+  }
   
-  // Get solution vector via Gurobi C API
-  //int nc;
-  //GRBgetintattr(grb, GRB_INT_ATTR_NUMVARS, &nc);
-  //double* varsFromGurobi = new double[nc];
-  //GRBgetdblattrarray(grb, GRB_DBL_ATTR_X, 0, nc, varsFromGurobi);
+  // Get solution vector via SCIP C API
+  int nc;
+  nc = SCIPgetProbData(scip)->nvars;
+  double* varsFromSCIP = new double[nc];
 
   // Get inverse map and display the variables with solver ordering
-  //auto gf = model.getVarMapInverse();
-  //printf("\nSolution vector ordered by solver\n");
-  //for (int i = 0; i < nc; i++)
-  //{
-  //  if (vars[i] != 0)
-  //    printf("Index: %i AMPL: %s=%f\n", i, gf[i].c_str(), vars[i]);
-  //}
-  //delete[] varsFromGurobi;
+  auto gf = model.getVarMapInverse();
+  printf("\nSolution vector ordered by solver\n");
+  for (int i = 0; i < nc; i++)
+  {
+    varsFromSCIP[i] = SCIPgetSolVal(scip, SCIPgetBestSol(scip), SCIPgetProbData(scip)->vars[i]);
+    if (vars[i] != 0)
+      printf("Index: %i AMPL: %s=%f\n", i, gf[i].c_str(), vars[i]);
+  }
+  delete[] varsFromSCIP;
 
   return 0;
 }

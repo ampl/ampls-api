@@ -17,6 +17,17 @@
 #include <mutex>
 #include <climits>  // for INT_MAX
 
+/// problem data stored in SCIP
+struct SCIP_ProbData
+{
+   SCIP_VAR**            vars;               /**< variables in the order given by AMPL */
+   int                   nvars;              /**< number of variables */
+
+   SCIP_CONS**           linconss;           /**< linear constraints in the order given by AMPL */
+   int                   i;                  /**< shows free slot of linear constraints */
+   int                   nlinconss;          /**< number of linear constraints */
+};
+
 
 namespace ampls
 {
@@ -36,9 +47,9 @@ namespace ampls
       ENTRYPOINT void* AMPLSOpen_scip(int, char**);
     }
     // Forward declarations
-    void cut_callback_wrapper(void* osisolver, void* osicuts, void* appdata, int level, int pass);
-    void callback_wrapper(SCIP* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,
-      int nchar, char** cvec);
+    //void cut_callback_wrapper(void* osisolver, void* osicuts, void* appdata, int level, int pass);
+    //void callback_wrapper(SCIP* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,
+    //  int nchar, char** cvec);
   }
 }
 
@@ -97,18 +108,23 @@ class SCIPModel : public AMPLMPModel {
   SCIP* model_;
 
   SCIPModel() : AMPLMPModel(), model_(NULL) {}
+
   SCIPModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile, 
     const char** opt) : AMPLMPModel(s, nlfile, opt) {
     model_ = (SCIP*) impl::scip::AMPLSGetModel_scip(s);
   }
 
   // Interface implementation
-  int setCallbackDerived(impl::BaseCallback* callback);
+  //int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
   void writeSolImpl(const char* solFileName);
 public:
   using Driver = ampls::SCIPDrv;
 
+  void enableLazyConstraints()
+  {
+    
+  }
   SCIPModel(const SCIPModel& other) :
     AMPLMPModel(other), model_(other.model_) { }
 
@@ -177,7 +193,7 @@ public:
   }
 
   int getNumVars() {
-    return SCIPgetNVars(model_);
+    return SCIPgetProbData(model_)->nvars;
   }
   int getNumCons() {
     return SCIPgetNConss(model_);
@@ -186,9 +202,8 @@ public:
     return SCIPgetPrimalbound(model_);
   }
   int getSolution(int first, int length, double* sol) {
-    //auto variables = Cbc_getColSolution(model_);
-    //for (int i = first; i < first + length; i++)
-    //  sol[i] = variables[i + first];
+    for (int i = first; i < first + length; i++)
+      sol[i] = SCIPgetSolVal(model_, SCIPgetBestSol(model_), SCIPgetProbData(model_)->vars[i]);
     return 0;
   }
 

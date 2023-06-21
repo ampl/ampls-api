@@ -1560,6 +1560,10 @@ public:
 #ifdef USE_copt
 #include "copt_interface.h"
 #endif
+#ifdef USE_scip
+#include "scip_interface.h"
+#endif
+
 
 #ifdef USE_amplapi
 // Functions to link ampls and amplapi
