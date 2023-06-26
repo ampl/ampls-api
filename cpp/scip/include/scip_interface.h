@@ -362,7 +362,7 @@ public:
     return getNumVars()-1;
   }
 
-  std::vector<double>  getConstraintsValueImpl(int offset, int length);
+  std::vector<double> getConstraintsValueImpl(int offset, int length);
   std::vector<double> getVarsValueImpl(int offset, int length);
 
 
