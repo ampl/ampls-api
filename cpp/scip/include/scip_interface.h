@@ -46,10 +46,6 @@ namespace ampls
       ENTRYPOINT void* AMPLSGetModel_scip(void* slv);
       ENTRYPOINT void* AMPLSOpen_scip(int, char**);
     }
-    // Forward declarations
-    //void cut_callback_wrapper(void* osisolver, void* osicuts, void* appdata, int level, int pass);
-    //void callback_wrapper(SCIP* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,
-    //  int nchar, char** cvec);
   }
 }
 
@@ -91,19 +87,6 @@ class SCIPModel : public AMPLMPModel {
       return cpxParam->second;
     throw AMPLSolverException("Not implemented!");
   }
-
-  // Map for solver attributes
-  //std::map<int, const char*> attribsMap = {
-  //   {SolverAttributes::DBL_RelMIPGap, "GRB_DBL_ATTR_MIPGAP"},
-  //  {SolverAttributes::DBL_CurrentObjBound, "GRB_DBL_ATTR_OBJBOUND"}
-  //};
-  //const char* getSCIPAttribAlias(SolverAttributes::Attribs attrib)
-  //{
-  //  auto cpxParam = attribsMap.find(attrib);
-  //  if (cpxParam != attribsMap.end())
-  //    return cpxParam->second;
-  //  throw AMPLSolverException("Not implemented!");
-  //}
 
   SCIP* model_;
 
@@ -296,28 +279,50 @@ public:
   }
 
 
-  std::vector<double> getConstraintsValueImpl(const std::vector<int>& indices) {
-    int min = INT_MAX, max = INT_MIN;
-    for (int i : indices)
-    {
-      if (i < min) min = i;
-      if (i > max) max = i;
-    }
-    int n = max - min;
-    std::vector<double> values;
-    values.resize(n);
-   // getDoubleAttrArray(GRB_DBL_ATTR_RC, min, n, values.data());
-    //TODO
-    return values;
+  /** Get an integer attribute using ampls aliases */
+  int getAMPLIntAttribute(SolverAttributes::Attribs attrib) {
+    throw ampls::AMPLSolverException("Not supported");
   }
+  /** Get a double attribute using ampls aliases */
+  double getAMPLDoubleAttribute(SolverAttributes::Attribs attrib) {
+    double val;
+    switch (attrib)
+    {
+    case SolverAttributes::DBL_RelMIPGap:
+      double obj;
+      val = SCIPgetDualbound(getSCIPmodel());
+      obj = SCIPgetPrimalbound(getSCIPmodel());
+      return impl::calculateRelMIPGAP(obj, val);
+    case SolverAttributes::DBL_CurrentObjBound:
+      val = SCIPgetDualbound(getSCIPmodel());
+      break;
+    default:
+      throw ampls::AMPLSolverException("Not supported");
+    }
+    return val;
+  }
+
 
   int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],
     ampls::CutDirection::Direction sense, double rhs) {
-    char grbsense = SCIPCallback::toSCIPSense(sense);
-    //TODO
-    //int status = GRBaddconstr(getGRBmodel(), numnz, const_cast<int*>(vars),
-    //  const_cast<double*>(coefficients), grbsense, rhs, name);
-    //status=  GRBupdatemodel(getGRBmodel());
+    char scipsense = SCIPCallback::toSCIPSense(sense);
+
+    SCIP_COL** scip_cols = NULL;
+    SCIPallocBufferArray(getSCIPmodel(), &scip_cols, numnz);
+    for (size_t i = 0; i < numnz; i++)
+      scip_cols[i] = SCIPvarGetCol(SCIPgetProbData(getSCIPmodel())->vars[const_cast<int*>(vars)[i]]);
+
+    SCIP_ROW* row;
+    if (scipsense == 'E')
+      SCIPcreateRowUnspec(getSCIPmodel(), &row, name, numnz, scip_cols, const_cast<double*>(coefficients), rhs, rhs, FALSE, FALSE, FALSE);
+    else if (scipsense == 'G')
+      SCIPcreateRowUnspec(getSCIPmodel(), &row, name, numnz, scip_cols, const_cast<double*>(coefficients), -1*getDoubleParam("numerics/infinity"), rhs, FALSE, FALSE, FALSE);
+    else  
+      SCIPcreateRowUnspec(getSCIPmodel(), &row, name, numnz, scip_cols, const_cast<double*>(coefficients), rhs, getDoubleParam("numerics/infinity"), FALSE, FALSE, FALSE);
+    SCIPaddRow(getSCIPmodel(), row, TRUE, NULL);
+    SCIPreleaseRow(getSCIPmodel(), &row);
+
+    SCIPfreeBufferArray(getSCIPmodel(), &scip_cols);
     return getNumCons()-1;
   }
 
