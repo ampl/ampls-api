@@ -156,15 +156,18 @@ std::string SCIPModel::error(int code)
 
 
 std::vector<double> SCIPModel::getConstraintsValueImpl(int offset, int length) {
-  // TODO
-  std::vector<double> cons(length);
-  return cons;
+  std::vector<double> pi(length);
+  if (SCIPisDualSolAvailable(getSCIPmodel(), TRUE)) {
+    for (int i=offset; i < offset+length; i++)
+      SCIPgetDualSolVal(getSCIPmodel(), SCIPgetProbData(getSCIPmodel())->linconss[i], pi.data() + i, NULL);
+  }
+  return pi;
 }
 std::vector<double> SCIPModel::getVarsValueImpl(int offset, int length) {
-  
-  //auto variables = Cbc_getColSolution(model_);
-  //std::vector<double> vars(variables, variables + getNumVars());
-  //return vars;
+  std::vector<double> vars(length);
+  for (int i = offset; i < offset+length; i++)
+    vars[i] = SCIPgetSolVal(getSCIPmodel(), SCIPgetBestSol(getSCIPmodel()), SCIPgetProbData(getSCIPmodel())->vars[i]);
+  return vars;
 }
 
 
