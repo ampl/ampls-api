@@ -680,7 +680,7 @@ protected:
   int currentCapabilities_;
 
   virtual Variant getValueImpl(Value::CBValue v) {
-    throw std::exception("Not implemented in base class");
+    throw ampls::AMPLSolverException("Not implemented in base class");
   }
 public:
   
