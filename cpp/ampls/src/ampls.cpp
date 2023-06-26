@@ -110,33 +110,16 @@ std::string impl::Records::getRecordedEntities(bool exportToAMPL) {
     for (int i = 0; i < values.size(); i++)
       vars_[i].value(values[i]);
   }
-
-  
-  if (exportToAMPL) {
-    for (auto& entity : entities_)
-    {
-      ampls::Entity* e;
-      if (entity.first)
-        e = &vars_[entity.second];
-      else
-        e= &cons_[entity.second];
-      if (!e->exportedToAMPL_)
-      {
-        ss << e->toAMPLString(vmap, cmap, *this) << std::endl;
+  for (auto& entity : entities_)
+  {
+    ampls::Entity* e;
+    if (entity.first)
+      e = &vars_[entity.second];
+    else
+      e= &cons_[entity.second];
+    if (exportToAMPL && (!e->exportedToAMPL_))
         e->exportedToAMPL_ = true;
-      }
-    }
-  }
-  else {
-    for (auto or : entities_)
-    {
-      ampls::Entity* e;
-      if (or .first)
-        e = &vars_[or .second];
-      else
-        e = &cons_[or .second];
-      ss << e->toAMPLString(vmap, cmap, *this) << std::endl;
-    }
+    ss << e->toAMPLString(vmap, cmap, *this) << std::endl;
   }
   return ss.str();
 }
