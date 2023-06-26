@@ -8,10 +8,10 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from test_base import TestBase
 from tsp_helpers import tsp_model
 
-import amplpy_cplex as ampls
+import amplpy_gurobi as ampls
 import os
 
-SOLVER = "cplex"
+SOLVER = "gurobi"
 
 MUTE = True
 
@@ -19,7 +19,6 @@ MUTE = True
 class ProgressCallback(ampls.GenericCallback):
     def __init__(self):
         super(ProgressCallback, self).__init__()
-        self.n_mip_nodes = 0
         self.calls = {w: 0 for w in ampls.Where}
         self.not_mapped = []
 
@@ -49,9 +48,8 @@ class ProgressCallback(ampls.GenericCallback):
                 )
             return 0
         if t == ampls.Where.MIPNODE:
-            self.n_mip_nodes += 1
             if not MUTE:
-                print("New MIP node, count {}".format(self.n_mip_nodes))
+                 print(f"Num nodes: {self.getValue(ampls.Value.MIP_NODES)}")
         if t == ampls.Where.MIPSOL:
             if not MUTE:
                 print("MIP Solution = {}".format(self.getObj()))
@@ -63,7 +61,6 @@ class ProgressCallback(ampls.GenericCallback):
 class ProgressCallbackSnakeCase(ampls.GenericCallback):
     def __init__(self):
         super(ProgressCallbackSnakeCase, self).__init__()
-        self.n_mip_nodes = 0
         self.calls = {w: 0 for w in ampls.Where}
         self.not_mapped = []
 
@@ -89,16 +86,14 @@ class ProgressCallbackSnakeCase(ampls.GenericCallback):
                 )
             return 0
         if t == ampls.Where.MIPNODE:
-            self.n_mip_nodes += 1
             if not MUTE:
-                print("New MIP node, count {}".format(self.n_mip_nodes))
+                print(f"New MIP node, count {self.get_value(ampls.Value.MIP_NODES)}")
         if t == ampls.Where.MIPSOL:
             if not MUTE:
                 print("MIP Solution = {}".format(self.get_obj()))
         if t == ampls.Where.NOTMAPPED:
             self.not_mapped.append(self.getWhereString())
         return 0
-
 
 class TestCallbacks(TestBase):
     def test_progress_callback(self):
@@ -108,7 +103,6 @@ class TestCallbacks(TestBase):
         ampl = tsp_model(os.path.join(self._data_dir, "tsp_40_1.txt"))
         model = ampl.to_ampls(SOLVER)
         cb.model=model
-        #model.setAMPLParameter(ampls.SolverParams.DBL_MIPGap, 0.1)
         if SOLVER == "cplex": model.set_option("threads", 1)
         model.setCallback(cb)
         model.optimize()

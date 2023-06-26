@@ -486,7 +486,7 @@ namespace impl
     std::vector<Constraint> cons_;
     // The following is to retain the order in which the entities are added,
     // to be replicated when adding them to the AMPL model
-    std::vector<Entity*> entities_;
+    std::vector<std::pair<bool, int>> entities_;
 
     Records() : parent_(nullptr) { }
   public:
@@ -530,13 +530,14 @@ namespace impl
     void addVariable(const Variable& v)
     {
       vars_.push_back(v);
-      entities_.push_back(&vars_[vars_.size()-1]);
+
+      entities_.push_back({ 1, vars_.size() - 1 });
     }
 
     void addConstraint(const Constraint& c)
     {
       cons_.push_back(c);
-      entities_.push_back(&cons_[cons_.size() - 1]);
+      entities_.push_back({ 0, cons_.size() - 1 });
     }
 
     void getVarIndices(int& min, int& max)
@@ -678,7 +679,9 @@ protected:
   }
   int currentCapabilities_;
 
-
+  virtual Variant getValueImpl(Value::CBValue v) {
+    throw std::exception("Not implemented in base class");
+  }
 public:
   
 
@@ -689,6 +692,16 @@ public:
 
   void record(const ampls::Variable& v);
   void record(const ampls::Constraint& c);
+
+  ampls::Variable addVariable(const std::vector<int>& cons,
+    const std::vector<double>& coefficients,
+    double lb, double ub, double objCoefficient,
+    VarType::Type type, const char* name = NULL) {
+    return addVariable(cons.size(), cons.data(), coefficients.data(),
+      lb, ub, objCoefficient, type, name);
+  }
+
+
   ampls::Variable addVariable(int nnz, const int* cons,
     const double* coefficients, double lb, double ub, double objCoefficient,
     VarType::Type type, const char* name = NULL);
@@ -792,8 +805,9 @@ public:
 
   /** Get where in the solution process the callback has been called (generic) */
   virtual Where::CBWhere getAMPLWhere() = 0;
+  
   /** Get a (generic) value */
-  virtual Variant getValue(Value::CBValue v) = 0;
+  virtual Variant getValue(Value::CBValue v) { return getValueImpl(v); }
   /** Get a (generic) array */
   virtual std::vector<double> getValueArray(Value::CBValue v) = 0;
 };
@@ -895,7 +909,10 @@ protected:
   {
     return impl_->doAddCut(c, type);
   }
-
+  Variant getValueImpl(Value::CBValue v)
+  {
+    return impl_->getValueImpl(v);
+  }
 public:
 
   /** Get the current solution vector   */
@@ -1083,7 +1100,6 @@ protected:
     varMap_.clear();
     varMapInverse_.clear();
   }
-
   virtual int setCallbackDerived(impl::BaseCallback* callback) {
     throw AMPLSolverException("Not implemented in base class!");
   }
@@ -1138,6 +1154,21 @@ public:
   }
   void record(const ampls::Variable& v) {
     records_.addVariable(v);
+  }
+
+  virtual double infinity() {
+    throw AMPLSolverException("Not implemented in base class!");
+  }
+  virtual double negInfinity() {
+    return -infinity();
+  }
+
+  ampls::Variable addVariable(const std::vector<int>& cons,
+    const std::vector<double>& coefficients,
+    double lb, double ub, double objCoefficient,
+    VarType::Type type, const char* name = NULL) {
+    return addVariable(cons.size(), cons.data(), coefficients.data(),
+      lb, ub, objCoefficient, type, name);
   }
 
   ampls::Variable addVariable(double lb, double ub,

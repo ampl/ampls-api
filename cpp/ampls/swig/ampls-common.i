@@ -12,6 +12,7 @@ namespace std {
   %template(map_string_double)map<string, double>;
   %template(vector_string)vector<string>;
   %template(vector_double)vector<double>;
+  %template(vector_int)vector<int>;
   %template(vector_options)vector<ampls::Option>;
 }
 

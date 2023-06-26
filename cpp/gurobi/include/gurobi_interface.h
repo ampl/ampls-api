@@ -106,6 +106,8 @@ class GurobiModel : public AMPLMPModel {
 public:
   using Driver = ampls::GurobiDrv;
 
+  double infinity() override { return GRB_INFINITY; }
+
   void enableLazyConstraints()
   {
     setParam(GRB_INT_PAR_LAZYCONSTRAINTS, 1);

@@ -113,8 +113,13 @@ std::string impl::Records::getRecordedEntities(bool exportToAMPL) {
 
   
   if (exportToAMPL) {
-    for (auto e : entities_)
+    for (auto or : entities_)
     {
+      ampls::Entity* e;
+      if (or .first)
+        e = &vars_[or.second];
+      else
+        e= &cons_[or.second];
       if (!e->exportedToAMPL_)
       {
         ss << e->toAMPLString(vmap, cmap, *this) << std::endl;
@@ -123,8 +128,15 @@ std::string impl::Records::getRecordedEntities(bool exportToAMPL) {
     }
   }
   else {
-    for (auto e : entities_)
-     ss << e->toAMPLString(vmap, cmap, *this) << std::endl;
+    for (auto or : entities_)
+    {
+      ampls::Entity* e;
+      if (or .first)
+        e = &vars_[or .second];
+      else
+        e = &cons_[or .second];
+      ss << e->toAMPLString(vmap, cmap, *this) << std::endl;
+    }
   }
   return ss.str();
 }
@@ -293,7 +305,7 @@ namespace impl {
     int status = doAddCut(c, type);
     if (status) 
       throw ampls::AMPLSolverException::format("Error while adding cut!");
-    c.solverIndex(getValue(ampls::Value::CBValue::N_ROWS).integer - 1);
+    c.solverIndex(getValueImpl(ampls::Value::CBValue::N_ROWS).integer - 1);
     return c;
   }
 

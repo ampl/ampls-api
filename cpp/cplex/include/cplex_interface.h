@@ -236,6 +236,7 @@ public:
 
   std::string error(int code);
 
+  double infinity() override { return CPX_INFBOUND; }
 
   // ********************* CPLEX specific *********************
   int setCallback(impl::BaseCallback* callback) {

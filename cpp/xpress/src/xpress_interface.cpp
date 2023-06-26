@@ -35,6 +35,13 @@ void XPRS_CC XPRSCBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
   cb->run();
 }
 
+void XPRS_CC XPRSCBWrap::newnode_callback_wrapper(XPRSprob prob, void* object, int parentnode, int node, int branch)
+{
+  XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::newnode);
+  cb->run();
+}
+
+
 void XPRS_CC XPRSCBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, int* feas)
 {
   int v;
@@ -80,7 +87,10 @@ int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
   AMPLSXPRSERRORCHECK("XPRSsetcbmessage")
   status = XPRSsetcboptnode(prob_, impl::xpress::XPRSCBWrap::optnode_callback_wrapper,
     callback);
-   AMPLSXPRSERRORCHECK("XPRSsetcboptnode")
+  AMPLSXPRSERRORCHECK("XPRSsetcboptnode")
+    status = XPRSsetcbnewnode(prob_, impl::xpress::XPRSCBWrap::newnode_callback_wrapper,
+      callback);
+  AMPLSXPRSERRORCHECK("XPRSsetcbnewnode")
   return status;
 }
 

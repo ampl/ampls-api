@@ -10,8 +10,7 @@
 
 class MyGenericCallback : public ampls::GenericCallback
 {
-  int nMIPnodes = 0;
-  int nadd = 0;
+public:
   int run()
   {
     // Prints out the name of the solution phase where the solver is called from
@@ -37,7 +36,7 @@ class MyGenericCallback : public ampls::GenericCallback
             getValue(ampls::Value::PRE_COEFFCHANGED).integer);
           return 0;
     case ampls::Where::MIPNODE:
-      nMIPnodes++;
+      printf("\nNodes: %d\n", getValue(ampls::Value::MIP_NODES).integer);
       return 0;
     case ampls::Where::MIPSOL:
       try {
@@ -61,10 +60,11 @@ template<class T> void example()
   std::string md(MODELS_DIR);
   md += MODELNAME;
 
-  T m = ampls::AMPLModel::load<T>(md.c_str());
+  T m = ampls::AMPLModel::load<T>(md.c_str() );
   // Set a (generic) callback
   MyGenericCallback cb;
   m.setCallback(&cb);
+  m.setOption("threads", 1);
   m.setAMPLParameter(ampls::SolverParams::DBL_MIPGap, 0.001);
   try {
     m.setOption("return_mipgap", 5);
@@ -104,21 +104,28 @@ template<class T> void example()
 }
 int main(int argc, char** argv) {
 
-#ifdef USE_cplex
-  example<ampls::CPLEXModel >();
-#endif
-#ifdef USE_gurobi
-  example<ampls::GurobiModel>();
-#endif
 #ifdef USE_copt
   example<ampls::CoptModel>();
+#endif
+
+
+  /*
+#ifdef USE_gurobi
+  example<ampls::GurobiModel>();
 #endif
 #ifdef USE_xpress
   example<ampls::XPRESSModel>();
 #endif
+  /*
+  #ifdef USE_cplex
+  example<ampls::CPLEXModel >();
+#endif
+
+
+
 #ifdef USE_cbcmp
   example<ampls::CbcModel>();
-#endif
+#endif*/
   return 0;
  
 }

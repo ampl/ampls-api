@@ -134,7 +134,25 @@ int GurobiCallback::getSolution(int len, double* sol)
     GRB_CB_MIPNODE_REL;
   return GRBcbget(cbdata_, where_, flag, sol);
 }
+double GurobiCallback::getObjBnd()
+{
+  int flag;
+  switch (where_) {
+  case GRB_CB_MIP:
+    flag = GRB_CB_MIP_OBJBND;
+    break;
+  case GRB_CB_MIPSOL:
+    flag = GRB_CB_MIPSOL_OBJBND;
+    break;
+  case GRB_CB_MIPNODE:
+    flag = GRB_CB_MIPNODE_OBJBND;
+    break;
+  default:
+    throw ampls::AMPLSolverException("Cannot get objective bound from here!");
+  }
+  return getDouble(flag);
 
+}
 double GurobiCallback::getObj()
 {
   int flag;
@@ -158,22 +176,20 @@ double GurobiCallback::getObj()
   default:
     throw ampls::AMPLSolverException("Cannot get objective value from here!");
   }
-  double obj;
-  GRBcbget(cbdata_, where_, flag, &obj);
-  return obj;
+  return getDouble(flag);
 }
 
 
-Variant  GurobiCallback::getValue(Value::CBValue v) {
+Variant  GurobiCallback::getValueImpl(Value::CBValue v) {
+  int f = 0;
   switch (v)
   {
   case Value::OBJ:
     return Variant(getObj());
   case Value::MIP_RELATIVEGAP:
-    return impl::calculateRelMIPGAP(getDouble(GRB_CB_MIPSOL_OBJ),
-      getDouble(GRB_CB_MIPSOL_OBJBND));
+    return Variant(impl::calculateRelMIPGAP(getObj(), getObjBnd()));
   case Value::MIP_OBJBOUND:
-    return getDouble(GRB_CB_MIPSOL_OBJBND);
+    return Variant(getObjBnd());
   case Value::PRE_DELCOLS:
     return get(GRB_CB_PRE_COLDEL);
   case Value::PRE_DELROWS:
@@ -184,14 +200,19 @@ Variant  GurobiCallback::getValue(Value::CBValue v) {
     if (where_ == GRB_CB_SIMPLEX)
       return get(GRB_CB_SPX_ITRCNT);
     if ((where_ >= GRB_CB_MIP) &&
-      (where_ >= GRB_CB_MIPNODE))
+      (where_ <= GRB_CB_MIPNODE))
       return get(GRB_CB_MIP_ITRCNT);
     if (where_ == GRB_CB_BARRIER)
       return get(GRB_CB_BARRIER_ITRCNT);
   case Value::RUNTIME:
     return get(GRB_CB_RUNTIME);
   case Value::MIP_NODES:
-    return get(GRB_CB_MIPNODE_NODCNT);
+    
+    if (where_ == GRB_CB_MIP) f = GRB_CB_MIP_NODCNT;
+    else if (where_ == GRB_CB_MIPSOL) f = GRB_CB_MIPSOL_NODCNT;
+    else if (where_ == GRB_CB_MIPNODE) f = GRB_CB_MIPNODE_NODCNT;
+    else throw ampls::AMPLSolverException("Cannot get this value from here.");
+    return Variant(int(getDouble(f)));
   case Value::N_COLS:
     return model_->getNumVars();
   case Value::N_ROWS:

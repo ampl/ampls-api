@@ -47,7 +47,7 @@ class CoptCallback : public impl::BaseCallback {
   }
 
 
-
+  Variant getValueImpl(Value::CBValue v);
 protected:
   // Interface
   int doAddCut(const ampls::Constraint& c, int type);
@@ -109,7 +109,7 @@ public:
   }
   /** Get a value (using copt C library enumeration to specify what)*/
   Variant get(const char* what);
-  virtual Variant getValue(Value::CBValue v);
+  
 
   int setHeuristicSolution(int nvars, const int* indices, const double* values);
 

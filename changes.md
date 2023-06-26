@@ -10,6 +10,10 @@ Here **[Breaking]** means the change that may break valid user code, **[Fix]** -
 * **[Breaking]** Solver and solver driver related errors in Python are now thrown as 
   ampls.AMPLSolverException
 * **[Fix]** Fixed python wrappers for AMPLModel.*etAMPLParameter and AMPLModel.getStatus
+* **[New]** Added AMPLModel::infinity() and AMPLModel::negInfinity() to use when creating new entities
+  with no bounds
+* **[Fix]** A problem arising when replaying in AMPL new entities recorded with AMPLModel::record()
+* **[Fix]** Mapping of callback information in BaseCallback::getValue()
 
 ## 0.1.2 - 2023-06-02
 

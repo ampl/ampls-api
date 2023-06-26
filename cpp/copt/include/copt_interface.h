@@ -208,6 +208,9 @@ public:
 
   std::string error(int code);
 
+  double infinity() override { return COPT_INFINITY; }
+
+
   // **************** Copt-specific ****************
 
   /** Get an integer model attribute (using copt C library name) */

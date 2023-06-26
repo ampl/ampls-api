@@ -74,7 +74,6 @@ const char* XPRESSCallback::getWhereString()
   {
   case XPRESSWhere::message: return "message";
   case XPRESSWhere::intsol: return "intsol";
-  case XPRESSWhere::chgnode: return "chgnode";
   case XPRESSWhere::infnode: return "infnode";
   case XPRESSWhere::nodecutoff: return "nodecutoff";
   case XPRESSWhere::chgbranch: return "chgbranch";
@@ -115,7 +114,7 @@ Variant XPRESSCallback::get(int what)
   throw AMPLSolverException("Invalid parameter");
 }
 
-Variant XPRESSCallback::getValue(Value::CBValue v) {
+Variant XPRESSCallback::getValueImpl(Value::CBValue v) {
   switch (v)
   {
   case Value::PRE_DELCOLS:
@@ -128,7 +127,6 @@ Variant XPRESSCallback::getValue(Value::CBValue v) {
     return Variant(getInt(XPRS_BARITER));
   case Value::OBJ:
     return Variant(getDouble(XPRS_MIPOBJVAL)); 
-    //return Variant(getDouble(XPRS_LPOBJVAL));
   case Value::RUNTIME:
     return Variant(getDouble(XPRS_TIME));
   case Value::MIP_OBJBOUND:
@@ -137,6 +135,8 @@ Variant XPRESSCallback::getValue(Value::CBValue v) {
     return Variant(getInt(XPRS_ORIGINALCOLS));
   case Value::N_ROWS:
     return Variant(getInt(XPRS_ORIGINALROWS));
+  case Value::MIP_NODES:
+    return Variant(getInt(XPRS_CURRENTNODE));
   }
   throw std::runtime_error("Not supported yet");
   return Variant(); // silence gcc warning

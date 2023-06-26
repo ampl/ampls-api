@@ -20,8 +20,8 @@ enum class XPRESSWhere
 {
   message,
   intsol,
-  chgnode,
   infnode,
+  newnode,
   nodecutoff,
   chgbranch,
   prenode,
@@ -97,13 +97,14 @@ public:
     case impl::xpress::XPRESSWhere::intsol:
       return Where::MIPSOL;
     case impl::xpress::XPRESSWhere::optnode:
+    case impl::xpress::XPRESSWhere::newnode:
       return Where::MIPNODE;
     default:
       return Where::NOTMAPPED;
     }
   }
 
-  virtual Variant getValue(Value::CBValue v);
+  Variant getValueImpl(Value::CBValue v);
 
   // ************ XPRESS specific ************
   /** Get an attribute variant */

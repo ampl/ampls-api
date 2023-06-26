@@ -32,8 +32,7 @@
  GRBmodel* get_grb_model() { return $self->getGRBmodel(); }
 
  GRBenv* get_grb_env() {return $self->getGRBenv(); }
-
-}
+ }
 
 %include "../../../../cpp/gurobi/swig/gurobi-common.i"
 %include "../../../common-python-extensions.i"
