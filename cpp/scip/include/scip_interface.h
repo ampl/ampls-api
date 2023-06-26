@@ -328,7 +328,7 @@ public:
 
   int addVariableImpl(const char* name, int numnz, const int cons[], const double coefficients[],
     double lb, double ub, double objcoeff, ampls::VarType::Type type) {
-    /*
+
     SCIP_VARTYPE vartype;
 
     switch (type)
@@ -343,22 +343,23 @@ public:
         vartype = SCIP_VARTYPE_INTEGER;
         break;
     }
+
+    SCIP_VAR* var = NULL;
+
+    SCIPcreateVarBasic(getSCIPmodel(), &var, name, lb, ub, objcoeff, vartype);
     int status = 0;
-    if (numnz == 0)
-    {
-      SCIP_CCALL( SCIPcreateVarBasic(getSCIP(), &var, name, lb, ub, objcoeff, vartype) );
-       status = GRBaddvar(getGRBmodel(), 0, NULL, NULL, objcoeff, lb, ub, t, name);
+    if (numnz > 0) {
+      for (size_t i = 0; i < numnz; i++) {
+        SCIPaddVarToRow(getSCIPmodel(), SCIPconsGetRow(getSCIPmodel(), SCIPgetProbData(getSCIPmodel())->linconss[const_cast<int*>(cons)[i]]), var, const_cast<double*>(coefficients)[i]);
+      }
     }
-    else {
-      status = GRBaddvar(getGRBmodel(), numnz, const_cast<int*>(cons),
-        const_cast<double*>(coefficients), objcoeff, lb, ub, t, name);
-    }
+
+    SCIPaddVar(getSCIPmodel(), var);
+    SCIPreleaseVar(getSCIPmodel(), &var);
+    
     if (status != 0)
       throw ampls::AMPLSolverException::format("Could not add variable, code: %d.", status);;
-    GRBupdatemodel(getGRBmodel());
     return getNumVars()-1;
-*/
-    return 0;
   }
 
   std::vector<double>  getConstraintsValueImpl(int offset, int length);
