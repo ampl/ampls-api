@@ -11,7 +11,6 @@
 #include "objscip/objscip.h"
 
 namespace ampls {
-namespace impl { namespace scip { class CBWrap; } }
 class SCIPModel;
 
 /**
@@ -45,6 +44,28 @@ public:
 
   /** Get the underlying SCIP model pointer */
   SCIP* getSCIPModel();
+};
+
+
+class SCIPHeur : public impl::BaseCallback, scip::ObjHeur {
+  friend class SCIPModel;
+  void* model_;
+
+public:
+
+  SCIPHeur(      
+    SCIP*              scip,               /**< SCIP data structure */
+    const char*        name,               /**< name of presolver */
+    const char*        desc,               /**< description of presolver */
+      char               dispchar,           /**< display character of primal heuristic */
+      int                priority,           /**< priority of the primal heuristic */
+      int                freq,               /**< frequency for calling primal heuristic */
+      int                freqofs,            /**< frequency offset for calling primal heuristic */
+      int                maxdepth,           /**< maximal depth level to call heuristic at (-1: no limit) */
+      SCIP_HEURTIMING    timingmask,         /**< positions in the node solving loop where heuristic should be executed;
+                                              *   see definition of SCIP_HEURTIMING for possible values */
+      SCIP_Bool          usessubscip         /**< does the heuristic use a secondary SCIP instance? */)
+    : scip::ObjHeur(scip, name, desc, dispchar, priority, freq, freqofs, maxdepth, timingmask, usessubscip) {}
 };
 
 

@@ -103,6 +103,8 @@ void SCIPModel::writeSolImpl(const char* solFileName) {
 int SCIPModel::setCallbackDerived(impl::BaseCallback* callback) {
   SCIP* scip = getSCIPmodel();
 
+  if (dynamic_cast<SCIPHeur*>(callback))
+    return SCIPincludeObjHeur(scip, dynamic_cast<SCIPHeur*>(callback), TRUE);
   if (dynamic_cast<SCIPPresol*>(callback))
     return SCIPincludeObjPresol(scip, dynamic_cast<SCIPPresol*>(callback), TRUE);
   if (dynamic_cast<SCIPBranchrule*>(callback))
@@ -111,41 +113,9 @@ int SCIPModel::setCallbackDerived(impl::BaseCallback* callback) {
     return SCIPincludeObjSepa(scip, dynamic_cast<SCIPSepa*>(callback), TRUE);
 }
 
-/*template <typename T>
-struct MsgCallback;
-
-template <typename Ret, typename... Params>
-struct MsgCallback<Ret(Params...)> {
-  template <typename... Args>
-  static Ret callback(Args... args) {
-    return func(args...);
-  }
-  static std::function<Ret(Params...)> func;
-};
-
-template <typename Ret, typename... Params>
-std::function<Ret(Params...)> MsgCallback<Ret(Params...)>::func;*/
-
-
-/*class MySCIPCallbackBridge : public SCIPCallback {
-  GenericCallback* cb_;
-public:
-  MySCIPCallbackBridge(GenericCallback* cb) {
-    cb_ = cb;
-  }
-  virtual int run() {
-    return cb_->run();
-  }
-};
-
-impl::BaseCallback* SCIPModel::createCallbackImplDerived(GenericCallback* callback) {
-  return new MySCIPCallbackBridge(callback);
-}*/
-
 void SCIPModel::optimize() {
   SCIPsolve(model_);
 }
-
 
 SCIPModel::~SCIPModel() {
   if (copied_)
