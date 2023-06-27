@@ -1,0 +1,2 @@
+This directory should contain SCIP's library, e.g.:
+libscip.8.0.3.0.dylib
