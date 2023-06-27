@@ -71,7 +71,7 @@ def libdir():
 
 setup(
     name='amplpy_ampls',
-    version='0.1.2',
+    version='0.1.3',
     description='Solver extensions for amplpy',
     long_description=__doc__,
     license='BSD-3',

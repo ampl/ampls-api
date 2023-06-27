@@ -3,7 +3,7 @@
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
 
-## TBD
+## 0.1.3 - 2023-06-27
 
 * **[Breaking]** ampls::CPLEXCallback is now using the generic callbacks. Note that multithreading 
   is not disabled by default but implementation needs extra care. 

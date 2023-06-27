@@ -96,19 +96,25 @@ def knapsack_model():
 
 
 def run_example():
+    # Decalare the two models in AMPL
     cs = cutting_stock_model()
     knap = knapsack_model()
+
     # Generate starting patterns (each patterns simply cuts the roll
     # all at the same width)
     patterns = generate_default_patterns(WIDTHS)
-
+    # Add them to the AMPL instance
     cs.add_patterns(patterns)
     
-    # Export to AMPLS
+    # Export the (relaxed) cutting stock model to ampls
     cs.option["relax_integrality"]=1
-    cs.eval("display order, rolls;")
     ampls_cs = cs.to_ampls(SOLVER, ["outlev=1"])
+
+
     while True: # Column generation happens in the solver
+        # Optimize the cutting stock model, get the dual vector,
+        # use it in the knapsack model (in AMPL) to generate 
+        # a new pattern 
         ampls_cs.optimize()
         duals = ampls_cs.get_dual_vector()
         print(duals)
@@ -132,6 +138,9 @@ def run_example():
         ampls_cs.addVariable(indices, coeffs, 0, 10000000,
                                 1, ampls.VarType.Continuous)
     
+    # Add all the patterns that has been generated in the loop above to
+    # the AMPL version of the cutting stock model, then solve the 
+    # integer problem to get the final result
     cs.add_patterns(patterns)
     cs.import_solution(ampls_cs)
     cs.option["relax_integrality"]=0
