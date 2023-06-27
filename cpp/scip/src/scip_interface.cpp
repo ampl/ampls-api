@@ -2,6 +2,7 @@
 #include <memory> // for unique_ptr
 
 #include "scip_interface.h"
+#include "objscip/objscip.h"
 #include "ampls/ampls.h"
 
 /**
@@ -99,8 +100,18 @@ void SCIPModel::writeSolImpl(const char* solFileName) {
   impl::mp::AMPLSReportResults(solver_, solFileName);
 }
 
+int SCIPModel::setCallbackDerived(impl::BaseCallback* callback) {
+  SCIP* scip = getSCIPmodel();
 
-template <typename T>
+  if (dynamic_cast<SCIPPresol*>(callback))
+    return SCIPincludeObjPresol(scip, dynamic_cast<SCIPPresol*>(callback), TRUE);
+  if (dynamic_cast<SCIPBranchrule*>(callback))
+    return SCIPincludeObjBranchrule(scip, dynamic_cast<SCIPBranchrule*>(callback), TRUE);
+  if (dynamic_cast<SCIPSepa*>(callback))
+    return SCIPincludeObjSepa(scip, dynamic_cast<SCIPSepa*>(callback), TRUE);
+}
+
+/*template <typename T>
 struct MsgCallback;
 
 template <typename Ret, typename... Params>
@@ -113,10 +124,10 @@ struct MsgCallback<Ret(Params...)> {
 };
 
 template <typename Ret, typename... Params>
-std::function<Ret(Params...)> MsgCallback<Ret(Params...)>::func;
+std::function<Ret(Params...)> MsgCallback<Ret(Params...)>::func;*/
 
 
-class MySCIPCallbackBridge : public SCIPCallback {
+/*class MySCIPCallbackBridge : public SCIPCallback {
   GenericCallback* cb_;
 public:
   MySCIPCallbackBridge(GenericCallback* cb) {
@@ -129,7 +140,7 @@ public:
 
 impl::BaseCallback* SCIPModel::createCallbackImplDerived(GenericCallback* callback) {
   return new MySCIPCallbackBridge(callback);
-}
+}*/
 
 void SCIPModel::optimize() {
   SCIPsolve(model_);

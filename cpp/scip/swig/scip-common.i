@@ -7,12 +7,12 @@
 
 %feature("director") ampls::SCIPCallback;
 %ignore ampls::SCIPCallback::doAddCut;
-%ignore ampls::xgrb::impl;
+%ignore ampls::scip::impl;
 // The following is to avoid problem with director
 // that cannot properly map an out double[].
 // Not yet.
 %ignore ampls::SCIPCallback::getSolution;
-%template(SolverDriverXGrb) ampls::impl::SolverDriver<ampls::SCIPModel>;
+%template(SolverDriverSCIP) ampls::impl::SolverDriver<ampls::SCIPModel>;
 
 %include "scip_callback.h"
 %include "scip_interface.h"

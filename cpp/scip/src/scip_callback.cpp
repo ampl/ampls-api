@@ -5,8 +5,8 @@ namespace ampls
 {
 
 
-const char* SCIPCallback::getWhereString()
-{
+//const char* SCIPCallback::getWhereString()
+//{
   //TODO
   /*
   switch (where_)
@@ -23,11 +23,11 @@ const char* SCIPCallback::getWhereString()
   default:
     return "Where code not found";
   }*/
-  return "";
-}
+  //return "";
+//}
 
-Variant SCIPCallback::get(int what)
-{
+//Variant SCIPCallback::get(int what)
+//{
   /*
   Variant r = Variant();
   switch (what)
@@ -103,45 +103,44 @@ Variant SCIPCallback::get(int what)
   //  case GRB_CB_MIPNODE_BRVAR   5007
   // case GRB_CB_MIPNODE_OBJBNDC 5008
   */
-  return Variant(0);
-}
+  //return Variant(0);
+//}
 
-void SCIPCallback::terminate() {
-  //GRBterminate(getGRBModel());
-  //TODO
-}
-SCIP* SCIPCallback::getSCIPModel() {
-    return ((SCIP*)model_);
-  };
-const char* SCIPCallback::getMessage()
-{
-  return msg_.data();
-}
+//void SCIPCallback::terminate() {
+//  SCIPinterruptSolve(getSCIPModel());
+//}
+//SCIP* SCIPCallback::getSCIPModel() {
+//    return ((SCIP*)model_);
+//  };
+//const char* SCIPCallback::getMessage()
+//{
+//  return msg_.data();
+//}
 
-int SCIPCallback::doAddCut(const ampls::Constraint& c, int lazy) {
-  char sense = toSCIPSense(c.sense());
+//int SCIPCallback::doAddCut(const ampls::Constraint& c, int lazy) {
+//  char sense = toSCIPSense(c.sense());
     
   //OsiCuts_addRowCut(osicuts_, c.coeffs().size(), c.indices().data(),
   //      c.coeffs().data(), sense, c.rhs());
-  return 0;
-}
+//  return 0;
+//}
 
-int SCIPCallback::getSolution(int len, double* sol)
-{ 
+//int SCIPCallback::getSolution(int len, double* sol)
+//{ 
   //int ncc = Osi_getNumCols(osisolver_);
   //auto osiSol = Osi_getColSolution(osisolver_);
   //for (int i = 0; i < len; i++)
   //  sol[i] = osiSol[i];
-  return 0;
-}
+  //return 0;
+//}
 
-double SCIPCallback::getObj()
-{
+//double SCIPCallback::getObj()
+//{
   //return Cbc_getObjValue(getCBCModel()->getCBCmodel());
-  return 0.0;
-}
+//  return 0.0;
+//}
 
-
+/*
 Variant SCIPCallback::getValue(Value::CBValue v) {
   
   
@@ -158,9 +157,9 @@ Variant SCIPCallback::getValue(Value::CBValue v) {
     throw AMPLSolverException("Specified value unknown.");
   }
   return Variant(0);
-}
+}*/
 
-int SCIPCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
+//int SCIPCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
   /*
   std::vector<double> vals(model_->getNumVars(), GRB_UNDEFINED);
   for (int i = 0; i < nvars; i++)
@@ -168,8 +167,8 @@ int SCIPCallback::setHeuristicSolution(int nvars, const int* indices, const doub
     double objective;
   return GRBcbsolution(cbdata_, vals.data(), &objective);
   */
-  return 0;
-}
+//  return 0;
+//}
 
 
 } // namespace

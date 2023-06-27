@@ -98,8 +98,8 @@ class SCIPModel : public AMPLMPModel {
   }
 
   // Interface implementation
-  //int setCallbackDerived(impl::BaseCallback* callback);
-  impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+  int setCallbackDerived(impl::BaseCallback* callback);
+  //impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
   void writeSolImpl(const char* solFileName);
 public:
   using Driver = ampls::SCIPDrv;
@@ -305,7 +305,7 @@ public:
 
   int addConstraintImpl(const char* name, int numnz, const int vars[], const double coefficients[],
     ampls::CutDirection::Direction sense, double rhs) {
-    char scipsense = SCIPCallback::toSCIPSense(sense);
+    char scipsense = 'G';//SCIPCallback::toSCIPSense(sense);
 
     SCIP_COL** scip_cols = NULL;
     SCIPallocBufferArray(getSCIPmodel(), &scip_cols, numnz);
