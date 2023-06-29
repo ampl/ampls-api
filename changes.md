@@ -2,6 +2,9 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
+## TBD
+
+* **[New]** Added SolverAttributes::INT_NumIntegerVars
 
 ## 0.1.3 - 2023-06-27
 
