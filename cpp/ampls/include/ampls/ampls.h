@@ -117,6 +117,9 @@ struct SolverAttributes {
     DBL_RelMIPGap,
     /** Current objective bound */
     DBL_CurrentObjBound,
+    /** Number of integer variables in the presolved problem (if applicable) */
+    INT_NumIntegerVars,
+
   };
 
 };

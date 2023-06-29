@@ -7,7 +7,6 @@
 
 
 // Example of column generation
-
 /// <summary>
 /// Represents a pattern (a way to cut a roll)
 /// </summary>
@@ -95,7 +94,6 @@ Patterns setData(ampl::AMPL& a) {
 }
 void declareCuttingModel(ampl::AMPL& a) {
   a.setIntOption("presolve", 0);
-  a.setOption("solver", "gurobi");
 
   a.eval("param nPatterns integer >= 0;"
     "set PATTERNS = 1..nPatterns;  "
@@ -155,7 +153,6 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
 
   // Create a second AMPL instance just for the knapsack problem
   ampl::AMPL ab;
-  ab.setOption("solver", "gurobi");
   ab.eval("set WIDTHS; param rawWidth;");
   declareKnapsackModel(ab);
   ab.setData(a.getData("WIDTHS"), "WIDTHS");
@@ -165,12 +162,15 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
   a.eval("display order, rolls;");
   a.setIntOption("relax_integrality", 1);
   auto cutting_opt = ampls::AMPLAPIInterface::exportModel<T>(a);
+  ab.setOption("solver", cutting_opt.driver());
 
   // Solution cycle
   while(true) {
     
     // Get the solution of the relaxed cutting model
     cutting_opt.optimize();
+    printf("Solved iteration, obj=%f\n", cutting_opt.getObj());
+    printf("Num ints = %d\n", cutting_opt.getAMPLIntAttribute(ampls::SolverAttributes::INT_NumIntegerVars));
     // Get the duals
     auto vv = cutting_opt.getDualVector();
     auto p = generatePattern(ab, vv);
@@ -212,6 +212,7 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
   ampls::AMPLAPIInterface::importModel(a, cutting_opt);
   // Solve the integer problem
   a.setIntOption("relax_integrality", 0);
+  a.setOption("solver", cutting_opt.driver());
   a.solve();
   // Display the result
   a.eval("display rolls, Cut;");
@@ -263,20 +264,23 @@ template <class T> void example()
 
 
 int main(int argc, char** argv) {
-
-#ifdef USE_copt
-  example<ampls::CoptModel>();
+#ifdef USE_cplex
+  example<ampls::CPLEXModel>();
 #endif
   /*
 #ifdef USE_xpress
   example<ampls::XPRESSModel>();
 #endif
-#ifdef USE_cplex
-  example<ampls::CPLEXModel>();
-#endif
-/*#ifdef USE_gurobi
+
+  /*#ifdef USE_gurobi
   example<ampls::GurobiModel>();
 #endif
+  /*
+#ifdef USE_copt
+  example<ampls::CoptModel>();
+#endif
+
+/*
 */
   return 0;
  

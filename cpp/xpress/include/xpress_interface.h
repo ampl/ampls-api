@@ -138,7 +138,9 @@ class XPRESSModel : public AMPLMPModel {
   }
 
   // Attributes map
-  std::map<int, int> attribsMap = { };
+  std::map<int, int> attribsMap = {
+    {SolverAttributes::INT_NumIntegerVars, XPRS_MIPENTS}
+  };
   int getXPRESSParamAlias(SolverAttributes::Attribs attrib) const
   {
     auto xpressParam = parametersMap.find(attrib);
