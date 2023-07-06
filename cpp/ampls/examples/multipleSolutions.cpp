@@ -74,5 +74,9 @@ int main(int argc, char** argv) {
     example<ampls::CPLEXModel>();
   #endif
 
+  #ifdef USE_scip
+    example<ampls::SCIPModel>();
+  #endif
+
     return 0;
 }

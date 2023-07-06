@@ -7,7 +7,7 @@
 
 #include <cstring> // for strcat 
 
-const char* MODELNAME = "testmodel.nl";
+const char* MODELNAME = "tspg96.nl";
 
 /* Demonstrates how to load a model using ampls gurobi interface,
    and how to obtain basic information with ampls routines and
