@@ -877,7 +877,7 @@ public:
   T loadModel(const char* modelName, std::vector<std::string> options) {
     std::vector<const char*> pointers;
     pointers.reserve(options.size() + 1);
-    for (auto s : options)
+    for (auto &s : options)
       pointers.push_back(s.data());
     pointers.push_back(nullptr);
     return loadModelGeneric(modelName, pointers.data());
