@@ -146,6 +146,7 @@ def run_example():
     cs.option["relax_integrality"]=0
     cs.solve()
     cs.eval("display TotalRawRolls, rolls, Cut;")
+    assert cs.get_current_objective().value() == 47
 
 class TestCuttingStock(TestBase):
     def test_cutting_stock(self):
