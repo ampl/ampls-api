@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 project(ampls)
-set(ampls_VERSION 0.1.2)
+set(ampls_VERSION 0.1.3)
 
 set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -116,7 +116,7 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1001)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1002)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2211)
   set(copt_BASE_DIR ${SOLVERLIBS}/copt/6.5.2)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/41.01.01)

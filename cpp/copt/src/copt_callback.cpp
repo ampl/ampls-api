@@ -79,7 +79,7 @@ double CoptCallback::getObj()
 }
 
 
-Variant  CoptCallback::getValue(Value::CBValue v) {
+Variant  CoptCallback::getValueImpl(Value::CBValue v) {
   switch (v)
   {
   case Value::OBJ:

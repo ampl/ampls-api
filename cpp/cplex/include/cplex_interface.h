@@ -163,7 +163,7 @@ public:
     return *this;
   }
 
-  const char* driver() { return "CPLEX"; }
+  const char* driver() { return "cplex"; }
 
   Status::SolStatus getStatus() {
     int cpxstatus = CPXgetstat(getCPXENV(), model_);
@@ -236,6 +236,7 @@ public:
 
   std::string error(int code);
 
+  double infinity() override { return CPX_INFBOUND; }
 
   // ********************* CPLEX specific *********************
   int setCallback(impl::BaseCallback* callback) {
@@ -320,6 +321,13 @@ public:
 
   /** Get an integer attribute using ampls aliases */
   int getAMPLIntAttribute(SolverAttributes::Attribs attrib) {
+    int val;
+    int status;
+    switch (attrib)
+    {
+    case SolverAttributes::INT_NumIntegerVars:
+      return CPXXgetnumint(getCPXENV(), getCPXLP());
+    }
     throw ampls::AMPLSolverException("Not supported");
   }
   /** Get a double attribute using ampls aliases */
@@ -360,16 +368,19 @@ public:
   const char toCPLEXType[3] = { CPX_CONTINUOUS, CPX_BINARY, CPX_INTEGER };
   int addVariableImpl(const char* name, int numnz, const int cons[], const double coefficients[],
     double lb, double ub, double objcoeff, ampls::VarType::Type type) {
-    double objd[] = { objcoeff };
-    double ubd[] = { ub };
-    double lbd[] = { lb };
     char* named[] = { const_cast<char*>(name) };
-    int status = CPXaddcols(getCPXENV(), getCPXLP(), 1, numnz, objd, 0, cons, coefficients, lbd, ubd, named);
-    AMPLSCPXERRORCHECK("CPXaddcols")
-    char varType[] = { toCPLEXType[(int)type] };
-    int indices[] = { getNumVars() - 1 };
-    CPXchgctype(getCPXENV(), getCPXLP(), 1, indices, varType);
-    return indices[0];
+    int status= CPXnewcols(getCPXENV(), getCPXLP(), 1, &objcoeff, &lb, &ub, NULL, named);
+    AMPLSCPXERRORCHECK("CPXnewcols");
+    int varindex= getNumVars() - 1;
+    std::vector<int> colindex(numnz, varindex - 1);
+    status = CPXchgcoeflist(getCPXENV(), getCPXLP(), numnz, cons, colindex.data(), coefficients);
+    AMPLSCPXERRORCHECK("CPXaddcols");
+
+    if (type != ampls::VarType::Continuous) {
+      char varType = toCPLEXType[(int)type];
+      CPXchgctype(getCPXENV(), getCPXLP(), 1, &varindex, &varType);
+    }
+    return varindex;
   }
 
   std::vector<double>  getConstraintsValueImpl(int offset, int length);

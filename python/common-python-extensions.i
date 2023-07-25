@@ -253,7 +253,7 @@ def __var_to_v(v):
 
 
 def _do_get_value(self, what):
-    v = self.getValue(__e_to_v(what))
+    v = self._getValue(__e_to_v(what))
     return __var_to_v(v)
 
 def _do_can_do(self, func):
@@ -270,10 +270,10 @@ def addLazyIndices(self, nvars, coeffs, direction, rhs):
 
 # Note: do not override getValue, as it is 
 # also called from the cpp routines
-#BaseCallback._getValue=BaseCallback.getValue
-#GenericCallback._getValue=GenericCallback.getValue
-#GenericCallback.getValue=_do_get_value
-#GenericCallback.get_value=_do_get_value
+BaseCallback._getValue=BaseCallback.getValue
+GenericCallback._getValue=GenericCallback.getValue
+GenericCallback.getValue=_do_get_value
+GenericCallback.get_value=_do_get_value
 BaseCallback.getValue=_do_get_value
 BaseCallback.get_value=_do_get_value
 

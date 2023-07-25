@@ -81,7 +81,8 @@ class GurobiModel : public AMPLMPModel {
   // Map for solver attributes
   std::map<int, const char*> attribsMap = {
      {SolverAttributes::DBL_RelMIPGap, GRB_DBL_ATTR_MIPGAP},
-    {SolverAttributes::DBL_CurrentObjBound, GRB_DBL_ATTR_OBJBOUND}
+    {SolverAttributes::DBL_CurrentObjBound, GRB_DBL_ATTR_OBJBOUND},
+    {SolverAttributes::INT_NumIntegerVars, GRB_INT_ATTR_NUMINTVARS}
   };
   const char* getGRBAttribAlias(SolverAttributes::Attribs attrib)
   {
@@ -105,6 +106,8 @@ class GurobiModel : public AMPLMPModel {
 
 public:
   using Driver = ampls::GurobiDrv;
+
+  double infinity() override { return GRB_INFINITY; }
 
   void enableLazyConstraints()
   {
@@ -145,7 +148,7 @@ public:
   
   using AMPLModel::getSolutionVector;
 
-  const char* driver() { return "Gurobi"; }
+  const char* driver() { return "gurobi"; }
 
   Status::SolStatus getStatus() {
     int grbstatus = getIntAttr(GRB_INT_ATTR_STATUS);

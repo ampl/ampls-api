@@ -50,6 +50,16 @@ class TestOptions(TestBase):
         assert "mylog" == model.get_string_option("tech:logfile")
 
 
+    def test_delta(self):
+        ampl = TestOptions.create_model()
+        options = ["outlev=1", "timelim=10"]
+        model = ampl.to_ampls(SOLVER, options)
+        if SOLVER == "gurobi":
+            drv=model.get_double_option('timelim')
+            grbtl=model.getDoubleParam("TimeLimit")
+            assert  drv== 10, "Gurobi Model time limit should be 10 but instead is " + str(drv)
+            assert  grbtl== 10, "Gurobi Model time limit should be 10 but instead is " + str(grbtl)
+
     def test_converter_options(self):
         ampl = TestOptions.create_model()
 

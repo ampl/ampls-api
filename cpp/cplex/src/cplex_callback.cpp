@@ -48,7 +48,6 @@ bool CPLEXCallback::canDo(CanDo::Functionality f, int threadid) {
 double CPLEXCallback::getCPLEXDouble(CPXCALLBACKINFO what, int threadid)
 {
   double res;
-  int status;
   CPLEX_CALL(CPXcallbackgetinfodbl(context(threadid), what, &res));
   return res;
 }
@@ -56,7 +55,6 @@ double CPLEXCallback::getCPLEXDouble(CPXCALLBACKINFO what, int threadid)
 int CPLEXCallback::getCPLEXInt(CPXCALLBACKINFO what, int threadid)
 {
   int res;
-  int status;
   CPLEX_CALL(CPXcallbackgetinfoint(context(threadid), what, &res));
   return res;
 }
@@ -64,12 +62,11 @@ int CPLEXCallback::getCPLEXInt(CPXCALLBACKINFO what, int threadid)
 long CPLEXCallback::getCPLEXLong(CPXCALLBACKINFO what, int threadid)
 {
   CPXLONG res;
-  int status;
   CPLEX_CALL(CPXcallbackgetinfolong(context(threadid), what, &res));
   return res;
 }
 
-Variant CPLEXCallback::getValue(Value::CBValue v) {
+Variant CPLEXCallback::getValueImpl(Value::CBValue v) {
   switch (v)
   {
     case Value::ITERATIONS:

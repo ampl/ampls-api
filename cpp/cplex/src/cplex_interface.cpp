@@ -5,7 +5,7 @@
 
 namespace ampls
 {
-
+ 
 int CPXPUBLIC impl::cpx::CBWrap::genericcallback(CPXCALLBACKCONTEXTptr context, CPXLONG contextid,
     void* cbhandle) {
   CPLEXCallback* cb = static_cast<CPLEXCallback*>(cbhandle);
@@ -19,6 +19,7 @@ int CPXPUBLIC impl::cpx::CBWrap::genericcallback(CPXCALLBACKCONTEXTptr context, 
   // Assign thread local info
   cb->local_[tid].context_ = context;
   cb->local_[tid].where_ = (int)contextid;
+
 
   if (cb->hasThreads_)
     cb->run(tid);
@@ -180,8 +181,8 @@ std::string CPLEXModel::error(int code) {
 
 std::vector<double>  CPLEXModel::getConstraintsValueImpl(int offset, int length) {
   std::vector<double> c(length);
-  int status = CPXgetpi(getCPXENV(), getCPXLP(), c.data(), offset, offset + length);
-  AMPLSCPXERRORCHECK("CPXgetx");
+  int status = CPXgetpi(getCPXENV(), getCPXLP(), c.data(), offset, offset + (length-1));
+  AMPLSCPXERRORCHECK("CPXgetpi");
   return c;
 }
 std::vector<double> CPLEXModel::getVarsValueImpl(int offset, int length) {

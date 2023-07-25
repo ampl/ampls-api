@@ -75,16 +75,20 @@ namespace ampls
       {
       case CPX_ENUM_MSG_CALLBACK: return Where::MSG;
       case CPX_CALLBACKCONTEXT_CANDIDATE: return Where::MIPSOL;
-      case CPX_CALLBACKCONTEXT_RELAXATION: return Where::MIPNODE;
-      case CPX_CALLBACKCONTEXT_GLOBAL_PROGRESS: return Where::LPSOLVE;
+      case CPX_CALLBACKCONTEXT_RELAXATION: return Where::LPSOLVE;
+      case CPX_CALLBACKCONTEXT_LOCAL_PROGRESS: return Where::MIPNODE;
+      case CPX_CALLBACKCONTEXT_GLOBAL_PROGRESS: return Where::MIPNODE;
       default:
         return Where::NOTMAPPED;
       }
     }
 
-    Variant getValue(Value::CBValue v);
-    Variant getValue(Value::CBValue v, int threadid0);
+    Variant getValueImpl(Value::CBValue v);
+    Variant getValueImpl(Value::CBValue v, int threadid0);
 
+    Variant getValue(Value::CBValue v, int threadid0) {
+      return getValueImpl(v, threadid0);
+    }
     std::vector<double> getValueArray(Value::CBValue v);
     std::vector<double> getValueArray(Value::CBValue v, int threadid);
 
@@ -104,8 +108,9 @@ namespace ampls
     }
 
   public:
+    int nnodes;
     CPLEXCallback() : CODE(""), BaseCallback(), msg_(nullptr),
-      local_(1), hasThreads_(false) { }
+      local_(1), hasThreads_(false), nnodes(0) { }
 
     /// <summary>
     ///  CPLEX specific. Usable only after linking the callback to a model 

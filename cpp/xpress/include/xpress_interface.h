@@ -56,46 +56,15 @@ namespace ampls
       // Declares a user integer solution callback function, 
       // called every time an integer solution is found by heuristics or during the Branch and Bound 
       static void XPRS_CC  intsol_callback_wrapper(XPRSprob prob, void* object);
+      // Called every new node
+      static void XPRS_CC  newnode_callback_wrapper(XPRSprob cbprob, void* cbdata, int parentnode, int node, int branch);
       // Declares an optimal node callback function, called after an optimal solution for the current 
       // node has been found during the Branch and Bound search.
       // feas: The feasibility status.If set to a nonzero value by the user, the current node will be declared infeasible.
       static void XPRS_CC optnode_callback_wrapper(XPRSprob my_prob, void* my_object, int* feas);
 
       static void XPRS_CC preintsol_callback_wrapper(XPRSprob prob, void* object, int soltype, int* p_reject, double* p_cutoff);
-      // Declares a node selection callback function. 
-      // This is called every time the code backtracks to select a new node during the MIP search.
-      // nodnum 
-      // node: a pointer to the number of the node, nodnum, selected by the Optimizer.
-      // By changing the value pointed to by this argument, the selected node may be changed with 
-      // this function.
-      // static void XPRS_CC chgnode_callback_wrapper(XPRSprob prob, void* object,
-      //   int* node);
-
-      // Declares a user infeasible node callback function, 
-      // called after the current node has been found to be infeasible during the Branch and Bound search.
-      // static void XPRS_CC infnode_callback_wrapper(XPRSprob prob, void* object);
-
-      // Declares a user node cutoff callback function, 
-      // called every time a node is cut off as a result of an improved integer solution being found 
-      // during the Branch and Bound search.
-      // node The number of the node that is cut off.
-      // static void XPRS_CC nodecutoff_callback_wrapper(XPRSprob prob, void* object, int node);
-
-      // Declares a branching variable callback function, called every time a new branching variable 
-      // is set or selected during the MIP search.
-      // entity: A pointer to the variable or set on which to branch.Ordinary global variables are identified by their column index, i.e. 0, 1, ...(COLS - 1) and by their set index, i.e. 0, 1, ..., (SETS - 1).
-      // up: If entity is a variable, this is 1 if the upward branch is to be made first, or 0 otherwise.If entity is a set, this is 3 if the upward branch is to be made first, or 2 otherwise.
-      // estdeg: The estimated degradation at the node.
-      // static void XPRS_CC chgbranch_callback_wrapper(XPRSprob prob, void* vdata,
-        // int* entity, int* up, double* estdeg);
-
-      // Declares a preprocess node callback function, called before the node has been optimized,
-      // so the solution at the node will not be available.
-      // feas: the feasibility status, if set to a nonzero value by the user, the current node 
-      // will be declared infeasible by the optimizer.
-      // static void XPRS_CC prenode_callback_wrapper(XPRSprob prob, void* data, int* feas);
-
-
+    
     };
   }
 }
@@ -169,7 +138,9 @@ class XPRESSModel : public AMPLMPModel {
   }
 
   // Attributes map
-  std::map<int, int> attribsMap = { };
+  std::map<int, int> attribsMap = {
+    {SolverAttributes::INT_NumIntegerVars, XPRS_MIPENTS}
+  };
   int getXPRESSParamAlias(SolverAttributes::Attribs attrib) const
   {
     auto xpressParam = parametersMap.find(attrib);
@@ -212,7 +183,10 @@ public:
   }
 
 
-  const char* driver() { return "Xpress"; }
+  const char* driver() { return "xpress"; }
+
+  double infinity() override { return XPRS_PLUSINFINITY; }
+  double negInfinity() override { return XPRS_MINUSINFINITY; }
 
   Status::SolStatus getStatus() {
     if (!isMIP())
@@ -420,11 +394,9 @@ public:
   const char toXPRESSType[3] = { 'C', 'B', 'I'};
   int addVariableImpl(const char* name, int numnz, const int cons[], const double coefficients[],
     double lb, double ub, double objcoeff, ampls::VarType::Type type) {
-    double objd[] = { objcoeff };
-    double ubd[] = { ub };
-    double lbd[] = { lb };
     char* named[] = { const_cast<char*>(name) };
-    int status = XPRSaddcols(prob_, 1, numnz, objd, 0, cons, coefficients, lbd, ubd);
+    int nv = getNumCons();
+    int status = XPRSaddcols(prob_, 1, numnz, &objcoeff, 0, cons, coefficients, &lb, &ub);
     AMPLSXPRSERRORCHECK("XPRSaddcols")
     char varType[] = { toXPRESSType[(int)type] };
     int indices[] = { getNumVars() - 1 };

@@ -80,7 +80,9 @@ class CoptModel : public AMPLMPModel {
 
   // Map for solver attributes
   std::map<int, const char*> attribsMap = {
-    {SolverAttributes::DBL_CurrentObjBound, COPT_DBLATTR_BESTBND}  
+    {SolverAttributes::DBL_CurrentObjBound, COPT_DBLATTR_BESTBND},
+    {SolverAttributes::INT_NumIntegerVars, COPT_INTATTR_INTS}
+
   };
   const char* getAttribAlias(SolverAttributes::Attribs attrib)
   {
@@ -144,7 +146,7 @@ public:
   
   using AMPLModel::getSolutionVector;
 
-  const char* driver() { return "Copt"; }
+  const char* driver() { return "copt"; }
 
   Status::SolStatus getStatus() {
     if (getIntAttr(COPT_INTATTR_ISMIP)) {
@@ -207,6 +209,9 @@ public:
   }
 
   std::string error(int code);
+
+  double infinity() override { return COPT_INFINITY; }
+
 
   // **************** Copt-specific ****************
 
@@ -333,10 +338,11 @@ public:
 
   std::vector<double>  getConstraintsValueImpl(int offset, int length)
   {
-    std::vector<double> values(getNumVars());
-    COPT_GetLpSolution(COPTModel_, NULL, NULL, NULL, values.data());
-    auto first = values.begin() + offset;
-    auto last = values.end();
+    std::vector<double> pi(getNumCons());
+
+    COPT_GetLpSolution(COPTModel_, NULL, NULL, pi.data(), NULL);
+    auto first = pi.begin() + offset;
+    auto last = pi.end();
     return std::vector<double>(first, last);
   }
   std::vector<double> getVarsValueImpl(int offset, int length) {

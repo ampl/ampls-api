@@ -68,8 +68,10 @@ public:
   using BaseCallback::getWhere;
   int getSolution(int len, double* sol);
   double getObj();
+  
 
   // ************** Gurobi specific **************
+  double getObjBnd();
   /** Get CBdata, useful for calling gurobi c library functions */
   void* getCBData() { return cbdata_; }
   /** * Get the underlying gurobi model pointer */
@@ -134,7 +136,7 @@ public:
   /** Get a value (using gurobi C library enumeration to specify what)*/
   Variant get(int what);
   
-  virtual Variant getValue(Value::CBValue v);
+  Variant getValueImpl(Value::CBValue v);
 
   int setHeuristicSolution(int nvars, const int* indices, const double* values);
 
