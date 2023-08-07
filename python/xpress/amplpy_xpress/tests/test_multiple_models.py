@@ -126,7 +126,7 @@ def create_and_solve_simple_model(num_vars: int = 10):
     elif SOLVER == "cplex":
         status = ampls.CPXgetstat(model.get_cplex_env(), model.get_cplex_lp())
         print("Status = {}".format(status))
-        assert status == ampls.CPXMIP_OPTIMAL
+        assert status == ampls.CPX_STAT_OPTIMAL
     elif SOLVER == "xpress":
         status = model.get_int_attr(ampls.XPRS_LPSTATUS)
         assert status == ampls.XPRS_LP_OPTIMAL

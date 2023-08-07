@@ -66,7 +66,7 @@ void checkNativeStatus(ampls::GurobiModel& grbmodel) {
 void checkNativeStatus(ampls::CPLEXModel& model) {
   // Use CPLEX native functions
   int status = CPXgetstat(model.getCPXENV(), model.getCPXLP());
-  assert(status == CPXMIP_OPTIMAL);
+  assert(status == CPX_STAT_OPTIMAL);
 }
 #endif
 #ifdef USE_xpress
@@ -136,6 +136,8 @@ template <class T> void createAndSolveUnboundedModel(bool presolve) {
 }
 
 template <class T> void example() {
+  // Normal model solver to completion
+  createAndSolveSimpleModel<T>();
   bool caught = false;
   try {
     // This will fail because AMPL's presolve will block the 
@@ -165,8 +167,7 @@ template <class T> void example() {
   createAndSolveUnboundedModel<T>(true);
   createAndSolveUnboundedModel<T>(false);
 
-  // Normal model solver to completion
-  createAndSolveSimpleModel<T>();
+
 }
 
 int main(int argc, char** argv) {
