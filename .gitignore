@@ -31,3 +31,4 @@ amplpy_*_swig_wrap.h
 /python/cplex/amplpy_cplex/swig/amplpy_cplex_swig_wrap.h
 /csharp/xpress/api/dev_xpresssharp.csproj
 /python/envlinux
+/python/test/env1

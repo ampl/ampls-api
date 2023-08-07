@@ -8,7 +8,9 @@
 %feature("director") ampls::CoptCallback;
 %ignore ampls::CoptCallback::doAddCut;
 %ignore ampls::impl::copt;
-
+// Waiting for a fix for COPT_INT64 definition
+%ignore COPT_WriteBlob;
+%ignore COPT_ReadBlob;
 // The following is to avoid problem with director
 // that cannot properly map an out double[].
 // Not yet.

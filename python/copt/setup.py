@@ -131,7 +131,7 @@ setup(
             os.path.join('amplpy_copt', 'cpp', 'copt', 'include'),
             os.path.join('amplpy_copt', 'cpp', 'ampls', 'include'),
         ],
-        libraries=['copt2010', 'copt-lib'],
+        libraries=['copt', 'copt-lib'],
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[
