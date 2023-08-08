@@ -27,3 +27,9 @@ for s in $SOLVERS; do
         cp -r ../../libs/ampls/$p/*$s* $PACKAGE/libs/$s/lib/$p
     done
 done
+
+os_name=$(uname -s)
+# Check if the OS is Linux
+if [ "$os_name" = "Linux" ]; then
+    ln $PACKAGE/libs/$s/lib/linux64/libxprs.so $PACKAGE/libs/$s/lib/linux64/libxprs.so.42
+fi
