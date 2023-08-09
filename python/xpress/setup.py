@@ -83,7 +83,7 @@ def link_args():
 
 setup(
     name="amplpy_xpress",
-    version="0.1.3",
+    version="0.1.4",
     description="XPRESS extension for amplpy",
     long_description=__doc__,
     license="BSD-3",

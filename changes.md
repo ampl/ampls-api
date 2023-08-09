@@ -2,16 +2,16 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
-## TBD
+## 0.1.4 - 2023-08-09
 
 * **[New]** Added SolverAttributes::INT_NumIntegerVars
+* **[Fix]** Various bug fixes
 
 ## 0.1.3 - 2023-06-27
 
 * **[Breaking]** ampls::CPLEXCallback is now using the generic callbacks. Note that multithreading 
   is not disabled by default but implementation needs extra care. 
-* **[Breaking]** Solver and solver driver related errors in Python are now thrown as 
-  ampls.AMPLSolverException
+* **[Breaking]** Solver and solver driver related errors in Python are now thrown as ampls.AMPLSolverException
 * **[Fix]** Fixed python wrappers for AMPLModel.*etAMPLParameter and AMPLModel.getStatus
 * **[New]** Added AMPLModel::infinity() and AMPLModel::negInfinity() to use when creating new entities
   with no bounds

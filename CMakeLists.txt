@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 project(ampls)
-set(ampls_VERSION 0.1.3)
+set(ampls_VERSION 0.1.4)
 
 set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -119,7 +119,7 @@ if(hasParent)
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1002)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2211)
   set(copt_BASE_DIR ${SOLVERLIBS}/copt/6.5.2)
-  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/41.01.01)
+  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/42.01.01)
 else()
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs)
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi)
@@ -218,7 +218,7 @@ else()
       ${copt_BASE_DIR}/${sys}/libcopt.so)
     
     CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
-      ${xpress_BASE_DIR}/${sys}/libxprs.so.41)
+      ${xpress_BASE_DIR}/${sys}/libxprs.so.42)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()
