@@ -36,8 +36,8 @@ namespace ampls
         ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_copt(int, char**);
       }
       // Forward declarations
-      int copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata);
-      void copt_log_callback_wrapper(char* msg, void* userdata);
+      int COPT_CALL copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata);
+      void COPT_CALL copt_log_callback_wrapper(char* msg, void* userdata);
     } // namespace copt
   } // namespace impl
 

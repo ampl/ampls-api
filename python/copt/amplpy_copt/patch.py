@@ -42,7 +42,7 @@ def _do_export(self, drv, options=None):
 if __package__ == "amplpy_copt":
     from amplpy_copt_swig import *
 
-    COPT_DRIVER = COPTDrv()
+    COPT_DRIVER = CoptDrv()
 
     def export_copt_model(self, options=None):
         global COPT_DRIVER

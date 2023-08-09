@@ -5,7 +5,7 @@
 namespace ampls
 {
 
-int impl::copt::copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata)
+  int COPT_CALL impl::copt::copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, void* userdata)
 {
   CoptCallback* cb = (CoptCallback*)userdata;
   cb->cbdata_ = cbdata;
@@ -24,7 +24,7 @@ int impl::copt::copt_callback_wrapper(copt_prob* prob, void* cbdata, int cbctx, 
   }
   return res;
 }
-void impl::copt::copt_log_callback_wrapper(char* msg, void* userdata) {
+ void COPT_CALL impl::copt::copt_log_callback_wrapper(char* msg, void* userdata) {
   CoptCallback* cb = (CoptCallback*)userdata;
   cb->where_ = ampls::Where::MSG; 
   cb->cbdata_ = (void*)msg;
