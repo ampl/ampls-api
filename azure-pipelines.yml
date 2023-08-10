@@ -157,9 +157,8 @@ stages:
         inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
 
 - stage: publish
-  condition: or(and(eq(variables.STAGE, 'ftp'), ne(variables.FTP_JOBID, 'current')), and(succeeded(), or(eq(variables.STAGE, 'all'), eq(variables.STAGE, 'ftp'))))
   jobs:
-    - job: ftp_upload
+    - job: upload
       pool: {vmImage: 'ubuntu-latest'}
       steps:
         - task: DownloadBuildArtifacts@0
