@@ -57,8 +57,8 @@ jobs:
       env:
         CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
       displayName: Build wheels
-    - task: PublishBuildArtifacts@1
-      inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
+    - task: PublishPipelineArtifact@1
+      inputs: {targetPath: '$(Build.ArtifactStagingDirectory)', artifact: 'drop', artifactType: 'pipeline'}
 - job: macos
   pool: {vmImage: 'macOS-latest'}
   strategy:
@@ -104,8 +104,8 @@ jobs:
       env:
         CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
       displayName: Build wheels
-    - task: PublishBuildArtifacts@1
-      inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
+    - task: PublishPipelineArtifact@1
+      inputs: {targetPath: '$(Build.ArtifactStagingDirectory)', artifact: 'drop', artifactType: 'pipeline'}
 - job: windows
   pool: {vmImage: 'windows-latest'}
   strategy:
@@ -151,5 +151,5 @@ jobs:
       env:
         CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
       displayName: Build wheels
-    - task: PublishBuildArtifacts@1
-      inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
+    - task: PublishPipelineArtifact@1
+      inputs: {targetPath: '$(Build.ArtifactStagingDirectory)', artifact: 'drop', artifactType: 'pipeline'}
