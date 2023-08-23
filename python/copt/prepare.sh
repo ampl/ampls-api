@@ -18,13 +18,12 @@ cp -r ../../cpp/ampls $PACKAGE/cpp/ampls
 
 mkdir -p $PACKAGE/libs
 for s in $SOLVERS; do
-    cp -r ../../cpp/$s $PACKAGE/cpp/$s
+    cp -r ../../cpp/$s $PACKAGE/cpp/
     mkdir -p $PACKAGE/libs/$s
     cp -r ../../libs/$s/include $PACKAGE/libs/$s/
     for p in $PLATFORMS; do
-        mkdir -p $PACKAGE/libs/ampls/$p
-        cp -r ../../libs/ampls/$p/*$s* $PACKAGE/libs/ampls/$p/
         mkdir -p $PACKAGE/libs/$s/lib/$p
         cp -r ../../libs/$s/lib/$p $PACKAGE/libs/$s/lib/
+        cp -r ../../libs/ampls/$p/*$s* $PACKAGE/libs/$s/lib/$p
     done
 done
