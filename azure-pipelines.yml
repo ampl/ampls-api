@@ -74,9 +74,9 @@ stages:
         xpress:
           solver: 'xpress'
           CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
-        #copt:
-        #  solver: 'copt'
-        #  CIBW_TEST_COMMAND: python -m amplpy_copt.tests
+        copt:
+          solver: 'copt'
+          CIBW_TEST_COMMAND: python -m amplpy_copt.tests
     variables:
       wheelhouse: $(Build.ArtifactStagingDirectory)
     steps:
@@ -121,9 +121,9 @@ stages:
         xpress:
           solver: 'xpress'
           CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
-        #copt:
-        #  solver: 'copt'
-        #  CIBW_TEST_COMMAND: python -m amplpy_copt.tests
+        copt:
+          solver: 'copt'
+          CIBW_TEST_COMMAND: python -m amplpy_copt.tests
     variables:
       wheelhouse: $(Build.ArtifactStagingDirectory)
     steps:
