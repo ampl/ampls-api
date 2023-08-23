@@ -19,7 +19,7 @@ if platform.system() == "Windows":
     import ctypes
 
     LIBPATH = os.path.join(BASEDIR, "libs", "gurobi", "lib", "win64")
-    for dll in ["gurobi100", "gurobi-lib.dll"]:
+    for dll in ["gurobi100.dll", "gurobi-lib.dll"]:
         try:
             ctypes.CDLL(os.path.join(LIBPATH, dll))
         except Exception as e:
