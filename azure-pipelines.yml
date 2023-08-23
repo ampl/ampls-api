@@ -21,10 +21,10 @@ stages:
           solver: 'xpress'
           CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
           CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
-        #copt:
-        #  solver: 'copt'
-        #  CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
-        #  CIBW_TEST_COMMAND: python -m amplpy_copt.tests
+        copt:
+          solver: 'copt'
+          CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
+          CIBW_TEST_COMMAND: python -m amplpy_copt.tests
     variables:
       wheelhouse: $(Build.ArtifactStagingDirectory)
     steps:
