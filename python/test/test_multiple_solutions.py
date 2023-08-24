@@ -8,9 +8,9 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from test_base import TestBase
 
 from amplpy import AMPL
-import amplpy_gurobi as ampls
+import amplpy_copt as ampls
 
-SOLVER = "gurobi"
+SOLVER = "copt"
 
 
 class TestMultipleSolutions(TestBase):
@@ -23,6 +23,7 @@ class TestMultipleSolutions(TestBase):
         )
         model = ampl.to_ampls(SOLVER)
         model.set_option("sol:stub", "stub")
+        model.set_option("presolve", 0)
         try:
             model.set_option("sol:poolgap", 0.1)
         except:
@@ -31,7 +32,7 @@ class TestMultipleSolutions(TestBase):
         model.optimize()
         ampl.import_solution(model)
         v = int(ampl.get_value("TotalSum.nsol"))
-        if SOLVER == "xpress":
+        if SOLVER in ["xpress", "copt"] :
             self.assertTrue(2 <= v <= 3)
         else:
             self.assertEqual(v, 3)
