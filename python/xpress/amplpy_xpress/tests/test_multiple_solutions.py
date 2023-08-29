@@ -23,7 +23,10 @@ class TestMultipleSolutions(TestBase):
         )
         model = ampl.to_ampls(SOLVER)
         model.set_option("sol:stub", "stub")
-        model.set_option("presolve", 0)
+        try:
+            model.set_option("presolve", 0)
+        except:
+            pass
         try:
             model.set_option("sol:poolgap", 0.1)
         except:
