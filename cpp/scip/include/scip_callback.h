@@ -8,27 +8,68 @@
 #include "ampls/ampls.h"
 
 #include "scip/scip.h"
+
+#include "scip/scipdefplugins.h"
 #include "objscip/objscip.h"
 
 namespace ampls {
+  class SCIPCH;
+  class SCIPModel;
 
-class SCIPPlugin : public impl::BaseCallback {
-  SCIP* scip_;
-  private:
-    int doAddCut(const ampls::Constraint& c, int type) {throw AMPLSolverException("Not implemented in SCIP!");}
-    int run() {throw AMPLSolverException("Not implemented in SCIP!");}
-    int setHeuristicSolution(int nvars, const int* indices, const double* values) {throw AMPLSolverException("Not implemented in SCIP!");}
-    int getSolution(int len, double* sol) {throw AMPLSolverException("Not implemented in SCIP!");}
-    double getObj() {throw AMPLSolverException("Not implemented in SCIP!");}
-    const char* getWhereString() {throw AMPLSolverException("Not implemented in SCIP!");}
-    const char* getMessage() {throw AMPLSolverException("Not implemented in SCIP!");}
-    ampls::Where::CBWhere getAMPLWhere() {throw AMPLSolverException("Not implemented in SCIP!");}
-    ampls::Variant getValue(ampls::Value::CBValue v) {throw AMPLSolverException("Not implemented in SCIP!");}
-    std::vector<double> getValueArray(ampls::Value::CBValue v) {throw AMPLSolverException("Not implemented in SCIP!");}
+  enum SCIPWhere {
+    ConstraintHandler
+  };
+
+
+  class SCIPCallback : public impl::BaseCallback {
+    friend class SCIPCH;
+    friend class SCIPModel;
+    SCIP* scip_;
+    std::string whereString_;
+    std::shared_ptr<SCIPCH> ch_;
+    int actions_;
+    void setWhere(SCIPWhere where, const char* str) {
+      where_ = where;
+      whereString_ = str;
+    }
+    void registerPlugins(SCIP* scip);
   public:
-    SCIPPlugin(SCIP* scip) {this->scip_ = scip;}
-    SCIP* getSCIP();
+    int getActions() { return actions_; }
+    int doAddCut(const ampls::Constraint& c, int type);
+    virtual int run() = 0;
+    int setHeuristicSolution(int nvars, const int* indices, const double* values) { throw AMPLSolverException("Not implemented in SCIP!"); }
+    int getSolution(int len, double* sol);
+
+    double getObj(); 
+    const char* getWhereString() { return whereString_.c_str() ;}
+    const char* getMessage() { throw AMPLSolverException("Not implemented in SCIP!"); }
+    ampls::Where::CBWhere getAMPLWhere() {
+      switch (where_)
+      {
+      case SCIPWhere::ConstraintHandler:
+        return ampls::Where::MIPSOL;
+      }
+      return ampls::Where::NOTMAPPED;
+    }
+    ampls::Variant getValue(ampls::Value::CBValue v);
+    std::vector<double> getValueArray(ampls::Value::CBValue v) { throw AMPLSolverException("Not implemented in SCIP!"); }
+  public:
+    SCIP* getSCIP() { return scip_; }
+  };
+
+
+class SCIPPlugin {
+  SCIP* scip_;
+  SCIPCallback* parent_;
+public:
+  SCIPPlugin(SCIP* scip, SCIPCallback* cb) : scip_(scip), parent_(cb) {}
+  SCIP* getSCIP() {
+    return scip_; }
+
+  SCIPCallback* getCB() { return parent_; }
 };
+
+
 
 class SCIPPresol : public SCIPPlugin, scip::ObjPresol {
   friend class SCIPModel;
@@ -39,8 +80,9 @@ public:
     const char*        desc,               /**< description of presolver */
     int                priority,           /**< priority of the presolver */
     int                maxrounds,          /**< maximal number of presolving rounds the presolver participates in (-1: no limit) */
-    SCIP_PRESOLTIMING  timing              /**< timing mask of the presolver */) 
-    : SCIPPlugin(model), scip::ObjPresol(model, name, desc, priority, maxrounds, timing) {}
+    SCIP_PRESOLTIMING  timing,              /**< timing mask of the presolver */
+    SCIPCallback *cb) 
+    : SCIPPlugin(model, cb), scip::ObjPresol(model, name, desc, priority, maxrounds, timing) {}
 
   private:
     SCIP_DECL_PRESOLFREE(scip_free) { return presol_free(); }
@@ -81,8 +123,10 @@ class SCIPHeur : public SCIPPlugin, scip::ObjHeur {
       int                maxdepth,           /**< maximal depth level to call heuristic at (-1: no limit) */
       SCIP_HEURTIMING    timingmask,         /**< positions in the node solving loop where heuristic should be executed;
                                               *   see definition of SCIP_HEURTIMING for possible values */
-      SCIP_Bool          usessubscip         /**< does the heuristic use a secondary SCIP instance? */)
-      : SCIPPlugin(model), scip::ObjHeur(model, name, desc, dispchar, priority, freq, freqofs, maxdepth, timingmask, usessubscip) {}
+      SCIP_Bool          usessubscip,   
+    /**< does the heuristic use a secondary SCIP instance? */
+      SCIPCallback* cb) 
+      : SCIPPlugin(model, cb), scip::ObjHeur(model, name, desc, dispchar, priority, freq, freqofs, maxdepth, timingmask, usessubscip) {}
   private:
     SCIP_DECL_HEURFREE(scip_free) { return heur_free(); }
     SCIP_DECL_HEURINIT(scip_init) { return heur_init(); }
@@ -110,10 +154,11 @@ public:
     const char*        desc,               /**< description of presolver */
     int                priority,           /**< priority of the presolver */
     int                maxdepth,           /**< maximal depth level, up to which this branching rule should be used (or -1) */
-    double             maxbounddist        /**< maximal relative distance from current node's dual bound to primal bound
+    double             maxbounddist,        /**< maximal relative distance from current node's dual bound to primal bound
                                               *   compared to best node's dual bound for applying branching rule
-                                              *   (0.0: only on current best node, 1.0: on all nodes) */) 
-    : SCIPPlugin(model), scip::ObjBranchrule(model, name, desc, priority, maxdepth, maxbounddist) {}
+                                              *   (0.0: only on current best node, 1.0: on all nodes) */
+      SCIPCallback* cb)
+    : SCIPPlugin(model, cb), scip::ObjBranchrule(model, name, desc, priority, maxdepth, maxbounddist) {}
   private:
     SCIP_DECL_BRANCHFREE(scip_free) { return branch_free(); }
     SCIP_DECL_BRANCHINIT(scip_init) { return branch_init(); }
@@ -147,46 +192,155 @@ public:
     }
 };
 
-class SCIPSepa : public SCIPPlugin, scip::ObjSepa {
+class SCIPCH : public SCIPPlugin, public scip::ObjConshdlr {
   friend class SCIPModel;
-public:
-  SCIPSepa(      
-    SCIP*              model,              /**< SCIP data structure */
-    const char*        name,               /**< name of presolver */
-    const char*        desc,               /**< description of presolver */
-    int                priority,           /**< priority of the presolver */
-    int                freq,               /**< frequency for calling separator */
-    SCIP_Real          maxbounddist,       /**< maximal relative distance from current node's dual bound to primal bound compared
-                                            *   to best node's dual bound for applying separation */
-    SCIP_Bool          usessubscip,        /**< does the separator use a secondary SCIP instance? */
-    SCIP_Bool          delay               /**< should separator be delayed, if other separators found cuts? */) 
-    : SCIPPlugin(model), scip::ObjSepa(model, name, desc, priority, freq, maxbounddist, usessubscip, delay) {}
-  private:
-    SCIP_DECL_SEPAFREE(scip_free) { return sepa_free(); }
-    SCIP_DECL_SEPAINIT(scip_init) { return sepa_init(); }
-    SCIP_DECL_SEPAEXIT(scip_exit) { return sepa_exit(); }
-    SCIP_DECL_SEPAINITSOL(scip_initsol) { return sepa_initsol(); }
-    SCIP_DECL_SEPAEXITSOL(scip_exitsol) { return sepa_exitsol(); }
-    SCIP_DECL_SEPAEXECLP(scip_execlp) { return sepa_execlp(result, allowlocal, depth); }
-    SCIP_DECL_SEPAEXECSOL(scip_execsol) { return sepa_execsol(sol, result, allowlocal, depth); }
+  SCIP_SOL* sol_; // if in check
 
   public:
-    virtual SCIP_RETCODE sepa_free() { return SCIP_OKAY; }
-    virtual SCIP_RETCODE sepa_init() { return SCIP_OKAY; }
-    virtual SCIP_RETCODE sepa_exit() { return SCIP_OKAY; }
-    virtual SCIP_RETCODE sepa_initsol() { return SCIP_OKAY; }
-    virtual SCIP_RETCODE sepa_exitsol() { return SCIP_OKAY; }
-    virtual SCIP_RETCODE sepa_execlp(SCIP_RESULT* result, SCIP_Bool allowlocal, int depth) {
-      assert(result != NULL);
-      *result = SCIP_DIDNOTRUN;
-      return SCIP_OKAY;
+    SCIPCH(SCIP* model, SCIPCallback* cb) : SCIPPlugin(model, cb),
+      scip::ObjConshdlr(model, "DEF", "DEF", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, SCIP_PRESOLTIMING_FAST)
+    {}
+
+    SCIPCH(
+      SCIP* model,               /**< SCIP data structure */
+      const char* name,               /**< name of constraint handler */
+      const char* desc,               /**< description of constraint handler */
+      int                sepapriority,       /**< priority of the constraint handler for separation */
+      int                enfopriority,       /**< priority of the constraint handler for constraint enforcing */
+      int                checkpriority,      /**< priority of the constraint handler for checking infeasibility (and propagation) */
+      int                sepafreq,           /**< frequency for separating cuts; zero means to separate only in the root node */
+      int                propfreq,           /**< frequency for propagating domains; zero means only preprocessing propagation */
+      int                eagerfreq,          /**< frequency for using all instead of only the useful constraints in separation,
+                                              *   propagation and enforcement, -1 for no eager evaluations, 0 for first only */
+      int                maxprerounds,       /**< maximal number of presolving rounds the constraint handler participates in (-1: no limit) */
+      SCIP_Bool          delaysepa,          /**< should separation method be delayed, if other separators found cuts? */
+      SCIP_Bool          delayprop,          /**< should propagation method be delayed, if other propagators found reductions? */
+      SCIP_Bool          needscons,          /**< should the constraint handler be skipped, if no constraints are available? */
+      SCIP_PROPTIMING    proptiming,         /**< positions in the node solving loop where propagation method of constraint handlers should be executed */
+      SCIP_PRESOLTIMING  presoltiming,
+      SCIPCallback* cb) 
+      : SCIPPlugin(model, cb), scip::ObjConshdlr(model, name, desc,
+        sepapriority, enfopriority, checkpriority, sepafreq, propfreq, eagerfreq, maxprerounds,
+        delaysepa, delayprop, needscons, proptiming, presoltiming)
+    {
+
     }
-    virtual SCIP_RETCODE sepa_execsol(SCIP_SOL* sol, SCIP_RESULT* result, SCIP_Bool allowlocal, int depth) {
-      assert(result != NULL);
-      *result = SCIP_DIDNOTRUN;
-      return SCIP_OKAY;
+    int getSolution(int len, double* sol) {
+      SCIP_VAR** vars = SCIPgetVars(getSCIP());
+      for (auto i = 0; i < len; ++i)
+        sol[i] = SCIPgetSolVal(getSCIP(), sol_, vars[i]);
+      return 0;
     }
+      /** constraint enforcing method of constraint handler for pseudo solutions
+   *
+   *  @see SCIP_DECL_CONSENFOPS(x) in @ref type_cons.h
+   */
+  virtual SCIP_DECL_CONSENFOPS(scip_enfops) {
+    getCB()->setWhere(SCIPWhere::ConstraintHandler, "CONSENFOPS");
+    getCB()->currentCapabilities_ = CanDo::ADD_LAZY_CONSTRAINT | CanDo::GET_LP_SOLUTION | CanDo::GET_MIP_SOLUTION;
+    sol_ = nullptr;
+    getCB()->run();
+    if (getCB()->getActions() == 1)
+      *result = SCIP_CONSADDED;
+    return SCIP_OKAY;
+  }
+  /** feasibility check method of constraint handler for primal solutions
+   *
+   *  @see SCIP_DECL_CONSCHECK(x) in @ref type_cons.h
+   */
+  virtual SCIP_DECL_CONSCHECK(scip_check) {
+    getCB()->actions_ = 0;
+    getCB()->setWhere(SCIPWhere::ConstraintHandler, "CONSCHECK");
+    getCB()->currentCapabilities_ = CanDo::GET_LP_SOLUTION | CanDo::GET_MIP_SOLUTION;
+    sol_ = sol;
+    getCB()->run();
+    *result= SCIP_INFEASIBLE;
+    return SCIP_OKAY;
+  }
+
+  /** variable rounding lock method of constraint handler
+ *
+ *  @see SCIP_DECL_CONSLOCK(x) in @ref type_cons.h
+ */
+  SCIP_DECL_CONSLOCK(scip_lock) {
+    getCB()->setWhere(SCIPWhere::ConstraintHandler, "CONSLOCK");
+    getCB()->currentCapabilities_ = 0;
+    getCB()->run();
+    return SCIP_OKAY;
+  }
+
+  /** constraint enforcing method of constraint handler for LP solutions
+ *
+ *  @see SCIP_DECL_CONSENFOLP(x) in @ref type_cons.h
+ */
+  SCIP_DECL_CONSENFOLP(scip_enfolp) {
+    getCB()->actions_ = 0;
+    getCB()->setWhere(SCIPWhere::ConstraintHandler, "CONSENFOLP");
+    getCB()->currentCapabilities_ = CanDo::ADD_LAZY_CONSTRAINT | CanDo::GET_LP_SOLUTION | CanDo::GET_MIP_SOLUTION;
+    sol_ = nullptr;
+    getCB()->run();
+    if(getCB()->getActions()==1)
+    *result = SCIP_CONSADDED;
+    return SCIP_OKAY;
+  }
+
+  SCIP_DECL_CONSTRANS(scip_trans) {
+    getCB()->setWhere(SCIPWhere::ConstraintHandler, "CONSTRANS");
+    getCB()->currentCapabilities_ = 0;
+    getCB()->run();
+    return SCIP_OKAY;
+  }
+
+  virtual SCIP_DECL_CONSEXITSOL(scip_exitsol) {
+    getCB()->currentCapabilities_ = 0;
+    return SCIP_OKAY;
+  }
 };
+//
+//class SCIPSepa : public SCIPPlugin, scip::ObjSepa {
+//  
+//  friend class SCIPModel;
+//public:
+//  SCIPSepa(      
+//    SCIP*              model,              /**< SCIP data structure */
+//    const char*        name,               /**< name of presolver */
+//    const char*        desc,               /**< description of presolver */
+//    int                priority,           /**< priority of the presolver */
+//    int                freq,               /**< frequency for calling separator */
+//    SCIP_Real          maxbounddist,       /**< maximal relative distance from current node's dual bound to primal bound compared
+//                                            *   to best node's dual bound for applying separation */
+//    SCIP_Bool          usessubscip,        /**< does the separator use a secondary SCIP instance? */
+//    SCIP_Bool          delay               /**< should separator be delayed, if other separators found cuts? */) 
+//    : SCIPPlugin(model), scip::ObjSepa(model, name, desc, priority, freq, maxbounddist, usessubscip, delay) {}
+//  private:
+//    SCIP_DECL_SEPAFREE(scip_free) { return sepa_free(); }
+//    SCIP_DECL_SEPAINIT(scip_init) { return sepa_init(); }
+//    SCIP_DECL_SEPAEXIT(scip_exit) { return sepa_exit(); }
+//    SCIP_DECL_SEPAINITSOL(scip_initsol) { return sepa_initsol(); }
+//    SCIP_DECL_SEPAEXITSOL(scip_exitsol) { return sepa_exitsol(); }
+//    SCIP_DECL_SEPAEXECLP(scip_execlp) { return sepa_execlp(result, allowlocal, depth); }
+//    SCIP_DECL_SEPAEXECSOL(scip_execsol) { return sepa_execsol(sol, result, allowlocal, depth); }
+//
+//  public:
+//    virtual SCIP_RETCODE sepa_free() { return SCIP_OKAY; }
+//    virtual SCIP_RETCODE sepa_init() { return SCIP_OKAY; }
+//    virtual SCIP_RETCODE sepa_exit() { return SCIP_OKAY; }
+//    virtual SCIP_RETCODE sepa_initsol() { return SCIP_OKAY; }
+//    virtual SCIP_RETCODE sepa_exitsol() { return SCIP_OKAY; }
+//    virtual SCIP_RETCODE sepa_execlp(SCIP_RESULT* result, SCIP_Bool allowlocal, int depth) {
+//      assert(result != NULL);
+//      *result = SCIP_DIDNOTRUN;
+//      return SCIP_OKAY;
+//    }
+//    virtual SCIP_RETCODE sepa_execsol(SCIP_SOL* sol, SCIP_RESULT* result, SCIP_Bool allowlocal, int depth) {
+//      assert(result != NULL);
+//      *result = SCIP_DIDNOTRUN;
+//      return SCIP_OKAY;
+//    }
+//};
+
+
+
 
 } // namespace
 #endif // SCIP_CALLBACK_H_INCLUDE_

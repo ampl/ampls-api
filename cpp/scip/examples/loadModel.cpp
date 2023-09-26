@@ -9,6 +9,69 @@
 
 const char* MODELNAME = "tspg96.nl";
 
+
+class MySCIPCB : public ampls::SCIPCallback {
+  bool exec = false;
+public:
+  int run() {
+    
+    if (!canDo(ampls::CanDo::GET_MIP_SOLUTION)) return 0;
+    std::cout << "Run: " << getWhereString() << "  Nrows: " << getValue(ampls::Value::N_ROWS).integer << "\n";
+    auto sol = getSolutionVector();
+    int nnz = 0;
+    for (int i = 0; i < sol.size(); i++)
+      nnz++;
+    std::cout << "NNZ: " << nnz << std::endl;
+
+    const int NC = 33;
+    int ind[NC];
+    double coefs[NC];
+    for (int i = 0; i < NC; i++)
+    {
+      ind[i] = i;
+      coefs[i] = 1;
+    }
+    if (exec)
+      return 0;
+    if (canDo(ampls::CanDo::ADD_LAZY_CONSTRAINT))
+    {
+      exec = true;
+      addCutIndices(NC, ind, coefs, ampls::CutDirection::LE, 1);
+      std::cout << "Addded cut Nrows: " << getValue(ampls::Value::N_ROWS).integer << "\n";
+    }
+    return 0;
+  }
+  /*
+  SCIP_DECL_CONSCHECK(scip_check) override {
+    run();
+    sol_ = sol;
+    SCIP_VAR** vars = SCIPgetVars(scip);
+    SCIP_Real x_val = SCIPgetSolVal(scip, sol_, vars[0]);
+    SCIP_Real y_val = SCIPgetSolVal(scip, sol_, vars[1]);
+    *result= SCIP_INFEASIBLE;
+    std::cout << "CHECK\n";
+    return SCIP_OKAY;
+  }
+
+  SCIP_DECL_CONSENFOLP(scip_enfolp) override {
+    run();
+    std::cout << "CONSENFOLP\n";
+    *result=SCIP_CONSADDED;
+    int ind[] = { 0, 1, 2 };
+    double coefs[] = { 1.1, 2.2, 3.3 };
+    SCIP_CONS* cons;
+    SCIP_VAR** vars = SCIPgetVars(scip);
+    SCIP_VAR* svars[] = { vars[0], vars[1], vars[2] };
+    SCIP_Real x_val = SCIPgetSolVal(scip, nullptr, vars[0]);
+    SCIP_Real y_val = SCIPgetSolVal(scip, nullptr, vars[1]);
+    SCIPcreateConsLinear(scip, &cons,
+      "myname", 3, svars, coefs, 0, 20, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0);
+
+    return SCIP_OKAY;
+  }
+
+  */
+};
 /* Demonstrates how to load a model using ampls SCIP interface,
    and how to obtain basic information with ampls routines and
    via SCIP library.
@@ -18,9 +81,16 @@ int main(int argc, char** argv) {
   s += MODELNAME;
   // Load a model using SCIP
   ampls::SCIPModel model = ampls::AMPLModel::load<ampls::SCIPModel>(s.c_str());
-
+  auto mycb = MySCIPCB();
+  model.setCallback(&mycb);
   // Start the optimization process
   model.optimize();
+
+  if (model.getStatus() != ampls::Status::OPTIMAL)
+  {
+    std::cout << "No solution\n";
+    return 0;
+  }
   // Get the pointer to the native model pointer, used with 
   // the SCIP C library functions below
   SCIP* scip = model.getSCIPmodel();

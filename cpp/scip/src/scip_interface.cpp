@@ -100,17 +100,27 @@ void SCIPModel::writeSolImpl(const char* solFileName) {
   impl::mp::AMPLSReportResults(solver_, solFileName);
 }
 
-int SCIPModel::setCallbackDerived(impl::BaseCallback* callback) {
-  SCIP* scip = getSCIPmodel();
+class MySCIPCallbackBridge : public SCIPCallback {
+  GenericCallback* cb_;
+public:
+  MySCIPCallbackBridge(GenericCallback* cb) {
+    cb_ = cb;
+  }
+  virtual int run() {
+    return cb_->run();
+  }
+};
 
-  if (dynamic_cast<SCIPHeur*>(callback))
-    return SCIPincludeObjHeur(scip, dynamic_cast<SCIPHeur*>(callback), TRUE);
-  if (dynamic_cast<SCIPPresol*>(callback))
-    return SCIPincludeObjPresol(scip, dynamic_cast<SCIPPresol*>(callback), TRUE);
-  if (dynamic_cast<SCIPBranchrule*>(callback))
-    return SCIPincludeObjBranchrule(scip, dynamic_cast<SCIPBranchrule*>(callback), TRUE);
-  if (dynamic_cast<SCIPSepa*>(callback))
-    return SCIPincludeObjSepa(scip, dynamic_cast<SCIPSepa*>(callback), TRUE);
+impl::BaseCallback* SCIPModel::createCallbackImplDerived(GenericCallback* callback) {
+  return new MySCIPCallbackBridge(callback);
+}
+
+
+
+int SCIPModel::setCallbackDerived(impl::BaseCallback* callback) {
+  auto cb = dynamic_cast<SCIPCallback*>(callback);
+  cb->registerPlugins(getSCIPmodel());
+  return 0;
 }
 
 void SCIPModel::optimize() {
@@ -120,7 +130,8 @@ void SCIPModel::optimize() {
 SCIPModel::~SCIPModel() {
   if (copied_)
     return;
-  impl::scip::AMPLSClose_scip(solver_);
+  //destroying = true;
+  //impl::scip::AMPLSClose_scip(solver_);
 }
 
 std::string SCIPModel::error(int code)

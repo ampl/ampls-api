@@ -17,16 +17,16 @@
 #include <mutex>
 #include <climits>  // for INT_MAX
 
-/// problem data stored in SCIP
-struct SCIP_ProbData
-{
-   SCIP_VAR**            vars;               /**< variables in the order given by AMPL */
-   int                   nvars;              /**< number of variables */
+  /// problem data stored in SCIP
+  struct SCIP_ProbData
+  {
+    SCIP_VAR** vars;               /**< variables in the order given by AMPL */
+    int                   nvars;              /**< number of variables */
 
-   SCIP_CONS**           linconss;           /**< linear constraints in the order given by AMPL */
-   int                   i;                  /**< shows free slot of linear constraints */
-   int                   nlinconss;          /**< number of linear constraints */
-};
+    SCIP_CONS** linconss;           /**< linear constraints in the order given by AMPL */
+    int                   i;                  /**< shows free slot of linear constraints */
+    int                   nlinconss;          /**< number of linear constraints */
+  };
 
 
 namespace ampls
@@ -71,7 +71,7 @@ At the end of its life, it deletes the SCIP and the MP structures.
 */
 class SCIPModel : public AMPLMPModel {
   friend SCIPDrv;
-
+  friend class SCIPCH;
   // Map for solver parameters
   std::map<int, const char*> parametersMap = {
      {SolverParams::INT_SolutionLimit , "limits/solutions"},
@@ -89,6 +89,7 @@ class SCIPModel : public AMPLMPModel {
   }
 
   SCIP* model_;
+  bool destroying = false;
 
   SCIPModel() : AMPLMPModel(), model_(NULL) {}
 
@@ -99,7 +100,7 @@ class SCIPModel : public AMPLMPModel {
 
   // Interface implementation
   int setCallbackDerived(impl::BaseCallback* callback);
-  //impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
+  impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
   void writeSolImpl(const char* solFileName);
 public:
   using Driver = ampls::SCIPDrv;

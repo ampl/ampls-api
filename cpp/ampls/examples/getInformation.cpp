@@ -41,6 +41,7 @@ class MyGenericCallback : public ampls::GenericCallback
       return 0;
     case ampls::Where::MIPSOL:
       try {
+        if (!canDo(ampls::CanDo::GET_MIP_SOLUTION)) return 0;
         obj = getObj();
         printf("\nMIP Objective = %f", getObj());
         printf("\nRel MIP GAP: %f", getValue(ampls::Value::MIP_RELATIVEGAP).dbl);
@@ -67,6 +68,7 @@ template<class T> void example()
   m.setCallback(&cb);
   m.setAMPLParameter(ampls::SolverParams::DBL_MIPGap, 0.001);
   try {
+    m.setOption("outlev", 1);
     m.setOption("return_mipgap", 5);
     m.setOption("mipstartvalue", 3);
     m.setOption("mipstartalg", 2);
@@ -118,6 +120,9 @@ int main(int argc, char** argv) {
 #endif
 #ifdef USE_cbcmp
   example<ampls::CbcModel>();
+#endif
+#ifdef USE_scip
+  example<ampls::SCIPModel>();
 #endif
   return 0;
  
