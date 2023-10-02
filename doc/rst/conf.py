@@ -79,6 +79,8 @@ html_logo = "_static/logo-inline-web-v4.png"
 html_show_sphinx = False
 html_show_sourcelink = False
 
+html_baseurl = "https://ampls.ampl.com/en/latest/"
+
 
 def run_doxygen(folder):
     """Run the doxygen make command in the designated folder"""
