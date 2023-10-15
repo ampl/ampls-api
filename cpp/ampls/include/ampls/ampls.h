@@ -413,6 +413,13 @@ namespace ampls{
     virtual std::string toAMPLString(const std::map<int, std::string>& varMap,
       const std::map<int, std::string>& consMap,
       const impl::Records& records) const = 0;
+    virtual bool operator==(const Entity& other) const {
+      if (indices_ != other.indices_) return false;
+      if (coeffs_ != other.coeffs_) return false;
+      return true;
+    }
+
+   
   };
   
   class Constraint : public Entity
@@ -442,7 +449,14 @@ namespace ampls{
     std::string toAMPLString(const std::map<int, std::string>& varMap, 
       const std::map<int, std::string>& consMap,
       const impl::Records& records) const;
-    std::string toString();
+    std::string toString(const std::map<int, std::string>& varMap = {});
+    bool operator==(const Constraint& other) const {
+      if (!Entity::operator==(other)) return false;
+      return rhs_ == other.rhs_;
+    }
+   
+
+
 
   };
   
@@ -1103,6 +1117,7 @@ protected:
     varMap_.clear();
     varMapInverse_.clear();
   }
+
   virtual int setCallbackDerived(impl::BaseCallback* callback) {
     throw AMPLSolverException("Not implemented in base class!");
   }
@@ -1594,6 +1609,10 @@ public:
 #ifdef USE_copt
 #include "copt_interface.h"
 #endif
+#ifdef USE_scip
+#include "scip_interface.h"
+#endif
+
 
 #ifdef USE_amplapi
 // Functions to link ampls and amplapi
@@ -1652,6 +1671,14 @@ namespace ampls {
         doExport(a);
         XPRESSDrv xpress;
         return xpress.loadModel("___modelexport___.nl", options);
+      }
+#endif
+
+#ifdef USE_scip
+      template<> inline SCIPModel exportModel<SCIPModel>(ampl::AMPL& a, const char** options) {
+        doExport(a);
+        SCIPDrv scip;
+        return scip.loadModel("___modelexport___.nl", options);
       }
 #endif
     } // namespace impl

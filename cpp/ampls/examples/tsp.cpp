@@ -259,10 +259,6 @@ private:
         }
       }
     }
-    for (auto x : nodes)
-    {
-      printf("node: %d\n", x);
-    }
     return std::make_tuple(nodes, xs, ys);
   }
 public:
@@ -325,16 +321,22 @@ public:
     if ((getAMPLWhere() == ampls::Where::MIPSOL) &&
       canDo(ampls::CanDo::ADD_LAZY_CONSTRAINT) )
     {
-      std::cout << "Bound=" << getValue(ampls::Value::MIP_OBJBOUND) << "\n";
-      std::cout << "Obj="<< getValue(ampls::Value::OBJ) << "\n";
+    //  std::cout << "Bound=" << getValue(ampls::Value::MIP_OBJBOUND) << "\n";
+     // std::cout << "Obj="<< getValue(ampls::Value::OBJ) << "\n";
       nrun++;
       // Add the the cut!
       auto arcs = GraphArc::solutionToArcs(getSolutionVector(), xvar, minXIndex);
       auto sts = Tour::findSubtours(arcs);
       std::cout << "Iteration " << nrun << ": Found " << sts.size() << " subtours. \n";
       int i = 0;
-      for(auto st:sts)
-        std::cout << "Subtour " << i++ << ": (" << st.numNodes() << " nodes)\n";
+      for (auto st : sts)
+      {
+        std::cout << "Subtour " << i++ << " (" << st.numNodes() << " nodes): ";
+        for (auto n : st.getNodes())
+          std::cout << n << " ";
+        std::cout << "\n";
+
+      }
       if (sts.size() > 1)
       {
         for (auto st : sts)
@@ -361,7 +363,8 @@ public:
             varsIndexToAdd.data(), coeffs.data(),
             ampls::CutDirection::GE, 2);
         }
-        std::cout << "Added cuts..";
+        std::cout << "Added cuts.. I have now " << getValue(ampls::Value::N_ROWS) << " constraints.\n";
+
       }
       std::cout << "Continue solving.\n";
       return 0;
@@ -444,7 +447,9 @@ int main(int argc, char** argv) {
   // Used to store the results
   std::map<std::string, double> res;
   double obj;
-  
+#ifdef USE_scip
+  example<ampls::SCIPModel>();
+#endif
 #ifdef USE_gurobi
   res.insert(example<ampls::GurobiModel>());
 #endif

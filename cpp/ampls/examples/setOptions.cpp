@@ -84,9 +84,10 @@ template<class T> void example() {
   catch (const std::runtime_error& e) {
     printf("\nAMPLSolverException caught:\n%s\n", e.what());
   }
-
+#ifdef USE_cplex
   run<ampls::CPLEXModel>({ "cvt:plapprox:reltol=0.1" });
   run<ampls::CPLEXModel>({ "cvt:plapprox:reltol=0.6" });
+#endif
 }
 
 int main(int argc, char** argv) {
@@ -109,5 +110,10 @@ int main(int argc, char** argv) {
 #ifdef USE_cbcmp
   example<ampls::CbcModel>();
 #endif
+
+#ifdef USE_scip
+  example<ampls::SCIPModel>();
+#endif
+
   return 0;
 }

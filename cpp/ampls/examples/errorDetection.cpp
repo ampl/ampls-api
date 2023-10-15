@@ -50,5 +50,8 @@ int main(int argc, char** argv) {
 #ifdef USE_copt
   example<ampls::CoptModel>();
 #endif
+#ifdef USE_scip
+  example<ampls::SCIPModel>();
+#endif
   return 0;
 }

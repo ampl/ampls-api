@@ -101,12 +101,12 @@ void declareCuttingModel(ampl::AMPL& a) {
     "param order{ WIDTHS } >= 0;"   // rolls of width j ordered
     "param rawWidth;"               // width of raw rolls to be cut
     "param rolls{ WIDTHS,PATTERNS } >= 0, default 0;"
-
+    "var vforscip >=0;"
     "var Cut{ PATTERNS } integer >= 0;" // raw rolls to cut in each pattern
-
-    "minimize TotalRawRolls : sum{ p in PATTERNS } Cut[p] + to_come;"
+    
+    "minimize TotalRawRolls : sum{ p in PATTERNS } Cut[p] + vforscip+to_come;"
     "subject to OrderLimits{ w in WIDTHS }:"
-    "sum{ p in PATTERNS } rolls[w, p] * Cut[p]+ to_come >= order[w];"); 
+    "vforscip  + sum{ p in PATTERNS } rolls[w, p] * Cut[p]+ to_come >= order[w];"); 
 }
 
 void declareKnapsackModel(ampl::AMPL& a) {
@@ -143,10 +143,10 @@ std::vector<double> get_column(ampl::DataFrame& df, const std::string& name) {
   return res;
 }
 
-void relax(ampls::GurobiModel& m) {
-  auto grb = m.getGRBmodel();
-  std::vector<char> c(m.getNumVars(), GRB_CONTINUOUS);
-  GRBsetcharattrarray(grb, GRB_CHAR_ATTR_VTYPE, 0, c.size(), c.data());
+void relax(ampls::AMPLModel& m) {
+  //auto grb = m.getGRBmodel();
+  //std::vector<char> c(m.getNumVars(), GRB_CONTINUOUS);
+  //GRBsetcharattrarray(grb, GRB_CHAR_ATTR_VTYPE, 0, c.size(), c.data());
 }
 
 template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
@@ -160,16 +160,30 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
 
   // Export model to ampls
   a.eval("display order, rolls;");
+
   a.setIntOption("relax_integrality", 1);
+  a.eval("option auxfiles cr; write 'gd:/dual';");
   auto cutting_opt = ampls::AMPLAPIInterface::exportModel<T>(a);
+
+#ifdef USE_scip
+  if (std::is_same<T, ampls::SCIPModel>::value)
+  {
+    cutting_opt.setOption("pre:maxrounds", 0);
+    cutting_opt.setOption("heu:settings",3);
+    cutting_opt.setOption("pro:maxrounds", 0);
+    cutting_opt.setOption("pro:maxroundsroot", 0);
+  }
+#endif
   ab.setOption("solver", cutting_opt.driver());
 
+  
   // Solution cycle
   while(true) {
     
     // Get the solution of the relaxed cutting model
     cutting_opt.optimize();
     printf("Solved iteration, obj=%f\n", cutting_opt.getObj());
+    
     printf("Num ints = %d\n", cutting_opt.getAMPLIntAttribute(ampls::SolverAttributes::INT_NumIntegerVars));
     // Get the duals
     auto vv = cutting_opt.getDualVector();
@@ -251,7 +265,6 @@ template <class T> void example()
     ampl::AMPL a;
     declareCuttingModel(a);
     Patterns p = setData(a);
-
     SolveWithAMPLS<T>(a, p);
     //SolveWithAMPLScript(a, p);
   }
@@ -264,24 +277,22 @@ template <class T> void example()
 
 
 int main(int argc, char** argv) {
+#ifdef USE_gurobi
+ // example<ampls::GurobiModel>();
+#endif
+#ifdef USE_scip
+  example<ampls::SCIPModel>();
+#endif
 #ifdef USE_cplex
   example<ampls::CPLEXModel>();
 #endif
-  /*
+
 #ifdef USE_xpress
   example<ampls::XPRESSModel>();
 #endif
-
-  /*#ifdef USE_gurobi
-  example<ampls::GurobiModel>();
-#endif
-  /*
 #ifdef USE_copt
   example<ampls::CoptModel>();
 #endif
-
-/*
-*/
   return 0;
  
 }

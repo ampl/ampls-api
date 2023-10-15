@@ -41,8 +41,12 @@ void makeAmplModel(ampl::AMPL &ampl , int numvars, bool unfeasible, bool unbound
 template <class T> T solveModel(ampl::AMPL& ampl, const std::map<std::string, int>& options = {}) {
     auto model = ampls::AMPLAPIInterface::exportModel<T>(ampl);
     for (auto o : options)
-      model.setOption(o.first.c_str(), o.second);
-
+    {
+      try {
+        model.setOption(o.first.c_str(), o.second);
+      }
+      catch (...) {}
+    }
     model.optimize();
     ampls::AMPLAPIInterface::importModel(ampl, model);
     return model;
@@ -136,6 +140,9 @@ template <class T> void createAndSolveUnboundedModel(bool presolve) {
 }
 
 template <class T> void example() {
+
+  createAndSolveInfeasibleModel<T>(false);
+
   // Normal model solver to completion
   createAndSolveSimpleModel<T>();
   bool caught = false;
@@ -161,7 +168,7 @@ template <class T> void example() {
   }
   assert(caught);
 
-  createAndSolveInfeasibleModel<T>(false);
+  
 
   // Unbounded models are exported either way
   createAndSolveUnboundedModel<T>(true);
@@ -187,5 +194,9 @@ int main(int argc, char** argv) {
 #ifdef USE_copt
   example<ampls::CoptModel>();
 #endif
+#ifdef USE_scip
+  example<ampls::SCIPModel>();
+#endif
+
   return 0;
 }

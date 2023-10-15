@@ -31,8 +31,18 @@ template <class T> void example()
   printStatistics(ampl);
 
   T model = ampls::AMPLAPIInterface::exportModel<T>(ampl);
+
+  #ifdef USE_scip
+  if (std::is_same<T, ampls::SCIPModel>::value)
+    model.setOption("pre:maxrounds", 0);
+  #endif
+
   model.optimize();
   printStatistics(model, model.driver());
+  assert(model.getNumVars() == 2);
+  assert(model.getNumCons() == 1);
+  assert(model.getObj() == 4.0);
+
 
   // Create a new constraint using the solver interface
   int n = model.getNumVars();
@@ -45,12 +55,19 @@ template <class T> void example()
   model.record(model.addConstraint(n, indices.data(), coeff.data(), ampls::CutDirection::LE, n));
   model.optimize();
   printStatistics(model, model.driver());
+  assert(model.getNumVars() == 2);
+  assert(model.getNumCons() == 2);
+  assert(model.getObj() == 2.0);
+
 
   // Add a variable that does not appear in the constraints matrix
   // but with a coefficient of 100 in the objective
   model.record(model.addVariable(0, NULL, NULL, 0, 10, 100, ampls::VarType::Integer));
   model.optimize();
   printStatistics(model, model.driver());
+  assert(model.getNumVars() == 3);
+  assert(model.getNumCons() == 2);
+  assert(model.getObj() == 1002.0);
 
   ampls::AMPLAPIInterface::importModel(ampl, model);
   printStatistics(ampl);
@@ -58,6 +75,9 @@ template <class T> void example()
 
 
 int main(int argc, char** argv) {
+#ifdef USE_scip
+  example<ampls::SCIPModel>();
+#endif
 #ifdef USE_copt
   example<ampls::CoptModel>();
 #endif 
