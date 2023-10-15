@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A1C4E65B-3BFF-41AA-A57A-1199B27EBDB2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ampls</RootNamespace>
+    <AssemblyName>dev_scipsharp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Utils.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\AMPLMPModel.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\AMPLModel.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\AMPLMutex.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\AMPLSolverException.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\BaseCallback.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\CanDo.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\Constraint.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\CutDirection.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\Entity.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\GenericCallback.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\LPAlgorithms.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\Option.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\Records.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SCIPCH.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SCIPCallback.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SCIPDrv.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SCIPModel.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SCIPPlugin.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SCIPPresol.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SCIPWhere.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SCIP_ProbData.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_SCIP.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_SCIP_Bool.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_SCIP_PRESOLTIMING.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_SCIP_PROPTIMING.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_SCIP_RESULT.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_SCIP_RETCODE.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_double.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_int.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_p_SCIP_CONS.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_p_SCIP_VAR.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_p_char.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_std__mapT_int_SCIP_VAR_p_std__lessT_int_t_t.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SWIGTYPE_p_std__string.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SolverAttributes.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SolverDriverSCIP.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\SolverParams.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\Status.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\Value.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\VarType.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\Variable.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\Variant.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\Where.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\gdsharp_c.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\gdsharp_cPINVOKE.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\map_int_string.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\map_string_double.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\map_string_int.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\vector_double.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\vector_int.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\vector_options.cs" />
+    <Compile Include="D:\Development\ampl\ampls-api\build\csharp\scip\swig\vector_string.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
