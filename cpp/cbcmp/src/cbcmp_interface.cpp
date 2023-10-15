@@ -28,16 +28,15 @@ void impl::cbcmp::callback_wrapper(Cbc_Model* model, int msgno, int ndouble, con
 CbcDrv::~CbcDrv() {
 }
 
-CbcModel CbcDrv::loadModelImpl(const char** args) {
-  return CbcModel(impl::cbcmp::AMPLSOpen_cbcmp(3, args), args[1]);
-}
-CbcModel CbcDrv::loadModel(const char* modelName) {
-  return loadModelGeneric(modelName);
+CbcModel CbcDrv::loadModelImpl(char** args, const char** options) {
+  auto mp = static_cast<impl::mp::AMPLS_MP_Solver*>(impl::cbcmp::AMPLSOpen_cbcmp(3, args));
+  auto msg = impl::mp::AMPLSGetMessages(mp);
+  if (msg[0] != nullptr)
+    throw ampls::AMPLSolverException(msg[0]);
+  return CbcModel(mp, args[1], options);
 }
 
-void CbcModel::writeSolImpl(const char* solFileName) {
-  impl::mp::AMPLSReportResults(solver_, solFileName);
-}
+
 
 
 template <typename T>
@@ -82,10 +81,9 @@ impl::BaseCallback* CbcModel::createCallbackImplDerived(GenericCallback* callbac
   return new MyCbcCallbackBridge(callback);
 }
 
-int CbcModel::optimize() {
-  int s = Cbc_solve(model_);
+void CbcModel::optimize() {
+  Cbc_solve(model_);
   resetVarMapInternal();
-  return s;
 }
 
 int CbcModel::getIntAttr(const char* name) {

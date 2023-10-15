@@ -33,7 +33,7 @@ namespace ampls
     extern "C" {
       ENTRYPOINT void AMPLSClose_cbcmp(void* slv);
       ENTRYPOINT void* AMPLSGetModel_cbcmp(void* slv);
-      ENTRYPOINT ampls::impl::mp::AMPLS_MP_Solver* AMPLSOpen_cbcmp(int, char**);
+      ENTRYPOINT void* AMPLSOpen_cbcmp(int, char**);
     }
     // Forward declarations
     void cut_callback_wrapper(void* osisolver, void* osicuts, void* appdata, int level, int pass);
@@ -54,16 +54,8 @@ class CbcDrv : public impl::SolverDriver<CbcModel>  {
 
   void freeCbcEnv();
 
-  CbcModel loadModelImpl(char** args);
+  CbcModel loadModelImpl(char** args, const char** options);
 public:
-  /**
-  * Load a model from an NL file.
-  * Mappings between solver row and column numbers and AMPL names are
-  * available only if the row and col files have been generated as well,
-  * by means of the ampl option `option auxfiles cr;` before writing the NL file.
-  */
-  CbcModel loadModel(const char* modelName);
-
   ~CbcDrv();
 };
 
@@ -112,14 +104,14 @@ class CbcModel : public AMPLMPModel {
   Cbc_Model* model_;
 
   CbcModel() : AMPLMPModel(), model_(NULL) {}
-  CbcModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile) : AMPLMPModel(s, nlfile) {
+  CbcModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile,
+    const char** options) : AMPLMPModel(s, nlfile, options) {
     model_ = impl::cbcmp::AMPLSGetModel_cbcmp(s);
     
   }
   // Interface implementation
   int setCallbackDerived(impl::BaseCallback* callback);
   impl::BaseCallback* createCallbackImplDerived(GenericCallback* callback);
-  void writeSolImpl(const char* solFileName);
 public:
   using Driver = ampls::CbcDrv;
 
@@ -156,7 +148,7 @@ public:
 
   const char* driver() { return "Cbc"; }
 
-  int optimize();
+  void optimize();
 
   Status::SolStatus getStatus() {
     if (Cbc_isProvenOptimal(model_))
