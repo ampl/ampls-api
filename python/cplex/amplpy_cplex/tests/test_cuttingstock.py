@@ -16,8 +16,7 @@ Then imports the results in AMPL.
 
 """
 import types
-import pandas as pd
-from amplpy import AMPL,DataFrame
+from amplpy import AMPL
 import amplpy_cplex as ampls
 
 SOLVER = "cplex"
@@ -108,8 +107,9 @@ def run_example():
     
     # Export the (relaxed) cutting stock model to ampls
     cs.option["relax_integrality"]=1
-    ampls_cs = cs.to_ampls(SOLVER, ["outlev=1"])
+    ampls_cs = cs.to_ampls(SOLVER, ["outlev=1", "pre:maxrounds=0"])
 
+    
 
     while True: # Column generation happens in the solver
         # Optimize the cutting stock model, get the dual vector,

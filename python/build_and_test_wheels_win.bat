@@ -6,14 +6,14 @@ if "%1"=="" (
 )
 
 if "%1"=="all" (
-  set "SOLVERS=gurobi cplex xpress" 
+  set "SOLVERS=gurobi cplex xpress scip copt" 
 ) else (
   set "SOLVERS=%1"
 )
 
 for %%s in (%SOLVERS%) do (
   cd  %%s
-  bash ./prepare.sh
+  bash ./prepare.sh win64
   pip install -e .
   python -m amplpy_%%s.tests
   cd ..

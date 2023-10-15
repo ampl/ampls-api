@@ -5,7 +5,6 @@
 
 %extend ampls::GurobiModel {
 
-
   int get_int_attr(const char* name) {
       return $self->getIntAttr(name); }
  double get_double_attr(const char* name) {

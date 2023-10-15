@@ -3,8 +3,8 @@ set -ex
 cd "`dirname "$0"`"
 
 version=$1
-solvers=("cplex" "gurobi" "xpress" "copt")
-modelclasses=("CPLEXModel" "GurobiModel" "XPRESSModel" "CoptModel") 
+solvers=("cplex" "gurobi" "xpress" "copt" "scip")
+modelclasses=("CPLEXModel" "GurobiModel" "XPRESSModel" "CoptModel" "SCIPModel") 
 
 for index in "${!solvers[@]}"; do
     SOLVER=${solvers[index]}

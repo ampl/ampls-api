@@ -73,6 +73,12 @@ add_custom_target(amplpy_${solvername}_updatewheel
 
 add_to_folder(${libstargetname}/swig/py ${PYTHON_SWIG_API} amplpy_${solvername}_updatewheel)
 if(MSVC)
+
+add_custom_command(TARGET amplpy_${solvername}_updatewheel
+    DEPENDS amplpy_${solvername}_updatewheel
+    COMMAND bash prepare.sh win64
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    COMMENT "Preparing wheel")
   add_custom_command(TARGET amplpy_${solvername}_updatewheel
     DEPENDS amplpy_${solvername}_updatewheel
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/amplpy_${solvername}

@@ -150,10 +150,12 @@ def create_and_solve_infeasible_model(presolve_level: int = 10):
     model = solve_model(ampl, options)
     print(f"Status is {model.get_status().name}")
     assert model.get_status() == ampls.Status.INFEASIBLE
-    # Display IIS for infeasible model by converting it to a pandas dataframe
-    print(ampl.get_data("_varname, _var.iis").to_pandas().set_index("_varname"))
-    print(ampl.get_data("_conname, _con.iis").to_pandas().set_index("_conname"))
-    print("Completed Infeasible Model Test.")
+
+    if SOLVER != "scip":
+        # Display IIS for infeasible model by converting it to a pandas dataframe
+        print(ampl.get_data("_varname, _var.iis").to_pandas().set_index("_varname"))
+        print(ampl.get_data("_conname, _con.iis").to_pandas().set_index("_conname"))
+        print("Completed Infeasible Model Test.")
 
 
 class TestMultipleModels(TestBase):

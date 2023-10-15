@@ -55,6 +55,22 @@ if __package__ == "amplpy_copt":
         pass
 
 
+if __package__ == "amplpy_scip":
+    from amplpy_scip_swig import *
+
+    SCIP_DRIVER = SCIPDrv()
+
+    def export_scip_model(self, options=None):
+        global SCIP_DRIVER
+        return _do_export(self, SCIP_DRIVER, options)
+
+    try:
+        AMPL.export_scip_model = export_scip_model
+        AMPL.exportSCIPModel = export_scip_model
+    except:
+        pass
+
+
 if __package__ == "amplpy_cplex":
     from amplpy_cplex_swig import *
 
@@ -108,11 +124,13 @@ def to_ampls(self, driver, options=None):
         return self.export_gurobi_model(options)
     elif driver == "cplex":
         return self.export_cplex_model(options)
+    elif driver == "scip":
+        return self.export_scip_model(options)
     elif driver == "copt":
         return self.export_copt_model(options)
     elif driver == "xpress":
         return self.export_xpress_model(options)
-    solver_list = "copt, cplex, gurobi, xpress"
+    solver_list = "copt, cplex, gurobi, scip, xpress"
     raise ValueError(f"{driver} is not supported, please choose from: {solver_list}")
 
 
