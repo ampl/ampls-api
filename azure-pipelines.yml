@@ -1,5 +1,5 @@
 variables:
-  CIBW_SKIP: pp* cp27-* *_i686 *-win32 *musllinux* cp312-*
+  CIBW_SKIP: pp* cp27-* *_i686 *-win32 *musllinux*
   CIBW_TEST_REQUIRES: --index-url https://pypi.ampl.com --extra-index-url https://pypi.org/simple amplpy ampl_module_base pandas
   CIBW_ENVIRONMENT_PASS_LINUX: AMPLKEY_UUID
 
@@ -146,7 +146,7 @@ stages:
           bash swig.sh
           python -m pip install --user --upgrade pip
           python -m pip install urllib3[secure] --upgrade
-          python -m pip install --upgrade cibuildwheel==2.12.3
+          python -m pip install --upgrade cibuildwheel==2.16.2
           cibuildwheel --platform windows --output-dir tmp .
           cp tmp/* $WHEELHOUSE/
           # python -m pip install twine
