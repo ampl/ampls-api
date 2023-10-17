@@ -141,11 +141,11 @@ class XPRESSModel : public AMPLMPModel {
   std::map<int, int> attribsMap = {
     {SolverAttributes::INT_NumIntegerVars, XPRS_MIPENTS}
   };
-  int getXPRESSParamAlias(SolverAttributes::Attribs attrib) const
+  int getXPRESSAttribAlias(SolverAttributes::Attribs attrib) const
   {
-    auto xpressParam = parametersMap.find(attrib);
-    if (xpressParam != parametersMap.end())
-      return xpressParam->second;
+    auto xpressAttrib = attribsMap.find(attrib);
+    if (xpressAttrib != attribsMap.end())
+      return xpressAttrib->second;
     throw AMPLSolverException("Not implemented!");
   }
  
@@ -360,7 +360,7 @@ public:
 
   /** Get an integer attribute using ampls aliases */
   int getAMPLIntAttribute(SolverAttributes::Attribs attrib) {
-    return getIntAttr(getXPRESSParamAlias(attrib));
+    return getIntAttr(getXPRESSAttribAlias(attrib));
   }
   /** Get a double attribute using ampls aliases */
   double getAMPLDoubleAttribute(SolverAttributes::Attribs attrib) {
@@ -372,7 +372,7 @@ public:
     case SolverAttributes::DBL_CurrentObjBound:
       return getDoubleAttr(XPRS_BESTBOUND);
     default:
-      return getDoubleAttr(getXPRESSParamAlias(attrib));
+      return getDoubleAttr(getXPRESSAttribAlias(attrib));
     }
     
   }
@@ -394,13 +394,17 @@ public:
   const char toXPRESSType[3] = { 'C', 'B', 'I'};
   int addVariableImpl(const char* name, int numnz, const int cons[], const double coefficients[],
     double lb, double ub, double objcoeff, ampls::VarType::Type type) {
-    char* named[] = { const_cast<char*>(name) };
-    int nv = getNumCons();
-    int status = XPRSaddcols(prob_, 1, numnz, &objcoeff, 0, cons, coefficients, &lb, &ub);
+    
+    int start[] = { 0 };
+    int status = XPRSaddcols(prob_, 1, numnz, &objcoeff, 
+      start, cons, coefficients, &lb, &ub);
     AMPLSXPRSERRORCHECK("XPRSaddcols")
     char varType[] = { toXPRESSType[(int)type] };
     int indices[] = { getNumVars() - 1 };
     XPRSchgcoltype(prob_, 1, indices, varType);
+    if (name != nullptr) 
+      XPRSaddnames(prob_, XPRS_NAMES_COLUMN, name, indices[0], indices[0]+1);
+    
     return indices[0];
   }
   std::vector<double> getConstraintsValueImpl(int offset, int length);
