@@ -2,6 +2,10 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
+## 0.1.5 - TBD
+
+* **[Fix]** Gurobi: getting solution vector and objective bounds in callbacks at MIPSOL and MIPNODE
+
 ## 0.1.4 - 2023-08-09
 
 * **[New]** Added SolverAttributes::INT_NumIntegerVars
