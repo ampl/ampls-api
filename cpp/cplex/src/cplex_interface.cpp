@@ -20,12 +20,9 @@ int CPXPUBLIC impl::cpx::CBWrap::genericcallback(CPXCALLBACKCONTEXTptr context, 
   cb->local_[tid].context_ = context;
   cb->local_[tid].where_ = (int)contextid;
 
-
-  if (cb->hasThreads_)
-    cb->run(tid);
-  else
-    cb->run();
-  // TODO To abort: CPXcallbackabort
+  int res = cb->hasThreads_ ? cb->run(tid) : cb->run();
+  if(res==-1)
+    CPXcallbackabort(context);
   return 0;
 }
 
@@ -161,7 +158,6 @@ void CPLEXModel::optimize() {
   resetVarMapInternal();
   // This gets communicated to writeSol
   status_ = status;
-  // Print error message in case of error
   AMPLSCPXERRORCHECK("CPX**opt");
 }
 

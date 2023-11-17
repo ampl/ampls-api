@@ -147,7 +147,6 @@ function(CreateSolverLib name includedirs lib)
 endfunction()
 
 
-
 function(FindSolverLib OUTPUTTARGETNAME BASELIBFILENAME)
     if(WIN32)
         string(TOLOWER ${BASELIBFILENAME} LIBFILENAME)

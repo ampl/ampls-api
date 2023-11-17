@@ -14,7 +14,7 @@ class MySCIPCB : public ampls::SCIPCallback {
   bool exec = false;
 public:
   int run() {
-    
+
     if (!canDo(ampls::CanDo::GET_MIP_SOLUTION)) return 0;
     std::cout << "Run: " << getWhereString() << "  Nrows: " << getValue(ampls::Value::N_ROWS).integer << "\n";
     auto sol = getSolutionVector();
@@ -41,7 +41,7 @@ public:
     }
     return 0;
   }
-
+};
 /* Demonstrates how to load a model using ampls SCIP interface,
    and how to obtain basic information with ampls routines and
    via SCIP library.

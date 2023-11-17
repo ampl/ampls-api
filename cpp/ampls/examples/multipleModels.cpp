@@ -191,12 +191,12 @@ int main(int argc, char** argv) {
 #ifdef USE_cbcmp
   example<ampls::CbcModel>();
 #endif
-#ifdef USE_copt
-  example<ampls::CoptModel>();
-#endif
+
 #ifdef USE_scip
   example<ampls::SCIPModel>();
 #endif
-
+#ifdef USE_copt
+  //example<ampls::CoptModel>();
+#endif
   return 0;
 }

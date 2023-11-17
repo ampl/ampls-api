@@ -131,6 +131,9 @@ Variant XPRESSCallback::getValueImpl(Value::CBValue v) {
     return Variant(getDouble(XPRS_TIME));
   case Value::MIP_OBJBOUND:
     return Variant(getDouble(XPRS_BESTBOUND));
+  case Value::MIP_RELATIVEGAP:
+    return impl::calculateRelMIPGAP(getObj(),
+      getValueImpl(Value::MIP_OBJBOUND).dbl);
   case Value::N_COLS:
     return Variant(getInt(XPRS_ORIGINALCOLS));
   case Value::N_ROWS:

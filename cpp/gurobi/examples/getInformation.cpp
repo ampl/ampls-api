@@ -74,7 +74,6 @@ class MyGurobiCallback : public ampls::GurobiCallback
           printf("%7.0f %14.7e%c %13.6e %13.6e\n", itcnt, obj, ch, pinf, dinf);
         }
       }
-    printf("** End of callback handler **\n\n");
     return 0;
     }
 };

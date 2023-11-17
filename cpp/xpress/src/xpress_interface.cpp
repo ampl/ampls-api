@@ -32,13 +32,15 @@ void XPRS_CC XPRSCBWrap::intsol_callback_wrapper(XPRSprob prob, void* object)
 {
   XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::intsol, 
     CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION);
-  cb->run();
+  int ret = cb->run();
+  if (ret == -1) XPRSinterrupt(prob, XPRS_STOP_USER);
 }
 
 void XPRS_CC XPRSCBWrap::newnode_callback_wrapper(XPRSprob prob, void* object, int parentnode, int node, int branch)
 {
   XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::newnode);
-  cb->run();
+  int ret = cb->run();
+  if (ret == -1) XPRSinterrupt(prob, XPRS_STOP_USER);
 }
 
 
@@ -50,17 +52,21 @@ void XPRS_CC XPRSCBWrap::optnode_callback_wrapper(XPRSprob prob, void* object, i
   XPRESSCallback* cb = setDefaultCB(prob, object, where,
     CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION | CanDo::ADD_LAZY_CONSTRAINT | CanDo::ADD_USER_CUT);
   cb->feas_ = *feas;
-  cb->run();
+  int ret = cb->run();
   *feas = 0;
+  if (ret == -1) XPRSinterrupt(prob, XPRS_STOP_USER);
 }
+
 void XPRS_CC XPRSCBWrap::preintsol_callback_wrapper(XPRSprob prob, void* object, int soltype, int* p_reject, double* p_cutoff)
 {
   XPRESSCallback* cb = setDefaultCB(prob, object, XPRESSWhere::intsol,
     CanDo::IMPORT_SOLUTION | CanDo::GET_LP_SOLUTION | CanDo::ADD_LAZY_CONSTRAINT | CanDo::ADD_USER_CUT);
   cb->preintsol_ = 1;
   cb->feas_ = *p_reject;
-  cb->run();
+  int ret=cb->run();
   *p_reject = cb->feas_;
+  if (ret == -1) XPRSinterrupt(prob, XPRS_STOP_USER);
+
 }
 } // impl
 } // xpress

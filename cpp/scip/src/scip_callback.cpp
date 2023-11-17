@@ -210,6 +210,12 @@ namespace ampls
       return ampls::Variant((int)SCIPgetNConss(getSCIP()));
     case Value::N_COLS:
       return ampls::Variant((int)SCIPgetNVars(getSCIP()));
+    case Value::OBJ:
+      return getObj();
+    case Value::MIP_OBJBOUND:
+      return  SCIPgetDualbound(getSCIP());
+    case Value::MIP_RELATIVEGAP:
+      return impl::calculateRelMIPGAP(getObj(), getValueImpl(Value::MIP_OBJBOUND).dbl);
     default:
       throw std::exception("Not implemented yet");
 

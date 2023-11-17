@@ -168,7 +168,7 @@ double GurobiCallback::getObj()
     flag = GRB_CB_MIPSOL_OBJ;
     break;
   case GRB_CB_MIPNODE:
-    flag = GRB_CB_MIP_OBJBST;
+    flag = GRB_CB_MIPNODE_OBJBST;
     break;
   case GRB_CB_BARRIER:
     flag = GRB_CB_BARRIER_PRIMOBJ;
