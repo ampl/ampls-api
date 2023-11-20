@@ -36,8 +36,7 @@ stages:
           bash libs/download.sh
         displayName: Download libraries
       - bash: |
-          python3 --version
-          sudo apt install -y python3-setuptools
+          python -m pip install setuptools
           set -ex
           mkdir -p tmp
           TMP=`pwd`/tmp
@@ -47,9 +46,7 @@ stages:
           bash swig.sh
           pip install --upgrade pip
           pip install urllib3[secure] --upgrade
-          # python -m pip install --upgrade cibuildwheel==1.12.0
-          # CIBW_BUILD="cp35-*" cibuildwheel --platform linux --output-dir $TMP .
-          python -m pip install --upgrade cibuildwheel==2.12.3
+          python -m pip install --upgrade cibuildwheel==2.16.2
           cibuildwheel --platform linux --output-dir $TMP .
           ls -l $TMP
           test "$(ls -A $TMP)" || exit 1
@@ -98,7 +95,7 @@ stages:
           bash swig.sh
           pip install --upgrade pip
           pip install urllib3[secure] --upgrade
-          python -m pip install --upgrade cibuildwheel==2.12.3
+          python -m pip install --upgrade cibuildwheel==2.16.2
           cibuildwheel --platform macos --output-dir $TMP .
           ls -l $TMP
           test "$(ls -A $TMP)" || exit 1
