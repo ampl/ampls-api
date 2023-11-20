@@ -2,7 +2,7 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
-## 0.1.5 - TBD
+## 0.1.5 - 2023-11-20
 
 * **[Fix]** Gurobi: getting solution vector and objective bounds in callbacks at MIPSOL and MIPNODE
 
