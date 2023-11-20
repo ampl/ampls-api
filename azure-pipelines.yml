@@ -36,6 +36,7 @@ stages:
           bash libs/download.sh
         displayName: Download libraries
       - bash: |
+          python3 --version
           sudo apt install -y python3-setuptools
           set -ex
           mkdir -p tmp
