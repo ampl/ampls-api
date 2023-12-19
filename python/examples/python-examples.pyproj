@@ -3,15 +3,19 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{70a86a47-99f8-408d-96f9-857616bb467f}</ProjectGuid>
+    <ProjectGuid>{48d0fed8-22ec-48bf-b523-072db16ffafb}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>options.py</StartupFile>
+    <StartupFile>test.py</StartupFile>
     <SearchPath>..\..\build\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <Name>python-examples</Name>
+    <TestFramework>unittest</TestFramework>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <EnableNativeCodeDebugging>True</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -19,21 +23,21 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="queens.mod" />
     <Content Include="requirements.txt" />
     <Content Include="tsp_51_1.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="callbacks_first.py" />
+    <Compile Include="grb_callbacks_stopping.py" />
     <Compile Include="load_model.py" />
     <Compile Include="multiple_models.py" />
     <Compile Include="options.py" />
     <Compile Include="pattern_generation_generic.py" />
-    <Compile Include="progress_callback.py" />
-    <Compile Include="progress_callback_gurobi1.py" />
-    <Compile Include="progress_callback_gurobi2.py" />
-    <Compile Include="simple_callback_gurobi.py" />
-    <Compile Include="solver_parameters_generic.py" />
+    <Compile Include="callback_first_gurobi.py" />
+    <Compile Include="test.py" />
+    <Compile Include="callbacks_stopping.py" />
     <Compile Include="tsp_callback.py" />
-    <Compile Include="tsp_callback_gurobi.py" />
     <Compile Include="tsp_helpers.py" />
     <Compile Include="tsp_simple_cuts.py" />
     <Compile Include="tsp_simple_cuts_gurobi.py" />

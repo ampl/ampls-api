@@ -1,38 +1,24 @@
 from tsp_helpers import tsp_model, ford_fulkerson, UnionFind
 
-from amplpy import AMPL
-import amplpy_gurobi
-import amplpy_cplex
 
-ampls = amplpy_gurobi
-var2tuple = ampls.var2tuple
-tuple2var = ampls.tuple2var
+import amplpy_gurobi as ampls
+SOLVER = "gurobi"
+
+
+# Example description
+# This example uses generic callbacks to solve a travelling salesperson problem 
+# with MTZ cuts or with sub-tour elimination constraints.
 
 VERBOSE = True
-ENABLE_CALLBACK = True
 ENABLE_MTZ = False
-ENABLE_CB_MIPNODE = True
+
 
 if ENABLE_MTZ:
     ENABLE_CB_MIPSOL = False  # not necessary if MTZ cuts are in place
 else:
     ENABLE_CB_MIPSOL = True  # must add sub-tour elimination constraints
 
-ampl = tsp_model('tsp_51_1.txt', ENABLE_MTZ)
-m = ampl.exportModel("gurobi")
-print("Model loaded, nvars=", m.getNumVars())
-
-if ENABLE_CB_MIPSOL:  # needs lazy constraints
-    m.enableLazyConstraints()
-
-var_map = dict(m.getVarMapFiltered('x'))
-xvars = {
-    index: var2tuple(var)[1:]
-    for var, index in var_map.items()}
-vertices = list(sorted(set(
-    [x[0] for x in xvars.values()] + [x[1] for x in xvars.values()]
-)))
-
+ENABLE_CB_MIPNODE = not ENABLE_CB_MIPSOL
 
 class MyCallback(ampls.GenericCallback):
     CALL_COUNT_MIPSOL = 0
@@ -40,7 +26,7 @@ class MyCallback(ampls.GenericCallback):
 
     def mipsol(self):
         self.CALL_COUNT_MIPSOL += 1
-        sol = self.getSolutionVector()
+        sol = self.get_solution_vector()
         nv = sum(abs(x) > 1e-5 for x in sol)
         if VERBOSE:
             print("MIPSOL #{}, nnz={}".format(self.CALL_COUNT_MIPSOL, nv))
@@ -59,10 +45,10 @@ class MyCallback(ampls.GenericCallback):
         else:
             for grp in groups:
                 print('> sub-tour: ', grp)
-                cutvarnames = [tuple2var('x', i, j)
+                cutvarnames = [ampls.tuple2var('x', i, j)
                                for i in grp for j in grp if i != j]
                 coeffs = [1 for i in range(len(cutvarnames))]
-                self.addLazy(cutvarnames, coeffs,
+                self.add_lazy(cutvarnames, coeffs,
                              ampls.CutDirection.LE, len(grp)-1)
         return 0
 
@@ -89,9 +75,9 @@ class MyCallback(ampls.GenericCallback):
                     capacities.get((i, j), 0)
                     for i in p1 for j in p2
                 )
-                cutvarnames = [tuple2var('x', i, j) for i in p1 for j in p2]
+                cutvarnames = [ampls.tuple2var('x', i, j) for i in p1 for j in p2]
                 coeffs = [1 for i in range(len(cutvarnames))]
-                self.addCut(cutvarnames, coeffs, ampls.CutDirection.GE, 1)
+                self.add_cut(cutvarnames, coeffs, ampls.CutDirection.GE, 1)
                 print('> max-flow: {}, min-cut: {}, must be == 1'.format(
                     max_flow, min_cut))
                 return 0
@@ -109,12 +95,30 @@ class MyCallback(ampls.GenericCallback):
             print('Error:', e)
             return 1
 
+# Create the ampls model instance
+ampl = tsp_model('tsp/tsp_51_1.txt', ENABLE_MTZ)
+m = ampl.to_ampls(SOLVER)
+print("Model loaded, nvars=", m.getNumVars())
 
-if ENABLE_CALLBACK:
-    cb = MyCallback()
-    m.setCallback(cb)
+if ENABLE_CB_MIPSOL:  # needs lazy constraints
+    m.enableLazyConstraints()
 
+# Initialize global structures
+var_map = dict(m.getVarMapFiltered('x'))
+xvars = {
+    index: ampls.var2tuple(var)[1:]
+    for var, index in var_map.items()}
+vertices = list(sorted(set(
+    [x[0] for x in xvars.values()] + [x[1] for x in xvars.values()])))
+
+# Set the callback
+cb = MyCallback()
+m.setCallback(cb)
+
+# Start the optimzation
 m.optimize()
+
+# Get the results
 obj = m.getObj()
 nvars = m.getNumVars()
 print("Solved for {} variables, objective {}".format(nvars, obj))

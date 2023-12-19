@@ -56,7 +56,7 @@ class my_callback(ampls.GenericCallback):
                     print("> sub-tour: ", grp)
                 cutvarnames = [tuple2var("x", i, j) for i in grp for j in grp if i != j]
                 coeffs = [1 for i in range(len(cutvarnames))]
-                self.add_lazy(cutvarnames, coeffs, ampls.CutDirection.LE, len(grp) - 1)
+                self.addLazy(cutvarnames, coeffs, ampls.CutDirection.LE, len(grp) - 1)
         return 0
 
     def mipnode(self):

@@ -7,18 +7,15 @@ class MyCallback(ampls.GurobiCallback):
     '''
     Use mostly gurobi C interface to monitor the solution of a model
     '''
-
-    def __init(self):
-        super.__init__(self)
-
     def log(self, item):
         # self._logfile.write(item)
         print(item)
 
     def run(self):
         try:
+            self.getWhereString()
             # Get the data needed to use gurobi C functions related to callbacks
-            where = self.where()
+            where = self.get_where()
             cbdata = self.getCBData()
 
             if where == ampls.GRB_CB_POLLING:
@@ -99,7 +96,7 @@ class MyCallback(ampls.GurobiCallback):
             print(e)
 
 
-ampl = tsp_model('tsp_51_1.txt')
+ampl = tsp_model('tsp/tsp_51_1.txt')
 model = ampl.exportGurobiModel()
 
 # Get the raw C gurobi pointer

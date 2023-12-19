@@ -66,6 +66,9 @@ public:
 
   using BaseCallback::getSolutionVector;
   using BaseCallback::getWhere;
+  using BaseCallback::addLazy;
+  using BaseCallback::addCut;
+
   int getSolution(int len, double* sol);
   double getObj();
   

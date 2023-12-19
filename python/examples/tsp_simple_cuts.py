@@ -1,11 +1,11 @@
 from amplpy import AMPL, DataFrame
-import amplpy_gurobi as ampls
-from amplpy_gurobi.patch import  *
 import time
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
-
 import tsplib95 as tsp
+
+import amplpy_gurobi as ampls
+
 
 tspAMPLModel = """set NODES ordered;
 param hpos {NODES};
@@ -18,7 +18,7 @@ param distance {(i,j) in PAIRS}
 
 var X {PAIRS} binary;
 
-minimize Tour_Length: sum {(i,j) in PAIRS} distance[i,j] * X[i,j];
+minimize Tour_Length: sum {(i,j) in PAIRS} distance[i,j] * X[i,j]; 
 
 subject to Visit_All {i in NODES}:
    sum {(i,j) in PAIRS} X[i,j] + sum {(j,i) in PAIRS} X[j,i] = 2;"""
@@ -26,18 +26,16 @@ subject to Visit_All {i in NODES}:
 # Set execution parameters
 PLOTSUBTOURS = False
 INTTOL = 1e-4
-solver = "gurobi"
+SOLVER = "gurobi"
 tspFile = "tsp/gr96.tsp"
 # Load model in AMPL
 ampl = AMPL()
 ampl.eval(tspAMPLModel)
-ampl.option["solver"]=solver
-
 
 def getDictFromTspFile(tspFile):
   p = tsp.load(tspFile)
   if not p.is_depictable:
-    printf("Problem is not depictable!")
+    print("Problem is not depictable!")
 
   # Amendments as we need the nodes lexographically ordered
   nnodes = len(list(p.get_nodes()))
@@ -52,9 +50,9 @@ def getDictFromTspFile(tspFile):
 # Set problem data from tsp file
 nodes = getDictFromTspFile(tspFile)
 
+
 # Pass them to AMPL using a dataframe
-df = DataFrame(index=[('NODES')], columns=['hpos', 'vpos'])
-df.setValues(nodes)
+df= DataFrame.from_dict(nodes, index_names=[('NODES')], column_names=['hpos', 'vpos'])
 ampl.setData(df, "NODES")
 
 # Set some globals that never change during the execution of the problem
@@ -133,6 +131,7 @@ def findSubTours(arcs : set, allnodes : set):
 
 # AMPLpy implementation of sub-tours elimination
 def amplSubTourElimination(ampl : AMPL):
+  ampl.option["solver"]=SOLVER
   # Add the constraint and the needed parameters
   subToursAMPL = """param nSubtours >= 0 integer, default 0;
   set SUB {1..nSubtours} within NODES;
@@ -176,16 +175,16 @@ vertices = None
 def solverSubTourElimination(ampl : AMPL, solver):
   global xvars, xinverse, vertices
   # Export the model using ampls
-  model = ampl.exportModel(solver)
+  model = ampl.to_ampls(solver)
   model.enableLazyConstraints()
 
   # Get the global maps between solver vars and AMPL entities
   varMap = model.getVarMapFiltered("X")
   inverse = model.getVarMapInverse()
   xvars = {
-    index: var2tuple(var)[1:] for var, index in varMap.items()}
+    index: ampls.var2tuple(var)[1:] for var, index in varMap.items()}
   xinverse = {
-    var2tuple(var)[1:] : index for index, var in inverse.items()}
+    ampls.var2tuple(var)[1:] : index for index, var in inverse.items()}
   vertices = list(sorted(set([x[0] for x in xvars.values()] + [x[1] for x in xvars.values()])))
 
   # Assign the callback
@@ -242,7 +241,7 @@ now = time.time()
 if doAMPL:
   amplSubTourElimination(ampl)
 else:
-  solverSubTourElimination(ampl, solver)
+  solverSubTourElimination(ampl, SOLVER)
 
 then = time.time()
 

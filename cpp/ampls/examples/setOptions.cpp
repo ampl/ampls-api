@@ -2,13 +2,36 @@
 #include "ampl/ampl.h"
 // Include AMPLS to interact with solvers
 #include "ampls/ampls.h"
+class My : public ampl::OutputHandler {
+  public:
+    virtual void output(ampl::output::Kind kind, const char* msg) {
+      printf("%s\n", msg);
+    }
+};
 
+class MyEH : public ampl::ErrorHandler {
+  virtual void error(const ampl::AMPLException& e) {
+    printf("%s\n", e.getMessage());
+  }
+  virtual void warning(const ampl::AMPLException& e) {
+    printf("%s\n", e.getMessage());
+
+    }
+
+};
 void makeNLModel(ampl::AMPL& ampl) {
+  My oh;
+  MyEH eh;
+  ampl.setOutputHandler(&oh);
+  ampl.setErrorHandler(&eh);
+  ampl.cd();
+  ampl.eval("cd;");
   ampl.eval("param pi := 4 * atan(1);"
     "var x >= -4 * pi, <= -pi;"
     "var y >= -1, <= 1;"
     "s.t.Sin01: y <= sin(x);"
     "maximize SumXY : x + y;");
+  
 }
 /// <summary>
 /// Export the AMPL model to a (templated) AMPLS solver and solve it via AMPLS
@@ -51,9 +74,9 @@ template <class T> void getAndSetOptions() {
   assert(1 == model.getIntOption("outlev"));
   model.setOption("outlev", 0);
   assert(0 == model.getIntOption("outlev"));
-
+  model.setOption("mip:return_gap", 7);
   model.setOption("mip:gap", 0.1);
-  assert(0.1 == model.getDoubleOption("mip:gap"));
+`  assert(0.1 == model.getDoubleOption("mip:gap"));
 
   model.setOption("tech:logfile", "mylog");
   auto c = model.getStringOption("tech:logfile");
@@ -100,7 +123,7 @@ int main(int argc, char** argv) {
 #endif
 
 #ifdef USE_cplex
-  example< ampls::CPLEXModel>();
+//  example< ampls::CPLEXModel>();
 #endif
 
 #ifdef USE_copt

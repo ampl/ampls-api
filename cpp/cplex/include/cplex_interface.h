@@ -176,6 +176,7 @@ public:
     case CPX_STAT_INFEASIBLE: // Problem infeasible
     case CPXMIP_INFEASIBLE:
     case CPX_STAT_CONFLICT_MINIMAL:
+    case CPX_STAT_MULTIOBJ_INFEASIBLE:
       return Status::INFEASIBLE;
     case CPX_STAT_UNBOUNDED: // Problem unbounded
     case CPXMIP_UNBOUNDED:

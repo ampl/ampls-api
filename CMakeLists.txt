@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 project(ampls)
-set(ampls_VERSION 0.1.5)
+set(ampls_VERSION 0.1.6)
 
 set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -339,6 +339,7 @@ function(AddSolverStub solver targetbase libname)
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/python/createPythonWrapper.cmake
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/csharp/createCsharpProject.cmake
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/csharp/common-csharp.i
+                                                      ${CMAKE_CURRENT_SOURCE_DIR}/python/common-python-overrides.i
                                                       ${CMAKE_CURRENT_SOURCE_DIR}/csharp/exceptions-csharp.i
                                                       )
           add_to_folder(${targetbase}/swig ${solver}-common)

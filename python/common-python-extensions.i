@@ -9,6 +9,47 @@
 
 %extend ampls::AMPLModel {
 
+   PyObject* getSolutionDict() {
+    PyObject* res = PyDict_New();
+    std::vector<double> sol = self->getSolutionVector();
+    std::map<int, std::string> map = self->getVarMapInverse();
+    std::map<int, std::string>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
+    }
+    return res;
+  }
+
+  PyObject* getVarMap() {
+    PyObject* res = PyDict_New();
+    std::map<std::string, int> map = self->getVarMap();
+    std::map<std::string, int>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
+    }
+    return res;
+  }
+  PyObject* getVarMapFiltered(const char* beginWith) {
+    PyObject* res = PyDict_New();
+    std::map<std::string, int> map = self->getVarMapFiltered(beginWith);
+    std::map<std::string, int>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
+    }
+    return res;
+  }
+
+
+   PyObject* getVarMapInverse() {
+    PyObject* res = PyDict_New();
+    std::map<int,std::string> map = self->getVarMapInverse();
+    std::map<int,std::string>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyInt_FromLong(it->first), PyString_FromString(it->second.c_str()));
+    }
+    return res;
+  }
+
 std::string get_recorded_entities(bool exportToAMPL = true) {
   return $self->getRecordedEntities(exportToAMPL); 
 }
@@ -84,6 +125,38 @@ std::string get_string_option(const char* name) {
 };
 
 %extend ampls::impl::BaseCallback {
+   PyObject* getSolutionDict() {
+    PyObject* res = PyDict_New();
+    std::vector<double> sol = self->getSolutionVector();
+    std::map<int, std::string> map = self->getVarMapInverse();
+    std::map<int, std::string>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
+    }
+    return res;
+  }
+
+   PyObject* getVarMap() {
+    PyObject* res = PyDict_New();
+    std::map<std::string, int> map = self->getVarMap();
+    std::map<std::string, int>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
+    }
+    return res;
+  }
+
+   PyObject* getVarMapInverse() {
+    PyObject* res = PyDict_New();
+    std::map<int,std::string> map = self->getVarMapInverse();
+    std::map<int,std::string>::const_iterator it;
+    for (it = map.begin(); it != map.end(); ++it) {
+      PyDict_SetItem(res, PyInt_FromLong(it->first), PyString_FromString(it->second.c_str()));
+    }
+    return res;
+  }
+
+
 std::vector<double> get_solution_vector() {
   return $self->getSolutionVector();
 }
@@ -144,85 +217,6 @@ virtual Variant get_value(Value::CBValue v) {return $self->getValue(v);}
 virtual std::vector<double> get_value_array(Value::CBValue v) {return $self->getValueArray(v);}
 };
 
-
-
-%extend ampls::AMPLModel{
-  PyObject* getSolutionDict() {
-    PyObject* res = PyDict_New();
-    std::vector<double> sol = self->getSolutionVector();
-    std::map<int, std::string> map = self->getVarMapInverse();
-    std::map<int, std::string>::const_iterator it;
-    for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
-    }
-    return res;
-  }
-
-  PyObject* getVarMap() {
-    PyObject* res = PyDict_New();
-    std::map<std::string, int> map = self->getVarMap();
-    std::map<std::string, int>::const_iterator it;
-    for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
-    }
-    return res;
-  }
-  PyObject* getVarMapFiltered(const char* beginWith) {
-    PyObject* res = PyDict_New();
-    std::map<std::string, int> map = self->getVarMapFiltered(beginWith);
-    std::map<std::string, int>::const_iterator it;
-    for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
-    }
-    return res;
-  }
-  
-
-   PyObject* getVarMapInverse() {
-    PyObject* res = PyDict_New();
-    std::map<int,std::string> map = self->getVarMapInverse();
-    std::map<int,std::string>::const_iterator it;
-    for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyInt_FromLong(it->first), PyString_FromString(it->second.c_str()));
-    }
-    return res;
-  }
-}
-
-%extend ampls::impl::BaseCallback{
-  PyObject* getSolutionDict() {
-    PyObject* res = PyDict_New();
-    std::vector<double> sol = self->getSolutionVector();
-    std::map<int, std::string> map = self->getVarMapInverse();
-    std::map<int, std::string>::const_iterator it;
-    for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
-    }
-    return res;
-  }
-   PyObject* getVarMap() {
-    PyObject* res = PyDict_New();
-    std::map<std::string, int> map = self->getVarMap();
-    std::map<std::string, int>::const_iterator it;
-    for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
-    }
-    return res;
-  }
-
-   PyObject* getVarMapInverse() {
-    PyObject* res = PyDict_New();
-    std::map<int,std::string> map = self->getVarMapInverse();
-    std::map<int,std::string>::const_iterator it;
-    for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyInt_FromLong(it->first), PyString_FromString(it->second.c_str()));
-    }
-    return res;
-  }
-}
-
-
-
 %pythoncode %{
 from enum import Enum
 def to_enum(enumclasses : list):
@@ -259,64 +253,46 @@ def _do_get_value(self, what):
 def _do_can_do(self, func):
   return self._canDo(__e_to_v(func))
 
-def addCut(self, vars, coeffs, direction, rhs):
+def do_addCut(self, vars, coeffs, direction, rhs):
     return self._addCut(vars, coeffs, __e_to_v(direction), rhs)
-def addLazy(self, vars, coeffs, direction, rhs):
+def do_addLazy(self, vars, coeffs, direction, rhs):
     return self._addLazy(vars, coeffs, __e_to_v(direction), rhs)
-def addCutIndices(self, nvars, coeffs, direction, rhs):
+def do_addCutIndices(self, nvars, coeffs, direction, rhs):
     return self._addCutIndices(nvars, coeffs, __e_to_v(direction), rhs)
-def addLazyIndices(self, nvars, coeffs, direction, rhs):
+def do_addLazyIndices(self, nvars, coeffs, direction, rhs):
     return self._addLazyIndices(nvars, coeffs, __e_to_v(direction), rhs)
+
+AMPLModel.get_solution_dict = AMPLModel.getSolutionDict
+BaseCallback.get_solution_dict= BaseCallback.getSolutionDict
 
 # Note: do not override getValue, as it is 
 # also called from the cpp routines
-BaseCallback._getValue=BaseCallback.getValue
+#BaseCallback._getValue=BaseCallback.getValue
 GenericCallback._getValue=GenericCallback.getValue
 GenericCallback.getValue=_do_get_value
 GenericCallback.get_value=_do_get_value
-BaseCallback.getValue=_do_get_value
-BaseCallback.get_value=_do_get_value
 
-BaseCallback._canDo=BaseCallback.canDo
 GenericCallback._canDo=GenericCallback.canDo
-BaseCallback.canDo=_do_can_do
 GenericCallback.canDo=_do_can_do
-BaseCallback.can_do=_do_can_do
 GenericCallback.can_do=_do_can_do
-
-BaseCallback._getAMPLWhere=BaseCallback.getAMPLWhere
-BaseCallback.get_ampl_where=lambda self : Where(self._getAMPLWhere())
-BaseCallback.getAMPLWhere=lambda self : Where(self._getAMPLWhere())
 
 GenericCallback._getAMPLWhere=GenericCallback.getAMPLWhere
 GenericCallback.get_ampl_where=lambda self : Where(self._getAMPLWhere())
 GenericCallback.getAMPLWhere=lambda self : Where(self._getAMPLWhere())
 
-
 GenericCallback._addLazy=GenericCallback.addLazy
 GenericCallback._addCut=GenericCallback.addCut
 GenericCallback._addLazyIndices=GenericCallback.addLazyIndices
 GenericCallback._addCutIndices=GenericCallback.addCutIndices
-GenericCallback.addLazy=addLazy
-GenericCallback.addCut=addCut
-GenericCallback.addCutIndices=addCutIndices
-GenericCallback.addLazyIndices=addLazyIndices
-GenericCallback.add_lazy=addLazy
-GenericCallback.add_cut=addCut
-GenericCallback.add_cut_indices=addCutIndices
-GenericCallback.add_lazy_indices=addLazyIndices
-BaseCallback._addLazy=BaseCallback.addLazy
-BaseCallback._addCut=BaseCallback.addCut
-BaseCallback._addLazyIndices=BaseCallback.addLazyIndices
-BaseCallback._addCutIndices=BaseCallback.addCutIndices
-BaseCallback.addLazy=addLazy
-BaseCallback.addCut=addCut
-BaseCallback.addCutIndices=addCutIndices
-BaseCallback.addLazyIndices=addLazyIndices
-BaseCallback.add_lazy=addLazy
-BaseCallback.add_cut=addCut
-BaseCallback.add_cut_indices=addCutIndices
-BaseCallback.add_lazy_indices=addLazyIndices
+GenericCallback.addLazy= do_addLazy
+GenericCallback.addCut= do_addCut
+GenericCallback.addCutIndices= do_addCutIndices
+GenericCallback.addLazyIndices= do_addLazyIndices
+GenericCallback.add_lazy= do_addLazy
+GenericCallback.add_cut= do_addCut
+GenericCallback.add_cut_indices= do_addCutIndices
+GenericCallback.add_lazy_indices= do_addLazyIndices
+
 
 # The following are used in common-python-overrides.i
 def __get_ampl_parameter(self, param):

@@ -2,5 +2,5 @@ pip
 setuptools
 amplpy
 pandas
-#amplpy_cplex
-#amplpy_gurobi
+tsplib95 
+matplotlib

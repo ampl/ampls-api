@@ -5,13 +5,15 @@ cd "`dirname "$0"`"
 version=$1
 solvers=("cplex" "gurobi" "xpress" "copt" "scip")
 modelclasses=("CPLEXModel" "GurobiModel" "XPRESSModel" "CoptModel" "SCIPModel") 
-
+cbclasses=("CPLEXCallback" "GurobiCallback" "XPRESSCallback" "CoptCallback" "SCIPCalllback")
 for index in "${!solvers[@]}"; do
     SOLVER=${solvers[index]}
     MODEL_CLASS=${modelclasses[index]}
+    CB_CLASS=${cbclasses[index]}
     cp common/* "$SOLVER/amplpy_$SOLVER/"
     cp common-python-overrides.i "$SOLVER/amplpy_$SOLVER/swig/$SOLVER-python-overrides.i"
     sed -i~ "s/AMPLModel\./$MODEL_CLASS./g" "$SOLVER/amplpy_$SOLVER/swig/$SOLVER-python-overrides.i"
+    sed -i~ "s/BaseCallback\./$CB_CLASS./g" "$SOLVER/amplpy_$SOLVER/swig/$SOLVER-python-overrides.i"
     TESTS_DIR="$PWD/$SOLVER/amplpy_$SOLVER/tests/"
     rm -rf $TESTS_DIR/*
     cp test/*.py $TESTS_DIR

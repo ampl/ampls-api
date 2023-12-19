@@ -5,7 +5,7 @@
     <ProjectGuid>a2848927-8f72-426d-85b4-d2c1723408a2</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>test_callbacks.py</StartupFile>
+    <StartupFile>test_tsp.py</StartupFile>
     <SearchPath>..\test;..\..\build\bin;..\..\build\bin</SearchPath>
     <WorkingDirectory>D:\Development\ampl\ampls-api\build\bin</WorkingDirectory>
     <OutputPath>.</OutputPath>

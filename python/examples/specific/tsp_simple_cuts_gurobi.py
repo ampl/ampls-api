@@ -182,9 +182,6 @@ class MyCallback(ampls.GurobiCallback):
 model = ampl.exportModel(solver)
 grbModel = model.getGRBmodel()
 
-GRBwrite(grbModel, "d:\\tspg96.lp");
-GRBwrite(grbModel, "d:\\tspg96.mps");
-
 model.enableLazyConstraints()
 
 # Get the global maps between solver vars and AMPL entities

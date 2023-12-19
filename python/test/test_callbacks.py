@@ -9,10 +9,10 @@ from test_base import TestBase
 from tsp_helpers import tsp_model
 
 from amplpy import AMPL
-import amplpy_cplex as ampls
+import amplpy_gurobi as ampls
 import os
 
-SOLVER = "cplex"
+SOLVER = "gurobi"
 
 MUTE = True
 

@@ -1,7 +1,14 @@
-import amplpy_gurobi as ampls
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from amplpy import AMPL
 
+import amplpy_cplex as ampls
+SOLVER = "cplex"
 
+# Example description
+# How to set options in the solver driver using:
+#   1) solver driver options 
+#   2) solver specific parameters
 
 def define_model():
     ampl = AMPL()
@@ -11,24 +18,28 @@ def define_model():
     return ampl
 
 def solve(ampl: AMPL):
-    mod = ampl.export_model('gurobi')
+    mod = ampl.to_ampls(SOLVER, ["sol:stub=test_multi"])
 
-
-    # Use AMPL driver parameter
-    #mod.set_option("lim:solution", 5)
+    # Use AMPL driver options
+    # See https://mp.ampl.com/features-guide.html
+    # and https://dev.ampl.com/solvers/index.html
     mod.set_option("outlev", 1)
-    mod.set_option("sol:poolgap", 0.1)
-    mod.set_option("sol:stub", "test_multi")
-    # use ampls mapping
-    mod.set_ampl_parameter(ampls.SolverParams.INT_SolutionLimit, 5)
 
-    # Use gurobi parameter
-    mod.set_param(ampls.GRB_INT_PAR_SOLUTIONLIMIT, 5)
+    # Use solver specific parameters
+    if SOLVER=="gurobi":
+        mod.set_param(ampls.GRB_INT_PAR_SOLUTIONLIMIT, 5)
+    if SOLVER=="cplex":
+        mod.set_param(ampls.CPXPARAM_MIP_Pool_Capacity, 5)
+    if SOLVER=="xpress":
+        mod.set_param(ampls.XPRS_MSP_SOLUTIONS, 5)
 
+    # Optimize
     mod.optimize()
 
-   
-    print(mod.get_obj())
+    # Import into AMPL
+    ampl.import_solution(mod)
+    print(f"Found {ampl.get_value('Initial.nsol')} solutions")
+    print(f"Objective value: {mod.get_obj()}")
 
 
 if __name__ == "__main__":

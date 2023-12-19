@@ -811,7 +811,9 @@ public:
   /** Get an iteger representing where in the solution process the callback has been called.
      NOTE: this is expressed using the solver's own (not generic) values
   */
-  virtual int getWhere() { return where_; }
+  virtual int getWhere() { 
+    printf("In getwhere\n");
+    return where_; }
   /** Get a textual representation of where in the solution process the callback has been called.
    * NOTE: this is expressed using the solver's own (not generic) values
    */
@@ -931,6 +933,9 @@ protected:
     return impl_->getValueImpl(v);
   }
 public:
+
+  using BaseCallback::addLazy;
+  using BaseCallback::addCut;
 
   /** Get the current solution vector   */
   int getSolution(int len, double *sol)

@@ -43,7 +43,7 @@
 }
 
 %typemap(freearg) (int nvars, const int* vars) {
-  free($2);
+  free($2); 
 }
 
 // Pass python list as double array
@@ -142,8 +142,6 @@
 }
 
 // The following are useful to return python dictionaries when not using the -builtin switch
-%pythonappend ampls::AMPLModel::getSolutionDict() %{return val.asdict()%}
-%pythonappend ampls::impl::BaseCallback::getSolutionDict() %{return val.asdict()%}
 %ignore "getVarMap";
 %ignore "getVarMapInverse";
 %ignore "getVarMapFiltered";

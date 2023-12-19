@@ -1,35 +1,41 @@
-from tsp_helpers import tsp_model
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from amplpy import AMPL
 
-import amplpy_gurobi 
-#import amplpy_cplex
-ampls = amplpy_gurobi
+import amplpy_gurobi as ampls 
+SOLVER = "gurobi"
 
-
+# Example description
+# Shows how to export a model from amplpy to ampls,
+# how to solve it and how to get the solution as a vector or
+# as a dictionary
 
 def doStuff(a):
-    '''
-    Generic function doing the optimization and reading the results
-    '''
+    '''Generic function doing the optimization and reading the results'''
+
     # Optimize with default settings
     a.optimize()
     print("Model status:", a.get_status())
     # Print the objective function
     print("Objective:", a.get_obj())
-    # Get the solution vector
-    d = a.get_solution_vector()
-    # Print the non-zeroes, by getting a map
-    # Note that this will only work if the col file has been generated
-    map = a.get_var_map_inverse()
-    nonzeroes = [(map[index], d[index]) for index in map if d[index] != 0]
-    for (name, value) in nonzeroes:
+    
+    # Get the solution as vector and count the nonzeroes
+    sol = a.get_solution_vector()
+    countnz = sum(x != 0 for x in sol)
+
+    # Get the solution as dictionary (name : value)
+    sol = a.get_solution_dict()
+    nonzeroes = {name : value for name, value in sol.items() if value != 0}
+    for (name, value) in nonzeroes.items():
         print("{} = {}".format(name, value))
-    return cm.get_solution_dict()
 
+    print(f"Non zeroes: vector = {countnz}, dict = {len(nonzeroes)}")
 
-ampl = tsp_model('tsp_51_1.txt')
-
-#cm = ampl.export_cplex_model()
-#print(doStuff(cm))
-
-gm = ampl.export_gurobi_model()
-print(doStuff(gm))
+# Using amplpy
+ampl = AMPL()
+ampl.read("models/queens.mod")
+ampl.param["size"]=10
+# Export to specified solver
+ampls_model = ampl.to_ampls(SOLVER)
+# Call generic function
+doStuff(ampls_model)
