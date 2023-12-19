@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import amplpy
 import pandas as pd
 from typing import Any, Dict

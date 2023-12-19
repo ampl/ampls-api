@@ -1,9 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from tsp_helpers import tsp_model, ford_fulkerson, UnionFind
-
 
 import amplpy_gurobi as ampls
 SOLVER = "gurobi"
-
 
 # Example description
 # This example uses generic callbacks to solve a travelling salesperson problem 

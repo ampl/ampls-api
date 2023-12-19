@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from amplpy import AMPL, DataFrame
 import time
 import matplotlib.pyplot as plt
@@ -5,7 +7,7 @@ import matplotlib.colors as colors
 import tsplib95 as tsp
 
 import amplpy_gurobi as ampls
-
+SOLVER = "gurobi"
 
 tspAMPLModel = """set NODES ordered;
 param hpos {NODES};
@@ -26,7 +28,6 @@ subject to Visit_All {i in NODES}:
 # Set execution parameters
 PLOTSUBTOURS = False
 INTTOL = 1e-4
-SOLVER = "gurobi"
 tspFile = "tsp/gr96.tsp"
 # Load model in AMPL
 ampl = AMPL()
