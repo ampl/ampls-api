@@ -163,7 +163,7 @@ stages:
         - task: DownloadBuildArtifacts@0
           inputs:
               buildType: 'current'
-              downloadPath: 'artifacts/ampls/'
+              downloadPath: 'artifacts/ampls-api'
               artifactName: 'drop'
           displayName: 'Download current pipeline artifacts'
         - task: PublishPipelineArtifact@1
