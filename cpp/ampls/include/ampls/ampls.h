@@ -1624,6 +1624,7 @@ public:
 // Binaries linked with this flag need to be linked 
 // with the AMPLAPI library
 #include "ampl/ampl.h"
+#include <cstdio>
 
 namespace ampls {
 
@@ -1633,9 +1634,13 @@ namespace ampls {
   {
 
     namespace impl {
-     
       inline void doExport(ampl::AMPL& a) {
         a.write("g___modelexport___", "cr");
+      }
+      inline void doRemove() {
+        std::remove("___modelexport___.nl");
+        std::remove("___modelexport___.row");
+        std::remove("___modelexport___.col");
       }
       template <class T> inline T exportModel(ampl::AMPL& a, const char** options = nullptr);
 
@@ -1643,7 +1648,9 @@ namespace ampls {
       template<> inline GurobiModel exportModel<GurobiModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         GurobiDrv gurobi;
-        return gurobi.loadModel("___modelexport___.nl", options);
+        auto m =  gurobi.loadModel("___modelexport___.nl", options);
+        doRemove();
+        return m;
       }
 #endif
 
@@ -1651,7 +1658,9 @@ namespace ampls {
       template<> inline CbcModel exportModel<CbcModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         CbcDrv cbc;
-        return cbc.loadModel("___modelexport___.nl", options);
+        auto m =  cbc.loadModel("___modelexport___.nl", options);
+        doRemove();
+        return m;
       }
 #endif
 
@@ -1659,7 +1668,9 @@ namespace ampls {
       template<> inline CoptModel exportModel<CoptModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         CoptDrv copt;
-        return copt.loadModel("___modelexport___.nl", options);
+        auto m =  copt.loadModel("___modelexport___.nl", options);
+        doRemove();
+        return m;
       }
 #endif
 
@@ -1667,7 +1678,9 @@ namespace ampls {
       template<> inline CPLEXModel exportModel<CPLEXModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         CPLEXDrv cplex;
-        return cplex.loadModel("___modelexport___.nl", options);
+        auto m =  cplex.loadModel("___modelexport___.nl", options);
+        doRemove();
+        return m;
       }
 #endif
 
@@ -1675,7 +1688,9 @@ namespace ampls {
       template<> inline XPRESSModel exportModel<XPRESSModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         XPRESSDrv xpress;
-        return xpress.loadModel("___modelexport___.nl", options);
+        auto m =  xpress.loadModel("___modelexport___.nl", options);
+        doRemove();
+        return m;
       }
 #endif
 
@@ -1683,7 +1698,9 @@ namespace ampls {
       template<> inline SCIPModel exportModel<SCIPModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
         SCIPDrv scip;
-        return scip.loadModel("___modelexport___.nl", options);
+        auto m = scip.loadModel("___modelexport___.nl", options);
+        doRemove();
+        return m;
       }
 #endif
     } // namespace impl
@@ -1718,6 +1735,7 @@ namespace ampls {
       g.writeSol();
       a.eval("solution ___modelexport___.sol;");
       g.setOption("wantsol", 1);
+      std::remove("___modelexport___.sol;");
       a.eval(g.getRecordedEntities());
     }
   } // namespace AMPLAPIInterface
