@@ -23,12 +23,12 @@ def _do_export(self, drv, options=None):
     import os, errno
 
     tmp = tempfile.mkdtemp()
-    model._tmpdir = tmp
     fname = os.path.join(tmp, "model").replace('"', '""')
     try:
         self.option["auxfiles"] = "cr"
         self.eval(f'write "g{fname}";')
         model = drv.loadModel(f"{fname}.nl", options)
+        model._tmpdir = tmp
         model._solfile = f"{fname}.sol"
         
         for ext in ["nl" "row" "col"]:
