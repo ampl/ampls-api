@@ -20,16 +20,23 @@ def set_callback(self, cb):
 def _do_export(self, drv, options=None):
     import tempfile
     import shutil
-    import os
+    import os, errno
 
     tmp = tempfile.mkdtemp()
+    model._tmpdir = tmp
     fname = os.path.join(tmp, "model").replace('"', '""')
     try:
         self.option["auxfiles"] = "cr"
         self.eval(f'write "g{fname}";')
         model = drv.loadModel(f"{fname}.nl", options)
         model._solfile = f"{fname}.sol"
-        os.remove(f"{fname}.nl")
+        
+        for ext in ["nl" "row" "col"]:
+            try:
+                os.remove(f"{fname}.{ext}")
+            except OSError as e:
+                if e.errno != errno.ENOENT:
+                    raise
         model._set_callback = model.set_callback
         model.set_callback = types.MethodType(set_callback, model)
         model.setCallback = types.MethodType(set_callback, model)
@@ -149,11 +156,10 @@ def import_solution(self, model, number=None):
             self.eval(f'solution "{model}{number}.sol";')
         return
 
-    import os
-
+    import shutil
     model.write_sol()
     self.eval(f'solution "{model._solfile}";')
-    os.remove(model._solfile)
+    shutil.rmtree(model._tmpdir)
 
 
 try:

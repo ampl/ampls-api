@@ -23,12 +23,14 @@ def _do_export(self, drv, options=None):
     import os, errno
 
     tmp = tempfile.mkdtemp()
+    model._tmpdir = tmp
     fname = os.path.join(tmp, "model").replace('"', '""')
     try:
         self.option["auxfiles"] = "cr"
         self.eval(f'write "g{fname}";')
         model = drv.loadModel(f"{fname}.nl", options)
         model._solfile = f"{fname}.sol"
+        
         for ext in ["nl" "row" "col"]:
             try:
                 os.remove(f"{fname}.{ext}")
@@ -154,11 +156,10 @@ def import_solution(self, model, number=None):
             self.eval(f'solution "{model}{number}.sol";')
         return
 
-    import os
-
+    import shutil
     model.write_sol()
     self.eval(f'solution "{model._solfile}";')
-    os.remove(model._solfile)
+    shutil.rmtree(model._tmpdir)
 
 
 try:

@@ -2,11 +2,13 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
-## TBD
-* [[Fix]]** Row and column files written to the temporary directory when exporting from AMPLAPI 
+## 0.1.7 - 2024-01-13
+
+* **[[Fix]]** Row and column files written to the temporary directory when exporting from AMPLAPI 
             or amplpy are now removed
             
 ## 0.1.6 - 2023-12-19
+
 * **[New]** Added Python examples in python/examples
 * **[Fix]** Python: `get_solution_dict` and `getSolutionDict`
 
