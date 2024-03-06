@@ -116,8 +116,8 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 # Solver vendors libraries and headers locations
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
-  set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/../solver-libraries)
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1002)
+  set(SOLVERLIBS ${BASE_SOLVER_LIBS})
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1100)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2211)
   set(copt_BASE_DIR ${SOLVERLIBS}/copt/6.5.2)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/42.01.01)
@@ -177,8 +177,8 @@ if(WIN32)
     set(sys "lib/win64")
     
     CreateSolverLib(gurobi-solverlib ${GRBINC}
-    ${gurobi_BASE_DIR}/${sys}/gurobi100.dll 
-    IMPORTLIB ${gurobi_BASE_DIR}/${sys}/gurobi100.lib)
+    ${gurobi_BASE_DIR}/${sys}/gurobi110.dll 
+    IMPORTLIB ${gurobi_BASE_DIR}/${sys}/gurobi110.lib)
     
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/cplex2211.dll

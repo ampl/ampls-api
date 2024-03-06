@@ -91,7 +91,8 @@ if(PREPROCESSORDEFS)
     endforeach()
     
     if(BUILD_AMPLAPI_EXAMPLES)
-      set(AMPLAPI_EXAMPLES cuttingStock addEntities tsp multipleModels multipleSolutions setOptions)
+      set(AMPLAPI_EXAMPLES cuttingStock addEntities tsp multipleModels multipleSolutions setOptions 
+                          benders)
       foreach(e ${AMPLAPI_EXAMPLES})
         addExample(${e} ampls ${ampls_DIR}/examples/${e}.cpp)
         target_link_libraries(ampls-${e} PRIVATE amplapi)

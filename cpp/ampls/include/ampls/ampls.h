@@ -1639,8 +1639,8 @@ namespace ampls {
       }
       inline void doRemove() {
         std::remove("___modelexport___.nl");
-        std::remove("___modelexport___.row");
-        std::remove("___modelexport___.col");
+        //std::remove("___modelexport___.row");
+       // std::remove("___modelexport___.col");
       }
       template <class T> inline T exportModel(ampl::AMPL& a, const char** options = nullptr);
 
