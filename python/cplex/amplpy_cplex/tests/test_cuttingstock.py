@@ -107,7 +107,7 @@ def run_example():
     
     # Export the (relaxed) cutting stock model to ampls
     cs.option["relax_integrality"]=1
-    ampls_cs = cs.to_ampls(SOLVER, ["outlev=1", "pre:maxrounds=0"])
+    ampls_cs = cs.to_ampls(SOLVER)#, ["outlev=1", "pre:maxrounds=0"])
 
     
 

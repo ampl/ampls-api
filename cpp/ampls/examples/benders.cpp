@@ -8,7 +8,6 @@
 #include <algorithm>>
 #include <iostream>
 
-
 // Utility function to extract keys and values from a map<string, double>
 std::pair<std::vector<ampl::Tuple>, std::vector<double>> to_tuple(const std::map<std::string, double>& myMap) {
   std::vector<ampl::Tuple> keys;
@@ -47,39 +46,40 @@ void create_common(ampl::AMPL& a) {
     "set CUSTOMERS;"
     "set SCENARIOS;"
     "param prob{SCENARIOS} default 1/card(SCENARIOS);"
-    "param ss symbolic in SCENARIOS;"
+    "param sub_scenario symbolic in SCENARIOS;"
     "param customer_demand{CUSTOMERS, SCENARIOS} >= 0;"
 
     "param facility_capacity{FACILITIES} >= 0;"
     "param variable_cost{ FACILITIES, CUSTOMERS } >= 0;"
-    "param is_facility_open{ FACILITIES } default 1; "
+
   );
 }
 
-
-
 void create_sub_problem(ampl::AMPL& a) {
   create_common(a);
-  a.eval("var production{FACILITIES, CUSTOMERS, SCENARIOS} >= 0;"
-    "minimize ProductionCost_Scenario:"
-    "prob[ss] * (sum{ i in FACILITIES, j in CUSTOMERS }"
-    "variable_cost[i, j] * production[i, j, ss]); "
+  a.eval(
+    "param sub_facility_open{ FACILITIES } default 1; "
+    "var production{FACILITIES, CUSTOMERS, SCENARIOS} >= 0;"
+    "minimize operating_cost:"
+    "sum{ i in FACILITIES, j in CUSTOMERS }"
+    "variable_cost[i, j] * production[i, j, sub_scenario]; "
 
     "s.t.satisfying_customer_demand{ j in CUSTOMERS }:"
-    "sum{i in FACILITIES} production[i, j, ss] >= customer_demand[j, ss];"
+    "sum{i in FACILITIES} production[i, j, sub_scenario] >= customer_demand[j, sub_scenario];"
 
     "s.t.facility_capacity_limits{i in FACILITIES}:"
-    "sum{ j in CUSTOMERS } production[i, j, ss] <= facility_capacity[i] * is_facility_open[i];");
+    "sum{ j in CUSTOMERS } production[i, j, sub_scenario] <= facility_capacity[i] * sub_facility_open[i];");
 }
-
 
 void create_master_problem(ampl::AMPL& a) {
   create_common(a);
-  a.eval("var max_stage2_cost>=0;"
-    "param fixed_cost{ FACILITIES } >= 0;"
+  a.eval("param fixed_cost{ FACILITIES } >= 0;"
+    "var sub_variable_cost{SCENARIOS} >= 0;"
     "var facility_open{ FACILITIES } binary;"
     "minimize TotalCost :"
-    "sum{ i in FACILITIES } fixed_cost[i] * facility_open[i] + max_stage2_cost;");
+    "sum{ i in FACILITIES } fixed_cost[i] * facility_open[i] + sum{s in SCENARIOS} prob[s]*sub_variable_cost[s];"
+    "s.t. sufficient_production_capacity:"
+    "sum{ i in FACILITIES } facility_capacity[i] * facility_open[i] >= max{ s in SCENARIOS } sum{ j in CUSTOMERS } customer_demand[j, s];");
 }
 
 // Load data into the AMPL model
@@ -95,8 +95,7 @@ void load_data(ampl::AMPL& a, const std::vector<const char*>& facilities,
   a.getSet("SCENARIOS").setValues(scenarios.data(), scenarios.size());
 
   auto fc = to_tuple(facility_capacity_map);
-  a.getParameter("facility_capacity").setValues(std::get<0>(fc).data(), std::get<1>(fc).data(), 3);
-
+  a.getParameter("facility_capacity").setValues(std::get<0>(fc).data(), std::get<1>(fc).data(), std::get<0>(fc).size());
   auto vc = to_tuple(variable_cost_map);
   a.getParameter("variable_cost").setValues(std::get<0>(vc).data(), std::get<1>(vc).data(), std::get<0>(vc).size());
 
@@ -105,18 +104,9 @@ void load_data(ampl::AMPL& a, const std::vector<const char*>& facilities,
 }
 void load_master_data(ampl::AMPL& a) {
   a.eval("data;"
-    "param fixed_cost := Watson 400000 Bayshore 500000 Orange 600000; ");
+    "param fixed_cost :=   Watson 39268000 Bayshore 65268000 Orange 60268000 Evanston 48268000;");
 }
 
-
-
-double calculate_sum(ampl::DataFrame& d, std::map<std::string, double> & weight) {
-  double sum = 0;
-  for (auto r : d) 
-    sum += weight[r[0].c_str()] * r[1].dbl();
-  return sum;
-
-}
 
 int findIndexWithSubstring(const std::map<std::string, int>& myMap, const std::string& substring) {
   for (const auto& pair : myMap) {
@@ -127,35 +117,80 @@ if (pair.first.find(substring) != std::string::npos) {
   throw std::runtime_error("Index not found!");
 }
 
+/** Add a cut (optimality of feasibility) to the model*/
+void addBendersCut(ampls::AMPLModel& model, const ampl::DataFrame& cdduals,
+  const ampl::DataFrame& fcduals, 
+  const std::map<std::string, int>& index_facility_open,
+  int index_sub_variable_cost_scen,
+  const std::map<std::string, double>& facility_capacity,
+  const std::map<std::string, double>& scenario_customer_demand,
+  bool optimalityCut) {
+
+  // Note that to accomodate for solver view, we formulate it as below
+  // sub_variable_cost[s] - sum{ i in FACILITIES } facility_price[i, s, k] * facility_capacity[i] * facility_open[i]
+  // >=   sum{j in CUSTOMERS} customer_price[j,s,k]*customer_demand[j,s]; 
+  std::vector<int> indices;
+  std::vector<double> coeffs;
+  for (auto fc : fcduals) {
+      indices.push_back(index_facility_open.at(fc[0].str()));
+      coeffs.push_back(-fc[1].dbl() * facility_capacity.at(fc[0].str()));
+  }
+  if (optimalityCut) { 
+    indices.push_back(index_sub_variable_cost_scen);
+    coeffs.push_back(1);
+  }
+  double rhs = 0;
+  for (auto cd : cdduals) {
+    rhs += cd[1].dbl() * scenario_customer_demand.at(cd[0].str());
+  }
+  std::string name = optimalityCut ? "optimality" : "feasibility";
+  auto cut = model.addConstraint(indices.size(), indices.data(), coeffs.data(),
+    ampls::CutDirection::GE, rhs);
+  model.record(cut);
+  std::cout << "Added " << name << " cut:\n" << cut.toString();
+}
 
 template <class T> void solve(ampl::AMPL& master, ampl::AMPL& sub) {
 
   // Set some options
   sub.eval("suffix dunbdd;");
+  master.setIntOption("presolve", 0);
   sub.setIntOption("presolve", 0);
   sub.setIntOption("solver_msg", 0);
 
   // Data
-  std::vector<const char*> FACILITIES({ "Watson", "Bayshore", "Orange" });
-  std::vector<const char*> CUSTOMERS({ "Station_LA", "Store_TX", "Center_TX", "Store_AZ" });
+  std::vector<const char*> FACILITIES({ "Watson", "Bayshore", "Orange", "Evanston"});
+  std::vector<const char*> CUSTOMERS({ "CEM_Store_41594", "CEM_Cypress_Market", "CEM_Time_Mart_23", "CEM_Cypress_CEM", "CEM_Fuel_Maxx_84", "CEM_Commercial_CEM", "CEM_New_Brunswick", "CEM_Bernards_PGroup" });
   std::vector < const char*> SCENARIOS({ "Low", "Medium", "High" });
   std::map<std::string, double> facility_capacity_map{
-        {"Watson", 1550},
-        {"Bayshore",650},
-        {"Orange", 1750}
+        {"Watson", 75000},
+        {"Bayshore",200000},
+        {"Orange", 150000},
+      {"Evanston", 90000}
   };
 
+  std::map<std::string, double> lowDemand, mediumDemand, highDemand;
+  for (auto c : CUSTOMERS) {
+    lowDemand[c] = 10000;
+    mediumDemand[c] = 15000;
+    highDemand[c] = 20000;
+  }
+
   std::map<std::string, std::map<std::string, double>> customer_demand_map{
-      { "Low",  { { "Station_LA", 166}, { "Store_TX", 91}, { "Center_TX", 679}, {"Store_AZ", 1441} } },
-      { "Medium",  { { "Station_LA", 166}, { "Store_TX", 105}, { "Center_TX", 716}, {"Store_AZ", 1500} } },
-      { "High",  { { "Station_LA", 177}, { "Store_TX", 106}, { "Center_TX", 873}, {"Store_AZ", 1528} } },
+      { "Low",  lowDemand},
+      { "Medium",  mediumDemand },
+      { "High",  highDemand }
   };
 
   std::map<std::string, std::map<std::string, double>> variable_cost_map{
-    { "Station_LA",  { { "Watson", 6739.725}, { "Bayshore", 10355.05}, { "Orange", 7650.40}} },
-    { "Store_TX",  { { "Watson", 3204.8625}, { "Bayshore", 5457.075}, { "Orange", 3845.4} } },
-    { "Center_TX",  { { "Watson", 4914}, { "Bayshore", 26409.6}, { "Orange", 19622.4} } },
-    { "Store_AZ",  { { "Watson", 32372.1125}, { "Bayshore", 29982.225}, { "Orange", 21024.325} } },
+        {"CEM_Store_41594", { {"Watson", 6739.72500}, {"Bayshore", 10355.05000}, {"Orange", 7650.40000}, {"Evanston", 5219.50000} }},
+        {"CEM_Cypress_Market", { {"Watson", 4739.72500}, {"Bayshore", 8355.05000}, {"Orange", 17320.40000}, {"Evanston", 15000.50000} }},
+        {"CEM_Time_Mart_23", { {"Watson", 7739.72500}, {"Bayshore", 9355.05000}, {"Orange", 7320.40000}, {"Evanston", 5000.50000} }},
+        {"CEM_Cypress_CEM", { {"Watson", 5739.72500}, {"Bayshore", 6355.05000}, {"Orange", 7320.40000}, {"Evanston", 9433.70000}}},
+        {"CEM_Fuel_Maxx_84", { {"Watson", 9739.72500}, {"Bayshore", 10355.05000}, {"Orange", 9650.40000}, {"Evanston", 5219.50000} }},
+        {"CEM_Commercial_CEM", { {"Watson", 5093.25000}, {"Bayshore", 11355.05000}, {"Orange", 5320.40000}, {"Evanston", 10433.70000}}},
+        {"CEM_New_Brunswick", { {"Watson", 4987.72500}, {"Bayshore", 8935.05000}, {"Orange", 7320.40000}, {"Evanston", 5875.50000}}},
+        {"CEM_Bernards_PGroup", { {"Watson", 8011.72500}, {"Bayshore", 8300.05000}, {"Orange", 12110.40000}, {"Evanston", 10000.50000}}}
   };
 
   // Load data into AMPL instances
@@ -169,136 +204,87 @@ template <class T> void solve(ampl::AMPL& master, ampl::AMPL& sub) {
   auto master_ampls = ampls::AMPLAPIInterface::exportModel<ampls::GurobiModel>(master);
   auto map = master_ampls.getVarMap();
   
-  // Store some maps between the AMPL variables and the position in the solvers Jacobian
-  int index_max_stage2_cost = map["max_stage2_cost"];
-  std::map<std::string, int> index_facility_open;
-  std::map<int, std::string> revindex_facility_open;
+  // Store some maps between the AMPL variables and the position in the solvers view
+  std::map<std::string, int> index_facility_open, index_sub_variable_cost;
+  std::map<int, std::string> revindex_facility_open, revindex_sub_variable_cost;
   for (auto f : FACILITIES) {
     int in = findIndexWithSubstring(map, f);
     index_facility_open[f] = in;      // map FACILITY -> solverindex facility_open[FACILITY]
     revindex_facility_open[in] = f;   // map solverindex facility_open[FACILITY] -> FACILITY
   }
+  for (auto s : SCENARIOS) {
+    int in = findIndexWithSubstring(map, s);
+    index_sub_variable_cost[s] = in;      // map SCENARIOS -> solverindex sub_variable_cost[SCENARIOS]
+    revindex_sub_variable_cost[in] = s;   // map solverindex sub_variable_cost[SCENARIOS] -> CUSTOMER
+
+  }
   
   // Constraints of subproblems that we will use to extract dual/unbounded rays
   auto satisfying_customer_demand = sub.getConstraint("satisfying_customer_demand");
   auto facility_capacity_limits = sub.getConstraint("facility_capacity_limits");
-  auto scenario_subproblem = sub.getParameter("ss");
-  // Maps to accumulate the coefficients of the optimality and feasibility cuts
-  std::map<std::string, double> fcl_feas, fcl_opt;
-  // Scalars to accumulate the RHS of the cuts
-  double optim_cut_rhs = 0, feas_cut_rhs = 0;
-
-  // Maps to store indices and coefficients (used when actually adding cut using AMPLS)
-  std::vector<int> indices;
-  std::vector<double> coeffs;
-
-  double newGap = std::numeric_limits<double>::infinity();
-  double Gap = std::numeric_limits<double>::infinity();
+  auto scenario_subproblem = sub.getParameter("sub_scenario");
   
+  // Maps to store indices and coefficients (used when actually adding cut using AMPLS)
+  int n_noviolations = 0;
   double epsilon = 0.00000001;
-  int nOptimalityCuts = 0, nFeasibilityCuts = 0;
-
+  std::map<std::string, double> sub_variable_cost;
+  for (auto s : SCENARIOS) {
+    sub_variable_cost[s] = 0;
+  }
   // Main iterations loop
   for (int it = 0; it < 5; it++) {
-    std::cout << std::endl << "******* Iteration " << it << "*******" << std::endl;
-
-    for (auto f : FACILITIES)
-    {
-      fcl_feas[f] = 0;
-      fcl_opt[f] = 0;
-    }
-    optim_cut_rhs = 0;
-    feas_cut_rhs = 0;
-
+    std::cout << std::endl << "******* Iteration " << it << "*******";
+    n_noviolations = 0;
     for (auto s : SCENARIOS) {
       scenario_subproblem.set(s); // set the scenario in the subproblem
-      sub.getOutput("solve;"); // solve
+      sub.getOutput("solve;");
       auto result = sub.getValue("solve_result").str();
-
+      std::cout << std::endl << std::endl << "Scenario " << s << "   ";
       if (result == "infeasible") {
-        // Accumulate coefficients and RHS for feasibility cut
         auto scd = satisfying_customer_demand.getValues("dunbdd");
         auto fcl = facility_capacity_limits.getValues("dunbdd");
-        feas_cut_rhs += calculate_sum(scd, customer_demand_map[s]);
-        for (auto r : fcl)
-          fcl_feas[r[0].str()] -= r[1].dbl();
+        addBendersCut(master_ampls, scd, fcl,
+          index_facility_open, 0, facility_capacity_map,
+          customer_demand_map.at(s), false);
+      }
+      else if (sub.getValue("operating_cost").dbl() > sub_variable_cost[s] + epsilon)
+      {
+        auto scd = satisfying_customer_demand.getValues("dual");
+        auto fcl = facility_capacity_limits.getValues("dual");
+        addBendersCut(master_ampls, scd, fcl,
+          index_facility_open, index_sub_variable_cost.at(s), facility_capacity_map,
+          customer_demand_map.at(s), true);
       }
       else
       {
-        // Accumulate coefficients and RHS for optimality cut
-        newGap -= sub.getValue("ProductionCost_Scenario").dbl();
-        auto scd = satisfying_customer_demand.getValues("dual");
-        auto fcl = facility_capacity_limits.getValues("dual");
-        optim_cut_rhs += calculate_sum(scd, customer_demand_map[s]);
-        for (auto r : fcl)
-          fcl_opt[r[0].str()] -= r[1].dbl();
+        std::cout << "No violation." << std::endl;
+        n_noviolations += 1;
       }
     }
-    // Add optimality cut
-    if (optim_cut_rhs > 0) {
-        nOptimalityCuts++;
-        indices.clear();
-        coeffs.clear();
-        indices.push_back(index_max_stage2_cost);
-        coeffs.push_back(1);
-        for (auto f : FACILITIES)
-        {
-          if (fcl_opt[f] != 0) {
-            indices.push_back(index_facility_open[f]);
-            coeffs.push_back(fcl_opt[f] * facility_capacity_map[f]);
-          }
-        }
-        auto opt = master_ampls.addConstraint(indices.size(), indices.data(), coeffs.data(), ampls::CutDirection::GE,
-          optim_cut_rhs);
-        master_ampls.record(opt);
-        std::cout << "Added optimality cut:" <<std::endl << opt.toString() << std::endl;
-    }
+    // If no scenario violates optimality and feasibility conditions
+    // we converged to a solution
+    if (n_noviolations == SCENARIOS.size()) break;
 
-    // Add feasibility cut
-    indices.clear();
-    coeffs.clear();
-    for (auto f : FACILITIES)
-    {
-      if (fcl_feas[f] != 0) {
-        indices.push_back(index_facility_open[f]);
-        coeffs.push_back(fcl_feas[f] * facility_capacity_map[f]);
-      }
-    }
-    if (indices.size() > 0) {
-      nFeasibilityCuts++;
-      auto feas = master_ampls.addConstraint(indices.size(), indices.data(), coeffs.data(), ampls::CutDirection::GE,
-        feas_cut_rhs);
-      master_ampls.record(feas);
-      std::cout << "Added feasibility cut:" << std::endl << feas.toString() << std::endl;
-    }
-
-
+    // Otherwise resolve the master
     std::cout << "Resolving master problem" << std::endl;
     master_ampls.optimize();
 
-    
-    if (newGap > epsilon)
-      Gap = std::max(Gap, newGap);
-    else 
-      break; // Desired gap achieved
-    
-    std::cout << "Gap = " << Gap << std::endl;
-
-    // Set is_facility_open with the master solution, affected by feasibility cuts
+    // Set sub_facility_open with the master solution
+    // Here we need to pass from solver view (indices) to AMPL 
+    // view (variable name and index value)
     auto sol = master_ampls.getSolutionVector();
-    std::vector<ampl::Tuple> ii;
-    std::vector<double> vv;
+    std::vector<ampl::Tuple> indices;
+    std::vector<double> values;
     for (auto a : revindex_facility_open) {
-      ii.push_back(ampl::Tuple(a.second));
-      vv.push_back(sol[a.first]);
+      indices.push_back(ampl::Tuple(a.second));
+      values.push_back(sol[a.first]);
     }
-    sub.getParameter("is_facility_open").setValues(ii.data(), vv.data(), ii.size());
-
-    // Set newGap to the value of max_stage2_cost
-    newGap = sol[index_max_stage2_cost];
+    sub.getParameter("sub_facility_open").setValues(indices.data(), values.data(), indices.size());
+    // Update the sub_variable_cost values
+    for (auto a : revindex_sub_variable_cost)
+      sub_variable_cost[a.second] = sol[a.first];
   }
-  std::cout << "Gap = " << newGap << std::endl;
-  std::cout << "Optimal solution found, cost: " << master_ampls.getObj() << std::endl;
+  std::cout << std::endl << std::endl << "***** Optimal solution found, cost: " << master_ampls.getObj() << std::endl;
 
   // Import the AMPLS model back to AMPL, and show the additional cuts
   ampls::AMPLAPIInterface::importModel(master, master_ampls);
@@ -309,8 +295,6 @@ template <class T> void solve(ampl::AMPL& master, ampl::AMPL& sub) {
 
 template <class T> void example() {
   ampl::AMPL master, sub;
-  
-
   try {
     create_master_problem(master);
     create_sub_problem(sub);

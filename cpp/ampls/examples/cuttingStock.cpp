@@ -162,7 +162,6 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
   a.eval("display order, rolls;");
 
   a.setIntOption("relax_integrality", 1);
-  a.eval("option auxfiles cr; write 'gd:/dual';");
   auto cutting_opt = ampls::AMPLAPIInterface::exportModel<T>(a);
 
 #ifdef USE_scip
@@ -208,10 +207,10 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
       // Add variable in the solver model via ampls
       // Note that the variables are continuous because we only solve
       // the relaxation at ampls level
-      cutting_opt.addVariable(
+      cutting_opt.record(cutting_opt.addVariable(
         indices.size(),
         indices.data(), coeffs.data(), 0, cutting_opt.infinity(),
-        1, ampls::VarType::Continuous);
+        1, ampls::VarType::Continuous, "cut"));
 
     }
     else
@@ -221,7 +220,7 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
   // At the end of the solution process, we add all the patterns
   // we devised to AMPL before importing the model, so that we have 
   // "space" to read the solution back
-  pat.addtoAMPL(a, "nPatterns", "rolls");
+  //pat.addtoAMPL(a, "nPatterns", "rolls");
   // Import the solution in AMPL
   ampls::AMPLAPIInterface::importModel(a, cutting_opt);
   // Solve the integer problem
@@ -230,6 +229,7 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
   a.solve();
   // Display the result
   a.eval("display rolls, Cut;");
+  a.display("cut");
 }
 
 void SolveWithAMPLScript(ampl::AMPL &a, Patterns &patterns) {
@@ -278,7 +278,7 @@ template <class T> void example()
 
 int main(int argc, char** argv) {
 #ifdef USE_gurobi
- // example<ampls::GurobiModel>();
+  example<ampls::GurobiModel>();
 #endif
 #ifdef USE_scip
   example<ampls::SCIPModel>();

@@ -17,9 +17,9 @@ Then imports the results in AMPL.
 """
 import types
 from amplpy import AMPL
-import amplpy_scip as ampls
+import amplpy_gurobi as ampls
 
-SOLVER = "scip"
+SOLVER = "gurobi"
 
 WIDTHS = [20, 45, 50, 55, 75]
 ORDERS = [48, 35, 24, 10, 8]
@@ -107,7 +107,7 @@ def run_example():
     
     # Export the (relaxed) cutting stock model to ampls
     cs.option["relax_integrality"]=1
-    ampls_cs = cs.to_ampls(SOLVER, ["outlev=1", "pre:maxrounds=0"])
+    ampls_cs = cs.to_ampls(SOLVER)#, ["outlev=1", "pre:maxrounds=0"])
 
     
 

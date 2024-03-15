@@ -386,8 +386,8 @@ namespace ampls{
     std::string name_;
     AMPLModel* parent_;
   public:
-    Entity(AMPLModel* parent, std::string name, std::vector<int> indices,
-      std::vector<double> coeffs) : name_(name), indices_(indices), coeffs_(coeffs), 
+    Entity(AMPLModel* parent, std::string name, const std::vector<int> &indices,
+      const std::vector<double> &coeffs) : name_(name), indices_(indices), coeffs_(coeffs), 
       solverIndex_(-1), value_(nanl("")), exportedToAMPL_(false), parent_(parent)
     {}
 
@@ -430,8 +430,8 @@ namespace ampls{
     void assignName();
     
   public:
-    Constraint(AMPLModel* parent, std::string name, std::vector<int> indices,
-      std::vector<double> coeffs, CutDirection::Direction sense, double rhs) :
+    Constraint(AMPLModel* parent, std::string name, const std::vector<int> &indices,
+      const std::vector<double> &coeffs, CutDirection::Direction sense, double rhs) :
       Entity(parent, name, indices, coeffs), sense_(sense), rhs_(rhs) {
       if (name.size() == 0)
         assignName();
@@ -465,8 +465,8 @@ namespace ampls{
     friend class AMPLModel;
     void assignName();
   public:
-    Variable(AMPLModel* parent, std::string name, std::vector<int> indices,
-      std::vector<double> coeffs, double lb, double ub,
+    Variable(AMPLModel* parent, std::string name, const std::vector<int> &indices,
+      const std::vector<double> &coeffs, double lb, double ub,
       double objCoefficient, VarType::Type type) :
       Entity(parent, name, indices, coeffs), ub_(ub), lb_(lb), obj_(objCoefficient), type_(type) {
       if (name.size() == 0)
@@ -1165,10 +1165,21 @@ public:
     return records_.getRecordedEntities(exportToAMPL);
   }
 
+
+  ampls::Constraint addConstraint(const std::vector<int> &vars,
+    const std::vector<double> &coefficients, ampls::CutDirection::Direction sense, 
+    double rhs, const char* name = NULL) {
+    Constraint c = Constraint(this, name, vars, coefficients, sense, rhs);
+    int index = addConstraintImpl(name, vars.size(), vars.data(), coefficients.data(), sense, rhs);
+    c.solverIndex(index);
+    return c;
+  }
+
+
   ampls::Constraint addConstraint(int nnz, const int* vars,
-    const double* coefficients, ampls::CutDirection::Direction sense, double rhs, const char* name = NULL) {
-    Constraint c = Constraint(this, name, nnz, vars, coefficients, sense, rhs);
-    int index = addConstraintImpl(name, nnz, vars, coefficients, sense, rhs);
+    const double* coefficients, ampls::CutDirection::Direction sense, double rhs, const std::string& name = NULL) {
+    Constraint c = Constraint(this, name.c_str(), nnz, vars, coefficients, sense, rhs);
+    int index = addConstraintImpl(name.c_str(), nnz, vars, coefficients, sense, rhs);
     c.solverIndex(index);
     return c;
   }

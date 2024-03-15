@@ -7,6 +7,9 @@
 
 %feature("director") ampls::GurobiCallback;
 %ignore ampls::GurobiCallback::doAddCut;
+%ignore GRBloadenv;
+%ignore AMPL_GRBloadenv2;
+
 
 // The following is to avoid problem with director
 // that cannot properly map an out double[].

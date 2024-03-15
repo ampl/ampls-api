@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{48d0fed8-22ec-48bf-b523-072db16ffafb}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>benders.py</StartupFile>
+    <SearchPath>..\..\..\solvers-private\build\vs64\bin</SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>
+    </InterpreterId>
+    <Name>python-examples</Name>
+    <TestFramework>unittest</TestFramework>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="queens.mod" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="callbacks_first.py" />
+    <Compile Include="benders.py" />
+    <Compile Include="load_model.py" />
+    <Compile Include="multiple_models.py" />
+    <Compile Include="options.py" />
+    <Compile Include="test.py" />
+    <Compile Include="callbacks_stopping.py" />
+    <Compile Include="column_generation.py" />
+    <Compile Include="tsp_callback.py" />
+    <Compile Include="tsp_helpers.py" />
+    <Compile Include="tsp_simple_cuts.py" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
