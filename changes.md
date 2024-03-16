@@ -2,6 +2,10 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
+## 0.1.8 - 2024-03-16
+* **[New]** Python: added parameter `keep_files` to the method `amplpy.AMPL.import_solution` that
+            if set to true, keeps the exported row, col and NL files 
+  
 ## 0.1.7 - 2024-01-13
 
 * **[[Fix]]** Row and column files written to the temporary directory when exporting from AMPLAPI 
