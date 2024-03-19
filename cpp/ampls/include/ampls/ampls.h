@@ -2,6 +2,7 @@
 #define ampls_H_INCLUDE_
 
 #include <cstdio>
+#include <cstring>
 #include <string>
 #include <map>
 #include <vector>
