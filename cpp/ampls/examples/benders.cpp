@@ -7,6 +7,8 @@
 #include <limits>
 #include <algorithm>>
 #include <iostream>
+#include <iomanip>
+#include <cassert>
 
 // Utility function to extract keys and values from a map<string, double>
 std::pair<std::vector<ampl::Tuple>, std::vector<double>> to_tuple(const std::map<std::string, double>& myMap) {
@@ -37,11 +39,7 @@ std::pair<std::vector<ampl::Tuple>, std::vector<double>> to_tuple(const
   return std::make_pair(keys, values);
 }
 
-
-const char SOLVER[] = "cplex";
-
 void create_common(ampl::AMPL& a) {
-  a.setOption("solver", SOLVER);
   a.eval("set FACILITIES;"
     "set CUSTOMERS;"
     "set SCENARIOS;"
@@ -201,9 +199,12 @@ template <class T> void solve(ampl::AMPL& master, ampl::AMPL& sub) {
     variable_cost_map);
 
   // Export to AMPLS
-  auto master_ampls = ampls::AMPLAPIInterface::exportModel<ampls::GurobiModel>(master);
+  auto master_ampls = ampls::AMPLAPIInterface::exportModel<T>(master);
   auto map = master_ampls.getVarMap();
   
+  master.setOption("solver", master_ampls.driver());
+  sub.setOption("solver", master_ampls.driver());
+
   // Store some maps between the AMPL variables and the position in the solvers view
   std::map<std::string, int> index_facility_open, index_sub_variable_cost;
   std::map<int, std::string> revindex_facility_open, revindex_sub_variable_cost;
@@ -231,13 +232,17 @@ template <class T> void solve(ampl::AMPL& master, ampl::AMPL& sub) {
   for (auto s : SCENARIOS) {
     sub_variable_cost[s] = 0;
   }
+  
+  // Set formatting to avoid scientific notation
+  std::cout << std::fixed << std::setprecision(2);
   // Main iterations loop
-  for (int it = 0; it < 5; it++) {
-    std::cout << std::endl << "******* Iteration " << it << "*******";
+  for (int it = 1; ;it++) {
+    std::cout << std::endl << "******* Iteration " << it << " *******";
     n_noviolations = 0;
     for (auto s : SCENARIOS) {
       scenario_subproblem.set(s); // set the scenario in the subproblem
       sub.getOutput("solve;");
+      sub.solve();
       auto result = sub.getValue("solve_result").str();
       std::cout << std::endl << std::endl << "Scenario " << s << "   ";
       if (result == "infeasible") {
@@ -290,6 +295,8 @@ template <class T> void solve(ampl::AMPL& master, ampl::AMPL& sub) {
   ampls::AMPLAPIInterface::importModel(master, master_ampls);
   std::cout << "Optimal solution in AMPL:" << master.getObjective("TotalCost").value() << std::endl;
   master.eval("expand {c in 1.._ncons} _con[c];");
+
+  assert(abs(master.getObjective("TotalCost").value() - 756943875) < 10e-3);
   
 }
 
@@ -311,9 +318,11 @@ int main(int argc, char** argv) {
 #ifdef USE_scip
   example<ampls::SCIPModel>();
 #endif
+  
 #ifdef USE_gurobi
   example<ampls::GurobiModel>();
 #endif
+  return 0;
   
 #ifdef USE_xpress
   example<ampls::XPRESSModel>();
@@ -322,7 +331,7 @@ int main(int argc, char** argv) {
 #ifdef USE_cplex
  example<ampls::CPLEXModel>();
 #endif
-  
+
 #ifdef USE_copt
   example<ampls::CoptModel>();
 #endif

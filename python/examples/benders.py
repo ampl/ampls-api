@@ -5,8 +5,8 @@ from json.encoder import INFINITY
 from amplpy import AMPL, variable
 import pandas as pd
 
-import amplpy_gurobi as ampls 
-SOLVER = "gurobi"
+import amplpy_xpress as ampls 
+SOLVER = "xpress"
 
 def create_extended_form() ->AMPL:
     a = AMPL()
