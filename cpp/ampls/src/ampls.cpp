@@ -182,13 +182,13 @@ std::string Variable::toAMPLString(const std::map<int, std::string>& varMap,
   ss << impl::string_format("var %s ", name().c_str());
 
   if (type_ == VarType::Binary)
-    ss << "binary";
+    ss << "binary ";
   if (type_ == VarType::Integer)
-    ss << "integer";
-
-  if (!std::isinf(lb_))
+    ss << "integer ";
+  double inf = -records.parent_->infinity();
+  if (!lb_==-inf)
     ss << impl::string_format(">=%f, ", lb_);
-  if (!std::isinf(ub_))
+  if (!ub_==inf)
     ss << impl::string_format("<=%f,", ub_);
 
   if (!std::isnan(obj_))
@@ -321,8 +321,8 @@ namespace impl {
   }
   ampls::Variable BaseCallback::addVariable(int nnz, const int* cons,
     const double* coefficients, double lb, double ub, double objCoefficient,
-    VarType::Type type, const char* name) {
-    return model_->addVariable(nnz, cons, coefficients, lb, ub, objCoefficient, type, name);
+    VarType::Type type, bool relaxed, const char* name) {
+    return model_->addVariable(nnz, cons, coefficients, lb, ub, objCoefficient, type, relaxed, name);
   }
 
 } // namespace impl

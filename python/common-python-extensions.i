@@ -61,14 +61,14 @@ ampls::Constraint add_constraint(const std::vector<int> &vars,
 }
 
 ampls::Variable add_variable(double lb, double ub,
-    VarType::Type type, const char* name = NULL) {
-    return  $self->addVariable(lb, ub, type, name);
+    VarType::Type type, bool relaxed = false, const char* name = NULL) {
+    return  $self->addVariable(lb, ub, type, relaxed, name);
 }
 
 ampls::Variable add_variable(int nnz, const int* cons,
       const double* coefficients, double lb, double ub, double objCoefficient,
-      VarType::Type type, const char* name = NULL) {
-return $self->addVariable(nnz, cons, coefficients, lb, ub, objCoefficient, type, name);      
+      VarType::Type type, bool relaxed = false, const char* name = NULL) {
+return $self->addVariable(nnz, cons, coefficients, lb, ub, objCoefficient, type, relaxed, name);      
 }
 
 std::string get_file_name() { return  $self->getFileName();}
@@ -166,12 +166,12 @@ virtual bool can_do(CanDo::Functionality f) {
 }
 ampls::Variable add_variable(int nnz, const int* cons,
     const double* coefficients, double lb, double ub, double objCoefficient,
-    VarType::Type type, const char* name = NULL) {
-    return $self->addVariable(nnz, cons, coefficients, lb, ub, objCoefficient, type, name);
+    VarType::Type type, bool relaxed = false, const char* name = NULL) {
+    return $self->addVariable(nnz, cons, coefficients, lb, ub, objCoefficient, type, relaxed, name);
 }
 ampls::Variable add_variable(double lb, double ub,
-    VarType::Type type, const char* name = NULL) {
-    return $self->addVariable(lb, ub, type, name);
+    VarType::Type type, bool relaxed = false, const char* name = NULL) {
+    return $self->addVariable(lb, ub, type, relaxed, name);
 }
 void set_debug_cuts(bool cutDebug, bool cutDebugIntCoefficients, bool cutDebugPrintVarNames) {
     $self->setDebugCuts(cutDebug, cutDebugIntCoefficients, cutDebugPrintVarNames);

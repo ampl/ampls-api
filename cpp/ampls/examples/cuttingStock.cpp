@@ -3,6 +3,9 @@
 #include "ampls/ampls.h"
 #include "test-config.h" // for MODELS_DIR
 
+#include "iomanip"
+#include <cassert>
+#include <string>
 #include "ampl/ampl.h"
 
 
@@ -19,12 +22,12 @@ struct Pattern {
   }
 };
 
-
 /// <summary>
 /// Stores all the pattern types we created 
 /// </summary>
 class Patterns {
   std::vector<Pattern> pats_;
+  std::vector<double> widths_;
 public:
   int size() { return pats_.size(); }
   static Patterns generateDefaultPatterns(const std::vector<double> &widths, int totalWidth) {
@@ -34,11 +37,37 @@ public:
       pat.addCut(w, std::floor(totalWidth / w));
       pats.pats_.push_back(pat);
     }
+    pats.widths_ = widths;
     return pats;
   }
 
   void add(const Pattern& p) {
     pats_.push_back(p);
+  }
+
+  /**
+  * Print all the patterns currently defined. Useful when using ampls native entities recording
+  */
+  void print() {
+    std::cout << std::left << std::setw(7) << "Widths:";
+      for (double w : widths_)
+        std::cout << std::right << std::setw(4) << w;
+    std::cout << std::endl;
+    
+    int i = 0;
+    for (const auto& pat : pats_)
+    {
+      std::cout << std::left << std::setw(7) << "pat" << ++i;
+      for (double w : widths_)
+      {
+        auto it = pat.p.find(w);
+        if (it == pat.p.end())
+          std::cout << std::right << std::setw(4) << "";
+        else
+          std::cout << std::right << std::setw(4)<< pat.p.at(w);
+      }
+      std::cout << std::endl;
+    }
   }
 
   /// <summary>
@@ -73,15 +102,7 @@ Patterns setData(ampl::AMPL& a) {
   double roll_width = 110;
   std::vector<double>ordersWidths = { 20, 45, 50, 55, 75 };
   std::vector<double>ordersAmount = { 48, 35, 24, 10, 8 };
-  /*int nPatterns = 49;
-  double ordersWidths[] = { 1630, 1625, 1620, 1617, 1540, 1529, 1528, 1505, 1504, 1484, 1466,
-    1450, 1283, 1017, 970, 930, 916, 898, 894, 881, 855, 844, 805, 787, 786, 780, 754,
-    746, 707, 698, 651, 644, 638, 605, 477, 473, 471, 468, 460, 458, 453, 447, 441,
-    422, 421, 419, 396, 309, 266 };
-  double ordersAmount[] = { 172, 714, 110, 262, 32, 100, 76, 110,20, 58, 15, 10, 40, 50, 70, 8, 210, 395,
-      49, 17, 20, 10, 718, 17, 710, 150, 34, 15, 122, 7, 10, 15, 10, 10, 4, 34, 25, 10, 908,
-      161, 765, 21, 20, 318, 22, 382, 22, 123, 35 };
- */
+
   a.getParameter("nPatterns").set(0);
   a.getParameter("rawWidth").set(roll_width);
   ampl::DataFrame df(1, { "WIDTHS", "order" });
@@ -101,12 +122,11 @@ void declareCuttingModel(ampl::AMPL& a) {
     "param order{ WIDTHS } >= 0;"   // rolls of width j ordered
     "param rawWidth;"               // width of raw rolls to be cut
     "param rolls{ WIDTHS,PATTERNS } >= 0, default 0;"
-    "var vforscip >=0;"
     "var Cut{ PATTERNS } integer >= 0;" // raw rolls to cut in each pattern
     
-    "minimize TotalRawRolls : sum{ p in PATTERNS } Cut[p] + vforscip+to_come;"
+    "minimize TotalRawRolls : sum{ p in PATTERNS } Cut[p] + to_come;"
     "subject to OrderLimits{ w in WIDTHS }:"
-    "vforscip  + sum{ p in PATTERNS } rolls[w, p] * Cut[p]+ to_come >= order[w];"); 
+    "sum{ p in PATTERNS } rolls[w, p] * Cut[p]+ to_come >= order[w];"); 
 }
 
 void declareKnapsackModel(ampl::AMPL& a) {
@@ -121,9 +141,7 @@ void declareKnapsackModel(ampl::AMPL& a) {
 Pattern generatePattern(ampl::AMPL& a, std::vector<double> duals) {
   // Use knapsack problem to generate new patterns to be considered
   a.getParameter("price").setValues(duals.data(), duals.size());
-  a.eval("display price;");
   a.eval("solve Pattern_Gen;");
-  
   auto val = a.getObjective("Reduced_Cost").value();
   Pattern p;
   if (val < -0.00001) {
@@ -143,13 +161,7 @@ std::vector<double> get_column(ampl::DataFrame& df, const std::string& name) {
   return res;
 }
 
-void relax(ampls::AMPLModel& m) {
-  //auto grb = m.getGRBmodel();
-  //std::vector<char> c(m.getNumVars(), GRB_CONTINUOUS);
-  //GRBsetcharattrarray(grb, GRB_CHAR_ATTR_VTYPE, 0, c.size(), c.data());
-}
-
-template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
+template <class T> double SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
 
   // Create a second AMPL instance just for the knapsack problem
   ampl::AMPL ab;
@@ -160,7 +172,6 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
 
   // Export model to ampls
   a.eval("display order, rolls;");
-
   a.setIntOption("relax_integrality", 1);
   auto cutting_opt = ampls::AMPLAPIInterface::exportModel<T>(a);
 
@@ -173,17 +184,14 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
     cutting_opt.setOption("pro:maxroundsroot", 0);
   }
 #endif
-  ab.setOption("solver", cutting_opt.driver());
 
-  
+  ab.setOption("solver", cutting_opt.driver());
   // Solution cycle
-  while(true) {
+  for (int it = 0;; it++) {
     
     // Get the solution of the relaxed cutting model
     cutting_opt.optimize();
     printf("Solved iteration, obj=%f\n", cutting_opt.getObj());
-    
-    printf("Num ints = %d\n", cutting_opt.getAMPLIntAttribute(ampls::SolverAttributes::INT_NumIntegerVars));
     // Get the duals
     auto vv = cutting_opt.getDualVector();
     auto p = generatePattern(ab, vv);
@@ -210,7 +218,7 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
       cutting_opt.record(cutting_opt.addVariable(
         indices.size(),
         indices.data(), coeffs.data(), 0, cutting_opt.infinity(),
-        1, ampls::VarType::Continuous, "cut"));
+        1, ampls::VarType::Integer, true));
 
     }
     else
@@ -228,16 +236,18 @@ template <class T> void SolveWithAMPLS(ampl::AMPL& a, Patterns &pat) {
   a.setOption("solver", cutting_opt.driver());
   a.solve();
   // Display the result
-  a.eval("display rolls, Cut;");
-  a.display("cut");
+  a.display("rolls, Cut;");
+  a.display("{i in 1.._nvars} _varname[i]");
+  pat.print();
+  return a.getObjective("TotalRawRolls").value();
 }
 
-void SolveWithAMPLScript(ampl::AMPL &a, Patterns &patterns) {
+double SolveWithAMPLScript(ampl::AMPL &a, Patterns &patterns) {
   declareKnapsackModel(a);
   // For solving using AMPL scripts + problems, we declare problems
   // so that we can solve them separately in one AMPL instance
   a.eval("problem Cutting_Opt: Cut, TotalRawRolls, OrderLimits; option relax_integrality 1; ");
-  
+  a.setOption("solver", "gurobi");
   while(true) {
     a.eval("solve Cutting_Opt;");
     auto duals = a.getData("OrderLimits.dual");
@@ -257,6 +267,8 @@ void SolveWithAMPLScript(ampl::AMPL &a, Patterns &patterns) {
   a.eval("option Cutting_Opt.relax_integrality 0;"
     "solve Cutting_Opt;"
     "display TotalRawRolls, rolls, Cut;");
+  return a.getObjective("TotalRawRolls").value();
+
 }
 
 template <class T> void example()
@@ -265,8 +277,13 @@ template <class T> void example()
     ampl::AMPL a;
     declareCuttingModel(a);
     Patterns p = setData(a);
-    SolveWithAMPLS<T>(a, p);
-    //SolveWithAMPLScript(a, p);
+    double ampls = SolveWithAMPLS<T>(a, p);
+
+    a.reset();
+    declareCuttingModel(a);
+    p = setData(a);
+    double ampl = SolveWithAMPLScript(a, p);
+    assert(ampls == ampl);
   }
   catch (const std::exception& e) {
     printf("%s\n", e.what());
@@ -280,6 +297,8 @@ int main(int argc, char** argv) {
 #ifdef USE_gurobi
   example<ampls::GurobiModel>();
 #endif
+
+  return 0;
 #ifdef USE_scip
   example<ampls::SCIPModel>();
 #endif

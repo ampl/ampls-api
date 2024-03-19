@@ -714,18 +714,18 @@ public:
   ampls::Variable addVariable(const std::vector<int>& cons,
     const std::vector<double>& coefficients,
     double lb, double ub, double objCoefficient,
-    VarType::Type type, const char* name = NULL) {
+    VarType::Type type, bool relaxed = false, const char* name = NULL) {
     return addVariable(cons.size(), cons.data(), coefficients.data(),
-      lb, ub, objCoefficient, type, name);
+      lb, ub, objCoefficient, type, relaxed, name);
   }
 
 
   ampls::Variable addVariable(int nnz, const int* cons,
     const double* coefficients, double lb, double ub, double objCoefficient,
-    VarType::Type type, const char* name = NULL);
+    VarType::Type type, bool relaxed = false, const char* name = NULL);
 
   ampls::Variable addVariable(double lb, double ub,
-    VarType::Type type, const char* name = NULL) {
+    VarType::Type type, bool relaxed = false, const char* name = NULL) {
     return addVariable(0, NULL, NULL, lb, ub, 0, type, name);
   }
 
@@ -1204,20 +1204,23 @@ public:
   ampls::Variable addVariable(const std::vector<int>& cons,
     const std::vector<double>& coefficients,
     double lb, double ub, double objCoefficient,
-    VarType::Type type, const char* name = NULL) {
+    VarType::Type type, bool relaxed = false,
+    const char* name = NULL
+    ) {
     return addVariable(cons.size(), cons.data(), coefficients.data(),
-      lb, ub, objCoefficient, type, name);
+      lb, ub, objCoefficient, type, relaxed, name);
   }
 
   ampls::Variable addVariable(double lb, double ub,
-    VarType::Type type, const char* name = NULL) {
-    return addVariable(0, NULL, NULL, lb, ub, 0, type, name);
+    VarType::Type type, bool relaxed = false, const char* name = NULL) {
+    return addVariable(0, NULL, NULL, lb, ub, 0, type, relaxed, name);
   }
 
   ampls::Variable addVariable(int nnz, const int* cons,
       const double* coefficients, double lb, double ub, double objCoefficient,
-      VarType::Type type, const char* name = NULL) {
+      VarType::Type type, bool relaxed = false, const char* name = NULL) {
     Variable v = Variable(this, name, nnz, cons, coefficients, lb, ub, objCoefficient, type);
+    if (relaxed) type = VarType::Continuous;
     int index = addVariableImpl(name, nnz, cons, coefficients, lb, ub, objCoefficient, type);
     v.solverIndex(index);
     return v;

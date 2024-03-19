@@ -11,7 +11,6 @@ from amplpy import AMPL
 # Keeps the knapsack problem as an AMPL model, and adds columns
 # to the cutting-stock via ampls; finally it imports the results in AMPL.
 
-
 import amplpy_gurobi as ampls
 SOLVER = "gurobi"
 
@@ -87,7 +86,7 @@ def knapsack_model():
     a.generate_pattern= types.MethodType( generate_pattern, a )
     return a
 
-
+USE_AMPLS_ENTITY_RECORDING = True
 def run_example():
     # Decalare the two models in AMPL
     cs = cutting_stock_model()
@@ -101,7 +100,8 @@ def run_example():
     
     # Export the (relaxed) cutting stock model to ampls
     cs.option["relax_integrality"]=1
-    ampls_cs = cs.to_ampls(SOLVER, ["outlev=1", "pre:maxrounds=0"])
+    options = ["outlev=1", "pre:maxrounds=0"] if SOLVER=="scip" else None
+    ampls_cs = cs.to_ampls(SOLVER, options)
 
     
 
@@ -129,23 +129,26 @@ def run_example():
                 coeffs.append(c)
             index+=1
         # Add variable in the cutting stock model
-        ampls_cs.addVariable(indices, coeffs, 0, 10000000,
-                                1, ampls.VarType.Continuous)
+        # Note the last parameter: we add the variable as "relaxed", so that it is 
+        v=ampls_cs.addVariable(indices, coeffs, 0, 10000000,
+                                1, ampls.VarType.Integer, True)
+        
+        if USE_AMPLS_ENTITY_RECORDING:
+            ampls_cs.record(v)
     
     # Add all the patterns that has been generated in the loop above to
     # the AMPL version of the cutting stock model, then solve the 
     # integer problem to get the final result
-    cs.add_patterns(patterns)
-    cs.import_solution(ampls_cs)
+
+    if USE_AMPLS_ENTITY_RECORDING:
+        cs.import_solution(ampls_cs, import_entities=True)
+    else:
+        cs.add_patterns(patterns)
+        cs.import_solution(ampls_cs)
     cs.option["relax_integrality"]=0
     cs.solve()
-    cs.eval("display TotalRawRolls, rolls, Cut;")
+    cs.display("TotalRawRolls, rolls;")
+    cs.display("{i in 1.._nvars} _varname[i]");
     assert cs.get_current_objective().value() == 47
-
-class TestCuttingStock(TestBase):
-    def test_cutting_stock(self):
-        run_example()
-
-
-if __name__ == "__main__":
-    unittest.main()
+    
+run_example()
