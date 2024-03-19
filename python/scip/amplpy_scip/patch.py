@@ -141,7 +141,7 @@ def to_ampls(self, driver, options=None):
     raise ValueError(f"{driver} is not supported, please choose from: {solver_list}")
 
 
-def import_solution(self, model, number=None, keep_files=False):
+def import_solution(self, model, number=None, import_entities=False, keep_files=False):
     if isinstance(model, dict):
         self.eval(
             "".join(
@@ -160,6 +160,8 @@ def import_solution(self, model, number=None, keep_files=False):
     import shutil
     model.write_sol()
     self.eval(f'solution "{model._solfile}";')
+    if import_entities:
+        self.eval(model.getRecordedEntities())
     if not keep_files:
         shutil.rmtree(model._tmpdir)
 

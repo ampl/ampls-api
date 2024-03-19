@@ -229,8 +229,7 @@ def doStuff(set_data_function):
    
     print(f"Optimal solution found, cost: {master_ampls.get_obj()}\n\n")
     # Import the AMPLS model back to AMPL, and show the additional cuts
-    master.import_solution(master_ampls, keep_files=True)
-    master.eval(master_ampls.getRecordedEntities())
+    master.import_solution(master_ampls, import_entities=True)
     master_obj=master.get_current_objective().value()
     master.eval("expand {c in 1.._ncons} _con[c];")
     print(f"Optimal solution benders: {master_obj}")    
