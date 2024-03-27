@@ -5,8 +5,8 @@ from json.encoder import INFINITY
 from amplpy import AMPL, variable
 import pandas as pd
 
-import amplpy_xpress as ampls 
-SOLVER = "xpress"
+import amplpy_gurobi as ampls 
+SOLVER = "gurobi"
 
 def create_extended_form() ->AMPL:
     a = AMPL()
@@ -152,11 +152,11 @@ def add_benders_cut(model: ampls.AMPLModel, cdduals: dict, fcduals: dict,
         indices.append(index_sub_variable_cost[s])
         coeffs.append(1)
     rhs = sum(cdduals[c] * customer_demand[(c,s)] for c in customers)
-    opt = model.addConstraint(indices, coeffs, ampls.CutDirection.GE, rhs)
+    opt = model.add_constraint(indices, coeffs, ampls.CutDirection.GE, rhs)
     # With the following, we keep track of the cuts we add, to then add them back
     # into AMPL
     model.record(opt);
-    print(f"Added {cutype} cut: {opt.toString()}\n")
+    print(f"Added {cutype} cut: {opt.to_string()}\n")
     
 def doStuff(set_data_function):
     '''Generic function doing the optimization and reading the results'''

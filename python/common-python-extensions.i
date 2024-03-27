@@ -54,12 +54,6 @@ std::string get_recorded_entities(bool exportToAMPL = true) {
   return $self->getRecordedEntities(exportToAMPL); 
 }
 
-ampls::Constraint add_constraint(const std::vector<int> &vars,
-    const std::vector<double> &coefficients, ampls::CutDirection::Direction sense, 
-    double rhs, const char* name = NULL){
-    return  $self->addConstraint(vars, coefficients, sense, rhs, name); 
-}
-
 ampls::Variable add_variable(double lb, double ub,
     VarType::Type type, bool relaxed = false, const char* name = NULL) {
     return  $self->addVariable(lb, ub, type, relaxed, name);
@@ -123,6 +117,12 @@ double get_double_option(const char* name) {
 
 std::string get_string_option(const char* name) { 
   return $self->getStringOption(name); }
+};
+
+%extend ampls::Constraint {
+  std::string to_string(const std::map<int, std::string>& varMap = {}) {
+    return $self->toString(varMap);
+  }
 };
 
 %extend ampls::impl::BaseCallback {
@@ -299,6 +299,7 @@ def do_addConstraint(self, vars, coeffs, direction, rhs, name=""):
 
 AMPLModel._addConstraint = AMPLModel.addConstraint
 AMPLModel.addConstraint = do_addConstraint
+AMPLModel.add_constraint = do_addConstraint
 
 # The following are used in common-python-overrides.i
 def __get_ampl_parameter(self, param):

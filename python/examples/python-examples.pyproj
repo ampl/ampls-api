@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{48d0fed8-22ec-48bf-b523-072db16ffafb}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>callbacks_stopping.py</StartupFile>
+    <StartupFile>benders.py</StartupFile>
     <SearchPath>..\..\..\solvers-private\build\vs64\bin</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>

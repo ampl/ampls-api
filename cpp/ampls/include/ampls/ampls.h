@@ -530,7 +530,7 @@ namespace impl
       }
       return *this;
     }
-    Records& operator=(Records&& other)
+    Records& operator=(Records&& other) 
     {
       if (this != &other) {
         parent_ = std::move(other.parent_);
@@ -1516,7 +1516,7 @@ protected:
   }
 
   AMPLMPModel(impl::mp::AMPLS_MP_Solver* mp, const char* nlfile,
-    const char** options) {
+    const char** options)  : copied_(false) {
     if (impl::mp::AMPLSLoadNLModel(mp, nlfile, const_cast<char**>(options)))
     {
       std::string s;
