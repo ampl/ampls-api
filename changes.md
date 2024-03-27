@@ -2,6 +2,10 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
+## 0.2.0 - 20240327
+* **[New]** Python: Added `Constraint.to_string` and `AMPLModel.add_constraint`
+
+
 ## 0.1.9 - 2024-03-19
 * **[New]** Python: added parameter `import_entities` to the method `amplpy.AMPL.import_solution` to 
             import entities added via AMPLS back to the amplpy model
