@@ -3,10 +3,8 @@
   From Xpress-Mosel Model
 
   model 'dqueens'
-
   ! Description  : Dudeney's queen placement problem
   ! Source       : Dudeney, H.E., (1917), Amusements in Mathematics, Thomas Nelson and Sons.  
-  ! Date written : Xpress-MP 24/10/99, Mosel 17/4/03
   ! Written by   : M J Chlond 
 
 
@@ -25,7 +23,6 @@ Squares not under attack have value 0:
 
 1  1  1  1  0  0  1  1
 0  1  1  1  0  0  1  1
-0  0  1  1  1  0  1  1
 0  0  1  1  1  1  1  1
 1  0  1  1  1  1  1  1
 1  1  1  1  1  1  1  1
@@ -95,5 +92,3 @@ s.t. att{i in S,j in S}:
         sum{m in S : m <> i} x[m,j] + 
         sum{n in S : n <> j} x[i,n] 
           <= 99*a[i,j];
-option auxfiles cr;
-write gqueens18;

@@ -75,6 +75,9 @@ template <class T> void example()
 
 
 int main(int argc, char** argv) {
+#ifdef USE_highs
+  example<ampls::HighsModel>();
+#endif
 #ifdef USE_scip
   example<ampls::SCIPModel>();
 #endif
@@ -84,12 +87,13 @@ int main(int argc, char** argv) {
 #ifdef USE_cplexmp
   example<ampls::CPLEXModel>();
 #endif
+  /*
 #ifdef USE_gurobi
   example<ampls::GurobiModel>();
 #endif
 #ifdef USE_xpress
   example<ampls::XPRESSModel>();
-#endif 
+#endif */
 #ifdef USE_cbcmp
   example<ampls::CbcModel>();
 #endif 

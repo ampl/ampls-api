@@ -295,13 +295,17 @@ template <class T> void example()
 
 int main(int argc, char** argv) {
 #ifdef USE_gurobi
-  example<ampls::GurobiModel>();
+  //example<ampls::GurobiModel>();
 #endif
 
-  return 0;
+#ifdef USE_highs
+  example<ampls::HighsModel>();
+#endif
+
 #ifdef USE_scip
   example<ampls::SCIPModel>();
 #endif
+
 #ifdef USE_cplex
   example<ampls::CPLEXModel>();
 #endif
@@ -309,6 +313,7 @@ int main(int argc, char** argv) {
 #ifdef USE_xpress
   example<ampls::XPRESSModel>();
 #endif
+
 #ifdef USE_copt
   example<ampls::CoptModel>();
 #endif

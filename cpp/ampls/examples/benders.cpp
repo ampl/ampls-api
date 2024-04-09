@@ -164,7 +164,7 @@ template <class T> void solve(ampl::AMPL& master, ampl::AMPL& sub) {
         {"Watson", 75000},
         {"Bayshore",200000},
         {"Orange", 150000},
-      {"Evanston", 90000}
+        {"Evanston", 90000}
   };
 
   std::map<std::string, double> lowDemand, mediumDemand, highDemand;
@@ -268,12 +268,13 @@ template <class T> void solve(ampl::AMPL& master, ampl::AMPL& sub) {
     }
     // If no scenario violates optimality and feasibility conditions
     // we converged to a solution
+    
     if (n_noviolations == SCENARIOS.size()) break;
 
     // Otherwise resolve the master
     std::cout << "Resolving master problem" << std::endl;
     master_ampls.optimize();
-
+    std::cout << "OBJ=" << master_ampls.getObj() << std::endl;
     // Set sub_facility_open with the master solution
     // Here we need to pass from solver view (indices) to AMPL 
     // view (variable name and index value)
@@ -315,15 +316,21 @@ template <class T> void example() {
 
 int main(int argc, char** argv) {
   double obj;
+#ifdef USE_highs
+  example<ampls::HighsModel>();
+#endif
+
 #ifdef USE_scip
   example<ampls::SCIPModel>();
 #endif
-  
+
 #ifdef USE_gurobi
   example<ampls::GurobiModel>();
 #endif
-  return 0;
-  
+
+
+
+
 #ifdef USE_xpress
   example<ampls::XPRESSModel>();
 #endif
@@ -339,5 +346,6 @@ int main(int argc, char** argv) {
 #ifdef USE_cbcmp
  example<ampls::CbcModel>();
 #endif
+
   return 0;
 }

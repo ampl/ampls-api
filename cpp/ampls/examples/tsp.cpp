@@ -450,6 +450,7 @@ int main(int argc, char** argv) {
 #ifdef USE_scip
   example<ampls::SCIPModel>();
 #endif
+
 #ifdef USE_gurobi
   res.insert(example<ampls::GurobiModel>());
 #endif

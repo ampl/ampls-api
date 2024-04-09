@@ -302,7 +302,7 @@ public:
     int n = max - min;
     std::vector<double> values;
     values.resize(n);
-    getDoubleAttrArray(GRB_DBL_ATTR_RC, min, n, values.data());
+    getDoubleAttrArray(GRB_DBL_ATTR_PI, min, n, values.data());
     return values;
   }
 

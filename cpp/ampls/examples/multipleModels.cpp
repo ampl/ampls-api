@@ -178,7 +178,9 @@ template <class T> void example() {
 }
 
 int main(int argc, char** argv) {
-
+#ifdef USE_highs
+  example<ampls::HighsModel>();
+#endif
 #ifdef USE_cplex
   example<ampls::CPLEXModel>();
 #endif

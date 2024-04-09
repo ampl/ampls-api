@@ -3,9 +3,9 @@ set -ex
 cd "`dirname "$0"`"
 
 version=$1
-solvers=("cplex" "gurobi" "xpress" "copt" "scip")
-modelclasses=("CPLEXModel" "GurobiModel" "XPRESSModel" "CoptModel" "SCIPModel") 
-cbclasses=("CPLEXCallback" "GurobiCallback" "XPRESSCallback" "CoptCallback" "SCIPCalllback")
+solvers=("cplex" "gurobi" "xpress" "copt" "scip" "highs")
+modelclasses=("CPLEXModel" "GurobiModel" "XPRESSModel" "CoptModel" "SCIPModel" "HighsModel") 
+cbclasses=("CPLEXCallback" "GurobiCallback" "XPRESSCallback" "CoptCallback" "SCIPCalllback" "HighsCallback")
 for index in "${!solvers[@]}"; do
     SOLVER=${solvers[index]}
     MODEL_CLASS=${modelclasses[index]}

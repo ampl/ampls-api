@@ -76,7 +76,7 @@ template <class T> void getAndSetOptions() {
   assert(0 == model.getIntOption("outlev"));
   model.setOption("mip:return_gap", 7);
   model.setOption("mip:gap", 0.1);
-`  assert(0.1 == model.getDoubleOption("mip:gap"));
+  assert(0.1 == model.getDoubleOption("mip:gap"));
 
   model.setOption("tech:logfile", "mylog");
   auto c = model.getStringOption("tech:logfile");
@@ -116,6 +116,10 @@ template<class T> void example() {
 int main(int argc, char** argv) {
 #ifdef USE_gurobi
   example<ampls::GurobiModel>();
+#endif
+
+#ifdef USE_highs
+  example<ampls::HighsModel>();
 #endif
 
 #ifdef USE_xpress

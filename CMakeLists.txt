@@ -31,6 +31,7 @@ defSolver(xpress xpress xpress)
 defSolver(cbcmp cbc cbcmp)
 defSolver(copt copt copt)
 defSolver(scip scip scip)
+defSolver(highs highs  highs)
 
 set(BUILD_AMPLS "" CACHE STRING "Comma-separated list of solver drivers to build,  set to \"all\" to build all")
 
@@ -122,6 +123,7 @@ if(hasParent)
   set(copt_BASE_DIR ${SOLVERLIBS}/copt/7.0.3)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/42.01.05)
   set(scip_BASE_DIR ${SOLVERLIBS}/scip)
+  set(highs_BASE_DIR ${SOLVERLIBS}/highs/1.7.0)
 else()
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs)
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi)
@@ -129,6 +131,7 @@ else()
   set(copt_BASE_DIR ${SOLVERLIBS}/copt)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress)
   set(scip_BASE_DIR ${SOLVERLIBS}/scip)
+  set(highs_BASE_DIR ${SOLVERLIBS}/highs)
 endif()
 
 function(CreateSolverLib name includedirs lib)
@@ -197,6 +200,21 @@ if(WIN32)
       ${scip_BASE_DIR}/${sys}/libscip.dll
       IMPORTLIB ${scip_BASE_DIR}/${sys}/libscip.lib)
 
+          
+    CreateSolverLib(highs-solverlib ${highs_BASE_DIR}/include
+    ${highs_BASE_DIR}/${sys}/highs.dll
+    IMPORTLIB ${highs_BASE_DIR}/${sys}/highs.lib)
+
+    set(cbc-solver-deps "")
+    set(d debug/)
+    #set(d "/")
+    foreach(lib libCbcSolver libCbc libCgl libClp libCoinUtils libOsi libOsiCbc libOsiClp)
+      CreateSolverLib(cbc-${lib} ${cbc_BASE_DIR}/include
+        ${cbc_BASE_DIR}/${sys}/${d}${lib}.lib
+        IMPORTLIB ${cbc_BASE_DIR}/${sys}/${d}${lib}.lib)
+      set(cbc-solver-deps ${cbc-solver-deps} cbc-${lib})
+    endforeach()
+
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/win64) # AMPL base driver library locations
 elseif(APPLE)
     set(sys "lib/osx64")
@@ -242,6 +260,7 @@ set(copt-solver-deps copt-solverlib)
 set(xpress-solver-deps xpress-solverlib)
 set(cbc-solver-deps Coin::CbcSolver)
 set(scip-solver-deps scip-solverlib)
+set(highs-solver-deps highs-solverlib)
 
  # Get rid of warning in newer versions of cmake
 macro(ADD_SWIG_LIBRARY name language)

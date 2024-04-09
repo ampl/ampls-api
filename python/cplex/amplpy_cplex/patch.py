@@ -109,6 +109,20 @@ if __package__ == "amplpy_gurobi":
     except:
         pass
 
+if __package__ == "amplpy_highs":
+    from amplpy_highs_swig import *
+
+    HIGHS_DRIVER = HighsDrv()
+
+    def export_highs_model(self, options=None):
+        global HIGHS_DRIVER
+        return _do_export(self, HIGHS_DRIVER, options)
+
+    try:
+        AMPL.export_highs_model = export_highs_model
+        AMPL.exportHighsModel = export_highs_model
+    except:
+        pass
 
 if __package__ == "amplpy_xpress":
     from amplpy_xpress_swig import *
@@ -135,9 +149,11 @@ def to_ampls(self, driver, options=None):
         return self.export_scip_model(options)
     elif driver == "copt":
         return self.export_copt_model(options)
+    elif driver == "highs":
+        return self.export_highs_model(options)
     elif driver == "xpress":
         return self.export_xpress_model(options)
-    solver_list = "copt, cplex, gurobi, scip, xpress"
+    solver_list = "copt, cplex, gurobi, highs, scip, xpress"
     raise ValueError(f"{driver} is not supported, please choose from: {solver_list}")
 
 

@@ -92,10 +92,13 @@ int main(int argc, char** argv) {
 #ifdef USE_cbcmp
   example<ampls::CbcModel>();
 #endif
-  /*
+
+#ifdef USE_highs
+  example<ampls::HighsModel>();
+#endif
+
 #ifdef USE_scip
   example<ampls::SCIPModel>();
 #endif
-*/
   return 0;
 }

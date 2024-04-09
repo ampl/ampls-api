@@ -813,7 +813,6 @@ public:
      NOTE: this is expressed using the solver's own (not generic) values
   */
   virtual int getWhere() { 
-    printf("In getwhere\n");
     return where_; }
   /** Get a textual representation of where in the solution process the callback has been called.
    * NOTE: this is expressed using the solver's own (not generic) values
@@ -1623,6 +1622,9 @@ public:
 #ifdef USE_gurobi
 #include "gurobi_interface.h"
 #endif
+#ifdef USE_highs
+#include "highs_interface.h"
+#endif
 #ifdef USE_xpress
 #include "xpress_interface.h"
 #endif
@@ -1671,7 +1673,15 @@ namespace ampls {
         return m;
       }
 #endif
-
+#ifdef USE_highs
+      template<> inline HighsModel exportModel<HighsModel>(ampl::AMPL& a, const char** options) {
+        doExport(a);
+        HighsDrv gurobi;
+        auto m = gurobi.loadModel("___modelexport___.nl", options);
+        doRemove();
+        return m;
+      }
+#endif
 #ifdef USE_cbcmp
       template<> inline CbcModel exportModel<CbcModel>(ampl::AMPL& a, const char** options) {
         doExport(a);
