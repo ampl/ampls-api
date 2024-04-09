@@ -233,6 +233,9 @@ elseif(APPLE)
     CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
       ${scip_BASE_DIR}/${sys}/libscip.8.0.3.0.dylib)
 
+    CreateSolverLib(highs-solverlib ${highs_BASE_DIR}/include
+      ${highs_BASE_DIR}/${sys}/libhighs.dylib)
+
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/osx64) # AMPL base driver library locations
 else()
     set(sys "lib/linux64")
@@ -250,6 +253,9 @@ else()
 
     CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
       ${scip_BASE_DIR}/${sys}/libscip.8.0.3.0.so)
+
+    CreateSolverLib(highs-solverlib ${highs_BASE_DIR}/include
+      ${copt_BASE_DIR}/${sys}/libhighs.so)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()
