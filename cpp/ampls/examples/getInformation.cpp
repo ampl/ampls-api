@@ -7,7 +7,7 @@
 
 // This example illustrates how to obtain basic information
 // during the solution process using generic callbacks.
-const double DESIREDGAP = 0.7;
+const double DESIREDGAP = 0.4;
 
 class MyGenericCallback : public ampls::GenericCallback
 {
@@ -87,10 +87,6 @@ template<class T> void example()
   m.setAMPLParameter(ampls::SolverParams::DBL_MIPGap, 0.001);
   try {
     m.setOption("outlev", 1);
-  //  m.setOption("return_mipgap", 5);
-  //  m.setOption("mipstartvalue", 3);
-  //  m.setOption("mipstartalg", 2);
-  //  m.setOption("mipdisplay", 0);
   }
   catch (const std::exception& e) {
     printf(e.what());
@@ -126,14 +122,17 @@ template<class T> void example()
   m.writeSol();
 }
 int main(int argc, char** argv) {
+#ifdef USE_highs
+  example<ampls::HighsModel >();
+#endif
+
 #ifdef USE_cplex
   example<ampls::CPLEXModel >();
 #endif
-  /*
-  * COPT does not support stopping the optimization in a callback yet
+
 #ifdef USE_copt
   example<ampls::CoptModel>();
-#endif*/
+#endif
 
 #ifdef USE_scip
   example<ampls::SCIPModel>();

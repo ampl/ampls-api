@@ -1,23 +1,18 @@
 macro(createPythonWrapper solvername basesolvername libstargetname modulename)
-# Names and paths
-find_package(PythonLibs REQUIRED)
 
 set(PYTHON_SWIG_API amplpy_${modulename}_swig) # name of swig generated wrapper
 
 # ############ Create SWIG wrapper #############
 if(NOT ${basesolvername} MATCHES ampls) 
     get_target_property(libinclude ${basesolvername}-solverlib INTERFACE_INCLUDE_DIRECTORIES)
-    set(includeDir ${libinclude})
+    set(includeDir  ${libinclude})
+    set(linkLibs    ${linkLibs} ${solvername}-drv)
 endif()
-
-include_directories(${PYTHON_SWIG_API} PUBLIC
-  ${PYTHON_INCLUDE_PATH} ${includeDir} # for solver headers
-  ${DIR_CPP_INCLUDE} # for solver_interface.h
-  ${ampls_INCLUDE})
 
 # Setting output directories
 set(CMAKE_SWIG_OUTDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 set(CMAKE_SWIG_BINDIR ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+set(SWIG_USE_TARGET_INCLUDE_DIRECTORIES ON) # enable use of target_include_directories
 
 set(SWIG_PYTHON_MODULE_NAME "amplpy_${solvername}/swig/amplpy_${modulename}_swig")
 
@@ -25,24 +20,25 @@ set(SWIG_PYTHON_WRAPPER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}.py")
 set(SWIG_CPP_SOURCE "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.cxx")
 set(SWIG_CPP_HEADER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.h")
 
-#set(CMAKE_SWIG_FLAGS "-builtin")
-set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES CPLUSPLUS
-                                                                    ON)
-add_swig_library(${PYTHON_SWIG_API} python ${SWIG_PYTHON_MODULE_NAME}.i)
+set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i PROPERTIES CPLUSPLUS ON)
 
+swig_add_library( ${PYTHON_SWIG_API} 
+                  LANGUAGE python 
+                  TYPE MODULE
+                  SOURCES ${SWIG_PYTHON_MODULE_NAME}.i)
 
-if(NOT ${solvername} STREQUAL "ampls")
-swig_link_libraries(${PYTHON_SWIG_API} ${solvername}-drv                    
-                    ${PYTHON_LIBRARIES})
-else()
-swig_link_libraries(${PYTHON_SWIG_API} ${PYTHON_LIBRARIES})
-endif()
+target_link_libraries(${PYTHON_SWIG_API} PUBLIC ${Python3_LIBRARIES} ${linkLibs} )
+
+target_include_directories(${PYTHON_SWIG_API} PUBLIC 
+    ${Python3_INCLUDE_DIRS} # Python libs
+    ${includeDir}           # for solver headers
+    ${DIR_CPP_INCLUDE}      # for solver_interface.h
+    ${ampls_INCLUDE}        # for ampls.h
+)
 
 # From this moment on, PYTHON_SWIG_API has the correct (prefixed) name Can be
 # omitted if cmake supports policies CMP0078 and CMP0086
-set(PYTHON_SWIG_API
-    ${SWIG_MODULE_${PYTHON_SWIG_API}_REAL_NAME}
-    PARENT_SCOPE)
+set(PYTHON_SWIG_API ${SWIG_MODULE_${PYTHON_SWIG_API}_REAL_NAME} PARENT_SCOPE)
 set(PYTHON_SWIG_API ${SWIG_MODULE_${PYTHON_SWIG_API}_REAL_NAME})
 
 # For multi-config builds (e.g. msvc)
@@ -57,7 +53,6 @@ foreach(OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES})
 endforeach()
 
 set(wheel_dir ${CMAKE_CURRENT_SOURCE_DIR}/amplpy_${solvername}/swig)
-
 
 # Copy generated sources (and rename them to remove the PYTHON suffix that
 # Cmake introduces)
@@ -82,7 +77,7 @@ add_custom_command(TARGET amplpy_${solvername}_updatewheel
   add_custom_command(TARGET amplpy_${solvername}_updatewheel
     DEPENDS amplpy_${solvername}_updatewheel
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/amplpy_${solvername}
-    ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/amplpy_${solvername}
+      ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/amplpy_${solvername}
    # COMMAND ${CMAKE_COMMAND} -E copy ${${solvername}_DIST} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
     COMMENT "Copying wheel (${wheel_dir}) to ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/amplpy_${solvername}")
 #    if(NOT ${solvername} STREQUAL "ampls")

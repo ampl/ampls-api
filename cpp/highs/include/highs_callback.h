@@ -75,7 +75,6 @@ public:
     {
       
     case kCallbackLogging:
-    case kCallbackMipLogging:
       return Where::MSG;
     case kCallbackMipSolution:
     case kCallbackMipImprovingSolution:

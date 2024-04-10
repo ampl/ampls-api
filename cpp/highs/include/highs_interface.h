@@ -61,16 +61,16 @@ class HighsModel : public AMPLMPModel {
   
   std::map<int, const char*> parametersMap = {
     // TODO
-     {SolverParams::DBL_MIPGap , "HIGHS_DBLPARAM_RELGAP"},
-     {SolverParams::DBL_TimeLimit , "HIGHS_DBLPARAM_TIMELIMIT"},
-     {SolverParams::INT_LP_Algorithm, "HIGHS_INTPARAM_LPMETHOD"}
+     {SolverParams::DBL_MIPGap , "mip_rel_gap"},
+     {SolverParams::DBL_TimeLimit , "time_limit"},
+     {SolverParams::INT_LP_Algorithm, "solver"}
   };
-  const int LPalgorithmMap[4] = { -1, 0, 1, 2};
+  const int LPalgorithmMap[4] = { -1, 1, 1, 2};
   const char* getParamAlias(SolverParams::SolverParameters params)
   {
-    auto cpxParam = parametersMap.find(params);
-    if (cpxParam != parametersMap.end())
-      return cpxParam->second;
+    auto highsParam = parametersMap.find(params);
+    if (highsParam != parametersMap.end())
+      return highsParam->second;
     throw AMPLSolverException("Not implemented!");
   }
 

@@ -20,7 +20,6 @@ foreach(s ${AMPLS_SOLVER_NAMES})
     endif()
 endforeach()
 
-message("PYTHON_DEPS=${PYTHON_DEPS}")
 add_custom_target(python-tests-run
     COMMAND pytest
     WORKING_DIRECTORY ${TESTDIR}

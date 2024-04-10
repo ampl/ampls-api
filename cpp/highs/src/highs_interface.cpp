@@ -10,11 +10,13 @@ namespace ampls
   void  impl::highs::highs_callback_wrapper(const int where,
     const char* message, const HighsCallbackDataOut* dataout,
     HighsCallbackDataIn* datain, void* userdata)  {
+    if (where == kHighsCallbackMipLogging)
+      return;
     HighsCallback* cb = (HighsCallback*)userdata;
     cb->cbdata_ = dataout;
     cb->where_ = where;
     cb->msg_ = message;
-
+    
     switch (where) {
     case kHighsCallbackMipSolution:
     case kHighsCallbackMipImprovingSolution:

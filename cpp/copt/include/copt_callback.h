@@ -99,9 +99,13 @@ public:
   virtual Where::CBWhere getAMPLWhere() {
     switch (where_)
     {
+
     case COPT_CBCONTEXT_MIPRELAX:
+      return Where::LPSOLVE;
+    case COPT_CBCONTEXT_MIPNODE:
       return Where::MIPNODE;
     case COPT_CBCONTEXT_MIPSOL:
+    case COPT_CBCONTEXT_INCUMBENT:
       return Where::MIPSOL;
     default:
       return Where::NOTMAPPED;

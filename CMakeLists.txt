@@ -104,12 +104,28 @@ if(BUILD_SWIG_WRAPPERS)
       cmake_policy(SET CMP0122 NEW)
     endif()
     include(UseSWIG)
+    set(BUILD_PYTHON_WRAPPERS ON)
   else()
     message(WARNING "SWIG not found, Python and C# bindings will not be generated")
+    set(BUILD_SWIG_WRAPPERS OFF)
+    set(BUILD_PYTHON_WRAPPERS OFF)
   endif()
 else()
   message(WARNING "SWIG bindings not generated. Set option BUILD_SWIG_WRAPPERS to ON")
 endif()
+
+if(BUILD_PYTHON_WRAPPERS)
+  message("Looking for Python")
+  # Names and paths
+  find_package(Python3 COMPONENTS Development)
+  if (NOT ${Python_Development_FOUND})
+     message("Python libs not found" FATAL_ERROR)
+  endif()
+  message("Python Libraries: ${Python3_LIBRARIES}")
+  message("Python include headers: ${Python3_INCLUDE_DIRS}")
+endif()
+
+
 set(GENERATED_INCLUDE_DIR ${CMAKE_BINARY_DIR}/include) # For generated files
 file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
      "#ifndef _TEST_CONFIG_\n#define _TEST_CONFIG_\nconst char MODELS_DIR[] = \"${PROJECT_SOURCE_DIR}/test/models/\";\n#endif")
@@ -120,7 +136,7 @@ if(hasParent)
   set(SOLVERLIBS ${BASE_SOLVER_LIBS})
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1101)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2211)
-  set(copt_BASE_DIR ${SOLVERLIBS}/copt/7.0.3)
+  set(copt_BASE_DIR ${SOLVERLIBS}/copt/7.1.1)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/42.01.05)
   set(scip_BASE_DIR ${SOLVERLIBS}/scip)
   set(highs_BASE_DIR ${SOLVERLIBS}/highs/1.7.0)
@@ -172,11 +188,12 @@ function(FindSolverLib OUTPUTTARGETNAME BASELIBFILENAME)
       set_property(TARGET ${OUTPUTTARGETNAME} PROPERTY IMPORTED_LOCATION ${LIB_LIBFILE_${OUTPUTTARGETNAME}})
     endif()
 endfunction()
+
 set(GRBINC ${gurobi_BASE_DIR}/include)
 if(hasParent)
     set(GRBINC ${GRBINC}/gurobi)
 endif()
-message("Set GRBINC = ${GRBINC}")
+
 if(WIN32)
     set(sys "lib/win64")
     
@@ -199,7 +216,6 @@ if(WIN32)
     CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
       ${scip_BASE_DIR}/${sys}/libscip.dll
       IMPORTLIB ${scip_BASE_DIR}/${sys}/libscip.lib)
-
           
     CreateSolverLib(highs-solverlib ${highs_BASE_DIR}/include
     ${highs_BASE_DIR}/${sys}/highs.dll
@@ -268,15 +284,6 @@ set(cbc-solver-deps Coin::CbcSolver)
 set(scip-solver-deps scip-solverlib)
 set(highs-solver-deps highs-solverlib)
 
- # Get rid of warning in newer versions of cmake
-macro(ADD_SWIG_LIBRARY name language)
-  if(CMAKE_VERSION VERSION_LESS 3.8)
-    swig_add_module(${name} ${language} ${ARGN})
-  else()
-    swig_add_library(${name} LANGUAGE ${language}
-        TYPE MODULE SOURCES ${ARGN})
-  endif()
-endmacro()
 
 # Add ampls (generic) project
 add_subdirectory(cpp/ampls)
@@ -308,15 +315,18 @@ function(AddSolverStub solver targetbase libname)
     DRV_SOURCES ${DIR_CPP}/ include/${libname}_interface.h
     src/${libname}_interface.cpp include/${libname}_callback.h
     src/${libname}_callback.cpp)
-  set(libs ${ADDSOLVER_LIBS})
-  set(additionalincludes ${ADDSOLVER_ADDITIONALINCLUDES})
+
   add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
-  target_link_libraries(${TARGETNAME} PUBLIC ampls ${libs} ${IMPORTLIB})
-  target_include_directories(
-    ${TARGETNAME} PUBLIC ${DIR_CPP_INCLUDE} ${ampls_INCLUDE} ${additionalincludes})
-  message("add_library(${TARGETNAME} STATIC ${DRV_SOURCES})
-          target_link_libraries(${TARGETNAME} PUBLIC ampls ${libs} ${IMPORTLIB})
-          target_include_directories(${TARGETNAME} PUBLIC ${DIR_CPP_INCLUDE} ${ampls_INCLUDE} ${additionalincludes})")
+
+  target_link_libraries(${TARGETNAME} PUBLIC 
+                        ampls 
+                        ${ADDSOLVER_LIBS} 
+                        ${IMPORTLIB})
+  
+  target_include_directories(${TARGETNAME} PUBLIC 
+                             ${DIR_CPP_INCLUDE} 
+                             ${ampls_INCLUDE} 
+                             ${ADDSOLVER_ADDITIONALINCLUDES})
 
   add_to_folder(${targetbase} ${TARGETNAME})
   if(NOT WIN32)
@@ -358,7 +368,7 @@ function(AddSolverStub solver targetbase libname)
             COMMENT "Copying ${solvername}-lib to python directory")
   endforeach()
 
-  if(BUILD_SWIG_WRAPPERS AND SWIG_FOUND)
+  if(BUILD_SWIG_WRAPPERS)
     if (EXISTS ${DIR_SWIG})
           # Add a custom target just to show  the following common sources in some IDEs
           add_custom_target(${solver}-common SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cpp/ampls/swig/ampls-common.i

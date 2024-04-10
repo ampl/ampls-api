@@ -9,9 +9,11 @@ const char* CoptCallback::getWhereString()
   {
   case ampls::Where::MSG: return "ampls::Where::MSG";
   case COPT_CBCONTEXT_MIPRELAX: return "COPT_CBCONTEXT_MIPRELAX";
+  case COPT_CBCONTEXT_INCUMBENT: return "COPT_CBCONTEXT_INCUMBENT";
+  case COPT_CBCONTEXT_MIPNODE: return "COPT_CBCONTEXT_MIPNODE";
   case COPT_CBCONTEXT_MIPSOL: return "COPT_CBCONTEXT_MIPSOL";
   default:
-    return "Where code not found";
+    return "Unexpected callback status.";
   }
 }
 
@@ -98,7 +100,11 @@ Variant  CoptCallback::getValueImpl(Value::CBValue v) {
   }
 }
 int CoptCallback::setHeuristicSolution(int nvars, const int* indices, const double* values) {
-  throw ampls::AMPLSolverException("COPT does not support this functionality yet.");
+  std::vector<double> sol(model_->getNumVars());
+  for (int i = 0; i < nvars; i++)
+    sol[indices[i]] = values[i];
+  double obj;
+  return COPT_AddCallbackSolution(cbdata_, sol.data(), &obj);
 }
 
 std::vector<double> CoptCallback::getValueArray(Value::CBValue v) {

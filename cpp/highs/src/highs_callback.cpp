@@ -54,7 +54,7 @@ Variant  HighsCallback::getValueImpl(Value::CBValue v) {
   case Value::MIP_RELATIVEGAP:
     return cbdata_->mip_gap;
   case Value::MIP_OBJBOUND:
-    return cbdata_->mip_primal_bound;
+    return cbdata_->mip_dual_bound;
   case Value::N_COLS:
     return model_->getNumVars();
   case Value::N_ROWS:
