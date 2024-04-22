@@ -220,22 +220,23 @@ public:
   bool getBoolParam(const char* name) {
     int v;
     int status = Highs_getBoolOptionValue(HighsModel_, name, &v);
-    AMPLSHIGHSERRORCHECK("Highs_getBoolOptionValue")
-      return v;
+    AMPLSHIGHSERRORCHECK("Highs_getBoolOptionValue");
+    return v;
   }
 
   /** Get an integer parameter (using highs C library name) */
   int getIntParam(const char* name) {
     int v;
     int status = Highs_getIntOptionValue(HighsModel_, name, &v);
-    AMPLSHIGHSERRORCHECK("Highs_getIntOptionValue")
+    AMPLSHIGHSERRORCHECK("Highs_getIntOptionValue");
     return v;
   }
   /** Get a double parameter (using highs C library name) */
   double getDoubleParam(const char* name) {
     double v;
     int status = Highs_getDoubleOptionValue(HighsModel_, name, &v);
-    AMPLSHIGHSERRORCHECK("Highs_getDoubleOptionValue")
+    AMPLSHIGHSERRORCHECK("Highs_getDoubleOptionValue");
+    return v;
   }
   /** Get a string parameter (using highs C library name) */
   std::string getStringParam(const char* name) {
