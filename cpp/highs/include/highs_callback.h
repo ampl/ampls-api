@@ -12,7 +12,7 @@
 
 namespace ampls {
 namespace impl{ namespace highs {
-  void highs_callback_wrapper(int, const char*,
+  static void highs_callback_wrapper(int, const char*,
     const HighsCallbackDataOut*,
     HighsCallbackDataIn*, void*);
 } }
