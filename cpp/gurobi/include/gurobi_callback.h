@@ -48,7 +48,7 @@ class GurobiCallback : public impl::BaseCallback {
 
 protected:
   // Interface
-  int doAddCut(const ampls::Constraint& c, int type);
+  int doAddCut(const ampls::Constraint& c, int type, void* additionalParams=nullptr);
 
 public:
 

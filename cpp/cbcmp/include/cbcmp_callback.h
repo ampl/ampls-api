@@ -54,7 +54,7 @@ class CbcCallback : public impl::BaseCallback {
 
 protected:
   // Interface
-  int doAddCut(const ampls::Constraint& c, int type);
+  int doAddCut(const ampls::Constraint& c, int type, void* additionalParams=nullptr);
 
 public:
   void call_msg_callback(Cbc_Model* model, int msgno, int ndouble, const double* dvec, int nint, const int* ivec,

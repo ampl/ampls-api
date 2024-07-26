@@ -140,7 +140,8 @@ namespace ampls
     pendingConstraints_.clear();
   }
 
-  int SCIPCallback::doAddCut(const ampls::Constraint& c, int type) {
+  int SCIPCallback::doAddCut(const ampls::Constraint& c, int type, 
+    void* additionalParams) {
     if (std::find(cachedCons_.begin(), cachedCons_.end(), c) != cachedCons_.end()) {
         actions_ = 2;
         return 0;

@@ -80,7 +80,8 @@ namespace ampls {
       return pendingConstraints_.size() > 0;
     }
     void addPendingConstraints();
-    int doAddCut(const ampls::Constraint& c, int type);
+    int doAddCut(const ampls::Constraint& c, int type, 
+    void* additionalParams=nullptr);
 
     SCIP_VAR** modelToScip(); 
     int getActions() { return actions_; }

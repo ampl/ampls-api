@@ -92,10 +92,13 @@ Variant CPLEXCallback::getValueImpl(Value::CBValue v) {
 
 
 
-int CPLEXCallback::doAddCut(const ampls::Constraint& c, int lazy) {
+int CPLEXCallback::doAddCut(const ampls::Constraint& c, int lazy, void* additionalParams) {
   double rhs[1] = { c.rhs() };
   char sense[1] = { toCPLEXSense(c.sense()) };
-  int res, purgeable= CPX_USECUT_FORCE, local=0;
+  int res;
+
+  int purgeable = additionalParams ? static_cast<CPLEX_CB_PARAMS*>(additionalParams)->purgeable : CPX_USECUT_FORCE;
+  int local = additionalParams ? static_cast<CPLEX_CB_PARAMS*>(additionalParams)->local : 0;
   int beg = 0;
   if (lazy)
   { 

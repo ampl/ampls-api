@@ -111,7 +111,8 @@ const char* GurobiCallback::getMessage()
   return msg;
 }
 
-int GurobiCallback::doAddCut(const ampls::Constraint& c, int lazy) {
+int GurobiCallback::doAddCut(const ampls::Constraint& c, int lazy, void* additionalParams) {
+  (void)additionalParams;
   char sense = toGRBSense(c.sense());
   if (lazy)
   {

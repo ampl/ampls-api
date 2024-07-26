@@ -624,15 +624,15 @@ class BaseCallback
 protected:
   AMPLModel* model_;
   int where_;
-  virtual int doAddCut(const ampls::Constraint& c, int type) = 0;
+  virtual int doAddCut(const ampls::Constraint& c, int type, void* additionalParams = nullptr) = 0;
 
   ampls::Constraint callAddCut(std::vector<std::string>& vars,
     const double* coeffs, CutDirection::Direction direction, double rhs,
-    int type);
+    int type, void* additionalParams=nullptr);
 
   ampls::Constraint callDoAddCut(int length, const int* indices,
     const double* coeffs, CutDirection::Direction direction, double rhs,
-    int type);
+    int type, void* additionalParams = nullptr);
 
   void printCut(const ampls::Constraint& c, bool intCoeffs = false,
     bool varNames = false)

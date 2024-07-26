@@ -10,7 +10,8 @@ const char* XPRESSCallback::getMessage() {
   return msg_;
 }
 
-int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type) {
+int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type, 
+  void* additionalParams=nullptr) {
   if (!preintsol_) {
     int cutType = 1;
     char sense = toXPRESSRowType[(int)c.sense()];

@@ -50,7 +50,8 @@ class CoptCallback : public impl::BaseCallback {
   Variant getValueImpl(Value::CBValue v);
 protected:
   // Interface
-  int doAddCut(const ampls::Constraint& c, int type);
+  int doAddCut(const ampls::Constraint& c, int type, 
+    void* additionalParams=nullptr);
 
 public:
 

@@ -71,7 +71,8 @@ protected:
     return preintsol_!=0;
   }
   // Interface
-  int doAddCut(const ampls::Constraint& c, int type);
+  int doAddCut(const ampls::Constraint& c, int type, 
+    void* additionalParams=nullptr);
 public:
 
   virtual int run() = 0;

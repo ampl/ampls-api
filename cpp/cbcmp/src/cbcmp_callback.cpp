@@ -118,7 +118,8 @@ const char* CbcCallback::getMessage()
   return msg_.data();
 }
 
-int CbcCallback::doAddCut(const ampls::Constraint& c, int lazy) {
+int CbcCallback::doAddCut(const ampls::Constraint& c, int lazy, 
+  void* additionalParams) {
   char sense = toCBCSense(c.sense());
     
   OsiCuts_addRowCut(osicuts_, c.coeffs().size(), c.indices().data(),

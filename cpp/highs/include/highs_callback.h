@@ -40,7 +40,8 @@ class HighsCallback : public impl::BaseCallback {
   Variant getValueImpl(Value::CBValue v);
 protected:
   // Interface
-  int doAddCut(const ampls::Constraint& c, int type) {
+  int doAddCut(const ampls::Constraint& c, int type, 
+    void* additionalParams=nullptr) {
     throw ampls::AMPLSolverException("HiGHS does not support lazy constraints/user cuts yet");
   }
 public:

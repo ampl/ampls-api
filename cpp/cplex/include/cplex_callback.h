@@ -48,8 +48,13 @@ namespace ampls
 
 
     // Interface
-    int doAddCut(const ampls::Constraint& c, int type);
+    int doAddCut(const ampls::Constraint& c, int type, void* additionalParams = nullptr);
     
+    struct CPLEX_CB_PARAMS {
+      int local;
+      int purgeable;
+    };
+
   protected:
     const char* getMessage() { return msg_; }
     // Thread aware version
@@ -151,6 +156,41 @@ namespace ampls
       throw ampls::AMPLSolverException("If support for multithreading is needed, "
         "the function void run(int) should be implemented");
     }
+
+    
+    /** CPLEX only: add a user cut using AMPL variables names, additionaly specifying
+    * local or global and purgeability.
+    * @param vars Vector of AMPL variable names
+    * @param coeffs Vector of cut coefficients
+    * @param direction Direction of the constraint ampls::CBDirection::Direction
+    * @param rhs Right hand side value
+    */
+    ampls::Constraint addCut(std::vector<std::string> vars,
+      const double* coeffs, CutDirection::Direction direction, double rhs,
+      int local)
+    {
+      CPLEX_CB_PARAMS p = { CPX_USECUT_FORCE, local };
+      return callAddCut(vars, coeffs, direction, rhs, 0, &p);
+    }
+   
+
+    /** Add a user cut using solver indics
+    * @param nvars Number of variables in the cut (length of *vars)
+    * @param vars Vector of variable indices (in the solvers representation)
+    * @param coeffs Vector of cut coefficients
+    * @param direction Direction of the constraint ampls::CBDirection::Direction
+    * @param rhs Right hand side value
+    */
+    ampls::Constraint addCutIndices(int nvars, const int* vars,
+      const double* coeffs, CutDirection::Direction direction, double rhs,
+      int local)
+    {
+      CPLEX_CB_PARAMS p = { CPX_USECUT_FORCE, local };
+      return callDoAddCut(nvars, vars, coeffs, direction, rhs, 0, &p);
+    }
+   
+
+
   };
 } // namespace ampls
 #endif // CPLEX_CALLBACK_H_INCLUDE_

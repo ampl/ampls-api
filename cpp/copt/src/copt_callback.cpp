@@ -38,7 +38,8 @@ const char* CoptCallback::getMessage()
     throw ampls::AMPLSolverException("Cannot get message outside of a log callback.");
 }
 
-int CoptCallback::doAddCut(const ampls::Constraint& c, int lazy) {
+int CoptCallback::doAddCut(const ampls::Constraint& c, int lazy, 
+  void* additionalParams) {
   char sense = toCOPTSense(c.sense());
   if (lazy)
   {

@@ -284,11 +284,11 @@ namespace impl {
 
   ampls::Constraint BaseCallback::callDoAddCut(int length, const int* indices,
     const double* coeffs, CutDirection::Direction direction, double rhs,
-    int type) {
+    int type, void* additionalParams) {
     ampls::Constraint c(model_, NULL, length, indices, coeffs, direction, rhs);
     if (cutDebug_)
       printCut(c, cutDebugIntCoefficients_, cutDebugPrintVarNames_);
-    int status = doAddCut(c, type);
+    int status = doAddCut(c, type, additionalParams);
     if (status) 
       throw ampls::AMPLSolverException::format("Error while adding cut!");
     c.solverIndex(getValueImpl(ampls::Value::CBValue::N_ROWS).integer - 1);
@@ -296,7 +296,8 @@ namespace impl {
   }
 
   ampls::Constraint BaseCallback::callAddCut(std::vector<std::string>& vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs, int lazy) {
+    const double* coeffs, CutDirection::Direction direction, double rhs, int lazy,
+    void* additionalParams) {
     std::size_t length = vars.size();
     std::map<std::string, int> map = getVarMap();
     std::vector<int> indices;
@@ -309,7 +310,7 @@ namespace impl {
       else
         indices.push_back(map[vars[i]]);
     }
-    return callDoAddCut((int)length, indices.data(), coeffs, direction, rhs, lazy);
+    return callDoAddCut((int)length, indices.data(), coeffs, direction, rhs, lazy, additionalParams);
   }
 
 
