@@ -11,7 +11,7 @@ const char* XPRESSCallback::getMessage() {
 }
 
 int XPRESSCallback::doAddCut(const ampls::Constraint& c, int type, 
-  void* additionalParams=nullptr) {
+  void* additionalParams) {
   if (!preintsol_) {
     int cutType = 1;
     char sense = toXPRESSRowType[(int)c.sense()];
