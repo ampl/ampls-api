@@ -924,9 +924,10 @@ private:
   std::unique_ptr<impl::BaseCallback> impl_;
 
 protected:
-  int doAddCut(const ampls::Constraint& c, int type)
+  int doAddCut(const ampls::Constraint& c, int type, 
+      void* additionalParams = nullptr)
   {
-    return impl_->doAddCut(c, type);
+    return impl_->doAddCut(c, type, additionalParams);
   }
   Variant getValueImpl(Value::CBValue v)
   {
