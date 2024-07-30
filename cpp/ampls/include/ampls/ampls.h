@@ -614,92 +614,95 @@ private:
 * Infrastructure, should not be used directly.
 * Base class for all callback objects, solvers-specific and/or generic.
 */
-class BaseCallback
-{
-  friend class ampls::AMPLModel;
-  friend class ampls::GenericCallback;
-  bool cutDebug_;
-  bool cutDebugIntCoefficients_;
-  bool cutDebugPrintVarNames_;
-protected:
-  AMPLModel* model_;
-  int where_;
-  virtual int doAddCut(const ampls::Constraint& c, int type, void* additionalParams = nullptr) = 0;
-
-  ampls::Constraint callAddCut(std::vector<std::string>& vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs,
-    int type, void* additionalParams=nullptr);
-
-  ampls::Constraint callDoAddCut(int length, const int* indices,
-    const double* coeffs, CutDirection::Direction direction, double rhs,
-    int type, void* additionalParams = nullptr);
-
-  void printCut(const ampls::Constraint& c, bool intCoeffs = false,
-    bool varNames = false)
-  {
-    std::string sense;
-    switch (c.sense())
+    class BaseCallback
     {
-    case CutDirection::EQ:
-      sense = "= ";
-      break;
-    case CutDirection::GE:
-      sense = ">=";
-      break;
-    case CutDirection::LE:
-      sense = "<=";
-      break;
-    default:
-      throw AMPLSolverException("Unexpected cut direction");
-    }
-    std::size_t nvars = c.indices().size();
-    if (varNames)
-    {
-      std::map<int, std::string> imap = getVarMapInverse();
-      if (intCoeffs)
-      {
-        for (std::size_t i = 0; i < nvars; ++i) {
-          printf("%d*%s", (int)c.coeffs()[i], imap[c.indices()[i]].c_str());
-          if (i < nvars - 1)
-            printf(" + ");
-        }
-      }
-      else
-      { 
-        for (std::size_t i = 0; i < nvars; ++i) {
-          printf("%f*%s", c.coeffs()[i], imap[c.indices()[i]].c_str());
-          if (i < nvars - 1)
-            printf(" + ");
-        }
-      }
-    }
-    else
-    {
-      if (intCoeffs)
-      {
-        for (int i = 0; i < nvars; ++i) {
-          printf("%d*x[%d]", (int)c.coeffs()[i], c.indices()[i]);
-          if (i < nvars - 1)
-            printf(" + ");
-        }
-      }
-      else
-      {
-        for (int i = 0; i < nvars; ++i) {
-          printf("%f*x[%d]", c.coeffs()[i], c.indices()[i]);
-          if (i < nvars - 1)
-            printf(" + ");
-        }
-      }
-    }
-    printf(" %s %f\n", sense.c_str(), c.rhs());
+      friend class ampls::AMPLModel;
+      friend class ampls::GenericCallback;
+      bool cutDebug_;
+      bool cutDebugIntCoefficients_;
+      bool cutDebugPrintVarNames_;
+    protected:
+      AMPLModel* model_;
+      int where_;
+      virtual int doAddCut(const ampls::Constraint& c, int type, void* additionalParams = nullptr) = 0;
 
-  }
-  int currentCapabilities_;
+      ampls::Constraint callAddCut(std::vector<std::string>& vars,
+        const double* coeffs, CutDirection::Direction direction, double rhs,
+        int type, void* additionalParams = nullptr);
 
-  virtual Variant getValueImpl(Value::CBValue v) {
-    throw ampls::AMPLSolverException("Not implemented in base class");
-  }
+      ampls::Constraint callDoAddCut(int length, const int* indices,
+        const double* coeffs, CutDirection::Direction direction, double rhs,
+        int type, void* additionalParams = nullptr);
+
+      void printCut(const ampls::Constraint& c, bool intCoeffs = false,
+        bool varNames = false)
+      {
+        std::string sense;
+        switch (c.sense())
+        {
+        case CutDirection::EQ:
+          sense = "= ";
+          break;
+        case CutDirection::GE:
+          sense = ">=";
+          break;
+        case CutDirection::LE:
+          sense = "<=";
+          break;
+        default:
+          throw AMPLSolverException("Unexpected cut direction");
+        }
+        std::size_t nvars = c.indices().size();
+        if (varNames)
+        {
+          std::map<int, std::string> imap = getVarMapInverse();
+          if (intCoeffs)
+          {
+            for (std::size_t i = 0; i < nvars; ++i) {
+              printf("%d*%s", (int)c.coeffs()[i], imap[c.indices()[i]].c_str());
+              if (i < nvars - 1)
+                printf(" + ");
+            }
+          }
+          else
+          {
+            for (std::size_t i = 0; i < nvars; ++i) {
+              printf("%f*%s", c.coeffs()[i], imap[c.indices()[i]].c_str());
+              if (i < nvars - 1)
+                printf(" + ");
+            }
+          }
+        }
+        else
+        {
+          if (intCoeffs)
+          {
+            for (int i = 0; i < nvars; ++i) {
+              printf("%d*x[%d]", (int)c.coeffs()[i], c.indices()[i]);
+              if (i < nvars - 1)
+                printf(" + ");
+            }
+          }
+          else
+          {
+            for (int i = 0; i < nvars; ++i) {
+              printf("%f*x[%d]", c.coeffs()[i], c.indices()[i]);
+              if (i < nvars - 1)
+                printf(" + ");
+            }
+          }
+        }
+        printf(" %s %f\n", sense.c_str(), c.rhs());
+
+      }
+      int currentCapabilities_;
+
+      virtual Variant getValueImpl(Value::CBValue v) {
+        throw ampls::AMPLSolverException("Not implemented in base class");
+      }
+      virtual Where::CBWhere getAMPLWhereImpl() {
+        throw ampls::AMPLSolverException("Not implemented in base class");
+      }
 public:
   
 
@@ -823,7 +826,7 @@ public:
   virtual const char* getMessage() = 0;
 
   /** Get where in the solution process the callback has been called (generic) */
-  virtual Where::CBWhere getAMPLWhere() = 0;
+  virtual Where::CBWhere getAMPLWhere() { return getAMPLWhereImpl();}
   
   /** Get a (generic) value */
   virtual Variant getValue(Value::CBValue v) { return getValueImpl(v); }

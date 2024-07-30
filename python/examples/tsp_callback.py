@@ -45,9 +45,11 @@ class MyCallback(ampls.GenericCallback):
         else:
             for grp in groups:
                 print('> sub-tour: ', grp)
+                
                 cutvarnames = [ampls.tuple2var('x', i, j)
                                for i in grp for j in grp if i != j]
                 coeffs = [1 for i in range(len(cutvarnames))]
+                print(f"Adding lazy: {cutvarnames}")
                 self.add_lazy(cutvarnames, coeffs,
                              ampls.CutDirection.LE, len(grp)-1)
         return 0
@@ -111,9 +113,16 @@ xvars = {
 vertices = list(sorted(set(
     [x[0] for x in xvars.values()] + [x[1] for x in xvars.values()])))
 
+
+
+
 # Set the callback
 cb = MyCallback()
 m.setCallback(cb)
+
+# In case of CPLEX, multithreading when using callbacks must
+# be handled by the user. See cplex-genericbranch
+if SOLVER == "cplex": m.set_option("threads", 1)
 
 # Start the optimzation
 m.optimize()

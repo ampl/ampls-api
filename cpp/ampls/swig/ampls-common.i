@@ -16,9 +16,8 @@ namespace std {
   %template(vector_options)vector<ampls::Option>;
 }
 
+%feature("director") ampls::impl::BaseCallback; 
 %feature("director") ampls::GenericCallback;
-%ignore ampls::BaseCallback::doAddCut;
-%ignore ampls::GenericCallback::doAddCut;
 %ignore ampls::GenericCallback::getSolution;
 %ignore ampls::impl::mp;
 
