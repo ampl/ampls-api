@@ -181,23 +181,6 @@ std::map<std::string, int>& get_var_map() { return $self->getVarMap();}
 
 std::map<int, std::string>& get_var_map_inverse() { return $self->getVarMapInverse();}
 
-ampls::Constraint add_cut(std::vector<std::string> vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs) {
-    return $self->addCut(vars, coeffs, direction, rhs);
-}
-ampls::Constraint add_lazy(std::vector<std::string> vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs) {
-    return $self->addLazy(vars, coeffs, direction, rhs);
-}
-
-ampls::Constraint add_cut_indices(int nvars, const int* vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs) {
-    return $self->addCutIndices(nvars, vars, coeffs, direction, rhs);
-}
-ampls::Constraint add_lazy_indices(int nvars, const int* vars,
-    const double* coeffs, CutDirection::Direction direction, double rhs) {
-        return $self->addLazyIndices(nvars, vars, coeffs, direction, rhs);
-}
 virtual int set_heuristic_solution(int nvars, const int* indices, const double* values){
     return $self->setHeuristicSolution(nvars, indices, values);
 }
@@ -293,6 +276,19 @@ GenericCallback.add_lazy= do_addLazy
 GenericCallback.add_cut= do_addCut
 GenericCallback.add_cut_indices= do_addCutIndices
 GenericCallback.add_lazy_indices= do_addLazyIndices
+
+BaseCallback._addLazy=BaseCallback.addLazy
+BaseCallback._addCut=BaseCallback.addCut
+BaseCallback._addLazyIndices=BaseCallback.addLazyIndices
+BaseCallback._addCutIndices=BaseCallback.addCutIndices
+BaseCallback.addLazy= do_addLazy
+BaseCallback.addCut= do_addCut
+BaseCallback.addCutIndices= do_addCutIndices
+BaseCallback.addLazyIndices= do_addLazyIndices
+BaseCallback.add_lazy= do_addLazy
+BaseCallback.add_cut= do_addCut
+BaseCallback.add_cut_indices= do_addCutIndices
+BaseCallback.add_lazy_indices= do_addLazyIndices
 
 def do_addConstraint(self, vars, coeffs, direction, rhs, name=""):
     return self._addConstraint(vars, coeffs, __e_to_v(direction), rhs, name)

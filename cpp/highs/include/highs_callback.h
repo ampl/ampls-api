@@ -71,7 +71,7 @@ public:
     throw ampls::AMPLSolverException::format("Not supported by HiGHS");
   }
   std::vector<double> getValueArray(Value::CBValue v);
-  virtual Where::CBWhere getAMPLWhere() {
+  Where::CBWhere getAMPLWhereImpl() {
     switch (where_)
     {
       

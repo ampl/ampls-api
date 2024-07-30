@@ -24,4 +24,7 @@ CPLEXCallback.can_do=_do_can_do
 CPLEXCallback._getAMPLWhere=CPLEXCallback.getAMPLWhere
 CPLEXCallback.get_ampl_where=lambda self : Where(self._getAMPLWhere())
 CPLEXCallback.getAMPLWhere=lambda self : Where(self._getAMPLWhere())
+
+
+
 %}

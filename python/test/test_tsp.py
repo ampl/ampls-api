@@ -8,8 +8,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
-import amplpy_gurobi as ampls
-SOLVER = "gurobi"
+import amplpy_cplex as ampls
+SOLVER = "cplex"
 
 var2tuple = ampls.var2tuple
 tuple2var = ampls.tuple2var
@@ -56,6 +56,7 @@ class my_callback(ampls.GenericCallback):
                     print("> sub-tour: ", grp)
                 cutvarnames = [tuple2var("x", i, j) for i in grp for j in grp if i != j]
                 coeffs = [1 for i in range(len(cutvarnames))]
+                
                 self.addLazy(cutvarnames, coeffs, ampls.CutDirection.LE, len(grp) - 1)
         return 0
 

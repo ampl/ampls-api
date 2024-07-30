@@ -90,7 +90,7 @@ public:
   const char* getWhereString();
   const char* getMessage();
 
-  Where::CBWhere getAMPLWhere() {
+  Where::CBWhere getAMPLWhereImpl() {
     switch (static_cast<impl::xpress::XPRESSWhere>(where_))
     {
     case impl::xpress::XPRESSWhere::message:

@@ -117,7 +117,7 @@ public:
     return obj;
   }
 
-  virtual Where::CBWhere getAMPLWhere() {
+  Where::CBWhere getAMPLWhereImpl() {
     switch (where_)
     {
     case GRB_CB_MESSAGE:

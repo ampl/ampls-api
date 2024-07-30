@@ -104,7 +104,7 @@ namespace ampls {
     const char* getWhereString() { return whereString_.c_str() ;}
     const char* getMessage() { throw AMPLSolverException("Not implemented in SCIP!"); }
 
-    ampls::Where::CBWhere getAMPLWhere() {
+    ampls::Where::CBWhere getAMPLWhereImpl() {
       switch (where_)
       {
         case SCIPWhere::ConstraintHandler:

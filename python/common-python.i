@@ -145,5 +145,7 @@
 %ignore "getVarMap";
 %ignore "getVarMapInverse";
 %ignore "getVarMapFiltered";
+%ignore doAddCut;
+%ignore getAMPLWhereImpl;
 
 %include "../../../exceptions-python.i"

@@ -97,7 +97,7 @@ public:
     return obj;
   }
 
-  virtual Where::CBWhere getAMPLWhere() {
+   Where::CBWhere getAMPLWhereImpl() {
     switch (where_)
     {
 

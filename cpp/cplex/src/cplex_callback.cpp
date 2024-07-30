@@ -90,6 +90,30 @@ Variant CPLEXCallback::getValueImpl(Value::CBValue v) {
   }
 }
 
+Variant CPLEXCallback::getValueImpl(Value::CBValue v, int threadid)
+ {
+  switch (v)
+  {
+  case Value::ITERATIONS:
+    return getCPLEXInfo(CPXCALLBACKINFO_ITCOUNT, threadid);
+  case Value::MIP_NODES:
+    return getCPLEXInfo(CPXCALLBACKINFO_NODECOUNT, threadid);
+  case Value::RUNTIME:
+    return getCPLEXInfo(CPXCALLBACKINFO_TIME, threadid);
+  case Value::MIP_OBJBOUND:
+    return getCPLEXInfo(CPXCALLBACKINFO_BEST_BND, threadid);
+  case Value::OBJ:
+    return Variant(getObj());
+  case Value::MIP_RELATIVEGAP:
+    return Variant(impl::calculateRelMIPGAP(getCPLEXDouble(CPXCALLBACKINFO_BEST_SOL, threadid),
+      getCPLEXDouble(CPXCALLBACKINFO_BEST_BND, threadid)));
+  case Value::N_COLS:
+    return model_->getNumVars();
+  case Value::N_ROWS:
+    return model_->getNumCons();
+  default: throw AMPLSolverException("Specified value unknown or unsupported");
+  }
+}
 
 
 int CPLEXCallback::doAddCut(const ampls::Constraint& c, int lazy, void* additionalParams) {
@@ -104,6 +128,10 @@ int CPLEXCallback::doAddCut(const ampls::Constraint& c, int lazy, void* addition
   { 
     if (!canDo(CanDo::ADD_LAZY_CONSTRAINT))
       throw ampls::AMPLSolverException("Functionality not available at this stage");
+    if(local)
+      res = CPXcallbackrejectcandidatelocal(context(0), 1, c.indices().size(), rhs, sense, &beg, c.indices().data(),
+        c.coeffs().data());
+    else
     res= CPXcallbackrejectcandidate(context(0), 1, c.indices().size(), rhs, sense, &beg, c.indices().data(),
       c.coeffs().data());
   }
@@ -123,10 +151,12 @@ int CPLEXCallback::doAddCut(const ampls::Constraint& c, int lazy, void* addition
 
 int CPLEXCallback::getSolution(int len, double* sol) {
   double obj;
-  if (getAMPLWhere()==Where::MIPSOL)
+  if (getAMPLWhereImpl() == Where::MIPSOL) {
     return CPXXcallbackgetcandidatepoint(context(0), sol, 0, len - 1, &obj);
-  else if (getAMPLWhere() == Where::MIPNODE)
+  }
+  else if (getAMPLWhereImpl() == Where::MIPNODE) {
     return CPXXcallbackgetrelaxationpoint(context(0), sol, 0, len - 1, &obj);
+  }
   throw ampls::AMPLSolverException("Cannot get the solution vector in this stage.");
 }
 double CPLEXCallback::getObj() {
