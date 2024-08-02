@@ -17,9 +17,9 @@ Change the import below to change solver
 
 import pandas as pd
 from amplpy import AMPL
-import amplpy_scip as ampls
+import amplpy_xpress as ampls
 
-SOLVER = "scip"
+SOLVER = "xpress"
 
 
 def make_ampl_model(
@@ -146,17 +146,17 @@ def create_and_solve_infeasible_model(presolve_level: int = 10):
     ampl = make_ampl_model(make_infeasible=True, presolve_level=presolve_level)
     # Set some solver options
     # Setting iisfind to 1 to find the Irreducible Infeasibility Subset
-    options = {"pre:scale": 3, "outlev": 1, "iisfind": 1}
+    options = {"outlev": 1, "iisfind": 1}
     model = solve_model(ampl, options)
     print(f"Status is {model.get_status().name}")
     assert model.get_status() == ampls.Status.INFEASIBLE
 
     if SOLVER != "scip":
-        # Display IIS for infeasible model by converting it to a pandas dataframe
-        print(ampl.get_data("_varname, _var.iis").to_pandas().set_index("_varname"))
-        print(ampl.get_data("_conname, _con.iis").to_pandas().set_index("_conname"))
-        print("Completed Infeasible Model Test.")
-
+            # Display IIS for infeasible model by converting it to a pandas dataframe
+            print(ampl.get_data("_varname, _var.iiss").to_pandas().set_index("_varname"))
+            print(ampl.get_data("_conname, _con.iis").to_pandas().set_index("_conname"))
+            print("Completed Infeasible Model Test.")
+            
 
 class TestMultipleModels(TestBase):
     def test_multiple_models(self):
