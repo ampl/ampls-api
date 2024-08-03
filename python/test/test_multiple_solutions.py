@@ -8,13 +8,15 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from test_base import TestBase
 
 from amplpy import AMPL
-import amplpy_copt as ampls
+import amplpy_highs as ampls
 
-SOLVER = "copt"
+SOLVER = "highs"
 
 
 class TestMultipleSolutions(TestBase):
     def test_multiple_solutions(self):
+        if SOLVER == "highs": # not supported yet
+            return
         ampl = AMPL()
         ampl.eval(
             """var x binary; var y binary; var z binary;

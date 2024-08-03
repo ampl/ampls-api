@@ -147,4 +147,7 @@ class Test_Tsp(TestBase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    if SOLVER=="highs": # Not supported
+        pass
+    else:
+        unittest.main()

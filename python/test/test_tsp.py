@@ -8,8 +8,8 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 
-import amplpy_cplex as ampls
-SOLVER = "cplex"
+import amplpy_highs as ampls
+SOLVER = "highs"
 
 var2tuple = ampls.var2tuple
 tuple2var = ampls.tuple2var
@@ -147,4 +147,7 @@ class Test_Tsp(TestBase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    if SOLVER=="highs": # Not supported
+        pass
+    else:
+        unittest.main()

@@ -1,0 +1,2 @@
+This directory should contain the files related to HiGHS, for example:
+./libhighs.so.1

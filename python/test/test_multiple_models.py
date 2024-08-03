@@ -17,9 +17,9 @@ Change the import below to change solver
 
 import pandas as pd
 from amplpy import AMPL
-import amplpy_xpress as ampls
+import amplpy_highs as ampls
 
-SOLVER = "xpress"
+SOLVER = "highs"
 
 
 def make_ampl_model(
@@ -151,7 +151,7 @@ def create_and_solve_infeasible_model(presolve_level: int = 10):
     print(f"Status is {model.get_status().name}")
     assert model.get_status() == ampls.Status.INFEASIBLE
 
-    if SOLVER != "scip":
+    if SOLVER not in  ["scip", "highs"]:
             # Display IIS for infeasible model by converting it to a pandas dataframe
             print(ampl.get_data("_varname, _var.iis").to_pandas().set_index("_varname"))
             print(ampl.get_data("_conname, _con.iis").to_pandas().set_index("_conname"))

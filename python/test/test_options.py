@@ -8,8 +8,8 @@ sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)))
 from test_base import TestBase
 from amplpy import AMPL
 
-import amplpy_scip as ampls
-SOLVER = "scip"
+import amplpy_highs as ampls
+SOLVER = "highs"
 
 # Show how to set options, both at loading time and afterwards
 

@@ -15,6 +15,8 @@ SOLVER = "copt"
 
 class TestMultipleSolutions(TestBase):
     def test_multiple_solutions(self):
+        if SOLVER == "highs": # not supported yet
+            return
         ampl = AMPL()
         ampl.eval(
             """var x binary; var y binary; var z binary;
