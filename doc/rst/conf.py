@@ -35,38 +35,18 @@ exclude_patterns = []
 # a list of builtin themes.
 html_theme = "ampl_sphinx_theme"
 html_theme_options = {
-    "logo_link": "index",
     "icon_links": [
         {
             "name": "GitHub",
             "url": "https://github.com/ampl/ampls-api",
             "icon": "fab fa-github",
         },
-        {
-            "name": "AMPL Resources",
-            "url": "https://developers.ampl.com",
-            "icon": "fas fa-book fa-fw",
-            "target": "_self",
-        },
-        {
-            "name": "AMPL Portal",
-            "url": "https://portal.ampl.com",
-            "icon": "fas fa-sign-in-alt fa-fw",
-            "target": "_self",
-        },
-        {
-            "name": "AMPL.com",
-            "url": "https://ampl.com",
-            "icon": "fas fa-home fa-fw",
-            "target": "_self",
-        },
     ],
     "collapse_navigation": True,
-    "external_links": [
-        # {"name": "Try AMPL", "url": "https://ampl.com"}
-    ],
     "logo_text": "Solver API",
 }
+html_context = {"default_mode": "light"}
+
 # html_css_files = [
 #     'css/custom.css',
 # ]

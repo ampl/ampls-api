@@ -2,8 +2,8 @@
 
 .. _pythonindex:
 
-|Product|:: Python solver libraries 
-========================================
+Python solver libraries 
+=======================
 
 Welcome to the Python AMPL solver apis (|Product| in short) documentation.
 See :ref:`this section <pythonreference>` for a comprehensive documentation of the available functionalities.

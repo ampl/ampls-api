@@ -2,8 +2,8 @@
 
 .. _cppindex:
 
-|Product|:: C++ solver libraries 
-=====================================
+C++ solver libraries 
+====================
 
 Welcome to the AMPL solver libraries (|Product|) documentation. This section provides an overview of the main classes and methods.
 See :ref:`this section <cppreference>` for a comprehensive documentation of the available functionalities.
