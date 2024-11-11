@@ -16,7 +16,12 @@ release = "0.1"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["breathe", "sphinx.ext.graphviz", "myst_parser"]
+extensions = [
+    "breathe",
+    "sphinx.ext.graphviz",
+    "myst_parser",
+    "sphinxcontrib.googleanalytics",
+]
 # Breathe Configuration
 breathe_projects = {"ampls-api": "doxyxml"}
 breathe_default_project = "ampls-api"
@@ -45,6 +50,7 @@ html_theme_options = {
     "logo_text": "Solver API",
 }
 html_context = {"default_mode": "light"}
+googleanalytics_id = "G-3S9D4WKMRR"
 
 # html_css_files = [
 #     'css/custom.css',
