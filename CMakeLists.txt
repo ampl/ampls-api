@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 project(ampls)
-set(ampls_VERSION 0.2.1)
+set(ampls_VERSION 0.2.2)
 
 set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -134,7 +134,7 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${BASE_SOLVER_LIBS})
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1103)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1200)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2211)
   set(copt_BASE_DIR ${SOLVERLIBS}/copt/7.1.3)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/42.01.05)
@@ -198,8 +198,8 @@ if(WIN32)
     set(sys "lib/win64")
     
     CreateSolverLib(gurobi-solverlib ${GRBINC}
-    ${gurobi_BASE_DIR}/${sys}/gurobi110.dll 
-    IMPORTLIB ${gurobi_BASE_DIR}/${sys}/gurobi110.lib)
+    ${gurobi_BASE_DIR}/${sys}/gurobi120.dll 
+    IMPORTLIB ${gurobi_BASE_DIR}/${sys}/gurobi120.lib)
     
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/cplex2211.dll

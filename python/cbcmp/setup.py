@@ -83,7 +83,7 @@ def link_args():
 
 setup(
     name='amplpy_cplex',
-    version='0.2.1',
+    version='0.2.2',
     description='CPLEX extension for amplpy',
     long_description=__doc__,
     license='BSD-3',

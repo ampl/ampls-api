@@ -2,6 +2,9 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
+## 0.2.2 - 20241115
+* **[New]** Updated Gurobi to 12.0
+
 ## 0.2.1 - 20240731
 * **[New]** CPLEXCallback: addLazy and addCut now support an optional parameter local, specifying
             if the added constraint is locally valid (value = 1) or globally valid (value = 0 - default)
