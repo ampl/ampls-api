@@ -86,9 +86,9 @@ stages:
       wheelhouse: $(Build.ArtifactStagingDirectory)
     steps:
       - task: UsePythonVersion@0
-       - script: |
+      - script: |
            brew install swig
-         displayName: Install SWIG
+        displayName: Install SWIG
       - bash: |
           bash libs/download.sh
         displayName: Download libraries
