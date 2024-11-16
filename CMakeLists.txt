@@ -265,7 +265,7 @@ else()
       ${copt_BASE_DIR}/${sys}/libcopt.so)
     
     CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
-      ${xpress_BASE_DIR}/${sys}/libxprs.so.41)
+      ${xpress_BASE_DIR}/${sys}/libxprs.so.43)
 
     CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
       ${scip_BASE_DIR}/${sys}/libscip.8.0.3.0.so)
