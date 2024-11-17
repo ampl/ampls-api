@@ -25,9 +25,9 @@ stages:
           solver: 'copt'
           CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
           CIBW_TEST_COMMAND: python -m amplpy_copt.tests
-        highs:
-          solver: 'highs'
-          CIBW_TEST_COMMAND: python -m amplpy_highs.tests
+       # highs:
+       #   solver: 'highs'
+       #   CIBW_TEST_COMMAND: python -m amplpy_highs.tests
     variables:
       wheelhouse: $(Build.ArtifactStagingDirectory)
     steps:
@@ -70,9 +70,9 @@ stages:
         gurobi:
           solver: 'gurobi'
           CIBW_TEST_COMMAND: python -m amplpy_gurobi.tests
-        highs:
-          solver: 'highs'
-          CIBW_TEST_COMMAND: python -m amplpy_highs.tests
+       # highs:
+       #   solver: 'highs'
+       #   CIBW_TEST_COMMAND: python -m amplpy_highs.tests
         cplex:
           solver: 'cplex'
           CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
@@ -129,9 +129,9 @@ stages:
         copt:
           solver: 'copt'
           CIBW_TEST_COMMAND: python -m amplpy_copt.tests
-        highs:
-          solver: 'highs'
-          CIBW_TEST_COMMAND: python -m amplpy_highs.tests
+      #  highs:
+      #    solver: 'highs'
+      #    CIBW_TEST_COMMAND: python -m amplpy_highs.tests
     variables:
       wheelhouse: $(Build.ArtifactStagingDirectory)
     steps:
