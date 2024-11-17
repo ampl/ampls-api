@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
 #ifdef USE_copt
   doStuff<ampls::CoptModel>();
 #endif 
-#ifdef USE_cplexmp
+#ifdef USE_cplex
   doStuff<ampls::CPLEXModel>();
 #endif
 #ifdef USE_gurobi

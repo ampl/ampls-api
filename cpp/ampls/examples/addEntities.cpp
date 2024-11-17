@@ -84,7 +84,7 @@ int main(int argc, char** argv) {
 #ifdef USE_copt
   example<ampls::CoptModel>();
 #endif 
-#ifdef USE_cplexmp
+#ifdef USE_cplex
   example<ampls::CPLEXModel>();
 #endif
   /*

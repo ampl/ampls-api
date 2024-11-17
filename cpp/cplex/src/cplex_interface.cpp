@@ -53,7 +53,7 @@ void CPLEXDrv::freeCPLEXEnv()
 }
 
 CPLEXModel CPLEXDrv::loadModelImpl(char** args, const char** options) {
-  auto mp = static_cast<impl::mp::AMPLS_MP_Solver*>(impl::cpx::AMPLSOpen_cplexmp(3, args));
+  auto mp = static_cast<impl::mp::AMPLS_MP_Solver*>(impl::cpx::AMPLSOpen_cplex(3, args));
   auto msg = impl::mp::AMPLSGetMessages(mp);
   if (msg[0] != nullptr)
     throw ampls::AMPLSolverException(msg[0]);

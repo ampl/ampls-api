@@ -46,10 +46,10 @@ class CPLEXModel;
 
     extern "C" {
       // Imported from the gurobi driver library
-      ENTRYPOINT void AMPLSClose_cplexmp(void* slv);
-      ENTRYPOINT void* AMPLSGetModel_cplexmp(void* slv);
-      ENTRYPOINT void* AMPLSGetEnv_cplexmp(void* slv);
-      ENTRYPOINT void* AMPLSOpen_cplexmp(int, char**);
+      ENTRYPOINT void AMPLSClose_cplex(void* slv);
+      ENTRYPOINT void* AMPLSGetModel_cplex(void* slv);
+      ENTRYPOINT void* AMPLSGetEnv_cplex(void* slv);
+      ENTRYPOINT void* AMPLSOpen_cplex(int, char**);
     }
     
     class CBWrap {
@@ -116,7 +116,7 @@ class CPLEXModel : public AMPLMPModel {
   CPLEXModel(impl::mp::AMPLS_MP_Solver* s, const char* nlfile,
     const char** options) : AMPLMPModel(s, nlfile, options),
     lastErrorCode_(0) {
-    model_ = (CPXLPptr)impl::cpx::AMPLSGetModel_cplexmp(s);
+    model_ = (CPXLPptr)impl::cpx::AMPLSGetModel_cplex(s);
   }
 
 
@@ -254,7 +254,7 @@ public:
   }
   /** Get the pointer to the native CPLEX environment object */
   CPXENVptr getCPXENV() {
-    return (CPXENVptr)impl::cpx::AMPLSGetEnv_cplexmp(solver_);
+    return (CPXENVptr)impl::cpx::AMPLSGetEnv_cplex(solver_);
   }
 
   /** Set an integer CPLEX control parameter */
