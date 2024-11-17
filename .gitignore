@@ -8,6 +8,8 @@ __pycache__
 bin
 obj
 env/
+python/env/
+.DS_Store
 /csharp/cplex/api/dev_cpxsharp.csproj
 /csharp/cplex/api/dev_cplexsharp.csproj
 /csharp/gurobi/api/dev_gurobisharp.csproj
@@ -33,3 +35,4 @@ amplpy_*_swig_wrap.h
 /python/envlinux
 /python/test/env1
 /python/envwin
+.venv/

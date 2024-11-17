@@ -22,7 +22,7 @@ os.environ["PATH"] = LIBPATH + os.pathsep + os.environ["PATH"]
 if platform.system() == 'Windows':
     import ctypes
     
-    for dll in ['cplex2211.dll', 'cplexmp-lib.dll']:
+    for dll in ['cplex2211.dll', 'cplex-lib.dll']:
         try:
             ctypes.CDLL(os.path.join(LIBPATH, dll))
         except Exception as e:

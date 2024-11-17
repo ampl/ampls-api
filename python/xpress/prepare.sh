@@ -35,5 +35,5 @@ fi
 os_name=$(uname -s)
 # Check if the OS is Linux
 if [ "$os_name" = "Linux" ]; then
-    ln $PACKAGE/libs/$s/lib/linux64/libxprs.so.42 $PACKAGE/libs/$s/lib/linux64/libxprs.so
+    ln $PACKAGE/libs/$s/lib/linux64/libxprs.so.43 $PACKAGE/libs/$s/lib/linux64/libxprs.so
 fi
