@@ -106,6 +106,7 @@ stages:
           mv $TMP/* $WHEELHOUSE/
         env:
           CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
+          MACOSX_DEPLOYMENT_TARGET: '10.15' 
         displayName: Build wheels
       - task: PublishBuildArtifacts@1
         inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
