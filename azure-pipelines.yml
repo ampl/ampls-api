@@ -1,8 +1,8 @@
 variables:
-  CIBW_SKIP: pp* *_i686 *-win32 *musllinux* cp312-* cp36-cp36m-macosx-*
+  CIBW_SKIP: pp* *_i686 *-win32 *musllinux* cp312-* cp36-macosx-*
   CIBW_TEST_REQUIRES: --index-url https://pypi.ampl.com --extra-index-url https://pypi.org/simple amplpy ampl_module_base pandas
   CIBW_ENVIRONMENT_PASS_LINUX: AMPLKEY_UUID
-
+  CIBW_ARCHS_MACOS: x86_64 universal2
 stages:
 - stage: build
   jobs:
@@ -106,6 +106,7 @@ stages:
           mv $TMP/* $WHEELHOUSE/
         env:
           CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
+          MACOSX_DEPLOYMENT_TARGET: '10.15' 
         displayName: Build wheels
       - task: PublishBuildArtifacts@1
         inputs: {pathtoPublish: '$(Build.ArtifactStagingDirectory)'}
