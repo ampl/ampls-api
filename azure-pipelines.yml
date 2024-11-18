@@ -49,15 +49,13 @@ stages:
           bash swig.sh
           pip install --upgrade pip
           pip install urllib3[secure] --upgrade
-          python -m pip install --upgrade cibuildwheel==2.16.2
+          python -m pip install --upgrade cibuildwheel==2.21.3
           cibuildwheel --platform linux --output-dir $TMP .
           ls -l $TMP
           test "$(ls -A $TMP)" || exit 1
           mv $TMP/* $WHEELHOUSE/
           bash prepare.sh # to package libs for all platforms
           python setup.py sdist -d $WHEELHOUSE
-          # pip install twine
-          # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/* || true
         env:
           CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
         displayName: Build wheels
@@ -101,13 +99,11 @@ stages:
           bash swig.sh
           pip install --upgrade pip
           pip install urllib3[secure] --upgrade
-          python -m pip install --upgrade cibuildwheel==2.16.2
+          python -m pip install --upgrade cibuildwheel==2.21.3
           cibuildwheel --platform macos --output-dir $TMP .
           ls -l $TMP
           test "$(ls -A $TMP)" || exit 1
           mv $TMP/* $WHEELHOUSE/
-          # pip install twine
-          # twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
         env:
           CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
         displayName: Build wheels
@@ -153,11 +149,9 @@ stages:
           bash swig.sh
           python -m pip install --user --upgrade pip
           python -m pip install urllib3[secure] --upgrade
-          python -m pip install --upgrade cibuildwheel==2.16.2
+          python -m pip install --upgrade cibuildwheel==2.21.3
           cibuildwheel --platform windows --output-dir tmp .
           cp tmp/* $WHEELHOUSE/
-          # python -m pip install twine
-          # python -m twine upload -u $(TWINE_USERNAME) -p $(TWINE_PASSWORD) $WHEELHOUSE/*.whl || true
         env:
           CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
         displayName: Build wheels
