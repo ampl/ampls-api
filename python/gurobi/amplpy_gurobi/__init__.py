@@ -22,6 +22,7 @@ if platform.system() == "Windows":
     for dll in ["gurobi120.dll", "gurobi-lib.dll"]:
         try:
             ctypes.CDLL(os.path.join(LIBPATH, dll))
+            print(f"Importted and found {dll} in {LIBPATH}\n")
         except Exception as e:
             print(
                 "Problem importing library {}:\n{}\n".format(

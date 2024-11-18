@@ -52,7 +52,7 @@ def compile_args():
         ignore_warnings = [
             '-Wno-unused-variable',
         ]
-        return ['-std=c++11', '-mmacosx-version-min=10.9'] + ignore_warnings
+        return ['-std=c++11', '-mmacosx-version-min=10.15'] + ignore_warnings
     else:
         return []
 
