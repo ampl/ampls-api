@@ -1,5 +1,5 @@
 variables:
-  CIBW_SKIP: pp* *_i686 *-win32 *musllinux* cp312-* cp36-macosx-*
+  CIBW_SKIP: pp* *_i686 *-win32 *musllinux* cp312-* cp36-* cp313-*
   CIBW_TEST_REQUIRES: --index-url https://pypi.ampl.com --extra-index-url https://pypi.org/simple amplpy ampl_module_base pandas
   CIBW_ENVIRONMENT_PASS_LINUX: AMPLKEY_UUID
   CIBW_ARCHS_MACOS: x86_64 universal2
