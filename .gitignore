@@ -9,6 +9,7 @@ bin
 obj
 env/
 python/env/
+python/test/env/
 .DS_Store
 /csharp/cplex/api/dev_cpxsharp.csproj
 /csharp/cplex/api/dev_cplexsharp.csproj
