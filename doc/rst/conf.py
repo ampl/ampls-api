@@ -20,6 +20,7 @@ extensions = [
     "breathe",
     "sphinx.ext.graphviz",
     "myst_parser",
+    "sphinx_sitemap",
     "sphinxcontrib.googleanalytics",
 ]
 # Breathe Configuration
