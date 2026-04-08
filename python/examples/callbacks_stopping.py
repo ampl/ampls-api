@@ -115,7 +115,7 @@ if abs(158 - obj) >= DESIREDGAP:
     print("Error")
 
 # Import the solution back to amplpy
-ampl.import_solution(model)
+ampl.import_ampls_solution(model)
 ampl_obj = ampl.get_current_objective().value()
 if STOP_AT_MIPGAP:
     if abs(158 - ampl_obj) >= DESIREDGAP:

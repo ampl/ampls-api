@@ -139,7 +139,7 @@ class Test_Tsp(TestBase):
         print("Solved for {} variables, objective {}".format(nvars, obj))
 
         # Import results to AMPL
-        ampl.import_solution(m)
+        ampl.import_ampls_solution(m)
         # Get the result from AMPL and print all the costs of the used arcs
         arcs = ampl.get_data("{(a,b) in A : x[a,b] != 0} c[a,b]").to_pandas()
         print(arcs)

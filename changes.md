@@ -2,6 +2,10 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
+## 0.2.3 - 20260408
+* **[Breaking]** Python: the injected class method `amplpy.AMPL.import_solution ` is not called `amplpy.AMPL.import_ampls_solution`
+
+
 ## 0.2.2 - 20241115
 * **[New]** Updated Gurobi to 12.0
 

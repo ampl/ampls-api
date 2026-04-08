@@ -97,7 +97,7 @@ model.set_callback(cb)
 model.optimize()
 
 # Import the solution back to amplpy
-ampl.import_solution(model)
+ampl.import_ampls_solution(model)
 ampls_obj = model.get_obj()
 ampl_obj = ampl.get_current_objective().value()
 assert(ampls_obj == ampl_obj)

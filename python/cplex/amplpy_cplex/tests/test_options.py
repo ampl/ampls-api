@@ -87,14 +87,14 @@ class TestOptions(TestBase):
             model.optimize()
             print(f"{OPT} is {model.get_int_option(OPT)}")
             assert model.getIntOption(OPT)==0
-            ampl.import_solution(model)
+            ampl.import_ampls_solution(model)
 
             # Set gurobi to use its native sin support
             model = ampl.to_ampls(SOLVER, ["acc:sin=1"])
             model.optimize()
             print(f"{OPT} is {model.get_int_option(OPT)}")
             assert model.get_int_option(OPT)==1
-            ampl.import_solution(model)
+            ampl.import_ampls_solution(model)
 
 
 

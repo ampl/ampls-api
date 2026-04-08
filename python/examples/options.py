@@ -37,7 +37,7 @@ def solve(ampl: AMPL):
     mod.optimize()
 
     # Import into AMPL
-    ampl.import_solution(mod)
+    ampl.import_ampls_solution(mod)
     print(f"Found {ampl.get_value('Initial.nsol')} solutions")
     print(f"Objective value: {mod.get_obj()}")
 

@@ -147,7 +147,7 @@ class TestCallbacks(TestBase):
         model.optimize()
         obj = model.get_obj()
         self.assertAlmostEqual(158, obj, delta=DESIREDGAP)
-        ampl.import_solution(model)
+        ampl.import_ampls_solution(model)
         ampl_obj = ampl.get_current_objective().value()
         self.assertAlmostEqual(158, ampl_obj, delta=DESIREDGAP)
 

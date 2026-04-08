@@ -83,7 +83,7 @@ def solveModel(ampl:amplpy.AMPL, options:Dict[str,Any] = {}, useNativeCall: bool
             ampls.XPRSlpoptimize(xpressnative, None)
     else:
         model.optimize()
-    ampl.import_solution(model)
+    ampl.import_ampls_solution(model)
     return model
 
 

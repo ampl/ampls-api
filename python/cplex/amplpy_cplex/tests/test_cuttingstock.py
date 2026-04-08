@@ -142,7 +142,7 @@ def run_example():
     # the AMPL version of the cutting stock model, then solve the 
     # integer problem to get the final result
     cs.add_patterns(patterns)
-    cs.import_solution(ampls_cs)
+    cs.import_ampls_solution(ampls_cs)
     cs.option["relax_integrality"]=0
     cs.solve()
     cs.eval("display TotalRawRolls, rolls, Cut;")

@@ -157,7 +157,7 @@ def to_ampls(self, driver, options=None):
     raise ValueError(f"{driver} is not supported, please choose from: {solver_list}")
 
 
-def import_solution(self, model, number=None, import_entities=False, keep_files=False):
+def import_ampls_solution(self, model, number=None, import_entities=False, keep_files=False):
     if isinstance(model, dict):
         self.eval(
             "".join(

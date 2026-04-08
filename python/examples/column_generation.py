@@ -141,10 +141,10 @@ def run_example():
     # integer problem to get the final result
 
     if USE_AMPLS_ENTITY_RECORDING:
-        cs.import_solution(ampls_cs, import_entities=True)
+        cs.import_ampls_solution(ampls_cs, import_entities=True)
     else:
         cs.add_patterns(patterns)
-        cs.import_solution(ampls_cs)
+        cs.import_ampls_solution(ampls_cs)
     cs.option["relax_integrality"]=0
     cs.solve()
     cs.display("TotalRawRolls, rolls;")

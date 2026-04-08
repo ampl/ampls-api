@@ -99,7 +99,7 @@ def solveModel(ampl, options = {}, useNativeCall=False):
             ampls.XPRSlpoptimize(model.get_xprs_prob())
     else:
         model.optimize()
-    ampl.import_solution(model)
+    ampl.import_ampls_solution(model)
     return model
 
 
