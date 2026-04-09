@@ -16,7 +16,7 @@ Change the import below to change solver
 """
 
 import pandas as pd
-import amplpy, AMPLException
+from amplpy import AMPL, AMPLException
 import amplpy_cplex as ampls
 
 SOLVER = "cplex"
