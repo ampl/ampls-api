@@ -49,7 +49,7 @@ stages:
           bash swig.sh
           pip install --upgrade pip
           pip install urllib3[secure] --upgrade
-          python -m pip install --upgrade cibuildwheel==2.21.3
+          python -m pip install --upgrade cibuildwheel==3.4.1
           cibuildwheel --platform linux --output-dir $TMP .
           ls -l $TMP
           test "$(ls -A $TMP)" || exit 1
