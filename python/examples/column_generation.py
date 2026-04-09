@@ -3,7 +3,7 @@
 import os
 import sys
 import types
-from amplpy import AMPL
+from amplpy import AMPL, Parameter
 
 # Example description
 # This example uses Gilmore-Gomory column generation procedure for 
@@ -11,8 +11,8 @@ from amplpy import AMPL
 # Keeps the knapsack problem as an AMPL model, and adds columns
 # to the cutting-stock via ampls; finally it imports the results in AMPL.
 
-import amplpy_gurobi as ampls
-SOLVER = "gurobi"
+import amplpy_copt as ampls
+SOLVER = "copt"
 
 WIDTHS = [20, 45, 50, 55, 75]
 ORDERS = [48, 35, 24, 10, 8]
@@ -23,11 +23,12 @@ RAW_WIDTH = 110
 def generate_default_patterns(widths : list):
     return [{w : RAW_WIDTH // w} for w in widths]
  
-def add_patterns(self, patterns : list):
-    npat = int(self.param["nPatterns"].get())
-    self.param["nPatterns"].set(len(patterns))
-    self.eval("update data rolls;")
-    self.param['rolls'] = {
+def add_patterns(ampl: AMPL, patterns : list):
+    
+    npat = int(ampl.param["nPatterns"].value())
+    ampl.param["nPatterns"].set(len(patterns))
+    ampl.eval("update data rolls;")
+    ampl.param['rolls'] = {
         (w, 1+i): n
         for i in range(npat,len(patterns)) 
         for w, n in patterns[i].items()
@@ -58,16 +59,15 @@ def cutting_stock_model():
     a.param["order"]=ORDERS
     a.param["rawWidth"]=RAW_WIDTH
 
-    a.add_patterns= types.MethodType( add_patterns, a )
     return a
 
-def generate_pattern(self, duals : list):
-    self.param["price"]=duals
-    self.solve()
-    self.eval("display price;")
-    reduced_cost=self.obj['Reduced_Cost'].value()
+def generate_pattern(ampl: AMPL, duals : list):
+    ampl.param["price"]=duals
+    ampl.solve()
+    ampl.eval("display price;")
+    reduced_cost=ampl.obj['Reduced_Cost'].value()
     if reduced_cost < -0.00001:
-        return self.var["Use"].getValues().to_dict()
+        return ampl.var["Use"].getValues().to_dict()
     return None
 
 def knapsack_model():
@@ -82,8 +82,6 @@ def knapsack_model():
     subject to Width_Limit: sum{ i in WIDTHS } i * Use[i] <=rawWidth;""")
     a.set["WIDTHS"]=WIDTHS
     a.param["rawWidth"]=RAW_WIDTH
-
-    a.generate_pattern= types.MethodType( generate_pattern, a )
     return a
 
 USE_AMPLS_ENTITY_RECORDING = True
@@ -96,7 +94,7 @@ def run_example():
     # all at the same width)
     patterns = generate_default_patterns(WIDTHS)
     # Add them to the AMPL instance
-    cs.add_patterns(patterns)
+    add_patterns(cs, patterns)
     
     # Export the (relaxed) cutting stock model to ampls
     cs.option["relax_integrality"]=1
@@ -112,7 +110,7 @@ def run_example():
         ampls_cs.optimize()
         duals = ampls_cs.get_dual_vector()
         print(duals)
-        p=knap.generate_pattern(duals)
+        p=generate_pattern(knap, duals)
         
         if p is None: break # No new pattern has been found, finish
 
@@ -143,7 +141,7 @@ def run_example():
     if USE_AMPLS_ENTITY_RECORDING:
         cs.import_ampls_solution(ampls_cs, import_entities=True)
     else:
-        cs.add_patterns(patterns)
+        add_patterns(cs, patterns)
         cs.import_ampls_solution(ampls_cs)
     cs.option["relax_integrality"]=0
     cs.solve()

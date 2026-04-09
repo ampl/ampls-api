@@ -4,8 +4,8 @@ from math import e
 from amplpy import AMPL
 import time
 
-import amplpy_gurobi as ampls
-SOLVER = "gurobi"
+import amplpy_copt as ampls
+SOLVER = "copt"
 
 # Example description
 # This example shows how to stop the solution process of a MIP 

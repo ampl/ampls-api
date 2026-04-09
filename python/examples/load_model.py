@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 from amplpy import AMPL
 
-import amplpy_gurobi as ampls 
-SOLVER = "gurobi"
+import amplpy_copt as ampls 
+SOLVER = "copt"
 
 # Example description
 # Shows how to export a model from amplpy to ampls,

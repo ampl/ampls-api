@@ -3,8 +3,8 @@
 from amplpy import AMPL
 from pprint import pprint
 
-import amplpy_gurobi as ampls
-SOLVER = "gurobi"
+import amplpy_copt as ampls
+SOLVER = "copt"
 
 
 # Example description

@@ -27,3 +27,9 @@ for s in $SOLVERS; do
         cp -r ../../libs/ampls/$p/*$s* $PACKAGE/libs/$s/lib/$p
     done
 done
+
+# Delete static libs as they make MacOS build fail
+find "$PACKAGE/libs" \
+  \( -path '*/osx64/*' -o -path '*/linux64/*' \) \
+  -type f \( -name '*.a' -o -name '*.la' \) \
+  -print -delete
