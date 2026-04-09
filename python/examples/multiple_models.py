@@ -4,8 +4,8 @@ import amplpy
 import pandas as pd
 from typing import Any, Dict
 
-import amplpy_cplex as ampls
-SOLVER = "cplex"
+import amplpy_gurobi as ampls
+SOLVER = "gurobi"
 
 # Example description
 # Shows how to create multiple models with AMPL, export an AMPLs instance
@@ -125,7 +125,7 @@ if __name__ == "__main__":
         # With presolve set to a high level, AMPL detects the infeasibilitty
         # and does not export the model. Throws an explainatory runtime error
         createAndSolveInfeasibleModel(10)
-    except ampls.AMPLSolverException as e:
+    except amplpy.AMPLException as e:
         print(e)
     # Turning off presolve makes ampl actually export the model
     # In the fucntion we'll set some options to find the source of the infeasibility
