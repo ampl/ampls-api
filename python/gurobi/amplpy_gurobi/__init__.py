@@ -19,7 +19,7 @@ if platform.system() == "Windows":
     import ctypes
 
     LIBPATH = os.path.join(BASEDIR, "libs", "gurobi", "lib", "win64")
-    for dll in ["gurobi120.dll", "gurobi-lib.dll"]:
+    for dll in ["gurobi130.dll", "gurobi-lib.dll"]:
         try:
             ctypes.CDLL(os.path.join(LIBPATH, dll))
             print(f"Importted and found {dll} in {LIBPATH}\n")

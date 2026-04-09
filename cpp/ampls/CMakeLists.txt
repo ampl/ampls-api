@@ -42,7 +42,7 @@ foreach(s ${ENABLED_SOLVERS})
  message("ampls examples linked with ${ENABLED_SOLVERS}")
 
  # Find amplapi, if present add combined examples
- set(AMPLAPI_VERSION 2.3.8)
+ set(AMPLAPI_VERSION 3.0.0)
 if(WIN32)
   set(libdir win64)
   set(libname ampl-${AMPLAPI_VERSION}.lib)

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION 3.10)
 project(ampls)
 set(ampls_VERSION 0.2.3)
 
@@ -134,12 +134,12 @@ file(WRITE ${GENERATED_INCLUDE_DIR}/test-config.h
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${BASE_SOLVER_LIBS})
-  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1200)
+  set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1301)
   set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2211)
-  set(copt_BASE_DIR ${SOLVERLIBS}/copt/7.1.3)
-  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/42.01.05)
-  set(scip_BASE_DIR ${SOLVERLIBS}/scip)
-  set(highs_BASE_DIR ${SOLVERLIBS}/highs/1.7.1)
+  set(copt_BASE_DIR ${SOLVERLIBS}/copt/8.0.3)
+  set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/46.01.01)
+  set(scip_BASE_DIR ${SOLVERLIBS}/scip/1000)
+  set(highs_BASE_DIR ${SOLVERLIBS}/highs/1.11)
 else()
   set(SOLVERLIBS ${CMAKE_CURRENT_SOURCE_DIR}/libs)
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi)
@@ -198,8 +198,8 @@ if(WIN32)
     set(sys "lib/win64")
     
     CreateSolverLib(gurobi-solverlib ${GRBINC}
-    ${gurobi_BASE_DIR}/${sys}/gurobi120.dll 
-    IMPORTLIB ${gurobi_BASE_DIR}/${sys}/gurobi120.lib)
+    ${gurobi_BASE_DIR}/${sys}/gurobi130.dll 
+    IMPORTLIB ${gurobi_BASE_DIR}/${sys}/gurobi130.lib)
     
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/cplex2211.dll
@@ -235,7 +235,7 @@ if(WIN32)
 elseif(APPLE)
     set(sys "lib/osx64")
     CreateSolverLib(gurobi-solverlib ${GRBINC} 
-                      ${gurobi_BASE_DIR}/${sys}/libgurobi100.dylib)
+                      ${gurobi_BASE_DIR}/${sys}/libgurobi130.dylib)
 
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/libcplex2211.dylib)
@@ -247,16 +247,16 @@ elseif(APPLE)
       ${xpress_BASE_DIR}/${sys}/libxprs.dylib)
 
     CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
-      ${scip_BASE_DIR}/${sys}/libscip.8.0.3.0.dylib)
+      ${scip_BASE_DIR}/${sys}/libscip.10.0.dylib)
 
     CreateSolverLib(highs-solverlib ${highs_BASE_DIR}/include
-      ${highs_BASE_DIR}/${sys}/libhighs.dylib)
+      ${highs_BASE_DIR}/${sys}/libhighs.1.dylib)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/osx64) # AMPL base driver library locations
 else()
     set(sys "lib/linux64")
     CreateSolverLib(gurobi-solverlib ${GRBINC}
-                      ${gurobi_BASE_DIR}/${sys}/libgurobi100.so)
+                      ${gurobi_BASE_DIR}/${sys}/libgurobi130.so)
 
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/libcplex2211.so)
@@ -265,13 +265,13 @@ else()
       ${copt_BASE_DIR}/${sys}/libcopt.so)
     
     CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
-      ${xpress_BASE_DIR}/${sys}/libxprs.so.43)
+      ${xpress_BASE_DIR}/${sys}/libxprs.so.46)
 
     CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
-      ${scip_BASE_DIR}/${sys}/libscip.8.0.3.0.so)
+      ${scip_BASE_DIR}/${sys}/libscip.so.10.0)
 
     CreateSolverLib(highs-solverlib ${highs_BASE_DIR}/include
-      ${copt_BASE_DIR}/${sys}/libhighs.so)
+      ${copt_BASE_DIR}/${sys}/libhighs.so.1)
 
     set(AMPLS_DIR ${SOLVERLIBS}/ampls/linux64) # AMPL base driver library locations
 endif()

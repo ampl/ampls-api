@@ -1,16 +1,16 @@
 set(TESTDIR ${CMAKE_CURRENT_SOURCE_DIR}/../test)
 set(EXAMPLES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../examples)
-if(MSVC)
-  include_external_msproject(
-    python-tests
-    ${TESTDIR}/python-tests.pyproj
-    python-tests)
+#if(MSVC)
+#  include_external_msproject(
+#    python-tests
+#    ${TESTDIR}/python-tests.pyproj
+#    python-tests)
 
-    include_external_msproject(
-    python-examples
-    ${EXAMPLES_DIR}/python-examples.pyproj
-    python-examples)
-endif()
+#    include_external_msproject(
+#    python-examples
+#    ${EXAMPLES_DIR}/python-examples.pyproj
+#    python-examples)
+#endif()
 
 
 set(PYTHON_DEPS)
