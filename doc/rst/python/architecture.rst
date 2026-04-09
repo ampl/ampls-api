@@ -27,4 +27,4 @@ objects and, after solving them, importing them back to AMPL:
 - amplpy.AMPL.exportGurobiModel
 - amplpy.AMPL.exportCplexModel
 - amplpy.AMPL.exportModel(drivername)
-- amplpy.AMPL.importSolution(AMPLModel)
+- amplpy.AMPL.import_ampls_solution(AMPLModel)

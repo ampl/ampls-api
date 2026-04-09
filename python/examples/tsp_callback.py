@@ -132,5 +132,5 @@ obj = m.getObj()
 nvars = m.getNumVars()
 print("Solved for {} variables, objective {}".format(nvars, obj))
 if m.getStatus() == ampls.Status.OPTIMAL:
-    ampl.importSolution(m)
+    ampl.import_ampls_solution(m)
     ampl.display('total')

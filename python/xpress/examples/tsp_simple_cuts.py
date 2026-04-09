@@ -195,7 +195,7 @@ def solverSubTourElimination(ampl : AMPL, solver):
   # Start the optimization
   model.optimize()
   # Import the solution back to AMPL
-  ampl.importSolution(model)
+  ampl.import_ampls_solution(model)
 
 
 # Callback class that actually add the cuts if subtours are found in a solution
