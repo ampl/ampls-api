@@ -71,7 +71,9 @@ def link_args():
         os.path.join("amplpy_scip", "libs", "scip", "lib", libdir()),
     ]
     if OSTYPE == "Darwin":
-        return ["-Wl,-rpath,@loader_path/" + rpath for rpath in rpaths]
+        args = ["-Wl,-headerpad_max_install_names"]
+        args += ["-Wl,-rpath,@loader_path/" + rpath for rpath in rpaths]
+        return args
     elif OSTYPE == "Linux":
         return ["-Wl,-rpath,$ORIGIN/" + rpath for rpath in rpaths]
     else:
