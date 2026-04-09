@@ -1,5 +1,5 @@
 variables:
-  CIBW_SKIP: pp* *_i686 *-win32 *musllinux*   cp36-* cp37-*-
+  CIBW_SKIP: pp* *_i686 *-win32 *musllinux*   cp36-* cp37-*
   CIBW_TEST_REQUIRES: --index-url https://pypi.ampl.com --extra-index-url https://pypi.org/simple amplpy ampl_module_base pandas
   CIBW_ENVIRONMENT_PASS_LINUX: AMPLKEY_UUID
   CIBW_ARCHS_MACOS: x86_64 universal2
@@ -99,7 +99,7 @@ stages:
           bash swig.sh
           pip install --upgrade pip
           pip install urllib3[secure] --upgrade
-          python -m pip install --upgrade cibuildwheel==2.21.3
+          python -m pip install --upgrade cibuildwheel==3.4.1
           cibuildwheel --platform macos --output-dir $TMP .
           ls -l $TMP
           test "$(ls -A $TMP)" || exit 1
@@ -150,7 +150,7 @@ stages:
           bash swig.sh
           python -m pip install --user --upgrade pip
           python -m pip install urllib3[secure] --upgrade
-          python -m pip install --upgrade cibuildwheel==2.21.3
+          python -m pip install --upgrade cibuildwheel==3.4.1
           cibuildwheel --platform windows --output-dir tmp .
           cp tmp/* $WHEELHOUSE/
         env:
