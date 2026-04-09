@@ -157,7 +157,7 @@ while callback._continueOpt:
     callback.setCurrentGap()
 
 # Import solution from the solver
-Master.importSolution(ampls_model)
+Master.import_ampls_solution(ampls_model)
 
 print(f"From AMPL MIPGap={100*Master.getValue('TotalRawRolls.relmipgap'):.3f}%")
 print(f"Objective value: {Master.getValue('TotalRawRolls')}")
