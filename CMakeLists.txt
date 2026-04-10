@@ -135,7 +135,7 @@ get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
   set(SOLVERLIBS ${BASE_SOLVER_LIBS})
   set(gurobi_BASE_DIR ${SOLVERLIBS}/gurobi/1301)
-  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2211)
+  set(cplex_BASE_DIR ${SOLVERLIBS}/cplex/2212)
   set(copt_BASE_DIR ${SOLVERLIBS}/copt/8.0.3)
   set(xpress_BASE_DIR ${SOLVERLIBS}/xpress/46.01.01)
   set(scip_BASE_DIR ${SOLVERLIBS}/scip/1000)
@@ -202,8 +202,8 @@ if(WIN32)
     IMPORTLIB ${gurobi_BASE_DIR}/${sys}/gurobi130.lib)
     
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
-      ${cplex_BASE_DIR}/${sys}/cplex2211.dll
-      IMPORTLIB ${cplex_BASE_DIR}/${sys}/cplex2211.lib)
+      ${cplex_BASE_DIR}/${sys}/cplex2212.dll
+      IMPORTLIB ${cplex_BASE_DIR}/${sys}/cplex2212.lib)
       
      CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
       ${copt_BASE_DIR}/${sys}/copt.dll
@@ -238,7 +238,7 @@ elseif(APPLE)
                       ${gurobi_BASE_DIR}/${sys}/libgurobi130.dylib)
 
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
-      ${cplex_BASE_DIR}/${sys}/libcplex2211.dylib)
+      ${cplex_BASE_DIR}/${sys}/libcplex2212.dylib)
       
    CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
       ${copt_BASE_DIR}/${sys}/libcopt.dylib)
@@ -259,7 +259,7 @@ else()
                       ${gurobi_BASE_DIR}/${sys}/libgurobi130.so)
 
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
-      ${cplex_BASE_DIR}/${sys}/libcplex2211.so)
+      ${cplex_BASE_DIR}/${sys}/libcplex2212.so)
       
     CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
       ${copt_BASE_DIR}/${sys}/libcopt.so)
