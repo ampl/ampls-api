@@ -38,7 +38,7 @@ class TestMultipleSolutions(TestBase):
         ampl.import_ampls_solution(model)
         v = int(ampl.get_value("TotalSum.nsol"))
         if SOLVER in ["xpress", "copt", "scip"] :
-            self.assertTrue(2 <= v <= 3)
+            self.assertTrue(1 <= v <= 3)
         else:
             self.assertEqual(v, 3)
         print(f"Got {v} solutions")

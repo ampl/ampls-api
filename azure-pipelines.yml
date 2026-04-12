@@ -19,7 +19,7 @@ stages:
           CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
         xpress:
           solver: 'xpress'
-          CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
+          CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux_2_28'
           CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
         copt:
           solver: 'copt'
