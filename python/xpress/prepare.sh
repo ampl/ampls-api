@@ -37,3 +37,10 @@ os_name=$(uname -s)
 if [ "$os_name" = "Linux" ]; then
     ln $PACKAGE/libs/$s/lib/linux64/libxprs.so.46 $PACKAGE/libs/$s/lib/linux64/libxprs.so
 fi
+
+
+# Delete CUDA helper library in linux64 if present
+find "$PACKAGE/libs" \
+    -path '*/linux64/libxprscuda.so' \
+    -type f \
+    -print -delete
