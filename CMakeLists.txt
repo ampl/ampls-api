@@ -238,7 +238,7 @@ elseif(APPLE)
                       ${gurobi_BASE_DIR}/${sys}/libgurobi130.dylib)
 
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
-      ${cplex_BASE_DIR}/${sys}/libcplex2212.dylib)
+      ${cplex_BASE_DIR}/${sys}/libcplex2211.dylib)
       
    CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
       ${copt_BASE_DIR}/${sys}/libcopt.dylib)
