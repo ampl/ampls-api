@@ -1,4 +1,4 @@
-%module(directors="1") amplpy_copt_swig
+%module(directors="1",threads="1") amplpy_copt_swig
 
 %include "../../../common-python.i"
 %include "../../../../cpp/ampls/swig/ampls-common.i"
