@@ -46,6 +46,7 @@ class TestMultipleSolutions(TestBase):
             ampl.import_ampls_solution("stub", i)
             self.assertLessEqual(ampl.get_value("TotalSum"), 2.0)
             ampl.display("TotalSum, x, y, z;")
+        ampl.close() # Cibuildwheel fix
 
 
 if __name__ == "__main__":
