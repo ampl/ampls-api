@@ -20,8 +20,10 @@ The interfaces are available for multiple languages; the core is written in C++ 
 from setuptools import setup, Extension
 import platform
 import os
-
+import sys
 OSTYPE = platform.system()
+
+
 x64 = platform.architecture()[0] == '64bit'
 
 
@@ -52,6 +54,18 @@ def compile_args():
     else:
         return []
 
+def define_macros():
+    """Define macros for compilation."""
+    macros = [('SWIG', 1)]
+    # Enable SWIG threading for Python >= 3.13
+    if sys.version_info >= (3, 13):
+        macros.append(('USE_PYTHON_THREADS', 1))
+        print(f"SWIG threading ENABLED for Python {sys.version_info.major}.{sys.version_info.minor}")
+    elif sys.version_info[:2] == (3, 12):
+        print(f"WARNING: Python 3.12 is not supported due to GIL compatibility issues")
+    else:
+        print(f"SWIG threading DISABLED for Python {sys.version_info.major}.{sys.version_info.minor}")
+    return macros
 
 def libdir():
     if OSTYPE == 'Darwin':
@@ -108,15 +122,11 @@ setup(
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: C++',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
     packages=['amplpy_copt'],
@@ -126,14 +136,14 @@ setup(
             os.path.join('amplpy_copt', 'libs', 'copt', 'lib', libdir()),
             os.path.join('amplpy_copt', 'libs', 'ampls', libdir()),
         ],
-        define_macros=[('SWIG', 1)],
+        define_macros=define_macros(),  # Changed from hardcoded list
         include_dirs=[
             os.path.join('amplpy_copt', 'libs', 'copt', 'include'),
             os.path.join('amplpy_copt', 'swig'),
             os.path.join('amplpy_copt', 'cpp', 'copt', 'include'),
             os.path.join('amplpy_copt', 'cpp', 'ampls', 'include'),
         ],
-        libraries=['copt', 'copt-lib'],
+        libraries=['copt', 'copt-lib']+ ([f'python{sys.version_info.major}{sys.version_info.minor}'] if OSTYPE == 'Windows' and sys.version_info >= (3, 13) else []),
         extra_compile_args=compile_args(),
         extra_link_args=link_args(),
         sources=[

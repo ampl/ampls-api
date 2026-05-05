@@ -20,9 +20,22 @@ set(SWIG_PYTHON_WRAPPER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}.py")
 set(SWIG_CPP_SOURCE "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.cxx")
 set(SWIG_CPP_HEADER "${CMAKE_SWIG_OUTDIR}/${PYTHON_SWIG_API}PYTHON_wrap.h")
 
+
+if(${Python3_VERSION_MAJOR} EQUAL 3)
+  if(${Python3_VERSION_MINOR} GREATER_EQUAL 12)
+    set(SWIG_THREAD_FLAG "-DUSE_PYTHON_THREADS")
+    message("SWIG threading ENABLED for Python ${Python3_VERSION_MAJOR}.${Python3_VERSION_MINOR}")
+  else()
+    message("SWIG threading DISABLED - Python ${Python3_VERSION_MINOR} < 12")
+  endif()
+else()
+  message("SWIG threading DISABLED - Python major version ${Python3_VERSION_MAJOR} != 3")
+endif()
 set_source_files_properties(${SWIG_PYTHON_MODULE_NAME}.i 
   PROPERTIES CPLUSPLUS ON
-             USE_TARGET_INCLUDE_DIRECTORIES ON)
+             USE_TARGET_INCLUDE_DIRECTORIES ON
+                SWIG_FLAGS "${SWIG_THREAD_FLAG}")
+
 
 swig_add_library( ${PYTHON_SWIG_API} 
                   LANGUAGE python 
