@@ -2,6 +2,8 @@ variables:
   CIBW_SKIP: pp* *_i686 *-win32 *musllinux* cp312-* cp314t-*  cp38-* cp39-* cp310-* cp311-*
   # CIBW_SKIP: pp* *_i686 *-win32 *musllinux* cp312-* cp314t-* 
   CIBW_TEST_REQUIRES: --index-url https://pypi.ampl.com --extra-index-url https://pypi.org/simple amplpy ampl_module_base pandas
+  CIBW_ARCHS_WINDOWS: AMD64
+  AMPLPY_SWIG_THREADS: 1
   CIBW_ENVIRONMENT_PASS_LINUX: AMPLKEY_UUID
   CIBW_ARCHS_MACOS: x86_64 universal2
 stages:
@@ -47,6 +49,7 @@ stages:
           cp support/twine.sh $WHEELHOUSE/twine.sh
           cd python/$SOLVER
           bash prepare.sh linux64
+          export AMPLPY_SWIG_THREADS=1
           bash swig.sh
           pip install --upgrade pip
           pip install urllib3[secure] --upgrade
@@ -97,6 +100,7 @@ stages:
           TMP=`pwd`/tmp
           cd python/$SOLVER
           bash prepare.sh osx64
+          export AMPLPY_SWIG_THREADS=1
           bash swig.sh
           pip install --upgrade pip
           pip install urllib3[secure] --upgrade
@@ -157,11 +161,12 @@ stages:
           mkdir -p tmp
           cd python/$SOLVER
           bash prepare.sh win64
+          export AMPLPY_SWIG_THREADS=1
           bash swig.sh
           python -m pip install --user --upgrade pip
           python -m pip install urllib3[secure] --upgrade
           python -m pip install --upgrade cibuildwheel==3.4.1
-          cibuildwheel --platform windows --output-dir tmp .
+          cibuildwheel --platform windows --archs AMD64 --output-dir tmp .
           cp tmp/* $WHEELHOUSE/
         env:
           CIBW_ENVIRONMENT: AMPLKEY_UUID=$(AMPLKEY_UUID)
