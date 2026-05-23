@@ -136,11 +136,13 @@ stages:
       - task: UsePythonVersion@0
       - powershell: |
           $version = "4.4.1"
-          $url = "https://prdownloads.sourceforge.net/swig/swigwin-$version.zip"
+          $url = "https://downloads.sourceforge.net/project/swig/swigwin/swigwin-$version/swigwin-$version.zip"
           $zip = "$(Agent.TempDirectory)\swig.zip"
           $dest = "$(Agent.ToolsDirectory)\swig"
 
-          Invoke-WebRequest $url -OutFile $zip
+          # curl -L follows mirror redirects; plain Invoke-WebRequest often saves an HTML page
+          curl.exe -fsSL -A "Azure-DevOps" -o $zip $url
+          if ((Get-Item $zip).Length -lt 1MB) { throw "SWIG download failed (got HTML or empty file)" }
           Expand-Archive $zip -DestinationPath $dest -Force
 
           $swigDir = "$dest\swigwin-$version"
