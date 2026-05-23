@@ -69,7 +69,7 @@ public:
       return 0;
     }
     // Calculate the duration in seconds
-    auto now = std::chrono::high_resolution_clock::now();
+    auto now = std::chrono::steady_clock::now();
     double duration = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastObjTime).count() / 1000.0;
 
     double obj = getObj();
@@ -187,7 +187,7 @@ int main(int argc, char** argv) {
 
 #ifdef USE_cbcmp
   example<ampls::CbcModel>();
-#endif*/
+#endif
   return 0;
  
 }
