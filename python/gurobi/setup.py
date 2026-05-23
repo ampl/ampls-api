@@ -119,7 +119,13 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
-    packages=["amplpy_gurobi"],
+    packages=["amplpy_gurobi", "amplpy_gurobi.__pyinstaller"],
+    entry_points={
+        "pyinstaller40": [
+            "hook-dirs = amplpy_gurobi.__pyinstaller:get_hook_dirs",
+            "rthooks = amplpy_gurobi.__pyinstaller:get_rthooks",
+        ],
+    },
     ext_modules=[
         Extension(
             "_amplpy_gurobi_swig",
