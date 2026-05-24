@@ -1,6 +1,5 @@
 variables:
-  CIBW_SKIP: pp* *_i686 *-win32 *musllinux* cp312-* cp314t-*  cp38-* cp39-* cp310-* cp311-*
-  # CIBW_SKIP: pp* *_i686 *-win32 *musllinux* cp312-* cp314t-* 
+  CIBW_SKIP: pp* *_i686 *-win32 *musllinux* cp312-* cp314t-* 
   CIBW_TEST_REQUIRES: --index-url https://pypi.ampl.com --extra-index-url https://pypi.org/simple amplpy ampl_module_base pandas
   CIBW_ARCHS_WINDOWS: AMD64
   AMPLPY_SWIG_THREADS: 1
@@ -23,11 +22,11 @@ stages:
         xpress:
           solver: 'xpress'
           CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux_2_28'
-          #CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
+          CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
         copt:
           solver: 'copt'
           CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
-          #CIBW_TEST_COMMAND: python -m amplpy_copt.tests
+          CIBW_TEST_COMMAND: python -m amplpy_copt.tests
        # highs:
        #   solver: 'highs'
        #   CIBW_TEST_COMMAND: python -m amplpy_highs.tests
@@ -80,10 +79,10 @@ stages:
           CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
         xpress:
           solver: 'xpress'
-          #CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
+          CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
         copt:
           solver: 'copt'
-          #CIBW_TEST_COMMAND: python -m amplpy_copt.tests
+          CIBW_TEST_COMMAND: python -m amplpy_copt.tests
     variables:
       wheelhouse: $(Build.ArtifactStagingDirectory)
     steps:
@@ -127,10 +126,10 @@ stages:
           CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
         xpress:
           solver: 'xpress'
-          #CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
+          CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
         copt:
           solver: 'copt'
-          #CIBW_TEST_COMMAND: python -m amplpy_copt.tests
+          CIBW_TEST_COMMAND: python -m amplpy_copt.tests
       #  highs:
       #    solver: 'highs'
       #    CIBW_TEST_COMMAND: python -m amplpy_highs.tests
