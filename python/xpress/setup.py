@@ -20,6 +20,8 @@ The interfaces are available for multiple languages; the core is written in C++ 
 from setuptools import setup, Extension
 import platform
 import os
+import sys 
+
 
 OSTYPE = platform.system()
 x64 = platform.architecture()[0] == "64bit"
@@ -33,6 +35,19 @@ def ls_dir(base_dir):
         for f in files
     ]
 
+
+def define_macros() -> list:
+    """Define macros for compilation."""
+    macros = [('SWIG', 1)]
+    # Enable SWIG threading for Python >= 3.13
+    if sys.version_info >= (3, 13):
+        macros.append(('USE_PYTHON_THREADS', 1))
+        print(f"SWIG threading ENABLED for Python {sys.version_info.major}.{sys.version_info.minor}")
+    elif sys.version_info[:2] == (3, 12):
+        print(f"WARNING: Python 3.12 is not supported due to GIL compatibility issues")
+    else:
+        print(f"SWIG threading DISABLED for Python {sys.version_info.major}.{sys.version_info.minor}")
+    return macros
 
 def compile_args():
     if OSTYPE == "Windows":
@@ -53,7 +68,7 @@ def compile_args():
         return []
 
 
-def libdir():
+def libdir() -> str:
     if OSTYPE == "Darwin":
         assert x64 is True
         return "osx64"
@@ -63,7 +78,7 @@ def libdir():
     elif OSTYPE == "Windows":
         assert x64 is True
         return "win64"
-
+    raise RuntimeError(f"Unsupported OS: {OSTYPE}")
 
 def link_args():
     rpaths = [
@@ -108,18 +123,22 @@ setup(
         "Operating System :: Microsoft :: Windows",
         "Programming Language :: C++",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
+        'Programming Language :: Python :: 3.14',
         "Programming Language :: Python :: Implementation :: CPython",
     ],
-    packages=["amplpy_xpress"],
+    packages=["amplpy_xpress", "amplpy_xpress.__pyinstaller"],
+        entry_points={
+        "pyinstaller40": [
+            "hook-dirs = amplpy_xpress.__pyinstaller:get_hook_dirs",
+            "rthooks = amplpy_xpress.__pyinstaller:get_rthooks",
+        ],
+    },
     ext_modules=[
         Extension(
             "_amplpy_xpress_swig",

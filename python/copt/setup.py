@@ -54,7 +54,7 @@ def compile_args():
     else:
         return []
 
-def define_macros():
+def define_macros() -> list:
     """Define macros for compilation."""
     macros = [('SWIG', 1)]
     # Enable SWIG threading for Python >= 3.13
@@ -126,17 +126,25 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: 3.13',
+        'Programming Language :: Python :: 3.14',
         'Programming Language :: Python :: Implementation :: CPython',
     ],
-    packages=['amplpy_copt'],
+    packages=['amplpy_copt',"amplpy_copt.__pyinstaller"],
+    entry_points={
+        "pyinstaller40": [
+            "hook-dirs = amplpy_copt.__pyinstaller:get_hook_dirs",
+            "rthooks = amplpy_copt.__pyinstaller:get_rthooks",
+        ],
+    },
     ext_modules=[Extension(
         '_amplpy_copt_swig',
         library_dirs=[
             os.path.join('amplpy_copt', 'libs', 'copt', 'lib', libdir()),
             os.path.join('amplpy_copt', 'libs', 'ampls', libdir()),
         ],
-        define_macros=define_macros(),  # Changed from hardcoded list
+        define_macros=define_macros(),
         include_dirs=[
             os.path.join('amplpy_copt', 'libs', 'copt', 'include'),
             os.path.join('amplpy_copt', 'swig'),
