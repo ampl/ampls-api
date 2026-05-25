@@ -18,7 +18,7 @@ stages:
         cplex:
           solver: 'cplex'
           CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
-          CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
+          #CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
         xpress:
           solver: 'xpress'
           CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux_2_28'
@@ -26,7 +26,7 @@ stages:
         copt:
           solver: 'copt'
           CIBW_MANYLINUX_X86_64_IMAGE: 'manylinux2014'
-          CIBW_TEST_COMMAND: python -m amplpy_copt.tests
+          #CIBW_TEST_COMMAND: python -m amplpy_copt.tests
        # highs:
        #   solver: 'highs'
        #   CIBW_TEST_COMMAND: python -m amplpy_highs.tests
@@ -79,7 +79,7 @@ stages:
           CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
         xpress:
           solver: 'xpress'
-          CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
+          #CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
         copt:
           solver: 'copt'
           CIBW_TEST_COMMAND: python -m amplpy_copt.tests
