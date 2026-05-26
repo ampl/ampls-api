@@ -2,8 +2,14 @@
 
 Here **[Breaking]** means the change that may break valid user code, **[Fix]** - a bug fix.
 
+## 0.2.4 - 20260526
+- **[New]** Python: added support for pyinstaller
+- **[New]** Python: updated packages and solver libs for all distributed solvers. 
+- **[New]** Python: support for Python versions > 3.12
+
+
 ## 0.2.3 - 20260408
-* **[Breaking]** Python: the injected class method `amplpy.AMPL.import_solution ` is not called `amplpy.AMPL.import_ampls_solution`
+* **[Breaking]** Python: the injected class method `amplpy.AMPL.import_solution ` is now called `amplpy.AMPL.import_ampls_solution`
 
 
 ## 0.2.2 - 20241115

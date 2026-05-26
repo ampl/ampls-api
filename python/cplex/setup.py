@@ -106,7 +106,7 @@ def solver_libraries():
 
 setup(
     name="amplpy_cplex",
-    version="0.2.3",
+    version="0.2.4",
     description="CPLEX extension for amplpy",
     long_description=__doc__,
     license="BSD-3",

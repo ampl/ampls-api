@@ -98,8 +98,8 @@ def link_args():
 
 setup(
     name="amplpy_gurobi",
-    version="0.2.3",
-    description="GUROBI extension for amplpy",
+    version="0.2.4",
+    description="Gurobi extension for amplpy",
     long_description=__doc__,
     license="BSD-3",
     platforms="any",

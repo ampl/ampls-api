@@ -99,7 +99,7 @@ def link_args():
 
 setup(
     name='amplpy_copt',
-    version='0.2.3',
+    version='0.2.4',
     description='copt extension for amplpy',
     long_description=__doc__,
     license='BSD-3',

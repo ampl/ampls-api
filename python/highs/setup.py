@@ -85,7 +85,7 @@ def link_args():
 
 setup(
     name='amplpy_highs',
-    version='0.2.3',
+    version='0.2.4',
     description='highs extension for amplpy',
     long_description=__doc__,
     license='BSD-3',
