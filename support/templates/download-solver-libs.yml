@@ -27,6 +27,7 @@ steps:
 
   - script: |
       cd libs
+      rm -rf ${{ parameters.packageName }}
       if [ -d "${{ parameters.packageName }}/${{ parameters.packageName }}" ]; then
         mv ${{ parameters.packageName }}/${{ parameters.packageName }}/* .
       else
