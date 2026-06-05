@@ -27,10 +27,9 @@ steps:
 
   - script: |
       cd libs
-      rm -rf ${{ parameters.packageName }}
       if [ -d "${{ parameters.packageName }}/${{ parameters.packageName }}" ]; then
-        mv ${{ parameters.packageName }}/${{ parameters.packageName }}/* .
+        cp -r ${{ parameters.packageName }}/${{ parameters.packageName }}/* .
       else
-        mv ${{ parameters.packageName }}/* .
+        cp -r ${{ parameters.packageName }}/* .
       fi
     displayName: "Move ${{ parameters.packageName }} files to libs/"
