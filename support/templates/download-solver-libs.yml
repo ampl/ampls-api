@@ -1,0 +1,26 @@
+parameters:
+  - name: packageName
+    type: string
+    default: 'solver-public-libs'
+  - name: version
+    type: string
+    default: 'latest'
+
+steps:
+  - task: UniversalPackages@0
+    displayName: "Download ${{ parameters.packageName }} from artifact feed"
+    inputs:
+      command: download
+      downloadDirectory: 'libs'
+      feedsToUse: internal
+      vstsFeed: 'solver-libs-feed'
+      vstsFeedPackage: ${{ parameters.packageName }}
+      vstsPackageVersion: ${{ parameters.version }}
+
+  - task: ExtractFiles@1
+    displayName: "Unpack ${{ parameters.packageName }}"
+    inputs:
+      archiveFilePatterns: 'libs/*.zip'
+      destinationFolder: 'libs'
+      cleanDestinationFolder: false
+      overwriteExistingFiles: true

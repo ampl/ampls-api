@@ -37,9 +37,7 @@ stages:
       # - script: |
       #     sudo apt-get install swig
       #   displayName: Install SWIG
-      - bash: |
-          bash libs/download.sh
-        displayName: Download libraries
+      - template: support/templates/download-solver-libs.yml
       - bash: |
           python -m pip install setuptools
           set -ex
@@ -90,9 +88,7 @@ stages:
       - script: |
            brew install swig
         displayName: Install SWIG
-      - bash: |
-          bash libs/download.sh
-        displayName: Download libraries
+      - template: support/templates/download-solver-libs.yml
       - bash: |
           set -ex
           mkdir -p tmp
@@ -152,9 +148,7 @@ stages:
           Write-Host "##vso[task.prependpath]$swigDir"
           & "$swigDir\swig.exe" -version
         displayName: Upgrade SWIG to 4.4.1
-      - bash: |
-          bash libs/download.sh
-        displayName: Download libraries  
+      - template: support/templates/download-solver-libs.yml
       - bash: |
           set -ex
           mkdir -p tmp
