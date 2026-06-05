@@ -24,3 +24,12 @@ steps:
       destinationFolder: 'libs'
       cleanDestinationFolder: false
       overwriteExistingFiles: true
+
+  - script: |
+      cd libs
+      if [ -d "${{ parameters.packageName }}/${{ parameters.packageName }}" ]; then
+        mv ${{ parameters.packageName }}/${{ parameters.packageName }}/* .
+      else
+        mv ${{ parameters.packageName }}/* .
+      fi
+    displayName: "Move ${{ parameters.packageName }} files to libs/"
