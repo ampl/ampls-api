@@ -4,7 +4,7 @@ parameters:
     default: 'solver-public-libs'
   - name: version
     type: string
-    default: 'latest'
+    default: '*'
 
 steps:
   - task: UniversalPackages@0
