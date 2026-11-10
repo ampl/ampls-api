@@ -75,9 +75,15 @@ stages:
         cplex:
           solver: 'cplex'
           CIBW_TEST_COMMAND: python -m amplpy_cplex.tests
+          # CPLEX libs are arm64-only: cross-compile on the Intel agent, tests can't run
+          CIBW_ARCHS_MACOS: arm64
+          CIBW_TEST_SKIP: '*-macosx_arm64'
         xpress:
           solver: 'xpress'
           #CIBW_TEST_COMMAND: python -m amplpy_xpress.tests
+          # Xpress libs are arm64-only: cross-compile on the Intel agent, tests can't run
+          CIBW_ARCHS_MACOS: arm64
+          CIBW_TEST_SKIP: '*-macosx_arm64'
         copt:
           solver: 'copt'
           CIBW_TEST_COMMAND: python -m amplpy_copt.tests
