@@ -203,7 +203,7 @@ if(WIN32)
     
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
       ${cplex_BASE_DIR}/${sys}/cplex2212.dll
-      IMPORTLIB ${cplex_BASE_DIR}/${sys}/cplex2212.lib)
+      IMPORTLIB ${cplex_BASE_DIR}/${sys}/cplex2220.lib)
       
      CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
       ${copt_BASE_DIR}/${sys}/copt.dll
@@ -238,7 +238,7 @@ elseif(APPLE)
                       ${gurobi_BASE_DIR}/${sys}/libgurobi130.dylib)
 
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
-      ${cplex_BASE_DIR}/${sys}/libcplex2211.dylib)
+      ${cplex_BASE_DIR}/${sys}/libcplex2220.dylib)
       
    CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
       ${copt_BASE_DIR}/${sys}/libcopt.dylib)
@@ -259,13 +259,13 @@ else()
                       ${gurobi_BASE_DIR}/${sys}/libgurobi130.so)
 
     CreateSolverLib(cplex-solverlib ${cplex_BASE_DIR}/include
-      ${cplex_BASE_DIR}/${sys}/libcplex2212.so)
+      ${cplex_BASE_DIR}/${sys}/libcplex2220.so)
       
     CreateSolverLib(copt-solverlib ${copt_BASE_DIR}/include
       ${copt_BASE_DIR}/${sys}/libcopt.so)
     
     CreateSolverLib(xpress-solverlib ${xpress_BASE_DIR}/include
-      ${xpress_BASE_DIR}/${sys}/libxprs.so.46)
+      ${xpress_BASE_DIR}/${sys}/libxprs.so.48)
 
     CreateSolverLib(scip-solverlib ${scip_BASE_DIR}/include
       ${scip_BASE_DIR}/${sys}/libscip.so.10.0)

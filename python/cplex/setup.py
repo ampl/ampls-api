@@ -99,9 +99,7 @@ def link_args():
 
 
 def solver_libraries():
-    if OSTYPE == "Darwin":
-        return ["cplex2211", "cplex-lib"]
-    return ["cplex2212", "cplex-lib"]
+    return ["cplex2220", "cplex-lib"]
 
 
 setup(

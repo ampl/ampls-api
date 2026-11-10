@@ -25,7 +25,8 @@ steps:
       cleanDestinationFolder: false
       overwriteExistingFiles: true
 
-  - script: |
+  - bash: |
+      set -e
       cd libs
       if [ -d "${{ parameters.packageName }}/${{ parameters.packageName }}" ]; then
         cp -r ${{ parameters.packageName }}/${{ parameters.packageName }}/* .
