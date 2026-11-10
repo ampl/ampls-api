@@ -23,8 +23,8 @@
     $2 = (int*)malloc(size * sizeof(int));
     for (i = 0; i < size; i++) {
       PyObject* o = PyList_GetItem($input, i);
-      if (PyInt_Check(o)) {
-        $2[i] = PyInt_AsLong(o);
+      if (PyLong_Check(o)) {
+        $2[i] = PyLong_AsLong(o);
       }
       else {
         PyErr_SetString(PyExc_TypeError, "list must contain floating-point numbers");
@@ -55,7 +55,7 @@
     $1 = (double*)malloc(size * sizeof(double));
     for (i = 0; i < size; i++) {
       PyObject* o = PyList_GetItem($input, i);
-      if (PyFloat_Check(o) || PyInt_Check(o)) {
+      if (PyFloat_Check(o) || PyLong_Check(o)) {
         $1[i] = PyFloat_AsDouble(o);
       }
       else {
@@ -86,8 +86,8 @@
     $1 = (int*)malloc(size * sizeof(int));
     for (i = 0; i < size; i++) {
       PyObject* o = PyList_GetItem($input, i);
-      if (PyInt_Check(o)) {
-        $1[i] = PyInt_AsLong(o);
+      if (PyLong_Check(o)) {
+        $1[i] = PyLong_AsLong(o);
       }
       else {
         PyErr_SetString(PyExc_TypeError, "list must contain integer numbers");
@@ -133,7 +133,7 @@
     $result = PyUnicode_FromString($1.str);
     break;
   case 1:
-    $result = PyInt_FromLong($1.integer);
+    $result = PyLong_FromLong($1.integer);
     break;
   case 2:
     $result = PyFloat_FromDouble($1.dbl);

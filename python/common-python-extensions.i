@@ -15,7 +15,7 @@
     std::map<int, std::string> map = self->getVarMapInverse();
     std::map<int, std::string>::const_iterator it;
     for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
+      PyDict_SetItem(res, PyUnicode_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
     }
     return res;
   }
@@ -25,7 +25,7 @@
     std::map<std::string, int> map = self->getVarMap();
     std::map<std::string, int>::const_iterator it;
     for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
+      PyDict_SetItem(res, PyUnicode_FromString(it->first.c_str()), PyLong_FromLong(it->second));
     }
     return res;
   }
@@ -34,7 +34,7 @@
     std::map<std::string, int> map = self->getVarMapFiltered(beginWith);
     std::map<std::string, int>::const_iterator it;
     for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
+      PyDict_SetItem(res, PyUnicode_FromString(it->first.c_str()), PyLong_FromLong(it->second));
     }
     return res;
   }
@@ -45,7 +45,7 @@
     std::map<int,std::string> map = self->getVarMapInverse();
     std::map<int,std::string>::const_iterator it;
     for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyInt_FromLong(it->first), PyString_FromString(it->second.c_str()));
+      PyDict_SetItem(res, PyLong_FromLong(it->first), PyUnicode_FromString(it->second.c_str()));
     }
     return res;
   }
@@ -132,7 +132,7 @@ std::string get_string_option(const char* name) {
     std::map<int, std::string> map = self->getVarMapInverse();
     std::map<int, std::string>::const_iterator it;
     for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
+      PyDict_SetItem(res, PyUnicode_FromString(it->second.c_str()), PyFloat_FromDouble(sol[it->first]));
     }
     return res;
   }
@@ -142,7 +142,7 @@ std::string get_string_option(const char* name) {
     std::map<std::string, int> map = self->getVarMap();
     std::map<std::string, int>::const_iterator it;
     for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyString_FromString(it->first.c_str()), PyInt_FromLong(it->second));
+      PyDict_SetItem(res, PyUnicode_FromString(it->first.c_str()), PyLong_FromLong(it->second));
     }
     return res;
   }
@@ -152,7 +152,7 @@ std::string get_string_option(const char* name) {
     std::map<int,std::string> map = self->getVarMapInverse();
     std::map<int,std::string>::const_iterator it;
     for (it = map.begin(); it != map.end(); ++it) {
-      PyDict_SetItem(res, PyInt_FromLong(it->first), PyString_FromString(it->second.c_str()));
+      PyDict_SetItem(res, PyLong_FromLong(it->first), PyUnicode_FromString(it->second.c_str()));
     }
     return res;
   }
