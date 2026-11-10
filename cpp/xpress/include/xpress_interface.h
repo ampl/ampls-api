@@ -253,7 +253,10 @@ public:
     int nvars = getNumVars();
     if (length < nvars)
       throw AMPLSolverException::format("Must allocate an array of at least %d elements.", nvars);
-    return XPRSgetsol(prob_, sol, NULL, NULL, NULL);
+    if (nvars == 0)
+      return 0;
+    int solstatus;
+    return XPRSgetsolution(prob_, &solstatus, sol, 0, nvars - 1);
   }
   std::string error(int code)
   {

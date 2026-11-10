@@ -82,21 +82,29 @@ XPRESSModel XPRESSDrv::loadModelImpl(char** args, const char** options) {
   return XPRESSModel(mp, args[1], options);
 }
 int XPRESSModel::setCallbackDerived(impl::BaseCallback* callback) {
-  int status = XPRSsetcbintsol(prob_, impl::xpress::XPRSCBWrap::intsol_callback_wrapper,
-    callback);
-  AMPLSXPRSERRORCHECK("XPRSsetcbintsol")
-  status = XPRSaddcbpreintsol(prob_, impl::xpress::XPRSCBWrap::preintsol_callback_wrapper,
+  
+  using impl::xpress::XPRSCBWrap;
+  XPRSremovecbintsol(prob_, XPRSCBWrap::intsol_callback_wrapper, NULL);
+  XPRSremovecbpreintsol(prob_, XPRSCBWrap::preintsol_callback_wrapper, NULL);
+  XPRSremovecbmessage(prob_, XPRSCBWrap::message_callback_wrapper, NULL);
+  XPRSremovecboptnode(prob_, XPRSCBWrap::optnode_callback_wrapper, NULL);
+  XPRSremovecbnewnode(prob_, XPRSCBWrap::newnode_callback_wrapper, NULL);
+
+  int status = XPRSaddcbintsol(prob_, XPRSCBWrap::intsol_callback_wrapper,
     callback, 0);
-  AMPLSXPRSERRORCHECK("XPRSsetcbpreintsol")
-  status = XPRSsetcbmessage(prob_, impl::xpress::XPRSCBWrap::message_callback_wrapper,
-    callback);
-  AMPLSXPRSERRORCHECK("XPRSsetcbmessage")
-  status = XPRSsetcboptnode(prob_, impl::xpress::XPRSCBWrap::optnode_callback_wrapper,
-    callback);
-  AMPLSXPRSERRORCHECK("XPRSsetcboptnode")
-    status = XPRSsetcbnewnode(prob_, impl::xpress::XPRSCBWrap::newnode_callback_wrapper,
-      callback);
-  AMPLSXPRSERRORCHECK("XPRSsetcbnewnode")
+  AMPLSXPRSERRORCHECK("XPRSaddcbintsol")
+  status = XPRSaddcbpreintsol(prob_, XPRSCBWrap::preintsol_callback_wrapper,
+    callback, 0);
+  AMPLSXPRSERRORCHECK("XPRSaddcbpreintsol")
+  status = XPRSaddcbmessage(prob_, XPRSCBWrap::message_callback_wrapper,
+    callback, 0);
+  AMPLSXPRSERRORCHECK("XPRSaddcbmessage")
+  status = XPRSaddcboptnode(prob_, XPRSCBWrap::optnode_callback_wrapper,
+    callback, 0);
+  AMPLSXPRSERRORCHECK("XPRSaddcboptnode")
+  status = XPRSaddcbnewnode(prob_, XPRSCBWrap::newnode_callback_wrapper,
+    callback, 0);
+  AMPLSXPRSERRORCHECK("XPRSaddcbnewnode")
   return status;
 }
 
@@ -117,8 +125,10 @@ impl::BaseCallback* XPRESSModel::createCallbackImplDerived(GenericCallback* call
 
 std::vector<double> XPRESSModel::getConstraintsValueImpl(int offset, int length) {
   std::vector<double> cons(getNumCons());
-  int status = XPRSgetsol(prob_, NULL, NULL, cons.data(), NULL);
-  AMPLSXPRSERRORCHECK("XPRSgetsol")
+  int solstatus;
+  int status = cons.empty() ? 0 :
+    XPRSgetduals(prob_, &solstatus, cons.data(), 0, (int)cons.size() - 1);
+  AMPLSXPRSERRORCHECK("XPRSgetduals")
   std::vector<double> toRet(cons.begin() + offset, cons.begin() + offset + length);
   return toRet;
 }
